@@ -157,13 +157,19 @@ http://platinhom.github.io/2015/06/06/Markdown-note/    kramdown-note
 
 <div class="highlighter-rouge"><pre class="highlight"><code>vim myblog/_posts/newarticle.md(file name in 201x-0x-0x-xxx-xxx.md format)
 cd myblog
+rm -r _site
 jekyll serve --watch(or jekyll build,jekyll serve contains jekyll build function)
-cd _sites
+mkdir ../tmp
+cd ../tmp
+git init
+git pull https://github.com/xinghuacai/xinghuacai.github.io.git
+cp -r ../myblog/_site/* .
 git status
 git add .
-git commit -a -m "add new articles"
+git commit -a -m "update articles"
+git remote add origin https://github.com/xinghuacai/xinghuacai.github.io.git
 git push -u origin master
-
+rm -r ../tmp
 </code></pre>
 </div>
 
