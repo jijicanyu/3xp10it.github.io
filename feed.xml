@@ -5,12 +5,12 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 09 Apr 2016 17:28:26 +0800</pubDate>
-    <lastBuildDate>Sat, 09 Apr 2016 17:28:26 +0800</lastBuildDate>
+    <pubDate>Sat, 09 Apr 2016 21:05:17 +0800</pubDate>
+    <lastBuildDate>Sat, 09 Apr 2016 21:05:17 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
-        <title>Use github and jekyll start a blog</title>
+        <title>Use github and jekyll start github pages</title>
         <description>&lt;h1 id=&quot;x01-useful-links-to-learn&quot;&gt;0x01 useful links to learn&lt;/h1&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://www.zhihu.com/question/20223939
@@ -256,7 +256,12 @@ and &lt;a href=&quot;http://en.wikipedia.org/wiki/Textile_(markup_language)&quot
     
       <item>
         <title>Using thumbnails</title>
-        <description>&lt;p&gt;Carte Noire is designed to start each article with an all-white image as a
+        <description>&lt;p&gt;#this is my added line…
+# this is my added line…&lt;/p&gt;
+
+&lt;h1 id=&quot;this-is-my-added-line&quot;&gt;this is my added line…&lt;/h1&gt;
+
+&lt;p&gt;Carte Noire is designed to start each article with an all-white image as a
 thumbnail. These are created by adding a &lt;code class=&quot;highlighter-rouge&quot;&gt;thumbnail&lt;/code&gt; parameter to the article’s
 &lt;a href=&quot;http://jekyllrb.com/docs/frontmatter/&quot;&gt;YAML frontmatter&lt;/a&gt;. This thumbnail parameter is processed in one of two ways,
 images specified in &lt;code class=&quot;highlighter-rouge&quot;&gt;_data/thumbnails.yml&lt;/code&gt; or using &lt;a href=&quot;http://fortawesome.github.io/Font-Awesome/&quot;&gt;Font Awesome&lt;/a&gt;.&lt;/p&gt;
