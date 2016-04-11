@@ -267,10 +267,12 @@ ul {
   .single h1, .single h2, .single h3, .single h4, .single h5, .single h6 {
     font-family: '文泉驿等宽正黑';
     margin-bottom: 10px; }
+  .single h1 {
+    font-size: 40px; }
   .single h2 {
     font-size: 36px; }
   .single h3 {
-    font-size: 28px; }
+    font-size: 24px; }
   .single p {
     margin-bottom: 10px; }
     @media (min-width: 768px) {
