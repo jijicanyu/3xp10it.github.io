@@ -8,7 +8,8 @@
 <meta name="description" content="A blog about programming and network security">
 
 <link rel="profile" href="http://gmpg.org/xfn/11" />
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<! -- link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bbbbootstrap.min.css"-- >
+<link rel="stylesheet" href="../../../../../css/my_code.css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 <link rel="stylesheet" type="text/css" media="all" href="/css/style.css" />
 <link rel="stylesheet" type="text/css" media="all" href="/css/jquery.mmenu.all.css" />
@@ -103,8 +104,9 @@
         
 
         <span itemprop="articleBody"><h2 id="x01-uri">0x01 uri</h2>
-<p>http://ctf.idf.cn/index.php?g=game&amp;m=article&amp;a=index&amp;id=28
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/ctf-js/%E5%9B%BE%E7%89%871.png" alt="anyname_1" /></p>
+<p>http://ctf.idf.cn/index.php?g=game&amp;m=article&amp;a=index&amp;id=28</p>
+
+<p><img src="../../../../../pic/ctf-js/图片1.png" /></p>
 
 <h2 id="x02-flag">0x02 求flag过程</h2>
 
@@ -140,10 +142,10 @@
 </div>
 
 <h4 id="js">需要本地建立相应文件夹并将两个js文件下载到目录：</h4>
-<p><img src="https://raw.githubusercontent.com/xinghuacai/pic/master/ctf-js/%E5%9B%BE%E7%89%873.png" alt="sdj" />
-4&gt;2中js代码转换成易看代码：</p>
+<p><img src="../../../../../pic/ctf-js/图片3.png" width="1000" height="400" border="5" /><br />
+4&gt;2中js代码转换成易看代码：<br />
+<small>用sublime text打开，安装JsFormat插件，可通过快捷键ctrl+alt+f,实现javascript代码自动对齐，js代码转换后变成：</small></p>
 
-<h4 id="sublime-textjsformatctrlaltfjavascriptjs">用sublime text打开，安装JsFormat插件，可通过快捷键ctrl+alt+f,实现javascript代码自动对齐，js代码转换后变成：</h4>
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="s2">"\\u8f93\\u5165\\u4f60\\u7684\\x66\\x6c\\x61\\x67\\u5427\\uff0c\\u5c11\\u5e74\\uff01"</span><span class="p">,</span> <span class="s2">""</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="s2">"\\x66\\x33\\x33\\x37\\x33\\x65\\x33\\x36\\x63\\x36\\x37\\x37\\x37\\x35\\x30\\x37\\x37\\x39\\x66\\x35\\x64\\x30\\x34\\x66\\x66\\x37\\x38\\x38\\x35\\x62\\x33\\x65"</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="sr">/.+_.+_.+/gi</span><span class="p">;</span>
@@ -170,7 +172,7 @@
 </code></pre>
 </div>
 
-<h4 id="jshtmlhtmljs">后将该js放进本地新建的html中，其中html内嵌js格式为：</h4>
+<p><small>后将该js放进本地新建的html中，其中html内嵌js格式为：</small></p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
 <span class="nt">&lt;head&gt;</span>

