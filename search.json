@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "msf的两种内网间连接方式及多重转发",
+    "category" : "",
+    "tags"     : "web, msf, lcx",
+    "url"      : "/msf/2016/04/15/msf%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%86%85%E7%BD%91%E9%97%B4%E8%BF%9E%E6%8E%A5%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%A4%9A%E9%87%8D%E8%BD%AC%E5%8F%91/",
+    "date"     : "2016-04-15 00:00:00 +0800"
+    } ,
+    
+  {
     "title"    : "MyToolKit",
     "category" : "",
     "tags"     : "python, sqlmap, scan",
