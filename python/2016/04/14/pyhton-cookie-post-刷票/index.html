@@ -4,7 +4,7 @@
     <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Use github and jekyll start github pages</title>
+<title>Pyhton Cookie Post 刷票</title>
 <meta name="description" content="A blog about programming and network security">
 
 <link rel="profile" href="http://gmpg.org/xfn/11" />
@@ -107,24 +107,20 @@
 
     <div itemscope itemtype="http://schema.org/Article" class="col-md-12 article">
       
-      <div class="thumb">
-        <img itemprop="image" src="http://i.imgur.com/aRQcGSi.png" alt="Thumbnail: jekyll" />
-      </div>
-      
 
-      <h1 class="header" itemprop="name">Use github and jekyll start github pages</h1>
+      <h1 class="header" itemprop="name">Pyhton Cookie Post 刷票</h1>
 
       <div class="author">
         <small><i>
           
-          on <span itemprop="datePublished" content="2014-08-28">April 9, 2016</span>
-           under jekyll
+          on <span itemprop="datePublished" content="2014-08-28">April 14, 2016</span>
+           under python
         </i></small>
       </div>
 
       <div class="read-time">
         <small>
-          3 minute read
+          1 minute read
         </small>
       </div>
 
@@ -132,110 +128,51 @@
 
         
 
-        <span itemprop="articleBody"><h1 id="x01-useful-links-to-learn">0x01 useful links to learn</h1>
+        <span itemprop="articleBody"><p><i class="fa fa-apple" aria-hidden="true"></i>
+记一次刷票代码</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>https://www.zhihu.com/question/20223939
-https://github.com/jacobtomlinson/carte-noire
-http://www.tuicool.com/articles/RZbEV3
-https://help.github.com/articles/configuring-jekyll/
-https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/
-http://jekyllrb.com/docs/github-pages/#project-page-url-structure
-http://jekyllcn.com/
-https://learnetto.com/blog/tutorial-how-to-host-your-websites-for-free-using-github-pages
-http://www.jimmylauzau.com/blog/2016/03/23/the-awesomeness-that-is-github-pages
-http://pikipity.github.io/blog/kramdown-syntax-chinese-1.html   kramdown语法
-http://pikipity.github.io/blog/kramdown-syntax-chinese-2.html   kramdown语法
-http://platinhom.gitcafe.io/2015/11/06/Kramdown-note/           kramdown语法
-https://ruby-china.org/topics/14005                     web中文字体应用指南(i use 文泉驿等宽正黑 )
-http://platinhom.github.io/2015/06/06/Markdown-note/    kramdown-note
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">'http://panshi.qq.com/v2/vote/10583890/submit'</span>
+<span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">while</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">20</span><span class="p">:</span>
+	<span class="n">j</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+	<span class="c">#cook='pgv_info=ssid=s'+str(i+4607539873)+'; pgv_pvi='+str(8520475648+i)+'; pgv_pvid='+str(5279007010+i)+'; sd_cookie_crttime='+str(1460508371298+i)+'; sd_userid='+str(31421460508371298+i)+'; touch ='+j</span>
+	<span class="n">cook</span><span class="o">=</span><span class="s">'pgv_info=ssid=s'</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s">'; pgv_pvi='</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s">'; pgv_pvid='</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s">'; sd_cookie_crttime='</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="mi">1460508371298</span><span class="o">+</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s">'; sd_userid='</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="mi">31421460508371298</span><span class="o">+</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s">'; touch ='</span><span class="o">+</span><span class="n">j</span>
+	<span class="k">print</span> <span class="n">cook</span>
+	<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="s">'Accept-Language'</span><span class="p">:</span> <span class="s">'zh-cn'</span><span class="p">,</span>
+	<span class="s">'Accept-Encoding'</span><span class="p">:</span> <span class="s">'gzip, deflate'</span><span class="p">,</span>
+	<span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/x-www-form-urlencoded'</span><span class="p">,</span>
+	<span class="s">'Origin'</span><span class="p">:</span> <span class="s">'http://hn.qq.com'</span><span class="p">,</span>
+	<span class="s">'Content-Length'</span><span class="p">:</span> <span class="s">'163'</span><span class="p">,</span>
+	<span class="s">'Connection'</span><span class="p">:</span> <span class="s">'close'</span><span class="p">,</span>
+	<span class="s">'User-Agent'</span><span class="p">:</span> <span class="s">'Mozilla/5.0 (iPhone; CPU iPhone OS 8_1_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12B436 MicroMessenger/6.3.'</span><span class="o">+</span><span class="n">j</span><span class="o">+</span><span class="s">' NetType/WIFI Language/zh_CN'</span><span class="p">,</span>
+	<span class="s">'Referer'</span><span class="p">:</span> <span class="s">'http://hn.qq.com/zt2016/terminal/cxcyds.htm?from=groupmessage&amp;isappinstalled=0'</span><span class="p">,</span>
+	<span class="p">}</span>
+	<span class="c">#data='''answer=%7B%22639226%22%3A%7B%22selected%22%3A%5B1488426%5D%7D%7D&amp;login=1&amp;source=1&amp;g_tk=2013&amp;format=script&amp;callback=parent.AppPlatform.Survey.Digg.ReceiveDiggResult'''</span>
+	<span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s">'answer'</span><span class="p">:</span><span class="s">'''{"639226":{"selected":[1488426]}}'''</span><span class="p">,</span>
+	<span class="s">'login'</span><span class="p">:</span><span class="s">'1'</span><span class="p">,</span>
+	<span class="s">'source'</span><span class="p">:</span><span class="s">'1'</span><span class="p">,</span>
+	<span class="s">'g_tk'</span><span class="p">:</span><span class="s">'2013'</span><span class="p">,</span>
+	<span class="s">'format'</span><span class="p">:</span><span class="s">'script'</span><span class="p">,</span>
+	<span class="s">'callback'</span><span class="p">:</span><span class="s">'parent.AppPlatform.Survey.Digg.ReceiveDiggResult'</span><span class="p">}</span>
+
+
+	<span class="n">opener</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">build_opener</span><span class="p">()</span>
+	<span class="n">opener</span><span class="o">.</span><span class="n">addheaders</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s">'Cookie'</span><span class="p">,</span> <span class="n">cook</span><span class="p">))</span>
+
+	<span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span>
+	<span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+	<span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+	<span class="n">data</span><span class="o">=</span><span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+	
+	<span class="n">f</span> <span class="o">=</span> <span class="n">opener</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+	<span class="n">i</span><span class="o">+=</span><span class="mi">1</span>
+	<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </code></pre>
 </div>
-
-<p>From those links,I learned those steps(assume with jekyll installed):</p>
-
-<h1 id="x02-steps">0x02 Steps</h1>
-
-<h4 id="gem-install-github-pagesvery-important">1&gt;gem install github-pages(very important)</h4>
-
-<h4 id="jekyll-new-myblog">2&gt;jekyll new myblog</h4>
-
-<h4 id="git-clone-httpsgithubcomjacobtomlinsoncarte-noiregit">3&gt;git clone https://github.com/jacobtomlinson/carte-noire.git</h4>
-
-<h4 id="cp-carte-noire-myblog">4&gt;cp carte-noire/*/ myblog</h4>
-
-<h4 id="vim-myblogcssstylescssmy-modified-stylescss-file-in-the-below">5&gt;vim myblog/css/style.scss(my modified style.scss file in the below)</h4>
-<div class="highlighter-rouge"><pre class="highlight"><code>https://raw.githubusercontent.com/xinghuacai/blog_backup/master/css/style.scss
-&gt;however,I do not know how to change highlight code block's font,I tried to make it by modifying css file,it did not work,till now the font of code block looks ugly.  
-</code></pre>
-</div>
-
-<h4 id="vim-myblogposts2016-04-09-github-jekyll-blogmd">6&gt;vim myblog/_posts/2016-04-09-github-jekyll-blog.md</h4>
-
-<h4 id="jekyll-serve---watchthis-command-will-build-a-site-folder">7&gt;jekyll serve –watch(this command will build a _site folder)</h4>
-
-<h4 id="create-a-new-repository-in-githubxinghuacaigithubio">8&gt;create a new repository in github:xinghuacai.github.io</h4>
-
-<h4 id="cd-myblogsites--git-init--git-add---git-commit--a--m-my-blog-v1">9&gt;cd myblog/_sites &amp;&amp; git init &amp;&amp; git add . &amp;&amp; git commit -a -m “my blog v1”</h4>
-
-<h4 id="git-remote-add-origin-httpsgithubcomxinghuacaixinghuacaigithubiogit">10&gt;git remote add origin https://github.com/xinghuacai/xinghuacai.github.io.git</h4>
-
-<h4 id="push--u-origin-master">11&gt;push -u origin master</h4>
-
-<h4 id="succeed--httpxinghuacaigithubio">12&gt;succeed–&gt;http://xinghuacai.github.io</h4>
-
-<h1 id="x03-update-articles">0x03 Update articles</h1>
-
-<p><em>Notice</em>,we need not to checkout --orphan gh-pages like some blogs telled us to ,a master branch is enough to do it.There is a .gitignore file in myblog/.gitignore (copied from carte-noire) which ignores _sites folder when git myblog/ to github as a blog_backup
-(https://github.com/xinghuacai/blog_backup).From then on,when I update new articles,I could only update xinghuacai.github.io repository,and take blog_badkup repository as a backup on github.So,later if I need add new article to xinghuacai.github.io,I will do:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>vim myblog/_posts/newarticle.md(file name in 201x-0x-0x-xxx-xxx.md format)
-cd myblog
-rm -r _site
-jekyll serve --watch(or jekyll build,jekyll serve contains jekyll build function)
-mkdir ../tmp
-cd ../tmp
-git init
-git pull https://github.com/xinghuacai/xinghuacai.github.io.git
-cp -r ../myblog/_site/* .
-git status
-git add .
-git commit -a -m "update articles"
-git remote add origin https://github.com/xinghuacai/xinghuacai.github.io.git
-git push -u origin master
-rm -r ../tmp
-</code></pre>
-</div>
-
-<h1 id="x04-update">0x04 Update</h1>
-<h2>16-04-13</h2>
-<h4>&gt;&gt;&gt;finally I find how to change the font-family in the code block to make code block looks beautiful,not ugly any longer. 1,2,3 arrows in below pic show the process to find how to change the code block font.Firstly,move mouse's arrow to any code block like arrow 1 in below pic,and right click mouse to chose "use firebug to view elements".Secondly,left click mouse on the words like arrow 2 in below pic,and move mouse on "font-family",then I find it's "monospace",and the source css file is from "\_includes\head.html",the value is href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bbbbootstrap.min.css",download it to local css directory and rename it my_code.css,change \_includes\head.html to set the value to "../../../../../css/my_code.css".Finally,change monospace to "文泉驿等宽正黑" where needed in my_code.css </h4>
-<p><img src="../../../../../pic/jekyll/code_block_font.png" />
-<br /></p>
-<h2>16-04-13</h2>
-<h4>&gt;&gt;&gt;when I finished till this moment,I try to use my cell phone to visit http://xinghuacai.github.io,find my cell phone without vpn can not open http://xinghuacai.github.io.Later,I search the blog file to figure out the wrong source,get style.scss has three "@import url(http://googleapi....)",then I download the three css file from http://googleapi... ,rename them and change it to "@import url("1.css")",then I tried to visit http://xinghuacai.github.io again with my cell phone,the result was fantastic! Very fast to browse it without vpn!</h4>
-<h2>16-04-15</h2>
-<h4>&gt;&gt;&gt;finally I find how to change the html's templet to make the htmls be my own style,analyse the templet like below pic:</h4>
-<p><img src="https://raw.githubusercontent.com/xinghuacai/pic/master/jekyll/default.png" /></p>
-<h4>tips:</h4>
-<p><br />
-1&gt;@media:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>in css/style.scss file,when my screen is large screen,if there is no lg attribute in @media parameters but has sm(small) attribute or other attribute belongs to @media,the result will follow sm value or other attribute of @media  
-</code></pre>
-</div>
-<p><br />
-2&gt;css/style.scss:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code> .index -&gt; 1000px -&gt; decide index.html's width
- .article -&gt; @media -&gt; width:50% margin-left:25%   -&gt; decide post.html's width
-</code></pre>
-</div>
-<p>3&gt;to modify html:
-<code class="highlighter-rouge">
-the best way is: use firebug to view element and find css file belongs to the html,then modify it  
-</code></p>
-
-<p>4&gt;col-md-12,col-md-6 col-md-6,col-md-1 col-md-11</p>
 </span>
 
         
@@ -245,7 +182,7 @@ the best way is: use firebug to view element and find css file belongs to the ht
         <div class="tags">
           <small>
           <i class="fa fa-tags"></i>
-            html
+            http, code
           </small>
         </div>
         

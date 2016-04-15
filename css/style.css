@@ -76,6 +76,98 @@ ul {
       top: 20px;
       left: 40px; } }
 
+.my-home {
+  color: #FFFFFF;
+  font-size: 16px;
+  position: fixed;
+  top: 100px;
+  left: 50px;
+  cursor: pointer;
+  line-height: 1em;
+  padding: 2px;
+  z-index: 80; }
+  @media (min-width: 768px) {
+    .my-home {
+      top: 110px;
+      left: 80px; } }
+
+.my-papers {
+  color: #FFFFFF;
+  font-size: 16px;
+  position: fixed;
+  top: 100px;
+  left: 50px;
+  cursor: pointer;
+  line-height: 1em;
+  padding: 2px;
+  z-index: 80; }
+  @media (min-width: 768px) {
+    .my-papers {
+      top: 140px;
+      left: 80px; } }
+
+.my-search {
+  color: #FFFFFF;
+  font-size: 16px;
+  position: fixed;
+  top: 100px;
+  left: 50px;
+  cursor: pointer;
+  line-height: 1em;
+  padding: 2px;
+  z-index: 80; }
+  @media (min-width: 768px) {
+    .my-search {
+      top: 170px;
+      left: 80px; } }
+
+.my-archive {
+  color: #FFFFFF;
+  font-size: 16px;
+  position: fixed;
+  top: 100px;
+  left: 50px;
+  cursor: pointer;
+  line-height: 1em;
+  padding: 2px;
+  z-index: 80; }
+  @media (min-width: 768px) {
+    .my-archive {
+      top: 200px;
+      left: 80px; } }
+
+.my-categories {
+  color: #FFFFFF;
+  font-size: 16px;
+  position: fixed;
+  top: 100px;
+  left: 50px;
+  cursor: pointer;
+  line-height: 1em;
+  padding: 2px;
+  z-index: 80; }
+  @media (min-width: 768px) {
+    .my-categories {
+      top: 230px;
+      left: 80px; } }
+
+.myclass {
+  color: #92C7A3;
+  font-size: 24px;
+  width: 10px;
+  height: 10px;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+  line-height: 30em;
+  padding: 30px;
+  background-color: #C04848;
+  z-index: 30; }
+  @media (min-width: 768px) {
+    .myclass {
+      top: 20px;
+      left: 20px; } }
+
 .content-panel {
   background-color: #21211E;
   padding-top: 20px;
@@ -127,7 +219,11 @@ ul {
   height: 100%;
   max-height: 100%;
   width: 100%;
-  padding: 0px; }
+  padding: 0px;
+  /*    @media (min-width: $screen-lg-min) {*/
+  /*       width: 100%;*/
+  /*       max-width:1000px;*/
+  /*    }*/ }
   @media (min-width: 768px) {
     .index {
       width: 700px;

