@@ -283,8 +283,8 @@ ul {
     .index .articles ul {
       padding: 0px; }
       .index .articles ul li {
-        margin-bottom: 20px;
-        font-size: 24px; }
+        margin-bottom: 8px;
+        font-size: 18px; }
         .index .articles ul li a:hover {
           color: #969696; }
         .index .articles ul li small {

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 
+
     <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -75,13 +76,13 @@
     <br>
     <br>
     <center>
-        <font color="red" align="center"><i class="fa fa-key" aria-hidden="true"></i> book</font>
+    <font color="red" align="center"><i class="fa fa-key" aria-hidden="true"></i> book</font>
     <br>
     <br>
-        <font color="red" align="center"><i class="fa fa-music" aria-hidden="true"></i> music</font>
+    <font color="red" align="center"><i class="fa fa-music" aria-hidden="true"></i><a href="../../../../../jquery-jplayer/index.html" target="_top"><font color="red"> music</font></a></font>
     <br>
     <br>
-        <font color="red" align="center"><i class="fa fa-caret-square-o-right" aria-hidden="true"></i> movie</font>
+    <font color="red" align="center"><i class="fa fa-caret-square-o-right" aria-hidden="true"></i><a href="../../../../../mv.html" target="_top"><font color="red"> movie</font></a></font>
     </center>
     <br>
     <br>
@@ -124,7 +125,7 @@
 
       <div class="read-time">
         <small>
-          3 minute read
+          5 minute read
         </small>
       </div>
 
@@ -237,6 +238,78 @@ rm -r ../tmp
 </div>
 
 <p>4&gt;col-md-12,col-md-6 col-md-6,col-md-1 col-md-11</p>
+<h2>16-04-17</h2>
+<h4>1&gt;添加背景音乐并实现切换页面时音乐连续不重播</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>to achieve this function:
+cd myblog
+cp index.html index_bak.html
+jekyll serve --watch
+cp _\_site/index.html index2.html
+vi bgmusic.html
+--------------content--------------
+   <span class="nt">&lt;html&gt;</span>
+   <span class="nt">&lt;embed</span> <span class="na">src=</span><span class="s">"list.m3u"</span> <span class="na">autostart=</span><span class="s">"true"</span> <span class="na">volume=</span><span class="s">"50"</span> <span class="na">loop=</span><span class="s">"true"</span> <span class="na">height=</span><span class="s">"1"</span> <span class="na">width=</span><span class="s">"1"</span><span class="nt">&gt;&lt;/embed&gt;</span> 
+   <span class="nt">&lt;/html&gt;</span>
+--------------content-------------
+vi list.m3u
+--------------content-------------
+https://raw.githubusercontent.com/xinghuacai/music/master/my%20will.mp3
+https://raw.githubusercontent.com/xinghuacai/music/master/%E5%B7%B4%E8%B5%AB%E6%97%A7%E7%BA%A6.mp3
+https://raw.githubusercontent.com/xinghuacai/music/master/with%20you.mp3
+https://raw.githubusercontent.com/xinghuacai/music/master/every%20heart.mp3
+https://raw.githubusercontent.com/xinghuacai/music/master/%E4%B8%8D%E5%88%86%E6%89%8B%E7%9A%84%E6%81%8B%E7%88%B1.mp3
+https://raw.githubusercontent.com/xinghuacai/music/master/%E9%A3%8E%E5%BA%A6.mp3
+https://raw.githubusercontent.com/xinghuacai/music/master/%E6%A1%83%E8%8A%B1%E6%89%87.mp3
+https://raw.githubusercontent.com/xinghuacai/music/master/%E4%B8%89%E5%9B%BD%E6%9D%80.mp3
+
+--------------content-------------
+vi index.html
+--------------content-------------
+   <span class="nt">&lt;html&gt;</span>
+   <span class="nt">&lt;frameset</span> <span class="na">rows=</span><span class="s">"100%,*"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;frame</span> <span class="na">src=</span><span class="s">"index2.html"</span><span class="nt">&gt;&lt;/frame&gt;</span>
+    <span class="nt">&lt;frame</span> <span class="na">src=</span><span class="s">"bgmusic.html"</span><span class="nt">&gt;&lt;/frame&gt;</span>
+   <span class="nt">&lt;/frameset&gt;</span>
+   <span class="nt">&lt;/html&gt;</span>
+--------------content-------------
+
+</code></pre>
+</div>
+
+<h4>2&gt;update blog command</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>cd myblog
+vi _posts/newblog.md(filename format eg.2016-01-01-xx.md)
+mv index.html tmp.html
+cp index_bak.html index.html
+------open another terminal------
+rm -r _site/
+jekyll serve --watch
+------above in the terminal------
+cp _site/index.html index2.html
+mv tmp.html index.html
+
+or just:("ifconfig &amp;" means let command "ifconfig" running in background)
+
+cd myblog
+vi _posts/newblog.md(filename format eg.2016-01-01-xx.md)
+pkill jekyll
+cp index.html tmp.html &amp;&amp; cp index_bak.html index.html &amp;&amp; sh -c "rm -r _site/ &amp; jekyll serve --watch &amp; sleep 3 &amp;&amp; exit" &amp;&amp; cp _site/index.html index2.html &amp;&amp; cp tmp.html index.html
+</code></pre>
+</div>
+
+<p><em>notice</em>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>main command:
+cp index.html tmp.html &amp;&amp; cp index_bak.html index.html &amp;&amp; sh -c "rm -r _site/ &amp; jekyll serve --watch &amp; sleep 3 &amp;&amp; exit" &amp;&amp; cp _site/index.html index2.html &amp;&amp; cp tmp.html index.html
+in main command start a sh subcommond: 
+sh -c "rm -r _site/ &amp; jekyll serve --watch &amp; sleep 3 &amp;&amp; exit" 
+1.this subcommond is started by the main commond in the gnome-terminal,"exit" only means exit the main command from a gnome-terminal
+2.though the gnome-terminal is closed,the "jekyll serve --watch" in the subcommand still works.This may be caused by the special command of jekyll,jekyll command may start a system background commnad.So after the main commnd,there is always a "jekyll serve --watch" running in the background
+3.if I need to update some articles,I should exucete "pkill jekyll" and then execute the main command again,otherwise I will get a address and port bind twice error
+</code></pre>
+</div>
 </span>
 
         
@@ -300,7 +373,7 @@ var disqus_shortname = "cartenoire"; // required: replace example with your foru
   </div>
 </div>
 
-<div class="my-home"><i class="fa fa-home" aria-hidden="true"></i><a href="/"> <font color="white">home</font></a></div>
+<div class="my-home"><i class="fa fa-home" aria-hidden="true"></i><a href="/index2/"> <font color="white">home</font></a></div>
 <div class="my-papers"><i class="fa fa-github" aria-hidden="true"></i><a href="https://github.com/xinghuacai"> <font color="white">papers</font></a></div>
 <div class="my-search"><i class="fa fa-search" aria-hidden="true"></i><a href="/search/"> <font color="white">search</font></a></div>
 <div class="my-archive"><i class="fa fa-apple" aria-hidden="true"></i><a href="/my-archive/"> <font color="white">archive</font></a></div>
