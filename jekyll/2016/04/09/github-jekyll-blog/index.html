@@ -310,6 +310,28 @@ sh -c "rm -r _site/ &amp; jekyll serve --watch &amp; sleep 3 &amp;&amp; exit"
 3.if I need to update some articles,I should exucete "pkill jekyll" and then execute the main command again,otherwise I will get a address and port bind twice error
 </code></pre>
 </div>
+
+<p>so the final update comannds are:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>cd myblog
+vi _posts/newblog.md
+
+pkill jekyll
+cp index.html tmp.html &amp;&amp; cp index_bak.html index.html &amp;&amp; sh -c "rm -r _site/ &amp; jekyll serve --watch &amp; sleep 3 &amp;&amp; exit" &amp;&amp; cp _site/index.html index2.html &amp;&amp; cp tmp.html index.html
+
+mkdir ../tmp
+cd ../tmp
+git init
+git pull https://github.com/xinghuacai/xinghuacai.github.io.git
+cp -r ../myblog/_site/* .
+git status
+git add .
+git commit -a -m "update articles"
+git remote add origin https://github.com/xinghuacai/xinghuacai.github.io.git
+git push -u origin master
+rm -r ../tmp
+</code></pre>
+</div>
 </span>
 
         
@@ -373,7 +395,7 @@ var disqus_shortname = "cartenoire"; // required: replace example with your foru
   </div>
 </div>
 
-<div class="my-home"><i class="fa fa-home" aria-hidden="true"></i><a href="/index2/"> <font color="white">home</font></a></div>
+<div class="my-home"><i class="fa fa-home" aria-hidden="true"></i><a href="/index2.html"> <font color="white">home</font></a></div>
 <div class="my-papers"><i class="fa fa-github" aria-hidden="true"></i><a href="https://github.com/xinghuacai"> <font color="white">papers</font></a></div>
 <div class="my-search"><i class="fa fa-search" aria-hidden="true"></i><a href="/search/"> <font color="white">search</font></a></div>
 <div class="my-archive"><i class="fa fa-apple" aria-hidden="true"></i><a href="/my-archive/"> <font color="white">archive</font></a></div>
