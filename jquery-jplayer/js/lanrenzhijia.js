@@ -112,7 +112,7 @@ $(document).ready(function(){
     },{
       title:"此生不换",
       artist:"青鸟飞鱼",
-      mp3:"https://raw.githubusercontent.com/xinghuacai/music/master/%E6%AD%A4%E7%94%9F%E4%B8%8D%E6%8D%A2.mp3",
+      mp3:"https://raw.githubusercontent.com/xinghuacai/music/master/%E9%9D%92%E9%B8%9F%E9%A3%9E%E9%B1%BC-%E6%AD%A4%E7%94%9F%E4%B8%8D%E6%8D%A2.mp3",
       //oga:"http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg",
       poster: "http://33.media.tumblr.com/bf9dc125a47dcca91ce5b3575bc3ba92/tumblr_nbmb3j8nU51sq3g2zo1_500.png"
     },{

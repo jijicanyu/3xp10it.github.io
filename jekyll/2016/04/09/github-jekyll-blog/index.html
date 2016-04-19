@@ -122,7 +122,7 @@
 
       <div class="read-time">
         <small>
-          5 minute read
+          7 minute read
         </small>
       </div>
 
@@ -327,6 +327,70 @@ git commit -a -m "update articles"
 git remote add origin https://github.com/xinghuacai/xinghuacai.github.io.git
 git push -u origin master
 rm -r ../tmp
+</code></pre>
+</div>
+
+<h2>16-04-19</h2>
+<h4 style="color:red">实现每次进入主页后循环随机播放背景音乐</h4>
+<p>1&gt;原来bgmusic.html代码如下：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;embed</span> <span class="na">src=</span><span class="s">"list.m3u"</span> <span class="na">autostart=</span><span class="s">"true"</span> <span class="na">volume=</span><span class="s">"50"</span> <span class="na">loop=</span><span class="s">"true"</span> <span class="na">height=</span><span class="s">"1"</span> <span class="na">width=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+</div>
+
+<p>2&gt;换成如下代码，将原bgmusic.html废弃，另存为bgmusic.html.version1,同目录下list.m3u文件也废弃</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;audio</span> <span class="na">id=</span><span class="s">"myaudio"</span><span class="nt">&gt;&lt;/audio&gt;</span>
+<span class="nt">&lt;script </span><span class="na">language=</span><span class="s">"javascript"</span><span class="nt">&gt;</span>
+<span class="kd">var</span> <span class="nx">list</span><span class="o">=</span><span class="k">new</span> <span class="nb">Array</span><span class="p">()</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="s2">"https://raw.githubusercontent.com/xinghuacai/music/master/my%20will.mp3"</span><span class="p">;</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="s2">"https://raw.githubusercontent.com/xinghuacai/music/master/%E5%B7%B4%E8%B5%AB%E6%97%A7%E7%BA%A6.mp3"</span><span class="p">;</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="s2">"https://raw.githubusercontent.com/xinghuacai/music/master/with%20you.mp3"</span><span class="p">;</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="s2">"https://raw.githubusercontent.com/xinghuacai/music/master/every%20heart.mp3"</span><span class="p">;</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span><span class="s2">"https://raw.githubusercontent.com/xinghuacai/music/master/%E4%B8%8D%E5%88%86%E6%89%8B%E7%9A%84%E6%81%8B%E7%88%B1.mp3"</span><span class="p">;</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">=</span><span class="s2">"https://raw.githubusercontent.com/xinghuacai/music/master/%E9%A3%8E%E5%BA%A6.mp3"</span><span class="p">;</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">=</span><span class="s2">"https://raw.githubusercontent.com/xinghuacai/music/master/%E6%A1%83%E8%8A%B1%E6%89%87.mp3"</span><span class="p">;</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">=</span><span class="s2">"https://raw.githubusercontent.com/xinghuacai/music/master/%E4%B8%89%E5%9B%BD%E6%9D%80.mp3"</span><span class="p">;</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="o">=</span><span class="s2">"https://raw.githubusercontent.com/xinghuacai/music/master/%E6%88%90%E9%BE%99%E3%80%81%E9%87%91%E5%96%9C%E5%96%84%20-%20%E7%BE%8E%E4%B8%BD%E7%9A%84%E7%A5%9E%E8%AF%9D.mp3"</span><span class="p">;</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span><span class="o">=</span><span class="s2">"https://raw.githubusercontent.com/xinghuacai/music/master/%E9%A3%8E%E4%BA%91%20-%20%E9%9B%84%E9%9C%B8%E5%A4%A9%E4%B8%8B%20-%20%E6%B0%B8%E8%BF%9C%E6%B0%B8%E8%BF%9C.mp3"</span><span class="p">;</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="o">=</span><span class="s2">"https://raw.githubusercontent.com/xinghuacai/music/master/%E5%8F%A4%E5%A4%A9%E4%B9%90%20-%20%E7%A5%9E%E9%9B%95%E4%BE%A0%E4%BE%A3%E4%B8%BB%E9%A2%98%E6%9B%B2.mp3"</span><span class="p">;</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span><span class="o">=</span><span class="s2">"https://raw.githubusercontent.com/xinghuacai/music/master/%E9%AC%BC%E6%9D%9F%E5%8D%83%E5%AF%BB%20-%20%E6%9C%88%E5%85%89%20-%20%E6%97%A5%E6%9C%AC%E7%BB%8F%E5%85%B8%E7%88%B1%E6%83%85%E7%94%B5%E8%A7%86%E5%89%A7%E4%B8%BB%E9%A2%98%E6%9B%B2.mp3"</span><span class="p">;</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span><span class="o">=</span><span class="s2">"https://raw.githubusercontent.com/xinghuacai/music/master/%E5%81%87%E5%A6%82%E7%88%B1%E6%9C%89%E5%A4%A9%E6%84%8F%20More%20Than%20Love.mp3"</span><span class="p">;</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span><span class="o">=</span><span class="s2">"https://raw.githubusercontent.com/xinghuacai/music/master/%E9%87%91%E8%8E%8E%20-%20%E6%98%9F%E6%9C%88%E7%A5%9E%E8%AF%9D.mp3"</span><span class="p">;</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span><span class="o">=</span><span class="s2">"https://raw.githubusercontent.com/xinghuacai/music/master/%E6%9D%8E%E6%85%A7%E7%8F%8D%20-%20%E7%88%B1%E6%AD%BB%E4%BA%86%E6%98%A8%E5%A4%A9.mp3"</span><span class="p">;</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span><span class="o">=</span><span class="s2">"https://raw.githubusercontent.com/xinghuacai/music/master/%E5%88%98%E6%AC%A2%20-%20%E6%88%91%E6%AC%B2%E6%88%90%E4%BB%99.mp3"</span><span class="p">;</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">16</span><span class="p">]</span><span class="o">=</span><span class="s2">"https://raw.githubusercontent.com/xinghuacai/music/master/%E6%AF%9B%E9%98%BF%E6%95%8F%20-%20%E7%9B%B8%E6%80%9D.mp3"</span><span class="p">;</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">17</span><span class="p">]</span><span class="o">=</span><span class="s2">"https://raw.githubusercontent.com/xinghuacai/music/master/%E9%9D%92%E9%B8%9F%E9%A3%9E%E9%B1%BC-%E6%AD%A4%E7%94%9F%E4%B8%8D%E6%8D%A2.mp3"</span><span class="p">;</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">18</span><span class="p">]</span><span class="o">=</span><span class="s2">"https://raw.githubusercontent.com/xinghuacai/music/master/%E5%AD%99%E6%A5%A0%E9%9F%A9%E7%BA%A2%E7%BE%8E%E4%B8%BD%E7%9A%84%E7%A5%9E%E8%AF%9D.mp3"</span><span class="p">;</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">19</span><span class="p">]</span><span class="o">=</span><span class="s2">"https://raw.githubusercontent.com/xinghuacai/music/master/%E5%90%B4%E5%A5%87%E9%9A%86%20-%20%E8%BD%AC%E5%BC%AF.mp3"</span><span class="p">;</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span><span class="o">=</span><span class="s2">"https://raw.githubusercontent.com/xinghuacai/music/master/%E5%90%B4%E9%9B%A8%E9%9C%8F%20-%20%E7%94%9F%E7%94%9F%E4%B8%96%E4%B8%96%E7%88%B1.mp3"</span><span class="p">;</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">22</span><span class="p">]</span><span class="o">=</span><span class="s2">"https://raw.githubusercontent.com/xinghuacai/music/master/%E6%9C%88%E5%85%89.mp3"</span><span class="p">;</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">23</span><span class="p">]</span><span class="o">=</span><span class="s2">"https://raw.githubusercontent.com/xinghuacai/music/master/%E5%BC%A0%E5%85%8B%E5%B8%86%20-%20%E7%BB%9D%E4%B8%96.mp3"</span><span class="p">;</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">24</span><span class="p">]</span><span class="o">=</span><span class="s2">"https://raw.githubusercontent.com/xinghuacai/music/master/%E5%AD%99%E6%A5%A0%E9%9F%A9%E7%BA%A2%E7%BE%8E%E4%B8%BD%E7%9A%84%E7%A5%9E%E8%AF%9D.mp3"</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">currentFile</span><span class="o">=</span><span class="nx">list</span><span class="p">[</span><span class="nb">parseInt</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="mi">24</span><span class="p">)];</span>
+<span class="cm">/*document.write("&lt;html&gt;&lt;br&gt;"+'&lt;audio src=' + '"' + list[a] + '"' + ' controls="controls" autoplay="autoplay"' + '&gt;'+'&lt;/audio&gt;&lt;br&gt;&lt;/html&gt;');*/</span>
+<span class="kd">var</span> <span class="nx">oAudio</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'myaudio'</span><span class="p">);</span>
+<span class="nx">oAudio</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">currentFile</span><span class="p">;</span>
+<span class="nx">oAudio</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span>
+<span class="nx">oAudio</span><span class="p">.</span><span class="nx">onended</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="nx">currentFile</span><span class="o">=</span><span class="nx">list</span><span class="p">[</span><span class="nb">parseInt</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="mi">24</span><span class="p">)];</span>
+<span class="nx">oAudio</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">currentFile</span><span class="p">;</span>
+<span class="nx">oAudio</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+</div>
+
+<p>3&gt;<em>Notice</em></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> 1&gt;&gt;上面的javascript中可firefox,chrome都实现播放音乐列表功能,且可以实现随机播放,原来的&lt;embed&gt;标签加m3u文件的代码只
+    能firefox下播音乐列表，且不能随机播放
+ 2&gt;&gt;经过试验发现:上面的javascript中只能用&lt;audio&gt;标签,不能用&lt;embed&gt;标签
+ 3&gt;&gt;document.write方法似乎只能用一次，所以最后不用document.write的代码(上面/*...*/中的代码)
 </code></pre>
 </div>
 </span>
