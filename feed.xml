@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 07 May 2016 09:49:54 +0800</pubDate>
-    <lastBuildDate>Sat, 07 May 2016 09:49:54 +0800</lastBuildDate>
+    <pubDate>Sat, 07 May 2016 09:55:47 +0800</pubDate>
+    <lastBuildDate>Sat, 07 May 2016 09:55:47 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -2623,8 +2623,11 @@ sh -c &quot;rm -r _site/ &amp;amp; jekyll serve --watch &amp;amp; sleep 3 &amp;a
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd myblog
 vi _posts/newblog.md
 
+A plan:
 pkill jekyll
 cp index.html tmp.html &amp;amp;&amp;amp; cp index_bak.html index.html &amp;amp;&amp;amp; sh -c &quot;rm -r _site/ &amp;amp; jekyll serve --watch &amp;amp; sleep 3 &amp;amp;&amp;amp; exit&quot; &amp;amp;&amp;amp; cp _site/index.html index2.html &amp;amp;&amp;amp; cp tmp.html index.html
+B plan!!!:
+pkill jekyll &amp;amp;&amp;amp; cp index.html tmp.html &amp;amp;&amp;amp; cp index_bak.html index.html &amp;amp;&amp;amp; sh -c &quot;rm -r _site/ &amp;amp; jekyll serve --watch &amp;amp; sleep 3 &amp;amp;&amp;amp; exit&quot; &amp;amp;&amp;amp; cp _site/index.html index2.html &amp;amp;&amp;amp; cp tmp.html index.html
 
 A plan:
     mkdir ../tmp
@@ -2638,8 +2641,8 @@ A plan:
     git remote add origin https://github.com/xinghuacai/xinghuacai.github.io.git
     git push -u origin master
     rm -r ../tmp
-B plan:
-    mkdir ../tmp &amp;amp;&amp;amp; cd ../tmp &amp;amp;&amp;amp; git init &amp;amp;&amp;amp; git pull https://github.com/xinghuacai/xinghuacai.github.io.git &amp;amp;&amp;amp; cp -r ../myblog/_site/* . &amp;amp;&amp;amp; git status &amp;amp;&amp;amp; git add . &amp;amp;&amp;amp; git commit -a -m &quot;update articles&quot; &amp;amp;&amp;amp; git remote add origin https://github.com/xinghuacai/xinghuacai.github.io.git &amp;amp;&amp;amp; git push -u origin master &amp;amp;&amp;amp; rm -r ../tmp
+B plan!!!:
+mkdir ../tmp &amp;amp;&amp;amp; cd ../tmp &amp;amp;&amp;amp; git init &amp;amp;&amp;amp; git pull https://github.com/xinghuacai/xinghuacai.github.io.git &amp;amp;&amp;amp; cp -r ../myblog/_site/* . &amp;amp;&amp;amp; git status &amp;amp;&amp;amp; git add . &amp;amp;&amp;amp; git commit -a -m &quot;update articles&quot; &amp;amp;&amp;amp; git remote add origin https://github.com/xinghuacai/xinghuacai.github.io.git &amp;amp;&amp;amp; git push -u origin master &amp;amp;&amp;amp; rm -r ../tmp
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
