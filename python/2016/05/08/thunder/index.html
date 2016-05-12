@@ -5,7 +5,7 @@
     <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>idea</title>
+<title>迅雷加密链接批量转化</title>
 <meta name="description" content="A blog about programming and network security">
 
 <link rel="profile" href="http://gmpg.org/xfn/11" />
@@ -106,13 +106,13 @@
     <div itemscope itemtype="http://schema.org/Article" class="col-md-12 article">
       
 
-      <h1 class="header" itemprop="name">idea</h1>
+      <h1 class="header" itemprop="name">迅雷加密链接批量转化</h1>
 
       <div class="author">
         <small><i>
           
-          on <span itemprop="datePublished" content="2014-08-28">April 21, 2016</span>
-           under idea
+          on <span itemprop="datePublished" content="2014-08-28">May 8, 2016</span>
+           under python
         </i></small>
       </div>
 
@@ -126,52 +126,38 @@
 
         
 
-        <span itemprop="articleBody"><p>渗透导图：</p>
+        <span itemprop="articleBody"><p>将thunder://….的link转化成可以在迅雷中直接下载的link,eg.ftp://…<br />
+that is:<br />
+thunder://…  ==&gt;  ftp://… or something else<br />
+用于手机迅雷下载vedio时wifi下载速度不快，将手机迅雷中的相应下载link放到pc端下载.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>line1&gt; 不断探索目标全面情报------&gt; 找出漏洞
-line2&gt; 不断提升自己核心单点打击力------&gt; 如针对一个应用挖洞，让它成为自己的武器
-</code></pre>
-</div>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="kn">import</span> <span class="nn">re</span>
+    <span class="kn">import</span> <span class="nn">base64</span>
+    <span class="k">def</span> <span class="nf">get_pure_list</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+        <span class="n">pure_list</span><span class="o">=</span><span class="p">[]</span>
+        <span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
+            <span class="n">each</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">r'(</span><span class="err">\</span><span class="s">s)'</span><span class="p">,</span><span class="s">""</span><span class="p">,</span><span class="n">each</span><span class="p">)</span>
+            <span class="n">pure_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">each</span><span class="p">)</span>
+            <span class="c">#re.sub(r'\r\n',"",each)</span>
+            <span class="c">#re.sub(r'\n',"",each)</span>
+        <span class="k">return</span> <span class="n">pure_list</span>
+        
+    <span class="n">f</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s">"1.txt"</span><span class="p">,</span><span class="s">"r+"</span><span class="p">)</span>
+    <span class="nb">all</span><span class="o">=</span><span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">all_pure</span><span class="o">=</span><span class="s">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">get_pure_list</span><span class="p">(</span><span class="nb">all</span><span class="p">))</span>
+    <span class="n">tmp</span><span class="o">=</span><span class="n">all_pure</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'thunder://'</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">all_pure</span>
+    <span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">f</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s">"2.txt"</span><span class="p">,</span><span class="s">"a+"</span><span class="p">)</span>
+        <span class="n">decode_link</span><span class="o">=</span><span class="n">base64</span><span class="o">.</span><span class="n">decodestring</span><span class="p">(</span><span class="n">each</span><span class="p">)[</span><span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+        <span class="k">print</span> <span class="n">decode_link</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">decode_link</span><span class="o">+</span><span class="s">'</span><span class="se">\r\n</span><span class="s">'</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-<p>高阶成事导图：</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>                    放弃 (eg.比较好玩的方向,诱惑)
-                     |
-                     |
-                     |
-                  决定方向(挖洞牛中的渗透牛and核心竞争力是在渗透中挖洞)
-                     |
-                     |
-                     |
-                  进步飞快
-                     |
-                     |
-                     |
-    "他到底承受了多少，才能到这个水平"&lt;博人传&gt;
-        "吃得苦中苦，方为人上人"&lt;欢乐颂&gt;
-                     |
-                     |
-                     |
-                  进步飞快
-                     |
-                     |
-                     |
-                   peak
-</code></pre>
-</div>
-
-<p>when feel puzzled,read these to find what you are and where you want to go:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code> 1.http://drops.wooyun.org/pentesting/15117
- 2.http://www.zhihu.com/question/31905047
-</code></pre>
-</div>
-
-<p>good habit:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>1.闲时挖洞
-2.6 items in cellphone dock:
-    知乎 feedly ihour 新浪微博 twitter English_words
+<span class="k">if</span> <span class="n">__name__</span><span class="o">==</span><span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
 </code></pre>
 </div>
 </span>
@@ -183,7 +169,7 @@ line2&gt; 不断提升自己核心单点打击力------&gt; 如针对一个应�
         <div class="tags">
           <small>
           <i class="fa fa-tags"></i>
-            web, idea, thoughts
+            auxilary, python
           </small>
         </div>
         

