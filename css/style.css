@@ -13,7 +13,7 @@ html {
 body {
   font-family: '文泉驿等宽正黑';
   font-weight: 300;
-  background-color: #21211C;
+  background-color: #21211E;
   color: #FFFFFF;
   font-size: 16px;
   height: 100%;
@@ -69,7 +69,7 @@ ul {
   cursor: pointer;
   line-height: 1em;
   padding: 10px;
-  background-color: #21211C;
+  background-color: #21211E;
   z-index: 100; }
   @media (min-width: 768px) {
     .menu-button {
@@ -169,7 +169,7 @@ ul {
       left: 20px; } }
 
 .content-panel {
-  background-color: #21211E;
+  background-color: #212120;
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 30px;
@@ -342,7 +342,7 @@ ul {
     padding: 6px 15px 6px 30px;
     margin: 2px;
     margin-top: 50px;
-    color: #21211C;
+    color: #21211E;
     background-color: #FFFFFF;
     border: 1px solid #adc5cf;
     border-radius: 15px;
@@ -464,7 +464,7 @@ ul {
         width: 100%;
         margin-left: -15px;
         padding-right: 10px;
-        background-color: #21211E;
+        background-color: #212120;
         color: white;
         box-sizing: content-box;
         border: none;
@@ -526,7 +526,7 @@ ul {
         font-family: '文泉驿等宽正黑';
         font-size: 18px;
         background-color: #92C7A3;
-        color: #21211E;
+        color: #212120;
         padding: 0.18em;
         vertical-align: middle; }
       .single .article .content .tags {
@@ -557,7 +557,7 @@ ul {
       font-size: 18px;
       width: auto;
       padding: 10px 20px;
-      background-color: #21211E;
+      background-color: #212120;
       box-shadow: 0px 0px 0px 0px, 0px 6px 12px rgba(0, 0, 0, 0.2); }
     .related .related-header a:hover {
       color: #215A6D; }
