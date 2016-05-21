@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 21 May 2016 14:03:04 +0800</pubDate>
-    <lastBuildDate>Sat, 21 May 2016 14:03:04 +0800</lastBuildDate>
+    <pubDate>Sat, 21 May 2016 14:06:47 +0800</pubDate>
+    <lastBuildDate>Sat, 21 May 2016 14:06:47 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -302,8 +302,12 @@ link knowledge:
     get flag06:hello
     su - flag06
     pass:hello
-    getflag #### 0x07 level07
-mykey:
+    getflag
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;x07-level07&quot;&gt;0x07 level07&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mykey:
     ctr+alt+f2 --&amp;gt; tty2
     tty2:nc -lnv 8888
     ctr+alt+f1(backto tty1)
