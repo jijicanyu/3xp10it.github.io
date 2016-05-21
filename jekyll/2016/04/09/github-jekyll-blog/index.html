@@ -417,7 +417,7 @@ mkdir ../tmp &amp;&amp; cd ../tmp &amp;&amp; git init &amp;&amp; git pull https:
 
 <p>3&gt;在本地myblog目录下新建updateall.sh实现本地和远程的文件更新</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>pkill jekyll;sleep 3 &amp;&amp; cp index.html tmp.html &amp;&amp; cp index_bak.html index.html &amp;&amp; sh -c "rm -r _site/ &amp; jekyll serve --watch &amp; sleep 3 &amp;&amp; exit" &amp;&amp; cp _site/index.html index2.html &amp;&amp; cp tmp.html index.html &amp;&amp; echo ok
+<div class="highlighter-rouge"><pre class="highlight"><code>pkill jekyll;sleep 3 &amp;&amp; cp index.html tmp.html &amp;&amp; cp index_bak.html index.html &amp;&amp; sh -c "rm -r _site/ &amp; jekyll serve --watch &amp; sleep 3 &amp;&amp; exit" &amp;&amp; cp _site/index.html index2.html &amp;&amp; cp tmp.html index.html &amp;&amp; echo congratulations! commands execute ok to here!
 mkdir ../tmp &amp;&amp; cd ../tmp &amp;&amp; git init &amp;&amp; git pull https://github.com/xinghuacai/xinghuacai.github.io.git &amp;&amp; cp -r ../myblog/_site/* . &amp;&amp; git status &amp;&amp; git add . &amp;&amp; git status &amp;&amp; git commit -a -m "update articles" &amp;&amp; git remote add origin https://github.com/xinghuacai/xinghuacai.github.io.git &amp;&amp; git push -u origin master &amp;&amp; rm -r ../tmp &amp;&amp; echo congratulations! commands execute ok to here!
 </code></pre>
 </div>
