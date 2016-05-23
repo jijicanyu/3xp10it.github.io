@@ -145,6 +145,12 @@ $(document).ready(function(){
       mp3:"https://raw.githubusercontent.com/xinghuacai/music/master/%E5%AD%99%E6%A5%A0%E9%9F%A9%E7%BA%A2%E7%BE%8E%E4%B8%BD%E7%9A%84%E7%A5%9E%E8%AF%9D.mp3",
       //oga:"http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg",
       poster: "http://33.media.tumblr.com/bf9dc125a47dcca91ce5b3575bc3ba92/tumblr_nbmb3j8nU51sq3g2zo1_500.png"
+    },{
+      title:"爱的灵魂",
+      artist:"范朋飞",
+      mp3:"https://raw.githubusercontent.com/xinghuacai/music/master/%E8%8C%83%E6%9C%8B%E9%A3%9E%20-%20%E7%88%B1%E7%9A%84%E7%81%B5%E9%AD%82.mp3",
+      //oga:"http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg",
+      poster: "http://33.media.tumblr.com/bf9dc125a47dcca91ce5b3575bc3ba92/tumblr_nbmb3j8nU51sq3g2zo1_500.png"
     }];
 
   var cssSelector = {

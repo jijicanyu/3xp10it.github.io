@@ -26,13 +26,14 @@ list[20]="https://raw.githubusercontent.com/xinghuacai/music/master/%E5%90%B4%E9
 list[22]="https://raw.githubusercontent.com/xinghuacai/music/master/%E6%9C%88%E5%85%89.mp3";
 list[23]="https://raw.githubusercontent.com/xinghuacai/music/master/%E5%BC%A0%E5%85%8B%E5%B8%86%20-%20%E7%BB%9D%E4%B8%96.mp3";
 list[24]="https://raw.githubusercontent.com/xinghuacai/music/master/%E5%AD%99%E6%A5%A0%E9%9F%A9%E7%BA%A2%E7%BE%8E%E4%B8%BD%E7%9A%84%E7%A5%9E%E8%AF%9D.mp3";
-var currentFile=list[parseInt(Math.random()*24)];
+list[25]="https://raw.githubusercontent.com/xinghuacai/music/master/%E8%8C%83%E6%9C%8B%E9%A3%9E%20-%20%E7%88%B1%E7%9A%84%E7%81%B5%E9%AD%82.mp3";
+var currentFile=list[parseInt(Math.random()*25)];
 /*document.write("<html><br>"+'<audio src=' + '"' + list[a] + '"' + ' controls="controls" autoplay="autoplay"' + '>'+'</audio><br></html>');*/
 var oAudio = document.getElementById('myaudio');
 oAudio.src = currentFile;
 oAudio.play();
 oAudio.onended = function() {
-currentFile=list[parseInt(Math.random()*24)];
+currentFile=list[parseInt(Math.random()*25)];
 oAudio.src = currentFile;
 oAudio.play();
 }

