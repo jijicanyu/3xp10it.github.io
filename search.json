@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "rime五笔词库合并",
+    "category" : "",
+    "tags"     : "type, rime",
+    "url"      : "/auxilary/2016/05/24/rime%E4%BA%94%E7%AC%94%E8%AF%8D%E5%BA%93%E5%90%88%E5%B9%B6/",
+    "date"     : "2016-05-24 00:00:00 +0800"
+    } ,
+    
+  {
     "title"    : "文件一键打包",
     "category" : "",
     "tags"     : "windows, dir /s, sh, 7z, tar",

