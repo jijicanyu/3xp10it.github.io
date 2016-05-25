@@ -13,7 +13,7 @@ html {
 body {
   font-family: '文泉驿等宽正黑';
   font-weight: 300;
-  background-color: #404040;
+  background-color: #444444;
   color: #FFFFFF;
   font-size: 16px;
   height: 100%;
@@ -69,7 +69,7 @@ ul {
   cursor: pointer;
   line-height: 1em;
   padding: 10px;
-  background-color: #404040;
+  background-color: #444444;
   z-index: 100; }
   @media (min-width: 768px) {
     .menu-button {
@@ -342,7 +342,7 @@ ul {
     padding: 6px 15px 6px 30px;
     margin: 2px;
     margin-top: 50px;
-    color: #404040;
+    color: #444444;
     background-color: #FFFFFF;
     border: 1px solid #adc5cf;
     border-radius: 15px;
