@@ -231,20 +231,24 @@ dic from kali:
 
 
 make myown larger dic
-    https://github.com/studyzy/imewlconverter/tree/master/IME%20WL%20Converter/%E5%8F%82%E8%80%83
-    download 8万精准超小词库.txt
-    use imewlconverter.exe(深蓝词库转换工具) to convert from upon 8w.txt to 8w_rime_wubi86_dic.txt
+    
+    download 8万精准超小词库.txt from 
+        https://github.com/studyzy/imewlconverter/tree/master/IME%20WL%20Converter/%E5%8F%82%E8%80%83
+    download scel from sougou wubi website
+        http://wubi.sogou.com/dict/
+    use imewlconverter.exe(深蓝词库转换工具) to convert from upon dics.txt to 8w_sougou_rime_wubi86_dic.txt
     cd \\kali\root
-    vi 8w_rime_wubi86_dic.txt
+    vi 8w_sougou_rime_wubi86_dic.txt
     G
     :r newdic.txt
     XX
     rm newdic.txt
-    python rimedic_handle.py 8w_rime_wubi86_dic.txt
+    python rimedic_handle.py 8w_sougou_rime_wubi86_dic.txt
     output:newdic.txt
     
     16-05-28 newdic.txt's download link:
-        http://pan.baidu.com/s/1c2uiZks
+        8w only:http://pan.baidu.com/s/1c2uiZks
+        8w+scel_sougou:http://pan.baidu.com/s/1qYTCvHa
     
     import:
         kali:
