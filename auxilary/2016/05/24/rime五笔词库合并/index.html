@@ -183,6 +183,52 @@ or
 </code></pre>
 </div>
 
+<h4 id="section-1">16-05-28</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code>python script:(performs well on kali,but not on win7)
+
+download:
+https://raw.githubusercontent.com/xinghuacai/little_scripts/master/rimedic_handle.py
+
+---------rimedic_handle.py------------
+import sys
+fp=open(sys.argv[1])
+all=fp.readlines()
+fp.close()
+#print len(all)
+newall2in3=[]
+fp=open("newdic.txt","a+")
+for eachline in all:
+    if "#" not in eachline:
+        eachline2in3=eachline.split('\t')[:2]
+        if eachline2in3 not in newall2in3 and 'enc' not in eachline and ' ' not in eachline2in3[0] and (eachline2in3[0][0]&lt;'a' or eachline2in3[0][0]&gt;'z'):
+            newall2in3.append(eachline2in3)
+            fp.write(eachline)
+
+#print len(newall)
+fp.close()
+--------------------------------------
+get pure txt dic
+    different from real rime dic,this pure txt dic does not exist the rime dic header like
+        # rime-...
+        # user-id...
+    but this pure txt dic has the same \t split symbol as real rime dic
+
+dic from win7:
+    导出文本码表
+    cp out.txt \\kali\root\out.txt
+    cd \\kali\root
+    python rimedic_handle.py out.txt
+    output:newdic.txt
+
+dic from kali:
+    cd /root/.config/fcxti/rime
+    /usr/bin/rime_dict_manager -e wubi86 /root/kali.txt
+    cd /root
+    python rimedic_handle.py kali.txt
+    output:newdic.txt
+</code></pre>
+</div>
+
 </span>
 
         

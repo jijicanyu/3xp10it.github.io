@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 26 May 2016 17:47:47 +0800</pubDate>
-    <lastBuildDate>Thu, 26 May 2016 17:47:47 +0800</lastBuildDate>
+    <pubDate>Sat, 28 May 2016 11:34:39 +0800</pubDate>
+    <lastBuildDate>Sat, 28 May 2016 11:34:39 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -65,6 +65,52 @@ or
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;win7:
 程序-&amp;gt;用户词库管理-&amp;gt;导出快照（rime-&amp;gt;rime）
                   -&amp;gt;导出文本码表(dic-&amp;gt;newdic)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;section-1&quot;&gt;16-05-28&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python script:(performs well on kali,but not on win7)
+
+download:
+https://raw.githubusercontent.com/xinghuacai/little_scripts/master/rimedic_handle.py
+
+---------rimedic_handle.py------------
+import sys
+fp=open(sys.argv[1])
+all=fp.readlines()
+fp.close()
+#print len(all)
+newall2in3=[]
+fp=open(&quot;newdic.txt&quot;,&quot;a+&quot;)
+for eachline in all:
+    if &quot;#&quot; not in eachline:
+        eachline2in3=eachline.split(&#39;\t&#39;)[:2]
+        if eachline2in3 not in newall2in3 and &#39;enc&#39; not in eachline and &#39; &#39; not in eachline2in3[0] and (eachline2in3[0][0]&amp;lt;&#39;a&#39; or eachline2in3[0][0]&amp;gt;&#39;z&#39;):
+            newall2in3.append(eachline2in3)
+            fp.write(eachline)
+
+#print len(newall)
+fp.close()
+--------------------------------------
+get pure txt dic
+    different from real rime dic,this pure txt dic does not exist the rime dic header like
+        # rime-...
+        # user-id...
+    but this pure txt dic has the same \t split symbol as real rime dic
+
+dic from win7:
+    导出文本码表
+    cp out.txt \\kali\root\out.txt
+    cd \\kali\root
+    python rimedic_handle.py out.txt
+    output:newdic.txt
+
+dic from kali:
+    cd /root/.config/fcxti/rime
+    /usr/bin/rime_dict_manager -e wubi86 /root/kali.txt
+    cd /root
+    python rimedic_handle.py kali.txt
+    output:newdic.txt
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -463,7 +509,20 @@ link knowledge:
 &lt;/div&gt;
 
 &lt;h4 id=&quot;x11-level11&quot;&gt;0x11 level11&lt;/h4&gt;
-
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mykey:
+    there are two ways:
+        (http://blackndoor.com/nebula-level11/)
+        (https://github.com/join-us/exploit-exercises/blob/master/Nebula/level11.md)
+    
+    |way1|
+    ----------way1-----------
+    ----------end------------
+    
+    |way2|
+    ----------way2-----------
+    -----------end-----------
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 </description>
         <pubDate>Thu, 19 May 2016 00:00:00 +0800</pubDate>
         <link>/linux/2016/05/19/nebula/</link>
