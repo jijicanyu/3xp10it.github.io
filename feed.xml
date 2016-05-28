@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 28 May 2016 15:34:47 +0800</pubDate>
-    <lastBuildDate>Sat, 28 May 2016 15:34:47 +0800</lastBuildDate>
+    <pubDate>Sat, 28 May 2016 20:36:42 +0800</pubDate>
+    <lastBuildDate>Sat, 28 May 2016 20:36:42 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -122,6 +122,9 @@ make myown larger dic
     download scel from sougou wubi website
         http://wubi.sogou.com/dict/
     use imewlconverter.exe(深蓝词库转换工具) to convert from upon dics.txt to 8w_sougou_rime_wubi86_dic.txt
+    *attention*:
+        do not forget to change frequency from 10 to 1 when turning sougou scel to rime dic,the number of frequency words from sougou scel may not be 1,but bigger like 10.
+    
     cd \\kali\root
     vi 8w_sougou_rime_wubi86_dic.txt
     G
@@ -132,8 +135,10 @@ make myown larger dic
     output:newdic.txt
     
     16-05-28 newdic.txt&#39;s download link:
-        8w only:http://pan.baidu.com/s/1c2uiZks
-        8w+scel_sougou:http://pan.baidu.com/s/1qYTCvHa
+        8w only:
+            http://pan.baidu.com/s/1c2uiZks
+        8w+scel_sougou_new_added_frequency_to_1:
+            http://pan.baidu.com/s/1miMsYhU
     
     import:
         kali:
