@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 28 May 2016 20:36:42 +0800</pubDate>
-    <lastBuildDate>Sat, 28 May 2016 20:36:42 +0800</lastBuildDate>
+    <pubDate>Sun, 29 May 2016 18:42:48 +0800</pubDate>
+    <lastBuildDate>Sun, 29 May 2016 18:42:48 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -112,8 +112,19 @@ dic from kali:
     cd /root
     python rimedic_handle.py kali.txt
     output:newdic.txt
-    fcitx(or fcitx -r)
-
+    restart fcitx:
+        http://www.findspace.name/res/786
+        -----------content------------
+        pidof fcitx | xargs kill
+        pidof sogou-qimpanel | xargs kill
+        nohup fcitx  1&amp;gt;/dev/null 2&amp;gt;/dev/null &amp;amp;
+        nohup sogou-qimpanel  1&amp;gt;/dev/null 2&amp;gt;/dev/null &amp;amp;
+        -----------end----------------
+        
+        or:
+        --------content---------
+        pidof fcitx | xargs kill;pidof sogou-qimpanel | xargs kill;nohup fcitx  1&amp;gt;/dev/null 2&amp;gt;/dev/null &amp;amp;;nohup sogou-qimpanel  1&amp;gt;/dev/null 2&amp;gt;/dev/null &amp;amp;
+        ---------end------------
 
 make myown larger dic
     

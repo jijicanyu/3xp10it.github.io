@@ -118,7 +118,7 @@
 
       <div class="read-time">
         <small>
-          1 minute read
+          2 minute read
         </small>
       </div>
 
@@ -227,8 +227,19 @@ dic from kali:
     cd /root
     python rimedic_handle.py kali.txt
     output:newdic.txt
-    fcitx(or fcitx -r)
-
+    restart fcitx:
+        http://www.findspace.name/res/786
+        -----------content------------
+        pidof fcitx | xargs kill
+        pidof sogou-qimpanel | xargs kill
+        nohup fcitx  1&gt;/dev/null 2&gt;/dev/null &amp;
+        nohup sogou-qimpanel  1&gt;/dev/null 2&gt;/dev/null &amp;
+        -----------end----------------
+        
+        or:
+        --------content---------
+        pidof fcitx | xargs kill;pidof sogou-qimpanel | xargs kill;nohup fcitx  1&gt;/dev/null 2&gt;/dev/null &amp;;nohup sogou-qimpanel  1&gt;/dev/null 2&gt;/dev/null &amp;
+        ---------end------------
 
 make myown larger dic
     
