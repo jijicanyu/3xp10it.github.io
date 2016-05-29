@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 29 May 2016 18:42:48 +0800</pubDate>
-    <lastBuildDate>Sun, 29 May 2016 18:42:48 +0800</lastBuildDate>
+    <pubDate>Sun, 29 May 2016 19:20:22 +0800</pubDate>
+    <lastBuildDate>Sun, 29 May 2016 19:20:22 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -62,11 +62,20 @@ or
 &lt;h3 id=&quot;update&quot;&gt;update&lt;/h3&gt;
 
 &lt;h4 id=&quot;section&quot;&gt;16-05-25&lt;/h4&gt;
+
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;win7:
-程序-&amp;gt;用户词库管理-&amp;gt;导出快照（rime-&amp;gt;rime）
+程序-&amp;gt;用户词库管理-&amp;gt;导出词典快照（rime-&amp;gt;rime）
                   -&amp;gt;导出文本码表(dic-&amp;gt;newdic)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+
+&lt;p&gt;the difference between 词典快照 and 文本码表&lt;/p&gt;
+
+&lt;p&gt;1.词典快照
+&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/%E8%AF%8D%E5%85%B8%E5%BF%AB%E7%85%A7.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;2.文本码表
+&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/%E6%96%87%E6%9C%AC%E7%A0%81%E8%A1%A8.png&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;section-1&quot;&gt;16-05-28&lt;/h4&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python script:(performs well on kali,but not on win7)
@@ -159,6 +168,7 @@ make myown larger dic
             导入文本码表----&amp;gt;\\kali\root\newdic.txt
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+
 </description>
         <pubDate>Tue, 24 May 2016 00:00:00 +0800</pubDate>
         <link>/auxilary/2016/05/24/rime%E4%BA%94%E7%AC%94%E8%AF%8D%E5%BA%93%E5%90%88%E5%B9%B6/</link>
