@@ -5,7 +5,7 @@
     <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>nebula系统学习</title>
+<title>protostar系统学习</title>
 <meta name="description" content="A blog about programming and network security">
 
 <link rel="profile" href="http://gmpg.org/xfn/11" />
@@ -106,12 +106,12 @@
     <div itemscope itemtype="http://schema.org/Article" class="col-md-12 article">
       
 
-      <h1 class="header" itemprop="name">nebula系统学习</h1>
+      <h1 class="header" itemprop="name">protostar系统学习</h1>
 
       <div class="author">
         <small><i>
           
-          on <span itemprop="datePublished" content="2014-08-28">May 19, 2016</span>
+          on <span itemprop="datePublished" content="2014-08-28">June 3, 2016</span>
            under linux
         </i></small>
       </div>
@@ -126,32 +126,30 @@
 
         
 
-        <span itemprop="articleBody"><h4 id="xff-about-nebula">0xff About Nebula</h4>
+        <span itemprop="articleBody"><h4 id="xff-about-protostar">0xff About Protostar</h4>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Nebula takes the participant through a variety of common (and less than common) weaknesses and vulnerabilities in Linux. It takes a look at
+<div class="highlighter-rouge"><pre class="highlight"><code>Protostar introduces the following in a friendly way:
 
-SUID files
-Permissions
-Race conditions
-Shell meta-variables
-$PATH weaknesses
-Scripting language weaknesses
-Binary compilation failures
-
-At the end of Nebula, the user will have a reasonably thorough understanding of local attacks against Linux systems, and a cursory look at some of the remote attacks that are possible.
-
-official website:       https://exploit-exercises.com/nebula/
-nebula.iso download:    http://pan.baidu.com/s/1dFdRIm9
-some witeup:    
-                        google--&gt;cache:https://lightless.me/archives/Nebula-writeup.html
-                        or
-                        http://pan.baidu.com/s/1mhQgqCg
-                        or
-                        https://github.com/join-us/exploit-exercises/blob/master/Nebula/level11.md
+Network programming
+Byte order
+Handling sockets
+Stack overflows
+Format strings
+Heap overflows
 </code></pre>
 </div>
 
-<h4 id="x00-level00">0x00 level00</h4>
+<p>The above is introduced in a simple way, starting with simple memory corruption and modification, function redirection, and finally executing custom shellcode.</p>
+
+<p>In order to make this as easy as possible to introduce Address Space Layout Randomisation and Non-Executable memory has been disabled. If you are interested in covering ASLR and NX memory, please see the Fusion page.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>official website:       https://exploit-exercises.com/protostar
+nebula.iso download:    http://pan.baidu.com/s/1nvq3f5J
+some witeup:    
+</code></pre>
+</div>
+
+<h4 id="x00-stack0">0x00 stack0</h4>
 <div class="highlighter-rouge"><pre class="highlight"><code>mykey:
     su - level00
     pass:level00
@@ -637,7 +635,7 @@ link knowledge:
         <div class="tags">
           <small>
           <i class="fa fa-tags"></i>
-            privilege escalation, linux
+            overflow, linux
           </small>
         </div>
         
