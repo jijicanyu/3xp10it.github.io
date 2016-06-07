@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 06 Jun 2016 21:36:58 +0800</pubDate>
-    <lastBuildDate>Mon, 06 Jun 2016 21:36:58 +0800</lastBuildDate>
+    <pubDate>Tue, 07 Jun 2016 08:34:13 +0800</pubDate>
+    <lastBuildDate>Tue, 07 Jun 2016 08:34:13 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -39,6 +39,46 @@ eg.
 &lt;h4 id=&quot;leavemov-espebp--pop-ebp&quot;&gt;5&amp;gt;leave===&amp;gt;mov esp,ebp + pop ebp&lt;/h4&gt;
 
 &lt;h4 id=&quot;retpop-eip--jmp-eip&quot;&gt;6&amp;gt;ret===&amp;gt;pop eip + jmp eip&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;分析ret汇编语句时，最好不要把ret分开当作两句汇编指令，这样容易因为人脑习惯逐句解析两句，会和计算机的解析一句汇编指令错乱
+特别是影响esp，eip的寄存器的分析时，要按照计算机的解析模式--&amp;gt;ret只是一句指令，执行完ret指令后，eip=[esp],esp=esp+4
+分析ret指令时，先分析eip，再分析esp
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;call-esp&quot;&gt;7&amp;gt;call esp:&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;由于call addr等同于push eip+jmp addr,执行call esp时，esp是个地址，系统将这里的esp翻译成一个普通地址，假设值为addr,call esp即相当于上面的call addr=push eip+jmp addr
+      代码段：                                    栈段：          
+                      ..                                                
+                      ..                                  | addr1 |
+        addr0     call esp(esp=addr)   ------&amp;gt;       addr |       |
+        addr1     opcode_1                                |       |
+
+当eip=addr0时，esp=addr
+当eip=addr1时，正在执行addr0处的call esp,也即call addr=push eip+jmp addr=push addr1+jmp addr
+执行完call esp后栈段如上图右部所示
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;pop-pop-retjmp-esp16pop-pop-ret&quot;&gt;8&amp;gt;pop pop ret=jmp &lt;a href=&quot;条件：pop pop ret的地址在栈中且马上要执行&quot;&gt;esp+16&lt;/a&gt;&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;栈段：                          代码段：
+
+    addr0     | addr1 |                 addr1:  pop1
+    addr0+4   |       |                         pop2
+    addr0+8   |       |                         ret
+    addr0+12  |       |
+    addr0+16  |       |
+
+满足条件时,栈中addr1覆盖的是一个函数的返回地址,esp=eip=addr0，还没但正要去执行ret=pop eip+jmp eip,
+执行完这个ret的前一句后,eip=ret的地址,esp=addr0,然后跳转到ret的地址处执行ret
+执行完这个ret后，eip=addr1,esp=addr0+4,然后执行addr1处的pop1
+执行完pop1后，eip=addr1+4,esp=addr0+8,然后执行addr1+4处的pop2
+执行完pop2后，eip=addr1+8,esp=addr0+12,然后执行addr1+8处的ret
+执行完ret后，eip=[addr0+16],esp=addr0+16,然后执行[add0+16]处的代码
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;h3 id=&quot;x02-gdb&quot;&gt;0x02 gdb动态调度&lt;/h3&gt;
 
