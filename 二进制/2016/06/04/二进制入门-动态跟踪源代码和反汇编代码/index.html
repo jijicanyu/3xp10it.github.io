@@ -153,7 +153,7 @@ eg.
 
 <h4 id="leavemov-espebp--pop-ebp">5&gt;leave===&gt;mov esp,ebp + pop ebp</h4>
 
-<h4 id="retpop-eip--jmp-eip">6&gt;ret===&gt;pop eip + jmp eip</h4>
+<h4 id="retnpop-eip--jmp-eip----eipespespesp4">6&gt;retn===&gt;pop eip + jmp eip    (eip=[esp],esp=esp+4)</h4>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>分析ret汇编语句时，最好不要把ret分开当作两句汇编指令，这样容易因为人脑习惯逐句解析两句，会和计算机的解析一句汇编指令错乱
 特别是影响esp，eip的寄存器的分析时，要按照计算机的解析模式--&gt;ret只是一句指令，执行完ret指令后，eip=[esp],esp=esp+4
@@ -161,7 +161,16 @@ eg.
 </code></pre>
 </div>
 
-<h4 id="call-esp">7&gt;call esp:</h4>
+<h4 id="retn-0xnretn--espesp0xneipesp--espesp40xn">7&gt;retn 0xn===&gt;retn &amp;&amp; esp=esp+0xn===&gt;eip=[esp] &amp;&amp; esp=esp+4+0xn</h4>
+
+<h4 id="call-esp">8&gt;call esp:</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>jmp esp
+call esp
+push esp+ret
+这些汇编指令的地址放入存放函数返回地址的位置处都可以达到跳转到它后面的shellcode
+</code></pre>
+</div>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>由于call addr等同于push eip+jmp addr,执行call esp时，esp是个地址，系统将这里的esp翻译成一个普通地址，假设值为addr,call esp即相当于上面的call addr=push eip+jmp addr
       代码段：                                    栈段：          
@@ -176,7 +185,7 @@ eg.
 </code></pre>
 </div>
 
-<h4 id="pop-pop-retjmp-esp16pop-pop-ret">8&gt;pop pop ret=jmp <a href="条件：pop pop ret的地址在栈中且马上要执行">esp+16</a></h4>
+<h4 id="pop-pop-retjmp-esp16pop-pop-ret">9&gt;pop pop ret=jmp <a href="条件：pop pop ret的地址在栈中且马上要执行">esp+16</a></h4>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>栈段：                          代码段：
 

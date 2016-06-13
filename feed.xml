@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 07 Jun 2016 16:05:41 +0800</pubDate>
-    <lastBuildDate>Tue, 07 Jun 2016 16:05:41 +0800</lastBuildDate>
+    <pubDate>Mon, 13 Jun 2016 11:06:23 +0800</pubDate>
+    <lastBuildDate>Mon, 13 Jun 2016 11:06:23 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -38,7 +38,7 @@ eg.
 
 &lt;h4 id=&quot;leavemov-espebp--pop-ebp&quot;&gt;5&amp;gt;leave===&amp;gt;mov esp,ebp + pop ebp&lt;/h4&gt;
 
-&lt;h4 id=&quot;retpop-eip--jmp-eip&quot;&gt;6&amp;gt;ret===&amp;gt;pop eip + jmp eip&lt;/h4&gt;
+&lt;h4 id=&quot;retnpop-eip--jmp-eip----eipespespesp4&quot;&gt;6&amp;gt;retn===&amp;gt;pop eip + jmp eip    (eip=[esp],esp=esp+4)&lt;/h4&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;分析ret汇编语句时，最好不要把ret分开当作两句汇编指令，这样容易因为人脑习惯逐句解析两句，会和计算机的解析一句汇编指令错乱
 特别是影响esp，eip的寄存器的分析时，要按照计算机的解析模式--&amp;gt;ret只是一句指令，执行完ret指令后，eip=[esp],esp=esp+4
@@ -46,7 +46,16 @@ eg.
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h4 id=&quot;call-esp&quot;&gt;7&amp;gt;call esp:&lt;/h4&gt;
+&lt;h4 id=&quot;retn-0xnretn--espesp0xneipesp--espesp40xn&quot;&gt;7&amp;gt;retn 0xn===&amp;gt;retn &amp;amp;&amp;amp; esp=esp+0xn===&amp;gt;eip=[esp] &amp;amp;&amp;amp; esp=esp+4+0xn&lt;/h4&gt;
+
+&lt;h4 id=&quot;call-esp&quot;&gt;8&amp;gt;call esp:&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jmp esp
+call esp
+push esp+ret
+这些汇编指令的地址放入存放函数返回地址的位置处都可以达到跳转到它后面的shellcode
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;由于call addr等同于push eip+jmp addr,执行call esp时，esp是个地址，系统将这里的esp翻译成一个普通地址，假设值为addr,call esp即相当于上面的call addr=push eip+jmp addr
       代码段：                                    栈段：          
@@ -61,7 +70,7 @@ eg.
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h4 id=&quot;pop-pop-retjmp-esp16pop-pop-ret&quot;&gt;8&amp;gt;pop pop ret=jmp &lt;a href=&quot;条件：pop pop ret的地址在栈中且马上要执行&quot;&gt;esp+16&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;pop-pop-retjmp-esp16pop-pop-ret&quot;&gt;9&amp;gt;pop pop ret=jmp &lt;a href=&quot;条件：pop pop ret的地址在栈中且马上要执行&quot;&gt;esp+16&lt;/a&gt;&lt;/h4&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;栈段：                          代码段：
 
@@ -1304,8 +1313,7 @@ mkdir /tmp/tmp &amp;amp;&amp;amp; find / -name &quot;*.doc&quot; &amp;gt; /tmp/t
 
 &lt;p&gt;windows打包(7z)命令：
 &lt;a href=&quot;http://pan.baidu.com/s/1slMivlb&quot;&gt;1.bat&lt;/a&gt; 密码：3lwz&lt;br /&gt;
-(attention:7z.exe for x32 need a 7z.dll to performs well while 7z.exe for x64 needn’t)
-c:\recycler\rar.exe a -k -r -s -m1 c:\recycler\tmp\tmp.rar c:\recycler\tmp*.*&lt;/p&gt;
+(attention:7z.exe for x32 need a 7z.dll to performs well while 7z.exe for x64 needn’t)&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---------------content of 1.bat--------------------------
 @echo off
@@ -1360,9 +1368,12 @@ echo %%j &amp;gt;&amp;gt; c:\recycler\tmp\tmp.txt
 
 7z a -t7z C:\recycler\tmp\test.7z C:\recycler\tmp\*.*
 ------------------end--------------------------------
+
+or
+
+c:\recycler\rar.exe a -k -r -s -m1 c:\recycler\tmp\tmp.rar c:\recycler\tmp\*.*
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-
 </description>
         <pubDate>Fri, 20 May 2016 00:00:00 +0800</pubDate>
         <link>/web/2016/05/20/%E6%96%87%E4%BB%B6%E4%B8%80%E9%94%AE%E6%89%93%E5%8C%85/</link>
