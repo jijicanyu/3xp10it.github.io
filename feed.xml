@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 18 Jun 2016 09:09:04 +0800</pubDate>
-    <lastBuildDate>Sat, 18 Jun 2016 09:09:04 +0800</lastBuildDate>
+    <pubDate>Sat, 18 Jun 2016 18:15:04 +0800</pubDate>
+    <lastBuildDate>Sat, 18 Jun 2016 18:15:04 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -660,11 +660,21 @@ exploit情况说明：
 &lt;p&gt;图meterpreter1
 &lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/meterpreter1.png&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;```&lt;/p&gt;
-
 &lt;h4 id=&quot;dep-on&quot;&gt;2&amp;gt;dep on&lt;/h4&gt;
 
-&lt;p&gt;实验中win2003系统中dep开启如下&lt;/p&gt;
+&lt;p&gt;实验中win2003系统中dep开启如下:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/dep_open_on_win7.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;参考泉哥的小结http://www.blogbus.com/riusksk-logs/80935313.html
+实现win7绕过dep&lt;/p&gt;
+
+&lt;p&gt;mona插件：
+    https://github.com/corelan/mona
+    https://www.corelan.be/index.php/2011/07/14/mona-py-the-manual/
+    https://huirong.github.io/2015/12/18/mona/
+    http://www.cnphp6.com/archives/45078
+    http://drops.wooyun.org/tips/6814&lt;/p&gt;
 </description>
         <pubDate>Mon, 13 Jun 2016 00:00:00 +0800</pubDate>
         <link>/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/13/pcman-ftp%E5%88%9D%E6%88%98%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/</link>
