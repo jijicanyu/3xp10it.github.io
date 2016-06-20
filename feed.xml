@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 20 Jun 2016 12:59:50 +0800</pubDate>
-    <lastBuildDate>Mon, 20 Jun 2016 12:59:50 +0800</lastBuildDate>
+    <pubDate>Mon, 20 Jun 2016 13:05:36 +0800</pubDate>
+    <lastBuildDate>Mon, 20 Jun 2016 13:05:36 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -1192,8 +1192,8 @@ def create_rop_chain()
 再次开msf发payload,od附加,调试时发现如下图ebx_error错误
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/ebx_error.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;图ebx_error
+&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/ebx_error.png&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;后来发现原来的mona中的virtualprotect是获得0x201(对应上面的0xffffddff,neg取反后为0x201)个可执行栈空间,以为是msf中的payload比这个长导致shellcode执行出错,后来将这个值设置为0xffffddff后没能关掉dep,应该是由于长度太大或许超过了栈空间的大小而导致virtualprotect函数的失败,于是没能成功关掉dep
 
