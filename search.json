@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "hashcat&amp;john",
+    "category" : "",
+    "tags"     : "hashcat",
+    "url"      : "/crack/2016/06/22/hashcat/",
+    "date"     : "2016-06-22 00:00:00 +0800"
+    } ,
+    
+  {
     "title"    : "pcman-ftp初战漏洞挖掘",
     "category" : "",
     "tags"     : "ftp, 挖洞",
