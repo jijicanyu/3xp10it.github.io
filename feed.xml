@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 22 Jun 2016 16:42:23 +0800</pubDate>
-    <lastBuildDate>Wed, 22 Jun 2016 16:42:23 +0800</lastBuildDate>
+    <pubDate>Wed, 22 Jun 2016 21:46:17 +0800</pubDate>
+    <lastBuildDate>Wed, 22 Jun 2016 21:46:17 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -2470,7 +2470,7 @@ x/40x $esp-4
     4.想直接在&quot;a&quot;*80+&quot;1234&quot;+&quot;bbbb&quot;中的1234的位置上写入shellcode的起始地址是行不能的，只能用jmp esp或其他方法
 
 突然想到，在edb-debugger工具中找到的jmp esp的地址放入exploit.py中的jmp_esp中最后没有成功有可能是因为kali的安全防护功能，其中的系统内存中加载的/lib/i386-linux-gnu/ld-2.19.so有安全设置
-下载checksec.sh检查一下：http://www.trapkit.de/tools/checksec.sh
+下载checksec.sh检查一下：http://www.trapkit.de/tools/checksec.sh(或者peda工具，https://github.com/xinghuacai/peda)
 chmod +x ./checksec.sh
 ./checksec.sh --file /lib/i386-linux-gnu/ld-2.19.so
 -------------output:----------------
