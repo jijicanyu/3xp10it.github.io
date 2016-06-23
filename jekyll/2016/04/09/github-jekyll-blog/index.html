@@ -339,7 +339,7 @@ mkdir ../tmp &amp;&amp; cd ../tmp &amp;&amp; git init &amp;&amp; git pull https:
 
 <h2>16-04-19</h2>
 <h4 style="color:red">实现每次进入主页后循环随机播放背景音乐</h4>
-<p>1&gt;原来bgmusic.html代码如下：</p>
+<p>1&gt;原来bgmusic.html代码如下:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
 <span class="nt">&lt;embed</span> <span class="na">src=</span><span class="s">"list.m3u"</span> <span class="na">autostart=</span><span class="s">"true"</span> <span class="na">volume=</span><span class="s">"50"</span> <span class="na">loop=</span><span class="s">"true"</span> <span class="na">height=</span><span class="s">"1"</span> <span class="na">width=</span><span class="s">"1"</span><span class="nt">&gt;</span>
@@ -347,7 +347,7 @@ mkdir ../tmp &amp;&amp; cd ../tmp &amp;&amp; git init &amp;&amp; git pull https:
 </code></pre>
 </div>
 
-<p>2&gt;换成如下代码，将原bgmusic.html废弃，另存为bgmusic.html.version1,同目录下list.m3u文件也废弃</p>
+<p>2&gt;换成如下代码,将原bgmusic.html废弃,另存为bgmusic.html.version1,同目录下list.m3u文件也废弃</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
 <span class="nt">&lt;audio</span> <span class="na">id=</span><span class="s">"myaudio"</span><span class="nt">&gt;&lt;/audio&gt;</span>
@@ -395,14 +395,14 @@ mkdir ../tmp &amp;&amp; cd ../tmp &amp;&amp; git init &amp;&amp; git pull https:
 <p>3&gt;<em>Notice</em></p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code> 1&gt;&gt;经过试验发现:上面的javascript中只能用&lt;audio&gt;标签,不能用&lt;embed&gt;标签
- 2&gt;&gt;document.write方法似乎只能用一次，所以最后不用document.write的代码(上面/*...*/中的代码)
- 3&gt;&gt;上面的javascript中可firefox,chrome都实现播放音乐列表功能,且可以实现随机播放,原来的&lt;embed&gt;标签加m3u文件的代码只能firefox下播音乐列表，且不能随机播放
+ 2&gt;&gt;document.write方法似乎只能用一次,所以最后不用document.write的代码(上面/*...*/中的代码)
+ 3&gt;&gt;上面的javascript中可firefox,chrome都实现播放音乐列表功能,且可以实现随机播放,原来的&lt;embed&gt;标签加m3u文件的代码只能firefox下播音乐列表,且不能随机播放
 </code></pre>
 </div>
 
 <h2>16-05-21</h2>
 <h4 style="color:red">简化每次更新操作</h4>
-<p>1&gt;在本地myblog目录下新建updatelocal.sh实现本地文件更新：</p>
+<p>1&gt;在本地myblog目录下新建updatelocal.sh实现本地文件更新:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>pkill jekyll;sleep 3 &amp;&amp; cp index.html tmp.html &amp;&amp; cp index_bak.html index.html &amp;&amp; sh -c "rm -r _site/ &amp; jekyll serve --watch &amp; sleep 3 &amp;&amp; exit" &amp;&amp; cp _site/index.html index2.html &amp;&amp; cp tmp.html index.html &amp;&amp; echo congratulations! commands execute ok to here!
 </code></pre>

