@@ -5,14 +5,13 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 23 Jun 2016 13:42:11 +0800</pubDate>
-    <lastBuildDate>Thu, 23 Jun 2016 13:42:11 +0800</lastBuildDate>
+    <pubDate>Thu, 23 Jun 2016 14:16:58 +0800</pubDate>
+    <lastBuildDate>Thu, 23 Jun 2016 14:16:58 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
         <title>vim自动换标点</title>
-        <description>&lt;p&gt;将下面复制到vimrc文件中,f2快捷键可将当前文件中标点符号换成英文符号,打开md文件时自动将全文的中文标点符号换成英文符号
-用于写md文件时中文标点符号不美观的问题&lt;/p&gt;
+        <description>&lt;p&gt;将下面复制到vimrc文件中,f2快捷键可将当前文件中标点符号换成英文符号,打开md文件时自动将全文的中文标点符号换成英文符号,用于写md文件时中文标点符号不美观的问题&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;au BufRead *.md call Biaodian() &amp;lt;CR&amp;gt;
 
@@ -28,6 +27,10 @@ function Biaodian()
     %s/（/(/g
     %s/）/)/g
     %s/：/:/g
+    %s/；/;/g
+    %s/‘/&#39;/g
+    %s/‘/&#39;/g
+    %s/！/!/g
     endfunction
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
