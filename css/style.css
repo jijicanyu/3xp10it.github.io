@@ -368,7 +368,7 @@ ul {
   max-height: 100%; }
   .single h1, .single h2, .single h3, .single h4, .single h5, .single h6 {
     font-family: '文泉驿等宽正黑';
-    margin-bottom: 10px; }
+    margin-bottom: 15px; }
   .single h1 {
     font-size: 40px; }
   .single h2 {
@@ -379,7 +379,7 @@ ul {
     margin-bottom: 10px; }
     @media (min-width: 768px) {
       .single p {
-        margin-bottom: 40px; } }
+        margin-bottom: 15px; } }
   .single .menu {
     background-color: #215A6D; }
     .single .menu a, .single .menu a:active {
@@ -525,7 +525,7 @@ ul {
             .single .article .content figure.highlight pre, .single .article .content div.highlighter-rouge pre {
               padding-left: 50px;
               padding-right: 10px;
-              margin-bottom: 40px;
+              margin-bottom: 15px;
               font-size: 15px; } }
       .single .article .content p code, .single .article .content ul code, .single .article .content ol code {
         font-family: '文泉驿等宽正黑';

