@@ -229,7 +229,9 @@ push esp+ret
    b 15
    info b(info break)
    info registers       #show registers
-   r(run)
+   r(run)               #第一次运行或重新开始运行程序
+   start                #开始运行程序
+   continue             #继续运行
    disas /m
                 /r      #show hex(显示汇编指令对应十六进制值)
                 /m      #show source if available(如果有源码,显示对应行源码)
@@ -242,6 +244,13 @@ push esp+ret
    bt(backtrace)        #查看所有栈帧信息
    f num(frame num)     #选择并打印第num个栈帧信息
    info f(info frame)   #查看当前栈帧信息
+
+   layout：用于分割窗口，可以一边查看代码，一边测试：
+   layout src：显示源代码窗口
+   layout asm：显示反汇编窗口
+   layout regs：显示源代码/反汇编和CPU寄存器窗口
+   layout split：显示源代码和反汇编窗口
+   Ctrl + L：刷新窗口
 </code></pre>
 </div>
 

