@@ -132,10 +132,10 @@
 <p><code class="highlighter-rouge">http://www.wooyun.org/corps/page/1</code></p>
 
 <h4 id="in-vpn">(in vpn)</h4>
-<p><img src="https://raw.githubusercontent.com/xinghuacai/pic/master/spider_wooyun/1.png" alt="1" /></p>
+<p><img src="https://raw.githubusercontent.com/3xp10it/pic/master/spider_wooyun/1.png" alt="1" /></p>
 
 <h4 id="not-in-vpn">(not in vpn)</h4>
-<p><img src="https://raw.githubusercontent.com/xinghuacai/pic/master/spider_wooyun/2.png" alt="2" /></p>
+<p><img src="https://raw.githubusercontent.com/3xp10it/pic/master/spider_wooyun/2.png" alt="2" /></p>
 
 <h4 id="chrome">2&gt;chrome的代理设置问题</h4>
 <div class="highlighter-rouge"><pre class="highlight"><code>系统安装了google的chrome浏览器,需要burp截chrome的包时会在里面设置代理,而chrome设置的代理即是系统的代理,而firefox设置的代理只是firefox浏览器的代理,并不影响系统的网络访问是否要经过firefox设置的代理,如果设置了chrome的代理如127.0.0.1:8080,事后忘记关闭,则会影响到系统中所有需要联网的程序.
@@ -156,9 +156,9 @@ urllib2.install_opener(opener)
 
 <h4 id="urllib2error-101refused1270018080linuxsethttpproxyhttpproxyvpnip">这样就不会出现urllib2　error 101　refused的错误了,也可以将系统的127.0.0.1:8080的代理关掉.(linux中set命令可以看到http_proxy的值,http_proxy并不是vpn的ip)</h4>
 <p><img src="../../../../../pic/spider_wooyun/4.png" width="2200" />
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/spider_wooyun/5.png" alt="5" />
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/spider_wooyun/5.png" alt="5" />
 <img src="../../../../../pic/spider_wooyun/6.png" width="3000" />
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/spider_wooyun/7.png" alt="7" /></p>
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/spider_wooyun/7.png" alt="7" /></p>
 
 <h4 id="sublimerepl">4&gt;sublimeREPL插件</h4>
 <div class="highlighter-rouge"><pre class="highlight"><code>在sublime text中有个sublimeREPL插件,f5快捷键可编译运行python脚本,然而就算系统设置了代理127.0.0.1:8080等,f5依然可以将使用了urllib2且没有加上面３行代码的python脚本成功执行,也许是sublimeREPL中默认的运行代码设置了自己的代理为空,且不影响系统代理http_proxy的值.
@@ -233,7 +233,7 @@ urllib2.install_opener(opener)
 
 <h4 id="httpsforum90secorgforumphpmodviewthreadtid9073sqli">https://forum.90sec.org/forum.php?mod=viewthread&amp;tid=9073里面的工具跑,等待接收sqli注入点的短信通知</h4>
 
-<h4 id="httpsgithubcomxinghuacaispiderwooyun">本文代码链接:<code class="highlighter-rouge">https://github.com/xinghuacai/spider_wooyun</code></h4>
+<h4 id="httpsgithubcom3xp10itspiderwooyun">本文代码链接:<code class="highlighter-rouge">https://github.com/3xp10it/spider_wooyun</code></h4>
 
 </span>
 
@@ -299,7 +299,7 @@ var disqus_shortname = "quanyechavshuo"; // required: replace example with your 
 </div>
 
 <div class="my-home"><i class="fa fa-home" aria-hidden="true"></i><a href="/index2.html"> <font color="white">home</font></a></div>
-<div class="my-papers"><i class="fa fa-github" aria-hidden="true"></i><a href="https://github.com/xinghuacai" target="_top"> <font color="white">papers</font></a></div>
+<div class="my-papers"><i class="fa fa-github" aria-hidden="true"></i><a href="https://github.com/3xp10it" target="_top"> <font color="white">papers</font></a></div>
 <div class="my-search"><i class="fa fa-search" aria-hidden="true"></i><a href="/search/"> <font color="white">search</font></a></div>
 <div class="my-archive"><i class="fa fa-apple" aria-hidden="true"></i><a href="/my-archive/"> <font color="white">archive</font></a></div>
 <div class="my-categories"><i class="fa fa-tags" aria-hidden="true"></i><a href="/my-categories/"> <font color="white">categories</font></a></div>

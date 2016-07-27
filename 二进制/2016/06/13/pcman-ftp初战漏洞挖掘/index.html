@@ -193,7 +193,7 @@ challenge:
 </code></pre>
 </div>
 
-<p><img src="https://raw.githubusercontent.com/xinghuacai/pic/master/fuzzftp.png" /></p>
+<p><img src="https://raw.githubusercontent.com/3xp10it/pic/master/fuzzftp.png" /></p>
 
 <h3 id="x03-binnavi">0x03 binnavi使用方法</h3>
 
@@ -238,34 +238,34 @@ challenge:
 </div>
 
 <p>图1
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/binnavi-1.png" /></p>
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/binnavi-1.png" /></p>
 
 <p>图2
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/binnavi-2.png" /></p>
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/binnavi-2.png" /></p>
 
 <p>图3
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/binnavi-3.png" /></p>
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/binnavi-3.png" /></p>
 
 <p>图4
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/binnavi-4.png" /></p>
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/binnavi-4.png" /></p>
 
 <p>图5
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/binnavi-5.png" /></p>
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/binnavi-5.png" /></p>
 
 <p>图6
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/binnavi-6.png" /></p>
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/binnavi-6.png" /></p>
 
 <p>图7
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/binnavi-7.png" /></p>
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/binnavi-7.png" /></p>
 
 <p>图7-2
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/binnavi-7-2.png" /></p>
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/binnavi-7-2.png" /></p>
 
 <p>图7-3
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/binnavi-7-3.png" /></p>
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/binnavi-7-3.png" /></p>
 
 <p>图7-4
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/binnavi-7-4.png" /></p>
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/binnavi-7-4.png" /></p>
 
 <h3 id="x03-">0x03 实战</h3>
 
@@ -273,7 +273,7 @@ challenge:
 
 <p>实验中win7系统中默认dep关闭如下</p>
 
-<p><img src="https://raw.githubusercontent.com/xinghuacai/pic/master/dep_close_on_win7.png" /></p>
+<p><img src="https://raw.githubusercontent.com/3xp10it/pic/master/dep_close_on_win7.png" /></p>
 
 <p>追踪192.168.3.177中的pcmanftp进程的溢出指令</p>
 
@@ -283,9 +283,9 @@ challenge:
 </div>
 
 <p>图a
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/a.png" />
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/a.png" />
 图b
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/fuzz-2.png" /></p>
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/fuzz-2.png" /></p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>3.完成2中的设置后在192.168.3.77中单击上图中的start按钮,用ftpfuzz发送9000个A,只选择LIST命令进行fuzz,fuzz结束后binnavi中对应trace列表如下图trace1,说明ftpfuzz与binnavi的数据交互中共产生了72个event,也即从发送anonymous登录到发送完LIST 9000xA命令后的event,但是这样不能精确追踪到关键溢出(发送9000个A)时的代码,不会将登录ftp的过程记录到event中,使得event有72个,较大,为了精确追踪到pcmanftp对9000个A的数据处理过程,需要过滤掉fuzzftp登录pcmanftp的过程,于是进行如下操作:
     on 192.168.3.177:
@@ -333,13 +333,13 @@ challenge:
 </div>
 
 <p>图trace1
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/trace1.png" /></p>
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/trace1.png" /></p>
 
 <p>图trace2
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/trace2.png" /></p>
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/trace2.png" /></p>
 
 <p>图trace3
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/trace3.png" /></p>
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/trace3.png" /></p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>    追踪到相关指令后此时binavi暂时退出,用od调试pcmanftp
 
@@ -376,7 +376,7 @@ challenge:
 </div>
 
 <p>图error
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/error.png" /></p>
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/error.png" /></p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>on kali:
     user:anonymous
@@ -448,7 +448,7 @@ on 192.168.3.177's od:
 </div>
 
 <p>图od1
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/od1.png" /></p>
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/od1.png" /></p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>于是重新在405410,416685,427350处下断点,重点关注405410到416685后,在416685开始的指令流程,具体如下:
 
@@ -504,7 +504,7 @@ on 192.168.3.177's od:
 </div>
 
 <p>图od2
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/od2.png" /></p>
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/od2.png" /></p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>esp下面的第一个返回到的地址为当前栈帧的返回地址,也即汇编窗口中004166e9处的retn要返回到的地址
 esp下面的第二个返回到的地址4029db为当前函数栈帧的上一函数栈帧中的retn要返回的地址
@@ -543,7 +543,7 @@ esp下面的第三个返回到的地址4029ff为当前函数栈帧的上一函�
     -----------------end-------------------
 
 参照上一篇文章:
-http://xinghuacai.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%85%A5%E9%97%A8-%E5%8A%A8%E6%80%81%E8%B7%9F%E8%B8%AA%E6%BA%90%E4%BB%A3%E7%A0%81%E5%92%8C%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81/中的图stack0易知:
+http://3xp10it.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%85%A5%E9%97%A8-%E5%8A%A8%E6%80%81%E8%B7%9F%E8%B8%AA%E6%BA%90%E4%BB%A3%E7%A0%81%E5%92%8C%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81/中的图stack0易知:
     
     其中栈中0018ed8c以后很长一段数据都是41414141,由于此时中断到416685而堆栈窗口中首次出现AAAAAA数据,而堆栈窗口中最近的三个返回地址中00412976对应的是本函数栈帧(对应图od2)中的004166e9处的retn,这样的话,很有可能是本函数栈帧的上一帧函数(该函数内的retn对应返回到4029db)或者是上上一帧函数(该函数内的retn对应返回到4029ef)的返回地址被此时栈中的大长串A覆盖成41414141
     当前eip对应的函数帧是00416683函数,当前函数帧的上一帧函数是wsock32.recv,wsock32.recv函数帧的上一函数帧的00412956函数,形如下面表示:
@@ -795,13 +795,13 @@ exploit情况说明:
 </div>
 
 <p>图meterpreter1
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/meterpreter1.png" /></p>
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/meterpreter1.png" /></p>
 
 <h4 id="dep-on">2&gt;dep on</h4>
 
 <p>实验中win7x64系统中dep开启如下:</p>
 
-<p><img src="https://raw.githubusercontent.com/xinghuacai/pic/master/dep_open_on_win7.png" /></p>
+<p><img src="https://raw.githubusercontent.com/3xp10it/pic/master/dep_open_on_win7.png" /></p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>参考
 http://www.blogbus.com/riusksk-logs/80935313.html
@@ -1145,7 +1145,7 @@ f8跟踪到0018edb4处的772b73df,772b73df中的指令为pushad retn,可想,执�
 
 发现这时后面的30个41还是正常的没有被改变的,这样说明应该是win7x64位系统下开户dep后,栈中覆盖好的nop串会被改变成其他随机的填充数据,也有可能是nop串太长为30个时才会这样,考虑到上一篇文中
 
-http://xinghuacai.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%85%A5%E9%97%A8-%E5%8A%A8%E6%80%81%E8%B7%9F%E8%B8%AA%E6%BA%90%E4%BB%A3%E7%A0%81%E5%92%8C%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81/
+http://3xp10it.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%85%A5%E9%97%A8-%E5%8A%A8%E6%80%81%E8%B7%9F%E8%B8%AA%E6%BA%90%E4%BB%A3%E7%A0%81%E5%92%8C%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81/
 
 提到msf的payload前面有可能需要至少9个nop空间帮助完成payload的解码等工作,将30个nop改成9个nop试试9个nop会不会被改成随机的填充数据
 
@@ -1244,7 +1244,7 @@ def create_rop_chain()
 </div>
 
 <p>图virtualprotect_rop
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/virtualprotect_rop.png" /></p>
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/virtualprotect_rop.png" /></p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>mona生成的rop_gadgets中的最后一句中的pushad+retn指令的地址是必须的,正是通过pushad+retn的执行才可以导致virtualprotect的执行,实现的原理是在pushad之前将pushad的各个寄存器按照对应的顺序设置成刚好可以调用virtualprotect函数使后面的shellcode为可执行
 后来调试在进入virtualprotect_rop前最后一个函数00403e60的返回语句是retn 4而不是retn,所以rop_gadgets中的第一个地址后要加一个过渡的值,这里取为0x41414141
@@ -1307,7 +1307,7 @@ def create_rop_chain()
 </code></pre>
 </div>
 <p>图ebx_error
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/ebx_error.png" /></p>
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/ebx_error.png" /></p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>后来发现原来的mona中的virtualprotect是获得0x201(对应上面的0xffffddff,neg取反后为0x201)个可执行栈空间,以为是msf中的payload比这个长导致shellcode执行出错,后来将这个值设置为0xffffddff后没能关掉dep,应该是由于长度太大或许超过了栈空间的大小而导致virtualprotect函数的失败,于是没能成功关掉dep
 
@@ -1452,7 +1452,7 @@ exploit
 </code></pre>
 </div>
 
-<p><img src="https://raw.githubusercontent.com/xinghuacai/pic/master/succeed.png" /></p>
+<p><img src="https://raw.githubusercontent.com/3xp10it/pic/master/succeed.png" /></p>
 </span>
 
         
@@ -1517,7 +1517,7 @@ var disqus_shortname = "quanyechavshuo"; // required: replace example with your 
 </div>
 
 <div class="my-home"><i class="fa fa-home" aria-hidden="true"></i><a href="/index2.html"> <font color="white">home</font></a></div>
-<div class="my-papers"><i class="fa fa-github" aria-hidden="true"></i><a href="https://github.com/xinghuacai" target="_top"> <font color="white">papers</font></a></div>
+<div class="my-papers"><i class="fa fa-github" aria-hidden="true"></i><a href="https://github.com/3xp10it" target="_top"> <font color="white">papers</font></a></div>
 <div class="my-search"><i class="fa fa-search" aria-hidden="true"></i><a href="/search/"> <font color="white">search</font></a></div>
 <div class="my-archive"><i class="fa fa-apple" aria-hidden="true"></i><a href="/my-archive/"> <font color="white">archive</font></a></div>
 <div class="my-categories"><i class="fa fa-tags" aria-hidden="true"></i><a href="/my-categories/"> <font color="white">categories</font></a></div>

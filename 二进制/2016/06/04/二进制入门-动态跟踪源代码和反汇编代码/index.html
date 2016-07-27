@@ -148,7 +148,7 @@ eg.
 </div>
 
 <p>图frame
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/eip.png" /></p>
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/eip.png" /></p>
 
 <h4 id="leavemov-espebp--pop-ebp">5&gt;leave===&gt;mov esp,ebp + pop ebp</h4>
 
@@ -385,7 +385,7 @@ line7,lin8代码:
 </div>
 
 <p>图ascii
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/ascii.png" /></p>
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/ascii.png" /></p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>line10:(line9是空格行)
 -----------------汇编跟踪:line10----------------------
@@ -519,7 +519,7 @@ echo '1234567898123456789812345678981234567898123456789812345678981234\x00\x00\x
 </div>
 
 <p>图stack0
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/stack0.png" /></p>
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/stack0.png" /></p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>该题要求溢出变量modified,也即覆盖栈中的modified所在的内在地址里的值,这里进行扩展,通过栈溢出反弹shell.
 该题中ASLR(地址随机化) 和 NX(栈不可执行)已禁用
@@ -777,7 +777,7 @@ Looking gadgets, please wait...
 </code></pre>
 </div>
 
-<p><img src="https://raw.githubusercontent.com/xinghuacai/pic/master/opcodesearcher.png" /></p>
+<p><img src="https://raw.githubusercontent.com/3xp10it/pic/master/opcodesearcher.png" /></p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>取其中的0xf773813b,替换exploit.py中jmp_esp="\x3b\x81\x73\xf7",上图中选择的/lib/i386-linux-gnu/ld-2.19.so应该是随着操作系统启动加载到系统内存中的可用动态链接库文件
 
@@ -954,7 +954,7 @@ x/40x $esp-4
     4.想直接在"a"*80+"1234"+"bbbb"中的1234的位置上写入shellcode的起始地址是行不能的,只能用jmp esp或其他方法
 
 突然想到,在edb-debugger工具中找到的jmp esp的地址放入exploit.py中的jmp_esp中最后没有成功有可能是因为kali的安全防护功能,其中的系统内存中加载的/lib/i386-linux-gnu/ld-2.19.so有安全设置
-下载checksec.sh检查一下:http://www.trapkit.de/tools/checksec.sh(或者peda工具,https://github.com/xinghuacai/peda)
+下载checksec.sh检查一下:http://www.trapkit.de/tools/checksec.sh(或者peda工具,https://github.com/3xp10it/peda)
 chmod +x ./checksec.sh
 ./checksec.sh --file /lib/i386-linux-gnu/ld-2.19.so
 -------------output:----------------
@@ -1241,7 +1241,7 @@ var disqus_shortname = "quanyechavshuo"; // required: replace example with your 
 </div>
 
 <div class="my-home"><i class="fa fa-home" aria-hidden="true"></i><a href="/index2.html"> <font color="white">home</font></a></div>
-<div class="my-papers"><i class="fa fa-github" aria-hidden="true"></i><a href="https://github.com/xinghuacai" target="_top"> <font color="white">papers</font></a></div>
+<div class="my-papers"><i class="fa fa-github" aria-hidden="true"></i><a href="https://github.com/3xp10it" target="_top"> <font color="white">papers</font></a></div>
 <div class="my-search"><i class="fa fa-search" aria-hidden="true"></i><a href="/search/"> <font color="white">search</font></a></div>
 <div class="my-archive"><i class="fa fa-apple" aria-hidden="true"></i><a href="/my-archive/"> <font color="white">archive</font></a></div>
 <div class="my-categories"><i class="fa fa-tags" aria-hidden="true"></i><a href="/my-categories/"> <font color="white">categories</font></a></div>

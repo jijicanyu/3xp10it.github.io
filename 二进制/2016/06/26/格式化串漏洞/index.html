@@ -213,7 +213,7 @@ printf("%8xaaa%8d%n")在栈中的数据如下:
 </code></pre>
 </div>
 <p>图format
-<img src="https://raw.githubusercontent.com/xinghuacai/pic/master/format.png" /></p>
+<img src="https://raw.githubusercontent.com/3xp10it/pic/master/format.png" /></p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>后来才发现的上图是在win7x64位系统上用od跟踪绘制的结果图,在linux中,并不是这样的情况,linux中a[100]在linux中的栈空间中存放的位置会分配在p上面,而不是flag下面,且win7x64系统中,visual studio编译时会失败,强制用od加载并在调用printf时改写栈中format为含有%n的格式化串(eg.%10x%n)同样会异常失败,无法实现"写"
 
@@ -563,7 +563,7 @@ var disqus_shortname = "quanyechavshuo"; // required: replace example with your 
 </div>
 
 <div class="my-home"><i class="fa fa-home" aria-hidden="true"></i><a href="/index2.html"> <font color="white">home</font></a></div>
-<div class="my-papers"><i class="fa fa-github" aria-hidden="true"></i><a href="https://github.com/xinghuacai" target="_top"> <font color="white">papers</font></a></div>
+<div class="my-papers"><i class="fa fa-github" aria-hidden="true"></i><a href="https://github.com/3xp10it" target="_top"> <font color="white">papers</font></a></div>
 <div class="my-search"><i class="fa fa-search" aria-hidden="true"></i><a href="/search/"> <font color="white">search</font></a></div>
 <div class="my-archive"><i class="fa fa-apple" aria-hidden="true"></i><a href="/my-archive/"> <font color="white">archive</font></a></div>
 <div class="my-categories"><i class="fa fa-tags" aria-hidden="true"></i><a href="/my-categories/"> <font color="white">categories</font></a></div>

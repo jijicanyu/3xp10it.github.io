@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 27 Jul 2016 17:40:21 +0800</pubDate>
-    <lastBuildDate>Wed, 27 Jul 2016 17:40:21 +0800</lastBuildDate>
+    <pubDate>Thu, 28 Jul 2016 07:37:44 +0800</pubDate>
+    <lastBuildDate>Thu, 28 Jul 2016 07:37:44 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -494,7 +494,7 @@ printf(&quot;%8xaaa%8d%n&quot;)在栈中的数据如下:
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;图format
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/format.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/format.png&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;后来才发现的上图是在win7x64位系统上用od跟踪绘制的结果图,在linux中,并不是这样的情况,linux中a[100]在linux中的栈空间中存放的位置会分配在p上面,而不是flag下面,且win7x64系统中,visual studio编译时会失败,强制用od加载并在调用printf时改写栈中format为含有%n的格式化串(eg.%10x%n)同样会异常失败,无法实现&quot;写&quot;
 
@@ -1200,7 +1200,7 @@ challenge:
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/fuzzftp.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/fuzzftp.png&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;x03-binnavi&quot;&gt;0x03 binnavi使用方法&lt;/h3&gt;
 
@@ -1245,34 +1245,34 @@ challenge:
 &lt;/div&gt;
 
 &lt;p&gt;图1
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/binnavi-1.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/binnavi-1.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;图2
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/binnavi-2.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/binnavi-2.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;图3
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/binnavi-3.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/binnavi-3.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;图4
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/binnavi-4.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/binnavi-4.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;图5
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/binnavi-5.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/binnavi-5.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;图6
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/binnavi-6.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/binnavi-6.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;图7
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/binnavi-7.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/binnavi-7.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;图7-2
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/binnavi-7-2.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/binnavi-7-2.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;图7-3
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/binnavi-7-3.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/binnavi-7-3.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;图7-4
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/binnavi-7-4.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/binnavi-7-4.png&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;x03-&quot;&gt;0x03 实战&lt;/h3&gt;
 
@@ -1280,7 +1280,7 @@ challenge:
 
 &lt;p&gt;实验中win7系统中默认dep关闭如下&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/dep_close_on_win7.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/dep_close_on_win7.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;追踪192.168.3.177中的pcmanftp进程的溢出指令&lt;/p&gt;
 
@@ -1290,9 +1290,9 @@ challenge:
 &lt;/div&gt;
 
 &lt;p&gt;图a
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/a.png&quot; /&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/a.png&quot; /&gt;
 图b
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/fuzz-2.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/fuzz-2.png&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;3.完成2中的设置后在192.168.3.77中单击上图中的start按钮,用ftpfuzz发送9000个A,只选择LIST命令进行fuzz,fuzz结束后binnavi中对应trace列表如下图trace1,说明ftpfuzz与binnavi的数据交互中共产生了72个event,也即从发送anonymous登录到发送完LIST 9000xA命令后的event,但是这样不能精确追踪到关键溢出(发送9000个A)时的代码,不会将登录ftp的过程记录到event中,使得event有72个,较大,为了精确追踪到pcmanftp对9000个A的数据处理过程,需要过滤掉fuzzftp登录pcmanftp的过程,于是进行如下操作:
     on 192.168.3.177:
@@ -1340,13 +1340,13 @@ challenge:
 &lt;/div&gt;
 
 &lt;p&gt;图trace1
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/trace1.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/trace1.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;图trace2
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/trace2.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/trace2.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;图trace3
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/trace3.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/trace3.png&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    追踪到相关指令后此时binavi暂时退出,用od调试pcmanftp
 
@@ -1383,7 +1383,7 @@ challenge:
 &lt;/div&gt;
 
 &lt;p&gt;图error
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/error.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/error.png&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;on kali:
     user:anonymous
@@ -1455,7 +1455,7 @@ on 192.168.3.177&#39;s od:
 &lt;/div&gt;
 
 &lt;p&gt;图od1
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/od1.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/od1.png&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;于是重新在405410,416685,427350处下断点,重点关注405410到416685后,在416685开始的指令流程,具体如下:
 
@@ -1511,7 +1511,7 @@ on 192.168.3.177&#39;s od:
 &lt;/div&gt;
 
 &lt;p&gt;图od2
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/od2.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/od2.png&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;esp下面的第一个返回到的地址为当前栈帧的返回地址,也即汇编窗口中004166e9处的retn要返回到的地址
 esp下面的第二个返回到的地址4029db为当前函数栈帧的上一函数栈帧中的retn要返回的地址
@@ -1550,7 +1550,7 @@ esp下面的第三个返回到的地址4029ff为当前函数栈帧的上一函�
     -----------------end-------------------
 
 参照上一篇文章:
-http://xinghuacai.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%85%A5%E9%97%A8-%E5%8A%A8%E6%80%81%E8%B7%9F%E8%B8%AA%E6%BA%90%E4%BB%A3%E7%A0%81%E5%92%8C%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81/中的图stack0易知:
+http://3xp10it.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%85%A5%E9%97%A8-%E5%8A%A8%E6%80%81%E8%B7%9F%E8%B8%AA%E6%BA%90%E4%BB%A3%E7%A0%81%E5%92%8C%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81/中的图stack0易知:
     
     其中栈中0018ed8c以后很长一段数据都是41414141,由于此时中断到416685而堆栈窗口中首次出现AAAAAA数据,而堆栈窗口中最近的三个返回地址中00412976对应的是本函数栈帧(对应图od2)中的004166e9处的retn,这样的话,很有可能是本函数栈帧的上一帧函数(该函数内的retn对应返回到4029db)或者是上上一帧函数(该函数内的retn对应返回到4029ef)的返回地址被此时栈中的大长串A覆盖成41414141
     当前eip对应的函数帧是00416683函数,当前函数帧的上一帧函数是wsock32.recv,wsock32.recv函数帧的上一函数帧的00412956函数,形如下面表示:
@@ -1802,13 +1802,13 @@ exploit情况说明:
 &lt;/div&gt;
 
 &lt;p&gt;图meterpreter1
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/meterpreter1.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/meterpreter1.png&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;dep-on&quot;&gt;2&amp;gt;dep on&lt;/h4&gt;
 
 &lt;p&gt;实验中win7x64系统中dep开启如下:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/dep_open_on_win7.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/dep_open_on_win7.png&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;参考
 http://www.blogbus.com/riusksk-logs/80935313.html
@@ -2152,7 +2152,7 @@ f8跟踪到0018edb4处的772b73df,772b73df中的指令为pushad retn,可想,执�
 
 发现这时后面的30个41还是正常的没有被改变的,这样说明应该是win7x64位系统下开户dep后,栈中覆盖好的nop串会被改变成其他随机的填充数据,也有可能是nop串太长为30个时才会这样,考虑到上一篇文中
 
-http://xinghuacai.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%85%A5%E9%97%A8-%E5%8A%A8%E6%80%81%E8%B7%9F%E8%B8%AA%E6%BA%90%E4%BB%A3%E7%A0%81%E5%92%8C%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81/
+http://3xp10it.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%85%A5%E9%97%A8-%E5%8A%A8%E6%80%81%E8%B7%9F%E8%B8%AA%E6%BA%90%E4%BB%A3%E7%A0%81%E5%92%8C%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81/
 
 提到msf的payload前面有可能需要至少9个nop空间帮助完成payload的解码等工作,将30个nop改成9个nop试试9个nop会不会被改成随机的填充数据
 
@@ -2251,7 +2251,7 @@ def create_rop_chain()
 &lt;/div&gt;
 
 &lt;p&gt;图virtualprotect_rop
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/virtualprotect_rop.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/virtualprotect_rop.png&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mona生成的rop_gadgets中的最后一句中的pushad+retn指令的地址是必须的,正是通过pushad+retn的执行才可以导致virtualprotect的执行,实现的原理是在pushad之前将pushad的各个寄存器按照对应的顺序设置成刚好可以调用virtualprotect函数使后面的shellcode为可执行
 后来调试在进入virtualprotect_rop前最后一个函数00403e60的返回语句是retn 4而不是retn,所以rop_gadgets中的第一个地址后要加一个过渡的值,这里取为0x41414141
@@ -2314,7 +2314,7 @@ def create_rop_chain()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;图ebx_error
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/ebx_error.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/ebx_error.png&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;后来发现原来的mona中的virtualprotect是获得0x201(对应上面的0xffffddff,neg取反后为0x201)个可执行栈空间,以为是msf中的payload比这个长导致shellcode执行出错,后来将这个值设置为0xffffddff后没能关掉dep,应该是由于长度太大或许超过了栈空间的大小而导致virtualprotect函数的失败,于是没能成功关掉dep
 
@@ -2459,7 +2459,7 @@ exploit
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/succeed.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/succeed.png&quot; /&gt;&lt;/p&gt;
 </description>
         <pubDate>Mon, 13 Jun 2016 00:00:00 +0800</pubDate>
         <link>/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/13/pcman-ftp%E5%88%9D%E6%88%98%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/</link>
@@ -2499,7 +2499,7 @@ eg.
 &lt;/div&gt;
 
 &lt;p&gt;图frame
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/eip.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/eip.png&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;leavemov-espebp--pop-ebp&quot;&gt;5&amp;gt;leave===&amp;gt;mov esp,ebp + pop ebp&lt;/h4&gt;
 
@@ -2736,7 +2736,7 @@ line7,lin8代码:
 &lt;/div&gt;
 
 &lt;p&gt;图ascii
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/ascii.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/ascii.png&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;line10:(line9是空格行)
 -----------------汇编跟踪:line10----------------------
@@ -2870,7 +2870,7 @@ echo &#39;1234567898123456789812345678981234567898123456789812345678981234\x00\x
 &lt;/div&gt;
 
 &lt;p&gt;图stack0
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/stack0.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/stack0.png&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;该题要求溢出变量modified,也即覆盖栈中的modified所在的内在地址里的值,这里进行扩展,通过栈溢出反弹shell.
 该题中ASLR(地址随机化) 和 NX(栈不可执行)已禁用
@@ -3128,7 +3128,7 @@ Looking gadgets, please wait...
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/opcodesearcher.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/opcodesearcher.png&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;取其中的0xf773813b,替换exploit.py中jmp_esp=&quot;\x3b\x81\x73\xf7&quot;,上图中选择的/lib/i386-linux-gnu/ld-2.19.so应该是随着操作系统启动加载到系统内存中的可用动态链接库文件
 
@@ -3305,7 +3305,7 @@ x/40x $esp-4
     4.想直接在&quot;a&quot;*80+&quot;1234&quot;+&quot;bbbb&quot;中的1234的位置上写入shellcode的起始地址是行不能的,只能用jmp esp或其他方法
 
 突然想到,在edb-debugger工具中找到的jmp esp的地址放入exploit.py中的jmp_esp中最后没有成功有可能是因为kali的安全防护功能,其中的系统内存中加载的/lib/i386-linux-gnu/ld-2.19.so有安全设置
-下载checksec.sh检查一下:http://www.trapkit.de/tools/checksec.sh(或者peda工具,https://github.com/xinghuacai/peda)
+下载checksec.sh检查一下:http://www.trapkit.de/tools/checksec.sh(或者peda工具,https://github.com/3xp10it/peda)
 chmod +x ./checksec.sh
 ./checksec.sh --file /lib/i386-linux-gnu/ld-2.19.so
 -------------output:----------------
@@ -3996,7 +3996,7 @@ vi kali.txt
     :r win7.txt
     :x
 python 字典去重.py kali.txt         (output:outfile.txt)
-    this .py script:https://raw.githubusercontent.com/xinghuacai/password_tools/master/%E5%AD%97%E5%85%B8%E6%95%B4%E7%90%86%E5%8E%BB%E9%87%8D%E5%B7%A5%E5%85%B7/%E5%AD%97%E5%85%B8%E6%95%B4%E7%90%86%E5%8E%BB%E9%87%8D%E5%B7%A5%E5%85%B7.py
+    this .py script:https://raw.githubusercontent.com/3xp10it/password_tools/master/%E5%AD%97%E5%85%B8%E6%95%B4%E7%90%86%E5%8E%BB%E9%87%8D%E5%B7%A5%E5%85%B7/%E5%AD%97%E5%85%B8%E6%95%B4%E7%90%86%E5%8E%BB%E9%87%8D%E5%B7%A5%E5%85%B7.py
 
 /usr/bin/rime_dict_manager -r outfile.txt
 or
@@ -4020,16 +4020,16 @@ or
 &lt;p&gt;the difference between 词典快照 and 文本码表&lt;/p&gt;
 
 &lt;p&gt;1.词典快照
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/%E8%AF%8D%E5%85%B8%E5%BF%AB%E7%85%A7.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/%E8%AF%8D%E5%85%B8%E5%BF%AB%E7%85%A7.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;2.文本码表
-&lt;img src=&quot;https://raw.githubusercontent.com/xinghuacai/pic/master/%E6%96%87%E6%9C%AC%E7%A0%81%E8%A1%A8.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/%E6%96%87%E6%9C%AC%E7%A0%81%E8%A1%A8.png&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;section-1&quot;&gt;16-05-28&lt;/h4&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python script:(performs well on kali,but not on win7)
 
 download:
-https://raw.githubusercontent.com/xinghuacai/little_scripts/master/rimedic_handle.py
+https://raw.githubusercontent.com/3xp10it/little_scripts/master/rimedic_handle.py
 
 ---------rimedic_handle.py------------
 import sys
