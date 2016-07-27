@@ -766,7 +766,7 @@
    参数,成功跑出目标SQLite数据库的内容.另外,实验中发现sqlmap会出现一会能跑出,一会跑不出的现象,可见,工具不是完全可靠的,要是一下没有跑出,多跑几次就出来了.
 <span class="p">73.</span>preg_replace包含/e修饰符利用:http://www.jb51.net/article/38714.htm　其中echo "${@phpinfo()}";就可以了,不必　echo "{${phpinfo()}}";
 <span class="p">74.</span>vim配置:
-          https://github.com/3xp10it/spf13-vim
+          https://github.com/xinghuacai/spf13-vim
           http://blog.csdn.net/namecyf/article/details/7787479
           https://github.com/Valloric/YouCompleteMe
           https://github.com/VundleVim/Vundle.vim#about
@@ -872,7 +872,7 @@
         http://platinhom.gitcafe.io/2015/11/06/Kramdown-note/           kramdown语法
         https://ruby-china.org/topics/14005                             web中文字体应用指南(i use 文泉驿等宽正黑 )
         http://platinhom.github.io/2015/06/06/Markdown-note/
-        http://3xp10it.github.io
+        http://xinghuacai.github.io
         http://reyhan.org/2013/03/jekyll-archive-without-plugins.html   jekyll archive by year
         myblog/posts-by-categories.html                                 jekyll archive by categories
         http://www.ithome.com/html/it/195970.htm                        add music to my pages
@@ -1046,12 +1046,17 @@
 <span class="p">126.</span>visual studio快速编译一个c文件
     运行C:<span class="se">\P</span>rogram Files (x86)<span class="se">\M</span>icrosoft Visual Studio 14.0<span class="se">\C</span>ommon7<span class="se">\T</span>ools<span class="se">\V</span>sDevCmd.bat
     然后运行cl md.c
-    或者打开tools里面的开发人员提示符,然后再cl md.c<span class="sb">
-
-
-
-
-</span></code></pre>
+    或者打开tools里面的开发人员提示符,然后再cl md.c
+<span class="p">127.</span>安装sulley过程中首先选用管理员身份安装,如果失败,再手动安装,安装要求python2.4,如果机器上已经安装了python的其他版本,需要人工将python2.4加入到环境变量中,再去sulley framework的安装目录下中的install_files中将ctypes和pcapy用管理员身份安装
+<span class="p">128.</span>sulley中的process_monitor.py中用的是os.system来启动崩溃的程序继续fuzz,这样是阻塞方式,不可以,可改成os.startfile或subprocess中的popen
+    os.startfile(相当于双击操作,eg. os.startfile("1.txt")):   http://blog.sina.com.cn/s/blog_4b5039210100froh.html
+<span class="p">129.</span>my_sulley学习资料
+    http://pan.baidu.com/s/1c1Y6kVY
+<span class="p">130.</span>linux中批量替换目录文件中的字符串:
+    sed -i "s/xinghuacai/3xp10it/g" <span class="sb">`grep xinghuacai -rl .`</span>
+<span class="p">131.</span>github在push时免输入用户名密码:
+    http://www.cnblogs.com/ballwql/p/3462104.html
+</code></pre>
 </div>
 
 </span>
