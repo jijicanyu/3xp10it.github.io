@@ -5,9 +5,77 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 28 Jul 2016 08:05:14 +0800</pubDate>
-    <lastBuildDate>Thu, 28 Jul 2016 08:05:14 +0800</lastBuildDate>
+    <pubDate>Thu, 28 Jul 2016 08:22:43 +0800</pubDate>
+    <lastBuildDate>Thu, 28 Jul 2016 08:22:43 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
+    
+      <item>
+        <title>quick start sulley</title>
+        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;0.&lt;/span&gt;sulley api doc
+    http://www.fuzzing.org/wp-content/SulleyEpyDoc/private/sulley-module.html
+&lt;span class=&quot;p&quot;&gt;
+1.&lt;/span&gt;a good vedio on youtube about basic fuzz knowledge:
+    https://www.youtube.com/watch?v=q0Bg2PBxXNA
+    or
+    http://www.dfate.de/public/index.php
+  four file linked to upon vedio:
+    https://github.com/StefanMolls/Blog-related-Files/tree/master/Video1-Fuzzing%20Basics%20with%20Sulley%20
+    include these:
+        crashbin_explorer.py(crashbin_explorer.py create a app_relevant_cases.txt,this crashbin_explorer.py is different from the origin utils&lt;span class=&quot;se&quot;&gt;\c&lt;/span&gt;rashbin_explorer.py)
+        filter_cases.py
+        pcmanftp.py
+        pcmanftp_simple.py
+&lt;span class=&quot;p&quot;&gt;        
+2.&lt;/span&gt;a very good script to install sulley quickly from the same vedio author like upon
+    https://github.com/reider-roque/sulley-win-installer
+&lt;span class=&quot;p&quot;&gt;
+3.&lt;/span&gt;chinese sulley doc translation from pediy
+    http://bbs.pediy.com/archive/index.php?t-135764.html
+&lt;span class=&quot;p&quot;&gt;
+4.&lt;/span&gt;defcon23 a vedio about fuzz,about wadi
+    https://www.youtube.com/watch?v=jnBhb6DiP2k
+&lt;span class=&quot;p&quot;&gt;
+5.&lt;/span&gt;example
+&lt;span class=&quot;p&quot;&gt;    192.&lt;/span&gt;168.3.77(fuzzer machine,installed sulley)
+&lt;span class=&quot;p&quot;&gt;    192.&lt;/span&gt;168.3.177(been fuzzed machine with pcmanftpd2.exe,installed sulley)
+    
+    on 192.168.3.177&#39;s sulley root directory:
+        process_monitor.py -c audit&lt;span class=&quot;se&quot;&gt;\p&lt;/span&gt;cmanftpd_crashbin -p &quot;PCManFTPD2.exe&quot;&lt;span class=&quot;sb&quot;&gt;
+
+    on 192.168.3.77&#39;s sulley root directory:
+        copy https://github.com/xinghuacai/mysulleycases/crashbin_explorer.py .
+        copy https://github.com/xinghuacai/mysulleycases/filter_cases.py .
+        copy https://github.com/xinghuacai/mysulleycases/pcmanftpd2.py .
+        network_monitor.py -d 0 -f &quot;src or dst port 21&quot; -P audit
+        pcmanftpd2.py(run twice)
+            select debug mode first(generate a pcman_all_cases.txt)
+            select not debug mode second(start the real fuzz)
+
+    running fuzz...
+    finished fuzz
+
+    on 192.168.3.77&#39;s sulley root directory:
+        copy 192.168.3.177\sulley\audit\pcmanftpd_crashbin .
+        crashbin_explorer.py(generage a pcman_relevant_cases.txt,and show the numbers of the crashed ones)
+            crashbin_explorer.py -t num(this command can show the detail of the num crash,this command is not necessary)
+        utils\pcap_cleaner.py pcmanftpd_crashbin audit(delete the useless .pcap files in audit)
+        filter_cases.py(generate pcman_relevant.txt from pcman_all_cases.txt and pcman_relevant_cases.txt)
+
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;6.&lt;/span&gt;important files about sulley can be download from:
+    https://github.com/3xp10it/mysulleycases
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Thu, 28 Jul 2016 00:00:00 +0800</pubDate>
+        <link>/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/2016/07/28/quick-start-sulley/</link>
+        <guid isPermaLink="true">/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/2016/07/28/quick-start-sulley/</guid>
+        
+        <category>sulley</category>
+        
+        
+        <category>漏洞挖掘</category>
+        
+      </item>
     
       <item>
         <title>小生我怕怕笔记</title>
@@ -4128,166 +4196,6 @@ make myown larger dic
         
         
         <category>auxilary</category>
-        
-      </item>
-    
-      <item>
-        <title>文件一键打包</title>
-        <description>&lt;h4 id=&quot;x01-linux&quot;&gt;0x01 linux&lt;/h4&gt;
-
-&lt;p&gt;linux打包命令:
-&lt;a href=&quot;http://pan.baidu.com/s/1nvcVqOT&quot;&gt;1.sh&lt;/a&gt; 密码:0y03&lt;br /&gt;
-(attention:without “&amp;amp;&amp;amp; echo ok”,the final tar -T xlsx.list -czf xlsx.tar.gz will fail)&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;-----------------content of 1.sh--------------------
-mkdir /tmp/tmp &amp;amp;&amp;amp; find / -name &quot;*.doc&quot; &amp;gt; /tmp/tmp/doc.list &amp;amp;&amp;amp; find / -name &quot;*.docx&quot; &amp;gt; /tmp/tmp/docx.list &amp;amp;&amp;amp; find / -name &quot;*.pdf&quot; &amp;gt; /tmp/tmp/pdf.list &amp;amp;&amp;amp; find / -name &quot;*.txt&quot; &amp;gt; /tmp/tmp/txt.list &amp;amp;&amp;amp; find / -name &quot;*.xls&quot; &amp;gt; /tmp/tmp/xls.list &amp;amp;&amp;amp; find / -name &quot;*.xlsx&quot; &amp;gt; /tmp/tmp/xlsx.list &amp;amp;&amp;amp; tar -T /tmp/tmp/doc.list -czf /tmp/tmp/doc.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/docx.list -czf /tmp/tmp/docx.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/pdf.list -czf /tmp/tmp/pdf.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/txt.list -czf /tmp/tmp/txt.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/xls.list -czf /tmp/tmp/xls.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/xlsx.list -czf /tmp/tmp/xlsx.tar.gz &amp;amp;&amp;amp; echo ok
---------------------end-----------------------------
-
-mysql:
-mkdir /tmp/tmp &amp;amp;&amp;amp; find / -name &quot;*.sql&quot; &amp;gt; /tmp/tmp/tmp.list  &amp;amp;&amp;amp; tar -T /tmp/tmp/tmp.list -czf /tmp/tmp/tmp.tar.gz  &amp;amp;&amp;amp; echo ok
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;x02-windows&quot;&gt;0x02 windows&lt;/h4&gt;
-
-&lt;p&gt;windows打包(rar|7z)命令:
-&lt;a href=&quot;http://pan.baidu.com/s/1slMivlb&quot;&gt;1.bat&lt;/a&gt; 密码:3lwz&lt;br /&gt;
-(attention:7z.exe for x32 need a 7z.dll to performs well while 7z.exe for x64 needn’t)
-(rar.exe does not have the x86 or x64 isssue)&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---------------content of 1.bat--------------------------
-@echo off
-goto :main
-这是注释:(for /f &quot;delims=&quot;的作用为取消默认的以空格等符号作为分割符
-dir /s 实现了linux中的find功能,for /r path %%i in (web.conf?g) do ... 也可以实现find功能,但是自己实现时发现for /r path ...中的path只能是一个具体路径,不能是变量,这样就不能遍历全部磁盘了)
-:main
-set str=c d e f g h i j k l m n o p q r s t u v w x y z 
-
-if not exist c:\recycler (
-md c:\recycler
-md c:\recycler\tmp
-        )
-
-if exist c:\recycler (
-rd /s/q c:\recycler\tmp
-md c:\recycler\tmp
-        )
-
-echo  当前硬盘的分区有: 
-for %%i in (%str%) do (
-if exist %%i: (echo %%i:
-
-for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:\*.doc&quot;&#39;) do (
-echo &quot;yes&quot; | copy &quot;%%j&quot; c:\recycler\tmp
-echo %%j &amp;gt;&amp;gt; tmp.txt
-)
-
-for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:\*.docx&quot;&#39;) do (
-echo &quot;yes&quot; | copy &quot;%%j&quot; c:\recycler\tmp
-echo %%j &amp;gt;&amp;gt; c:\recycler\tmp\tmp.txt
-)
-
-
-for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:\*.pdf&quot;&#39;) do (
-echo &quot;yes&quot; | copy &quot;%%j&quot; c:\recycler\tmp
-echo %%j &amp;gt;&amp;gt; c:\recycler\tmp\tmp.txt
-)
-
-
-for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:\*.txt&quot;&#39;) do (
-echo &quot;yes&quot; | copy &quot;%%j&quot; c:\recycler\tmp
-echo %%j &amp;gt;&amp;gt; c:\recycler\tmp\tmp.txt
-)
-
-
-for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:\*.xls&quot;&#39;) do (
-echo &quot;yes&quot; | copy &quot;%%j&quot; c:\recycler\tmp
-echo %%j &amp;gt;&amp;gt; c:\recycler\tmp\tmp.txt
-)
-
-
-for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:\*.xlsx&quot;&#39;) do (
-echo &quot;yes&quot; | copy &quot;%%j&quot; c:\recycler\tmp
-echo %%j &amp;gt;&amp;gt; c:\recycler\tmp\tmp.txt
-)
-
-
-)
-)
-
-copy rar.exe c:\recycler\rar.exe
-echo &quot;y&quot; | del rar.exe
-
-c:\recycler\rar.exe a -k -r -s -m1 c:\recycler\tmp\tmp.rar c:\recycler\tmp\*.*
-echo ok
-------------------end--------------------------------
-
-or
-c:\recycler\7z a -t7z C:\recycler\tmp\test.7z C:\recycler\tmp\*.*
-
-
--------------------mysql&amp;amp;access.bat---------------------
-@echo off
-goto :main
-这是注释:(for /f &quot;delims=&quot;的作用为取消默认的以空格等符号作为分割符
-mdf和ldf文件无法直接复制,需要shadow copy
-dir /s 实现了linux中的find功能,for /r path %%i in (web.conf?g) do ... 也可以实现find功能,但是自己实现时发现for /r path ...中的path只能是一个具体路径,不能是变量,这样就不能遍历全部磁盘了)
-:main
-set str=c d e f g h i j k l m n o p q r s t u v w x y z 
-
-if not exist c:\recycler (
-md c:\recycler
-md c:\recycler\tmp
-        )
-
-if exist c:\recycler (
-rd /s/q c:\recycler\tmp
-md c:\recycler\tmp
-        )
-
-echo  当前硬盘的分区有: 
-for %%i in (%str%) do (
-if exist %%i: (echo %%i:
-
-for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:\*.sql&quot;&#39;) do (
-echo &quot;yes&quot; | copy &quot;%%j&quot; c:\recycler\tmp
-echo %%j &amp;gt;&amp;gt; c:\recycler\tmp\tmp.txt
-)
-
-for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:\*.mdb&quot;&#39;) do (
-echo &quot;yes&quot; | copy &quot;%%j&quot; c:\recycler\tmp
-echo %%j &amp;gt;&amp;gt; c:\recycler\tmp\tmp.txt
-)
-
-)
-)
-
-copy rar.exe c:\recycler\rar.exe
-echo &quot;y&quot; | del rar.exe
-
-c:\recycler\rar.exe a -k -r -s -m1 c:\recycler\tmp\tmp.rar c:\recycler\tmp\*.*
-echo ok
----------------------end-------------------------
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-</description>
-        <pubDate>Fri, 20 May 2016 00:00:00 +0800</pubDate>
-        <link>/web/2016/05/20/%E6%96%87%E4%BB%B6%E4%B8%80%E9%94%AE%E6%89%93%E5%8C%85/</link>
-        <guid isPermaLink="true">/web/2016/05/20/%E6%96%87%E4%BB%B6%E4%B8%80%E9%94%AE%E6%89%93%E5%8C%85/</guid>
-        
-        <category>windows</category>
-        
-        <category>dir /s</category>
-        
-        <category>sh</category>
-        
-        <category>7z</category>
-        
-        <category>tar</category>
-        
-        
-        <category>web</category>
         
       </item>
     
