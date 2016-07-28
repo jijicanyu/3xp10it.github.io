@@ -420,6 +420,14 @@ mkdir ../tmp &amp;&amp; cd ../tmp &amp;&amp; git init &amp;&amp; git pull https:
 mkdir ../tmp &amp;&amp; cd ../tmp &amp;&amp; git init &amp;&amp; git pull https://github.com/3xp10it/3xp10it.github.io.git &amp;&amp; cp -r ../myblog/_site/* . &amp;&amp; git status &amp;&amp; git add . &amp;&amp; git status &amp;&amp; git commit -a -m "update articles" &amp;&amp; git remote add origin https://github.com/3xp10it/3xp10it.github.io.git &amp;&amp; git push -u origin master &amp;&amp; rm -r ../tmp &amp;&amp; echo congratulations! commands execute ok to here!
 </code></pre>
 </div>
+
+<h2>16-07-28</h2>
+<h4 style="color:red">简化每次更新操作</h4>
+<p>4&gt;在本地myblog目录下新建updatebak.sh实现远程博客备份</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>mkdir ../tmp &amp;&amp; cd ../tmp &amp;&amp; git init &amp;&amp; git pull https://github.com/3xp10it/blog_backup.git &amp;&amp; cp -r ../myblog/* . &amp;&amp; git status &amp;&amp; git add . &amp;&amp; git status &amp;&amp; git commit -a -m "update blog_backup" &amp;&amp; git remote add origin https://github.com/3xp10it/blog_backup.git &amp;&amp; git push -u origin master &amp;&amp; rm -r ../tmp &amp;&amp; echo congratulations! commands execute ok to here!
+</code></pre>
+</div>
 </span>
 
         
