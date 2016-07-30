@@ -127,11 +127,11 @@
 
         <span itemprop="articleBody"><h3 id="x00-about">0x00 about</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>目的：实现一个自动将截图上传至github并获取对应uri
-用途：方便博客md文件中截图的处理
-使用方法：
-    初次运行时，在linxu系统中新建/root/githubpic目录,并将github上对应的图片目录下载到本地
-    以后运行时，将需要上传的图片人工拷贝到/root/githubpic目录，运行该脚本可实现自动将新图片上传并获取uri
+<div class="highlighter-rouge"><pre class="highlight"><code>目的:实现一个自动将截图上传至github并获取对应uri
+用途:方便博客md文件中截图的处理
+使用方法:
+    初次运行时,在linxu系统中新建/root/githubpic目录,并将github上对应的图片目录下载到本地
+    以后运行时,将需要上传的图片人工拷贝到/root/githubpic目录,运行该脚本可实现自动将新图片上传并获取uri
 </code></pre>
 </div>
 
@@ -213,10 +213,13 @@ it will get /root/桌面/spider_wooyun when I put this py script file in /root/�
 python mysnippingtool.py
 it will get "/root/桌面/spider_wooyun" as a result,but the true result should be "/root/githubpic/spider_wooyun"
 so I use:
-current_file_abspath=os.path.isdir("/root/githubpic/"+each):
+        each_abspath=os.path.join(folder,each)
 to get the current file's abspath
+
 </code></pre>
 </div>
+
+<p><a href="https://raw.githubusercontent.com/3xp10it/little_scripts/master/mysnippingtool.py"><small>代码链接</small></a></p>
 
 </span>
 
