@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 30 Jul 2016 15:30:12 +0800</pubDate>
-    <lastBuildDate>Sat, 30 Jul 2016 15:30:12 +0800</lastBuildDate>
+    <pubDate>Sat, 30 Jul 2016 15:45:55 +0800</pubDate>
+    <lastBuildDate>Sat, 30 Jul 2016 15:45:55 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -18,6 +18,10 @@
 使用方法:
     初次运行时,在linxu系统中新建/root/githubpic目录,并将github上对应的图片目录下载到本地
     以后运行时,将需要上传的图片人工拷贝到/root/githubpic目录,运行该脚本可实现自动将新图片上传并获取uri
+快捷运行：
+    cp mysnippingtool.py /usr/share
+    vi ~/.zshrc
+    +alias jt=&quot;python /usr/share/mysnippingtool.py&quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -199,7 +203,7 @@ src和dest所指内存区域不可以重叠且dest必须有足够的空间来容
 
 准备工作:
 1.下载adobe reader 9.3.4
-神器站点：
+神器站点:
 http://www.oldapps.com/index.php
 2.制作恶意pdf:
 http://www.freebuf.com/vuls/80072.html
@@ -208,16 +212,16 @@ http://www.freebuf.com/vuls/80072.html
 
 &lt;p&gt;0x01 ida对应代码&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.安装adobe reader9.3.4后，将cooltype.dll用ida打开
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.安装adobe reader9.3.4后,将cooltype.dll用ida打开
 
 2.搜索方法:
 ctrl+s
 双击.text段
-alt+t搜索所有“SING”
+alt+t搜索所有&quot;SING&quot;
 在9个结果中一一打开
 发现第二个搜索结果为书中的关键有溢出代码处
 
-3.具体如下：
+3.具体如下:
 ------------------key code------------------
 .text:0803DCF9
 .text:0803DCF9                 push    ebp
@@ -282,10 +286,10 @@ b.在803dda2处下断调试容易跟踪详情
 
 &lt;p&gt;0x02 od动态跟踪&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.打开reader,od附加，f9
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.打开reader,od附加,f9
 2.ctrl+g:803dda2,f2
 3.reader中打开msf.pdf
-4.od中断到803dda2处，eax=046BF838,对应eax中内容如下：
+4.od中断到803dda2处,eax=046BF838,对应eax中内容如下:
 ------------source------------
 98 66 51 E6 AB 53 8B E7 14 A7 82 4A 0C 0C 0C 0C 16 0A 12 37 7A 8C E7 36 3F DC A9 03 A1 E1 CF CB
 7B 78 91 C5 8B 8C F7 5F 3D C8 2F 90 40 D3 35 1E 24 0B 45 5F 64 6D 61 0A 1D 5B 9E 6C 2E F6 6A EB
@@ -311,7 +315,7 @@ D4 DB EA 3B E2 A6 42 81 B1 B9 15 31 EB B1 37 EB 7F 80 18 16 A9 C5 4F EF 64 D2 5E
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;cve-2010-2883-1.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/cve-2010-2883-1.png&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;5.f8,f8,f8到803dda7处时eax=12e4b0,也即strcat的目标地址(第一个参数)
 (堆栈窗口中)
