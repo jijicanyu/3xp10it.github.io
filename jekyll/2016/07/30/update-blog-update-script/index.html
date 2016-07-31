@@ -143,6 +143,7 @@
 <span class="k">fi</span>
 </code></pre>
 </div>
+<p><a href="https://raw.githubusercontent.com/3xp10it/little_scripts/master/up.sh"><small>up.sh</small></a></p>
 
 <h4 id="bpython">b&gt;python脚本</h4>
 
@@ -158,12 +159,13 @@
     <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">'''cd /root/myblog &amp;&amp; git status &amp;&amp; git add . &amp;&amp; git status &amp;&amp; git commit -a -m "update backup" &amp;&amp; git push -u origin master &amp;&amp; echo all is well,and all is done!'''</span><span class="p">)</span>
 </code></pre>
 </div>
+<p><a href="https://raw.githubusercontent.com/3xp10it/little_scripts/master/up.py">updateall.py</a></p>
 
 <h3 id="x01-attention">0x01 attention</h3>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>这里的一串指令较原来的updateall.sh有改变
 cd /root/3xp10it.github.io &amp;&amp; cp -r ../myblog/_site/* . &amp;&amp; cp ../myblog/index2.html . &amp;&amp; cp ../myblog/index.html . &amp;&amp; git status &amp;&amp; git add . &amp;&amp; git status &amp;&amp; git commit -a -m "update" &amp;&amp; git push -u origin master &amp;&amp; echo congratulations! commands execute ok to here!
-原来的updateall.sh中对应代码是：
+原来的updateall.sh中对应代码是:
 cd /root/3xp10it.github.io &amp;&amp; cp -r ../myblog/_site/* . &amp;&amp; git status &amp;&amp; git add . &amp;&amp; git status &amp;&amp; git commit -a -m "update" &amp;&amp; git push -u origin master &amp;&amp; echo congratulations! commands execute ok to here!
 </code></pre>
 </div>
