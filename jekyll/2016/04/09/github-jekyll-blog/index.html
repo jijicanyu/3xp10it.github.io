@@ -121,7 +121,7 @@
 
       <div class="read-time">
         <small>
-          11 minute read
+          9 minute read
         </small>
       </div>
 
@@ -433,26 +433,10 @@ mkdir ../tmp &amp;&amp; cd ../tmp &amp;&amp; git init &amp;&amp; git pull https:
 <h4 style="color:red">简化每次更新操作</h4>
 <p>5&gt;简化以上所有更新操作并实现换电脑快速还原github上博客至本地</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">--------------------</span><span class="n">updateall</span><span class="o">.</span><span class="n">py</span><span class="o">------------------</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s">'/root/myblog'</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">False</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s">'/root/3xp10it.github.io'</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">False</span><span class="p">:</span>
-    <span class="k">print</span> <span class="s">"this is the first time you use me,I will download myblog from https://github.com/3xp10it/myblog.git"</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"mkdir /root/myblog &amp;&amp; cd /root/myblog &amp;&amp; git init &amp;&amp; git pull https://github.com/3xp10it/myblog.git &amp;&amp; git remote add origin https://github.com/3xp10it/myblog.git"</span><span class="p">)</span>
-    <span class="k">print</span> <span class="s">"this is the first time you use me,I will download 3xp10it.github.io from https://github.com/3xp10it/3xp10it.github.io.git"</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"mkdir /root/3xp10it.github.io &amp;&amp; cd /root/3xp10it.github.io &amp;&amp; git init &amp;&amp; git pull https://github.com/3xp10it/3xp10it.github.io.git &amp;&amp; git remote add origin https://github.com/3xp10it/3xp10it.github.io.git"</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">'''cd /root/myblog &amp;&amp; pkill jekyll;sleep 3 &amp;&amp; cp index.html tmp.html &amp;&amp; cp index_bak.html index.html &amp;&amp; sh -c "rm -r _site/ &amp; jekyll serve --watch &amp; sleep 3 &amp;&amp; exit" &amp;&amp; cp _site/index.html index2.html &amp;&amp; cp tmp.html index.html &amp;&amp; echo congratulations! commands execute ok to here!'''</span><span class="p">)</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">'''cd /root/3xp10it.github.io &amp;&amp; cp -r ../myblog/_site/* . &amp;&amp; git status &amp;&amp; git add . &amp;&amp; git status &amp;&amp; git commit -a -m "update" &amp;&amp; git push -u origin master &amp;&amp; echo congratulations! commands execute ok to here!'''</span><span class="p">)</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">'''cd /root/myblog &amp;&amp; git status &amp;&amp; git add . &amp;&amp; git status &amp;&amp; git commit -a -m "update backup" &amp;&amp; git push -u origin master &amp;&amp; echo all is well,and all is done!'''</span><span class="p">)</span>
-<span class="o">-------------------------</span><span class="n">end</span><span class="o">----------------------</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>最新更新方法见下面文章链接
 </code></pre>
 </div>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>cp updateall.py /usr/share
-vi .zshrc
-+alias <span class="s1">'upa'</span><span class="o">=</span>python /usr/share/updateall.py
-</code></pre>
-</div>
+<p><a href="https://3xp10it.github.io/jekyll/2016/07/30/update-blog-update-script/">文章链接</a></p>
 
 </span>
 
