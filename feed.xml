@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 31 Jul 2016 10:13:11 +0800</pubDate>
-    <lastBuildDate>Sun, 31 Jul 2016 10:13:11 +0800</lastBuildDate>
+    <pubDate>Sun, 31 Jul 2016 10:24:27 +0800</pubDate>
+    <lastBuildDate>Sun, 31 Jul 2016 10:24:27 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -131,7 +131,7 @@ to get the current file&#39;s abspath
         <title>修正博客更新脚本</title>
         <description>&lt;h3 id=&quot;x00-&quot;&gt;0x00 更新最终博客更新脚本指令如下&lt;/h3&gt;
 
-&lt;h4 id=&quot;abash&quot;&gt;a&amp;gt;bash脚本&lt;/h4&gt;
+&lt;h4 id=&quot;abash-a-hrefhttpsrawgithubusercontentcom3xp10itlittlescriptsmasterupshsmallupshsmalla&quot;&gt;a&amp;gt;bash脚本 &lt;a href=&quot;https://raw.githubusercontent.com/3xp10it/little_scripts/master/up.sh&quot;&gt;&lt;small&gt;up.sh&lt;/small&gt;&lt;/a&gt;&lt;/h4&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; -d /root/myblog &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; -d /root/3xp10it.github.io &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
@@ -147,9 +147,8 @@ to get the current file&#39;s abspath
 &lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/3xp10it/little_scripts/master/up.sh&quot;&gt;&lt;small&gt;up.sh&lt;/small&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&quot;bpython&quot;&gt;b&amp;gt;python脚本&lt;/h4&gt;
+&lt;h4 id=&quot;bpython-a-hrefhttpsrawgithubusercontentcom3xp10itlittlescriptsmasteruppysmallupdateallpysmalla&quot;&gt;b&amp;gt;python脚本 &lt;a href=&quot;https://raw.githubusercontent.com/3xp10it/little_scripts/master/up.py&quot;&gt;&lt;small&gt;updateall.py&lt;/small&gt;&lt;/a&gt;&lt;/h4&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;os&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;/root/myblog&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;/root/3xp10it.github.io&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
@@ -163,14 +162,18 @@ to get the current file&#39;s abspath
     &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;system&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;&#39;&#39;cd /root/myblog &amp;amp;&amp;amp; git status &amp;amp;&amp;amp; git add . &amp;amp;&amp;amp; git status &amp;amp;&amp;amp; git commit -a -m &quot;update backup&quot; &amp;amp;&amp;amp; git push -u origin master &amp;amp;&amp;amp; echo all is well,and all is done!&#39;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/3xp10it/little_scripts/master/up.py&quot;&gt;updateall.py&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;x01-attention&quot;&gt;0x01 attention&lt;/h3&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;这里的一串指令较原来的updateall.sh有改变
 cd /root/3xp10it.github.io &amp;amp;&amp;amp; cp -r ../myblog/_site/* . &amp;amp;&amp;amp; cp ../myblog/index2.html . &amp;amp;&amp;amp; cp ../myblog/index.html . &amp;amp;&amp;amp; git status &amp;amp;&amp;amp; git add . &amp;amp;&amp;amp; git status &amp;amp;&amp;amp; git commit -a -m &quot;update&quot; &amp;amp;&amp;amp; git push -u origin master &amp;amp;&amp;amp; echo congratulations! commands execute ok to here!
+
 原来的updateall.sh中对应代码是:
 cd /root/3xp10it.github.io &amp;amp;&amp;amp; cp -r ../myblog/_site/* . &amp;amp;&amp;amp; git status &amp;amp;&amp;amp; git add . &amp;amp;&amp;amp; git status &amp;amp;&amp;amp; git commit -a -m &quot;update&quot; &amp;amp;&amp;amp; git push -u origin master &amp;amp;&amp;amp; echo congratulations! commands execute ok to here!
+
+更新博客对应状态
+本地/root/myblog对应github远程的myblog,本地的127.0.0.1:4000对应的是本地/root/myblog目录由本地执行jekyll --serve产生的网页效果
+本地/root/3xp10it.github.io对应github远程的3xp10it.github.io,http://3xp10it.github.io对应的是github远程3xp10it.github.io由github服务器jekyll --serve产生的网页效果
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>

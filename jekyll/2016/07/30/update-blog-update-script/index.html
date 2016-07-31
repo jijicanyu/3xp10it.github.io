@@ -127,7 +127,7 @@
 
         <span itemprop="articleBody"><h3 id="x00-">0x00 更新最终博客更新脚本指令如下</h3>
 
-<h4 id="abash">a&gt;bash脚本</h4>
+<h4 id="abash-a-hrefhttpsrawgithubusercontentcom3xp10itlittlescriptsmasterupshsmallupshsmalla">a&gt;bash脚本 <a href="https://raw.githubusercontent.com/3xp10it/little_scripts/master/up.sh"><small>up.sh</small></a></h4>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>
 <span class="k">if</span> <span class="o">[</span> -d /root/myblog <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> -d /root/3xp10it.github.io <span class="o">]</span>
@@ -143,9 +143,8 @@
 <span class="k">fi</span>
 </code></pre>
 </div>
-<p><a href="https://raw.githubusercontent.com/3xp10it/little_scripts/master/up.sh"><small>up.sh</small></a></p>
 
-<h4 id="bpython">b&gt;python脚本</h4>
+<h4 id="bpython-a-hrefhttpsrawgithubusercontentcom3xp10itlittlescriptsmasteruppysmallupdateallpysmalla">b&gt;python脚本 <a href="https://raw.githubusercontent.com/3xp10it/little_scripts/master/up.py"><small>updateall.py</small></a></h4>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s">'/root/myblog'</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">False</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s">'/root/3xp10it.github.io'</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">False</span><span class="p">:</span>
@@ -159,14 +158,18 @@
     <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">'''cd /root/myblog &amp;&amp; git status &amp;&amp; git add . &amp;&amp; git status &amp;&amp; git commit -a -m "update backup" &amp;&amp; git push -u origin master &amp;&amp; echo all is well,and all is done!'''</span><span class="p">)</span>
 </code></pre>
 </div>
-<p><a href="https://raw.githubusercontent.com/3xp10it/little_scripts/master/up.py">updateall.py</a></p>
 
 <h3 id="x01-attention">0x01 attention</h3>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>这里的一串指令较原来的updateall.sh有改变
 cd /root/3xp10it.github.io &amp;&amp; cp -r ../myblog/_site/* . &amp;&amp; cp ../myblog/index2.html . &amp;&amp; cp ../myblog/index.html . &amp;&amp; git status &amp;&amp; git add . &amp;&amp; git status &amp;&amp; git commit -a -m "update" &amp;&amp; git push -u origin master &amp;&amp; echo congratulations! commands execute ok to here!
+
 原来的updateall.sh中对应代码是:
 cd /root/3xp10it.github.io &amp;&amp; cp -r ../myblog/_site/* . &amp;&amp; git status &amp;&amp; git add . &amp;&amp; git status &amp;&amp; git commit -a -m "update" &amp;&amp; git push -u origin master &amp;&amp; echo congratulations! commands execute ok to here!
+
+更新博客对应状态
+本地/root/myblog对应github远程的myblog,本地的127.0.0.1:4000对应的是本地/root/myblog目录由本地执行jekyll --serve产生的网页效果
+本地/root/3xp10it.github.io对应github远程的3xp10it.github.io,http://3xp10it.github.io对应的是github远程3xp10it.github.io由github服务器jekyll --serve产生的网页效果
 </code></pre>
 </div>
 </span>
