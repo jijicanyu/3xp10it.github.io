@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 31 Jul 2016 11:03:09 +0800</pubDate>
-    <lastBuildDate>Sun, 31 Jul 2016 11:03:09 +0800</lastBuildDate>
+    <pubDate>Sun, 31 Jul 2016 11:33:43 +0800</pubDate>
+    <lastBuildDate>Sun, 31 Jul 2016 11:33:43 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -895,12 +895,13 @@ CC网络验证
         <title>tmux自动布局</title>
         <description>&lt;p&gt;将下面复制到.zshrc及.bashrc中&lt;/p&gt;
 
-&lt;p&gt;uptate 2016-07-30:
-```
-»&amp;gt;add ranger&lt;/p&gt;
+&lt;p&gt;uptate 2016-07-30:&lt;/p&gt;
 
-&lt;p&gt;alias od=”tmux splitw -h -p 38;tmux splitw -v -p 30;tmux selectp -L;tmux splitw -v -p 30;tmux selectp -U;ranger”
-```&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;add ranger
+
+alias od=&quot;tmux splitw -h -p 38;tmux splitw -v -p 30;tmux selectp -L;tmux splitw -v -p 30;tmux selectp -U;ranger&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;快捷命令od可进入设定的layout
 其他相关命令
