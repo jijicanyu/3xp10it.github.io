@@ -5,7 +5,7 @@
     <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>backup files</title>
+<title>test1</title>
 <meta name="description" content="A blog about programming and network security">
 
 <link rel="profile" href="http://gmpg.org/xfn/11" />
@@ -105,13 +105,13 @@
     <div itemscope itemtype="http://schema.org/Article" class="col-md-12 article">
       
 
-      <h1 class="header" itemprop="name">backup files</h1>
+      <h1 class="header" itemprop="name">test1</h1>
 
       <div class="author">
         <small><i>
           
-          on <span itemprop="datePublished" content="2014-08-28">April 15, 2016</span>
-           under backup
+          on <span itemprop="datePublished" content="2014-08-28">August 2, 2016</span>
+           under auxilary
         </i></small>
       </div>
 
@@ -125,140 +125,7 @@
 
         
 
-        <span itemprop="articleBody"><p>1&gt;firefox extensions list
-<img src="https://raw.githubusercontent.com/3xp10it/pic/master/backup/extension.png" alt="extension" /></p>
-
-<p>2&gt;sublime text setup file</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>http://pan.baidu.com/s/1o7Tyha6
-</code></pre>
-</div>
-
-<p>3&gt;firefox bookmarks</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>http://pan.baidu.com/s/1jHCBs6y
-</code></pre>
-</div>
-
-<p>4&gt;vimrc and bundles of vim</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>http://pan.baidu.com/s/1slFveFF
-update:2016-06-07
-
-update:16-08-02
-two steps
-a&gt;do as github's vim do
-b&gt;add my special vimrcbak file below to ~/.vimrc 's first head lines
-    http://pan.baidu.com/s/1gfG1bm7
-   http://pan.baidu.com/s/1hsbKyUS
-
-----------------lines add to .vimrc-----------------
-let g:spf13_edit_config_mapping='&lt;Leader&gt;ev'
-let g:spf13_apply_config_mapping='&lt;Leader&gt;sv'
-set rtp+=/root/.local/lib/python2.7/site-packages/powerline/bindings/vim
-au InsertLeave * write
-au BufLeave * write
-if exists("&amp;autoread")
-    set autoread
-endif
-
-set viminfo='10,\"100,:20,%,n~/.viminfo
-au BufReadPost * if line("'\"") &gt; 0|if line("'\"") &lt;= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
-
-
-set ruler
-imap fj &lt;esc&gt;
-cmap fj &lt;esc&gt;
-cmap jf &lt;esc&gt;
-imap jf &lt;esc&gt;
-map ; :
-map &lt;s-;&gt; ;
-map sy "+y
-map sp "+p
-map mm ZZ
-
-nnoremap &lt;buffer&gt; &lt;F9&gt; :exec '!python' shellescape(@%, 1)&lt;cr&gt;
-function CheckPythonSyntax()
-    let mp = &amp;makeprg
-    let ef = &amp;errorformat
-    let exeFile = expand("%:t")
-    setlocal makeprg=python\ -u
-    set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-    silent make %
-    copen
-    let &amp;makeprg     = mp
-    let &amp;errorformat = ef
-endfunctio
-
-map &lt;F5&gt; :call CheckPythonSyntax()&lt;CR&gt;
-
-
-
-au BufRead *.md call Biaodian() &lt;CR&gt;
-
-map &lt;F2&gt; :call Biaodian() &lt;CR&gt;
-function Biaodian()
-    %s/“/"/g
-    %s/”/"/g
-    %s/，/,/g
-    %s/。/./g
-    %s/？/?/g
-    %s/〈/&lt;/g
-    %s/〉/&gt;/g
-    %s/（/(/g
-    %s/）/)/g
-    %s/：/:/g
-    %s/；/;/g
-    %s/‘/'/g
-    %s/‘/'/g
-    %s/！/!/g
-    endfunction
-------------------------end-------------------------
-
-</code></pre>
-</div>
-
-<p>5&gt;zshrc</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>update:16-08-02
-do as notes do and then copy the .zshrc file below:
-http://pan.baidu.com/s/1mi0HKYO
-
-------------------add to .zshrc----------------
-</code></pre>
-</div>
-
-<p>6&gt;tmux</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>old:http://pan.baidu.com/s/1kVyETT1
-
-new:update at 16-08-02
-
-apt-get install tmux
-do as notes do to download some good conf file,then add the below my own special setting to conf file
-
-set-window-option -g mode-keys vi #可以设置为vi或emacs
-set-window-option -g utf8 on #开启窗口的UTF-8支持
-set-option -g status-utf8 on
-set -g default-shell /bin/zsh
-set -g default-command /bin/zsh
-unbind-key 0
-unbind-key 1
-unbind-key 2
-unbind-key 3
-unbind-key 4
-bind 1 select-pane -t:.1
-bind 2 select-pane -t:.2
-bind 3 select-pane -t:.3
-bind 4 select-pane -t:.4
-</code></pre>
-</div>
-
-<p>7&gt;vim+zshrc+tmux</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>http://pan.baidu.com/s/1o8QZdqi
-</code></pre>
-</div>
+        <span itemprop="articleBody"><p>this is a test for blog.py :D</p>
 </span>
 
         
@@ -268,7 +135,7 @@ bind 4 select-pane -t:.4
         <div class="tags">
           <small>
           <i class="fa fa-tags"></i>
-            firefox, backup, vim, sublime
+            test, ttt, tmp, ddd
           </small>
         </div>
         

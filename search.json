@@ -17,6 +17,14 @@
     } ,
     
   {
+    "title"    : "test1",
+    "category" : "",
+    "tags"     : "test, ttt, tmp, ddd",
+    "url"      : "/auxilary/2016/08/02/test1/",
+    "date"     : "2016-08-02 00:00:00 +0800"
+    } ,
+    
+  {
     "title"    : "自动上传截图至github并获取uri",
     "category" : "",
     "tags"     : "github, python, 文件遍历",
