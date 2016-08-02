@@ -127,10 +127,18 @@
 
         <span itemprop="articleBody"><p>将下面复制到.zshrc及.bashrc中</p>
 
+<p>update 2016-08-01:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>ubuntu 16.04下(实验结果,不解):
+tmux
+alias od='echo "anything" | (tmux splitw -h -p 38 &amp;&amp; tmux splitw -v -p 30 &amp;&amp; tmux selectp -L &amp;&amp; tmux splitw -v -p 30 &amp;&amp; tmux selectp -U) &amp;&amp; ranger'
+</code></pre>
+</div>
+
 <p>uptate 2016-07-30:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt;add ranger
-
+kali linux2.0下:
 alias od="tmux splitw -h -p 38;tmux splitw -v -p 30;tmux selectp -L;tmux splitw -v -p 30;tmux selectp -U;ranger"
 </code></pre>
 </div>

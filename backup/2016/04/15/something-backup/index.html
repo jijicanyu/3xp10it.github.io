@@ -145,18 +145,46 @@
 <div class="highlighter-rouge"><pre class="highlight"><code>http://pan.baidu.com/s/1slFveFF
 update:2016-06-07
     http://pan.baidu.com/s/1hsbKyUS
+
+update:16-08-02
+two steps
+a&gt;do as github's vim do
+b&gt;add my special vimrcbak file below to ~/.vimrc 's first head lines
+    http://pan.baidu.com/s/1gfG1bm7
 </code></pre>
 </div>
 
 <p>5&gt;zshrc</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>http://pan.baidu.com/s/1o7X4zr0
+<div class="highlighter-rouge"><pre class="highlight"><code>update:16-08-02
+do as notes do and then copy the .zshrc file below:
+http://pan.baidu.com/s/1mi0HKYO
 </code></pre>
 </div>
 
 <p>6&gt;tmux</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>http://pan.baidu.com/s/1kVyETT1
+<div class="highlighter-rouge"><pre class="highlight"><code>old:http://pan.baidu.com/s/1kVyETT1
+
+new:update at 16-08-02
+
+apt-get install tmux
+do as notes do to download some good conf file,then add the below my own special setting to conf file
+
+set-window-option -g mode-keys vi #可以设置为vi或emacs
+set-window-option -g utf8 on #开启窗口的UTF-8支持
+set-option -g status-utf8 on
+set -g default-shell /bin/zsh
+set -g default-command /bin/zsh
+unbind-key 0
+unbind-key 1
+unbind-key 2
+unbind-key 3
+unbind-key 4
+bind 1 select-pane -t:.1
+bind 2 select-pane -t:.2
+bind 3 select-pane -t:.3
+bind 4 select-pane -t:.4
 </code></pre>
 </div>
 

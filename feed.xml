@@ -5,9 +5,176 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 31 Jul 2016 11:33:43 +0800</pubDate>
-    <lastBuildDate>Sun, 31 Jul 2016 11:33:43 +0800</lastBuildDate>
-    <generator>Jekyll v3.1.2</generator>
+    <pubDate>Tue, 02 Aug 2016 13:23:19 +0800</pubDate>
+    <lastBuildDate>Tue, 02 Aug 2016 13:23:19 +0800</lastBuildDate>
+    <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>Welcome to Jekyll!</title>
+        <description>&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+
+&lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+
+&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;Tom&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &#39;Hi, Tom&#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 02 Aug 2016 12:27:49 +0800</pubDate>
+        <link>/jekyll/update/2016/08/02/welcome-to-jekyll/</link>
+        <guid isPermaLink="true">/jekyll/update/2016/08/02/welcome-to-jekyll/</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+      <item>
+        <title>修复linux系统</title>
+        <description>&lt;h3 id=&quot;x00-good-knowledge&quot;&gt;0x00 good knowledge:&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http://www.xitongzhijia.net/xtjc/20141208/32106.html
+http://www.linuxidc.com/Linux/2015-05/117031.htm
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;x01-etcfstab-wrong&quot;&gt;0x01 /etc/fstab wrong&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1&amp;gt;安装linux系统到u盘
+eg.ubuntu: use yumi
+eg.kali linux2: use win32diskimager
+
+2&amp;gt;start os from usb
+fdisk -l
+    output:/dev/sda1 is the boot linux location
+    设备       启动     Start    末尾    扇区   Size Id 类型
+    /dev/sda1  *         2048  39178239  39176192  18.7G 83 Linux
+    /dev/sda2        39180286 488396799 449216514 214.2G  5 扩展
+    /dev/sda5        39180288 101679103  62498816  29.8G 82 Linux 交换 / Solaris
+    /dev/sda6       101681152 488396799 386715648 184.4G 83 Linux
+    
+    Disk /dev/sdb: 1.8 TiB, 2000398934016 bytes, 3907029168 sectors
+    Units: sectors of 1 * 512 = 512 bytes
+    Sector size (logical/physical): 512 bytes / 4096 bytes
+    I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+    Disklabel type: dos
+    Disk identifier: 0x0585b847
+
+    设备       启动 Start     末尾     扇区  Size Id 类型
+    /dev/sdb1        2048 3907028991 3907026944  1.8T  5 扩展
+    /dev/sdb5        4096 3907028991 3907024896  1.8T 83 Linux
+
+mkdir /mnt/tmp
+mkdir /mnt/tmp/boot
+mount /dev/sda6 /mnt/tmp
+mount /dev/sda1 /mnt/tmp/boot
+mount --bind /dev /mnt/tmp/dev
+mount --bind /proc /mnt/tmp/proc
+mount --bind /sys /mnt/tmp/sys
+chroot /mnt/tmp
+
+vi /etc/fstab
+    # /etc/fstab: static file system information.
+    #
+    # Use &#39;blkid&#39; to print the universally unique identifier for a
+    # device; this may be used with UUID= as a more robust way to name devices
+    # that works even if disks are added and removed. See fstab(5).
+    #
+    # &amp;lt;file system&amp;gt; &amp;lt;mount point&amp;gt;   &amp;lt;type&amp;gt;  &amp;lt;options&amp;gt;       &amp;lt;dump&amp;gt;  &amp;lt;pass&amp;gt;
+    # / was on /dev/sda6 during installation
+    UUID=404e86ae-84e2-4e70-8317-f6731637b4b1 /               ext4    errors=remount-ro 0       1
+    # /boot was on /dev/sda1 during installation
+    UUID=ff639af0-1f08-4fb3-9dc1-734fea98cdfc /boot           ext4    defaults        0       2
+    # swap was on /dev/sda5 during installation
+    UUID=662e8f85-fea5-4e66-939a-de769a05c326 none            swap    sw              0       0
+
+modify as this:
+
+UUID=404e86ae-84e2-4e70-8317-f6731637b4b1 /
+to
+/dev/sda6 /
+
+UUID=ff639af0-1f08-4fb3-9dc1-734fea98cdfc /boot
+to
+/dev/sda1 /boot
+
+UUID=662e8f85-fea5-4e66-939a-de769a05c326 none
+to
+/dev/sda5
+
+exit
+umount /mnt/tmp/dev &amp;amp;&amp;amp; umout /mnt/tmp/proc &amp;amp;&amp;amp; umount /mnt/tmp/sys &amp;amp;&amp;amp; umount /mnt/tmp/boot &amp;amp;&amp;amp;  umount /mnt/tmp
+shutdown -r 0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;x02-boot-wrong&quot;&gt;0x02 boot wrong&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1&amp;gt;start os from usb with linux system
+2&amp;gt;fdisk -l
+    output is the same as upon fdisk -l
+3&amp;gt;mkdir /mnt/tmp
+4&amp;gt;mkdir /mnt/tmp/boot
+5&amp;gt;mount /dev/sda6 /mnt/tmp
+6&amp;gt;mount /dev/sda1 /mnt/tmp/boot
+7&amp;gt;mount --bind /dev /mnt/tmp/dev
+8&amp;gt;mount --bind /proc /mnt/tmp/proc
+9&amp;gt;mount --bind /sys /mnt/tmp/sys
+10&amp;gt;chroot /mnt/tmp
+11&amp;gt;grub-install /dev/sda1
+    if /dev/sda1 is the boot location
+12&amp;gt;grub-mkconfig -o /boot/grub2/grub.cfg
+13&amp;gt;exit
+14&amp;gt;umount /mnt/tmp/dev &amp;amp;&amp;amp; umout /mnt/tmp/proc &amp;amp;&amp;amp; umount /mnt/tmp/sys &amp;amp;&amp;amp; umount /mnt/tmp/boot &amp;amp;&amp;amp;  umount /mnt/tmp
+15&amp;gt;shutdow -r 0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;x03-system-backup-automatically&quot;&gt;0x03 system backup automatically&lt;/h3&gt;
+
+&lt;p&gt;1&amp;gt;condition
+first mount another disk(for bakup store) to /media/root/files&lt;/p&gt;
+
+&lt;p&gt;2&amp;gt;ubuntubak.sh&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;if [ -d /media/root/files ] &amp;amp;&amp;amp; [ ! -d /media/root/files/ubuntubak ]
+then
+    mkdir /media/root/files/ubuntubak
+    tar /media/root/files/ubuntubak/ubuntubak.tgz cvpzf ubuntubak.tgz --exclude=/proc --exclude=/lost+found --exclude=/ubuntubak.tgz --exclude=/mnt --exclude=/sys --exclude=/root/.cache /
+else
+    echo &quot;bak folder not exist,the bakup device is not ready,check it.&quot;
+fi
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;3&amp;gt;alias&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cp ubuntubak.sh /usr/share
+vi .zshrc
++alias ubuntubak=&quot;bash /usr/share/ubuntubak.sh&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Tue, 02 Aug 2016 00:00:00 +0800</pubDate>
+        <link>/auxilary/2016/08/02/%E4%BF%AE%E5%A4%8Dlinux%E7%B3%BB%E7%BB%9F/</link>
+        <guid isPermaLink="true">/auxilary/2016/08/02/%E4%BF%AE%E5%A4%8Dlinux%E7%B3%BB%E7%BB%9F/</guid>
+        
+        <category>linux</category>
+        
+        <category>修复系统</category>
+        
+        
+        <category>auxilary</category>
+        
+      </item>
     
       <item>
         <title>自动上传截图至github并获取uri</title>
@@ -18,7 +185,7 @@
 使用方法:
     初次运行时,在linxu系统中新建/root/githubpic目录,并将github上对应的图片目录下载到本地
     以后运行时,将需要上传的图片人工拷贝到/root/githubpic目录,运行该脚本可实现自动将新图片上传并获取uri
-快捷运行：
+快捷运行:
     cp mysnippingtool.py /usr/share
     vi ~/.zshrc
     +alias jt=&quot;python /usr/share/mysnippingtool.py&quot;
@@ -27,7 +194,7 @@
 
 &lt;h3 id=&quot;x01-code&quot;&gt;0x01 code&lt;/h3&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# -*- coding: utf-8 -*-&lt;/span&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# -*- coding: utf-8 -*-&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt;
 &lt;span class=&quot;nb&quot;&gt;reload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setdefaultencoding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;utf-8&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -142,7 +309,7 @@ to get the current file&#39;s abspath
 
 &lt;h4 id=&quot;abash-a-hrefhttpsrawgithubusercontentcom3xp10itlittlescriptsmasterupshsmallfont-colorgreenupshfontsmalla&quot;&gt;a&amp;gt;bash脚本 &lt;a href=&quot;https://raw.githubusercontent.com/3xp10it/little_scripts/master/up.sh&quot;&gt;&lt;small&gt;&lt;font color=&quot;green&quot;&gt;up.sh&lt;/font&gt;&lt;/small&gt;&lt;/a&gt;&lt;/h4&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; -d /root/myblog &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; -d /root/3xp10it.github.io &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;then
     &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /root/myblog &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; pkill jekyll;sleep 3 &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; cp index.html tmp.html &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; cp index_bak.html index.html &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; sh -c &lt;span class=&quot;s2&quot;&gt;&quot;rm -r _site/ &amp;amp; jekyll serve --watch &amp;amp; sleep 3 &amp;amp;&amp;amp; exit&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; cp _site/index.html index2.html &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; cp tmp.html index.html &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo &lt;/span&gt;congratulations! commands execute ok to here!
@@ -159,7 +326,7 @@ to get the current file&#39;s abspath
 
 &lt;h4 id=&quot;bpython-a-hrefhttpsrawgithubusercontentcom3xp10itlittlescriptsmasteruppysmallfont-colorgreenuppyfontsmalla&quot;&gt;b&amp;gt;python脚本 &lt;a href=&quot;https://raw.githubusercontent.com/3xp10it/little_scripts/master/up.py&quot;&gt;&lt;small&gt;&lt;font color=&quot;green&quot;&gt;up.py&lt;/font&gt;&lt;/small&gt;&lt;/a&gt;&lt;/h4&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;os&lt;/span&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;os&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;/root/myblog&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;/root/3xp10it.github.io&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;this is the first time you use me,I will download myblog from https://github.com/3xp10it/myblog.git&quot;&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;system&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mkdir /root/myblog &amp;amp;&amp;amp; cd /root/myblog &amp;amp;&amp;amp; git init &amp;amp;&amp;amp; git pull https://github.com/3xp10it/myblog.git &amp;amp;&amp;amp; git remote add origin https://github.com/3xp10it/myblog.git&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -467,7 +634,7 @@ D4 DB EA 3B E2 A6 42 81 B1 B9 15 31 EB B1 37 EB 7F 80 18 16 A9 C5 4F EF 64 D2 5E
     
       <item>
         <title>quick start sulley</title>
-        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;0.&lt;/span&gt;sulley api doc
+        <description>&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;0.&lt;/span&gt;sulley api doc
     http://www.fuzzing.org/wp-content/SulleyEpyDoc/private/sulley-module.html
 &lt;span class=&quot;p&quot;&gt;
 1.&lt;/span&gt;a good vedio on youtube about basic fuzz knowledge:
@@ -895,10 +1062,18 @@ CC网络验证
         <title>tmux自动布局</title>
         <description>&lt;p&gt;将下面复制到.zshrc及.bashrc中&lt;/p&gt;
 
+&lt;p&gt;update 2016-08-01:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ubuntu 16.04下(实验结果,不解):
+tmux
+alias od=&#39;echo &quot;anything&quot; | (tmux splitw -h -p 38 &amp;amp;&amp;amp; tmux splitw -v -p 30 &amp;amp;&amp;amp; tmux selectp -L &amp;amp;&amp;amp; tmux splitw -v -p 30 &amp;amp;&amp;amp; tmux selectp -U) &amp;amp;&amp;amp; ranger&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;uptate 2016-07-30:&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;add ranger
-
+kali linux2.0下:
 alias od=&quot;tmux splitw -h -p 38;tmux splitw -v -p 30;tmux selectp -L;tmux splitw -v -p 30;tmux selectp -U;ranger&quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -1319,342 +1494,6 @@ mykey:
         
         
         <category>二进制</category>
-        
-      </item>
-    
-      <item>
-        <title>vim自动换标点</title>
-        <description>&lt;p&gt;将下面复制到vimrc文件中,f2快捷键可将当前文件中标点符号换成英文符号,打开md文件时自动将全文的中文标点符号换成英文符号,用于写md文件时中文标点符号不美观的问题&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;au BufRead *.md call Biaodian() &amp;lt;CR&amp;gt;
-
-map &amp;lt;F2&amp;gt; :call Biaodian() &amp;lt;CR&amp;gt;
-function Biaodian()
-    %s/“/&quot;/g
-    %s/”/&quot;/g
-    %s/，/,/g
-    %s/。/./g
-    %s/？/?/g
-    %s/〈/&amp;lt;/g
-    %s/〉/&amp;gt;/g
-    %s/（/(/g
-    %s/）/)/g
-    %s/：/:/g
-    %s/；/;/g
-    %s/‘/&#39;/g
-    %s/‘/&#39;/g
-    %s/！/!/g
-    endfunction
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Thu, 23 Jun 2016 00:00:00 +0800</pubDate>
-        <link>/vim/2016/06/23/vim%E8%87%AA%E5%8A%A8%E6%8D%A2%E6%A0%87%E7%82%B9/</link>
-        <guid isPermaLink="true">/vim/2016/06/23/vim%E8%87%AA%E5%8A%A8%E6%8D%A2%E6%A0%87%E7%82%B9/</guid>
-        
-        <category>vim</category>
-        
-        <category>script</category>
-        
-        <category>vimrc</category>
-        
-        
-        <category>vim</category>
-        
-      </item>
-    
-      <item>
-        <title>hashcat&amp;john</title>
-        <description>&lt;p&gt;knowledge from klion&lt;/p&gt;
-
-&lt;h3 id=&quot;x01-hashcat&quot;&gt;0x01 hashcat&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;在线hash解密网站(基本上常用的一些hash类型它都支持):
-	http://verifier.insidepro.com
-	http://cmd5.com
-	
-一款帮我们大概识别hash类型的小脚本:
-	hash-identifier  执行执行,而后把要识别的hash粘进去回车即可
-	
-	
-注意,必须提前安装好对应的显卡驱动(AMD/英伟达根据自己实际选择),然后下载oclhashcat:
-	https://hashcat.net/files/oclHashcat-2.01.7z
-	https://hashcat.net/files/cudaHashcat-2.01.7z
-
-hashcat简介(这里暂以hashcat为例,实战中推荐买块好显卡,用oclhashcat,两者选项稍稍有些不同,实际用的时候记得看下帮助):
-	hashcat 	基于CPU破解
-	oclhashcat  基于GPU破解
-	
-hashcat常用选项(如果提示要升级到新版本,修改下系统时间到2010年之前即可):
-	-a  指定要使用的破解模式
-	-m  指定要破解的hash的类型,基本是支持市面上流行的所有散列类型
-	-o  指定破解成功后的hash及对应明文密码的存放位置
-	--username  忽略hash文件中的用户名
-	--remove    移除已经破解成功的hash
-	-r			支持自定义破解规则
-	
-hashcat支持的几种破解模式:
-
-	0 = Straight    	普通字典模式,后面可以连续跟多个字典文件
-    1 = Combination
-    2 = Toggle-Case
-    3 = Brute-force		基于自定义掩码的破解
-    4 = Permutation
-    5 = Table-Lookup
-    8 = Prince
-	
-hashcat掩码字符所代表的含义及掩码具体的使用方法:
-  
-   ?l = abcdefghijklmnopqrstuvwxyz
-   ?u = ABCDEFGHIJKLMNOPQRSTUVWXYZ
-   ?d = 0123456789
-   ?s =  !&quot;#$%&amp;amp;&#39;()*+,-./:;&amp;lt;=&amp;gt;?@[\]^_`{|}~
-   ?a = ?l?u?d?s
-   ?b = 0x00 - 0xff
-
-   -1,  --custom-charset1=CS     User-defined charsets
-   -2,  --custom-charset2=CS     Example:
-   -3,  --custom-charset3=CS     --custom-charset1=?dabcdef : sets charset ?1 to 0123456789abcdef
-   -4,  --custom-charset4=CS     -2 mycharset.hcchr : sets charset ?2 to chars contained in file
-
-
-基于普通的基于字典的爆破(普通md5的hash):
-	# hashcat -a 0 -m 0  /root/Desktop/md5.txt /usr/share/wordlists/weakpass.txt
-	
-基于掩码的爆破(先先逐个位进行尝试破解,一般都是字母数字这种形式的,如果hash比较多的情况下,直接从9位开始即可):
-	前三位数字,后三位小写字母
-	# hashcat -a 3 -m 0 /root/Desktop/md5numword.txt  ?d?d?d?l?l?l
-	
-	6位的纯字母
-	# hashcat -a 3 -m 0 /root/Desktop/md5word.txt  -1 ?l ?1?1?1?1?1?1
-	
-	6位纯数字
-	# hashcat -a 3 -m 0 /root/Desktop/md5num.txt  -1 ?d ?1?1?1?1?1?1
-
-	6位的小写字母和数字的随机组合
-	# hashcat -a 3 -m 0 /root/Desktop/md5.txt  -1 ?l?d ?1?1?1?1?1?1
-	
-破解普通md5系列(filezilla为例):
-	# hashcat -a 3 -m 0 /root/Desktop/md5.txt -1 ?l?d ?1?1?1?1?1?1 -o /root/Desktop/md5res.txt
-	
-破解sha系列(rhel6.5 shadow为例[实际hash类型为SHA512]):
-	# hashcat -a 3 -m 1800 /root/Desktop/linux.txt -1 ?l?d ?1?1?1?1?1?1 -o /root/Desktop/linuxres.txt
-	
-破解mysql 4/5 用户hash(记得把开头的*,去掉 [User]):
-	# hashcat -a 3 -m 300  /root/Desktop/mysql.txt -1 ?l?d ?1?1?1?1?1?1 -o /root/Desktop/mysqlres.txt
-	
-破解mssql系列([2000,2005,2008] / [2012,2014] (sys.sql_logins)):
-	2005
-	# hashcat -a 3 -m 132  /root/Desktop/mssql2005.txt  -1 ?l?d ?1?1?1?1?1?1 -o /root/Desktop/2005.txt
-	
-	2008 测试过程中,2008的hash用的是2005的hash类型,也一样可以成功
-	# hashcat -a 3 -m 132  /root/Desktop/mssql2008.txt  -1 ?l?d ?1?1?1?1?1?1 -o /root/Desktop/2008.txt
-	
-破解ntlm(注意这里只取出ntlm的值即可,也就是把hash里面的lm的值去掉):
-	# hashcat -a 3 -m 1000  /root/Desktop/ntlm.txt  -1 ?l?d ?1?1?1?1?1?1 -o /root/Desktop/ntlmres.txt
-	
-破解wpa/wpa2:
-	
-破解wordpress:
-	# hashcat -a 3 -m 400  /root/Desktop/wordpress4.txt  -1 ?l?d ?1?1?1?1?1?1 -o /root/Desktop/wordpressres.txt
-	
-破解joomla25:
-	# hashcat -a 3 -m 400  /root/Desktop/joomla25.txt  -1 ?l?d ?1?1?1?1?1?1 -o /root/Desktop/joomla25res.txt
-	
-破解discuz(oclhashcat才有此hash类型):
-
-破解oracle 11g 用户hash:
-
-破解skeype密码hash:
-
-破解postgresql用户hash[pg_shadow]:
-
-破解ser-U:
-
-关于普通加盐的爆破:
-	看加盐的位置,再选择相应的类型即可
-	
-基于半猜解查询的爆破(6 模式 [Hybrid dict + mask] oclhashcat才有此选项):
-
-
-
-建议用hashcat破解的一般流程总结(快速破解常规口令,速度快):
-	例如: 破解6到10位的大小写字母数字组成的密码,可以遵循以下顺序
-	
-	对于纯数字或者字母的hash破解:
-	6位纯数字   
-	6位纯小写字母
-	6位纯大写字母
-	7位纯数字
-	7位纯小写字母
-	7位纯大写字母
-	8位纯数字
-	8位纯小写字母
-	8位纯大写字母
-	9位纯数字
-	9位纯小写字母
-	9位纯大写字母
-	10位纯数字
-	10位纯小写字母
-	10位纯大写字母
-	11位纯数字
-	11位纯小写字母
-	11位纯大写字母
-	用以上规则没有跑出来的hash,可以继续下面的规则……
-	
-	对于6位数字字母混合密码的简单拆分:
-	前1位字母后5位数字
-	前2位字母后4位数字
-	前3位字母后3位数字
-	前4位字母后2位数字
-	前5位字母后1位数字
-	
-	对于7位数字字母混合密码的简单拆分:
-	前1位字母后6位数字
-	前2位字母后5位数字
-	前3位字母后4位数字
-	前4位字母后3位数字
-	前5位字母后2位数字
-	前6位字母后1位数字
-	
-	对于8位数字字母混合密码的简单拆分:
-	前1位字母后7位数字
-	前2位字母后6位数字
-	前3位字母后5位数字
-	前4位字母后4位数字
-	前5位字母后3位数字
-	前6位字母后2位数字
-	前7位字母后1位数字
-	
-	对于9,10,11,12位数字字母混合密码的拆分也是一样……
-	这里,我只是假设密码都是纯数字字母的,在实际的hash破解过程中,你还可以把特殊字符加入在内,再重新组合破解规则……
-	
-	
-小结:
-	当然,你也可以不用我建议的这种规则,因为在hashcat中有自定义破解规则的选项
-
-	比如:我们就知道这个密码是9位的,里面可能有大小写字母,数字,特殊字符
-		 但具体哪一位上是数字,字母,特殊字符我并不知道,自定义规则就发挥了他的作用……
-		 但,我想说的是,这样无疑是非常耗时的,如果你像我前面已经规定好了哪一位是数字
-		 哪一位是字母的话,它的破解速度就会成倍的提升,除非你真的在试完前面所有的规则之后都没跑出来,这时候再尝试自定义规则也未尝不可……
-		 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;x02-john&quot;&gt;0x02 john&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;在kali 2016.1 上的安装john:
-
-# sudo apt-get install libssl-dev
-# cd john-1.8.0-jumbo-1/src/
-# ./configure
-# make &amp;amp;&amp;amp; make -s
-# cd ../run
-# ./john --test     测试当前机器的解密速度
-# 最后看到全部通过,证明安装已经基本成功
-
-john 破解规则设置文件(每种模式下的具体的破解规则,请仔细查看该文件,C语言格式的):
-	# vi john/run/john.conf
-	
-john运行以后会在当前目录产生一个john.pot文件,用来缓存数据,如果想重新破解,直接把这个文件删除即可
-	# rm -fr john.pot
-	
-常用选项:
-	--wordlist		指定用来破解hash的字典,即字典模式
-	--single  		简单破解模式,也是默认的运行模式,根据用户名进行一些简单的变形猜解
-	--incremental 	逐个遍历模式
-	--external		自定义破解规则模式
-	--restore		依照上次的破解进度接着执行破解
-	--show 			显示已经破解出来的hash及对应的明文密码
-	--users			只破解指定用户的hash
-	--groups		只破解指定用户组的hash
-	--shells		只破解指定shell的hash
-	--format		指定要破解的hash的类型
-	--stdout		从别处重定向到指定的hash
-	
-合并linux系统中的用户/组和密码hash配置文件(在不知道具体类型的情况下,直接john跟上hash文件即可,当识别类型以后,简单模式破不出来,再incremental):
-	# unshadow /etc/passwd /etc/shadow &amp;gt; /root/Desktop/johnuser.txt
-	# unshadow /etc/group /etc/gshadow &amp;gt; /root/Desktop/jonhgroup.txt
-	
-破解linux系统用户hash:
-	一般简单模式破解(如果不手工指定hash类型,john也会帮你自动识别,并提示你):
-		# ./john   /root/Desktop/linux.txt --format=sha512crypt --incremental
-		# ./john /root/Desktop/group.txt   --format=sha512crypt --incremental
-		
-	指定用户名破解:
-		# ./john /root/Desktop/johnuser.txt  --users=alex --format=sha512crypt --incremental
-		# ./john /root/Desktop/johnuser.txt --users=jack,alex --format=sha512crypt --incremental
-		
-	指定shell破解:
-		# ./john /root/Desktop/johnuser.txt  --shells=/bin/rbash --format=sha512crypt --incremental
-	
-	显示已经破解的hash:
-		# ./john  /root/Desktop/tmp.txt  --show
-		
-破解ntlm(2008):
-	# ./john /root/Desktop/ntlm.txt --format=NT2 --incremental
-
-破解mssql系列数据库用户hash:
-	2005:
-		# ./john /root/Desktop/2005.txt  --format=mssql05  --incremental
-		
-	2008:
-		# ./john /root/Desktop/2008.txt  --format=mssql05  --incremental
-		
-	2012:
-		# ./john /root/Desktop/2012.txt  --format=mssql12  --incremental
-	
-破解mysql系列数据库用户hash:
-	# ./john /root/Desktop/mysql.txt  --format=mysql-sha1  --incremental
-	
-破解office系列密码(2010):
-	# ./office2john.py /root/Desktop/test.docx &amp;gt; /root/Desktop/officehash.txt
-	# ./john /root/Desktop/officehash.txt --format=office --incremental
-
-破解drupal7用户密码hash:
-	# ./john /root/Desktop/drupal7.txt --format=Drupal7  --incremental
-	
-破解rar系列密码hash(rar,rar5):
-	# ./rar2john /root/Desktop/rar.rar &amp;gt; /root/Desktop/rarhash.txt
-	# ./john /root/Desktop/rarhash.txt --format=rar --incremental
-	# ./john /root/Desktop/rar5hash.txt --format=rar5 --incremental
-	
-破解zip密码hash:
-	# ./zip2john /root/Desktop/zip.zip &amp;gt; /root/Desktop/ziphash.txt
-	# ./john /root/Desktop/ziphash.txt --incremental --format=PKZIP
-
-破解pdf密码hash:
-	# ./pdf2john.py /root/Desktop/CMD.pdf &amp;gt; /root/Desktop/pdfhash.txt
-	# ./john /root/Desktop/pdfhash.txt
-
-破解filezilla(md5)用户密码hash:
-	# ./john /root/Desktop/MD5.txt --format=Raw-MD5 --incremental
-	# ./john /root/Desktop/MD5.txt --format=Raw-MD5 --wordlist=/usr/share/wordlists/weakpass.txt
-	
-破解wpa/wpa2hash:
-	# ./john --stdout --incremental:all | aircrack-ng -b apmac -w - wpa2*.cap
-
-破解grub hash:
-	
-破解radmin用户hash:
-
-破解oracle 11g 以下数据库用户hash:
-	
-破解ssh key hash: 
-	
-破解7z密码hash:
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Wed, 22 Jun 2016 00:00:00 +0800</pubDate>
-        <link>/crack/2016/06/22/hashcat/</link>
-        <guid isPermaLink="true">/crack/2016/06/22/hashcat/</guid>
-        
-        <category>hashcat</category>
-        
-        
-        <category>crack</category>
         
       </item>
     

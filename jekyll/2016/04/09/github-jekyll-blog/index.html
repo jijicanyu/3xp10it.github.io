@@ -341,7 +341,7 @@ mkdir ../tmp &amp;&amp; cd ../tmp &amp;&amp; git init &amp;&amp; git pull https:
 <h4 style="color:red">实现每次进入主页后循环随机播放背景音乐</h4>
 <p>1&gt;原来bgmusic.html代码如下:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
 <span class="nt">&lt;embed</span> <span class="na">src=</span><span class="s">"list.m3u"</span> <span class="na">autostart=</span><span class="s">"true"</span> <span class="na">volume=</span><span class="s">"50"</span> <span class="na">loop=</span><span class="s">"true"</span> <span class="na">height=</span><span class="s">"1"</span> <span class="na">width=</span><span class="s">"1"</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/html&gt;</span>
 </code></pre>
@@ -349,7 +349,7 @@ mkdir ../tmp &amp;&amp; cd ../tmp &amp;&amp; git init &amp;&amp; git pull https:
 
 <p>2&gt;换成如下代码,将原bgmusic.html废弃,另存为bgmusic.html.version1,同目录下list.m3u文件也废弃</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
 <span class="nt">&lt;audio</span> <span class="na">id=</span><span class="s">"myaudio"</span><span class="nt">&gt;&lt;/audio&gt;</span>
 <span class="nt">&lt;script </span><span class="na">language=</span><span class="s">"javascript"</span><span class="nt">&gt;</span>
 <span class="kd">var</span> <span class="nx">list</span><span class="o">=</span><span class="k">new</span> <span class="nb">Array</span><span class="p">()</span>

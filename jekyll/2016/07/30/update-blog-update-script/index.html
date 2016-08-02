@@ -138,7 +138,7 @@
 
 <h4 id="abash-a-hrefhttpsrawgithubusercontentcom3xp10itlittlescriptsmasterupshsmallfont-colorgreenupshfontsmalla">a&gt;bash脚本 <a href="https://raw.githubusercontent.com/3xp10it/little_scripts/master/up.sh"><small><font color="green">up.sh</font></small></a></h4>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
 <span class="k">if</span> <span class="o">[</span> -d /root/myblog <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> -d /root/3xp10it.github.io <span class="o">]</span>
 <span class="k">then
     </span><span class="nb">cd</span> /root/myblog <span class="o">&amp;&amp;</span> pkill jekyll;sleep 3 <span class="o">&amp;&amp;</span> cp index.html tmp.html <span class="o">&amp;&amp;</span> cp index_bak.html index.html <span class="o">&amp;&amp;</span> sh -c <span class="s2">"rm -r _site/ &amp; jekyll serve --watch &amp; sleep 3 &amp;&amp; exit"</span> <span class="o">&amp;&amp;</span> cp _site/index.html index2.html <span class="o">&amp;&amp;</span> cp tmp.html index.html <span class="o">&amp;&amp;</span> <span class="nb">echo </span>congratulations! commands execute ok to here!
@@ -155,7 +155,7 @@
 
 <h4 id="bpython-a-hrefhttpsrawgithubusercontentcom3xp10itlittlescriptsmasteruppysmallfont-colorgreenuppyfontsmalla">b&gt;python脚本 <a href="https://raw.githubusercontent.com/3xp10it/little_scripts/master/up.py"><small><font color="green">up.py</font></small></a></h4>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s">'/root/myblog'</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">False</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s">'/root/3xp10it.github.io'</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">False</span><span class="p">:</span>
     <span class="k">print</span> <span class="s">"this is the first time you use me,I will download myblog from https://github.com/3xp10it/myblog.git"</span>
     <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"mkdir /root/myblog &amp;&amp; cd /root/myblog &amp;&amp; git init &amp;&amp; git pull https://github.com/3xp10it/myblog.git &amp;&amp; git remote add origin https://github.com/3xp10it/myblog.git"</span><span class="p">)</span>
