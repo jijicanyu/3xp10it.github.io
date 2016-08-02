@@ -17,6 +17,14 @@
     } ,
     
   {
+    "title"    : "便捷写博客脚本",
+    "category" : "",
+    "tags"     : "blog, write, jekyll",
+    "url"      : "/auxilary/2016/08/02/%E4%BE%BF%E6%8D%B7%E5%86%99%E5%8D%9A%E5%AE%A2%E8%84%9A%E6%9C%AC/",
+    "date"     : "2016-08-02 00:00:00 +0800"
+    } ,
+    
+  {
     "title"    : "test2",
     "category" : "",
     "tags"     : "test, ttt, tmp, wohao",
