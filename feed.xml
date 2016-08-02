@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 02 Aug 2016 21:53:20 +0800</pubDate>
-    <lastBuildDate>Tue, 02 Aug 2016 21:53:20 +0800</lastBuildDate>
+    <pubDate>Tue, 02 Aug 2016 21:54:45 +0800</pubDate>
+    <lastBuildDate>Tue, 02 Aug 2016 21:54:45 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -172,6 +172,27 @@ vi .zshrc
         <category>linux</category>
         
         <category>修复系统</category>
+        
+        
+        <category>auxilary</category>
+        
+      </item>
+    
+      <item>
+        <title>test2</title>
+        <description>&lt;p&gt;this is the 2nd test for blog.py:D&lt;/p&gt;
+</description>
+        <pubDate>Tue, 02 Aug 2016 00:00:00 +0800</pubDate>
+        <link>/auxilary/2016/08/02/test2/</link>
+        <guid isPermaLink="true">/auxilary/2016/08/02/test2/</guid>
+        
+        <category>test</category>
+        
+        <category>ttt</category>
+        
+        <category>tmp</category>
+        
+        <category>wohao</category>
         
         
         <category>auxilary</category>
@@ -1075,55 +1096,6 @@ CC网络验证
         <category>破解</category>
         
         <category>逆向</category>
-        
-        
-        <category>tmux</category>
-        
-      </item>
-    
-      <item>
-        <title>tmux自动布局</title>
-        <description>&lt;p&gt;将下面复制到.zshrc及.bashrc中&lt;/p&gt;
-
-&lt;p&gt;update 2016-08-01:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ubuntu 16.04下(实验结果,不解):
-tmux
-alias od=&#39;echo &quot;anything&quot; | (tmux splitw -h -p 38 &amp;amp;&amp;amp; tmux splitw -v -p 30 &amp;amp;&amp;amp; tmux selectp -L &amp;amp;&amp;amp; tmux splitw -v -p 30 &amp;amp;&amp;amp; tmux selectp -U) &amp;amp;&amp;amp; ranger&#39;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;uptate 2016-07-30:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;add ranger
-kali linux2.0下:
-alias od=&quot;tmux splitw -h -p 38;tmux splitw -v -p 30;tmux selectp -L;tmux splitw -v -p 30;tmux selectp -U;ranger&quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;快捷命令od可进入设定的layout
-其他相关命令
-
-tmux selectp -R    #选择右边的面板
-tmux selectp -D    #选择下面的面板
-tmux selectp -L    #选择左边的面板
-tmux selectp -U    #选择上面的面板
-
-下面4个根据man tmux利用
-tmux setw main-pane-height 25
-tmux setw main-pane-width 75
-tmux select-layout main-horizontal    
-tmux select-layout main-vertical
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-</description>
-        <pubDate>Wed, 27 Jul 2016 00:00:00 +0800</pubDate>
-        <link>/tmux/2016/07/27/tmux%E8%87%AA%E5%8A%A8%E5%B8%83%E5%B1%80/</link>
-        <guid isPermaLink="true">/tmux/2016/07/27/tmux%E8%87%AA%E5%8A%A8%E5%B8%83%E5%B1%80/</guid>
-        
-        <category>tmux</category>
         
         
         <category>tmux</category>
