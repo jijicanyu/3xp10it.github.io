@@ -5,9 +5,130 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 02 Aug 2016 22:07:08 +0800</pubDate>
-    <lastBuildDate>Tue, 02 Aug 2016 22:07:08 +0800</lastBuildDate>
+    <pubDate>Wed, 03 Aug 2016 14:45:38 +0800</pubDate>
+    <lastBuildDate>Wed, 03 Aug 2016 14:45:38 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>便捷写python脚本</title>
+        <description>&lt;h3 id=&quot;x00-about&quot;&gt;0x00 about&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;目的：方便快速写python脚本
+相关：在脚本中打印logo及部分常用代码
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;x01-code&quot;&gt;0x01 code&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---------------newpy.py------------------
+# -*- coding: utf-8 -*-
+import sys
+reload(sys)
+sys.setdefaultencoding(&#39;utf-8&#39;)
+#必须加上上面四行,否则各种编码的错误爆出
+from exp10it import *
+import os
+import datetime
+import time
+while 1:
+    print &quot;please input the script name:)&quot;
+    filename=raw_input()
+    if os.path.exists(&quot;/root/script&quot;) is False:
+        os.system(&quot;mkdir /root/script&quot;)
+    file_abs_path=&quot;/root/script/&quot;+filename
+    if os.path.exists(file_abs_path):
+        print &quot;file name exists,u need to change the file name,or if you really want the name,it will replace the original file!!!&quot;
+        print &quot;replace the original file? y/n[N]:&amp;gt;&quot;,
+        choose=raw_input()
+        if(choose!=&#39;y&#39; and choose!=&#39;Y&#39;):
+            continue
+        else:
+            os.system(&quot;rm %s&quot; % file_abs_path)
+    print &quot;please input the script function:)&quot;
+    function=raw_input()
+    date=datetime.date.today()
+    author=&quot;quanyechavshuo&quot;
+    blog=&quot;https://3xp10it.github.io&quot;
+    break
+
+
+f=open(file_abs_path,&quot;a+&quot;)
+f.write(&quot;#############################################################\n&quot;)
+f.close()
+figlet2file(&quot;3xp10it&quot;,file_abs_path,True)
+time.sleep(1)
+
+
+f=open(file_abs_path,&quot;a+&quot;)
+all=f.readlines()
+f.close()
+f=open(&quot;/tmp/1&quot;,&quot;a+&quot;)
+for each in all:
+    if(len(each)&amp;lt;61):
+        each=each[:-1]+(58-sys.getsizeof(each[:-1]))*&#39; &#39;+&#39;   &#39;
+        f.write(each+&#39;\n&#39;)
+    else:
+        f.write(each)
+f.close()
+os.system(&quot;rm %s&quot; % file_abs_path)
+f=open(&quot;/tmp/1&quot;,&quot;a+&quot;)
+all=f.readlines()
+f.close()
+os.system(&quot;rm /tmp/1&quot;)
+f=open(file_abs_path,&quot;a+&quot;)
+for each in all:
+    f.write(each)
+f.close()
+
+
+f=open(file_abs_path,&quot;a+&quot;)
+f.write(&quot;###                                                          \n&quot;)
+f.write(&quot;### name: %s&quot; % filename+(42-len(filename)+6)*&#39; &#39;+&#39;   \n&#39;)
+f.write(&quot;### function: %s&quot; % function+(38-len(function)+6)*&#39; &#39;+&#39;   \n&#39;)
+f.write(&quot;### date: %s&quot; % str(date)+(42-len(str(date))+6)*&#39; &#39;+&#39;   \n&#39;)
+f.write(&quot;### author: %s&quot; % author+(40-len(author)+6)*&#39; &#39;+&#39;   \n&#39;)
+f.write(&quot;### blog: %s&quot; % blog+(42-len(blog)+6)*&#39; &#39;+&#39;   \n&#39;)
+f.write(&quot;#############################################################\n&quot;)
+f.write(&#39;&#39;&#39;# -*- coding: utf-8 -*-\nimport sys\nreload(sys)\nsys.setdefaultencoding(&#39;utf-8&#39;)\n#upon 4 lines for chinese support\nimport time\nfrom exp10it import *\nfiglet2file(&quot;3xp10it&quot;,2,True)\ntime.sleep(1)\n\n&#39;&#39;&#39;)
+f.close()
+os.system(&quot;vim %s&quot; % file_abs_path)
+
+print &quot;do you want this script upload to github server? Y/n[Y]:&quot;
+choose=raw_input()
+if choose!=&#39;n&#39;:
+    print &quot;please input your remote repository name:)&quot;
+    repo_name=raw_input()
+    succeed=save2github(file_abs_path,repo_name,function)
+    if(succeed==0):
+        print &quot;all is done and all is well!!!&quot;
+
+----------------end----------------------
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;x02-attention&quot;&gt;0x02 attention&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sys.getsizeof(str):
+    得到str的字节数
+由于figlet打印出的logo的字符中有非ascii码，用sys.getsizeof()得到字节大小，但是非ascii在终端显示时，即使是相同的字节数的字符串，在终端的显示的“占位长度”不同
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Wed, 03 Aug 2016 00:00:00 +0800</pubDate>
+        <link>/python/2016/08/03/%E4%BE%BF%E6%8D%B7%E5%86%99python%E8%84%9A%E6%9C%AC/</link>
+        <guid isPermaLink="true">/python/2016/08/03/%E4%BE%BF%E6%8D%B7%E5%86%99python%E8%84%9A%E6%9C%AC/</guid>
+        
+        <category>script</category>
+        
+        <category>python</category>
+        
+        <category>logo</category>
+        
+        
+        <category>python</category>
+        
+      </item>
     
       <item>
         <title>Welcome to Jekyll!</title>
@@ -770,74 +891,6 @@ D4 DB EA 3B E2 A6 42 81 B1 B9 15 31 EB B1 37 EB 7F 80 18 16 A9 C5 4F EF 64 D2 5E
         
         
         <category>二进制</category>
-        
-      </item>
-    
-      <item>
-        <title>quick start sulley</title>
-        <description>&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;0.&lt;/span&gt;sulley api doc
-    http://www.fuzzing.org/wp-content/SulleyEpyDoc/private/sulley-module.html
-&lt;span class=&quot;p&quot;&gt;
-1.&lt;/span&gt;a good vedio on youtube about basic fuzz knowledge:
-    https://www.youtube.com/watch?v=q0Bg2PBxXNA
-    or
-    http://www.dfate.de/public/index.php
-  four file linked to upon vedio:
-    https://github.com/StefanMolls/Blog-related-Files/tree/master/Video1-Fuzzing%20Basics%20with%20Sulley%20
-    include these:
-        crashbin_explorer.py(crashbin_explorer.py create a app_relevant_cases.txt,this crashbin_explorer.py is different from the origin utils&lt;span class=&quot;se&quot;&gt;\c&lt;/span&gt;rashbin_explorer.py)
-        filter_cases.py
-        pcmanftp.py
-        pcmanftp_simple.py
-&lt;span class=&quot;p&quot;&gt;        
-2.&lt;/span&gt;a very good script to install sulley quickly from the same vedio author like upon
-    https://github.com/reider-roque/sulley-win-installer
-&lt;span class=&quot;p&quot;&gt;
-3.&lt;/span&gt;chinese sulley doc translation from pediy
-    http://bbs.pediy.com/archive/index.php?t-135764.html
-&lt;span class=&quot;p&quot;&gt;
-4.&lt;/span&gt;defcon23 a vedio about fuzz,about wadi
-    https://www.youtube.com/watch?v=jnBhb6DiP2k
-&lt;span class=&quot;p&quot;&gt;
-5.&lt;/span&gt;example
-&lt;span class=&quot;p&quot;&gt;    192.&lt;/span&gt;168.3.77(fuzzer machine,installed sulley)
-&lt;span class=&quot;p&quot;&gt;    192.&lt;/span&gt;168.3.177(been fuzzed machine with pcmanftpd2.exe,installed sulley)
-    
-    on 192.168.3.177&#39;s sulley root directory:
-        process_monitor.py -c audit&lt;span class=&quot;se&quot;&gt;\p&lt;/span&gt;cmanftpd_crashbin -p &quot;PCManFTPD2.exe&quot;&lt;span class=&quot;sb&quot;&gt;
-
-    on 192.168.3.77&#39;s sulley root directory:
-        copy https://github.com/xinghuacai/mysulleycases/crashbin_explorer.py .
-        copy https://github.com/xinghuacai/mysulleycases/filter_cases.py .
-        copy https://github.com/xinghuacai/mysulleycases/pcmanftpd2.py .
-        network_monitor.py -d 0 -f &quot;src or dst port 21&quot; -P audit
-        pcmanftpd2.py(run twice)
-            select debug mode first(generate a pcman_all_cases.txt)
-            select not debug mode second(start the real fuzz)
-
-    running fuzz...
-    finished fuzz
-
-    on 192.168.3.77&#39;s sulley root directory:
-        copy 192.168.3.177\sulley\audit\pcmanftpd_crashbin .
-        crashbin_explorer.py(generage a pcman_relevant_cases.txt,and show the numbers of the crashed ones)
-            crashbin_explorer.py -t num(this command can show the detail of the num crash,this command is not necessary)
-        utils\pcap_cleaner.py pcmanftpd_crashbin audit(delete the useless .pcap files in audit)
-        filter_cases.py(generate pcman_relevant.txt from pcman_all_cases.txt and pcman_relevant_cases.txt)
-
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;6.&lt;/span&gt;important files about sulley can be download from:
-    https://github.com/3xp10it/mysulleycases
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Thu, 28 Jul 2016 00:00:00 +0800</pubDate>
-        <link>/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/2016/07/28/quick-start-sulley/</link>
-        <guid isPermaLink="true">/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/2016/07/28/quick-start-sulley/</guid>
-        
-        <category>sulley</category>
-        
-        
-        <category>漏洞挖掘</category>
         
       </item>
     
