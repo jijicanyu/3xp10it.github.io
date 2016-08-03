@@ -5,16 +5,16 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 03 Aug 2016 14:45:38 +0800</pubDate>
-    <lastBuildDate>Wed, 03 Aug 2016 14:45:38 +0800</lastBuildDate>
+    <pubDate>Wed, 03 Aug 2016 14:46:55 +0800</pubDate>
+    <lastBuildDate>Wed, 03 Aug 2016 14:46:55 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
         <title>便捷写python脚本</title>
         <description>&lt;h3 id=&quot;x00-about&quot;&gt;0x00 about&lt;/h3&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;目的：方便快速写python脚本
-相关：在脚本中打印logo及部分常用代码
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;目的:方便快速写python脚本
+相关:在脚本中打印logo及部分常用代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -108,9 +108,9 @@ if choose!=&#39;n&#39;:
 
 &lt;h3 id=&quot;x02-attention&quot;&gt;0x02 attention&lt;/h3&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sys.getsizeof(str):
-    得到str的字节数
-由于figlet打印出的logo的字符中有非ascii码，用sys.getsizeof()得到字节大小，但是非ascii在终端显示时，即使是相同的字节数的字符串，在终端的显示的“占位长度”不同
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sys.getsizeof(str):得到str的字节数
+
+由于figlet打印出的logo的字符中有非ascii码,用sys.getsizeof()得到字节大小,但是非ascii在终端显示时,即使是相同的字节数的字符串,在终端的显示的&quot;占位长度&quot;不同
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
