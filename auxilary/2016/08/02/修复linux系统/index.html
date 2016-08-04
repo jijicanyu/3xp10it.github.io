@@ -231,12 +231,13 @@ first mount another disk(for bakup store) to /media/root/files</p>
 
 <p>2&gt;ubuntubak.sh</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>if [ -d /media/root/files ] &amp;&amp; [ ! -d /media/root/files/ubuntubak ]
-then
+<div class="highlighter-rouge"><pre class="highlight"><code>if [ ! -d /media/root/files ]; then
+    echo "bak folder not exist,the bakup device is not ready,check it"
+elif [ -d /media/root/files/ -a -d /media/root/files/ubuntubak/ ]; then
+    tar cvpzf /media/root/files/ubuntubak/ubuntubak.tgz --exclude=/proc --exclude=/lost+found --exclude=/ubuntubak.tgz --exclude=/mnt --exclude=/sys --exclude=/media --exclude=/root/.cache /
+elif [ -d /media/root/files/ -a ! -d /media/root/files/ubuntubak ]; then
     mkdir /media/root/files/ubuntubak
-    tar /media/root/files/ubuntubak/ubuntubak.tgz cvpzf ubuntubak.tgz --exclude=/proc --exclude=/lost+found --exclude=/ubuntubak.tgz --exclude=/mnt --exclude=/sys --exclude=/root/.cache /
-else
-    echo "bak folder not exist,the bakup device is not ready,check it."
+    tar cvpzf /media/root/files/ubuntubak/ubuntubak.tgz --exclude=/proc --exclude=/lost+found --exclude=/ubuntubak.tgz --exclude=/mnt --exclude=/sys --exclude=/media --exclude=/root/.cache /
 fi
 </code></pre>
 </div>
@@ -246,6 +247,22 @@ fi
 <div class="highlighter-rouge"><pre class="highlight"><code>cp ubuntubak.sh /usr/share
 vi .zshrc
 +alias ubuntubak="bash /usr/share/ubuntubak.sh"
+</code></pre>
+</div>
+
+<p>4&gt;auto backup every month</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>in ubuntu 16.04:
+如果cron没有开机自启动:
+    vi /etc/rc.local
+    service cron start
+    exit 0
+crontab -e
+add one line:
+# m h  dom mon dow   command
+0  0    9 * *   root    rm /media/root/files/ubuntubak/ubuntubak.tgz;bash /usr/share/mytools/ubuntubak.sh
+:wq
+实现每个月9号备份系统
 </code></pre>
 </div>
 </span>
