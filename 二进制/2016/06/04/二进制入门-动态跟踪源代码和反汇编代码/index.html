@@ -8,7 +8,7 @@
 <title>二进制入门--动态跟踪源代码与反汇编代码</title>
 <meta name="description" content="A blog about programming and network security">
 
-<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="profile" href="https://gmpg.org/xfn/11" />
 <! -- link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bbbbootstrap.min.css"-- >
 <link rel="stylesheet" href="/css/my_code.css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css" media="all" href="/css/jquery.mmenu.all.css" />
 <link rel="stylesheet" href="/css/highlightjs.piperita.css">
 
-<!-- Favicons generated at http://realfavicongenerator.net/ -->
+<!-- Favicons generated at https://realfavicongenerator.net/ -->
 <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-touch-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="/favicons/apple-touch-icon-72x72.png">
@@ -69,7 +69,7 @@
     <br>
     <br>
     <br>
-    <!--http://fontawesome.io/icons/ -->
+    <!--https://fontawesome.io/icons/ -->
     <br>
     <center>
     <font color="red" align="center"><i class="fa fa-link" aria-hidden="true"></i><a href="../../../../../bookmarks.html"><font color="red"> link</font></a></font>
@@ -84,7 +84,7 @@
     <font color="red" align="center"><i class="fa fa-caret-square-o-right" aria-hidden="true"></i><a href="../../../../../mv.html" target="_top"><font color="red"> movie</font></a></font>
     </center>
     <p class="links">
-  <a href="http://www.twitter.com/quanyechavshuo" target="_new"><i class="fa fa-twitter"></i></a>
+  <a href="https://www.twitter.com/quanyechavshuo" target="_new"><i class="fa fa-twitter"></i></a>
   <a href="https://github.com/3xp10it" target="_new"><i class="fa fa-github-alt"></i></a>
   <a href="/feed.xml" target="_new"><i class="fa fa-rss"></i></a>
 </p>
@@ -102,7 +102,7 @@
 <div class="container-fluid single">
   <div class="row">
 
-    <div itemscope itemtype="http://schema.org/Article" class="col-md-12 article">
+    <div itemscope itemtype="https://schema.org/Article" class="col-md-12 article">
       
 
       <h1 class="header" itemprop="name">二进制入门--动态跟踪源代码与反汇编代码</h1>
@@ -127,7 +127,7 @@
 
         <span itemprop="articleBody"><h3 id="x01-">0x01 栈基础知识</h3>
 
-<h4 id="httpblogchinaunixnetuid-1848701-id-2825699html">1&gt;http://blog.chinaunix.net/uid-1848701-id-2825699.html</h4>
+<h4 id="httpsblogchinaunixnetuid-1848701-id-2825699html">1&gt;https://blog.chinaunix.net/uid-1848701-id-2825699.html</h4>
 
 <h4 id="eip">2&gt;eip是当前帧中还没开始执行,下一步要执行的汇编指令的地址</h4>
 
@@ -207,7 +207,7 @@ push esp+ret
 
 <h4 id="gdb">1&gt;gdb常用调试命令</h4>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>http://wenku.baidu.com/link?url=W1u-DTrFwMreJsYavwKcI_yDzJsJglUJ4yfcXXXxWOkGTlJSSqXm-4zohcUYxGciOIeFRcSY0gr2qn-K5pnqGRU6nGbgQvW6XVfaRMCdmKq
+<div class="highlighter-rouge"><pre class="highlight"><code>https://wenku.baidu.com/link?url=W1u-DTrFwMreJsYavwKcI_yDzJsJglUJ4yfcXXXxWOkGTlJSSqXm-4zohcUYxGciOIeFRcSY0gr2qn-K5pnqGRU6nGbgQvW6XVfaRMCdmKq
 </code></pre>
 </div>
 
@@ -601,7 +601,7 @@ gdb -q -c core
 /root/桌面/core: 没有那个文件或目录.
 ----------end------------
 
-解决方法:(http://blog.csdn.net/nuoline/article/details/8610694)
+解决方法:(https://blog.csdn.net/nuoline/article/details/8610694)
 ulimit -c
 ---------output:----------
 0
@@ -732,9 +732,9 @@ os.system("echo '%s' | ./stack0" % input)
 
 发现上面算出来的jmp_esp='\x9b\x59\xff\xf7'无法跳转到esp,可能是我的这种理解错了
 换工具,rop-tool
-http://www.freebuf.com/sectool/105715.html
+https://www.freebuf.com/sectool/105715.html
 先安装上面链接中说的capstone
-http://www.capstone-engine.org/download/3.0.4/ubuntu-14.04/python-capstone_3.0.4-0.1ubuntu1_amd64.deb
+https://www.capstone-engine.org/download/3.0.4/ubuntu-14.04/python-capstone_3.0.4-0.1ubuntu1_amd64.deb
 然后下载rop-tool
 https://t0x0sh.org/rop-tool/releases/2.4/rop-tool-Linux-x86_64
 chmod +x rop-tool-Linux-x86_64
@@ -954,7 +954,7 @@ x/40x $esp-4
     4.想直接在"a"*80+"1234"+"bbbb"中的1234的位置上写入shellcode的起始地址是行不能的,只能用jmp esp或其他方法
 
 突然想到,在edb-debugger工具中找到的jmp esp的地址放入exploit.py中的jmp_esp中最后没有成功有可能是因为kali的安全防护功能,其中的系统内存中加载的/lib/i386-linux-gnu/ld-2.19.so有安全设置
-下载checksec.sh检查一下:http://www.trapkit.de/tools/checksec.sh(或者peda工具,https://github.com/3xp10it/peda)
+下载checksec.sh检查一下:https://www.trapkit.de/tools/checksec.sh(或者peda工具,https://github.com/3xp10it/peda)
 chmod +x ./checksec.sh
 ./checksec.sh --file /lib/i386-linux-gnu/ld-2.19.so
 -------------output:----------------
@@ -1196,15 +1196,15 @@ x/10x $esp
       
       <div class="content-panel feedback">
         I <i class="fa fa-heart"></i> feedback.<br />
-        Let me know what you think of this article on twitter <a href="http://www.twitter.com/quanyechavshuo">@quanyechavshuo</a> or leave a comment below!
+        Let me know what you think of this article on twitter <a href="https://www.twitter.com/quanyechavshuo">@quanyechavshuo</a> or leave a comment below!
       </div>
       
 
       
       <div class="content-panel comments">
         <div id="disqus_thread">
-          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
         </div>
       </div>
       
@@ -1250,7 +1250,7 @@ var disqus_shortname = "quanyechavshuo"; // required: replace example with your 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="/js/jquery.mmenu.min.all.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <script type="text/javascript">
    $(document).ready(function() {

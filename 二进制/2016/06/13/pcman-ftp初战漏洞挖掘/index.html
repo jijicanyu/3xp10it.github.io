@@ -8,7 +8,7 @@
 <title>pcman-ftp初战漏洞挖掘</title>
 <meta name="description" content="A blog about programming and network security">
 
-<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="profile" href="https://gmpg.org/xfn/11" />
 <! -- link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bbbbootstrap.min.css"-- >
 <link rel="stylesheet" href="/css/my_code.css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css" media="all" href="/css/jquery.mmenu.all.css" />
 <link rel="stylesheet" href="/css/highlightjs.piperita.css">
 
-<!-- Favicons generated at http://realfavicongenerator.net/ -->
+<!-- Favicons generated at https://realfavicongenerator.net/ -->
 <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-touch-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="/favicons/apple-touch-icon-72x72.png">
@@ -69,7 +69,7 @@
     <br>
     <br>
     <br>
-    <!--http://fontawesome.io/icons/ -->
+    <!--https://fontawesome.io/icons/ -->
     <br>
     <center>
     <font color="red" align="center"><i class="fa fa-link" aria-hidden="true"></i><a href="../../../../../bookmarks.html"><font color="red"> link</font></a></font>
@@ -84,7 +84,7 @@
     <font color="red" align="center"><i class="fa fa-caret-square-o-right" aria-hidden="true"></i><a href="../../../../../mv.html" target="_top"><font color="red"> movie</font></a></font>
     </center>
     <p class="links">
-  <a href="http://www.twitter.com/quanyechavshuo" target="_new"><i class="fa fa-twitter"></i></a>
+  <a href="https://www.twitter.com/quanyechavshuo" target="_new"><i class="fa fa-twitter"></i></a>
   <a href="https://github.com/3xp10it" target="_new"><i class="fa fa-github-alt"></i></a>
   <a href="/feed.xml" target="_new"><i class="fa fa-rss"></i></a>
 </p>
@@ -102,7 +102,7 @@
 <div class="container-fluid single">
   <div class="row">
 
-    <div itemscope itemtype="http://schema.org/Article" class="col-md-12 article">
+    <div itemscope itemtype="https://schema.org/Article" class="col-md-12 article">
       
 
       <h1 class="header" itemprop="name">pcman-ftp初战漏洞挖掘</h1>
@@ -128,10 +128,10 @@
         <span itemprop="articleBody"><h3 id="x01-install-binnavi">0x01 install binnavi</h3>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>https://github.com/google/binnavi
-http://www.freebuf.com/sectool/75529.html
+https://www.freebuf.com/sectool/75529.html
 
 https://github.com/google/binnavi/releases
-http://malwareandmore.blogspot.kr/2015/08/binnavi-install-on-windows.html
+https://malwareandmore.blogspot.kr/2015/08/binnavi-install-on-windows.html
 https://blog.because-security.com/t/development-environment-for-binnavi-with-a-package-manager-windows/34(better)
 
 直接下载https://github.com/google/binnavi/releases里面的binnavi-all.jar,放到windows下双击,运行不成功说明缺少环境,再从其他几个链接中学习安装
@@ -148,14 +148,14 @@ ida pro6.8的安装如果因为没有注册使得ida pro无法加载binexport9�
 https://blog.because-security.com/t/development-environment-for-binnavi-with-a-package-manager-windows/34
 这里面的方法安装缺失依赖,可能不用全部安装完就可以再次尝试直接双击binnavi-all.jar而成功运行
 
-安装postgresql到win2003上会失败,解决方法http://blog.itpub.net/29598413/viewspace-1258961/
+安装postgresql到win2003上会失败,解决方法https://blog.itpub.net/29598413/viewspace-1258961/
 
 以上安装知识理应足够,如需还有这个链接
-http://pan.baidu.com/s/1c2Jmtag
+https://pan.baidu.com/s/1c2Jmtag
 里面的readme.md文件有关于安装的问题,另外这个链接里面有大多数需要的依赖环境打包好了
 
 实例安装:(win2003)(事后觉得2中的命令可以不运行,因为binnavi-all.jar为最后编译的结果文件,而2中只是为了编译才做的过程)
-0.my_vinnavi从这里下载:http://pan.baidu.com/s/1c2Jmtag
+0.my_vinnavi从这里下载:https://pan.baidu.com/s/1c2Jmtag
 1.安装my_binnavi中的install binnavi on win2003里面的两个exe
 2.@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" &amp;&amp; SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
   choco install maven
@@ -177,7 +177,7 @@ http://pan.baidu.com/s/1c2Jmtag
 target ftp app(pcmanftp):
     https://www.exploit-db.com/apps/9fceb6fefd0f3ca1a8c36e97b6cc925d-PCMan.7z
 ftp fuzz tool:
-    http://www.infigo.hr/files/ftpfuzz.zip
+    https://www.infigo.hr/files/ftpfuzz.zip
 
 challenge:
     尝试找到pcmanftp除了exploit-db中介绍的已经存在的漏洞以外其他的漏洞
@@ -208,7 +208,7 @@ challenge:
     为了实现在192.168.3.176上远程调试192.168.3.177的ftp,需要在192.168.3.177上运行:
         https://github.com/google/binnavi/releases/download/v6.1.0/debugclient.exe
         或
-        http://pan.baidu.com/s/1hsK0jwK中的debugclient.exe
+        https://pan.baidu.com/s/1hsK0jwK中的debugclient.exe
     在win7上不要用管理员权限运行,否则debugclient.exe会报断点错误,运行方法:
         win+r
         cmd
@@ -543,7 +543,7 @@ esp下面的第三个返回到的地址4029ff为当前函数栈帧的上一函�
     -----------------end-------------------
 
 参照上一篇文章:
-http://3xp10it.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%85%A5%E9%97%A8-%E5%8A%A8%E6%80%81%E8%B7%9F%E8%B8%AA%E6%BA%90%E4%BB%A3%E7%A0%81%E5%92%8C%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81/中的图stack0易知:
+https://3xp10it.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%85%A5%E9%97%A8-%E5%8A%A8%E6%80%81%E8%B7%9F%E8%B8%AA%E6%BA%90%E4%BB%A3%E7%A0%81%E5%92%8C%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81/中的图stack0易知:
     
     其中栈中0018ed8c以后很长一段数据都是41414141,由于此时中断到416685而堆栈窗口中首次出现AAAAAA数据,而堆栈窗口中最近的三个返回地址中00412976对应的是本函数栈帧(对应图od2)中的004166e9处的retn,这样的话,很有可能是本函数栈帧的上一帧函数(该函数内的retn对应返回到4029db)或者是上上一帧函数(该函数内的retn对应返回到4029ef)的返回地址被此时栈中的大长串A覆盖成41414141
     当前eip对应的函数帧是00416683函数,当前函数帧的上一帧函数是wsock32.recv,wsock32.recv函数帧的上一函数帧的00412956函数,形如下面表示:
@@ -692,7 +692,7 @@ http://3xp10it.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%BF%
 
     -------------------------exploit.rb---------------------------------
     ##
-    # This module requires Metasploit: http://metasploit.com/download
+    # This module requires Metasploit: https://metasploit.com/download
     # Current source: https://github.com/rapid7/metasploit-framework
     ##
     
@@ -804,8 +804,8 @@ exploit情况说明:
 <p><img src="https://raw.githubusercontent.com/3xp10it/pic/master/dep_open_on_win7.png" /></p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>参考
-http://www.blogbus.com/riusksk-logs/80935313.html
-http://drops.wooyun.org/papers/3602
+https://www.blogbus.com/riusksk-logs/80935313.html
+https://drops.wooyun.org/papers/3602
 
 目的
 实现win7绕过dep并成功溢出pcmanftp
@@ -814,8 +814,8 @@ mona插件
     https://github.com/corelan/mona
     https://www.corelan.be/index.php/2011/07/14/mona-py-the-manual/
     https://huirong.github.io/2015/12/18/mona/
-    http://www.cnphp6.com/archives/45078
-    http://drops.wooyun.org/tips/6814
+    https://www.cnphp6.com/archives/45078
+    https://drops.wooyun.org/tips/6814
 
 在immunity debugger中执行!mona rop -m *.dll -cp nonull,将得到如下(rop_chains.txt中)建议的rop_gadgets:
 
@@ -1145,7 +1145,7 @@ f8跟踪到0018edb4处的772b73df,772b73df中的指令为pushad retn,可想,执�
 
 发现这时后面的30个41还是正常的没有被改变的,这样说明应该是win7x64位系统下开户dep后,栈中覆盖好的nop串会被改变成其他随机的填充数据,也有可能是nop串太长为30个时才会这样,考虑到上一篇文中
 
-http://3xp10it.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%85%A5%E9%97%A8-%E5%8A%A8%E6%80%81%E8%B7%9F%E8%B8%AA%E6%BA%90%E4%BB%A3%E7%A0%81%E5%92%8C%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81/
+https://3xp10it.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/06/04/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%85%A5%E9%97%A8-%E5%8A%A8%E6%80%81%E8%B7%9F%E8%B8%AA%E6%BA%90%E4%BB%A3%E7%A0%81%E5%92%8C%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81/
 
 提到msf的payload前面有可能需要至少9个nop空间帮助完成payload的解码等工作,将30个nop改成9个nop试试9个nop会不会被改成随机的填充数据
 
@@ -1326,7 +1326,7 @@ set RC4PASSWORD mypassword
 exploit
 成功弹shell
 ----------------------------exploit.rb-------------------------------
-    # This module requires Metasploit: http://metasploit.com/download
+    # This module requires Metasploit: https://metasploit.com/download
     # Current source: https://github.com/rapid7/metasploit-framework
     ##
     
@@ -1472,15 +1472,15 @@ exploit
       
       <div class="content-panel feedback">
         I <i class="fa fa-heart"></i> feedback.<br />
-        Let me know what you think of this article on twitter <a href="http://www.twitter.com/quanyechavshuo">@quanyechavshuo</a> or leave a comment below!
+        Let me know what you think of this article on twitter <a href="https://www.twitter.com/quanyechavshuo">@quanyechavshuo</a> or leave a comment below!
       </div>
       
 
       
       <div class="content-panel comments">
         <div id="disqus_thread">
-          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
         </div>
       </div>
       
@@ -1526,7 +1526,7 @@ var disqus_shortname = "quanyechavshuo"; // required: replace example with your 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="/js/jquery.mmenu.min.all.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <script type="text/javascript">
    $(document).ready(function() {

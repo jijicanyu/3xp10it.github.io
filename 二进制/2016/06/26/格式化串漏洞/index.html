@@ -8,7 +8,7 @@
 <title>格式化串漏洞</title>
 <meta name="description" content="A blog about programming and network security">
 
-<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="profile" href="https://gmpg.org/xfn/11" />
 <! -- link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bbbbootstrap.min.css"-- >
 <link rel="stylesheet" href="/css/my_code.css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css" media="all" href="/css/jquery.mmenu.all.css" />
 <link rel="stylesheet" href="/css/highlightjs.piperita.css">
 
-<!-- Favicons generated at http://realfavicongenerator.net/ -->
+<!-- Favicons generated at https://realfavicongenerator.net/ -->
 <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-touch-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="/favicons/apple-touch-icon-72x72.png">
@@ -69,7 +69,7 @@
     <br>
     <br>
     <br>
-    <!--http://fontawesome.io/icons/ -->
+    <!--https://fontawesome.io/icons/ -->
     <br>
     <center>
     <font color="red" align="center"><i class="fa fa-link" aria-hidden="true"></i><a href="../../../../../bookmarks.html"><font color="red"> link</font></a></font>
@@ -84,7 +84,7 @@
     <font color="red" align="center"><i class="fa fa-caret-square-o-right" aria-hidden="true"></i><a href="../../../../../mv.html" target="_top"><font color="red"> movie</font></a></font>
     </center>
     <p class="links">
-  <a href="http://www.twitter.com/quanyechavshuo" target="_new"><i class="fa fa-twitter"></i></a>
+  <a href="https://www.twitter.com/quanyechavshuo" target="_new"><i class="fa fa-twitter"></i></a>
   <a href="https://github.com/3xp10it" target="_new"><i class="fa fa-github-alt"></i></a>
   <a href="/feed.xml" target="_new"><i class="fa fa-rss"></i></a>
 </p>
@@ -102,7 +102,7 @@
 <div class="container-fluid single">
   <div class="row">
 
-    <div itemscope itemtype="http://schema.org/Article" class="col-md-12 article">
+    <div itemscope itemtype="https://schema.org/Article" class="col-md-12 article">
       
 
       <h1 class="header" itemprop="name">格式化串漏洞</h1>
@@ -155,8 +155,8 @@
 <h3 id="x02-">0x02 原理理解</h3>
 
 <h4 id="refer">1&gt;refer</h4>
-<div class="highlighter-rouge"><pre class="highlight"><code>http://drops.wooyun.org/binary/7714
-http://drops.wooyun.org/papers/9426
+<div class="highlighter-rouge"><pre class="highlight"><code>https://drops.wooyun.org/binary/7714
+https://drops.wooyun.org/papers/9426
 </code></pre>
 </div>
 
@@ -186,7 +186,7 @@ int main(void)
 
 <h4 id="section">3&gt;栈空间</h4>
 
-<p><a href="http://www.cplusplus.com/reference/cstdio/printf/">printf函数</a><br />
+<p><a href="https://www.cplusplus.com/reference/cstdio/printf/">printf函数</a><br />
 int printf ( const char * format, …  )</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>第一个参数为格式化串参数,后面可以有参数,也可以没有参数,printf只有一个参数时,cpu会把栈空间里的第一个参数(格式化串参数)后面的栈单元当作是printf的后续参数,因为cpu笨
@@ -217,7 +217,7 @@ printf("%8xaaa%8d%n")在栈中的数据如下:
 
 <div class="highlighter-rouge"><pre class="highlight"><code>后来才发现的上图是在win7x64位系统上用od跟踪绘制的结果图,在linux中,并不是这样的情况,linux中a[100]在linux中的栈空间中存放的位置会分配在p上面,而不是flag下面,且win7x64系统中,visual studio编译时会失败,强制用od加载并在调用printf时改写栈中format为含有%n的格式化串(eg.%10x%n)同样会异常失败,无法实现"写"
 
-因此,这个实验更适合在linux下进行,且kalix64中的情况与http://drops.wooyun.org/papers/9426中的情况不一样,将md.c复制到protostar(32位)系统中进行实验
+因此,这个实验更适合在linux下进行,且kalix64中的情况与https://drops.wooyun.org/papers/9426中的情况不一样,将md.c复制到protostar(32位)系统中进行实验
 
 scp /root/桌面/md.c user@192.168.3.221:/tmp
 pass:user
@@ -354,7 +354,7 @@ scanf由终端输入%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x
 
 最后第31个AA%x处对应输出为:AAbffff788,也即实际运行时printf的第32个参数为0xbffff788
 
-也可以通过http://drops.wooyun.org/papers/9426中查看printf第2个参数的值+(第32个参数与第2个参数相减的差)的方法来计算出第32个参数的大小
+也可以通过https://drops.wooyun.org/papers/9426中查看printf第2个参数的值+(第32个参数与第2个参数相减的差)的方法来计算出第32个参数的大小
 
 构造:'\x88\xf7\xff\xbf'%8x%8x%8x%1972x%n
 python -c "print '\x88\xf7\xff\xbf'+'%8x%8x%8x%1972x%n'" | ./md
@@ -518,15 +518,15 @@ mykey:
       
       <div class="content-panel feedback">
         I <i class="fa fa-heart"></i> feedback.<br />
-        Let me know what you think of this article on twitter <a href="http://www.twitter.com/quanyechavshuo">@quanyechavshuo</a> or leave a comment below!
+        Let me know what you think of this article on twitter <a href="https://www.twitter.com/quanyechavshuo">@quanyechavshuo</a> or leave a comment below!
       </div>
       
 
       
       <div class="content-panel comments">
         <div id="disqus_thread">
-          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
         </div>
       </div>
       
@@ -572,7 +572,7 @@ var disqus_shortname = "quanyechavshuo"; // required: replace example with your 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="/js/jquery.mmenu.min.all.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <script type="text/javascript">
    $(document).ready(function() {

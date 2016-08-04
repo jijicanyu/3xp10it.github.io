@@ -10,10 +10,10 @@ document.writeln('<a class="shareCount"></a>');
 document.writeln('</div></div>');
 document.writeln('<script type="text/javascript" id="bdshare_js" data="type=tools" ></script>');
 document.writeln('<script type="text/javascript" id="bdshell_js"></script>');
-document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();*/
+document.getElementById("bdshell_js").src = "https://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();*/
 
 //document.writeln('<div style="margin:10px auto"><b style="color:blue;font-size:16px">搜索源码</b>');
-//document.writeln('<form action="http://www.google.com.hk" id="cse-search-box" target="_blank">');
+//document.writeln('<form action="https://www.google.com.hk" id="cse-search-box" target="_blank">');
 //document.writeln('  <div>');
 //document.writeln('    <input type="hidden" name="cx" value="partner-pub-0107013120141921:4097824525" />');
 //document.writeln('    <input type="hidden" name="ie" value="UTF-8" />');
@@ -22,7 +22,7 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 //document.writeln('  </div>');
 //document.writeln('</form>');
 
-//document.writeln('<script type="text/javascript" src="http://www.google.com.hk/coop/cse/brand?form=cse-search-box&amp;lang=zh-Hans"></script>');
+//document.writeln('<script type="text/javascript" src="https://www.google.com.hk/coop/cse/brand?form=cse-search-box&amp;lang=zh-Hans"></script>');
 //document.writeln('</div>');
 
 
@@ -35,7 +35,7 @@ document.writeln("google_ad_height = 90;");
 document.writeln("//-->");
 document.writeln("</script>");
 document.writeln("<script type=\"text/javascript\"");
-document.writeln("src=\"http://pagead2.googlesyndication.com/pagead/show_ads.js\">");
+document.writeln("src=\"https://pagead2.googlesyndication.com/pagead/show_ads.js\">");
 document.writeln("</script></div>");
 
 
@@ -62,13 +62,13 @@ document.writeln("</script></div>");
 //document.writeln('/*网页素材demo矩形*/');
 //document.writeln('var cpro_id = "u1282812";');
 //document.writeln('</script>');
-//document.writeln('<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script></div>');
+//document.writeln('<script src="https://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script></div>');
 
 
 //document.writeln("<div align=\"center\"><p style=\"font-size:14px;\">==如非特殊说明，素材均转载自网络，如侵犯了你的知识产权，请邮件联系：tx_itivy@163.com，我们会尽快处理！==</p></div>");
 
 
-document.write ('<div style="display:none"><script language="javascript" type="text/javascript" src="http://js.users.51.la/4473358.js"></script></div>');
+document.write ('<div style="display:none"><script language="javascript" type="text/javascript" src="https://js.users.51.la/4473358.js"></script></div>');
 
 document.writeln('<style type="text/css">.source-url{
 font-size:15px;text-align:center
