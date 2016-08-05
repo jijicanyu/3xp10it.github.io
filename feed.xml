@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 05 Aug 2016 00:07:48 +0800</pubDate>
-    <lastBuildDate>Fri, 05 Aug 2016 00:07:48 +0800</lastBuildDate>
+    <pubDate>Fri, 05 Aug 2016 09:53:35 +0800</pubDate>
+    <lastBuildDate>Fri, 05 Aug 2016 09:53:35 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -634,14 +634,59 @@ first mount another disk(for bakup store) to /media/root/files&lt;/p&gt;
 
 &lt;p&gt;2&amp;gt;ubuntubak.sh&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;if [ ! -d /media/root/files ]; then
-    echo &quot;bak folder not exist,the bakup device is not ready,check it&quot;
-elif [ -d /media/root/files/ -a -d /media/root/files/ubuntubak/ ]; then
-    tar cvpzf /media/root/files/ubuntubak/ubuntubak.tgz --exclude=/proc --exclude=/lost+found --exclude=/ubuntubak.tgz --exclude=/mnt --exclude=/sys --exclude=/media --exclude=/root/.cache /
-elif [ -d /media/root/files/ -a ! -d /media/root/files/ubuntubak ]; then
-    mkdir /media/root/files/ubuntubak
-    tar cvpzf /media/root/files/ubuntubak/ubuntubak.tgz --exclude=/proc --exclude=/lost+found --exclude=/ubuntubak.tgz --exclude=/mnt --exclude=/sys --exclude=/media --exclude=/root/.cache /
-fi
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#############################################################&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;###                                    &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;###  mm,            .m   .m,   W       &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;### ]&quot;&quot;W,           PW   W&quot;W   &quot;   ][  &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;###    d[&#39;W W`]bWb   W  ][ ][ WW  ]WWW &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;###  ]WW  ]W[ ]P T[  W  ][W][  W   ][  &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;###    T[ .W, ][ ][  W  ][ ][  W   ][  &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;### ]mmW` d&quot;b ]WmW`.mWm, WmW .mWm, ]bm &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;###  &quot;&quot;` &#39;&quot; &quot;`][&quot;` &#39;&quot;&quot;&quot;` &#39;&quot;` &#39;&quot;&quot;&quot;`  &quot;&quot; &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;###           ][                       &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;###                                    &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;###                                                          &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;### name: ubuntubak.sh&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;### function: bakup system&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;### date: 2016-08-05&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;### author: quanyechavshuo&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;### blog: https://3xp10it.github.io&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#############################################################&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#系统备份脚本,备份产生两个文件,ubuntubak2.tgz为最新备份文件,ubuntubak1.tgz为上一次备份的文件&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# crontab -e like:&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# m h  dom mon dow   command&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#18  8    5 * *   root    bash /usr/share/mytools/ubuntubak.sh&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;bakupdevice&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/media/root/files&quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;bakupfolder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/media/root/files/ubuntubak/&quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;bakupfile1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/media/root/files/ubuntubak/ubuntubak1.tgz&quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;bakupfile2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/media/root/files/ubuntubak/ubuntubak2.tgz&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; ! -d &lt;span class=&quot;nv&quot;&gt;$bakupdevice&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then
+    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;bakupfolder not exist,the bakupdevice is not ready,check it&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; -d &lt;span class=&quot;nv&quot;&gt;$bakupdevice&lt;/span&gt; -a -d &lt;span class=&quot;nv&quot;&gt;$bakupfolder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then
+    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;bakupdevice is ok,bakupfolder exist&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; -f &lt;span class=&quot;nv&quot;&gt;$bakupfile1&lt;/span&gt; -a -f &lt;span class=&quot;nv&quot;&gt;$bakupfile2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then
+        &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;bakupfile1 exists,bakupfile2 exists&quot;&lt;/span&gt;
+        rm &lt;span class=&quot;nv&quot;&gt;$bakupfile1&lt;/span&gt;
+        mv &lt;span class=&quot;nv&quot;&gt;$bakupfile2&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$bakupfile1&lt;/span&gt;
+        tar cvpzf &lt;span class=&quot;nv&quot;&gt;$bakupfile2&lt;/span&gt; --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/proc --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/lost+found --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/ubuntubak.tgz --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/mnt --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/sys --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/media --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/root/.cache /
+    &lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; ! -f &lt;span class=&quot;nv&quot;&gt;$bakupfile1&lt;/span&gt; -a ! -f &lt;span class=&quot;nv&quot;&gt;$bakupfile2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then
+        &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;bakupfile1 not exist,bakupfile2 not exist&quot;&lt;/span&gt;
+        tar cvpzf &lt;span class=&quot;nv&quot;&gt;$bakupfile1&lt;/span&gt; --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/proc --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/lost+found --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/ubuntubak.tgz --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/mnt --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/sys --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/media --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/root/.cache /
+    &lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; -f &lt;span class=&quot;nv&quot;&gt;$bakupfile1&lt;/span&gt; -a ! -f &lt;span class=&quot;nv&quot;&gt;$bakupfile2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then
+        &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;bakupfile1 exist,bakupfile2 not exist&quot;&lt;/span&gt;
+        tar cvpzf &lt;span class=&quot;nv&quot;&gt;$bakupfile2&lt;/span&gt; --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/proc --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/lost+found --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/ubuntubak.tgz --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/mnt --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/sys --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/media --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/root/.cache /
+    &lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; ! -f &lt;span class=&quot;nv&quot;&gt;$bakupfile1&lt;/span&gt; -a -f &lt;span class=&quot;nv&quot;&gt;$bakupfile2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then
+        &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;bakupfile1 not exist,bakupfile2 exist&quot;&lt;/span&gt;
+        mv &lt;span class=&quot;nv&quot;&gt;$bakupfile2&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$bakupfile1&lt;/span&gt;
+        tar cvpzf &lt;span class=&quot;nv&quot;&gt;$bakupfile2&lt;/span&gt; --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/proc --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/lost+found --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/ubuntubak.tgz --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/mnt --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/sys --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/media --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/root/.cache /
+
+    &lt;span class=&quot;k&quot;&gt;fi
+elif&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; -d &lt;span class=&quot;nv&quot;&gt;$bakupdevice&lt;/span&gt; -a ! -d &lt;span class=&quot;nv&quot;&gt;$bakupfolder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then
+    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;bakupdevice is ok,bakupfolder not exist&quot;&lt;/span&gt;
+    mkdir &lt;span class=&quot;nv&quot;&gt;$bakupfolder&lt;/span&gt;
+    tar cvpzf &lt;span class=&quot;nv&quot;&gt;$bakupfile1&lt;/span&gt; --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/proc --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/lost+found --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/ubuntubak.tgz --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/mnt --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/sys --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/media --exclude&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/root/.cache /
+&lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 

@@ -117,7 +117,7 @@
 
       <div class="read-time">
         <small>
-          2 minute read
+          4 minute read
         </small>
       </div>
 
@@ -231,14 +231,59 @@ first mount another disk(for bakup store) to /media/root/files</p>
 
 <p>2&gt;ubuntubak.sh</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>if [ ! -d /media/root/files ]; then
-    echo "bak folder not exist,the bakup device is not ready,check it"
-elif [ -d /media/root/files/ -a -d /media/root/files/ubuntubak/ ]; then
-    tar cvpzf /media/root/files/ubuntubak/ubuntubak.tgz --exclude=/proc --exclude=/lost+found --exclude=/ubuntubak.tgz --exclude=/mnt --exclude=/sys --exclude=/media --exclude=/root/.cache /
-elif [ -d /media/root/files/ -a ! -d /media/root/files/ubuntubak ]; then
-    mkdir /media/root/files/ubuntubak
-    tar cvpzf /media/root/files/ubuntubak/ubuntubak.tgz --exclude=/proc --exclude=/lost+found --exclude=/ubuntubak.tgz --exclude=/mnt --exclude=/sys --exclude=/media --exclude=/root/.cache /
-fi
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#############################################################</span>
+<span class="c">###                                    </span>
+<span class="c">###  mm,            .m   .m,   W       </span>
+<span class="c">### ]""W,           PW   W"W   "   ][  </span>
+<span class="c">###    d['W W`]bWb   W  ][ ][ WW  ]WWW </span>
+<span class="c">###  ]WW  ]W[ ]P T[  W  ][W][  W   ][  </span>
+<span class="c">###    T[ .W, ][ ][  W  ][ ][  W   ][  </span>
+<span class="c">### ]mmW` d"b ]WmW`.mWm, WmW .mWm, ]bm </span>
+<span class="c">###  ""` '" "`]["` '"""` '"` '"""`  "" </span>
+<span class="c">###           ][                       </span>
+<span class="c">###                                    </span>
+<span class="c">###                                                          </span>
+<span class="c">### name: ubuntubak.sh</span>
+<span class="c">### function: bakup system</span>
+<span class="c">### date: 2016-08-05</span>
+<span class="c">### author: quanyechavshuo</span>
+<span class="c">### blog: https://3xp10it.github.io</span>
+<span class="c">#############################################################</span>
+<span class="c">#系统备份脚本,备份产生两个文件,ubuntubak2.tgz为最新备份文件,ubuntubak1.tgz为上一次备份的文件</span>
+<span class="c"># crontab -e like:</span>
+<span class="c"># m h  dom mon dow   command</span>
+<span class="c">#18  8    5 * *   root    bash /usr/share/mytools/ubuntubak.sh</span>
+
+<span class="nv">bakupdevice</span><span class="o">=</span><span class="s2">"/media/root/files"</span>
+<span class="nv">bakupfolder</span><span class="o">=</span><span class="s2">"/media/root/files/ubuntubak/"</span>
+<span class="nv">bakupfile1</span><span class="o">=</span><span class="s2">"/media/root/files/ubuntubak/ubuntubak1.tgz"</span>
+<span class="nv">bakupfile2</span><span class="o">=</span><span class="s2">"/media/root/files/ubuntubak/ubuntubak2.tgz"</span>
+<span class="k">if</span> <span class="o">[</span> ! -d <span class="nv">$bakupdevice</span> <span class="o">]</span>; <span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"bakupfolder not exist,the bakupdevice is not ready,check it"</span>
+<span class="k">elif</span> <span class="o">[</span> -d <span class="nv">$bakupdevice</span> -a -d <span class="nv">$bakupfolder</span> <span class="o">]</span>; <span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"bakupdevice is ok,bakupfolder exist"</span>
+    <span class="k">if</span> <span class="o">[</span> -f <span class="nv">$bakupfile1</span> -a -f <span class="nv">$bakupfile2</span> <span class="o">]</span>; <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"bakupfile1 exists,bakupfile2 exists"</span>
+        rm <span class="nv">$bakupfile1</span>
+        mv <span class="nv">$bakupfile2</span> <span class="nv">$bakupfile1</span>
+        tar cvpzf <span class="nv">$bakupfile2</span> --exclude<span class="o">=</span>/proc --exclude<span class="o">=</span>/lost+found --exclude<span class="o">=</span>/ubuntubak.tgz --exclude<span class="o">=</span>/mnt --exclude<span class="o">=</span>/sys --exclude<span class="o">=</span>/media --exclude<span class="o">=</span>/root/.cache /
+    <span class="k">elif</span> <span class="o">[</span> ! -f <span class="nv">$bakupfile1</span> -a ! -f <span class="nv">$bakupfile2</span> <span class="o">]</span>; <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"bakupfile1 not exist,bakupfile2 not exist"</span>
+        tar cvpzf <span class="nv">$bakupfile1</span> --exclude<span class="o">=</span>/proc --exclude<span class="o">=</span>/lost+found --exclude<span class="o">=</span>/ubuntubak.tgz --exclude<span class="o">=</span>/mnt --exclude<span class="o">=</span>/sys --exclude<span class="o">=</span>/media --exclude<span class="o">=</span>/root/.cache /
+    <span class="k">elif</span> <span class="o">[</span> -f <span class="nv">$bakupfile1</span> -a ! -f <span class="nv">$bakupfile2</span> <span class="o">]</span>; <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"bakupfile1 exist,bakupfile2 not exist"</span>
+        tar cvpzf <span class="nv">$bakupfile2</span> --exclude<span class="o">=</span>/proc --exclude<span class="o">=</span>/lost+found --exclude<span class="o">=</span>/ubuntubak.tgz --exclude<span class="o">=</span>/mnt --exclude<span class="o">=</span>/sys --exclude<span class="o">=</span>/media --exclude<span class="o">=</span>/root/.cache /
+    <span class="k">elif</span> <span class="o">[</span> ! -f <span class="nv">$bakupfile1</span> -a -f <span class="nv">$bakupfile2</span> <span class="o">]</span>; <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"bakupfile1 not exist,bakupfile2 exist"</span>
+        mv <span class="nv">$bakupfile2</span> <span class="nv">$bakupfile1</span>
+        tar cvpzf <span class="nv">$bakupfile2</span> --exclude<span class="o">=</span>/proc --exclude<span class="o">=</span>/lost+found --exclude<span class="o">=</span>/ubuntubak.tgz --exclude<span class="o">=</span>/mnt --exclude<span class="o">=</span>/sys --exclude<span class="o">=</span>/media --exclude<span class="o">=</span>/root/.cache /
+
+    <span class="k">fi
+elif</span> <span class="o">[</span> -d <span class="nv">$bakupdevice</span> -a ! -d <span class="nv">$bakupfolder</span> <span class="o">]</span>; <span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"bakupdevice is ok,bakupfolder not exist"</span>
+    mkdir <span class="nv">$bakupfolder</span>
+    tar cvpzf <span class="nv">$bakupfile1</span> --exclude<span class="o">=</span>/proc --exclude<span class="o">=</span>/lost+found --exclude<span class="o">=</span>/ubuntubak.tgz --exclude<span class="o">=</span>/mnt --exclude<span class="o">=</span>/sys --exclude<span class="o">=</span>/media --exclude<span class="o">=</span>/root/.cache /
+<span class="k">fi</span>
 </code></pre>
 </div>
 
