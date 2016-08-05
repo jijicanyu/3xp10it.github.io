@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 05 Aug 2016 09:53:35 +0800</pubDate>
-    <lastBuildDate>Fri, 05 Aug 2016 09:53:35 +0800</lastBuildDate>
+    <pubDate>Fri, 05 Aug 2016 22:08:10 +0800</pubDate>
+    <lastBuildDate>Fri, 05 Aug 2016 22:08:10 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -17,8 +17,10 @@
 用法:
     pip install exp10it
     from exp10it import *
+说明:最新模块见如下链接
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/3xp10it/mytools/blob/master/exp10it.py&quot;&gt;最新代码&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;x01-api&quot;&gt;0x01 api&lt;/h3&gt;
 
@@ -37,7 +39,7 @@ def lin2win(file_abs_path):
     #将linux下的文件中的\n换行符换成win下的\n\n换行符
 
 def get_all_file_name(folder,ext_list):
-    #得到文件夹下的所有文件名的绝对路经，第二个参数为要求的后缀列表
+    #得到文件夹下的所有文件名的绝对路经,第二个参数为要求的后缀列表
 
 def save2github(file_abs_path,repo_name,comment):
     #将文件上传到github
@@ -45,201 +47,319 @@ def save2github(file_abs_path,repo_name,comment):
     #arg2:远程仓库名
     #提交的commit注释
 
+增加了raw_input()支持自动补全文件路径代码,用法:from exp10it import *
+
+def get_title_from_uri(uri):
+    #得到uri对应的title```
+
+def get_uris_from_file(file):
+    #从文件中获取所有uri### 0x02 module
+
+def get_title_from_file(file):
+    #等到文件中的所有uri对应的title
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-
-&lt;h3 id=&quot;x02-module&quot;&gt;0x02 module&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#############################################################
-###  ___           ,  __
-### /   \         /| /  \ o
-###   __/       _  ||    |  _|_
-###     \/\/  |/ \_||    ||  |
-### \___/ /\_/|__/ | \__/ |_/|_/
-###          /|
-###          \|
+&lt;p&gt;#############################################################
+### &lt;em&gt;__ /           _ |  _ \ _) |
+###   _ \ \  / __ \  | |   | | &lt;strong&gt;|
+###    ) |`  &amp;lt;  |   | | |   | | |
+### __&lt;/strong&gt;/ _/_\ .&lt;strong&gt;/ _|_&lt;/strong&gt;/ _|_&lt;/em&gt;|
+###            _|
 ###
-### name: exp10it
-### function: a test for other file
-### date: 2016-08-04
+### name: exp10it.py
+### function: my module
+### date: 2016-08-05
 ### author: quanyechavshuo
 ### blog: https://3xp10it.github.io
 #############################################################
-# -*- coding: utf-8 -*-
+# -&lt;em&gt;- coding: utf-8 -&lt;/em&gt;-
 import sys
 reload(sys)
-sys.setdefaultencoding(&#39;utf-8&#39;)
-#upon 4 lines for chinese support
-import os
+sys.setdefaultencoding(‘utf-8’)
+#upon 4 lines for chinese support&lt;/p&gt;
+
+&lt;p&gt;import os
 import re
-import random
-def figlet2file(logo_str,file_abs_path,print_or_not):
+import random&lt;/p&gt;
+
+&lt;p&gt;def figlet2file(logo_str,file_abs_path,print_or_not):
     #输出随机的logo文字到文件或屏幕,第二个参数为任意非文件的参数时(eg.0,1,2),只输出到屏幕
     #apt-get install figlet
     #man figlet
-    #figure out which is the figlet&#39;s font directory
+    #figure out which is the figlet’s font directory
     #my figlet font directory is:
-    #figlet -I 2,output:/usr/share/figlet
+    #figlet -I 2,output:/usr/share/figlet&lt;/p&gt;
 
-    try:
-        f=os.popen(&quot;figlet -I 2&quot;)
-        all=f.readlines()
-        f.close()
-        figlet_font_dir=all[0][:-1]
-    except:
-        os.system(&quot;apt-get install figlet&quot;)
-        f=os.popen(&quot;figlet -I 2&quot;)
-        all=f.readlines()
-        f.close()
-        figlet_font_dir=all[0][:-1]
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;try:
+    f=os.popen(&quot;figlet -I 2&quot;)
+    all=f.readlines()
+    f.close()
+    figlet_font_dir=all[0][:-1]
+except:
+    os.system(&quot;apt-get install figlet&quot;)
+    f=os.popen(&quot;figlet -I 2&quot;)
+    all=f.readlines()
+    f.close()
+    figlet_font_dir=all[0][:-1]
 
-    all_font_name_list=get_all_file_name(figlet_font_dir,[&#39;tlf&#39;,&#39;flf&#39;])
-    random_font=random.choice(all_font_name_list)
-    unsucceed=os.system(&quot;figlet -t -f %s %s &amp;gt; /tmp/3&quot; % (random_font,logo_str))
-    if(unsucceed==1):
-        print &quot;something wrong with figlet,check the command in python source file&quot;
-    try:
-        os.system(&quot;cat /tmp/3 &amp;gt;&amp;gt; %s&quot; % file_abs_path)
-    except:
-        pass
-    if(print_or_not==True):
-        os.system(&quot;cat /tmp/3&quot;)
-    os.system(&quot;rm /tmp/3&quot;)
-
-def oneline2nline(oneline,nline,file_abs_path):
-    #将文件中的一行字符串用多行字符串替换,调用时要将&quot;多行字符串的参数(第二个参数)&quot;中的换行符设置为\n
-    tmpstr=nline.replace(&#39;\n&#39;,&#39;\\\n&#39;)
-    os.system(&quot;sed &#39;/%s/c\\\n%s&#39; %s &amp;gt; /tmp/1&quot; % (oneline,tmpstr,file_abs_path))
-    os.system(&quot;cat /tmp/1 &amp;gt; %s &amp;amp;&amp;amp; rm /tmp/1&quot; % file_abs_path)
+all_font_name_list=get_all_file_name(figlet_font_dir,[&#39;tlf&#39;,&#39;flf&#39;])
+random_font=random.choice(all_font_name_list)
+unsucceed=os.system(&quot;figlet -t -f %s %s &amp;gt; /tmp/3&quot; % (random_font,logo_str))
+if(unsucceed==1):
+    print &quot;something wrong with figlet,check the command in python source file&quot;
+try:
+    os.system(&quot;cat /tmp/3 &amp;gt;&amp;gt; %s&quot; % file_abs_path)
+except:
     pass
+if(print_or_not==True):
+    os.system(&quot;cat /tmp/3&quot;)
+os.system(&quot;rm /tmp/3&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-def lin2win(file_abs_path):
+&lt;p&gt;def oneline2nline(oneline,nline,file_abs_path):
+    #将文件中的一行字符串用多行字符串替换，调用时要将”多行字符串的参数(第二个参数)”中的换行符设置为\n
+    tmpstr=nline.replace(‘\n’,’\\n’)
+    os.system(“sed ‘/%s/c\\n%s’ %s &amp;gt; /tmp/1” % (oneline,tmpstr,file_abs_path))
+    os.system(“cat /tmp/1 &amp;gt; %s &amp;amp;&amp;amp; rm /tmp/1” % file_abs_path)
+    pass&lt;/p&gt;
+
+&lt;p&gt;def lin2win(file_abs_path):
     #将linux下的文件中的\n换行符换成win下的\n\n换行符
     import sys
     input_file=file_abs_path
-    f=open(input_file,&quot;r+&quot;)
+    f=open(input_file,”r+”)
     urls=f.readlines()
     f.close()
-    os.system(&quot;rm %s&quot; % file_abs_path)
-    f1=open(file_abs_path,&quot;a+&quot;)
+    os.system(“rm %s” % file_abs_path)
+    f1=open(file_abs_path,”a+”)
     for url in urls:
     	print url[0:-1]
     	#print url is different with print url[0:-1]
     	#print url[0:-1] can get the pure string
-    	#while print url will get the &quot;unseen \n&quot;
+    	#while print url will get the “unseen \n”
     	#this script can turn a file with strings
     	#end with \n into a file with strings end
     	#with \r\n to make it comfortable move the
     	#txt file from *nix to win,coz the file with
     	#strings end with \n in *nix is ok for human
-    	#to see &quot;different lines&quot;,but this kind of file
-    	#will turn &quot;unsee different lines&quot; in win
-    	f1.write(url[0:-1]+&quot;\r\n&quot;)
-    f1.close()
+    	#to see “different lines”,but this kind of file
+    	#will turn “unsee different lines” in win
+    	f1.write(url[0:-1]+”\r\n”)
+    f1.close()&lt;/p&gt;
 
-
-#attention:
+&lt;p&gt;#attention:
 #由于此处tmp_get_file_name_value和tmp_all_file_name_list在函数外面,so
 #在其他代码中调用get_all_file_name()时要用from name import *,不用import name,否则不能调用到get_all_file_name的功能
 tmp_get_file_name_value=0
 tmp_all_file_name_list=[]
 def get_all_file_name(folder,ext_list):
-    #得到文件夹下的所有文件名的绝对路经，第二个参数为要求的后缀列表
+    #exp_list为空时，得到目录下的所有文件名,不返回空文件夹名
+    #返回结果为文件名列表，不是完全绝对路径名
+    #eg.folder=”/root”时，当/root目录下有一个文件夹a，一个文件2.txt,a中有一个文件1.txt
+    #得到的函数返回值为[‘a/1.txt’,’2.txt’]
     global tmp_get_file_name_value
     global root_dir
     global tmp_all_file_name_list
     tmp_get_file_name_value+=1
     if tmp_get_file_name_value==1:
-        if folder[-1]==&#39;/&#39;:
+        if folder[-1]==’/’:
             root_dir=folder[:-1]
         else:
-            root_dir=folder
+            root_dir=folder&lt;/p&gt;
 
-    allfile=os.listdir(folder)
-    for each in allfile:
-        each_abspath=os.path.join(folder,each)
-        if os.path.isdir(each_abspath):
-            get_all_file_name(each_abspath,ext_list)
-        else:
-            #print each_abspath
-            if len(each_abspath)&amp;gt;len(root_dir)+1+len(os.path.basename(each)):
-                filename=each_abspath[len(root_dir)+1:]
-                #print filename
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;allfile=os.listdir(folder)
+for each in allfile:
+    each_abspath=os.path.join(folder,each)
+    if os.path.isdir(each_abspath):
+        get_all_file_name(each_abspath,ext_list)
+    else:
+        #print each_abspath
+        if len(each_abspath)&amp;gt;len(root_dir)+1+len(os.path.basename(each)):
+            filename=each_abspath[len(root_dir)+1:]
+            #print filename
+            if len(ext_list)==0:
+                tmp_all_file_name_list.append(filename)
+            else:
                 for each_ext in ext_list:
                     if(filename.split(&#39;.&#39;)[-1]==each_ext):
                         #print filename
                         tmp_all_file_name_list.append(filename)
+        else:
+            #print each
+            if len(ext_list)==0:
+                tmp_all_file_name_list.append(each)
             else:
-                #print each
                 for each_ext in ext_list:
                     if(each.split(&#39;.&#39;)[-1]==each_ext):
                         #print each
                         tmp_all_file_name_list.append(each)
 
-    return tmp_all_file_name_list
+return tmp_all_file_name_list
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-
-def save2github(file_abs_path,repo_name,comment):
+&lt;p&gt;def save2github(file_abs_path,repo_name,comment):
     #将文件上传到github
     #arg1:文件绝对路经
     #arg2:远程仓库名
     #提交的commit注释
-    local_resp_path=&quot;/root/&quot;+repo_name
+    local_resp_path=”/root/”+repo_name
     filename=os.path.basename(file_abs_path)
-    remote_resp_uri=&quot;https://github.com/3xp10it/%s.git&quot; % repo_name
+    remote_resp_uri=”https://github.com/3xp10it/%s.git” % repo_name
     if os.path.exists(local_resp_path) is False:
-        os.system(&quot;mkdir %s &amp;amp;&amp;amp; cd %s &amp;amp;&amp;amp; git init &amp;amp;&amp;amp; git pull %s &amp;amp;&amp;amp; git remote add origin %s &amp;amp;&amp;amp; git status&quot; % (local_resp_path,local_resp_path,remote_resp_uri,remote_resp_uri))
-        if os.path.exists(local_resp_path+&quot;/&quot;+filename) is True:
-            print &quot;warning!warning!warning! I will exit! There exists a same name script in local_resp_path(&amp;gt;&amp;gt;%s),and this script is downloaded from remote github repo,you should rename your script if you want to upload it to git:)&quot; % local_resp_path+&quot;/&quot;+filename
+        os.system(“mkdir %s &amp;amp;&amp;amp; cd %s &amp;amp;&amp;amp; git init &amp;amp;&amp;amp; git pull %s &amp;amp;&amp;amp; git remote add origin %s &amp;amp;&amp;amp; git status” % (local_resp_path,local_resp_path,remote_resp_uri,remote_resp_uri))
+        if os.path.exists(local_resp_path+”/”+filename) is True:
+            print “warning!warning!warning! I will exit! There exists a same name script in local_resp_path(»%s),and this script is downloaded from remote github repo,you should rename your script if you want to upload it to git:)” % local_resp_path+”/”+filename
             return False
-        os.system(&quot;cp %s %s&quot; % (file_abs_path,local_resp_path))
-        succeed=os.system(&quot;cd %s &amp;amp;&amp;amp; git add . &amp;amp;&amp;amp; git status &amp;amp;&amp;amp; git commit -a -m &#39;%s&#39; &amp;amp;&amp;amp; git push -u origin master&quot; % (local_resp_path,comment))
+        os.system(“cp %s %s” % (file_abs_path,local_resp_path))
+        succeed=os.system(“cd %s &amp;amp;&amp;amp; git add . &amp;amp;&amp;amp; git status &amp;amp;&amp;amp; git commit -a -m ‘%s’ &amp;amp;&amp;amp; git push -u origin master” % (local_resp_path,comment))
         if(succeed==0):
-            print &quot;push succeed!!!&quot;
+            print “push succeed!!!”
             return True
         else:
-            print &quot;push to git wrong,wrong,wrong,check it!!!&quot;
-            return False
+            print “push to git wrong,wrong,wrong,check it!!!”
+            return False&lt;/p&gt;
 
-    if os.path.exists(local_resp_path) is True and os.path.exists(local_resp_path+&quot;/.git&quot;) is False:
-        if os.path.exists(local_resp_path+&quot;/&quot;+filename) is True:
-            print &quot;warning!warning!warning! I will exit! There exists a same name script in local_resp_path(&amp;gt;&amp;gt;%s),you should rename your script if you want to upload it to git:)&quot; % local_resp_path+&quot;/&quot;+filename
-            return False
-        os.system(&quot;mkdir /tmp/codetmp&quot;)
-        os.system(&quot;cd %s &amp;amp;&amp;amp; cp -r * /tmp/codetmp/ &amp;amp;&amp;amp; rm -r * &amp;amp;&amp;amp;  git init &amp;amp;&amp;amp; git pull %s&quot; % (local_resp_path,remote_resp_uri))
-        os.system(&quot;cp -r /tmp/codetmp/* %s &amp;amp;&amp;amp; rm -r /tmp/codetmp&quot; % local_resp_path)
-        os.system(&quot;cp %s %s&quot; % (file_abs_path,local_resp_path))
-        succeed=os.system(&quot;cd %s &amp;amp;&amp;amp; git add . &amp;amp;&amp;amp; git status &amp;amp;&amp;amp; git commit -a -m &#39;%s&#39; &amp;amp;&amp;amp; git remote add origin %s &amp;amp;&amp;amp; git push -u origin master&quot; % (local_resp_path,comment,remote_resp_uri))
-        if(succeed==0):
-            print &quot;push succeed!!!&quot;
-            return True
-        else:
-            print &quot;push to git wrong,wrong,wrong,check it!!!&quot;
-            return False
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;if os.path.exists(local_resp_path) is True and os.path.exists(local_resp_path+&quot;/.git&quot;) is False:
+    if os.path.exists(local_resp_path+&quot;/&quot;+filename) is True:
+        print &quot;warning!warning!warning! I will exit! There exists a same name script in local_resp_path(&amp;gt;&amp;gt;%s),you should rename your script if you want to upload it to git:)&quot; % local_resp_path+&quot;/&quot;+filename
+        return False
+    os.system(&quot;mkdir /tmp/codetmp&quot;)
+    os.system(&quot;cd %s &amp;amp;&amp;amp; cp -r * /tmp/codetmp/ &amp;amp;&amp;amp; rm -r * &amp;amp;&amp;amp;  git init &amp;amp;&amp;amp; git pull %s&quot; % (local_resp_path,remote_resp_uri))
+    os.system(&quot;cp -r /tmp/codetmp/* %s &amp;amp;&amp;amp; rm -r /tmp/codetmp&quot; % local_resp_path)
+    os.system(&quot;cp %s %s&quot; % (file_abs_path,local_resp_path))
+    succeed=os.system(&quot;cd %s &amp;amp;&amp;amp; git add . &amp;amp;&amp;amp; git status &amp;amp;&amp;amp; git commit -a -m &#39;%s&#39; &amp;amp;&amp;amp; git remote add origin %s &amp;amp;&amp;amp; git push -u origin master&quot; % (local_resp_path,comment,remote_resp_uri))
+    if(succeed==0):
+        print &quot;push succeed!!!&quot;
+        return True
+    else:
+        print &quot;push to git wrong,wrong,wrong,check it!!!&quot;
+        return False
 
-    if os.path.exists(local_resp_path) is True and os.path.exists(local_resp_path+&quot;/.git&quot;) is True:
-        #如果本地local_resp_path存在,且文件夹中有.git,当local_resp_path文件夹中的文件与远程github仓库中的文件不一致时,
-        #且远程仓库有本地仓库没有的文件,选择合并本地和远程仓库并入远程仓库,所以这里采用一并重新合并的处理方法,
-        #(与上一个if中的情况相比,多了一个合并前先删除本地仓库中的.git文件夹的动作),
-        #虽然当远程仓库中不含本地仓库没有的文件时,不用这么做,但是这样做也可以处理那种情况
-        if os.path.exists(local_resp_path+&quot;/&quot;+filename) is True:
-            print &quot;warning!warning!warning! I will exit! There exists a same name script in local_resp_path(&amp;gt;&amp;gt;%s),you should rename your script if you want to upload it to git:)&quot; % local_resp_path+&quot;/&quot;+filename
-            return False
-        os.system(&quot;cd %s &amp;amp;&amp;amp; rm -r .git&quot; % local_resp_path)
-        os.system(&quot;mkdir /tmp/codetmp&quot;)
-        os.system(&quot;cd %s &amp;amp;&amp;amp; cp -r * /tmp/codetmp/ &amp;amp;&amp;amp; rm -r * &amp;amp;&amp;amp; git init &amp;amp;&amp;amp; git pull %s&quot; % (local_resp_path,remote_resp_uri))
-        os.system(&quot;cp -r /tmp/codetmp/* %s &amp;amp;&amp;amp; rm -r /tmp/codetmp&quot; % local_resp_path)
-        os.system(&quot;cp %s %s&quot; % (file_abs_path,local_resp_path))
-        succeed=os.system(&quot;cd %s &amp;amp;&amp;amp; git add . &amp;amp;&amp;amp; git status &amp;amp;&amp;amp; git commit -a -m &#39;%s&#39; &amp;amp;&amp;amp; git remote add origin %s &amp;amp;&amp;amp; git push -u origin master&quot; % (local_resp_path,comment,remote_resp_uri))
-        if(succeed==0):
-            print &quot;push succeed!!!&quot;
-            return True
-        else:
-            print &quot;push to git wrong,wrong,wrong,check it!!!&quot;
-            return False
-
+if os.path.exists(local_resp_path) is True and os.path.exists(local_resp_path+&quot;/.git&quot;) is True:
+    #如果本地local_resp_path存在，且文件夹中有.git,当local_resp_path文件夹中的文件与远程github仓库中的文件不一致时，
+    #且远程仓库有本地仓库没有的文件，选择合并本地和远程仓库并入远程仓库,所以这里采用一并重新合并的处理方法，
+    #(与上一个if中的情况相比，多了一个合并前先删除本地仓库中的.git文件夹的动作),
+    #虽然当远程仓库中不含本地仓库没有的文件时，不用这么做，但是这样做也可以处理那种情况
+    if os.path.exists(local_resp_path+&quot;/&quot;+filename) is True:
+        print &quot;warning!warning!warning! I will exit! There exists a same name script in local_resp_path(&amp;gt;&amp;gt;%s),you should rename your script if you want to upload it to git:)&quot; % local_resp_path+&quot;/&quot;+filename
+        return False
+    os.system(&quot;cd %s &amp;amp;&amp;amp; rm -r .git&quot; % local_resp_path)
+    os.system(&quot;mkdir /tmp/codetmp&quot;)
+    os.system(&quot;cd %s &amp;amp;&amp;amp; cp -r * /tmp/codetmp/ &amp;amp;&amp;amp; rm -r * &amp;amp;&amp;amp; git init &amp;amp;&amp;amp; git pull %s&quot; % (local_resp_path,remote_resp_uri))
+    os.system(&quot;cp -r /tmp/codetmp/* %s &amp;amp;&amp;amp; rm -r /tmp/codetmp&quot; % local_resp_path)
+    os.system(&quot;cp %s %s&quot; % (file_abs_path,local_resp_path))
+    succeed=os.system(&quot;cd %s &amp;amp;&amp;amp; git add . &amp;amp;&amp;amp; git status &amp;amp;&amp;amp; git commit -a -m &#39;%s&#39; &amp;amp;&amp;amp; git remote add origin %s &amp;amp;&amp;amp; git push -u origin master&quot; % (local_resp_path,comment,remote_resp_uri))
+    if(succeed==0):
+        print &quot;push succeed!!!&quot;
+        return True
+    else:
+        print &quot;push to git wrong,wrong,wrong,check it!!!&quot;
+        return False
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+
+&lt;p&gt;#below code are the function about tab key complete with file path
+#————————start-of-key-complete-with-file-path——————————–
+import os
+import sys
+import readline
+import glob
+class tabCompleter(object):
+        “””
+        A tab completer that can either complete from
+        the filesystem or from a list.
+        Partially taken from:
+        http://stackoverflow.com/questions/5637124/tab-completion-in-pythons-raw-input
+        source code:https://gist.github.com/iamatypeofwalrus/5637895
+        “””&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    def pathCompleter(self,text,state):
+        &quot;&quot;&quot;
+        This is the tab completer for systems paths.
+        Only tested on *nix systems
+        &quot;&quot;&quot;
+        line   = readline.get_line_buffer().split()
+        return [x for x in glob.glob(text+&#39;*&#39;)][state]
+
+    def createListCompleter(self,ll):
+        &quot;&quot;&quot;
+        This is a closure that creates a method that autocompletes from
+        the given list.
+        Since the autocomplete function can&#39;t be given a list to complete from
+        a closure is used to create the listCompleter function with a list to complete
+        from.
+        &quot;&quot;&quot;
+        def listCompleter(text,state):
+            line   = readline.get_line_buffer()
+            if not line:
+                return [c + &quot; &quot; for c in ll][state]
+            else:
+                return [c + &quot; &quot; for c in ll if c.startswith(line)][state]
+        self.listCompleter = listCompleter t = tabCompleter() t.createListCompleter([&quot;ab&quot;,&quot;aa&quot;,&quot;bcd&quot;,&quot;bdf&quot;])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;readline.set_completer_delims(‘\t’)
+readline.parse_and_bind(“tab: complete”)
+#readline.set_completer(t.listCompleter)
+#ans = raw_input(“Complete from list “)
+#print ans
+readline.set_completer(t.pathCompleter)
+#————————–end-of-key-complete-with-file-path——————————–&lt;/p&gt;
+
+&lt;p&gt;def get_title_from_uri(uri):
+    #得到uri对应的title
+    import mechanize
+    import cookielib
+    br = mechanize.Browser()
+    br.set_cookiejar(cookielib.LWPCookieJar()) # Cookie jar
+    br.set_handle_equiv(True) # Browser Option
+    br.set_handle_gzip(True)
+    br.set_handle_redirect(True)
+    br.set_handle_referer(True)
+    br.set_handle_robots(False)
+    br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
+    br.addheaders = [(‘User-agent’, ‘Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008071615 Fedora/3.0.1-1.fc9 Firefox/3.0.1’)]
+    br.open(uri)
+    #print br.title()
+    return br.title()&lt;/p&gt;
+
+&lt;p&gt;def get_uris_from_file(file):
+    #从文件中获取所有uri
+    f=open(file,”r+”)
+    content=f.read()
+    #print content
+    f.close()
+    allurls=[]
+    all=re.findall(‘(http(\S)+)’,content,re.I)
+    for each in all:
+        allurls.append(each[0])
+    #print allurls
+    return allurls&lt;/p&gt;
+
+&lt;p&gt;def get_title_from_file(file):
+    #等到文件中的所有uri对应的title
+    target_allurls=get_uris_from_file(file)
+    print “a output file:/tmp/result.txt”
+    writed_urls=[]
+    for each in target_allurls:
+        f=open(“/tmp/result.txt”,”a+”)
+        tmp=urlparse(each)
+        http_domain=tmp.scheme+’://’+tmp.hostname
+        title=get_title_from_uri(http_domain)
+        time.sleep(1)
+        try:
+            if http_domain not in writed_urls:
+                each_line_to_write=http_domain+’\r\n’+’upon uri is:’+title+’\r\n’
+                print each_line_to_write
+                f.write(each_line_to_write)
+                writed_urls.append(http_domain)
+        except:
+            pass
+    f.close()
+```&lt;/p&gt;
 
 &lt;h3 id=&quot;x03-&quot;&gt;0x03 模块发布&lt;/h3&gt;
 

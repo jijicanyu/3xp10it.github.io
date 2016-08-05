@@ -948,9 +948,10 @@
     http://blog.chinaunix.net/uid-10540984-id-2881092.html
     https://xin053.github.io/2016/07/06/pyfiglet%E5%BA%93%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/
 <span class="p">138.</span>bind shift+e to firefox's perference shortcut key bind
-<span class="p">139.</span>制作pypi的python模块(eg.exp10it.py)时，在本地如果exp10it.py中有中文，在一个正常的py文件中如果有一句from exp10it import <span class="ge">*,如果这个正常的py文件中由于这句导入了相同文件夹目录下的exp10it.py模块,会由于其中的中文而产生错误，可以上传到pypi后由pip install安装exp10it模块后使用from exp10it import *</span>,同时需要删除同目录下的exp10it.py文件，否则from exp10it import <span class="err">*</span>依然会优先从同目录下找exp10it.py模块<span class="sb">
+<span class="p">139.</span>制作pypi的python模块(eg.exp10it.py)时,在本地如果exp10it.py中有中文,在一个正常的py文件中如果有一句from exp10it import <span class="ge">*,如果这个正常的py文件中由于这句导入了相同文件夹目录下的exp10it.py模块,会由于其中的中文而产生错误,可以上传到pypi后由pip install安装exp10it模块后使用from exp10it import *</span>,同时需要删除同目录下的exp10it.py文件,否则from exp10it import <span class="err">*</span>依然会优先从同目录下找exp10it.py模块
+<span class="p">140.</span>sqlmap得出经验,一般跑出只有盲注的uri注入点,一般都是由于waf拦截了普通的union注入语句,只要想办法绕过waf就可以用union来快速注入了,否则只能用sqlmap跑出来的盲注payload进行慢慢的注入,且有可能不能注入出所有数据,依然被waf拦截
+<span class="p">151.</span>python模块中声明编码为utf-8的注释代码不用放在前两行,如果出错,说明代码其他地方有误
 
-
-</span></code></pre>
+</code></pre>
 </div>
 

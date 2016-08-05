@@ -117,7 +117,7 @@
 
       <div class="read-time">
         <small>
-          1 minute read
+          2 minute read
         </small>
       </div>
 
@@ -198,20 +198,20 @@ au BufRead *.md call Biaodian() &lt;CR&gt;
 
 map &lt;F2&gt; :call Biaodian() &lt;CR&gt;
 function Biaodian()
-    %s/“/"/g
-    %s/”/"/g
-    %s/，/,/g
-    %s/。/./g
-    %s/？/?/g
-    %s/〈/&lt;/g
-    %s/〉/&gt;/g
-    %s/（/(/g
-    %s/）/)/g
-    %s/：/:/g
-    %s/；/;/g
-    %s/‘/'/g
-    %s/‘/'/g
-    %s/！/!/g
+    %s/"/"/g
+    %s/"/"/g
+    %s/,/,/g
+    %s/././g
+    %s/?/?/g
+    %s/&lt;/&lt;/g
+    %s/&gt;/&gt;/g
+    %s/(/(/g
+    %s/)/)/g
+    %s/:/:/g
+    %s/;/;/g
+    %s/'/'/g
+    %s/'/'/g
+    %s/!/!/g
     endfunction
 ------------------------end-------------------------
 
@@ -224,7 +224,55 @@ function Biaodian()
 do as notes do and then copy the .zshrc file below:
 https://pan.baidu.com/s/1mi0HKYO
 
-------------------add to .zshrc----------------
+---------------.zshrc-----------------
+export ZSH=$HOME/.oh-my-zsh
+ZSH_THEME="random"
+plugins=(git)
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+source $ZSH/oh-my-zsh.sh
+
+alias ll='ls -al'
+alias la='ls -A'
+alias l='ls -CF'
+alias vi='vim'
+alias 2sqlmap='cd /usr/share/sqlmap'
+alias 2tamper='nautilus /usr/share/sqlmap/tamper'
+alias pg='ping www.google.com.hk'
+alias pb='ping www.baidu.com'
+alias 2output='nautilus /root/.sqlmap/output' 
+alias 2images='nautilus /usr/share/images'
+alias 2tamper1='cd /usr/share/sqlmap/tamper'
+alias Cknife='java -jar /usr/share/Cknife/Cknife.jar'
+alias vs='vim /root/myblog/_posts/2016-04-15-My-notes.md'
+alias z='cd /root/桌面'
+alias d='cd /root/Desktop'
+export WORKON_HOME=~/.virtualenvs
+export PATH="$PATH:/phpstudy/mysql"
+alias v="vim /root/tmp.txt"
+alias c="rm ~/.vimswap/tmp.txt.swp"
+alias b='cd /root/myblog'
+alias p='cd /root/myblog/_posts &amp;&amp; ls -lh'
+alias 2tamper="cd /usr/share/sqlmap/tamper &amp;&amp; ls -al"
+echo "ifconfig" | /usr/bin/zsh | head -n 10 | awk '{print $2}' | awk '{print $0}' | head -n 2 | tail -n 1
+alias mt="cd /usr/share/mytools &amp;&amp; ls -al"
+alias jt="python /usr/share/mytools/mysnippingtool.py"
+alias upa="bash /usr/share/mytools/up.sh"
+alias ubuntubak="bash /usr/share/mytools/ubuntubak.sh"
+alias bl="python /usr/share/mytools/blog.py"
+alias sm="sqlmap --smart --threads 4 --random-agent -v 3 --batch -u "
+alias smt="sqlmap --smart --threads 4 --random-agent -v 3 --batch --tamper='randomcase,between,space2dash' -u "
+alias smc="sqlmap --smart --threads 4 --random-agent -v 3 --batch --crawl=3 -u "
+alias smct="sqlmap --smart --threads 4 --random-agent -v 3 --batch --crawl=3 --tamper='randomcase,between,space2dash' -u "
+alias ns="python /usr/share/mytools/newscript.py"
+#alias upl="b &amp;&amp; sh updatelocal.sh"
+#alias upr="b &amp;&amp; sh updateremote.sh"
+#alias upb="b &amp;&amp; sh updatebak.sh"
+eval $(thefuck --alias)
+
+tmux
+alias od='echo "anything" | (tmux splitw -h -p 38 &amp;&amp; tmux splitw -v -p 30 &amp;&amp; tmux selectp -L &amp;&amp; tmux splitw -v -p 30 &amp;&amp; tmux selectp -U) &amp;&amp; ranger'
+-----------------end------------------
+
 </code></pre>
 </div>
 
