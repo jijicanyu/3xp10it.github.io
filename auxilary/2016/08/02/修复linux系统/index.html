@@ -117,7 +117,7 @@
 
       <div class="read-time">
         <small>
-          4 minute read
+          3 minute read
         </small>
       </div>
 
@@ -199,6 +199,8 @@ to
 exit
 umount /mnt/tmp/dev &amp;&amp; umout /mnt/tmp/proc &amp;&amp; umount /mnt/tmp/sys &amp;&amp; umount /mnt/tmp/boot &amp;&amp;  umount /mnt/tmp
 shutdown -r 0
+
+或者用df -h,blkid /dev/sda1,blkid /dev/sda6,blkid /dev/sda5分别查看uuid后修改
 </code></pre>
 </div>
 
@@ -215,12 +217,13 @@ shutdown -r 0
 8&gt;mount --bind /proc /mnt/tmp/proc
 9&gt;mount --bind /sys /mnt/tmp/sys
 10&gt;chroot /mnt/tmp
-11&gt;grub-install /dev/sda1
-    if /dev/sda1 is the boot location
-12&gt;grub-mkconfig -o /boot/grub2/grub.cfg
-13&gt;exit
-14&gt;umount /mnt/tmp/dev &amp;&amp; umout /mnt/tmp/proc &amp;&amp; umount /mnt/tmp/sys &amp;&amp; umount /mnt/tmp/boot &amp;&amp;  umount /mnt/tmp
-15&gt;shutdow -r 0
+11&gt;grub-install /dev/sda
+12&gt;grub-mkconfig -o /boot/grub/grub.cfg
+13&gt;vi /etc/fstab
+    if /etc/fstab is not ok,change the uuid=xxxxx to /dev/sd? as upon 0x01 does
+14&gt;exit
+15&gt;umount /mnt/tmp/dev &amp;&amp; umout /mnt/tmp/proc &amp;&amp; umount /mnt/tmp/sys &amp;&amp; umount /mnt/tmp/boot &amp;&amp;  umount /mnt/tmp(this step15 is not a must step)
+16&gt;shutdow -r 0
 </code></pre>
 </div>
 
@@ -231,59 +234,14 @@ first mount another disk(for bakup store) to /media/root/files</p>
 
 <p>2&gt;ubuntubak.sh</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#############################################################</span>
-<span class="c">###                                    </span>
-<span class="c">###  mm,            .m   .m,   W       </span>
-<span class="c">### ]""W,           PW   W"W   "   ][  </span>
-<span class="c">###    d['W W`]bWb   W  ][ ][ WW  ]WWW </span>
-<span class="c">###  ]WW  ]W[ ]P T[  W  ][W][  W   ][  </span>
-<span class="c">###    T[ .W, ][ ][  W  ][ ][  W   ][  </span>
-<span class="c">### ]mmW` d"b ]WmW`.mWm, WmW .mWm, ]bm </span>
-<span class="c">###  ""` '" "`]["` '"""` '"` '"""`  "" </span>
-<span class="c">###           ][                       </span>
-<span class="c">###                                    </span>
-<span class="c">###                                                          </span>
-<span class="c">### name: ubuntubak.sh</span>
-<span class="c">### function: bakup system</span>
-<span class="c">### date: 2016-08-05</span>
-<span class="c">### author: quanyechavshuo</span>
-<span class="c">### blog: https://3xp10it.github.io</span>
-<span class="c">#############################################################</span>
-<span class="c">#系统备份脚本,备份产生两个文件,ubuntubak2.tgz为最新备份文件,ubuntubak1.tgz为上一次备份的文件</span>
-<span class="c"># crontab -e like:</span>
-<span class="c"># m h  dom mon dow   command</span>
-<span class="c">#18  8    5 * *   root    bash /usr/share/mytools/ubuntubak.sh</span>
-
-<span class="nv">bakupdevice</span><span class="o">=</span><span class="s2">"/media/root/files"</span>
-<span class="nv">bakupfolder</span><span class="o">=</span><span class="s2">"/media/root/files/ubuntubak/"</span>
-<span class="nv">bakupfile1</span><span class="o">=</span><span class="s2">"/media/root/files/ubuntubak/ubuntubak1.tgz"</span>
-<span class="nv">bakupfile2</span><span class="o">=</span><span class="s2">"/media/root/files/ubuntubak/ubuntubak2.tgz"</span>
-<span class="k">if</span> <span class="o">[</span> ! -d <span class="nv">$bakupdevice</span> <span class="o">]</span>; <span class="k">then
-    </span><span class="nb">echo</span> <span class="s2">"bakupfolder not exist,the bakupdevice is not ready,check it"</span>
-<span class="k">elif</span> <span class="o">[</span> -d <span class="nv">$bakupdevice</span> -a -d <span class="nv">$bakupfolder</span> <span class="o">]</span>; <span class="k">then
-    </span><span class="nb">echo</span> <span class="s2">"bakupdevice is ok,bakupfolder exist"</span>
-    <span class="k">if</span> <span class="o">[</span> -f <span class="nv">$bakupfile1</span> -a -f <span class="nv">$bakupfile2</span> <span class="o">]</span>; <span class="k">then
-        </span><span class="nb">echo</span> <span class="s2">"bakupfile1 exists,bakupfile2 exists"</span>
-        rm <span class="nv">$bakupfile1</span>
-        mv <span class="nv">$bakupfile2</span> <span class="nv">$bakupfile1</span>
-        tar cvpzf <span class="nv">$bakupfile2</span> --exclude<span class="o">=</span>/proc --exclude<span class="o">=</span>/lost+found --exclude<span class="o">=</span>/ubuntubak.tgz --exclude<span class="o">=</span>/mnt --exclude<span class="o">=</span>/sys --exclude<span class="o">=</span>/media --exclude<span class="o">=</span>/root/.cache /
-    <span class="k">elif</span> <span class="o">[</span> ! -f <span class="nv">$bakupfile1</span> -a ! -f <span class="nv">$bakupfile2</span> <span class="o">]</span>; <span class="k">then
-        </span><span class="nb">echo</span> <span class="s2">"bakupfile1 not exist,bakupfile2 not exist"</span>
-        tar cvpzf <span class="nv">$bakupfile1</span> --exclude<span class="o">=</span>/proc --exclude<span class="o">=</span>/lost+found --exclude<span class="o">=</span>/ubuntubak.tgz --exclude<span class="o">=</span>/mnt --exclude<span class="o">=</span>/sys --exclude<span class="o">=</span>/media --exclude<span class="o">=</span>/root/.cache /
-    <span class="k">elif</span> <span class="o">[</span> -f <span class="nv">$bakupfile1</span> -a ! -f <span class="nv">$bakupfile2</span> <span class="o">]</span>; <span class="k">then
-        </span><span class="nb">echo</span> <span class="s2">"bakupfile1 exist,bakupfile2 not exist"</span>
-        tar cvpzf <span class="nv">$bakupfile2</span> --exclude<span class="o">=</span>/proc --exclude<span class="o">=</span>/lost+found --exclude<span class="o">=</span>/ubuntubak.tgz --exclude<span class="o">=</span>/mnt --exclude<span class="o">=</span>/sys --exclude<span class="o">=</span>/media --exclude<span class="o">=</span>/root/.cache /
-    <span class="k">elif</span> <span class="o">[</span> ! -f <span class="nv">$bakupfile1</span> -a -f <span class="nv">$bakupfile2</span> <span class="o">]</span>; <span class="k">then
-        </span><span class="nb">echo</span> <span class="s2">"bakupfile1 not exist,bakupfile2 exist"</span>
-        mv <span class="nv">$bakupfile2</span> <span class="nv">$bakupfile1</span>
-        tar cvpzf <span class="nv">$bakupfile2</span> --exclude<span class="o">=</span>/proc --exclude<span class="o">=</span>/lost+found --exclude<span class="o">=</span>/ubuntubak.tgz --exclude<span class="o">=</span>/mnt --exclude<span class="o">=</span>/sys --exclude<span class="o">=</span>/media --exclude<span class="o">=</span>/root/.cache /
-
-    <span class="k">fi
-elif</span> <span class="o">[</span> -d <span class="nv">$bakupdevice</span> -a ! -d <span class="nv">$bakupfolder</span> <span class="o">]</span>; <span class="k">then
-    </span><span class="nb">echo</span> <span class="s2">"bakupdevice is ok,bakupfolder not exist"</span>
-    mkdir <span class="nv">$bakupfolder</span>
-    tar cvpzf <span class="nv">$bakupfile1</span> --exclude<span class="o">=</span>/proc --exclude<span class="o">=</span>/lost+found --exclude<span class="o">=</span>/ubuntubak.tgz --exclude<span class="o">=</span>/mnt --exclude<span class="o">=</span>/sys --exclude<span class="o">=</span>/media --exclude<span class="o">=</span>/root/.cache /
-<span class="k">fi</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>if [ ! -d /media/root/files ]; then
+    echo "bak folder not exist,the bakup device is not ready,check it"
+elif [ -d /media/root/files/ -a -d /media/root/files/ubuntubak/ ]; then
+    tar cvpzf /media/root/files/ubuntubak/ubuntubak.tgz --exclude=/proc --exclude=/lost+found --exclude=/ubuntubak.tgz --exclude=/mnt --exclude=/sys --exclude=/media --exclude=/root/.cache /
+elif [ -d /media/root/files/ -a ! -d /media/root/files/ubuntubak ]; then
+    mkdir /media/root/files/ubuntubak
+    tar cvpzf /media/root/files/ubuntubak/ubuntubak.tgz --exclude=/proc --exclude=/lost+found --exclude=/ubuntubak.tgz --exclude=/mnt --exclude=/sys --exclude=/media --exclude=/root/.cache /
+fi
 </code></pre>
 </div>
 
@@ -308,6 +266,48 @@ add one line:
 0  0    9 * *   root    rm /media/root/files/ubuntubak/ubuntubak.tgz;bash /usr/share/mytools/ubuntubak.sh
 :wq
 实现每个月9号备份系统
+</code></pre>
+</div>
+
+<h3 id="x04-system-restore">0x04 system restore</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>1&gt;用live-cd或live-usb安装一个同样的新的操作系统
+    支持重新分区
+    实验中重新分区如下：
+    /dev/sda1 对应分配给/boot(主分区)
+    /dev/sda5 对应分配给交换分区(逻辑分区)
+    /dev/sda6 对应分配给/(逻辑分区)
+
+2&gt;进live-cd
+    sudo su -
+    mkdir /mnt/tmp
+    mount /dev/sda6 /mnt/tmp
+    mount /dev/sda1 /mnt/tmp/boot
+    rm -r * /mnt/tmp
+        这句执行后新安装系统的两个分区认然存在，只是分区中的内容全部清空了
+        blkid /dev/sda1和blkid /dev/sda6这两个命令查询分区的uuid发现rm -r * /mnt/tmp后的结果与新系统安装后的结果一致,
+        说明“linux中，一切皆文件"的说法不适用于分区表,也即分区表并不属于这里说的”文件“,mbr应该也不属于
+        之所以要rm -r * /mnt/tmp,是因为备份好的系统中安装了新的驱动，而用live-usb新安装的系统中的驱动如果不rm掉，会与备份好的系统中的驱动在一起导致还原后的系统出错
+    tar xvpzf /media/ubuntu/files/ubuntubak.tgz -C /mnt/tmp
+    cd /mnt/tmp
+    mkdir proc lost+found mnt sys media root/.cache
+    mount --bind /proc /mnt/tmp/proc
+    mount --bind /sys /mnt/tmp/sys
+    mount --bind /dev /mnt/tmp/dev
+    chroot /mnt/tmp
+    grub-install /dev/sda
+    grub-mkconfig -o /boot/grub/grub.cfg
+    vi /etc/fstab
+        do as 0x01 does
+
+
+3&gt;attention:
+    /dev/sda6 为/目录对应的分区,安装完系统后/目录下的boot文件夹是空的,但是/dev/sda6中boot文件夹是存在的,
+    由于新安装的系统在启动时会自动将/dev/sda1挂载到/目录下的boot上,所以新安装的系统开机后/boot里面是有文件的,
+    但是/dev/sda6中的boot文件夹一直是空的，只不过由于新安装的系统启动后(相当于mount /dev/sda1 /boot)，
+    /boot被/dev/sda1占据了，这时/dev/sda6中的boot文件夹是被屏蔽的，无法访问的
+
+
 </code></pre>
 </div>
 </span>
