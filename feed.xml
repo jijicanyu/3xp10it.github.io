@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 07 Aug 2016 09:35:59 +0800</pubDate>
-    <lastBuildDate>Sun, 07 Aug 2016 09:35:59 +0800</lastBuildDate>
+    <pubDate>Sun, 07 Aug 2016 09:39:18 +0800</pubDate>
+    <lastBuildDate>Sun, 07 Aug 2016 09:39:18 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -767,7 +767,7 @@ add one line:
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1&amp;gt;用live-cd或live-usb安装一个同样的新的操作系统
     支持重新分区
-    实验中重新分区如下：
+    实验中重新分区如下:
     /dev/sda1 对应分配给/boot(主分区)
     /dev/sda5 对应分配给交换分区(逻辑分区)
     /dev/sda6 对应分配给/(逻辑分区)
@@ -778,10 +778,10 @@ add one line:
     mount /dev/sda6 /mnt/tmp
     mount /dev/sda1 /mnt/tmp/boot
     rm -r * /mnt/tmp
-        这句执行后新安装系统的两个分区认然存在，只是分区中的内容全部清空了
+        这句执行后新安装系统的两个分区认然存在,只是分区中的内容全部清空了
         blkid /dev/sda1和blkid /dev/sda6这两个命令查询分区的uuid发现rm -r * /mnt/tmp后的结果与新系统安装后的结果一致,
-        说明“linux中，一切皆文件&quot;的说法不适用于分区表,也即分区表并不属于这里说的”文件“,mbr应该也不属于
-        之所以要rm -r * /mnt/tmp,是因为备份好的系统中安装了新的驱动，而用live-usb新安装的系统中的驱动如果不rm掉，会与备份好的系统中的驱动在一起导致还原后的系统出错
+        说明&quot;linux中,一切皆文件&quot;的说法不适用于分区表,也即分区表并不属于这里说的&quot;文件&quot;,mbr应该也不属于
+        之所以要rm -r * /mnt/tmp,是因为备份好的系统中安装了新的驱动,而用live-usb新安装的系统中的驱动如果不rm掉,会与备份好的系统中的驱动在一起导致还原后的系统出错
     tar xvpzf /media/ubuntu/files/ubuntubak.tgz -C /mnt/tmp
     cd /mnt/tmp
     mkdir proc lost+found mnt sys media root/.cache
@@ -798,23 +798,23 @@ add one line:
 3&amp;gt;attention:
     /dev/sda6 为/目录对应的分区,安装完系统后/目录下的boot文件夹是空的,但是/dev/sda6中boot文件夹是存在的,
     由于新安装的系统在启动时会自动将/dev/sda1挂载到/目录下的boot上,所以新安装的系统开机后/boot里面是有文件的,
-    但是/dev/sda6中的boot文件夹一直是空的，只不过由于新安装的系统启动后(相当于mount /dev/sda1 /boot)，
-    /boot被/dev/sda1占据了，这时/dev/sda6中的boot文件夹是被屏蔽的，无法访问的
+    但是/dev/sda6中的boot文件夹一直是空的,只不过由于新安装的系统启动后(相当于mount /dev/sda1 /boot),
+    /boot被/dev/sda1占据了,这时/dev/sda6中的boot文件夹是被屏蔽的,无法访问的
 
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
         <pubDate>Tue, 02 Aug 2016 00:00:00 +0800</pubDate>
-        <link>/auxilary/2016/08/02/%E4%BF%AE%E5%A4%8Dlinux%E7%B3%BB%E7%BB%9F/</link>
-        <guid isPermaLink="true">/auxilary/2016/08/02/%E4%BF%AE%E5%A4%8Dlinux%E7%B3%BB%E7%BB%9F/</guid>
+        <link>/linux/2016/08/02/%E4%BF%AE%E5%A4%8Dlinux%E7%B3%BB%E7%BB%9F/</link>
+        <guid isPermaLink="true">/linux/2016/08/02/%E4%BF%AE%E5%A4%8Dlinux%E7%B3%BB%E7%BB%9F/</guid>
         
         <category>linux</category>
         
         <category>修复系统</category>
         
         
-        <category>auxilary</category>
+        <category>linux</category>
         
       </item>
     
