@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 07 Aug 2016 12:41:04 +0800</pubDate>
-    <lastBuildDate>Sun, 07 Aug 2016 12:41:04 +0800</lastBuildDate>
+    <pubDate>Sun, 07 Aug 2016 13:09:40 +0800</pubDate>
+    <lastBuildDate>Sun, 07 Aug 2016 13:09:40 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -652,15 +652,6 @@ fdisk -l
     /dev/sdb1        2048 3907028991 3907026944  1.8T  5 扩展
     /dev/sdb5        4096 3907028991 3907024896  1.8T 83 Linux
 
-mkdir /mnt/tmp
-mkdir /mnt/tmp/boot
-mount /dev/sda6 /mnt/tmp
-mount /dev/sda1 /mnt/tmp/boot
-mount --bind /dev /mnt/tmp/dev
-mount --bind /proc /mnt/tmp/proc
-mount --bind /sys /mnt/tmp/sys
-chroot /mnt/tmp
-
 vi /etc/fstab
     # /etc/fstab: static file system information.
     #
@@ -690,8 +681,6 @@ UUID=662e8f85-fea5-4e66-939a-de769a05c326 none
 to
 /dev/sda5
 
-exit
-umount /mnt/tmp/dev &amp;amp;&amp;amp; umout /mnt/tmp/proc &amp;amp;&amp;amp; umount /mnt/tmp/sys &amp;amp;&amp;amp; umount /mnt/tmp/boot &amp;amp;&amp;amp;  umount /mnt/tmp
 shutdown -r 0
 
 或者用df -h,blkid /dev/sda1,blkid /dev/sda6,blkid /dev/sda5分别查看uuid后修改
@@ -705,7 +694,7 @@ shutdown -r 0
     output is the same as upon fdisk -l
 3&amp;gt;mkdir /mnt/tmp
 4&amp;gt;mkdir /mnt/tmp/boot
-5&amp;gt;mount /dev/sda6 /mnt/tmp
+5&amp;gt;mount /dev/sda6 /mnt/tmp(这一步是多余的，因为下面的5执行后，/mnt/tmp中自然会有boot文件夹)
 6&amp;gt;mount /dev/sda1 /mnt/tmp/boot
 7&amp;gt;mount --bind /dev /mnt/tmp/dev
 8&amp;gt;mount --bind /proc /mnt/tmp/proc
@@ -765,23 +754,23 @@ add one line:
 
 &lt;h3 id=&quot;x04-system-restore&quot;&gt;0x04 system restore&lt;/h3&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;实验环境：
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;实验环境:
     ubuntu 16.04 live-usb
 
 1&amp;gt;用live-cd或live-usb安装一个同样的新的操作系统
     必须用live-cd(live-usb)重装系统才能进行下面正常的还原步骤
-    因为用live-cd(live-usb)重装系统的过程有两个关键的地方：
+    因为用live-cd(live-usb)重装系统的过程有两个关键的地方:
         新建分区表
         重构mbr
-        mbr与grub：
-            mbr是硬盘的一个引导区，而grub是一个引导程序！在mbr中有一段空间需要编写引导程序！grub只是引导程序的一种！
-            如果grub够小的话，直接写在mbr中，就可以引导操作系统了！如果grub太大，在只能写一部分在mbr了
+        mbr与grub:
+            mbr是硬盘的一个引导区,而grub是一个引导程序!在mbr中有一段空间需要编写引导程序!grub只是引导程序的一种!
+            如果grub够小的话,直接写在mbr中,就可以引导操作系统了!如果grub太大,在只能写一部分在mbr了
             http://www.linuxidc.com/Linux/2013-07/87923.htm
-    尝试过不重装系统，自己用live-usb中的gparted分区再直接进行下面的还原过程，
-    结果发现gparted分区时，会把mbr删除了,这样在下面的grub-install /dev/sda这一步会失败,显示没有找到mbr相关的信息,
-    这样只能重新用live-usb自带的安装系统工具选择&quot;清除整个磁盘后安装“,这种安装方式会自动将系统默认安装到一个分区(/,/boot都安装到/dev/sda1)
+    尝试过不重装系统,自己用live-usb中的gparted分区再直接进行下面的还原过程,
+    结果发现gparted分区时,会把mbr删除了,这样在下面的grub-install /dev/sda这一步会失败,显示没有找到mbr相关的信息,
+    这样只能重新用live-usb自带的安装系统工具选择&quot;清除整个磁盘后安装&quot;,这种安装方式会自动将系统默认安装到一个分区(/,/boot都安装到/dev/sda1)
 
-    实验中在live-usb中用自带的安装系统工具重新安装live-usb中的系统(为了新建分区表和重构mbr),支持改变分区，分区如下:
+    实验中在live-usb中用自带的安装系统工具重新安装live-usb中的系统(为了新建分区表和重构mbr),支持改变分区,分区如下:
     /dev/sda1 对应分配给/boot(主分区) 20G
     /dev/sda5 对应分配给交换空间(逻辑分区) 32G=16(内存)x2
     /dev/sda6 对应分配给/(逻辑分区) 剩余空间
@@ -792,8 +781,8 @@ add one line:
     mount /dev/sda6 /mnt/tmp
     mount /dev/sda1 /mnt/tmp/boot
     rm -r /mnt/tmp/*
-        这句执行后新安装系统的两个分区/dev/sda1,/dev/sda6依然存在,只是分区中的内容全部清空了,/mnt/tmp/boot中的内容会被清空，
-        但是boot文件夹不会被rm删除掉，因为boot文件夹是被挂载的分区设备,
+        这句执行后新安装系统的两个分区/dev/sda1,/dev/sda6依然存在,只是分区中的内容全部清空了,/mnt/tmp/boot中的内容会被清空,
+        但是boot文件夹不会被rm删除掉,因为boot文件夹是被挂载的分区设备,
         blkid /dev/sda1和blkid /dev/sda6这两个命令查询分区的uuid发现rm -r /mnt/tmp/*后的结果与新系统安装后的结果一致,
         说明&quot;linux中,一切皆文件&quot;的说法不适用于分区表,也即分区表并不属于这里说的&quot;文件&quot;,mbr应该也不属于,
         也即rm -r /mnt/tmp/*命令不会把上面1中的重新安装系统新建的分区表和mbr删除
@@ -815,7 +804,7 @@ add one line:
     exit
     sync
     sync
-    (这四个sync是为了保险起见，最好这样,实验中有一次没有sync导致还原后没有图形界面，只有命令行会话)
+    (这四个sync是为了保险起见,最好这样,实验中有一次没有sync导致还原后没有图形界面,只有命令行会话)
     umount /proc
     umount /sys
     umount /dev
