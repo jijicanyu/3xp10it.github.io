@@ -117,7 +117,7 @@
 
       <div class="read-time">
         <small>
-          6 minute read
+          14 minute read
         </small>
       </div>
 
@@ -173,307 +173,308 @@ def get_title_from_file(file):
     #等到文件中的所有uri对应的title
 </code></pre>
 </div>
-<p>#############################################################
-### <em>__ /           _ |  _ \ _) |
-###   _ \ \  / __ \  | |   | | <strong>|
-###    ) |`  &lt;  |   | | |   | | |
-### __</strong>/ _/_\ .<strong>/ _|_</strong>/ _|_</em>|
-###            _|
-###
-### name: exp10it.py
-### function: my module
-### date: 2016-08-05
-### author: quanyechavshuo
-### blog: https://3xp10it.github.io
-#############################################################
-# -<em>- coding: utf-8 -</em>-
-import sys
-reload(sys)
-sys.setdefaultencoding(‘utf-8’)
-#upon 4 lines for chinese support</p>
 
-<p>import os
-import re
-import random</p>
+<h3 id="x02-source">0x02 source</h3>
 
-<p>def figlet2file(logo_str,file_abs_path,print_or_not):
-    #输出随机的logo文字到文件或屏幕,第二个参数为任意非文件的参数时(eg.0,1,2),只输出到屏幕
-    #apt-get install figlet
-    #man figlet
-    #figure out which is the figlet’s font directory
-    #my figlet font directory is:
-    #figlet -I 2,output:/usr/share/figlet</p>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c">#############################################################</span>
+<span class="c">### ___ /           _ |  _ \ _) |</span>
+<span class="c">###   _ \\ \  / __ \  | |   | | __|</span>
+<span class="c">###    ) |`  &lt;  |   | | |   | | |</span>
+<span class="c">### ____/ _/\_\ .__/ _|\___/ _|\__|</span>
+<span class="c">###            _|</span>
+<span class="c">###</span>
+<span class="c">### name: exp10it.py</span>
+<span class="c">### function: my module</span>
+<span class="c">### date: 2016-08-05</span>
+<span class="c">### author: quanyechavshuo</span>
+<span class="c">### blog: https://3xp10it.github.io</span>
+<span class="c">#############################################################</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">reload</span><span class="p">(</span><span class="n">sys</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">setdefaultencoding</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">)</span>
+<span class="c">#upon 4 lines for chinese support</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>try:
-    f=os.popen("figlet -I 2")
-    all=f.readlines()
-    f.close()
-    figlet_font_dir=all[0][:-1]
-except:
-    os.system("apt-get install figlet")
-    f=os.popen("figlet -I 2")
-    all=f.readlines()
-    f.close()
-    figlet_font_dir=all[0][:-1]
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">random</span>
 
-all_font_name_list=get_all_file_name(figlet_font_dir,['tlf','flf'])
-random_font=random.choice(all_font_name_list)
-unsucceed=os.system("figlet -t -f %s %s &gt; /tmp/3" % (random_font,logo_str))
-if(unsucceed==1):
-    print "something wrong with figlet,check the command in python source file"
-try:
-    os.system("cat /tmp/3 &gt;&gt; %s" % file_abs_path)
-except:
-    pass
-if(print_or_not==True):
-    os.system("cat /tmp/3")
-os.system("rm /tmp/3")
-</code></pre>
-</div>
+<span class="k">def</span> <span class="nf">figlet2file</span><span class="p">(</span><span class="n">logo_str</span><span class="p">,</span><span class="n">file_abs_path</span><span class="p">,</span><span class="n">print_or_not</span><span class="p">):</span>
+    <span class="c">#输出随机的logo文字到文件或屏幕,第二个参数为任意非文件的参数时(eg.0,1,2),只输出到屏幕</span>
+    <span class="c">#apt-get install figlet</span>
+    <span class="c">#man figlet</span>
+    <span class="c">#figure out which is the figlet's font directory</span>
+    <span class="c">#my figlet font directory is:</span>
+    <span class="c">#figlet -I 2,output:/usr/share/figlet</span>
 
-<p>def oneline2nline(oneline,nline,file_abs_path):
-    #将文件中的一行字符串用多行字符串替换，调用时要将”多行字符串的参数(第二个参数)”中的换行符设置为\n
-    tmpstr=nline.replace(‘\n’,’\\n’)
-    os.system(“sed ‘/%s/c\\n%s’ %s &gt; /tmp/1” % (oneline,tmpstr,file_abs_path))
-    os.system(“cat /tmp/1 &gt; %s &amp;&amp; rm /tmp/1” % file_abs_path)
-    pass</p>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s">"figlet -I 2"</span><span class="p">)</span>
+        <span class="nb">all</span><span class="o">=</span><span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">figlet_font_dir</span><span class="o">=</span><span class="nb">all</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"apt-get install figlet"</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s">"figlet -I 2"</span><span class="p">)</span>
+        <span class="nb">all</span><span class="o">=</span><span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">figlet_font_dir</span><span class="o">=</span><span class="nb">all</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
-<p>def lin2win(file_abs_path):
-    #将linux下的文件中的\n换行符换成win下的\n\n换行符
-    import sys
-    input_file=file_abs_path
-    f=open(input_file,”r+”)
-    urls=f.readlines()
-    f.close()
-    os.system(“rm %s” % file_abs_path)
-    f1=open(file_abs_path,”a+”)
-    for url in urls:
-    	print url[0:-1]
-    	#print url is different with print url[0:-1]
-    	#print url[0:-1] can get the pure string
-    	#while print url will get the “unseen \n”
-    	#this script can turn a file with strings
-    	#end with \n into a file with strings end
-    	#with \r\n to make it comfortable move the
-    	#txt file from *nix to win,coz the file with
-    	#strings end with \n in *nix is ok for human
-    	#to see “different lines”,but this kind of file
-    	#will turn “unsee different lines” in win
-    	f1.write(url[0:-1]+”\r\n”)
-    f1.close()</p>
+    <span class="n">all_font_name_list</span><span class="o">=</span><span class="n">get_all_file_name</span><span class="p">(</span><span class="n">figlet_font_dir</span><span class="p">,[</span><span class="s">'tlf'</span><span class="p">,</span><span class="s">'flf'</span><span class="p">])</span>
+    <span class="n">random_font</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">all_font_name_list</span><span class="p">)</span>
+    <span class="n">unsucceed</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"figlet -t -f </span><span class="si">%</span><span class="s">s </span><span class="si">%</span><span class="s">s &gt; /tmp/3"</span> <span class="o">%</span> <span class="p">(</span><span class="n">random_font</span><span class="p">,</span><span class="n">logo_str</span><span class="p">))</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">unsucceed</span><span class="o">==</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">"something wrong with figlet,check the command in python source file"</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"cat /tmp/3 &gt;&gt; </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">file_abs_path</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">print_or_not</span><span class="o">==</span><span class="bp">True</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"cat /tmp/3"</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"rm /tmp/3"</span><span class="p">)</span>
 
-<p>#attention:
-#由于此处tmp_get_file_name_value和tmp_all_file_name_list在函数外面,so
-#在其他代码中调用get_all_file_name()时要用from name import *,不用import name,否则不能调用到get_all_file_name的功能
-tmp_get_file_name_value=0
-tmp_all_file_name_list=[]
-def get_all_file_name(folder,ext_list):
-    #exp_list为空时，得到目录下的所有文件名,不返回空文件夹名
-    #返回结果为文件名列表，不是完全绝对路径名
-    #eg.folder=”/root”时，当/root目录下有一个文件夹a，一个文件2.txt,a中有一个文件1.txt
-    #得到的函数返回值为[‘a/1.txt’,’2.txt’]
-    global tmp_get_file_name_value
-    global root_dir
-    global tmp_all_file_name_list
-    tmp_get_file_name_value+=1
-    if tmp_get_file_name_value==1:
-        if folder[-1]==’/’:
-            root_dir=folder[:-1]
-        else:
-            root_dir=folder</p>
+<span class="k">def</span> <span class="nf">oneline2nline</span><span class="p">(</span><span class="n">oneline</span><span class="p">,</span><span class="n">nline</span><span class="p">,</span><span class="n">file_abs_path</span><span class="p">):</span>
+    <span class="c">#将文件中的一行字符串用多行字符串替换,调用时要将"多行字符串的参数(第二个参数)"中的换行符设置为\n</span>
+    <span class="n">tmpstr</span><span class="o">=</span><span class="n">nline</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span><span class="s">'</span><span class="se">\\\n</span><span class="s">'</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"sed '/</span><span class="si">%</span><span class="s">s/c</span><span class="se">\\\n</span><span class="si">%</span><span class="s">s' </span><span class="si">%</span><span class="s">s &gt; /tmp/1"</span> <span class="o">%</span> <span class="p">(</span><span class="n">oneline</span><span class="p">,</span><span class="n">tmpstr</span><span class="p">,</span><span class="n">file_abs_path</span><span class="p">))</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"cat /tmp/1 &gt; </span><span class="si">%</span><span class="s">s &amp;&amp; rm /tmp/1"</span> <span class="o">%</span> <span class="n">file_abs_path</span><span class="p">)</span>
+    <span class="k">pass</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>allfile=os.listdir(folder)
-for each in allfile:
-    each_abspath=os.path.join(folder,each)
-    if os.path.isdir(each_abspath):
-        get_all_file_name(each_abspath,ext_list)
-    else:
-        #print each_abspath
-        if len(each_abspath)&gt;len(root_dir)+1+len(os.path.basename(each)):
-            filename=each_abspath[len(root_dir)+1:]
-            #print filename
-            if len(ext_list)==0:
-                tmp_all_file_name_list.append(filename)
-            else:
-                for each_ext in ext_list:
-                    if(filename.split('.')[-1]==each_ext):
-                        #print filename
-                        tmp_all_file_name_list.append(filename)
-        else:
-            #print each
-            if len(ext_list)==0:
-                tmp_all_file_name_list.append(each)
-            else:
-                for each_ext in ext_list:
-                    if(each.split('.')[-1]==each_ext):
-                        #print each
-                        tmp_all_file_name_list.append(each)
+<span class="k">def</span> <span class="nf">lin2win</span><span class="p">(</span><span class="n">file_abs_path</span><span class="p">):</span>
+    <span class="c">#将linux下的文件中的\n换行符换成win下的\n\n换行符</span>
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="n">input_file</span><span class="o">=</span><span class="n">file_abs_path</span>
+    <span class="n">f</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span><span class="s">"r+"</span><span class="p">)</span>
+    <span class="n">urls</span><span class="o">=</span><span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"rm </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">file_abs_path</span><span class="p">)</span>
+    <span class="n">f1</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">file_abs_path</span><span class="p">,</span><span class="s">"a+"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">:</span>
+    	<span class="k">print</span> <span class="n">url</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    	<span class="c">#print url is different with print url[0:-1]</span>
+    	<span class="c">#print url[0:-1] can get the pure string</span>
+    	<span class="c">#while print url will get the "unseen \n"</span>
+    	<span class="c">#this script can turn a file with strings</span>
+    	<span class="c">#end with \n into a file with strings end</span>
+    	<span class="c">#with \r\n to make it comfortable move the</span>
+    	<span class="c">#txt file from *nix to win,coz the file with</span>
+    	<span class="c">#strings end with \n in *nix is ok for human</span>
+    	<span class="c">#to see "different lines",but this kind of file</span>
+    	<span class="c">#will turn "unsee different lines" in win</span>
+    	<span class="n">f1</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">url</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s">"</span><span class="se">\r\n</span><span class="s">"</span><span class="p">)</span>
+    <span class="n">f1</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-return tmp_all_file_name_list
-</code></pre>
-</div>
 
-<p>def save2github(file_abs_path,repo_name,comment):
-    #将文件上传到github
-    #arg1:文件绝对路经
-    #arg2:远程仓库名
-    #提交的commit注释
-    local_resp_path=”/root/”+repo_name
-    filename=os.path.basename(file_abs_path)
-    remote_resp_uri=”https://github.com/3xp10it/%s.git” % repo_name
-    if os.path.exists(local_resp_path) is False:
-        os.system(“mkdir %s &amp;&amp; cd %s &amp;&amp; git init &amp;&amp; git pull %s &amp;&amp; git remote add origin %s &amp;&amp; git status” % (local_resp_path,local_resp_path,remote_resp_uri,remote_resp_uri))
-        if os.path.exists(local_resp_path+”/”+filename) is True:
-            print “warning!warning!warning! I will exit! There exists a same name script in local_resp_path(»%s),and this script is downloaded from remote github repo,you should rename your script if you want to upload it to git:)” % local_resp_path+”/”+filename
-            return False
-        os.system(“cp %s %s” % (file_abs_path,local_resp_path))
-        succeed=os.system(“cd %s &amp;&amp; git add . &amp;&amp; git status &amp;&amp; git commit -a -m ‘%s’ &amp;&amp; git push -u origin master” % (local_resp_path,comment))
-        if(succeed==0):
-            print “push succeed!!!”
-            return True
-        else:
-            print “push to git wrong,wrong,wrong,check it!!!”
-            return False</p>
+<span class="c">#attention:</span>
+<span class="c">#由于此处tmp_get_file_name_value和tmp_all_file_name_list在函数外面,so</span>
+<span class="c">#在其他代码中调用get_all_file_name()时要用from name import *,不用import name,否则不能调用到get_all_file_name的功能</span>
+<span class="n">tmp_get_file_name_value</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">tmp_all_file_name_list</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">def</span> <span class="nf">get_all_file_name</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span><span class="n">ext_list</span><span class="p">):</span>
+    <span class="c">#exp_list为空时,得到目录下的所有文件名,不返回空文件夹名</span>
+    <span class="c">#返回结果为文件名列表,不是完全绝对路径名</span>
+    <span class="c">#eg.folder="/root"时,当/root目录下有一个文件夹a,一个文件2.txt,a中有一个文件1.txt</span>
+    <span class="c">#得到的函数返回值为['a/1.txt','2.txt']</span>
+    <span class="k">global</span> <span class="n">tmp_get_file_name_value</span>
+    <span class="k">global</span> <span class="n">root_dir</span>
+    <span class="k">global</span> <span class="n">tmp_all_file_name_list</span>
+    <span class="n">tmp_get_file_name_value</span><span class="o">+=</span><span class="mi">1</span>
+    <span class="k">if</span> <span class="n">tmp_get_file_name_value</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">folder</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="s">'/'</span><span class="p">:</span>
+            <span class="n">root_dir</span><span class="o">=</span><span class="n">folder</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">root_dir</span><span class="o">=</span><span class="n">folder</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>if os.path.exists(local_resp_path) is True and os.path.exists(local_resp_path+"/.git") is False:
-    if os.path.exists(local_resp_path+"/"+filename) is True:
-        print "warning!warning!warning! I will exit! There exists a same name script in local_resp_path(&gt;&gt;%s),you should rename your script if you want to upload it to git:)" % local_resp_path+"/"+filename
-        return False
-    os.system("mkdir /tmp/codetmp")
-    os.system("cd %s &amp;&amp; cp -r * /tmp/codetmp/ &amp;&amp; rm -r * &amp;&amp;  git init &amp;&amp; git pull %s" % (local_resp_path,remote_resp_uri))
-    os.system("cp -r /tmp/codetmp/* %s &amp;&amp; rm -r /tmp/codetmp" % local_resp_path)
-    os.system("cp %s %s" % (file_abs_path,local_resp_path))
-    succeed=os.system("cd %s &amp;&amp; git add . &amp;&amp; git status &amp;&amp; git commit -a -m '%s' &amp;&amp; git remote add origin %s &amp;&amp; git push -u origin master" % (local_resp_path,comment,remote_resp_uri))
-    if(succeed==0):
-        print "push succeed!!!"
-        return True
-    else:
-        print "push to git wrong,wrong,wrong,check it!!!"
-        return False
+    <span class="n">allfile</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="n">allfile</span><span class="p">:</span>
+        <span class="n">each_abspath</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span><span class="n">each</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">each_abspath</span><span class="p">):</span>
+            <span class="n">get_all_file_name</span><span class="p">(</span><span class="n">each_abspath</span><span class="p">,</span><span class="n">ext_list</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c">#print each_abspath</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">each_abspath</span><span class="p">)</span><span class="o">&gt;</span><span class="nb">len</span><span class="p">(</span><span class="n">root_dir</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">each</span><span class="p">)):</span>
+                <span class="n">filename</span><span class="o">=</span><span class="n">each_abspath</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">root_dir</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+                <span class="c">#print filename</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ext_list</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                    <span class="n">tmp_all_file_name_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">each_ext</span> <span class="ow">in</span> <span class="n">ext_list</span><span class="p">:</span>
+                        <span class="k">if</span><span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'.'</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="n">each_ext</span><span class="p">):</span>
+                            <span class="c">#print filename</span>
+                            <span class="n">tmp_all_file_name_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c">#print each</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ext_list</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                    <span class="n">tmp_all_file_name_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">each</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">each_ext</span> <span class="ow">in</span> <span class="n">ext_list</span><span class="p">:</span>
+                        <span class="k">if</span><span class="p">(</span><span class="n">each</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'.'</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="n">each_ext</span><span class="p">):</span>
+                            <span class="c">#print each</span>
+                            <span class="n">tmp_all_file_name_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">each</span><span class="p">)</span>
 
-if os.path.exists(local_resp_path) is True and os.path.exists(local_resp_path+"/.git") is True:
-    #如果本地local_resp_path存在，且文件夹中有.git,当local_resp_path文件夹中的文件与远程github仓库中的文件不一致时，
-    #且远程仓库有本地仓库没有的文件，选择合并本地和远程仓库并入远程仓库,所以这里采用一并重新合并的处理方法，
-    #(与上一个if中的情况相比，多了一个合并前先删除本地仓库中的.git文件夹的动作),
-    #虽然当远程仓库中不含本地仓库没有的文件时，不用这么做，但是这样做也可以处理那种情况
-    if os.path.exists(local_resp_path+"/"+filename) is True:
-        print "warning!warning!warning! I will exit! There exists a same name script in local_resp_path(&gt;&gt;%s),you should rename your script if you want to upload it to git:)" % local_resp_path+"/"+filename
-        return False
-    os.system("cd %s &amp;&amp; rm -r .git" % local_resp_path)
-    os.system("mkdir /tmp/codetmp")
-    os.system("cd %s &amp;&amp; cp -r * /tmp/codetmp/ &amp;&amp; rm -r * &amp;&amp; git init &amp;&amp; git pull %s" % (local_resp_path,remote_resp_uri))
-    os.system("cp -r /tmp/codetmp/* %s &amp;&amp; rm -r /tmp/codetmp" % local_resp_path)
-    os.system("cp %s %s" % (file_abs_path,local_resp_path))
-    succeed=os.system("cd %s &amp;&amp; git add . &amp;&amp; git status &amp;&amp; git commit -a -m '%s' &amp;&amp; git remote add origin %s &amp;&amp; git push -u origin master" % (local_resp_path,comment,remote_resp_uri))
-    if(succeed==0):
-        print "push succeed!!!"
-        return True
-    else:
-        print "push to git wrong,wrong,wrong,check it!!!"
-        return False
-</code></pre>
-</div>
+    <span class="k">return</span> <span class="n">tmp_all_file_name_list</span>
 
-<p>#below code are the function about tab key complete with file path
-#————————start-of-key-complete-with-file-path——————————–
-import os
-import sys
-import readline
-import glob
-class tabCompleter(object):
-        “””
+
+<span class="k">def</span> <span class="nf">save2github</span><span class="p">(</span><span class="n">file_abs_path</span><span class="p">,</span><span class="n">repo_name</span><span class="p">,</span><span class="n">comment</span><span class="p">):</span>
+    <span class="c">#将文件上传到github</span>
+    <span class="c">#arg1:文件绝对路经</span>
+    <span class="c">#arg2:远程仓库名</span>
+    <span class="c">#提交的commit注释</span>
+    <span class="n">local_resp_path</span><span class="o">=</span><span class="s">"/root/"</span><span class="o">+</span><span class="n">repo_name</span>
+    <span class="n">filename</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">file_abs_path</span><span class="p">)</span>
+    <span class="n">remote_resp_uri</span><span class="o">=</span><span class="s">"https://github.com/3xp10it/</span><span class="si">%</span><span class="s">s.git"</span> <span class="o">%</span> <span class="n">repo_name</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">local_resp_path</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">False</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"mkdir </span><span class="si">%</span><span class="s">s &amp;&amp; cd </span><span class="si">%</span><span class="s">s &amp;&amp; git init &amp;&amp; git pull </span><span class="si">%</span><span class="s">s &amp;&amp; git remote add origin </span><span class="si">%</span><span class="s">s &amp;&amp; git status"</span> <span class="o">%</span> <span class="p">(</span><span class="n">local_resp_path</span><span class="p">,</span><span class="n">local_resp_path</span><span class="p">,</span><span class="n">remote_resp_uri</span><span class="p">,</span><span class="n">remote_resp_uri</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">local_resp_path</span><span class="o">+</span><span class="s">"/"</span><span class="o">+</span><span class="n">filename</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">"warning!warning!warning! I will exit! There exists a same name script in local_resp_path(&gt;&gt;</span><span class="si">%</span><span class="s">s),and this script is downloaded from remote github repo,you should rename your script if you want to upload it to git:)"</span> <span class="o">%</span> <span class="n">local_resp_path</span><span class="o">+</span><span class="s">"/"</span><span class="o">+</span><span class="n">filename</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"cp </span><span class="si">%</span><span class="s">s </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="p">(</span><span class="n">file_abs_path</span><span class="p">,</span><span class="n">local_resp_path</span><span class="p">))</span>
+        <span class="n">succeed</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"cd </span><span class="si">%</span><span class="s">s &amp;&amp; git add . &amp;&amp; git status &amp;&amp; git commit -a -m '</span><span class="si">%</span><span class="s">s' &amp;&amp; git push -u origin master"</span> <span class="o">%</span> <span class="p">(</span><span class="n">local_resp_path</span><span class="p">,</span><span class="n">comment</span><span class="p">))</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">succeed</span><span class="o">==</span><span class="mi">0</span><span class="p">):</span>
+            <span class="k">print</span> <span class="s">"push succeed!!!"</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">"push to git wrong,wrong,wrong,check it!!!"</span>
+            <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">local_resp_path</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">True</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">local_resp_path</span><span class="o">+</span><span class="s">"/.git"</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">False</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">local_resp_path</span><span class="o">+</span><span class="s">"/"</span><span class="o">+</span><span class="n">filename</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">"warning!warning!warning! I will exit! There exists a same name script in local_resp_path(&gt;&gt;</span><span class="si">%</span><span class="s">s),you should rename your script if you want to upload it to git:)"</span> <span class="o">%</span> <span class="n">local_resp_path</span><span class="o">+</span><span class="s">"/"</span><span class="o">+</span><span class="n">filename</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"mkdir /tmp/codetmp"</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"cd </span><span class="si">%</span><span class="s">s &amp;&amp; cp -r * /tmp/codetmp/ &amp;&amp; rm -r * &amp;&amp;  git init &amp;&amp; git pull </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="p">(</span><span class="n">local_resp_path</span><span class="p">,</span><span class="n">remote_resp_uri</span><span class="p">))</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"cp -r /tmp/codetmp/* </span><span class="si">%</span><span class="s">s &amp;&amp; rm -r /tmp/codetmp"</span> <span class="o">%</span> <span class="n">local_resp_path</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"cp </span><span class="si">%</span><span class="s">s </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="p">(</span><span class="n">file_abs_path</span><span class="p">,</span><span class="n">local_resp_path</span><span class="p">))</span>
+        <span class="n">succeed</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"cd </span><span class="si">%</span><span class="s">s &amp;&amp; git add . &amp;&amp; git status &amp;&amp; git commit -a -m '</span><span class="si">%</span><span class="s">s' &amp;&amp; git remote add origin </span><span class="si">%</span><span class="s">s &amp;&amp; git push -u origin master"</span> <span class="o">%</span> <span class="p">(</span><span class="n">local_resp_path</span><span class="p">,</span><span class="n">comment</span><span class="p">,</span><span class="n">remote_resp_uri</span><span class="p">))</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">succeed</span><span class="o">==</span><span class="mi">0</span><span class="p">):</span>
+            <span class="k">print</span> <span class="s">"push succeed!!!"</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">"push to git wrong,wrong,wrong,check it!!!"</span>
+            <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">local_resp_path</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">True</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">local_resp_path</span><span class="o">+</span><span class="s">"/.git"</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="c">#如果本地local_resp_path存在,且文件夹中有.git,当local_resp_path文件夹中的文件与远程github仓库中的文件不一致时,</span>
+        <span class="c">#且远程仓库有本地仓库没有的文件,选择合并本地和远程仓库并入远程仓库,所以这里采用一并重新合并的处理方法,</span>
+        <span class="c">#(与上一个if中的情况相比,多了一个合并前先删除本地仓库中的.git文件夹的动作),</span>
+        <span class="c">#虽然当远程仓库中不含本地仓库没有的文件时,不用这么做,但是这样做也可以处理那种情况</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">local_resp_path</span><span class="o">+</span><span class="s">"/"</span><span class="o">+</span><span class="n">filename</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">"warning!warning!warning! I will exit! There exists a same name script in local_resp_path(&gt;&gt;</span><span class="si">%</span><span class="s">s),you should rename your script if you want to upload it to git:)"</span> <span class="o">%</span> <span class="n">local_resp_path</span><span class="o">+</span><span class="s">"/"</span><span class="o">+</span><span class="n">filename</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"cd </span><span class="si">%</span><span class="s">s &amp;&amp; rm -r .git"</span> <span class="o">%</span> <span class="n">local_resp_path</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"mkdir /tmp/codetmp"</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"cd </span><span class="si">%</span><span class="s">s &amp;&amp; cp -r * /tmp/codetmp/ &amp;&amp; rm -r * &amp;&amp; git init &amp;&amp; git pull </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="p">(</span><span class="n">local_resp_path</span><span class="p">,</span><span class="n">remote_resp_uri</span><span class="p">))</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"cp -r /tmp/codetmp/* </span><span class="si">%</span><span class="s">s &amp;&amp; rm -r /tmp/codetmp"</span> <span class="o">%</span> <span class="n">local_resp_path</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"cp </span><span class="si">%</span><span class="s">s </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="p">(</span><span class="n">file_abs_path</span><span class="p">,</span><span class="n">local_resp_path</span><span class="p">))</span>
+        <span class="n">succeed</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"cd </span><span class="si">%</span><span class="s">s &amp;&amp; git add . &amp;&amp; git status &amp;&amp; git commit -a -m '</span><span class="si">%</span><span class="s">s' &amp;&amp; git remote add origin </span><span class="si">%</span><span class="s">s &amp;&amp; git push -u origin master"</span> <span class="o">%</span> <span class="p">(</span><span class="n">local_resp_path</span><span class="p">,</span><span class="n">comment</span><span class="p">,</span><span class="n">remote_resp_uri</span><span class="p">))</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">succeed</span><span class="o">==</span><span class="mi">0</span><span class="p">):</span>
+            <span class="k">print</span> <span class="s">"push succeed!!!"</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">"push to git wrong,wrong,wrong,check it!!!"</span>
+            <span class="k">return</span> <span class="bp">False</span>
+
+
+<span class="c">#below code are the function about tab key complete with file path</span>
+<span class="c">#------------------------start-of-key-complete-with-file-path--------------------------------</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">readline</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="k">class</span> <span class="nc">tabCompleter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+        <span class="s">"""
         A tab completer that can either complete from
         the filesystem or from a list.
         Partially taken from:
         http://stackoverflow.com/questions/5637124/tab-completion-in-pythons-raw-input
         source code:https://gist.github.com/iamatypeofwalrus/5637895
-        “””</p>
+        """</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    def pathCompleter(self,text,state):
-        """
-        This is the tab completer for systems paths.
-        Only tested on *nix systems
-        """
-        line   = readline.get_line_buffer().split()
-        return [x for x in glob.glob(text+'*')][state]
+        <span class="k">def</span> <span class="nf">pathCompleter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">text</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+            <span class="s">"""
+            This is the tab completer for systems paths.
+            Only tested on *nix systems
+            """</span>
+            <span class="n">line</span>   <span class="o">=</span> <span class="n">readline</span><span class="o">.</span><span class="n">get_line_buffer</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">text</span><span class="o">+</span><span class="s">'*'</span><span class="p">)][</span><span class="n">state</span><span class="p">]</span>
 
-    def createListCompleter(self,ll):
-        """
-        This is a closure that creates a method that autocompletes from
-        the given list.
-        Since the autocomplete function can't be given a list to complete from
-        a closure is used to create the listCompleter function with a list to complete
-        from.
-        """
-        def listCompleter(text,state):
-            line   = readline.get_line_buffer()
-            if not line:
-                return [c + " " for c in ll][state]
-            else:
-                return [c + " " for c in ll if c.startswith(line)][state]
-        self.listCompleter = listCompleter t = tabCompleter() t.createListCompleter(["ab","aa","bcd","bdf"])
+        <span class="k">def</span> <span class="nf">createListCompleter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ll</span><span class="p">):</span>
+            <span class="s">"""
+            This is a closure that creates a method that autocompletes from
+            the given list.
+            Since the autocomplete function can't be given a list to complete from
+            a closure is used to create the listCompleter function with a list to complete
+            from.
+            """</span>
+            <span class="k">def</span> <span class="nf">listCompleter</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+                <span class="n">line</span>   <span class="o">=</span> <span class="n">readline</span><span class="o">.</span><span class="n">get_line_buffer</span><span class="p">()</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="p">[</span><span class="n">c</span> <span class="o">+</span> <span class="s">" "</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">ll</span><span class="p">][</span><span class="n">state</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="p">[</span><span class="n">c</span> <span class="o">+</span> <span class="s">" "</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">ll</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">line</span><span class="p">)][</span><span class="n">state</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">listCompleter</span> <span class="o">=</span> <span class="n">listCompleter</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">tabCompleter</span><span class="p">()</span>
+<span class="n">t</span><span class="o">.</span><span class="n">createListCompleter</span><span class="p">([</span><span class="s">"ab"</span><span class="p">,</span><span class="s">"aa"</span><span class="p">,</span><span class="s">"bcd"</span><span class="p">,</span><span class="s">"bdf"</span><span class="p">])</span>
+
+<span class="n">readline</span><span class="o">.</span><span class="n">set_completer_delims</span><span class="p">(</span><span class="s">'</span><span class="se">\t</span><span class="s">'</span><span class="p">)</span>
+<span class="n">readline</span><span class="o">.</span><span class="n">parse_and_bind</span><span class="p">(</span><span class="s">"tab: complete"</span><span class="p">)</span>
+<span class="c">#readline.set_completer(t.listCompleter)</span>
+<span class="c">#ans = raw_input("Complete from list ")</span>
+<span class="c">#print ans</span>
+<span class="n">readline</span><span class="o">.</span><span class="n">set_completer</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">pathCompleter</span><span class="p">)</span>
+<span class="c">#--------------------------end-of-key-complete-with-file-path--------------------------------</span>
+
+<span class="k">def</span> <span class="nf">get_title_from_uri</span><span class="p">(</span><span class="n">uri</span><span class="p">):</span>
+    <span class="c">#得到uri对应的title</span>
+    <span class="kn">import</span> <span class="nn">mechanize</span>
+    <span class="kn">import</span> <span class="nn">cookielib</span>
+    <span class="n">br</span> <span class="o">=</span> <span class="n">mechanize</span><span class="o">.</span><span class="n">Browser</span><span class="p">()</span>
+    <span class="n">br</span><span class="o">.</span><span class="n">set_cookiejar</span><span class="p">(</span><span class="n">cookielib</span><span class="o">.</span><span class="n">LWPCookieJar</span><span class="p">())</span> <span class="c"># Cookie jar</span>
+    <span class="n">br</span><span class="o">.</span><span class="n">set_handle_equiv</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span> <span class="c"># Browser Option</span>
+    <span class="n">br</span><span class="o">.</span><span class="n">set_handle_gzip</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">br</span><span class="o">.</span><span class="n">set_handle_redirect</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">br</span><span class="o">.</span><span class="n">set_handle_referer</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">br</span><span class="o">.</span><span class="n">set_handle_robots</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">br</span><span class="o">.</span><span class="n">set_handle_refresh</span><span class="p">(</span><span class="n">mechanize</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">HTTPRefreshProcessor</span><span class="p">(),</span> <span class="n">max_time</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">br</span><span class="o">.</span><span class="n">addheaders</span> <span class="o">=</span> <span class="p">[(</span><span class="s">'User-agent'</span><span class="p">,</span> <span class="s">'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008071615 Fedora/3.0.1-1.fc9 Firefox/3.0.1'</span><span class="p">)]</span>
+    <span class="n">br</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
+    <span class="c">#print br.title()</span>
+    <span class="k">return</span> <span class="n">br</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">get_uris_from_file</span><span class="p">(</span><span class="nb">file</span><span class="p">):</span>
+    <span class="c">#从文件中获取所有uri</span>
+    <span class="n">f</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span><span class="s">"r+"</span><span class="p">)</span>
+    <span class="n">content</span><span class="o">=</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="c">#print content</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">allurls</span><span class="o">=</span><span class="p">[]</span>
+    <span class="nb">all</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'(http(</span><span class="err">\</span><span class="s">S)+)'</span><span class="p">,</span><span class="n">content</span><span class="p">,</span><span class="n">re</span><span class="o">.</span><span class="n">I</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="nb">all</span><span class="p">:</span>
+        <span class="n">allurls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">each</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="c">#print allurls</span>
+    <span class="k">return</span> <span class="n">allurls</span>
+
+<span class="k">def</span> <span class="nf">get_title_from_file</span><span class="p">(</span><span class="nb">file</span><span class="p">):</span>
+    <span class="c">#等到文件中的所有uri对应的title</span>
+    <span class="n">target_allurls</span><span class="o">=</span><span class="n">get_uris_from_file</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">"a output file:/tmp/result.txt"</span>
+    <span class="n">writed_urls</span><span class="o">=</span><span class="p">[]</span>
+    <span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="n">target_allurls</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s">"/tmp/result.txt"</span><span class="p">,</span><span class="s">"a+"</span><span class="p">)</span>
+        <span class="n">tmp</span><span class="o">=</span><span class="n">urlparse</span><span class="p">(</span><span class="n">each</span><span class="p">)</span>
+        <span class="n">http_domain</span><span class="o">=</span><span class="n">tmp</span><span class="o">.</span><span class="n">scheme</span><span class="o">+</span><span class="s">'://'</span><span class="o">+</span><span class="n">tmp</span><span class="o">.</span><span class="n">hostname</span>
+        <span class="n">title</span><span class="o">=</span><span class="n">get_title_from_uri</span><span class="p">(</span><span class="n">http_domain</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">http_domain</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">writed_urls</span><span class="p">:</span>
+                <span class="n">each_line_to_write</span><span class="o">=</span><span class="n">http_domain</span><span class="o">+</span><span class="s">'</span><span class="se">\r\n</span><span class="s">'</span><span class="o">+</span><span class="s">'upon uri is:'</span><span class="o">+</span><span class="n">title</span><span class="o">+</span><span class="s">'</span><span class="se">\r\n</span><span class="s">'</span>
+                <span class="k">print</span> <span class="n">each_line_to_write</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">each_line_to_write</span><span class="p">)</span>
+                <span class="n">writed_urls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">http_domain</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">pass</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre>
 </div>
-
-<p>readline.set_completer_delims(‘\t’)
-readline.parse_and_bind(“tab: complete”)
-#readline.set_completer(t.listCompleter)
-#ans = raw_input(“Complete from list “)
-#print ans
-readline.set_completer(t.pathCompleter)
-#————————–end-of-key-complete-with-file-path——————————–</p>
-
-<p>def get_title_from_uri(uri):
-    #得到uri对应的title
-    import mechanize
-    import cookielib
-    br = mechanize.Browser()
-    br.set_cookiejar(cookielib.LWPCookieJar()) # Cookie jar
-    br.set_handle_equiv(True) # Browser Option
-    br.set_handle_gzip(True)
-    br.set_handle_redirect(True)
-    br.set_handle_referer(True)
-    br.set_handle_robots(False)
-    br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
-    br.addheaders = [(‘User-agent’, ‘Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008071615 Fedora/3.0.1-1.fc9 Firefox/3.0.1’)]
-    br.open(uri)
-    #print br.title()
-    return br.title()</p>
-
-<p>def get_uris_from_file(file):
-    #从文件中获取所有uri
-    f=open(file,”r+”)
-    content=f.read()
-    #print content
-    f.close()
-    allurls=[]
-    all=re.findall(‘(http(\S)+)’,content,re.I)
-    for each in all:
-        allurls.append(each[0])
-    #print allurls
-    return allurls</p>
-
-<p>def get_title_from_file(file):
-    #等到文件中的所有uri对应的title
-    target_allurls=get_uris_from_file(file)
-    print “a output file:/tmp/result.txt”
-    writed_urls=[]
-    for each in target_allurls:
-        f=open(“/tmp/result.txt”,”a+”)
-        tmp=urlparse(each)
-        http_domain=tmp.scheme+’://’+tmp.hostname
-        title=get_title_from_uri(http_domain)
-        time.sleep(1)
-        try:
-            if http_domain not in writed_urls:
-                each_line_to_write=http_domain+’\r\n’+’upon uri is:’+title+’\r\n’
-                print each_line_to_write
-                f.write(each_line_to_write)
-                writed_urls.append(http_domain)
-        except:
-            pass
-    f.close()
-```</p>
 
 <h3 id="x03-">0x03 模块发布</h3>
 
