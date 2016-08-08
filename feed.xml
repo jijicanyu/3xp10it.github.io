@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 08 Aug 2016 10:06:38 +0800</pubDate>
-    <lastBuildDate>Mon, 08 Aug 2016 10:06:38 +0800</lastBuildDate>
+    <pubDate>Mon, 08 Aug 2016 12:33:56 +0800</pubDate>
+    <lastBuildDate>Mon, 08 Aug 2016 12:33:56 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -34,6 +34,7 @@
 2&amp;gt;代码自动规范缩进
     ggvG
     =
+    (python效果不好，有可能让代码不再对齐而出错)
 3&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -1029,6 +1030,8 @@
 &lt;span class=&quot;p&quot;&gt;154.&lt;/span&gt;ubuntu audio:http://forum.ubuntu.org.cn/viewtopic.php?t=324619
 &lt;span class=&quot;p&quot;&gt;155.&lt;/span&gt;ubuntu 16.04 super+d切换到桌面的方法,在系统的键盘设置中取消导航中的隐藏所有窗口的super+d的快捷键,打开compizconfig settins manager,搜索unity,找到显示桌面的快捷键设置处,设置为super+d
 &lt;span class=&quot;p&quot;&gt;156.&lt;/span&gt;pip install exp10it -U出现无法立刻升级处理办法:pip install exp10it=(local_latest_version)
+&lt;span class=&quot;p&quot;&gt;157.&lt;/span&gt;grep多行匹配:(eg.匹配exp10it.py中的api)
+    pcregrep -M &#39;def .&lt;span class=&quot;ge&quot;&gt;*(.*&lt;/span&gt;):&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;(.&lt;span class=&quot;ge&quot;&gt;*#.*&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;){1,10}&#39;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
@@ -1067,32 +1070,58 @@
     #figure out which is the figlet&#39;s font directory
     #my figlet font directory is:
     #figlet -I 2,output:/usr/share/figlet
-
 def oneline2nline(oneline,nline,file_abs_path):
     #将文件中的一行字符串用多行字符串替换,调用时要将&quot;多行字符串的参数(第二个参数)&quot;中的换行符设置为\n
-
 def lin2win(file_abs_path):
     #将linux下的文件中的\n换行符换成win下的\n\n换行符
-
 def get_all_file_name(folder,ext_list):
     #得到文件夹下的所有文件名的绝对路经,第二个参数为要求的后缀列表
-
 def save2github(file_abs_path,repo_name,comment):
     #将文件上传到github
     #arg1:文件绝对路经
     #arg2:远程仓库名
     #提交的commit注释
-
-增加了raw_input()支持自动补全文件路径代码,用法:from exp10it import *
-
 def get_title_from_uri(uri):
-    #得到uri对应的title
-
+    #得到uri对应的title```
 def get_uris_from_file(file):
     #从文件中获取所有uri### 0x02 module
-
 def get_title_from_file(file):
     #等到文件中的所有uri对应的title
+def newscript():
+    #快速写脚本,加logo,写完后可选上传到github
+def figlet2file(logo_str,file_abs_path,print_or_not):
+    #输出随机的logo文字到文件或屏幕,第二个参数为任意非文件的参数时(eg.0,1,2),只输出到屏幕
+    #apt-get install figlet
+    #man figlet
+    #figure out which is the figlet&#39;s font directory
+    #my figlet font directory is:
+    #figlet -I 2,output:/usr/share/figlet
+def oneline2nline(oneline,nline,file_abs_path):
+    #将文件中的一行字符串用多行字符串替换，调用时要将&quot;多行字符串的参数(第二个参数)&quot;中的换行符设置为\n
+def lin2win(file_abs_path):
+    #将linux下的文件中的\n换行符换成win下的\n\n换行符
+def get_all_file_name(folder,ext_list):
+    #exp_list为空时，得到目录下的所有文件名,不返回空文件夹名
+    #返回结果为文件名列表，不是完全绝对路径名
+    #eg.folder=&quot;/root&quot;时，当/root目录下有一个文件夹a，一个文件2.txt,a中有一个文件1.txt
+    #得到的函数返回值为[&#39;a/1.txt&#39;,&#39;2.txt&#39;]
+def save2github(file_abs_path,repo_name,comment):
+    #将文件上传到github
+    #arg1:文件绝对路经
+    #arg2:远程仓库名
+    #提交的commit注释
+def get_title_from_uri(uri):
+    #得到uri对应的title
+def get_uris_from_file(file):
+    #从文件中获取所有uri
+def get_title_from_file(file):
+    #等到文件中的所有uri对应的title
+def check_file_has_logo(file_abs_path):
+    a = &#39;### blog: https://3xp10it.github.io&#39;
+def newscript():
+    #快速写脚本,加logo,写完后可选上传到github
+def blog():
+    #便捷写博客(jekyll+github)函数
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
