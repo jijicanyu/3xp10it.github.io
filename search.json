@@ -1,14 +1,6 @@
 [
   
   {
-    "title"    : "test",
-    "category" : "",
-    "tags"     : "test",
-    "url"      : "/test/2016/08/08/test/",
-    "date"     : "2016-08-08 00:00:00 +0800"
-    } ,
-    
-  {
     "title"    : "vim快捷键",
     "category" : "",
     "tags"     : "linux, editor, effiency",
