@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 08 Aug 2016 20:33:54 +0800</pubDate>
-    <lastBuildDate>Mon, 08 Aug 2016 20:33:54 +0800</lastBuildDate>
+    <pubDate>Mon, 08 Aug 2016 20:38:32 +0800</pubDate>
+    <lastBuildDate>Mon, 08 Aug 2016 20:38:32 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -2436,11 +2436,8 @@ AC C3 CE 15 DF 97 9D 41 B5 A5 6E C9 7C B6 3E F0 97 6C 12 ED D1 B7 07 24 11 11 EB
 
 -------------end---------------
 
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111122222222
-f8执行到803dca4处,此时下一句为strcat,803dca0处的mov byte ptr ss:[ebp],0x0,
-ss:[ebp]在od中看到是eax的大小(0x12e4b0),这句mov指令将12e4b0内存地址对应的数据内容中的数据的第一个字节置0,
-这样strcat(argv1=0x12e4b0,argv2=0x3a0481c)的第一个参数对应内存数据的最低一个字节的内容变为0,
-于是strcat将从12e4b0处开始拼接第二个参数对应的内存数据,而12e4b0在堆栈窗口中的情况如上所示,
+f8执行到803dca4处,此时下一句为strcat,803dca0处的mov byte ptr ss:[ebp],0x0,ss:[ebp]在od中看到是eax的大小(0x12e4b0),这句mov指令将12e4b0内存地址对应的数据内容中的数据的第一个字节置0,这样strcat(argv1=0x12e4b0,argv2=0x3a0481c)的第一个参数对应内存数据的最低一个字节的内容变为0,于是strcat将从12e4b0处开始拼接第二个参数对应的内存数据,而12e4b0在堆栈窗口中的情况如上所示
+
 (12e4b0在数据窗口中跟随)
 --------------start--------------
 00 E4 12 00 88 E6 12 00 00 00 00 00 9E 4F 26 04 30 E8 12 00 9C AE 23 08 A9 51 08 08 50 A6 23 08
