@@ -135,7 +135,9 @@
   four file linked to upon vedio:
     https://github.com/StefanMolls/Blog-related-Files/tree/master/Video1-Fuzzing%20Basics%20with%20Sulley%20
     include these:
-        crashbin_explorer.py(crashbin_explorer.py create a app_relevant_cases.txt,this crashbin_explorer.py is different from the origin utils<span class="se">\c</span>rashbin_explorer.py)
+        crashbin_explorer.py
+            (crashbin_explorer.py create a app_relevant_cases.txt,this crashbin_explorer.py is
+            different from the origin utils<span class="se">\c</span>rashbin_explorer.py)
         filter_cases.py
         pcmanftp.py
         pcmanftp_simple.py
@@ -171,11 +173,12 @@
     on 192.168.3.77's sulley root directory:
         copy 192.168.3.177\sulley\audit\pcmanftpd_crashbin .
         crashbin_explorer.py(generage a pcman_relevant_cases.txt,and show the numbers of the crashed ones)
-            crashbin_explorer.py -t num(this command can show the detail of the num crash,this command is not necessary)
+            crashbin_explorer.py -t num(this command can show the detail of the num crash,this command is not
+            necessary)
+
         utils\pcap_cleaner.py pcmanftpd_crashbin audit(delete the useless .pcap files in audit)
         filter_cases.py(generate pcman_relevant.txt from pcman_all_cases.txt and pcman_relevant_cases.txt)
 
-    111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 </span><span class="p">6.</span>important files about sulley can be download from:
     https://github.com/3xp10it/mysulleycases
 </code></pre>
