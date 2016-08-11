@@ -1114,8 +1114,30 @@
 <span class="p">163.</span>windbg调试命令详解:
     http://www.yiiyee.cn/Blog/windbg/
     http://www.cppblog.com/weiym/archive/2012/06/07/177958.aspx
-<span class="p">164.</span>firefox好用的一个翻译附加组件：
+    db esi:查看esi地址中的内容
+        db 400000:查看0x400000处的内容,db按字节大小查看,dd按DWORD类型查看
+    !address edi:显示edi地址处的内存状态,信息
+    lmm mso v:匹配mso模块,并显示详细信息
+    bp eax:在eax处下断点,支持第几次经过后中断,支持中断后执行命令
+    g:让被调试的程序继续运行(f5)
+        gh:把异常标识为已处理并断续执行程序
+        go:对异常不进行任何处理并继续执行程序
+    kb:显示传递给堆栈回溯中的每个函数的前三个参数
+        kp:显示传递给堆栈回溯中的每个函数的所有参数
+    ub mso!Ordinal1273+0x2581:反汇编mso!Ordinal1273+0x2581地址之前的代码
+        uf test!main:反汇编test!main函数
+    p:单步步入step into(f11)
+    t:单步步过step over(f10)
+    ? ebp-edi:显示表达式ebp-edi的值
+        ?? expression:显示c++表达式的值
+    .cls:清屏
+<span class="p">164.</span>firefox好用的一个翻译附加组件:
     S3.Google Translator
+<span class="p">165.</span>firefox的vimperator插件使用:
+    http://wangbixi.com/x2923/comment-page-1/
+    http://pchu.blogbus.com/
+    http://luoxiqofy.blogbus.com
+    http://www.cnblogs.com/flywuya/archive/2010/12/29/1920485.html
 </code></pre>
 </div>
 </span>

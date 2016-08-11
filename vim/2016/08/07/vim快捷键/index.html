@@ -125,7 +125,9 @@
 
         
 
-        <span itemprop="articleBody"><div class="highlighter-rouge"><pre class="highlight"><code>1&gt;函数折叠与打开
+        <span itemprop="articleBody"><h3 id="x00-vim">0x00 vim</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>1&gt;函数折叠与打开
     zM函数全部折叠
     zR折叠全部打开
     zo打开一个折叠
@@ -133,8 +135,38 @@
 2&gt;代码自动规范缩进
     ggvG
     =
-    (python效果不好，有可能让代码不再对齐而出错)
-3&gt;
+    (python效果不好,有可能让代码不再对齐而出错)
+3&gt;easymotion插件(,为&lt;leader&gt;)默认&lt;leader&gt;&lt;leader&gt;w,添加如下映射:
+    noremap ,w gg,,w
+</code></pre>
+</div>
+
+<h3 id="x01-vimperator">0x01 vimperator</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>"3.14.0 (created: 2016/06/07 23:58:16)
+imap jf &lt;Esc&gt;
+imap fj &lt;Esc&gt;
+cmap jf &lt;Esc&gt;
+cmap fj &lt;Esc&gt;
+" noremap ; &lt;S-;&gt;无效
+nmap mm ZZ
+noremap J gT
+noremap K gt
+noremap h &lt;S-Left&gt;
+noremap l &lt;S-Right&gt;
+source! /root/.vimperatorrc.local
+
+" vim: set ft=vimperator:
+
+set nextpattern=\s*下一页|下一张|下一篇|下页|后页\s*,^\bnext\b,\\bnext\\b,^&gt;$,^(&gt;&amp; gt;|»)$,^(&gt;|»),(&gt;|»)$,\\bmore\\b
+set previouspattern=\s*上一页|上一张|上一篇|上页|前页\s*,^\bprev|previous\b, \\bprev|previous\\b,^&lt;$,^(&lt;&lt;|«)$,^(&lt;|«),(&lt;|«)$
+nmap [ [[
+nmap ] ]]
+
+noremap bl :tabopen https://3xp10it.github.io &lt;CR&gt;
+noremap gi :tabopen http://www.github.com/3xp10it &lt;CR&gt;
+noremap li :tabopen https://3xp10it.github.io/bookmarks.html &lt;CR&gt;
+noremap wo :tabopen http://192.168.3.13:1235/webinfos &lt;CR&gt;
 </code></pre>
 </div>
 </span>
