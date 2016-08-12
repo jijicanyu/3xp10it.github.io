@@ -138,6 +138,17 @@
     (python效果不好,有可能让代码不再对齐而出错)
 3&gt;easymotion插件(,为&lt;leader&gt;)默认&lt;leader&gt;&lt;leader&gt;w,添加如下映射:
     noremap ,w gg,,w
+4&gt;vim写中文自动换行的处理
+    https://wiki.archlinux.org/index.php/Vim_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#.E8.87.AA.E5.8A.A8.E6.8D.A2.E8.A1.8C.E6.98.BE.E7.A4.BA
+    http://www.cnblogs.com/ayanmw/p/3432005.html
+    http://blog.chinaunix.net/xmlrpc.php?r=blog/article&amp;uid=53564&amp;id=2098815
+    http://blog.csdn.net/auwzb/article/details/11609363
+    最后为实现写md文件可以在textwidth的值处自动换行，在vimrc中加入如下：
+        autocmd FileType * setlocal textwidth=111 formatoptions=tcqmM
+        （其中的textwidth=111为github pages的博客每行长度,且安装vim13后，上面的*只对md文件有效，如果写成FileType md setlocal...则没有效果,惑不解）
+
+
+
 </code></pre>
 </div>
 

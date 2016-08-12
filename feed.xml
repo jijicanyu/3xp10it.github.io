@@ -5,9 +5,49 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 12 Aug 2016 08:54:53 +0800</pubDate>
-    <lastBuildDate>Fri, 12 Aug 2016 08:54:53 +0800</lastBuildDate>
+    <pubDate>Fri, 12 Aug 2016 16:43:53 +0800</pubDate>
+    <lastBuildDate>Fri, 12 Aug 2016 16:43:53 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>fckeditor各版本绕过</title>
+        <description>&lt;p&gt;0x00 fckeditor上传漏洞总结&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http://sec.chinabyte.com/206/13708206.shtml
+http://www.it610.com/article/1842939.htm
+http://secureyes.net/nw/assets/File-Upload-Vulnerability-in-FCKEditor.pdf &amp;lt;=2.6.4
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;0x01 asp&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2.6.6
+    http://www.hack80.com/thread-320-1-1.html
+    http://www.qhwins.com/ShowNews/?11-20109214030542523.html
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;0x02 php&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Fri, 12 Aug 2016 00:00:00 +0800</pubDate>
+        <link>/web/2016/08/12/fckeditor%E5%90%84%E7%89%88%E6%9C%AC%E7%BB%95%E8%BF%87/</link>
+        <guid isPermaLink="true">/web/2016/08/12/fckeditor%E5%90%84%E7%89%88%E6%9C%AC%E7%BB%95%E8%BF%87/</guid>
+        
+        <category>fckeditor</category>
+        
+        <category>web</category>
+        
+        <category>upload</category>
+        
+        
+        <category>web</category>
+        
+      </item>
     
       <item>
         <title>漏洞战争-cve-2011-0104</title>
@@ -42,9 +82,10 @@ good article:
         ?? expression:显示c++表达式的值
     .cls:清屏
 
-    其中windbg中的kb命令相当于od中的查看调用堆栈(alt+k),如下图中的ChildEBP列为当前eip对应的ebp的值,RetAddr为当前eip所在的函数的函数返回地址,Args to Child为当前函数的参数
-    要注意的是，并不是kb下面的所有的ChildEBP对应的一列都是函数调用，只有第一排的ChildEBP,RetAddr,Args to Child的数据值是当前的函数调用的相关参数，从第二排开始的只是栈中高地址的数据内容
-    从ebp到retn到参数相当于地址从栈空间中的低地址向高地址的排列,函数调用时，栈中的数据如下：
+    其中windbg中的kb命令相当于od中的查看调用堆栈(alt+k),如下图中的ChildEBP列为当前eip对应的ebp的值,
+    RetAddr为当前eip d所在的函数的函数返回地址,Args to Child为当前函数的参数
+    要注意的是,并不是kb下面的所有的ChildEBP对应的一列都是函数调用,只有第一排的ChildEBP,RetAddr,Args to Child的数据值是当前的函数调用的相关参数,从第二排开始的只是栈中高地址的数据内容
+    从ebp到retn到参数相当于地址从栈空间中的低地址向高地址的排列,函数调用时,栈中的数据如下:
 
                     ...
                     ...
@@ -89,6 +130,17 @@ good article:
     (python效果不好,有可能让代码不再对齐而出错)
 3&amp;gt;easymotion插件(,为&amp;lt;leader&amp;gt;)默认&amp;lt;leader&amp;gt;&amp;lt;leader&amp;gt;w,添加如下映射:
     noremap ,w gg,,w
+4&amp;gt;vim写中文自动换行的处理
+    https://wiki.archlinux.org/index.php/Vim_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#.E8.87.AA.E5.8A.A8.E6.8D.A2.E8.A1.8C.E6.98.BE.E7.A4.BA
+    http://www.cnblogs.com/ayanmw/p/3432005.html
+    http://blog.chinaunix.net/xmlrpc.php?r=blog/article&amp;amp;uid=53564&amp;amp;id=2098815
+    http://blog.csdn.net/auwzb/article/details/11609363
+    最后为实现写md文件可以在textwidth的值处自动换行，在vimrc中加入如下：
+        autocmd FileType * setlocal textwidth=111 formatoptions=tcqmM
+        （其中的textwidth=111为github pages的博客每行长度,且安装vim13后，上面的*只对md文件有效，如果写成FileType md setlocal...则没有效果,惑不解）
+
+
+
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -189,6 +241,9 @@ noremap wo :tabopen http://192.168.3.13:1235/webinfos &amp;lt;CR&amp;gt;
    # netstat -lntp          # 查看所有  监听端口
    # netstat -antp          # 查看所有已经建立的连接
    # netstat -s             # 查看网络统计信息
+
+   find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*vimrc*&lt;/span&gt;&quot; | xargs grep -r &quot;linebreak&quot;
+       #在当前目录下查找文件名中包含vimrc的所有文件,并在这些文件中查找包含“linebreak”关键字的文件中的与“linebreak”相关的行
 &lt;span class=&quot;p&quot;&gt;19.&lt;/span&gt;linux backup and restore:&lt;span class=&quot;nt&quot;&gt;&amp;lt;sudo&amp;gt;&lt;/span&gt;
     0&amp;gt;http://xing.rocks/2015/03/06/ubuntu%E7%B3%BB%E7%BB%9F%E5%A4%87%E4%BB%BD%E4%B8%8E%E8%BF%98%E5%8E%9F/    更详细
     1&amp;gt;backup:
@@ -1151,6 +1206,7 @@ noremap wo :tabopen http://192.168.3.13:1235/webinfos &amp;lt;CR&amp;gt;
     http://pchu.blogbus.com/
     http://luoxiqofy.blogbus.com
     http://www.cnblogs.com/flywuya/archive/2010/12/29/1920485.html
+
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
@@ -2326,58 +2382,6 @@ vi ~/.zshrc
         
         
         <category>jekyll</category>
-        
-      </item>
-    
-      <item>
-        <title>隐藏webshell的几条建议</title>
-        <description>&lt;p&gt;knowledge from klion&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;关于如何更好的隐藏webshell的几点建议:
-
-1,尽量藏在那些程序员和管理员都不会经常光顾的目录中
-比如:第三方工具的一些插件目录,主题目录,编辑器的图片目录以及一些临时目录
-
-2,目录层级越深越好,平时网站不出问题的话,一般四五级目录很少会被注意到
-
-3,webshell的名字千万不要太扎眼,比如:hack.php,sb.php,x.php这样的名字严禁出现……,在给webshell起名的时候尽量跟当前目录的,其他文件的名字相似度高一点,这样相对容易混淆视听,比如:目录中有个叫new.php的文件,那你就起个news.php
-
-4,webshell里面尽量不要用类似eval这种过于敏感的特征,因为awk一句话就能查出来,除了eval,还有,比如:exec,system,passthru,shell_exec,assert这些函数都最好不要用,你可以尝试写个自定义函数,不仅能在一定程度上延长webshell的存活时间也加大了管理员的查找难度,也可以躲避一些功能比较简陋waf查杀,此外,我们也可以使用一些类似:call_user_func,call_user_func_array,诸如此类的回调函数特性来构造我们的webshell,即伪造正常的函数调用
-
-5,靠谱的方法就是直接把一句话插到正常的网站脚本文件里面,当然最好是在一个不起眼的地方,比如:函数库文件,配置文件里面等等,以及那些不需要经常改动的文件……
-
-6,再或者拿到权限以后,把网站日志中的所有关于webshell的访问记录和渗透时造成的一些网站报错记录全部删除
-
-7,尝试利用静态文件隐藏一句话,然后用.htaccess 规则进行解析
-
-8,把webshell的属性时间改为和同目录文件相同的时间戳,比如linux中的touch就是非常好的工具
-
-9,当然,如果在拿到服务器权限以后,也可以自己写个脚本每隔一段时间检测下自己的webshell是否还存在,不存在就创建
-
-10,利用php.ini 配置文件隐藏webshell,把webshell的路径加入到配置文件中
-
-11,如果是大马的话,尽量把里面的一些注释和作者信息全部都去掉,比如intitle字段中的版本信息等等,用任何大马之前最好先好好的读几遍代码,把里面的shell箱子地址全部去掉推荐用开源的大马,然后自己拿过来仔细修改,记住,我们的webshell尽量不要用加密,因为加密并不能很好的解决waf问题,还有,大马中一般都会有个pass或者password字符,建议把这些敏感字段全部换成别的,因为利用这样的字符基本一句话就能定位到
-
-12,养成一个好习惯,为了防止权限很快丢失,最好再同时上传几个备用webshell,注意,每个webshell的路径和名字千万不要都一样更不要在同一个目录下,多跳几层,记住,确定shell正常访问就可以了,不用再去尝试访问看看解析是否正常,因为这样就会在日志中留下记录,容易被查到
-
-13,在有权限的情况,看看管理员是否写的有动态webshell监测脚本,务必把脚本找出来,crontab一般都能看见了
-
-14,上传个精心构造的图片马,然后再到另一个不起眼的正常的网站脚本文件中去包含这个图片马
-
-15,如果有可能的话,还是审计下目标的代码,然后想办法在正常的代码中构造执行我们自己的webshell,即在原生代码中执行webshell
-
-16,我这里只是根据个人经验总结了一些比较常用的,当然,肯定还有更多更好更高级的关于webshell的隐藏方法,欢迎大家一起交流,待续……
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Thu, 28 Jul 2016 00:00:00 +0800</pubDate>
-        <link>/webshell/2016/07/28/%E9%9A%90%E8%97%8Fwebshell/</link>
-        <guid isPermaLink="true">/webshell/2016/07/28/%E9%9A%90%E8%97%8Fwebshell/</guid>
-        
-        <category>webshell</category>
-        
-        
-        <category>webshell</category>
         
       </item>
     
