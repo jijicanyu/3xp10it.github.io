@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 13 Aug 2016 14:32:23 +0800</pubDate>
-    <lastBuildDate>Sat, 13 Aug 2016 14:32:23 +0800</lastBuildDate>
+    <pubDate>Sat, 13 Aug 2016 14:34:15 +0800</pubDate>
+    <lastBuildDate>Sat, 13 Aug 2016 14:34:15 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -254,7 +254,8 @@ f9
     300DE83B   .  F3:A4         rep movs byte ptr es:[edi],byte ptr ds:[esi]
     ---------------------end-----------------------
         
-    300de834的入口在300de7ec,eip=300de834时,edi=12aa6f,esi=3088ecc0(内容为&quot;ABuJIKLK...&quot;),ebp=12aa0f,这样的话数据将被复制到edi(12aa6f)处,可是栈窗口中,edi(12aaf6)已经在ebp(12aa0f)的下面,如果数据从edi开始覆盖,是不会覆
+    300de834的入口在300de7ec,eip=300de834时,edi=12aa6f,esi=3088ecc0(内容为&quot;ABuJIKLK...&quot;),ebp=12aa0f,这样的话数
+    据将被复制到edi(12aa6f)处,可是栈窗口中,edi(12aaf6)已经在ebp(12aa0f)的下面,如果数据从edi开始覆盖,是不会覆
     盖ebp的,这样应该不会引起retn被覆盖,既然不会覆盖当前函数帧的ebp,于是看看会不会覆盖上一函数帧的ebp
 
 alt+k(查看调用堆栈)
