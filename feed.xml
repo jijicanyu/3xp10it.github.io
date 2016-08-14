@@ -5,13 +5,41 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 14 Aug 2016 15:43:40 +0800</pubDate>
-    <lastBuildDate>Sun, 14 Aug 2016 15:43:40 +0800</lastBuildDate>
+    <pubDate>Sun, 14 Aug 2016 19:24:37 +0800</pubDate>
+    <lastBuildDate>Sun, 14 Aug 2016 19:24:37 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
         <title>漏洞战争-cve-2012-0158</title>
         <description>&lt;h3 id=&quot;x00-about&quot;&gt;0x00 about&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;实验环境：
+    windows xp sp3
+    office word 2003 sp3
+漏洞描述：
+    MSCOMCTL.OCX中存在栈溢出漏洞
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;x01-&quot;&gt;0x01 相关技巧&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;poc.doc是rtf格式,里面的ole数据以文本形式存储,offvis无法识别,导致不能通过offvis分析doc的结构,可通过winhex将
+0xD0CF11E0开始至结尾的所有看上去是十六进制形式表示的文本数据保存为真正的十六进制值,最后有三个右大括号不属于十六
+进制形式,也即将下面图1中poc.doc转成图2中的test.doc
+    操作步骤：
+    1&amp;gt;winhex打开poc.doc,选中text区中的D0CF11E0到最后的0000(左边为hex区，右边为text区)
+    2&amp;gt;单击右键选择edit|copy block|normally
+    3&amp;gt;新建一个空白文件，20k大小（15k应该也够了）
+    4&amp;gt;在新建文件的offset为0处右键选择edit|copyboard data|paste,在弹出的对话框中选择最后一种粘贴方式
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;图1
+&lt;img stc=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/cve-2012-0158-1.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;图2
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/cve-2012-0158-2.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;x02-&quot;&gt;0x02 调试分析&lt;/h3&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 &lt;/code&gt;&lt;/pre&gt;
@@ -796,9 +824,9 @@ noremap wo :tabopen http://192.168.3.13:1235/webinfos &amp;lt;CR&amp;gt;
    windows bat批处理for用法:http://blog.csdn.net/wh_19910525/article/details/7912440&lt;span class=&quot;sb&quot;&gt;
 
 
-&lt;/span&gt;   windows找文件命令：
+&lt;/span&gt;   windows找文件命令:
    for /f %j in (&#39;dir /b /s &quot;c:&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;SCOMCTL.O?X&quot;&#39;) do (echo %j)
-    windows找文件中的字符串命令：
+    windows找文件中的字符串命令:
    findstr /R &quot;.&lt;span class=&quot;ge&quot;&gt;*sa.*&lt;/span&gt;&quot; c:&lt;span class=&quot;se&quot;&gt;\1\*&lt;/span&gt; &amp;gt; tmp.txt
 
    powershell:dir –r | select-string &quot;root&quot;
@@ -1498,7 +1526,8 @@ noremap wo :tabopen http://192.168.3.13:1235/webinfos &amp;lt;CR&amp;gt;
     http://pchu.blogbus.com/
     http://luoxiqofy.blogbus.com
     http://www.cnblogs.com/flywuya/archive/2010/12/29/1920485.html
-
+&lt;span class=&quot;p&quot;&gt;166.&lt;/span&gt;恶意文档分析技巧及工具快速参考
+    http://wenku.baidu.com/link?url=m7GL0Q9W8Pei47frvTquIe9pAgKejBtPesAwZFiClOAEHK23ZF5xRxqA8eowV6e1HiKscwjxIWNOFRC3ep78yFurtSN5L0ZjQ0gV4uu72Lq
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
