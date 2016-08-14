@@ -441,9 +441,14 @@
    del /f/q folder
    rar a /v20m /m0 newfilename web.rar
    windows find web.config==&gt;for /r c:<span class="se">\h</span>ttp<span class="se">\ </span>%i in (web.conf?g) do (echo <span class="gs">****</span><span class="ge">*filepath*</span><span class="gs">****</span> &gt;&gt; tmp.txt &amp;&amp; echo %i &gt;&gt; tmp.txt &amp;&amp; type "%i" &gt;&gt; tmp.txt &gt;&gt; tmp.txt &amp;&amp; echo. &gt;&gt; tmp.txt)
-   windows bat批处理for用法:http://blog.csdn.net/wh_19910525/article/details/7912440
+   windows bat批处理for用法:http://blog.csdn.net/wh_19910525/article/details/7912440<span class="sb">
 
+
+</span>   windows找文件命令：
+   for /f %j in ('dir /b /s "c:<span class="se">\M</span>SCOMCTL.O?X"') do (echo %j)
+    windows找文件中的字符串命令：
    findstr /R ".<span class="ge">*sa.*</span>" c:<span class="se">\1\*</span> &gt; tmp.txt
+
    powershell:dir –r | select-string "root"
 
    windows打包(7z)命令:1.bat
@@ -945,7 +950,7 @@
 <span class="p">97.</span>windows中ping google &amp;&amp; ping baidu ==&gt;ping.bat:
                                          cmd /k "ping www.google.com.hk &amp;&amp; ping www.baidu.com"
    创建ping.bat文件的快捷方式,在快捷方式中添加快捷键.eg.ctrl+alt+p
-<span class="p">98.</span>linux开启http代理:service squid3 status,service squid3 start,vi /etc/squid3/squid.conf myport:8000
+<span class="p">98.</span>linux开启http代理:service squid3 status,service squid3 start,vi /etc/squid3/squid.conf default_port:3128
 <span class="p">99.</span>booklist:http://www.jianshu.com/p/67e294106919
 <span class="p">100.</span>gdb:http://www.jianshu.com/p/f20b10ea9a61
 <span class="p">101.</span>study links:
