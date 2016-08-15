@@ -137,16 +137,23 @@
     =
     (python效果不好,有可能让代码不再对齐而出错)
 3&gt;easymotion插件(,为&lt;leader&gt;)默认&lt;leader&gt;&lt;leader&gt;w,添加如下映射:
-    noremap ,w gg,,w
+
+    noremap ` H
+    "上面这句是因为H键原来应该是跳转到当前屏幕第一行，但是可能被其他插件冲突导致失效，noremap可以重新将数字1左边的键映射成原来H的效果
+    map a ,,f
+    map b ,,F
+    map s `,,f
+    "上面四句实现3个键跳转到任意位置
+    "a为向下搜索，b为向上搜索，s为当前屏幕搜索,输入s/a/b+(想找的字符)+对应hint字符
+
 4&gt;vim写中文自动换行的处理
     https://wiki.archlinux.org/index.php/Vim_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#.E8.87.AA.E5.8A.A8.E6.8D.A2.E8.A1.8C.E6.98.BE.E7.A4.BA
     http://www.cnblogs.com/ayanmw/p/3432005.html
     http://blog.chinaunix.net/xmlrpc.php?r=blog/article&amp;uid=53564&amp;id=2098815
     http://blog.csdn.net/auwzb/article/details/11609363
-    最后为实现写md文件可以在textwidth的值处自动换行，在vimrc中加入如下：
+    最后为实现写md文件可以在textwidth的值处自动换行,在vimrc中加入如下:
         autocmd FileType * setlocal textwidth=111 formatoptions=tcqmM
-        （其中的textwidth=111为github pages的博客每行长度,且安装vim13后，上面的*只对md文件有效，如果写成FileType md setlocal...则没有效果,惑不解）
-
+        (其中的textwidth=111为github pages的博客每行长度,且安装vim13后,上面的*只对md文件有效,如果写成FileType md setlocal...则没有效果,惑不解)
 
 
 </code></pre>

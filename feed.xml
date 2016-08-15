@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 14 Aug 2016 19:25:42 +0800</pubDate>
-    <lastBuildDate>Sun, 14 Aug 2016 19:25:42 +0800</lastBuildDate>
+    <pubDate>Mon, 15 Aug 2016 09:48:14 +0800</pubDate>
+    <lastBuildDate>Mon, 15 Aug 2016 09:48:14 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -16,6 +16,7 @@
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;实验环境:
     windows xp sp3
     office word 2003 sp3
+    offvis1.1
 漏洞描述:
     MSCOMCTL.OCX中存在栈溢出漏洞
 &lt;/code&gt;&lt;/pre&gt;
@@ -23,14 +24,15 @@
 
 &lt;h3 id=&quot;x01-&quot;&gt;0x01 相关技巧&lt;/h3&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;poc.doc是rtf格式,里面的ole数据以文本形式存储,offvis无法识别,导致不能通过offvis分析doc的结构,可通过winhex将
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1&amp;gt;poc.doc是rtf格式,里面的ole数据以文本形式存储,offvis无法识别,导致不能通过offvis分析doc的结构,可通过winhex将
 0xD0CF11E0开始至结尾的所有看上去是十六进制形式表示的文本数据保存为真正的十六进制值,最后有三个右大括号不属于十六
 进制形式,也即将下面图1中poc.doc转成图2中的test.doc
     操作步骤:
     1&amp;gt;winhex打开poc.doc,选中text区中的D0CF11E0到最后的0000(左边为hex区,右边为text区)
     2&amp;gt;单击右键选择edit|copy block|normally
     3&amp;gt;新建一个空白文件,20k大小(15k应该也够了)
-    4&amp;gt;在新建文件的offset为0处右键选择edit|copyboard data|paste,在弹出的对话框中选择最后一种粘贴方式
+    4&amp;gt;在新建文件的offset为0处右键选择edit|copyboard data|paste,在弹出的对话框中选择最后一种粘贴方式,并保存为
+    test.doc
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;图1
@@ -39,9 +41,28 @@
 &lt;p&gt;图2
 &lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/cve-2012-0158-2.png&quot; /&gt;&lt;/p&gt;
 
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2&amp;gt;offvis相关分析中,打开重新生成的test.doc,在分析模块中选择最后一个,如下图3所示,41414141对应的数据在offvis分析
+中的对应字段如下图4中所示
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;图3
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/cve-2012-0158-3.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;图4
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/cve-2012-0158-4.png&quot; /&gt;&lt;/p&gt;
+
 &lt;h3 id=&quot;x02-&quot;&gt;0x02 调试分析&lt;/h3&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;打开word,od附加,在word中打开poc.doc,弹出出错框,错误地址为41414141,用上面的方法通过offvis分析找到对应字段为
+Data,或者直接双击打开poc.doc,也是直接弹出出错对话框,od没有在eip=0x41414141时捕获异常,但是immunity debugger能够
+在eip=0x41414141处中断并退出，可达到和windbg一样的效果，与此同时，od会被系统异常处理程序先捕获eip=0x41414141这
+个异常，对比od和immunity debugger，发现od!!!!!!!!!!!!!!!!
+
+immunity debugger附加打开的word.exe,word.exe打开poc.doc,
+
+
+
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
@@ -444,16 +465,23 @@ f8
     =
     (python效果不好,有可能让代码不再对齐而出错)
 3&amp;gt;easymotion插件(,为&amp;lt;leader&amp;gt;)默认&amp;lt;leader&amp;gt;&amp;lt;leader&amp;gt;w,添加如下映射:
-    noremap ,w gg,,w
+
+    noremap ` H
+    &quot;上面这句是因为H键原来应该是跳转到当前屏幕第一行，但是可能被其他插件冲突导致失效，noremap可以重新将数字1左边的键映射成原来H的效果
+    map a ,,f
+    map b ,,F
+    map s `,,f
+    &quot;上面四句实现3个键跳转到任意位置
+    &quot;a为向下搜索，b为向上搜索，s为当前屏幕搜索,输入s/a/b+(想找的字符)+对应hint字符
+
 4&amp;gt;vim写中文自动换行的处理
     https://wiki.archlinux.org/index.php/Vim_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#.E8.87.AA.E5.8A.A8.E6.8D.A2.E8.A1.8C.E6.98.BE.E7.A4.BA
     http://www.cnblogs.com/ayanmw/p/3432005.html
     http://blog.chinaunix.net/xmlrpc.php?r=blog/article&amp;amp;uid=53564&amp;amp;id=2098815
     http://blog.csdn.net/auwzb/article/details/11609363
-    最后为实现写md文件可以在textwidth的值处自动换行，在vimrc中加入如下：
+    最后为实现写md文件可以在textwidth的值处自动换行,在vimrc中加入如下:
         autocmd FileType * setlocal textwidth=111 formatoptions=tcqmM
-        （其中的textwidth=111为github pages的博客每行长度,且安装vim13后，上面的*只对md文件有效，如果写成FileType md setlocal...则没有效果,惑不解）
-
+        (其中的textwidth=111为github pages的博客每行长度,且安装vim13后,上面的*只对md文件有效,如果写成FileType md setlocal...则没有效果,惑不解)
 
 
 &lt;/code&gt;&lt;/pre&gt;
