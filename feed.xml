@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 15 Aug 2016 09:48:14 +0800</pubDate>
-    <lastBuildDate>Mon, 15 Aug 2016 09:48:14 +0800</lastBuildDate>
+    <pubDate>Mon, 15 Aug 2016 13:44:46 +0800</pubDate>
+    <lastBuildDate>Mon, 15 Aug 2016 13:44:46 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -56,13 +56,120 @@
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;打开word,od附加,在word中打开poc.doc,弹出出错框,错误地址为41414141,用上面的方法通过offvis分析找到对应字段为
 Data,或者直接双击打开poc.doc,也是直接弹出出错对话框,od没有在eip=0x41414141时捕获异常,但是immunity debugger能够
-在eip=0x41414141处中断并退出，可达到和windbg一样的效果，与此同时，od会被系统异常处理程序先捕获eip=0x41414141这
-个异常，对比od和immunity debugger，发现od!!!!!!!!!!!!!!!!
+在eip=0x41414141处中断并退出,可达到和windbg一样的效果(在cve-2011-0104的分析中，windbg可捕获到eip为一个正常地址
+时对应的汇编指令为正常的汇编指令，但是该指令中访问了异常内存数据,而这里的情况是eip=41414141,是一个不正常的地址,
+这里面没有指令),与此同时,od附加exe时会被系统异常处理程序先捕获eip=0x41414141这个异常,对比od和immunity debugger,
+发现od中的调试选项中的异常默认处理情况如下图5，immunity debugger如图6
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;图5
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/cve-2012-0158-5.png&quot; /&gt;&lt;/p&gt;
 
-immunity debugger附加打开的word.exe,word.exe打开poc.doc,
+&lt;p&gt;图6
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/cve-2012-0158-6.png&quot; /&gt;&lt;/p&gt;
 
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;尝试将od的选项设置成和immunity debugger一样,依然会弹出如下图7中的系统异常对话框,看来od在捕获异常的功能上不如
+immunity debugger
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
+&lt;p&gt;图7
+&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/cve-2012-0158-7.png&quot; /&gt;&lt;/p&gt;
 
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;重新选择immunity debugger附加打开的word.exe,word.exe打开poc.doc,immunity debugger捕获到word.exe崩溃并得到崩溃时
+的数据如下：(esp=121468,ebp=00000000,eip=41414141)
+
+    ------------------寄存器窗口中--------------------
+        EAX 00000000
+        ECX 7C93003D ntdll.7C93003D
+        EDX 00140608
+        EBX 09FB0810
+        ESP 00121468
+        EBP 00000000
+        ESI 002100B4
+        EDI 00000000
+        EIP 41414141
+        C 0  ES 0023 32bit 0(FFFFFFFF)
+        P 1  CS 001B 32bit 0(FFFFFFFF)
+        A 0  SS 0023 32bit 0(FFFFFFFF)
+        Z 1  DS 0023 32bit 0(FFFFFFFF)
+        S 0  FS 003B 32bit 7FFDE000(FFF)
+        T 0  GS 0000 NULL
+        D 0
+        O 0  LastErr ERROR_SUCCESS (00000000)
+        EFL 00010246 (NO,NB,E,BE,NS,PE,GE,LE)
+        ST0 empty
+        ST1 empty
+        ST2 empty
+        ST3 empty
+        ST4 empty
+        ST5 empty
+        ST6 empty
+        ST7 empty
+                       3 2 1 0      E S P U O Z D I
+        FST 4000  Cond 1 0 0 0  Err 0 0 0 0 0 0 0 0  (EQ)
+        FCW 127F  Prec NEAR,53  Mask    1 1 1 1 1 1
+    ---------------------end--------------------------
+    
+    -------------------------堆栈窗口中-----------------------------
+    001213EC   00000001  ...
+    001213F0   0012F904  ?.
+    001213F4   7C92E900  .閽|   ntdll.7C92E900
+    001213F8   7C930040  @.搢   ntdll.7C930040
+    001213FC   FFFFFFFF  
+    00121400   7C93003D  =.搢   ntdll.7C93003D
+    00121404   275C8800  .圽&#39;   MSCOMCTL.275C8800
+    00121408   00140000  ...
+    0012140C   00000000  ....
+    00121410   08D9B008  百
+    00121414   00000000  ....
+    00121418   002100B4  ?!.
+    0012141C   09FB0810  ?
+    00121420   00008282  倐..
+    00121424   00121458  X.
+    00121428   275C8A0A  .奬&#39;   MSCOMCTL.275C8A0A
+    0012142C   00121450  P.
+    00121430   08D9B008  百
+    00121434   00008282  倐..
+    00121438   00000000  ....
+    0012143C   002100B4  ?!.
+    00121440   09FB0810  ?
+    00121444   6A626F43  Cobj
+    00121448   00000064  d...
+    0012144C   00008282  倐..
+    00121450   00000000  ....
+    00121454   00000000  ....
+    00121458   00000000  ....
+    0012145C   41414141  AAAA
+    00121460   00000000  ....
+    00121464   00000000  ....
+    00121468   00000000  ....  ------&amp;gt;   &amp;lt;崩溃时esp的值为121468&amp;gt;
+    0012146C   00000000  ....
+    00121470   00000000  ....
+    00121474   00000000  ....
+    00121478   00000000  ....
+    0012147C   00000000  ....
+    00121480   00000000  ....
+    00121484   00000000  ....
+    00121488   00000000  ....
+    0012148C   00000000  ....
+    00121490   00000000  ....
+    00121494   00000000  ....
+    00121498   00000000  ....
+    0012149C   00000000  ....
+    001214A0   00000000  ....
+    001214A4   00000000  ....
+    001214A8   00000000  ....
+    001214AC   00000000  ....
+    001214B0   00000000  ....
+    001214B4   00000000  ....
+    001214B8   00000000  ....
+    001214BC   00000000  ....
+    001214C0   00000000  ....
+    001214C4   00000000  ....
+    001214C8   00000000  ....
+    ----------------------------end---------------------------------
+    
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
