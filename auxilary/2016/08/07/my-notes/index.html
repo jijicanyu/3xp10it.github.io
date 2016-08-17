@@ -1150,6 +1150,17 @@
     http://wenku.baidu.com/link?url=m7GL0Q9W8Pei47frvTquIe9pAgKejBtPesAwZFiClOAEHK23ZF5xRxqA8eowV6e1HiKscwjxIWNOFRC3ep78yFurtSN5L0ZjQ0gV4uu72Lq
 <span class="p">167.</span>ubuntu安装java
     http://www.linuxdiyf.com/linux/21071.html
+<span class="p">168.</span>文件下载或文件读取漏洞思路:
+    1&gt;读数据库连接文件
+    2&gt;尝试连接数据库
+        a&gt;是否支持数据库外连
+        b&gt;是否有phpmyadmin(扫目录)
+            select ... into dumpfile ...
+            如果不能写文件则通过查看数据库中的管理员用户名密码进后台上传shell
+            或者用数据库中的其他密码尝试连接ftp
+            或者如果数据库中有editor的setting,修改为可以上传php
+    3&gt;尝试读取到ftp配置文件,尝试用数据库用户名密码连接ftp
+    4&gt;代码审计
 </code></pre>
 </div>
 </span>

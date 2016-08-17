@@ -5,9 +5,84 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 16 Aug 2016 10:07:26 +0800</pubDate>
-    <lastBuildDate>Tue, 16 Aug 2016 10:07:26 +0800</lastBuildDate>
+    <pubDate>Wed, 17 Aug 2016 13:56:12 +0800</pubDate>
+    <lastBuildDate>Wed, 17 Aug 2016 13:56:12 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>漏洞战争-cve-2010-2553</title>
+        <description>&lt;h3 id=&quot;x00-&quot;&gt;0x00 堆溢出基础知识&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;good link:
+    http://blog.csdn.net/ithzhang/article/details/12711431
+    http://www.mottoin.com/87277.html
+    http://www.voidcn.com/blog/u010797814/article/p-3924286.html
+
+堆表只索引所有的空闲态堆块,已分配|占用的堆块由使用它的程序索引,空闲态堆块和占用态堆块:
+
+    堆块使用_HEAP_ENTYR结构来描述,该结构占8Byte. _HEAP_ENTRY结构之后就是供应用程序使用的区域.调用HeapAlloc函数
+    将返回HEAP_ENTRY之后的地址.此地址减去8Byte便可以得到_HEAP_ENTRY结构.对于已经释放的堆块,堆管理器定义了
+    _HEAP_ FREE_ENTRY结构来描述.该结构的前八个字节与_HEAP_ENTRY结构完全相同.但增加了8个字节来存储空闲链表的头节点.
+    如下图：
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/heap-1.png&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;堆溢出实质:
+    [flink+4]=blink
+    [blink]=flink
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;x01-&quot;&gt;0x01 堆溢出原理&lt;/h3&gt;
+
+&lt;h4 id=&quot;day2&quot;&gt;1&amp;gt;0day2实例&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;section&quot;&gt;2&amp;gt;漏洞战争实例&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;------------------heapoverflow.c---------------------
+#include &amp;lt;windows.h&amp;gt;
+#include &amp;lt;stdio.h&amp;gt;
+
+int main()
+{
+    HANDLE hHeap;
+    char *heap;
+    char str[]=&quot;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&quot;;
+    hHeap=HeapCreate(HEAP_GENERATE_EXCEPTIONS,0x1000,0xffff);
+    getchar();
+
+    heap=HeapAlloc(hHeap,0,0x10);
+    printf(&quot;heap addr:0x%08x\n&quot;,heap);
+
+    strcpy(heap,str);
+    HeapFree(hHeap,0,heap);
+
+    HeapDestroy(hHeap);
+    return 0;
+}
+------------------------end--------------------------
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Wed, 17 Aug 2016 00:00:00 +0800</pubDate>
+        <link>/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/08/17/%E6%BC%8F%E6%B4%9E%E6%88%98%E4%BA%89-cve-2010-2553/</link>
+        <guid isPermaLink="true">/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/08/17/%E6%BC%8F%E6%B4%9E%E6%88%98%E4%BA%89-cve-2010-2553/</guid>
+        
+        <category>漏洞战争</category>
+        
+        <category>漏洞分析</category>
+        
+        <category>堆溢出</category>
+        
+        
+        <category>二进制</category>
+        
+      </item>
     
       <item>
         <title>漏洞战争-cve-2012-0158</title>
@@ -357,7 +432,7 @@ a中的子函数中包括b中的复制指令,b中的上一帧函数对应a中的
         <title>waf绕过技巧库</title>
         <description>&lt;h3 id=&quot;x00-links&quot;&gt;0x00 links&lt;/h3&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;waf绕过技巧库：
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;waf绕过技巧库:
 http://wafbypass.me/w/index.php/Main_Page  may be a best one```
 http://www.freebuf.com/articles/web/10099.html   WAF绕过的奇技淫巧
 http://tech-technical.com/index.php/2015/11/11/waf-bypass-sql-injection-tutorial/ 老外的技巧
@@ -371,6 +446,7 @@ http://drops.wooyun.org/tips/7883
 http://www.securityidiots.com/Web-Pentest/WAF-Bypass/
 http://www.pentest.net.cn/post/7
 http://www.mottoin.com/86886.html
+http://mp.weixin.qq.com/s?__biz=MzIyNjQzMjcyNw==&amp;amp;mid=2247483860&amp;amp;idx=1&amp;amp;sn=fa19f02e29d25f5f6852af27451ae4a9&amp;amp;scene=23&amp;amp;srcid=0815JYA53l0Bk3PMkhzRlKUh#rd
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -1836,6 +1912,17 @@ noremap wo :tabopen http://192.168.3.13:1235/webinfos &amp;lt;CR&amp;gt;
     http://wenku.baidu.com/link?url=m7GL0Q9W8Pei47frvTquIe9pAgKejBtPesAwZFiClOAEHK23ZF5xRxqA8eowV6e1HiKscwjxIWNOFRC3ep78yFurtSN5L0ZjQ0gV4uu72Lq
 &lt;span class=&quot;p&quot;&gt;167.&lt;/span&gt;ubuntu安装java
     http://www.linuxdiyf.com/linux/21071.html
+&lt;span class=&quot;p&quot;&gt;168.&lt;/span&gt;文件下载或文件读取漏洞思路:
+    1&amp;gt;读数据库连接文件
+    2&amp;gt;尝试连接数据库
+        a&amp;gt;是否支持数据库外连
+        b&amp;gt;是否有phpmyadmin(扫目录)
+            select ... into dumpfile ...
+            如果不能写文件则通过查看数据库中的管理员用户名密码进后台上传shell
+            或者用数据库中的其他密码尝试连接ftp
+            或者如果数据库中有editor的setting,修改为可以上传php
+    3&amp;gt;尝试读取到ftp配置文件,尝试用数据库用户名密码连接ftp
+    4&amp;gt;代码审计
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
@@ -2703,103 +2790,6 @@ add one line:
         
         
         <category>linux</category>
-        
-      </item>
-    
-      <item>
-        <title>便捷写博客脚本</title>
-        <description>&lt;h3 id=&quot;x00-&quot;&gt;0x00 方便写博客并浏览脚本&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---------------blog.py------------------
-# -*- coding: utf-8 -*-
-import sys
-reload(sys)
-sys.setdefaultencoding(&#39;utf-8&#39;)
-#必须加上上面四行,否则各种编码的错误爆出
-
-import os
-import datetime
-
-date=datetime.date.today()
-print &quot;please input blog article title:)&quot;
-title=raw_input()
-print &quot;please input blog categories:)&quot;
-categories=raw_input()
-print &quot;please input blog tags,use space to separate:)&quot;
-tags=raw_input()
-tags_list=tags.split(&#39; &#39;)
-tags_write_to_file=&quot;&quot;
-for each in tags_list:
-    tags_write_to_file+=(&#39; - &#39;+each+&#39;\\\n&#39;)
-tags_write_to_file=tags_write_to_file[:-2]
-
-
-
-article_title=title
-title1=title.replace(&#39; &#39;,&#39;-&#39;)
-filename=str(date)+&#39;-&#39;+title1+&#39;.md&#39;
-
-file_abs_path=&quot;/root/myblog/_posts/&quot;+filename
-os.system(&quot;cp /root/myblog/_posts/*webshell* %s&quot; % file_abs_path)
-os.system(&quot;sed -i &#39;s/^title.*/title:      %s/g&#39; %s&quot; % (title,file_abs_path))
-os.system(&quot;sed -i &#39;s/date:       .*/date:       %s/g&#39; %s&quot; % (str(date),file_abs_path))
-os.system(&quot;sed -i &#39;s/summary:    隐藏webshell的几条建议/summary:    %s/g&#39; %s&quot; % (title,file_abs_path))
-os.system(&quot;sed -i &#39;11,$d&#39; %s&quot; % file_abs_path)
-os.system(&quot;sed -i &#39;s/categories: webshell/categories: %s/g&#39; %s&quot; % (categories,file_abs_path))
-os.system(&quot;sed &#39;/ - webshell/c\\\n%s&#39; %s &amp;gt; /tmp/1&quot; % (tags_write_to_file,file_abs_path))
-os.system(&quot;cat /tmp/1 &amp;gt; %s &amp;amp;&amp;amp; rm /tmp/1&quot; % file_abs_path)
-os.system(&quot;vim %s&quot; % file_abs_path)
-
-print &quot;do you want to update your remote 3xp10it.github.io&#39;s blog?&quot;
-print &quot;your chioce: Y/n,default[Y]:&amp;gt;&quot;
-upa=raw_input()
-if(upa==&#39;n&#39; or upa==&#39;N&#39;):
-    print &#39;done!bye:D&#39;
-else:
-    succeed=os.system(&quot;bash /usr/share/up.sh&quot;)
-    if(succeed==0):
-        os.system(&quot;firefox %s&quot; % &quot;https://3xp10it.github.io&quot;)
------------------end--------------------
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;x01-alias&quot;&gt;0x01 alias&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cp blog.py /usr/share/
-vi .zshrc
-+alias bl=&quot;python /usr/share/blog.py&quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;x02-attention&quot;&gt;0x02 attention&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;内含sed用多行替换一行的代码：
-os.system(&quot;sed &#39;/ - webshell/c\\\n%s&#39; %s &amp;gt; /tmp/1&quot; % (tags_write_to_file,file_abs_path))
-其中tags_list为：
-eg.
-[&#39;webshell&#39;,&#39;tmp&#39;,&#39;ttt&#39;]
-
-要做如下处理:
-for each in tags_list:
-    tags_write_to_file+=(&#39; - &#39;+each+&#39;\\\n&#39;)
-tags_write_to_file=tags_write_to_file[:-2]
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Tue, 02 Aug 2016 00:00:00 +0800</pubDate>
-        <link>/auxilary/2016/08/02/%E4%BE%BF%E6%8D%B7%E5%86%99%E5%8D%9A%E5%AE%A2%E8%84%9A%E6%9C%AC/</link>
-        <guid isPermaLink="true">/auxilary/2016/08/02/%E4%BE%BF%E6%8D%B7%E5%86%99%E5%8D%9A%E5%AE%A2%E8%84%9A%E6%9C%AC/</guid>
-        
-        <category>blog</category>
-        
-        <category>write</category>
-        
-        <category>jekyll</category>
-        
-        
-        <category>auxilary</category>
         
       </item>
     
