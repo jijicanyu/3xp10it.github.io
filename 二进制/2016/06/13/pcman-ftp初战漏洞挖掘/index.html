@@ -229,11 +229,16 @@ challenge:
         实验中binnavi版本为最新的6.1+ida pro6.8,安装在win2003系统上,此安装的binnavi有以下问题:
             1.stop trace mode按钮只是前几次有效(eg.10次内的trace列表)
             2.在1下先按stop trace mode再按start trace mode按钮可以实时刷新地跟踪指令
-            3.按下超过一定次数的start trace mode(一定trace列表数)2中情况不再有效,需要重新start debugger,这也意味着要重新在192.168.3.177中重新运行pcmanftp,并运行:
+            3.按下超过一定次数的start trace mode(一定trace列表数)2中情况不再有效,需要重新start debugger,这也意
+              味着要重新在192.168.3.177中重新运行pcmanftp,并运行:
                 win+r
                 cmd
                 debugclient.exe pid
-            4.binnavi中使用指令追踪功能时除了上面2中的方法也可以通过删除trace列表里面的已存在的trace,然后重新按start trace mode,这样可以不用按像2中(stop trace mode再按start trace mode)而达到指令追踪的目的,192.168.3.177的win7上运行debugclient.exe pid时不用管理员身份运行虽然会报断点错误,但是好像实际实验中追踪效果更好,此点尚疑.一般情况下,每个应用都用管理员身份运行不易出错(debugclient.exe,pcmanftp,binnavi)
+            4.binnavi中使用指令追踪功能时除了上面2中的方法也可以通过删除trace列表里面的已存在的trace,然后重新按
+              start trace mode,这样可以不用按像2中(stop trace mode再按start trace mode)而达到指令追踪的目的,
+              192.168.3.177的win7上运行debugclient.exe pid时不用管理员身份运行虽然会报断点错误,但是好像实际实验
+              中追踪效果更好,此点尚疑.一般情况下,每个应用都用管理员身份运行不易出错(debugclient.exe,pcmanftp,
+              binnavi)
 </code></pre>
 </div>
 
