@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 22 Aug 2016 09:57:10 +0800</pubDate>
-    <lastBuildDate>Mon, 22 Aug 2016 09:57:10 +0800</lastBuildDate>
+    <pubDate>Mon, 22 Aug 2016 14:34:54 +0800</pubDate>
+    <lastBuildDate>Mon, 22 Aug 2016 14:34:54 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -1408,8 +1408,37 @@ g
 &lt;/div&gt;
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/heap-4.png&quot; /&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;说明是复制了4008个字节后,下面的内存不可写了,引发异常,现在要想办法控制eip,执行我的shellcode
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;说明是复制了4008个字节后,下面的内存不可写了,引发异常,现在要想办法控制eip,执行我的shellcode,要想控制eip,现在考虑
+从以下几个角度上入手:
+    1&amp;gt;超长数据覆盖栈中的retn
+    2&amp;gt;超长数据覆盖栈中的seh
+    3&amp;gt;找到DWORD SHOOT机会
 
+1&amp;gt;超长数据覆盖栈中的retn
+    这种可能性几乎可以忽略,一般堆溢出漏洞的利用采用DWORD SHOOT的&quot;精确打击&quot;,超长数据覆盖作为&quot;地毯式轰炸&quot;这种手段
+    一般用于栈溢出,因为retn在栈中,而要想把数据从堆区覆盖到栈区,要复制超长超长的数据,此例中,当eip=73B721ED时,对
+    应如下指令,该eip到达方式为在od中单独打开iccvid.dll,在73b7cbee处下断点,该处对应上面的windbg的关键call下断点
+    处,然后od附加重新打开的wmplayer.exe,并用wmplayer.exe打开poc.avi,触发73b7cbee处的断点,f7跟进关键call,单步到
+    73b721ed处
+        73B721ED  |.  8B75 0C       mov esi,[arg.2]
+    此时od中的提示处显示如下信息:
+        堆栈 ss:[0A80FD3C]=01C2CAF8
+        esi=00000000
+    在od提示窗口中的01c2caf8上右键在数据窗口中跟随数值,结果如下:
+        01C2CAF8  00 00 00 68 01 60 01 20 00 10 10 00 00 10 00 00  ...h` .....
+        01C2CB08  00 00 00 60 01 60 20 00 00 00 11 00 00 10 41 41  ...`` .....AA
+        01C2CB18  41 41 41 41 41 41 41 41 41 41 11 00 00 10 41 41  AAAAAAAAAA..AA
+        01C2CB28  41 41 41 41 41 41 41 41 41 41 11 00 00 10 41 41  AAAAAAAAAA..AA
+        01C2CB38  41 41 41 41 41 41 41 41 41 41 11 00 00 10 41 00  AAAAAAAAAA..A.
+        01C2CB48  69 64 78 31 10 00 00 00 30 30 64 63 10 00 00 00  idx1...00dc...
+    也即此时对应的数据为poc.avi中的cinepak_codec_data1字段的数据,如下图,对应exploit-db链接为:
+        https://www.exploit-db.com/exploits/15112/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/3xp10it/pic/master/heap-5.png&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;此时esp=0A80FD04,而可控输入的数据所在的内存地址为01c2caf8,0a80fd04-01c2caf8=8BE320C=146682380个字节
+=139.887218475341796875 M大小
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
