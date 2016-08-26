@@ -157,6 +157,10 @@
     SET PASSWORD FOR 'username'@'host' = PASSWORD('newpassword');
     修改权限
     GRANT privileges ON databasename.tablename TO 'username'@'host' WITH GRANT OPTION;(databasename.tablename可为<span class="ge">*.*</span>,privileges可为all,注意databasename和tablename中不要有'.'这个标点,否则databasename.tablename不知道在哪儿算作分开,eg.gv32_cms5.1.9是数据库名,则会出错)
+
+  设置允许本机所有网卡对应ip都可以被root连接命令:
+    grant all privileges on <span class="ge">*.*</span> to root@'%' identified by '12345678' with grant option;
+    12345678为root密码
 <span class="p">14.</span>ip:23.23.23.23    (bing)
 <span class="p">15.</span>暴路径http://www.lxway.com/1191778.html  
 <span class="p">16.</span>sublime text快捷键好东西:http://www.cnblogs.com/lanxuezaipiao/p/4151095.html
@@ -513,11 +517,6 @@
 </span><span class="p">41.</span>kali linux2.0 import folder path:/usr/share/applications   eg.gnome-control-center network
 <span class="p">42.</span>http://www.orico.com.cn/   driver    
 <span class="p">43.</span>python中单引号,双引号,三引号http://blog.csdn.net/caianye/article/details/6638183       
-<span class="p">44.</span>mygoogle dork:
-    site:ooxx.ooxx.ooxx syntax
-    site:... error
-    http://waziristanihaxor.blogspot.hk/2015/03/5000-fresh-google-dorks-list-for-sql.html
-   inurl:"php"|"php page="|"php id="|"php tid="|"php pid="|"php cid="|"php path="|"php cmd="|"php file="|"php cartId="|"php bookid="|"php num="|"php idProduct="|"php ProdId="|"php idCategory="|"php intProdID="|"cfm storeid="|"php catid="|"php cart_id="|"php order_id="|"php catalogid="|"php item="|"php title="|"php CategoryID="|"php action="|"php newsID="|"php newsid="|"php product_id="|"php cat="|"php parent_id="|"php view="|"php itemid=" site:www.facebook.com
 <span class="p">45.</span>os.system('''python %s &gt;&gt; "out_log.txt"''' % exp_path) "&gt;&gt;" instead of "open(file,"a+") fp.write(str)" in py2 or py3
 <span class="p">46.</span>tips:  
    msf必不可少burpsuite/fiddler必不可少python,ruby,shell,perl必不可少,不会编程还是别玩了.
@@ -727,8 +726,11 @@
    <span class="nt">&lt;/body&gt;</span>
    <span class="nt">&lt;/html&gt;</span>
 <span class="p">65.</span>安装requirements.txt中要求的环境:pip install -r requirements.txt
-<span class="p">66.</span>urllib&amp;urllib2:
-  (爬虫实现http://blog.csdn.net/pleasecallmewhy/article/details/8925978
+<span class="p">66.</span>python urllib&amp;urllib2:
+    http://www.bkjia.com/Pythonjc/1088462.html  Python中http请求方法库汇总,python请求库汇总
+    http请求异常处理(获取异常请求的返回内容)
+        http://my.oschina.net/duhaizhang/blog/69834
+    (爬虫实现http://blog.csdn.net/pleasecallmewhy/article/details/8925978
     http://blog.csdn.net/pleasecallmewhy/article/details/8934726)
     beautifulsoup中文http://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh.html
    0&gt;easyest way
@@ -744,7 +746,7 @@
 
    2&gt;post:(要加入 header,data,需要使用 Request 对象)
    import urllib
-   import urllib2   
+   import urllib2
    url = 'http://www.someserver.com/cgi-bin/register.cgi'
    values = {'name' : 'Michael Foord',
              'location' : 'Northampton',
@@ -766,6 +768,8 @@
   　在sublime text中有个sublimeREPL插件,f5快捷键可编译运行python脚本,然而就算系统设置了代理127.0.0.1:8080等,f5依然可以将使用了urllib2且没有加上面３行代码的python脚本
   　成功执行,也许是sublimeREPL中默认的运行代码设置了自己的代理为空,且不影响系统代理http_proxy的值.
 <span class="p">68.</span>python,beautifulsoup中正则匹配中文的错误解决办法:http://www.lylinux.org/python%E4%BD%BF%E7%94%A8%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D%E4%B8%AD%E6%96%87.html
+   python正则表达式:
+       http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html
 <span class="p">69.</span>python中获得执行系统命令的输出:http://blog.csdn.net/g457499940/article/details/17068277
 <span class="p">70.</span>python代码中不能有~符号当作/root目录的习惯,open('~/something','r+')会出错,os.system('~/something')不会,为保证不出错,在代码中不用~符号,另外os.system(),open()等函数中不要有%s这种格式化字符串变量
 　　如果要用到在这些函数中传入一个变量作参数,先在os.system(),open()等函数前面格式化成普通不带%s的变量再传入这些函数,eg.a='python /root/%s' % input(),os.system(a)
@@ -1100,6 +1104,9 @@
     rm -rf .cache/compizconfig-1
     rm -rf .config/compiz-1
     rm -rf .compiz
+    
+    本机出现窗口没有"关闭,最小化"等解决方法:
+        打开compiz设置在窗口管理处勾选"放置窗口"
 </span><span class="p">153.</span>linux清理:
     1&gt;apt-get autoremove
     2&gt;apt-get autoclean
@@ -1114,7 +1121,10 @@
     ps -aux | grep "vmware"
     kill pid_of_error_machine
 <span class="p">159.</span>google dock:
+    http://waziristanihaxor.blogspot.hk/2015/03/5000-fresh-google-dorks-list-for-sql.html
+    inurl:"php"|"php page="|"php id="|"php tid="|"php pid="|"php cid="|"php path="|"php cmd="|"php file="|"php cartId="|"php bookid="|"php num="|"php idProduct="|"php ProdId="|"php idCategory="|"php intProdID="|"cfm storeid="|"php catid="|"php cart_id="|"php order_id="|"php catalogid="|"php item="|"php title="|"php CategoryID="|"php action="|"php newsID="|"php newsid="|"php product_id="|"php cat="|"php parent_id="|"php view="|"php itemid=" site:www.facebook.com
     site:xxx.xxx.xxx inurl:union select
+    site:xxx.xxx.xxx intext:warning|error|syntax|incorrect|unexpected|occurred|command|execute
 <span class="p">160.</span>my own github's md file:
     每行111个字节长度,但是写md时并不用在vim中设置111个字节长度后自动换行,因为md文件会在应该换行的时候自动换行,只要将一段的内容写到md文件中的一行中即可
 <span class="p">161.</span>echo $HISTCONTROL,如果结果为ignoreboth,执行命令时先加空格再输入命令则history不会记录
@@ -1179,6 +1189,19 @@
     http://awk.readthedocs.io/en/latest/chapter-one.html
 <span class="p">175.</span>ssrf相关
     http://evilcos.me/?p=221
+<span class="p">176.</span>find查找最近的文件:
+    find / -amin -10 # 查找在系统中最后10分钟访问的文件
+    find / -atime -2 # 查找在系统中最后48小时访问的文件
+    
+    find / -mmin -5 # 查找在系统中最后5分钟里修改过的文件
+    find / -mtime -1 #查找在系统中最后24小时里修改过的文件76
+<span class="p">177.</span>php数组键值对
+    http://www.cnblogs.com/coderchuanyu/p/3904711.html
+<span class="p">178.</span>快速查看webshell大马是否含有后门:
+    firebug|网络,如果看到访问大马时还有其他可疑访问uri,说明有后门
+<span class="p">179.</span>pyc文件相当于pyhton文件的缓存,如果import了某个模块后在目录下生成了pyc文件,就算这个刚才被import的py模块被删除了,但是由于pyc文件还存在,仍然可以import 该模块
+<span class="p">180.</span>python查看模块中有哪些函数(dir()用法)
+    http://www.iplaypython.com/jichu/dir.html
 </code></pre>
 </div>
 </span>

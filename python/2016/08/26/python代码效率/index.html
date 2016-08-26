@@ -5,7 +5,7 @@
     <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>rime五笔词库合并</title>
+<title>python代码效率</title>
 <meta name="description" content="A blog about programming and network security">
 
 <link rel="profile" href="https://gmpg.org/xfn/11" />
@@ -105,19 +105,19 @@
     <div itemscope itemtype="https://schema.org/Article" class="col-md-12 article">
       
 
-      <h1 class="header" itemprop="name">rime五笔词库合并</h1>
+      <h1 class="header" itemprop="name">python代码效率</h1>
 
       <div class="author">
         <small><i>
           
-          on <span itemprop="datePublished" content="2014-08-28">May 24, 2016</span>
-           under auxilary
+          on <span itemprop="datePublished" content="2014-08-28">August 26, 2016</span>
+           under python
         </i></small>
       </div>
 
       <div class="read-time">
         <small>
-          2 minute read
+          1 minute read
         </small>
       </div>
 
@@ -125,164 +125,40 @@
 
         
 
-        <span itemprop="articleBody"><h4 id="x01-step1on-kali-linux">0x01 Step1:on kali linux</h4>
-<div class="highlighter-rouge"><pre class="highlight"><code>/usr/bin/rime_dic_manager -l
-output:wubi86
-cd /root/桌面/
-/usr/bin/rime_dic_manager -e wubi86 kali.txt
+        <span itemprop="articleBody"><h3 id="section">两种读文件的不同效率</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>#第一种:f=open(),for each in f
+import time
+start=time.clock()
+count=0
+f=open("webshell_passwords.txt","r+")
+for each in f:
+    count+=1
+end=time.clock()
+print end-start
+f.close()
+
+#第二种:f=open(),all=f.readlines(),for each in all
+start1=time.clock()
+count1=0
+f=open("webshell_passwords1.txt","r+")
+all=f.readlines()
+for each in all:
+    count1+=1
+end1=time.clock()
+print end1-start1
+f.close()
+
+'''
+输出:
+0.001514
+0.00139
+
+结论:
+f.readlines()是多余的运作,这样浪费系统资源
+'''
 </code></pre>
 </div>
-
-<h4 id="x02-step2on-win7">0x02 Step2:on win7</h4>
-<div class="highlighter-rouge"><pre class="highlight"><code>cd %appdata%\rime
-copy wubi86.userdb.kct \\kali\桌面\
-</code></pre>
-</div>
-
-<h4 id="x03-step3on-kali-linux">0x03 Step3:on kali linux</h4>
-<div class="highlighter-rouge"><pre class="highlight"><code>cd /root/.config/fcitx/rime
-mv /root/.config/fcitx/rime/wubi86.userdb.kct wubi86.userdb.kct.bak
-cp /root/桌面/wubi86.userdb.kct .
-重新布置rime
-/usr/bin/rime_dic_manager -l
-cd /root/桌面
-/usr/bin/rime_dic_manager -e wubi86 win7.txt
-
--------------------two ways since now---------------
-first:
-/usr/bin/rime_dic_manager -i wubi86 kali.txt
-重新布置rime
-
-second:
-vi -d kali.txt win7.txt
-vi kali.txt
-    G
-    o
-    esc
-    :r win7.txt
-    :x
-python 字典去重.py kali.txt         (output:outfile.txt)
-    this .py script:https://raw.githubusercontent.com/3xp10it/password_tools/master/%E5%AD%97%E5%85%B8%E6%95%B4%E7%90%86%E5%8E%BB%E9%87%8D%E5%B7%A5%E5%85%B7/%E5%AD%97%E5%85%B8%E6%95%B4%E7%90%86%E5%8E%BB%E9%87%8D%E5%B7%A5%E5%85%B7.py
-
-/usr/bin/rime_dict_manager -r outfile.txt
-or
-/usr/bin/rime_dict_manager -i wubi86 outfile.txt
-
-重新布置rime
----------------------end----------------------------
-</code></pre>
-</div>
-
-<h3 id="update">update</h3>
-
-<h4 id="section">16-05-25</h4>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>win7:
-程序-&gt;用户词库管理-&gt;导出词典快照(rime-&gt;rime)
-                  -&gt;导出文本码表(dic-&gt;newdic)
-</code></pre>
-</div>
-
-<p>the difference between 词典快照 and 文本码表</p>
-
-<p>1.词典快照
-<img src="https://raw.githubusercontent.com/3xp10it/pic/master/%E8%AF%8D%E5%85%B8%E5%BF%AB%E7%85%A7.png" /></p>
-
-<p>2.文本码表
-<img src="https://raw.githubusercontent.com/3xp10it/pic/master/%E6%96%87%E6%9C%AC%E7%A0%81%E8%A1%A8.png" /></p>
-
-<h4 id="section-1">16-05-28</h4>
-<div class="highlighter-rouge"><pre class="highlight"><code>python script:(performs well on kali,but not on win7)
-
-download:
-https://raw.githubusercontent.com/3xp10it/mytools/master/rimedic_handle.py
-
----------rimedic_handle.py------------
-import sys
-fp=open(sys.argv[1])
-all=fp.readlines()
-fp.close()
-#print len(all)
-newall2in3=[]
-fp=open("newdic.txt","a+")
-for eachline in all:
-    if "#" not in eachline:
-        eachline2in3=eachline.split('\t')[:2]
-        if eachline2in3 not in newall2in3 and 'enc' not in eachline and ' ' not in eachline2in3[0] and (eachline2in3[0][0]&lt;'a' or eachline2in3[0][0]&gt;'z'):
-            newall2in3.append(eachline2in3)
-            fp.write(eachline)
-
-#print len(newall)
-fp.close()
---------------------------------------
-get pure txt dic
-    different from real rime dic,this pure txt dic does not exist the rime dic header like
-        # rime-...
-        # user-id...
-    but this pure txt dic has the same \t split symbol as real rime dic
-
-dic from win7:
-    导出文本码表
-    cp out.txt \\kali\root\out.txt
-    cd \\kali\root
-    python rimedic_handle.py out.txt
-    output:newdic.txt
-
-dic from kali:
-    cd /root/.config/fcxti/rime
-    pkill fcitx
-    /usr/bin/rime_dict_manager -e wubi86 /root/kali.txt
-    cd /root
-    python rimedic_handle.py kali.txt
-    output:newdic.txt
-    restart fcitx:
-        https://www.findspace.name/res/786
-        -----------content------------
-        pidof fcitx | xargs kill
-        pidof sogou-qimpanel | xargs kill
-        nohup fcitx  1&gt;/dev/null 2&gt;/dev/null &amp;
-        nohup sogou-qimpanel  1&gt;/dev/null 2&gt;/dev/null &amp;
-        -----------end----------------
-        
-        or:
-        --------content---------
-        pidof fcitx | xargs kill;pidof sogou-qimpanel | xargs kill;nohup fcitx  1&gt;/dev/null 2&gt;/dev/null &amp;;nohup sogou-qimpanel  1&gt;/dev/null 2&gt;/dev/null &amp;
-        ---------end------------
-
-make myown larger dic
-    
-    download 8万精准超小词库.txt from 
-        https://github.com/studyzy/imewlconverter/tree/master/IME%20WL%20Converter/%E5%8F%82%E8%80%83
-    download scel from sougou wubi website
-        https://wubi.sogou.com/dict/
-    use imewlconverter.exe(深蓝词库转换工具) to convert from upon dics.txt to 8w_sougou_rime_wubi86_dic.txt
-    *attention*:
-        do not forget to change frequency from 10 to 1 when turning sougou scel to rime dic,the number of frequency words from sougou scel may not be 1,but bigger like 10.
-    
-    cd \\kali\root
-    vi 8w_sougou_rime_wubi86_dic.txt
-    G
-    :r newdic.txt
-    XX
-    rm newdic.txt
-    python rimedic_handle.py 8w_sougou_rime_wubi86_dic.txt
-    output:newdic.txt
-    
-    16-05-28 newdic.txt's download link:
-        8w only:
-            https://pan.baidu.com/s/1c2uiZks
-        8w+scel_sougou_new_added_frequency_to_1:
-            https://pan.baidu.com/s/1miMsYhU
-    
-    import:
-        kali:
-            cd /root/.config/fcitx/rime
-            /usr/bin/rime_dict_manager -i wubi86 /root/newdic.txt
-        win7:
-            导入文本码表----&gt;\\kali\root\newdic.txt
-</code></pre>
-</div>
-
 </span>
 
         
@@ -292,7 +168,7 @@ make myown larger dic
         <div class="tags">
           <small>
           <i class="fa fa-tags"></i>
-            type, rime
+            coding, efficient
           </small>
         </div>
         
@@ -313,7 +189,7 @@ make myown larger dic
 
       
 <!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="/auxilary/2016/05/24/rime五笔词库合并" data-title="" data-url="https://3xp10it.github.io//auxilary/2016/05/24/rime%E4%BA%94%E7%AC%94%E8%AF%8D%E5%BA%93%E5%90%88%E5%B9%B6/"></div>
+<div class="ds-thread" data-thread-key="/python/2016/08/26/python代码效率" data-title="" data-url="https://3xp10it.github.io//python/2016/08/26/python%E4%BB%A3%E7%A0%81%E6%95%88%E7%8E%87/"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
