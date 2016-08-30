@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "python多进程多线程",
+    "category" : "",
+    "tags"     : "python, coding, effective",
+    "url"      : "/python/2016/08/30/python%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B/",
+    "date"     : "2016-08-30 00:00:00 +0800"
+    } ,
+    
+  {
     "title"    : "python代码效率",
     "category" : "",
     "tags"     : "coding, efficient",

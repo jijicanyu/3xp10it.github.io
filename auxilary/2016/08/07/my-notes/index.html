@@ -117,7 +117,7 @@
 
       <div class="read-time">
         <small>
-          23 minute read
+          24 minute read
         </small>
       </div>
 
@@ -770,6 +770,9 @@
 <span class="p">68.</span>python,beautifulsoup中正则匹配中文的错误解决办法:http://www.lylinux.org/python%E4%BD%BF%E7%94%A8%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D%E4%B8%AD%E6%96%87.html
    python正则表达式:
        http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html
+       python一般默认贪婪模式(也即尽量往长度多的结果匹配),变成非贪婪方法:<span class="ge">*?(*</span>加上?)
+       正则表达式 – 运算符优先级
+            http://wp.huangshiyang.com/regexp
 <span class="p">69.</span>python中获得执行系统命令的输出:http://blog.csdn.net/g457499940/article/details/17068277
 <span class="p">70.</span>python代码中不能有~符号当作/root目录的习惯,open('~/something','r+')会出错,os.system('~/something')不会,为保证不出错,在代码中不用~符号,另外os.system(),open()等函数中不要有%s这种格式化字符串变量
 　　如果要用到在这些函数中传入一个变量作参数,先在os.system(),open()等函数前面格式化成普通不带%s的变量再传入这些函数,eg.a='python /root/%s' % input(),os.system(a)
@@ -1202,6 +1205,48 @@
 <span class="p">179.</span>pyc文件相当于pyhton文件的缓存,如果import了某个模块后在目录下生成了pyc文件,就算这个刚才被import的py模块被删除了,但是由于pyc文件还存在,仍然可以import 该模块
 <span class="p">180.</span>python查看模块中有哪些函数(dir()用法)
     http://www.iplaypython.com/jichu/dir.html
+<span class="p">181.</span>python多线程中使用multiprocessing.pool参数为多个的使用方法
+    http://stackoverflow.com/questions/4474940/unsupported-operand-types-exception-with-threappool-map-but-not-map<span class="sb">
+
+    from multiprocessing.dummy import Pool as ThreadPool
+    pool=ThreadPool(20)
+    使用map和map_async:
+        pool.map() vs pool.map_async
+        map是阻塞的,要等到map里面的列表中的所有
+        相应文档:
+            https://docs.python.org/2/library/multiprocessing.html(英文)
+            http://python.usyiyi.cn/translate/python_278/library/index.html(中文)
+            中文不详尽,英文中说到multiprocessing.dummy就是multiprocessing的复制版本,只不过multiprocessing.dummy作用于线程
+            "multiprocessing.dummy replicates the API of multiprocessing but is no more than a wrapper around the threading module."
+            所以参考multiprocessing的api来使用操作线程池即可
+
+            pool.close()
+                防止任何更多的任务(其他没有安排过的任务,map过的任务不属于这个范围)被提交到线程池中.一旦所有的任务已经完成了工作线程将退出.
+            pool.terminate()
+                立即停止线程池中的工作线程(无论任务有没有完成),经测试并不能停止所有的线程池中要进行的任务,应该
+                是只能停止当前正在执行的一个函数过程(子线程)
+
+                为了停止线程池中的所有线程,尤其是在爆破密码时,某一个线程已经爆破成功,为了达到"停止其他的将要执
+                行的通过map加入到pool线程池中的任务"相同的效果,在每个线程中的开头判断是否已经爆破成功,成功则直
+                接return,不成功则继续本线程应该完成的工作
+            pool.join()
+                等待线程池中的工作线程退出,必须先使用pool.close()或者pool.terminate()才能调用join()
+
+</span><span class="p">182.</span>cms在线识别
+    http://whatweb.bugscaner.com/
+<span class="p">183.</span>Netifera(域分析神器)
+<span class="p">184.</span>渗透图
+    http://images0.cnblogs.com/blog2015/640760/201506/121255389739630.png
+    http://www.e-wolf.top/content/uploadfile/201608/0f9f1471011328.jpg
+<span class="p">185.</span>python函数嵌套时在内层函数中操作外层函数的变量,不使用全局变量的方法
+    http://www.crifan.com/python_access_parent_nesting_function_local_variable_from_nested_function/
+<span class="p">186.</span>python使用mechanize进行web交互(可列表单,填表单,提交表单,使用代理等很方便)
+    http://blog.csdn.net/jeanphorn/article/details/46917159
+    http://blog.chinaunix.net/uid-26722078-id-3507409.html
+<span class="p">187.</span>python显示进度条方法
+    http://www.111cn.net/phper/python/66812.htm
+<span class="p">188.</span>python中https访问认证失败解决方法:
+    http://bookshadow.com/weblog/2015/04/22/sae-python-weibo-sdk-certificate-verify-failed/
 </code></pre>
 </div>
 </span>
