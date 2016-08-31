@@ -125,7 +125,7 @@
 
         
 
-        <span itemprop="articleBody"><h3 id="x01--python-">0x01 为什么有人说 Python 的多线程是鸡肋</h3>
+        <span itemprop="articleBody"><h3 id="x01-python">0x01 为什么有人说Python的多线程是鸡肋</h3>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>差不多是这样子.多线程目前仅用于网络多线程采集, 以及性能测试.
 其它的语言也有类似的情况,线程本身的特点导致线程的适用范围是受限的.只有CPU过剩,而其它的任务很慢,此时用线程才是有益的,可以很好平衡等待时间,提高并发性能.
@@ -137,6 +137,103 @@
 当我们想实现多任务处理时,首先要想到使用multiprocessing, 但是如果觉着进程太笨重,那么就要考虑使用线程. 如果多任务处理中需要处理的太多了,可以考虑多进程,每个进程再采用多线程.如果还处理不要,就要使用轮询模式,比如使用poll event, twisted等方式.如果是GUI方式,则要通过事件机制,或者是消息机制处理,GUI使用单线程.
 所以在python里线程不要盲目用, 也不要滥用. 但是线程不安全是事实.如果仅仅是做几个后台任务,则可以考虑使用守护线程做.如果需要做一些危险操作,可能会崩溃的,就用子进程去做. 如果需要高度稳定性,同时并发数又不高的服务.则强烈建议用多进程的multiprocessing模块实现.
 在linux或者是unix里,进程的使用代价没有windows高.还是可以接受的.
+</code></pre>
+</div>
+
+<h3 id="x02-">0x02 经典多线程学习理解</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>http://blog.csdn.net/a921800467b/article/details/8579915
+</code></pre>
+</div>
+
+<h3 id="x03-io--">0x03 网络io 阻塞|非阻塞 同步|异步</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>http://www.cnblogs.com/Anker/p/3254269.html
+</code></pre>
+</div>
+
+<h3 id="x03-">0x03 实例</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>good
+    http://www.2cto.com/kf/201504/395330.html 
+    https://mugglecoding.gitbooks.io/qa/content/poolzen_yao_shi_yong.html
+
+https://superxiaoxiong.github.io/2016/08/25/python-threadpool/
+http://www.jb51.net/article/79631.htm
+http://www.jb51.net/article/71911.htm
+http://www.cnblogs.com/fnng/p/3670789.html
+http://5ydycm.blog.51cto.com/115934/1435042
+http://www.codexiu.cn/python/blog/939/
+</code></pre>
+</div>
+
+<h3 id="x04-attention">0x04 attention</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>1&gt;threadpool
+
+    threadpool线程池模块已经过时,官方如下说明,建议使用multiprocessing模块甚至是用asyncio这个模块来通过异步实现
+
+    This module is OBSOLETE and is only provided on PyPI to support old projects that still use it. Please DO NOT
+    USE IT FOR NEW PROJECTS! Use modern alternatives like the multiprocessing module in the standard library
+    or even an asynchroneous approach with asyncio
+
+    multiprocessing多进程多线程模块
+    https://docs.python.org/2.7/library/multiprocessing.html(py官方doc)
+
+    asyncio异步io模块(pyhton3.4新增模块,py2没有)
+    https://docs.python.org/3/library/asyncio.html#module-asyncio
+
+2&gt;join()和setDaemon的区别
+
+    http://blog.csdn.net/zhangzheng0413/article/details/41728869
+
+    功能基本是相反的
+
+        thread.join是要求所有子线程执行完,主线程才不阻塞
+
+        thread.setDaemon(True)是将父线程设置为守护线程,也即主线程执行完后不管子线程有没有执行完,子线程直接结束,
+        setDaemon要设置在thread.start()之前
+
+3&gt;pool.apply()和pool.map
+
+eg.
+from multiprocessing.dummy import Pool as ThreadPool
+pool=ThreadPool(20)
+
+for循环下的pool.apply()相当于pool.map
+
+pool.apply()和pool.apply_async()的区别是:apply_async是并行处理,apply不是,必须等每个子线程执行完
+    apply
+    It blocks until the result is ready, so apply_async() is better suited for performing work in parallel.
+
+
+</code></pre>
+</div>
+
+<h3 id="x05-important">0x05 important</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>multiprocessing模块是重点
+
+https://docs.python.org/2.7/library/multiprocessing.html(py官方英文doc)
+http://python.usyiyi.cn/translate/python_278/library/index.html(中文doc)
+http://stackoverflow.com/questions/4474940/unsupported-operand-types-exception-with-threappool-map-but-not-map
+
+中文不详尽,英文中说到multiprocessing.dummy就是multiprocessing的复制版本,只不过multiprocessing.dummy作用于线程
+"multiprocessing.dummy replicates the API of multiprocessing but is no more than a wrapper around the threading module."
+所以参考multiprocessing的api来使用操作线程池即可
+
+pool.close()
+    防止任何更多的任务(其他没有安排过的任务,map过的任务不属于这个范围)被提交到线程池中.一旦所有的任务已经完成了工作线程将退出.
+pool.terminate()
+    立即停止线程池中的工作线程(无论任务有没有完成),经测试并不能停止所有的线程池中要进行的任务,应该
+    是只能停止当前正在执行的一个函数过程(子线程)
+
+    为了停止线程池中的所有线程,尤其是在爆破密码时,某一个线程已经爆破成功,为了达到"停止其他的将要执
+    行的通过map加入到pool线程池中的任务"相同的效果,在每个线程中的开头判断是否已经爆破成功,成功则直
+    接return,不成功则继续本线程应该完成的工作
+pool.join()
+    等待线程池中的工作线程退出,必须先使用pool.close()或者pool.terminate()才能调用join()
+
 </code></pre>
 </div>
 </span>
