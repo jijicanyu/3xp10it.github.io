@@ -233,25 +233,25 @@ pool.terminate()
     接return,不成功则继续本线程应该完成的工作
 pool.join()
     等待线程池中的工作线程退出,必须先使用pool.close()或者pool.terminate()才能调用join()
-
-### 0x06 my easy_crawl code
-
 </code></pre>
 </div>
-<p>def get_request(uri):
-    #发出get请求,返回值为一个字典,有三个键值对:eg.{“code”:200,”title”:None,”content”:””}
+
+<h3 id="x06-my-easycrawl-code">0x06 my easy_crawl code</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>def get_request(uri):
+    #发出get请求,返回值为一个字典,有三个键值对:eg.{"code":200,"title":None,"content":""}
     #code是int类型
     #title如果没有则返回None,有则返回str类型
-    #content如果没有则返回””
+    #content如果没有则返回""
     try:
         import mechanize
     except:
-        os.system(“pip install mechanize”)
+        os.system("pip install mechanize")
         import mechanize
     try:
         import cookielib
     except:
-        os.system(“pip install cookielib”)
+        os.system("pip install cookielib")
         import cookielib
     try:
         br = mechanize.Browser()
@@ -264,7 +264,7 @@ pool.join()
         br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
         ua=get_random_ua()
         x_forwarded_for=get_random_x_forwarded_for()
-        br.addheaders = [(‘User-agent’, ‘%s’ % ua),(‘X-Forwarded-For’,’%s’ % x_forwarded_for)]
+        br.addheaders = [('User-agent', '%s' % ua),('X-Forwarded-For','%s' % x_forwarded_for)]
         br.open(uri)
         br._factory.is_html = True
         code=br.response().code
@@ -273,150 +273,151 @@ pool.join()
     except mechanize.HTTPError as e:
         code=e.code
         content=e.read()
-        soup=BeautifulSoup(content,”lxml”)
+        soup=BeautifulSoup(content,"lxml")
         title=soup.title.string
-    return_value={‘code’:code,’title’:title,’content’:content}
+    return_value={'code':code,'title':title,'content':content}
     #print return_value
-    return return_value</p>
+    return return_value
 
-<p>def collect_uris_from_uri(uri):
+
+def collect_uris_from_uri(uri):
 #从uri所在的html内容中收集uri到uri队列
-#返回值是一个字典,{‘y1’:y1,’y2’:y2}
+#返回值是一个字典,{'y1':y1,'y2':y2}
 #y1是根据参数uri得到的html页面中的所有uri,是个列表类型
-#y2是参数uri对应的三个关键元素,y2是个字典类型,eg.{“code”:200,”title”:None,”content”:””}
+#y2是参数uri对应的三个关键元素,y2是个字典类型,eg.{"code":200,"title":None,"content":""}
     all_uris=[]
     result=get_request(uri)
-    content=result[‘content’]
-    bs=BeautifulSoup(content,”lxml”)
-    for each in bs.find_all(‘a’):
-        find_uri=each.get(‘href’)
+    content=result['content']
+    bs=BeautifulSoup(content,"lxml")
+    for each in bs.find_all('a'):
+        find_uri=each.get('href')
         all_uris.append(find_uri)
-    return {‘y1’:all_uris,’y2’:result}</p>
+    return {'y1':all_uris,'y2':result}
 
-<p>class MyThread(threading.Thread):
-    def <strong>init</strong>(self,func,args,name=’’):
-        threading.Thread.<strong>init</strong>(self)
+
+class MyThread(threading.Thread):
+    def __init__(self,func,args,name=''):
+        threading.Thread.__init__(self)
         self.name=name
         self.func=func
         self.args=args
     def run(self):
         self.result=apply(self.func,self.args)
     def get_result():
-        return self.result</p>
+        return self.result
 
-<p>def crawl_uri(uri):
+def crawl_uri(uri):
     #爬虫,可获取uri对应网站的所有可抓取的uri和所有网页三元素:code,title,content
     uris_queue=Queue.Queue()
     uris_uri_keyvalues={}
     #uri和uri的三个元素的对应值为一个字典的键值对
-    #eg{‘http://www.baiud.com’:{‘code’:code,’title’:title,’content’:content},””:{},””:{},…}
-    #用于收集uri与对应的三个元素的值,收集后考虑可能统一存入数据库</p>
+    #eg{'http://www.baiud.com':{'code':code,'title':title,'content':content},"":{},"":{},...}
+    #用于收集uri与对应的三个元素的值,收集后考虑可能统一存入数据库
 
-<div class="highlighter-rouge"><pre class="highlight"><code>#收集相同域名网站内的uris
-domain_uris=[]
-#收集二级域名
-subdomain_uris=[]
-def task_finish_func():
-    while True:
-        current_uri=uris_queue.get()
-        http_domain=get_http_domain_from_uri(current_uri)
-        #eg.main_domain_prefix从http://www.freebuf.com中得到www
-        #main_domain_key_value从http://www.freebuf.com中得到freebuf
-        main_domain_prefix=re.search(r"http(s)?://([^\.]*)\.([^\./]*)",current_uri).group(2)
-        main_domain_key_value=re.search(r"http(s)?://([^\.]*)\.([^\./]*)",current_uri).group(3)
-        #print main_domain_prefix
-        #print main_domain_key_value
-        #raw_input()
-        result=collect_uris_from_uri(current_uri)
-        uris=result['y1']
-        for each in uris:
-            #collect_uris_from_uri得到的结果中的元素可能是None
-            if each is not None:
-                tmp=get_http_domain_pattern_from_uri(http_domain)
-                http_domain_pattern=re.compile(r"%s" % tmp)
-                if re.match(http_domain_pattern,each):
-                    each=re.sub(r"/$","",each)
-                    if each not in domain_uris:
-                        print each
-                        domain_uris.append(each)
-                        #print domain_uris
-                        uris_queue.put(each)
-                if re.match(r"http(s)?://[^\.]*(?&lt;!%s)\.%s" % (main_domain_prefix,main_domain_key_value),each):
-                    each_subdomain=get_http_domain_from_uri(each)
-                    if each_subdomain not in subdomain_uris:
-                        #二级域名只将http_domain部分加入收藏,不放到队列里
-                        print each_subdomain
-                        subdomain_uris.append(each_subdomain)
-        uris_uri_keyvalues['%s' % uri]=result
-        uris_queue.task_done()
+    #收集相同域名网站内的uris
+    domain_uris=[]
+    #收集二级域名
+    subdomain_uris=[]
+    def task_finish_func():
+        while True:
+            current_uri=uris_queue.get()
+            http_domain=get_http_domain_from_uri(current_uri)
+            #eg.main_domain_prefix从http://www.freebuf.com中得到www
+            #main_domain_key_value从http://www.freebuf.com中得到freebuf
+            main_domain_prefix=re.search(r"http(s)?://([^\.]*)\.([^\./]*)",current_uri).group(2)
+            main_domain_key_value=re.search(r"http(s)?://([^\.]*)\.([^\./]*)",current_uri).group(3)
+            #print main_domain_prefix
+            #print main_domain_key_value
+            #raw_input()
+            result=collect_uris_from_uri(current_uri)
+            uris=result['y1']
+            for each in uris:
+                #collect_uris_from_uri得到的结果中的元素可能是None
+                if each is not None:
+                    tmp=get_http_domain_pattern_from_uri(http_domain)
+                    http_domain_pattern=re.compile(r"%s" % tmp)
+                    if re.match(http_domain_pattern,each):
+                        each=re.sub(r"/$","",each)
+                        if each not in domain_uris:
+                            print each
+                            domain_uris.append(each)
+                            #print domain_uris
+                            uris_queue.put(each)
+                    if re.match(r"http(s)?://[^\.]*(?&lt;!%s)\.%s" % (main_domain_prefix,main_domain_key_value),each):
+                        each_subdomain=get_http_domain_from_uri(each)
+                        if each_subdomain not in subdomain_uris:
+                            #二级域名只将http_domain部分加入收藏,不放到队列里
+                            print each_subdomain
+                            subdomain_uris.append(each_subdomain)
+            uris_uri_keyvalues['%s' % uri]=result
+            uris_queue.task_done()
 
 
-#初始化
-uri=re.sub(r"(/{0,2}(\s){0,2})$","",uri)
-start_uris=[uri]
-http_domain=get_http_domain_from_uri(uri)
-if uri!=http_domain:
-    start_uris.append(http_domain)
-for each in start_uris:
-    uris_queue.put(each)
+    #初始化
+    uri=re.sub(r"(/{0,2}(\s){0,2})$","",uri)
+    start_uris=[uri]
+    http_domain=get_http_domain_from_uri(uri)
+    if uri!=http_domain:
+        start_uris.append(http_domain)
+    for each in start_uris:
+        uris_queue.put(each)
 
-'''传统多线程
-mythreads=[]
-start=time.time()
-for i in range(15):
-    mythread=MyThread(task_finish_func,())
-    mythreads.append(mythread)
-for i in range(15):
-    mythreads[i].setDaemon(True)
-    mythreads[i].start()
-    print "%s threads started" % str(i)
-uris_queue.join()
-end=time.time()
-print end-start
-print len(domain_uris)
-#upon threads=200 ===&gt; 38,16
-#threads=5 ===&gt; 12,16
-#threads=10 4,16
-#threads=15 3.4,16
-'''
+    '''传统多线程
+    mythreads=[]
+    start=time.time()
+    for i in range(15):
+        mythread=MyThread(task_finish_func,())
+        mythreads.append(mythread)
+    for i in range(15):
+        mythreads[i].setDaemon(True)
+        mythreads[i].start()
+        print "%s threads started" % str(i)
+    uris_queue.join()
+    end=time.time()
+    print end-start
+    print len(domain_uris)
+    #upon threads=200 ===&gt; 38,16
+    #threads=5 ===&gt; 12,16
+    #threads=10 4,16
+    #threads=15 3.4,16
+    '''
 
-'''单线程
-start=time.time()
-task_finish_func()
-uris_queue.join()
-end=time.time()
-print end-start
-print len(domain_uris)
-#thread=1 task_finish_func中while True改成while uris_queue.empty() is False,要不然不会执行到最后     19.4,16
-'''
+    '''单线程
+    start=time.time()
+    task_finish_func()
+    uris_queue.join()
+    end=time.time()
+    print end-start
+    print len(domain_uris)
+    #thread=1 task_finish_func中while True改成while uris_queue.empty() is False,要不然不会执行到最后     19.4,16
+    '''
 
-mythreads=[]
-start=time.time()
-pool=ThreadPool(15)
-for i in range(15):
-    #这里比较特殊,因为函数task_finish_func是个无限循环的函数,所以就算这里开20个线程也会因为线程池中只有15个位置使得一直只有15个线程在运行,多余的5个线程相当于没有设置一样
-    pool.apply_async(task_finish_func,())
-pool.close()
+    mythreads=[]
+    start=time.time()
+    pool=ThreadPool(15)
+    for i in range(15):
+        #这里比较特殊,因为函数task_finish_func是个无限循环的函数,所以就算这里开20个线程也会因为线程池中只有15个位置使得一直只有15个线程在运行,多余的5个线程相当于没有设置一样
+        pool.apply_async(task_finish_func,())
+    pool.close()
 
-while 1:
-    #这里的if取代下面的uris_queue.join(),有时爬虫被ban时,如果用uris_queue.join()会无限等待
-    num_of_result=len(domain_uris)
-    sleep(5)
-    if len(domain_uris)==num_of_result:
-        print "finished,if the number of uris you get is not big enough,you may be banned to crawl :("
-        break
+    while 1:
+        #这里的if取代下面的uris_queue.join(),有时爬虫被ban时,如果用uris_queue.join()会无限等待
+        num_of_result=len(domain_uris)
+        sleep(10)
+        if len(domain_uris)==num_of_result:
+            print "finished,if the number of uris you get is not big enough,you may be banned to crawl :("
+            break
 
-#uris_queue.join()
-end=time.time()
-print end-start
-print len(domain_uris)
-#threads=15(pool_size=15,for_range=20) 4.15,16
-#threads=20(pool_size=20,for_range=20) 9.2,16
-#threads=10(pool_size=10,for_range=20) 4.2,16
+    #uris_queue.join()
+    end=time.time()
+    print end-start
+    print len(domain_uris)
+    #threads=15(pool_size=15,for_range=20) 4.15,16
+    #threads=20(pool_size=20,for_range=20) 9.2,16
+    #threads=10(pool_size=10,for_range=20) 4.2,16
+
 </code></pre>
 </div>
-
-<p>```</p>
 
 </span>
 
