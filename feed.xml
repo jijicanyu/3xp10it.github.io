@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 01 Sep 2016 22:20:02 +0800</pubDate>
-    <lastBuildDate>Thu, 01 Sep 2016 22:20:02 +0800</lastBuildDate>
+    <pubDate>Thu, 01 Sep 2016 22:31:24 +0800</pubDate>
+    <lastBuildDate>Thu, 01 Sep 2016 22:31:24 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -1179,7 +1179,7 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
-        <pubDate>Thu, 01 Sep 2016 22:20:02 +0800</pubDate>
+        <pubDate>Thu, 01 Sep 2016 22:31:24 +0800</pubDate>
         <link>/2016/09/01/2016-08-07-my-notes/</link>
         <guid isPermaLink="true">/2016/09/01/2016-08-07-my-notes/</guid>
         
@@ -1191,15 +1191,23 @@
         <description>&lt;h3 id=&quot;x01-python&quot;&gt;0x01 为什么有人说Python的多线程是鸡肋&lt;/h3&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;差不多是这样子.多线程目前仅用于网络多线程采集, 以及性能测试.
-其它的语言也有类似的情况,线程本身的特点导致线程的适用范围是受限的.只有CPU过剩,而其它的任务很慢,此时用线程才是有益的,可以很好平衡等待时间,提高并发性能.
-线程的问题主要是线程的安全稳定性.线程无法强制中止,同时线程与主进程共享内存,可能会影响主进程的内存管理. 
-在python里线程出问题,可能会导致主进程崩溃. 虽然python里的线程是操作系统的真实线程.
-那么怎么解决呢?通过我们用进程方式.子进程崩溃后,会完全的释放所有的内存和错误状态.所以进程更安全. 另外通过进程,python可以很好的绕过GIL,这个全局锁问题. 
-但是进程也是有局限的.不要建立超过CPU总核数的进程,否则效率也不高.
+其它的语言也有类似的情况,线程本身的特点导致线程的适用范围是受限的.只有CPU过剩,而其它的任务很慢,此时用线程才是有
+益的,可以很好平衡等待时间,提高并发性能.线程的问题主要是线程的安全稳定性.线程无法强制中止,同时线程与主进程共享内
+存,可能会影响主进程的内存管理.在python里线程出问题,可能会导致主进程崩溃. 虽然python里的线程是操作系统的真实线程
+那么怎么解决呢?通过我们用进程方式.子进程崩溃后,会完全的释放所有的内存和错误状态.所以进程更安全. 另外通过进程,
+python可以很好的绕过GIL,这个全局锁问题. 但是进程也是有局限的.不要建立超过CPU总核数的进程,否则效率也不高.
+
 简单的总结一下.
-当我们想实现多任务处理时,首先要想到使用multiprocessing, 但是如果觉着进程太笨重,那么就要考虑使用线程. 如果多任务处理中需要处理的太多了,可以考虑多进程,每个进程再采用多线程.如果还处理不要,就要使用轮询模式,比如使用poll event, twisted等方式.如果是GUI方式,则要通过事件机制,或者是消息机制处理,GUI使用单线程.
-所以在python里线程不要盲目用, 也不要滥用. 但是线程不安全是事实.如果仅仅是做几个后台任务,则可以考虑使用守护线程做.如果需要做一些危险操作,可能会崩溃的,就用子进程去做. 如果需要高度稳定性,同时并发数又不高的服务.则强烈建议用多进程的multiprocessing模块实现.
+当我们想实现多任务处理时,首先要想到使用multiprocessing, 但是如果觉着进程太笨重,那么就要考虑使用线程. 如果多任务
+处理中需要处理的太多了,可以考虑多进程,每个进程再采用多线程.如果还处理不要,就要使用轮询模式,比如使用poll event,
+twisted等方式.如果是GUI方式,则要通过事件机制,或者是消息机制处理,GUI使用单线程.所以在python里线程不要盲目用, 也
+不要滥用. 但是线程不安全是事实.如果仅仅是做几个后台任务,则可以考虑使用守护线程做.如果需要做一些危险操作,可能会
+崩溃的,就用子进程去做. 如果需要高度稳定性,同时并发数又不高的服务.则强烈建议用多进程的multiprocessing模块实现.
 在linux或者是unix里,进程的使用代价没有windows高.还是可以接受的.
+
+                                                            --refer from baidu zhidao
+more:
+    https://www.zhihu.com/question/23474039
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -1236,9 +1244,9 @@ http://www.codexiu.cn/python/blog/939/
 
     threadpool线程池模块已经过时,官方如下说明,建议使用multiprocessing模块甚至是用asyncio这个模块来通过异步实现
 
-    This module is OBSOLETE and is only provided on PyPI to support old projects that still use it. Please DO NOT
-    USE IT FOR NEW PROJECTS! Use modern alternatives like the multiprocessing module in the standard library
-    or even an asynchroneous approach with asyncio
+    This module is OBSOLETE and is only provided on PyPI to support old projects that still use it. Please DO
+    NOT USE IT FOR NEW PROJECTS! Use modern alternatives like the multiprocessing module in the standard
+    library or even an asynchroneous approach with asyncio
 
     multiprocessing多进程多线程模块
     https://docs.python.org/2.7/library/multiprocessing.html(py官方doc)
@@ -1249,9 +1257,7 @@ http://www.codexiu.cn/python/blog/939/
 2&amp;gt;join()和setDaemon的区别
 
     http://blog.csdn.net/zhangzheng0413/article/details/41728869
-
     功能基本是相反的
-
         thread.join是要求所有子线程执行完,主线程才不阻塞
 
         thread.setDaemon(True)是将父线程设置为守护线程,也即主线程执行完后不管子线程有没有执行完,子线程直接结束,
@@ -1268,7 +1274,6 @@ for循环下的pool.apply()相当于pool.map
 pool.apply()和pool.apply_async()的区别是:apply_async是并行处理,apply不是,必须等每个子线程执行完
     apply
     It blocks until the result is ready, so apply_async() is better suited for performing work in parallel.
-
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -1287,6 +1292,7 @@ http://stackoverflow.com/questions/4474940/unsupported-operand-types-exception-w
 
 pool.close()
     防止任何更多的任务(其他没有安排过的任务,map过的任务不属于这个范围)被提交到线程池中.一旦所有的任务已经完成了工作线程将退出.
+
 pool.terminate()
     立即停止线程池中的工作线程(无论任务有没有完成),经测试并不能停止所有的线程池中要进行的任务,应该
     是只能停止当前正在执行的一个函数过程(子线程)
@@ -1294,6 +1300,7 @@ pool.terminate()
     为了停止线程池中的所有线程,尤其是在爆破密码时,某一个线程已经爆破成功,为了达到&quot;停止其他的将要执
     行的通过map加入到pool线程池中的任务&quot;相同的效果,在每个线程中的开头判断是否已经爆破成功,成功则直
     接return,不成功则继续本线程应该完成的工作
+
 pool.join()
     等待线程池中的工作线程退出,必须先使用pool.close()或者pool.terminate()才能调用join()
 &lt;/code&gt;&lt;/pre&gt;
@@ -1301,7 +1308,24 @@ pool.join()
 
 &lt;h3 id=&quot;x06-my-easycrawl-code&quot;&gt;0x06 my easy_crawl code&lt;/h3&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def get_request(uri):
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def get_random_ua():
+    #得到随机user-agent值
+    f=open(&quot;dicts/user-agents.txt&quot;,&quot;r+&quot;)
+    all_user_agents=f.readlines()
+    f.close()
+    random_ua_index=random.randint(0,len(all_user_agents)-1)
+    ua=re.sub(r&quot;(\s)$&quot;,&quot;&quot;,all_user_agents[random_ua_index])
+    return ua
+
+def get_random_x_forwarded_for():
+    #得到随机x-forwarded-for值
+    numbers = []
+    while not numbers or numbers[0] in (10, 172, 192):
+        numbers = random.sample(xrange(1, 255), 4)
+    return &#39;.&#39;.join(str(_) for _ in numbers)
+
+
+def get_request(uri):
     #发出get请求,返回值为一个字典,有三个键值对:eg.{&quot;code&quot;:200,&quot;title&quot;:None,&quot;content&quot;:&quot;&quot;}
     #code是int类型
     #title如果没有则返回None,有则返回str类型
@@ -1452,14 +1476,15 @@ def crawl_uri(uri):
     end=time.time()
     print end-start
     print len(domain_uris)
-    #thread=1 task_finish_func中while True改成while uris_queue.empty() is False,要不然不会执行到最后     19.4,16
+    #thread=1 task_finish_func中while True改成while uris_queue.empty() is False,要不然不会执行到最后    19.4,16
     &#39;&#39;&#39;
 
     mythreads=[]
     start=time.time()
     pool=ThreadPool(15)
     for i in range(15):
-        #这里比较特殊,因为函数task_finish_func是个无限循环的函数,所以就算这里开20个线程也会因为线程池中只有15个位置使得一直只有15个线程在运行,多余的5个线程相当于没有设置一样
+        #这里比较特殊,因为函数task_finish_func是个无限循环的函数,所以就算这里开20个线程也会因为线程池中只有15个
+        #位置使得一直只有15个线程在运行,多余的5个线程相当于没有设置一样
         pool.apply_async(task_finish_func,())
     pool.close()
 
