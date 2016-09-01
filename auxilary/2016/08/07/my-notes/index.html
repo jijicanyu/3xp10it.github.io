@@ -772,8 +772,14 @@
        http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html
        python一般默认贪婪模式(也即尽量往长度多的结果匹配),变成非贪婪方法:<span class="ge">*?(*</span>加上?)
        正则表达式 – 运算符优先级
-            http://wp.huangshiyang.com/regexp
-<span class="p">69.</span>python中获得执行系统命令的输出:http://blog.csdn.net/g457499940/article/details/17068277
+            http://wp.huangshiyang.com/regexp<span class="sb">
+
+            匹配不包含...
+            http://www.jb51.net/article/52491.htm
+
+            前向界定|后向界定|前向非界定|后向非界定
+            http://blog.csdn.net/smilelance/article/details/6529950
+</span><span class="p">69.</span>python中获得执行系统命令的输出:http://blog.csdn.net/g457499940/article/details/17068277
 <span class="p">70.</span>python代码中不能有~符号当作/root目录的习惯,open('~/something','r+')会出错,os.system('~/something')不会,为保证不出错,在代码中不用~符号,另外os.system(),open()等函数中不要有%s这种格式化字符串变量
 　　如果要用到在这些函数中传入一个变量作参数,先在os.system(),open()等函数前面格式化成普通不带%s的变量再传入这些函数,eg.a='python /root/%s' % input(),os.system(a)
 <span class="p">71.</span>ida pro中graph功能失败,could not find grapher 'qwingraph.exe'.please check GRAPH_VISUALIZER in ida.cfg　　　　　　解决方法http://blog.csdn.net/qysh123/article/details/17590731
@@ -1220,6 +1226,8 @@
             "multiprocessing.dummy replicates the API of multiprocessing but is no more than a wrapper around the threading module."
             所以参考multiprocessing的api来使用操作线程池即可
 
+            https://mugglecoding.gitbooks.io/qa/content/poolzen_yao_shi_yong.html
+
             pool.close()
                 防止任何更多的任务(其他没有安排过的任务,map过的任务不属于这个范围)被提交到线程池中.一旦所有的任务已经完成了工作线程将退出.
             pool.terminate()
@@ -1247,6 +1255,41 @@
     http://www.111cn.net/phper/python/66812.htm
 <span class="p">188.</span>python中https访问认证失败解决方法:
     http://bookshadow.com/weblog/2015/04/22/sae-python-weibo-sdk-certificate-verify-failed/
+<span class="p">189.</span>python中sys.stdout模块
+    http://www.cnblogs.com/turtle-fly/p/3280519.html
+    a. print "something"   相当于sys.stdout.write("something<span class="se">\n</span>")
+    b. print "something",  相当于sys.stdout.write("something")<span class="sb">
+
+    没有换行的print或sys.stdout.write()都不会立即打印出来,需要遇到有换行的地方才会显示,或者没有遇到换行只能在
+    程序运行结束后强制显示,也即b中的方法不会打印出内容到终端,加sys.stdout.flush()才可以马上显示,或者遇到下面的
+    print有换行功能,或者程序结束才会打印出来
+</span><span class="p">190.</span>查看python模块文档
+        python -m pydoc -p 500
+    python官方文档中文站
+        http://python.usyiyi.cn/translate/python_278/library/index.html
+    python官方英文文档
+        https://docs.python.org/2.7/<span class="sb">
+
+    上面不能查看到的信息,eg. sys.stdout有哪些函数?方法如下:
+        python
+        import sys
+        dir(sys.stdout)
+        sys.stdout.__doc__
+            可以看出sys.stdout是个文件对象
+            文件对象的操作http://my.oschina.net/u/2252538/blog/332757
+        sys.stdout.truncate.__doc__
+        sys.stdout.close.__doc__
+        ...
+</span><span class="p">191.</span>快速查看windows是32|64位
+    dxdiag
+<span class="p">192.</span>python在一行打印的方法
+    eg.
+    PASSWORD=password+(50-len(password))<span class="err">*</span>" "
+    sys.stdout.write('-'<span class="err">*</span>(try_time<span class="p">[</span><span class="nv">0</span><span class="p">]</span>/(sum<span class="p">[</span><span class="nv">0</span><span class="p">]</span>/100))+'&gt;'+str(try_time<span class="p">[</span><span class="nv">0</span><span class="p">]</span>/(sum<span class="p">[</span><span class="nv">0</span><span class="p">]</span>/100))+'%'+' %s/%s %s<span class="se">\r</span>' % (try_time<span class="p">[</span><span class="nv">0</span><span class="p">]</span>,sum<span class="p">[</span><span class="nv">0</span><span class="p">]</span>,PASSWORD))
+    sys.stdout.flush()
+    其中password长度是变化的,使用print "<span class="se">\b</span>"或sys.stdout.write("<span class="se">\b</span>")想达到退格的效果无果后,考虑到的技巧:声明好
+    一个尾部是空格串的PASSWORD,将动态变化的password放入PASSWORD的最前面,这样就是每次在同一行打印长度不变的字符串了,就不会由于password由长变短后突出的长的尾巴不能用退格清除而烦恼了
+
 </code></pre>
 </div>
 </span>
