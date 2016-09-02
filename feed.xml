@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 02 Sep 2016 09:06:36 +0800</pubDate>
-    <lastBuildDate>Fri, 02 Sep 2016 09:06:36 +0800</lastBuildDate>
+    <pubDate>Fri, 02 Sep 2016 13:58:30 +0800</pubDate>
+    <lastBuildDate>Fri, 02 Sep 2016 13:58:30 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -4086,6 +4086,11 @@ noremap wo :tabopen http://192.168.3.13:1235/webinfos &amp;lt;CR&amp;gt;
     sys.stdout.flush()
     其中password长度是变化的,使用print &quot;&lt;span class=&quot;se&quot;&gt;\b&lt;/span&gt;&quot;或sys.stdout.write(&quot;&lt;span class=&quot;se&quot;&gt;\b&lt;/span&gt;&quot;)想达到退格的效果无果后,考虑到的技巧:声明好
     一个尾部是空格串的PASSWORD,将动态变化的password放入PASSWORD的最前面,这样就是每次在同一行打印长度不变的字符串了,就不会由于password由长变短后突出的长的尾巴不能用退格清除而烦恼了
+&lt;span class=&quot;p&quot;&gt;193.&lt;/span&gt;python中打开文件可以用with open() f的方式来打开文件:
+        with open(r&#39;user.dic&#39;, &#39;r&#39;) as fUser:  # 使用with as 来打开文件,不需自己关闭文件,因为他会自己在合适的时
+        候自已关闭(类似C# 中的using(...){}接口)
+&lt;span class=&quot;p&quot;&gt;194.&lt;/span&gt;windows下bat对指定日期内的文件的操作
+    http://www.111cn.net/sys/Windows7/81187.htm
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
