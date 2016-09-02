@@ -166,6 +166,7 @@ more:
     http://www.2cto.com/kf/201504/395330.html 
     https://mugglecoding.gitbooks.io/qa/content/poolzen_yao_shi_yong.html
 
+http://www.cnblogs.com/zhangchaoyang/articles/5188904.html 线程池实现
 https://superxiaoxiong.github.io/2016/08/25/python-threadpool/
 http://www.jb51.net/article/79631.htm
 http://www.jb51.net/article/71911.htm
@@ -219,6 +220,9 @@ pool.apply()和pool.apply_async()的区别是:apply_async是并行处理,apply�
 
 <div class="highlighter-rouge"><pre class="highlight"><code>multiprocessing模块是重点
 
+multiprocessing pool源码解读
+http://www.bingtel.wang/python%E5%A4%9A%E8%BF%9B%E7%A8%8B%E7%BC%96%E7%A8%8B%E4%B9%8Bmultiprocessing-pool%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB.html
+
 https://docs.python.org/2.7/library/multiprocessing.html(py官方英文doc)
 http://python.usyiyi.cn/translate/python_278/library/index.html(中文doc)
 http://stackoverflow.com/questions/4474940/unsupported-operand-types-exception-with-threappool-map-but-not-map
@@ -240,6 +244,13 @@ pool.terminate()
 
 pool.join()
     等待线程池中的工作线程退出,必须先使用pool.close()或者pool.terminate()才能调用join()
+
+
+concurrent.futures(python3.2新增模块)
+
+    https://docs.python.org/3/library/concurrent.futures.html
+    ThreadPoolExecutor线程池
+    ProcessPoolExecutor进程池
 </code></pre>
 </div>
 
@@ -429,7 +440,7 @@ def crawl_uri(uri):
     while 1:
         #这里的if取代下面的uris_queue.join(),有时爬虫被ban时,如果用uris_queue.join()会无限等待
         num_of_result=len(domain_uris)
-        sleep(10)
+        sleep(15)
         if len(domain_uris)==num_of_result:
             print "finished,if the number of uris you get is not big enough,you may be banned to crawl :("
             break
