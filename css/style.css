@@ -248,11 +248,6 @@ ul {
   .index .content-panel:nth-of-type(1) {
     border-bottom: 10px solid #3CA2A2; }
   .index .author-header {
-    font-family: "Dancing Script";
-    font-style: normal;
-    font-weight: 400;
-    src: local("Dancing Script"), local("DancingScript"), url("http://fonts.gstatic.com/s/dancingscript/v7/DK0eTGXiZjN6yA8zAEyM2Ud0sm1ffa_JvZxsF_BEwQk.woff2") format("woff2");
-    unicode-range: U+0-FF, U+131, U+152-153, U+2C6, U+2DA, U+2DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
     font: 70px Dancing Script;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); }
     @media (min-width: 768px) {
