@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 02 Sep 2016 16:21:53 +0800</pubDate>
-    <lastBuildDate>Fri, 02 Sep 2016 16:21:53 +0800</lastBuildDate>
+    <pubDate>Fri, 02 Sep 2016 16:24:35 +0800</pubDate>
+    <lastBuildDate>Fri, 02 Sep 2016 16:24:35 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -3889,6 +3889,7 @@ noremap wo :tabopen http://192.168.3.13:1235/webinfos &amp;lt;CR&amp;gt;
     本地生成的博客为http://127.0.0.1:4000,没有https
     解决办法:https://help.github.com/articles/securing-your-github-pages-site-with-https/
         将博客文件夹中的https变成http
+        (后来好像是只要把css文件中的http变成https就可以？)
 &lt;span class=&quot;p&quot;&gt;137.&lt;/span&gt;终端字符串生成图像工具
     banner
     figlet
