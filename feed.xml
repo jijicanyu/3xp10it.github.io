@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 02 Sep 2016 14:54:40 +0800</pubDate>
-    <lastBuildDate>Fri, 02 Sep 2016 14:54:40 +0800</lastBuildDate>
+    <pubDate>Fri, 02 Sep 2016 15:19:07 +0800</pubDate>
+    <lastBuildDate>Fri, 02 Sep 2016 15:19:07 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -4091,6 +4091,7 @@ noremap wo :tabopen http://192.168.3.13:1235/webinfos &amp;lt;CR&amp;gt;
         候自已关闭(类似C# 中的using(...){}接口)
 &lt;span class=&quot;p&quot;&gt;194.&lt;/span&gt;windows下bat对指定日期内的文件的操作
     http://www.111cn.net/sys/Windows7/81187.htm
+&lt;span class=&quot;p&quot;&gt;195.&lt;/span&gt;css中加载本地不存在的外部字体时,用@font-face,@font-face要写在css文件的开头(全局可用)的位置,不能写在局部的css属性里面
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
