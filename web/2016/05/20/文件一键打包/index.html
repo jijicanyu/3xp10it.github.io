@@ -135,6 +135,11 @@
 mkdir /tmp/tmp &amp;&amp; find / -name "*.doc" &gt; /tmp/tmp/doc.list &amp;&amp; find / -name "*.docx" &gt; /tmp/tmp/docx.list &amp;&amp; find / -name "*.pdf" &gt; /tmp/tmp/pdf.list &amp;&amp; find / -name "*.txt" &gt; /tmp/tmp/txt.list &amp;&amp; find / -name "*.xls" &gt; /tmp/tmp/xls.list &amp;&amp; find / -name "*.xlsx" &gt; /tmp/tmp/xlsx.list &amp;&amp; tar -T /tmp/tmp/doc.list -czf /tmp/tmp/doc.tar.gz &amp;&amp; tar -T /tmp/tmp/docx.list -czf /tmp/tmp/docx.tar.gz &amp;&amp; tar -T /tmp/tmp/pdf.list -czf /tmp/tmp/pdf.tar.gz &amp;&amp; tar -T /tmp/tmp/txt.list -czf /tmp/tmp/txt.tar.gz &amp;&amp; tar -T /tmp/tmp/xls.list -czf /tmp/tmp/xls.tar.gz &amp;&amp; tar -T /tmp/tmp/xlsx.list -czf /tmp/tmp/xlsx.tar.gz &amp;&amp; echo ok
 --------------------end-----------------------------
 
+--------------------根据时间-------------------
+mkdir /tmp/tmp &amp;&amp; find / -name "*.doc" -mtime -30 &gt; /tmp/tmp/doc.list &amp;&amp; find / -name "*.docx" -mtime -30 &gt; /tmp/tmp/docx.list &amp;&amp; find / -name "*.pdf" -mtime -30 &gt; /tmp/tmp/pdf.list &amp;&amp; find / -name "*.txt" -mtime -30 &gt; /tmp/tmp/txt.list &amp;&amp; find / -name "*.xls" -mtime -30 &gt; /tmp/tmp/xls.list &amp;&amp; find / -name "*.xlsx" -mtime -30 &gt; /tmp/tmp/xlsx.list &amp;&amp; tar -T /tmp/tmp/doc.list -czf /tmp/tmp/doc.tar.gz &amp;&amp; tar -T /tmp/tmp/docx.list -czf /tmp/tmp/docx.tar.gz &amp;&amp; tar -T /tmp/tmp/pdf.list -czf /tmp/tmp/pdf.tar.gz &amp;&amp; tar -T /tmp/tmp/txt.list -czf /tmp/tmp/txt.tar.gz &amp;&amp; tar -T /tmp/tmp/xls.list -czf /tmp/tmp/xls.tar.gz &amp;&amp; tar -T /tmp/tmp/xlsx.list -czf /tmp/tmp/xlsx.tar.gz &amp;&amp; echo ok
+----------------------end----------------------
+(将最近30天内修改过的文件打包)
+
 mysql:
 mkdir /tmp/tmp &amp;&amp; find / -name "*.sql" &gt; /tmp/tmp/tmp.list  &amp;&amp; tar -T /tmp/tmp/tmp.list -czf /tmp/tmp/tmp.tar.gz  &amp;&amp; echo ok
 </code></pre>

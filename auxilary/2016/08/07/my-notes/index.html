@@ -117,7 +117,7 @@
 
       <div class="read-time">
         <small>
-          24 minute read
+          25 minute read
         </small>
       </div>
 
@@ -679,6 +679,8 @@
 <span class="p">56.</span>linux命令行下结束firefox进程:
    ps -aux | grep firefox | awk '{if($11=="firefox") print $2}'| xargs kill -9
    pkill firefox
+   更强力:
+       pkill -9 python
 <span class="p">57.</span>菜刀替代工具:Altman
    http://www.i0day.com/1725.html
    https://github.com/keepwn/Altman
@@ -770,7 +772,11 @@
 <span class="p">68.</span>python,beautifulsoup中正则匹配中文的错误解决办法:http://www.lylinux.org/python%E4%BD%BF%E7%94%A8%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D%E4%B8%AD%E6%96%87.html
    python正则表达式:
        http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html
-       python一般默认贪婪模式(也即尽量往长度多的结果匹配),变成非贪婪方法:<span class="ge">*?(*</span>加上?)
+       python一般默认贪婪模式(也即尽量往长度多的结果匹配),变成非贪婪方法:
+            <span class="ge">*?      使*</span>变成非贪婪模式
+            +?      使+变成非贪婪模式
+            ??      使?变成非贪婪模式
+            {m,n}?  使{m,n}变成非贪婪模式
        正则表达式 – 运算符优先级
             http://wp.huangshiyang.com/regexp<span class="sb">
 
@@ -794,6 +800,8 @@
           http://blog.csdn.net/namecyf/article/details/7787479
           https://github.com/Valloric/YouCompleteMe
           https://github.com/VundleVim/Vundle.vim#about
+          windows gvim配置:
+            http://www.oschina.net/code/snippet_561596_17292
    python操作vim
           http://top.jobbole.com/15078/
    vim中F5编译运行py文件:1&gt;http://zhidao.baidu.com/link?url=VwJYAbWPaVimFP0uC26hdOV8EFTTcWFIi2xvexA9z-K7dcFIpD-1TnN9893937bxdEGcrlx2qR-cEsK-UVzoma
@@ -1303,7 +1311,40 @@
     http://www.111cn.net/sys/Windows7/81187.htm
 <span class="p">195.</span>css中加载本地不存在的外部字体时,用@font-face,@font-face要写在css文件的开头(全局可用)的位置,不能写在局部的
     css属性里面
-
+<span class="p">196.</span>验证码识别
+    http://www.polarxiong.com/archives/python-pytesser-tesseract.html
+    google的pytesser模块2007年的,放弃使用,直接自己调用tesseract达到识别验证码功能
+<span class="p">197.</span>pip install exp10it --upgrade无法立即更新解决方法:
+    pip install exp10it --upgrade --allow-external=exp10it --allow-unverified=exp10it
+    不行尝试删除本地exp10it.pyc?
+    pip install exp10it --upgrade --no-cache-dir
+<span class="p">198.</span>python的tab键raw_input()文件路径自动补全
+    https://gist.github.com/iamatypeofwalrus/5637895
+<span class="p">199.</span>command 1&gt;/dev/null 2&gt;/dev/null &amp;
+    1&gt;/dev/null表示将命令的标准输出重定向到/dev/null
+    2&gt;/dev/null表示将命令的错误输出重定向到/dev/null
+    &amp;表示后台执行,你可以继续占有你的输入窗口
+<span class="p">200.</span>python时间输出格式化
+    http://blog.csdn.net/qq61394323/article/details/44620699
+<span class="p">201.</span>python的可变参数
+    http://blog.csdn.net/huangkangying/article/details/34508961
+<span class="p">202.</span>python全局变量
+    (不同文件模块间的变量共享)
+    http://www.51testing.com/html/49/101349-815499.html
+<span class="p">203.</span>vim中匹配<span class="se">\要</span>写成<span class="se">\\</span><span class="err">\</span>
+<span class="p">204.</span>python中MySQLdb模块操作
+    http://www.jianshu.com/p/76fab6cb06f9
+    http://www.jb51.net/article/57290.htm
+    官方api
+        http://mysql-python.sourceforge.net/MySQLdb-1.2.2/
+    python代码中有时update语句会阻塞无法执行是因为update中操作的表可能被锁住了,超时后报如下错误:
+        1205, 'Lock wait timeout exceeded; try restarting transaction'
+    解决办法:将其他可能导致对update语句中的表锁住的进程操作kill掉,eg:show processlist,kill -9 python
+        http://blog.sina.com.cn/s/blog_53e68b3b0101bjxi.html
+    动态创建数据库,表(可创建数据库---&gt;选择数据库---&gt;建表)
+        http://blog.csdn.net/chichoxian/article/details/38224361
+<span class="p">205.</span>ssh端口转发
+    http://www.ruanyifeng.com/blog/2011/12/ssh_port_forwarding.html
 </code></pre>
 </div>
 </span>
