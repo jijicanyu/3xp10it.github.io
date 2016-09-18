@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 18 Sep 2016 17:27:41 +0800</pubDate>
-    <lastBuildDate>Sun, 18 Sep 2016 17:27:41 +0800</lastBuildDate>
+    <pubDate>Sun, 18 Sep 2016 17:32:20 +0800</pubDate>
+    <lastBuildDate>Sun, 18 Sep 2016 17:32:20 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -17,10 +17,14 @@
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.http://hackforums.net/showthread.php?tid=3970076
 2.http://exploit.linuxnote.org/
-3.https://itunsecurity.wordpress.com/2015/08/16/vulnhub-com-writeup-darknet/(LinEnum.sh,linuxprivchecker.py,unix-privesc-check)
+3.https://itunsecurity.wordpress.com/2015/08/16/vulnhub-com-writeup-darknet/(LinEnum.sh,linuxprivchecker.py,
+  unix-privesc-check)
     LinEnum.sh
+        https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh
     linuxprivchecker.py
+        http://www.securitysift.com/download/linuxprivchecker.py
     unix-privesc-check
+        http://pentestmonkey.net/tools/unix-privesc-check/unix-privesc-check-1.4.tar.gz
 4.https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/?redirect
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -33,6 +37,8 @@
 &lt;/div&gt;
 
 &lt;h3 id=&quot;x01-windows&quot;&gt;0x01 windows&lt;/h3&gt;
+
+&lt;h4 id=&quot;links-1&quot;&gt;1&amp;gt;links&lt;/h4&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.https://github.com/GDSSecurity/Windows-Exploit-Suggester
 2.http://www.52wa.net/post-198.html
