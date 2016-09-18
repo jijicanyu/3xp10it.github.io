@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "提权",
+    "category" : "",
+    "tags"     : "web, local, exploit",
+    "url"      : "/local/exploit/2016/09/18/linux%E6%8F%90%E6%9D%83/",
+    "date"     : "2016-09-18 00:00:00 +0800"
+    } ,
+    
+  {
     "title"    : "python多进程多线程",
     "category" : "",
     "tags"     : "python, coding, effective",
