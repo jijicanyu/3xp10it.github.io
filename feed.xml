@@ -5,15 +5,15 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 18 Sep 2016 17:25:53 +0800</pubDate>
-    <lastBuildDate>Sun, 18 Sep 2016 17:25:53 +0800</lastBuildDate>
+    <pubDate>Sun, 18 Sep 2016 17:27:41 +0800</pubDate>
+    <lastBuildDate>Sun, 18 Sep 2016 17:27:41 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
         <title>提权</title>
-        <description>&lt;h3 id=&quot;linux&quot;&gt;linux&lt;/h3&gt;
+        <description>&lt;h3 id=&quot;x00-linux&quot;&gt;0x00 linux&lt;/h3&gt;
 
-&lt;h4 id=&quot;links&quot;&gt;links&lt;/h4&gt;
+&lt;h4 id=&quot;links&quot;&gt;1&amp;gt;links&lt;/h4&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.http://hackforums.net/showthread.php?tid=3970076
 2.http://exploit.linuxnote.org/
@@ -25,14 +25,14 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h4 id=&quot;section&quot;&gt;笔记&lt;/h4&gt;
+&lt;h4 id=&quot;section&quot;&gt;2&amp;gt;笔记&lt;/h4&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1&amp;gt;linux提权时,编译exploit.c文件时必须在对方系统中编译,或者与对方系统一样的系统中编译,否则本地编译出exploit文件后
   上传到对方机器运行时会出现can not execute binary file的错误
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h3 id=&quot;windows&quot;&gt;windows&lt;/h3&gt;
+&lt;h3 id=&quot;x01-windows&quot;&gt;0x01 windows&lt;/h3&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.https://github.com/GDSSecurity/Windows-Exploit-Suggester
 2.http://www.52wa.net/post-198.html
