@@ -169,8 +169,11 @@
   nmap -v -sP -PI -PT -Pn 192.168.0.0/24
   nmap -v -sn -PE 192.168.0.0/24 快速扫描局域网存活主机
 <span class="p">18.</span>常用linux命令
-
+   uname -a
+   cat /proc/version
    head -n 1 /etc/issue   # 查看linux操作系统版本
+   linux查看系统版本命令
+       http://blog.csdn.net/zhuying_linux/article/details/6859286
    getconf LONG_BIT       # 查看系统是32位还是64位
    网络
    
@@ -1394,6 +1397,7 @@
     bg %n:让进程n到后台去
     ctrl+z:将前台在执行的命令放到后台并暂停
     n指的是jobs命令中的编号
+<span class="p">213.</span>mysql不支持select top n column_name from ...,用select ....limit n(m,n)代替
 </code></pre>
 </div>
 </span>
