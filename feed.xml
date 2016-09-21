@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 20 Sep 2016 11:16:56 +0800</pubDate>
-    <lastBuildDate>Tue, 20 Sep 2016 11:16:56 +0800</lastBuildDate>
+    <pubDate>Wed, 21 Sep 2016 17:41:44 +0800</pubDate>
+    <lastBuildDate>Wed, 21 Sep 2016 17:41:44 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -2576,7 +2576,11 @@ http://secureyes.net/nw/assets/File-Upload-Vulnerability-in-FCKEditor.pdf &amp;l
 &lt;h3 id=&quot;x04-&quot;&gt;0x04 其它上传技巧&lt;/h3&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1&amp;gt;上传时,延迟一下再上传,有时能bypass admin,用到firefox tamper插件
-    https://www.youtube.com/watch?v=6hJ-d2NYLBg
+    https://www.youtube.com/watch?v=ndeYnMoFPx8
+    管理员登录绕过
+        https://www.youtube.com/watch?v=UO-vzWFctTA
+        https://www.youtube.com/watch?v=a5fm629s8Ao
+            firefox noredirect插件
 2&amp;gt;双文件上传
 3&amp;gt;上传以图片后缀名为后缀的压缩文件,文件实际是一个webshell.php文件的压缩文件(zip),利用lfi漏洞并将lfi要包含
   的文件的参数赋值为:
