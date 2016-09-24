@@ -5,18 +5,20 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 24 Sep 2016 17:43:48 +0800</pubDate>
-    <lastBuildDate>Sat, 24 Sep 2016 17:43:48 +0800</lastBuildDate>
+    <pubDate>Sat, 24 Sep 2016 17:46:39 +0800</pubDate>
+    <lastBuildDate>Sat, 24 Sep 2016 17:46:39 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
         <title>vimrc</title>
-        <description>&lt;blockquote&gt;
-  &lt;blockquote&gt;
-    &lt;p&gt;1.弃用spf13-vim
-2.vimrc&lt;/p&gt;
-  &lt;/blockquote&gt;
-&lt;/blockquote&gt;
+        <description>&lt;h4 id=&quot;spf13-vim&quot;&gt;1.弃用spf13-vim&lt;/h4&gt;
+
+&lt;p&gt;’’’
+a)插件过多
+b)不利于掌握vim
+‘’’&lt;/p&gt;
+
+&lt;h4 id=&quot;vimrc&quot;&gt;2.vimrc&lt;/h4&gt;
 
 &lt;p&gt;’’’
 “下面这段是vundle要求的,加到vimrc的开头
