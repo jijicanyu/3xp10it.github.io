@@ -5,24 +5,25 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 24 Sep 2016 17:48:10 +0800</pubDate>
-    <lastBuildDate>Sat, 24 Sep 2016 17:48:10 +0800</lastBuildDate>
+    <pubDate>Sat, 24 Sep 2016 20:27:31 +0800</pubDate>
+    <lastBuildDate>Sat, 24 Sep 2016 20:27:31 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
         <title>vimrc</title>
-        <description>&lt;h4 id=&quot;spf13-vim&quot;&gt;1.弃用spf13-vim&lt;/h4&gt;
+        <description>&lt;h4 id=&quot;spf13-vim&quot;&gt;1&amp;gt;弃用spf13-vim&lt;/h4&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;a)插件过多
 b)不利于掌握vim
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h4 id=&quot;vimrc&quot;&gt;2.vimrc&lt;/h4&gt;
+&lt;h4 id=&quot;vimrc&quot;&gt;2&amp;gt;.vimrc&lt;/h4&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&quot;下面这段是vundle要求的,加到vimrc的开头
 &quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;for vundle&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
-set nocompatible              &quot; be iMproved, required filetype off                  &quot; required
+set nocompatible              &quot; be iMproved, required 
+filetype off                  &quot; required
 
 &quot; set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -40,9 +41,9 @@ Plugin &#39;haya14busa/incsearch.vim&#39;
 Plugin &#39;haya14busa/incsearch-fuzzy.vim&#39;
 &quot;下面用vundle安装easymotion插件
 Plugin &#39;easymotion/vim-easymotion&#39;
-&quot;下面用vundle安装incsearch-easymotion
+&quot;下面用vundle安装incsearch-easymotion&amp;lt;space+/&amp;gt;,&amp;lt;z+/&amp;gt;
 Plugin &#39;haya14busa/incsearch-easymotion.vim&#39;
-&quot;下面用vundle安装autoformat代码自动对齐插件
+&quot;下面用vundle安装autoformat代码自动对齐插件&amp;lt;f3&amp;gt;
 Plugin &#39;Chiel92/vim-autoformat&#39;
 &quot;下面用vundle安装auto-pairs括号自动配对插件
 Plugin &#39;jiangmiao/auto-pairs&#39;
@@ -54,6 +55,10 @@ Plugin &#39;Yggdroot/indentLine&#39;
 Plugin &#39;vimcn/vimcdoc&#39;
 &quot;下面用vundle安装ctrlp快速打开文件插件,&amp;lt;c-p&amp;gt;
 Plugin &#39;ctrlpvim/ctrlp.vim&#39;
+&quot;下面用vundle安装配色插件
+Plugin &#39;flazz/vim-colorschemes&#39;
+&quot;下面这个插件用来快速切换配色&amp;lt;f8&amp;gt;
+Plugin &#39;felixhummel/setcolors.vim&#39;
 &quot; plugin from http://vim-scripts.org/vim/scripts.html
 &quot;Plugin &#39;L9&#39;
 
@@ -308,6 +313,15 @@ inoremap &amp;lt;expr&amp;gt; &amp;lt;CR&amp;gt; pumvisible() ? &quot;\&amp;lt;C
 nnoremap &amp;lt;c-j&amp;gt; :YcmCompleter GoToDefinitionElseDeclaration&amp;lt;CR&amp;gt;|     &quot; 跳转到定义处
 &quot;let g:ycm_min_num_of_chars_for_completion=2                 &quot; 从第2个键入字符就开始罗列匹配项
 &quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;end of YCM&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+
+&quot;vim-colorschemes插件配色
+colorscheme molokai 
+&quot;setcolors插件设置自动换配色,vim-colorschemes插件相当于配色库,setcolor插件用于变换其他配色,如果不安装
+&quot;vim-colorschemes插件只安装setcolor插件则没有好的效果
+autocmd CursorHold * call NextColor(1)
+&quot;在setcolors.vim中将最开始的设置改成如下值
+&quot;let s:mycolors = [&#39;Benokai&#39;,&#39;molokai&#39;,&#39;evening&#39;, &#39;feral&#39;, &#39;flatlandia&#39;, &#39;flattown&#39;, &#39;murphy&#39;, &#39;flatui&#39;, &#39;freya&#39;, &#39;fu&#39;,&#39;genericdc&#39;,&#39;1989&#39;,&#39;256-grayvim&#39;,&#39;256-jungle&#39;,&#39;CandyPaper&#39;,&#39;Chasing_Logic&#39;,&#39;ChocolateLiquor&#39;,&#39;ChocolatePapaya&#39;,&#39;openbsd&#39;,&#39;BlackSea&#39;,&#39;black_angus&#39;,&#39;0x7A69-dark&#39;]  &quot; colorscheme names that we use to set color
+
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
