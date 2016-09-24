@@ -5,118 +5,120 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 24 Sep 2016 17:46:39 +0800</pubDate>
-    <lastBuildDate>Sat, 24 Sep 2016 17:46:39 +0800</lastBuildDate>
+    <pubDate>Sat, 24 Sep 2016 17:48:10 +0800</pubDate>
+    <lastBuildDate>Sat, 24 Sep 2016 17:48:10 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
         <title>vimrc</title>
         <description>&lt;h4 id=&quot;spf13-vim&quot;&gt;1.弃用spf13-vim&lt;/h4&gt;
 
-&lt;p&gt;’’’
-a)插件过多
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;a)插件过多
 b)不利于掌握vim
-‘’’&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;h4 id=&quot;vimrc&quot;&gt;2.vimrc&lt;/h4&gt;
 
-&lt;p&gt;’’’
-“下面这段是vundle要求的,加到vimrc的开头
-“”””””””””””&quot;”for vundle””””””””””””””””
-set nocompatible              “ be iMproved, required filetype off                  “ required&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&quot;下面这段是vundle要求的,加到vimrc的开头
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;for vundle&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+set nocompatible              &quot; be iMproved, required filetype off                  &quot; required
 
-&lt;p&gt;” set the runtime path to include Vundle and initialize
+&quot; set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-“ alternatively, pass a path where Vundle should install plugins “call vundle#begin(‘~/some/path/here’)
-“ let Vundle manage Vundle, required
-Plugin ‘VundleVim/Vundle.vim’
-“ The following are examples of different formats supported.
-“ Keep Plugin commands between vundle#begin/end.
-“ plugin on GitHub repo
-Plugin ‘tpope/vim-fugitive’
-“下面用vundle安装incsearch插件
-Plugin ‘haya14busa/incsearch.vim’
-“下面用vundle安装incsearch-fuzzy插件
-Plugin ‘haya14busa/incsearch-fuzzy.vim’
-“下面用vundle安装easymotion插件
-Plugin ‘easymotion/vim-easymotion’
-“下面用vundle安装incsearch-easymotion
-Plugin ‘haya14busa/incsearch-easymotion.vim’
-“下面用vundle安装autoformat代码自动对齐插件
-Plugin ‘Chiel92/vim-autoformat’
-“下面用vundle安装auto-pairs括号自动配对插件
-Plugin ‘jiangmiao/auto-pairs’
-“下面用vundle安装Valloric/YouCompleteMe插件
-Plugin ‘Valloric/YouCompleteMe’
-“下面用vundle安装indentLine代码对齐线插件
-Plugin ‘Yggdroot/indentLine’
-“下面用vundle安装vim中文文档
-Plugin ‘vimcn/vimcdoc’
-“下面用vundle安装ctrlp快速打开文件插件,&lt;c-p&gt;
+&quot; alternatively, pass a path where Vundle should install plugins &quot;call vundle#begin(&#39;~/some/path/here&#39;)
+&quot; let Vundle manage Vundle, required
+Plugin &#39;VundleVim/Vundle.vim&#39;
+&quot; The following are examples of different formats supported.
+&quot; Keep Plugin commands between vundle#begin/end.
+&quot; plugin on GitHub repo
+Plugin &#39;tpope/vim-fugitive&#39;
+&quot;下面用vundle安装incsearch插件
+Plugin &#39;haya14busa/incsearch.vim&#39;
+&quot;下面用vundle安装incsearch-fuzzy插件
+Plugin &#39;haya14busa/incsearch-fuzzy.vim&#39;
+&quot;下面用vundle安装easymotion插件
+Plugin &#39;easymotion/vim-easymotion&#39;
+&quot;下面用vundle安装incsearch-easymotion
+Plugin &#39;haya14busa/incsearch-easymotion.vim&#39;
+&quot;下面用vundle安装autoformat代码自动对齐插件
+Plugin &#39;Chiel92/vim-autoformat&#39;
+&quot;下面用vundle安装auto-pairs括号自动配对插件
+Plugin &#39;jiangmiao/auto-pairs&#39;
+&quot;下面用vundle安装Valloric/YouCompleteMe插件
+Plugin &#39;Valloric/YouCompleteMe&#39;
+&quot;下面用vundle安装indentLine代码对齐线插件
+Plugin &#39;Yggdroot/indentLine&#39;
+&quot;下面用vundle安装vim中文文档
+Plugin &#39;vimcn/vimcdoc&#39;
+&quot;下面用vundle安装ctrlp快速打开文件插件,&amp;lt;c-p&amp;gt;
 Plugin &#39;ctrlpvim/ctrlp.vim&#39;
 &quot; plugin from http://vim-scripts.org/vim/scripts.html
-&quot;Plugin &#39;L9&#39;&lt;/c-p&gt;&lt;/p&gt;
+&quot;Plugin &#39;L9&#39;
 
-&lt;p&gt;” Git plugin not hosted on GitHub
-“Plugin ‘git://git.wincent.com/command-t.git’&lt;/p&gt;
+&quot; Git plugin not hosted on GitHub
+&quot;Plugin &#39;git://git.wincent.com/command-t.git&#39;
 
-&lt;p&gt;” git repos on your local machine (i.e. when working on your own plugin)
-“Plugin ‘file:///home/gmarik/path/to/plugin’&lt;/p&gt;
+&quot; git repos on your local machine (i.e. when working on your own plugin)
+&quot;Plugin &#39;file:///home/gmarik/path/to/plugin&#39;
 
-&lt;p&gt;” The sparkup vim script is in a subdirectory of this repo called vim.
-“ Pass the path to set the runtimepath properly.
-Plugin ‘rstacruz/sparkup’, {‘rtp’: ‘vim/’}&lt;/p&gt;
+&quot; The sparkup vim script is in a subdirectory of this repo called vim.
+&quot; Pass the path to set the runtimepath properly.
+Plugin &#39;rstacruz/sparkup&#39;, {&#39;rtp&#39;: &#39;vim/&#39;}
 
-&lt;p&gt;” Install L9 and avoid a Naming conflict if you’ve already installed a
-“ different version somewhere else.
-Plugin ‘ascenator/L9’, {‘name’: ‘newL9’}&lt;/p&gt;
+&quot; Install L9 and avoid a Naming conflict if you&#39;ve already installed a
+&quot; different version somewhere else.
+Plugin &#39;ascenator/L9&#39;, {&#39;name&#39;: &#39;newL9&#39;}
 
-&lt;p&gt;” All of your Plugins must be added before the following line
-call vundle#end()            “ required&lt;/p&gt;
+&quot; All of your Plugins must be added before the following line
+call vundle#end()            &quot; required
 
-&lt;p&gt;“下面这行要注意,有可能以后要改
-filetype plugin indent on    “ required
-“ To ignore plugin indent changes, instead use:
-“filetype plugin on
-“
-“ Brief help
-“ :PluginList       - lists configured plugins
-“ :PluginInstall    - installs plugins; append &lt;code class=&quot;highlighter-rouge&quot;&gt;!&lt;/code&gt; to update or just :PluginUpdate
-“ :PluginSearch foo - searches for foo; append &lt;code class=&quot;highlighter-rouge&quot;&gt;!&lt;/code&gt; to refresh local cache
-“ :PluginClean      - confirms removal of unused plugins; append &lt;code class=&quot;highlighter-rouge&quot;&gt;!&lt;/code&gt; to auto-approve removal
-“
-“ see :h vundle for more details or wiki for FAQ
-“ Put your non-Plugin stuff after this line&lt;/p&gt;
+&quot;下面这行要注意,有可能以后要改
+filetype plugin indent on    &quot; required
+&quot; To ignore plugin indent changes, instead use:
+&quot;filetype plugin on
+&quot;
+&quot; Brief help
+&quot; :PluginList       - lists configured plugins
+&quot; :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+&quot; :PluginSearch foo - searches for foo; append `!` to refresh local cache
+&quot; :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+&quot;
+&quot; see :h vundle for more details or wiki for FAQ
+&quot; Put your non-Plugin stuff after this line
 
-&lt;p&gt;””””””””””&quot;”for vundle end””””””””””””&lt;/p&gt;
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;for vundle end&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
 
-&lt;p&gt;“set ruler|noruler”默认开启ruler
-“设置leader键为,
-let mapleader=”,”
-set number”显示行号
-syntax on”自动语法高亮,语法检验
-set autoindent”自动缩进
-set tabstop=4”tab键占4个字符&lt;/p&gt;
 
-&lt;p&gt;“快速切换到正常模式
-imap fj &lt;esc&gt;
-imap jf &lt;esc&gt;
-cmap fj &lt;esc&gt;
-cmap jf &lt;esc&gt;
-vmap fj &lt;esc&gt;
-vmap jf &lt;esc&gt;&lt;/esc&gt;&lt;/esc&gt;&lt;/esc&gt;&lt;/esc&gt;&lt;/esc&gt;&lt;/esc&gt;&lt;/p&gt;
 
-&lt;p&gt;“方便操作
+
+&quot;set ruler|noruler&quot;默认开启ruler
+&quot;设置leader键为,
+let mapleader=&quot;,&quot;
+set number&quot;显示行号
+syntax on&quot;自动语法高亮,语法检验
+set autoindent&quot;自动缩进
+set tabstop=4&quot;tab键占4个字符
+
+&quot;快速切换到正常模式
+imap fj &amp;lt;esc&amp;gt;
+imap jf &amp;lt;esc&amp;gt;
+cmap fj &amp;lt;esc&amp;gt;
+cmap jf &amp;lt;esc&amp;gt;
+vmap fj &amp;lt;esc&amp;gt;
+vmap jf &amp;lt;esc&amp;gt;
+
+&quot;方便操作
 map ; :
 map &amp;lt;s-;&amp;gt; ;
 map mm ZZ
-map sy “+y
-map sp “+p&lt;/p&gt;
+map sy &quot;+y
+map sp &quot;+p
 
-&lt;p&gt;“md文件中文符号换成英文
-au BufRead *.md call Biaodian() &lt;CR&gt;
-map &lt;F2&gt; :call Biaodian() &lt;CR&gt;
+&quot;md文件中文符号换成英文
+au BufRead *.md call Biaodian() &amp;lt;CR&amp;gt;
+map &amp;lt;F2&amp;gt; :call Biaodian() &amp;lt;CR&amp;gt;
 function Biaodian()
     %s/“/&quot;/g
     %s/”/&quot;/g
@@ -132,72 +134,75 @@ function Biaodian()
     %s/‘/&#39;/g
     %s/‘/&#39;/g
     %s/！/!/g
-    endfunction&lt;/CR&gt;&lt;/F2&gt;&lt;/CR&gt;&lt;/p&gt;
+    endfunction
 
-&lt;p&gt;“111字符长度换行用来适配博客md编写
-set textwidth=111&lt;/p&gt;
+&quot;111字符长度换行用来适配博客md编写
+set textwidth=111
 
-&lt;p&gt;“textwidth用于中文换行
-set formatoptions+=mM&lt;/p&gt;
+&quot;textwidth用于中文换行
+set formatoptions+=mM
 
-&lt;p&gt;“每行超过111字符长度后用不同颜色显示
+&quot;每行超过111字符长度后用不同颜色显示
 augroup vimrc_autocmds
   autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#592929
   autocmd BufEnter * match OverLength /\%112v.*/
-augroup END&lt;/p&gt;
+augroup END
 
-&lt;p&gt;“设置,w为保存
-nmap &lt;leader&gt;w :w&lt;CR&gt;&lt;/CR&gt;&lt;/leader&gt;&lt;/p&gt;
+&quot;设置,w为保存
+nmap &amp;lt;leader&amp;gt;w :w&amp;lt;CR&amp;gt;
 
-&lt;p&gt;“下面4个插件最后浓缩成的两个典型使用方法:
-“space+/:fuzz search+easymotion功能
-“z/:fuzz search功能
-“
-“四个easymotion插件incsearch incsearch-fuzzy vim-easymotion incsearch-easymotion相关设置
-“目前只能用incsearch和easymotion,并用如下配置&lt;/p&gt;
 
-&lt;p&gt;“111111incsearch插件设置
-“”””””””&quot;”start of incsearch”””””””””
-map /  &lt;Plug&gt;(incsearch-forward)
-map ?  &lt;Plug&gt;(incsearch-backward)
-map g/ &lt;Plug&gt;(incsearch-stay)&lt;/Plug&gt;&lt;/Plug&gt;&lt;/Plug&gt;&lt;/p&gt;
+&quot;下面4个插件最后浓缩成的两个典型使用方法:
+&quot;space+/:fuzz search+easymotion功能
+&quot;z/:fuzz search功能
+&quot;
+&quot;四个easymotion插件incsearch incsearch-fuzzy vim-easymotion incsearch-easymotion相关设置
+&quot;目前只能用incsearch和easymotion,并用如下配置
 
-&lt;p&gt;set hlsearch
+&quot;111111incsearch插件设置
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;start of incsearch&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+map /  &amp;lt;Plug&amp;gt;(incsearch-forward)
+map ?  &amp;lt;Plug&amp;gt;(incsearch-backward)
+map g/ &amp;lt;Plug&amp;gt;(incsearch-stay)
+
+set hlsearch
 let g:incsearch#auto_nohlsearch = 1
-map n  &lt;Plug&gt;(incsearch-nohl-n)
-map N  &lt;Plug&gt;(incsearch-nohl-N)
-map *  &lt;Plug&gt;(incsearch-nohl-*)
-map #  &lt;Plug&gt;(incsearch-nohl-#)
-map g* &lt;Plug&gt;(incsearch-nohl-g*)
-map g# &lt;Plug&gt;(incsearch-nohl-g#)&lt;/Plug&gt;&lt;/Plug&gt;&lt;/Plug&gt;&lt;/Plug&gt;&lt;/Plug&gt;&lt;/Plug&gt;&lt;/p&gt;
+map n  &amp;lt;Plug&amp;gt;(incsearch-nohl-n)
+map N  &amp;lt;Plug&amp;gt;(incsearch-nohl-N)
+map *  &amp;lt;Plug&amp;gt;(incsearch-nohl-*)
+map #  &amp;lt;Plug&amp;gt;(incsearch-nohl-#)
+map g* &amp;lt;Plug&amp;gt;(incsearch-nohl-g*)
+map g# &amp;lt;Plug&amp;gt;(incsearch-nohl-g#)
 
-&lt;p&gt;function! s:noregexp(pattern) abort
-	return ‘\V’ . escape(a:pattern, ‘&#39;)
-endfunction&lt;/p&gt;
+function! s:noregexp(pattern) abort
+	return &#39;\V&#39; . escape(a:pattern, &#39;\&#39;)
+endfunction
 
-&lt;p&gt;function! s:config() abort
-	return {‘converters’: [function(‘s:noregexp’)]}
-endfunction&lt;/p&gt;
+function! s:config() abort
+	return {&#39;converters&#39;: [function(&#39;s:noregexp&#39;)]}
+endfunction
 
-&lt;p&gt;noremap &lt;silent&gt;&lt;expr&gt; z/ incsearch#go(&lt;SID&gt;config())
-&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;end of incsearch&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&lt;/SID&gt;&lt;/expr&gt;&lt;/silent&gt;&lt;/p&gt;
+noremap &amp;lt;silent&amp;gt;&amp;lt;expr&amp;gt; z/ incsearch#go(&amp;lt;SID&amp;gt;config())
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;end of incsearch&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
 
-&lt;p&gt;“222222incsearch-fuzzy插件设置
-“https://github.com/haya14busa/incsearch-fuzzy.vim
-“暂时因为看上去没有什么效果而没用它,暂时认为222222和333333这两个插件无法正常工作是由于222222插件无法正常工作
-“而222222不工作是由于没有找到incsearch#config#fuzzy#converter()函数(报这个错),于是vim–&amp;gt;:h
-“incsearch-config-fuzzy,发现没有incsearch-config-fuzzy的说明,猜想有一点可能是incsearch-fuzzy插件没有装好,于是
-“:BundleInstall,居然可以安装,说明之前这个incsearch-fuzzy插件的确没有装好,然后发现安装完incsearch-fuzzy后就不会
-“报没有找到incsearch#config#fuzzy#converter()函数的错误了,然后一切都好了,333333插件也可以用了
-“””””””&quot;”start of incsearch-fuzzy”””””””””
-“fuzzy
-map z/ &lt;Plug&gt;(incsearch-fuzzy-/)
-map z? &lt;Plug&gt;(incsearch-fuzzy-?)
-map zg/ &lt;Plug&gt;(incsearch-fuzzy-stay)
+
+
+&quot;222222incsearch-fuzzy插件设置
+&quot;https://github.com/haya14busa/incsearch-fuzzy.vim
+&quot;暂时因为看上去没有什么效果而没用它,暂时认为222222和333333这两个插件无法正常工作是由于222222插件无法正常工作
+&quot;而222222不工作是由于没有找到incsearch#config#fuzzy#converter()函数(报这个错),于是vim--&amp;gt;:h
+&quot;incsearch-config-fuzzy,发现没有incsearch-config-fuzzy的说明,猜想有一点可能是incsearch-fuzzy插件没有装好,于是
+&quot;:BundleInstall,居然可以安装,说明之前这个incsearch-fuzzy插件的确没有装好,然后发现安装完incsearch-fuzzy后就不会
+&quot;报没有找到incsearch#config#fuzzy#converter()函数的错误了,然后一切都好了,333333插件也可以用了
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;start of incsearch-fuzzy&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot;fuzzy
+map z/ &amp;lt;Plug&amp;gt;(incsearch-fuzzy-/)
+map z? &amp;lt;Plug&amp;gt;(incsearch-fuzzy-?)
+map zg/ &amp;lt;Plug&amp;gt;(incsearch-fuzzy-stay)
 &quot;fuzzyspell
-map z/ &lt;Plug&gt;(incsearch-fuzzyspell-/)
-map z? &lt;Plug&gt;(incsearch-fuzzyspell-?)
-map zg/ &lt;Plug&gt;(incsearch-fuzzyspell-stay)
+map z/ &amp;lt;Plug&amp;gt;(incsearch-fuzzyspell-/)
+map z? &amp;lt;Plug&amp;gt;(incsearch-fuzzyspell-?)
+map zg/ &amp;lt;Plug&amp;gt;(incsearch-fuzzyspell-stay)
 &quot;Use both fuzzy &amp;amp; fuzzyspell feature
 function! s:config_fuzzyall(...) abort
 		  return extend(copy({
@@ -206,103 +211,105 @@ function! s:config_fuzzyall(...) abort
 		    \     incsearch#config#fuzzyspell#converter()
 		    \   ],
 		    \ }), get(a:, 1, {}))
-endfunction&lt;/Plug&gt;&lt;/Plug&gt;&lt;/Plug&gt;&lt;/Plug&gt;&lt;/Plug&gt;&lt;/Plug&gt;&lt;/p&gt;
+endfunction
 
-&lt;p&gt;noremap &lt;silent&gt;&lt;expr&gt; z/ incsearch#go(&lt;SID&gt;config_fuzzyall())
-noremap &lt;silent&gt;&lt;expr&gt; z? incsearch#go(&lt;SID&gt;config_fuzzyall({&#39;command&#39;: &#39;?&#39;}))
-noremap &lt;silent&gt;&lt;expr&gt; zg? incsearch#go(&lt;SID&gt;config_fuzzyall({&#39;is_stay&#39;: 1}))
-&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;end of incsearch-fuzzy&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&lt;/SID&gt;&lt;/expr&gt;&lt;/silent&gt;&lt;/SID&gt;&lt;/expr&gt;&lt;/silent&gt;&lt;/SID&gt;&lt;/expr&gt;&lt;/silent&gt;&lt;/p&gt;
+noremap &amp;lt;silent&amp;gt;&amp;lt;expr&amp;gt; z/ incsearch#go(&amp;lt;SID&amp;gt;config_fuzzyall())
+noremap &amp;lt;silent&amp;gt;&amp;lt;expr&amp;gt; z? incsearch#go(&amp;lt;SID&amp;gt;config_fuzzyall({&#39;command&#39;: &#39;?&#39;}))
+noremap &amp;lt;silent&amp;gt;&amp;lt;expr&amp;gt; zg? incsearch#go(&amp;lt;SID&amp;gt;config_fuzzyall({&#39;is_stay&#39;: 1}))
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;end of incsearch-fuzzy&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
 
-&lt;p&gt;“333333incsearch-easymotion插件的设置
-“”””””””&quot;”start of incsearch-easymotion””””””””””
-“https://github.com/haya14busa/incsearch-easymotion.vim
-“暂时因为没有什么效果而没用它,可能是与什么插件不兼容或与系统不兼容
-“后来可以用了,因为上面的incsearch-fuzzy插件第一次没有装好
-“map z/ &lt;Plug&gt;(incsearch-easymotion-/)
-&quot;map z? &lt;Plug&gt;(incsearch-easymotion-?)
-&quot;map zg/ &lt;Plug&gt;(incsearch-easymotion-stay)
+
+&quot;333333incsearch-easymotion插件的设置
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;start of incsearch-easymotion&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot;https://github.com/haya14busa/incsearch-easymotion.vim
+&quot;暂时因为没有什么效果而没用它,可能是与什么插件不兼容或与系统不兼容
+&quot;后来可以用了,因为上面的incsearch-fuzzy插件第一次没有装好
+&quot;map z/ &amp;lt;Plug&amp;gt;(incsearch-easymotion-/)
+&quot;map z? &amp;lt;Plug&amp;gt;(incsearch-easymotion-?)
+&quot;map zg/ &amp;lt;Plug&amp;gt;(incsearch-easymotion-stay)
 &quot;上面这三行不能加,加了则不能通过z/来fuzz search了,如果加了上面这三行,没有什么特殊效果
-&quot;无论有没有加上面这三行,都可以通过space+/实现[fuzz search并easymotion的效果]&lt;/Plug&gt;&lt;/Plug&gt;&lt;/Plug&gt;&lt;/p&gt;
+&quot;无论有没有加上面这三行,都可以通过space+/实现[fuzz search并easymotion的效果]
 
-&lt;p&gt;”&quot;”incsearch.vim x fuzzy x vim-easymotion
-function! s:config_easyfuzzymotion(…) abort
+&quot;&quot;&quot;incsearch.vim x fuzzy x vim-easymotion
+function! s:config_easyfuzzymotion(...) abort
 		  return extend(copy({
-		    \   ‘converters’: [incsearch#config#fuzzy#converter()],
-		    \   ‘modules’: [incsearch#config#easymotion#module()],
-		    \   ‘keymap’: {“&amp;lt;CR&amp;gt;”: ‘&lt;Over&gt;(easymotion)&#39;},
+		    \   &#39;converters&#39;: [incsearch#config#fuzzy#converter()],
+		    \   &#39;modules&#39;: [incsearch#config#easymotion#module()],
+		    \   &#39;keymap&#39;: {&quot;\&amp;lt;CR&amp;gt;&quot;: &#39;&amp;lt;Over&amp;gt;(easymotion)&#39;},
 		    \   &#39;is_expr&#39;: 0,
 		    \   &#39;is_stay&#39;: 1
 		    \ }), get(a:, 1, {}))
 endfunction
-noremap &lt;silent&gt;&lt;expr&gt; &lt;Space&gt;/ incsearch#go(&lt;SID&gt;config_easyfuzzymotion())
-&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;end of incsearch-easymotion&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&lt;/SID&gt;&lt;/Space&gt;&lt;/expr&gt;&lt;/silent&gt;&lt;/Over&gt;&lt;/p&gt;
+noremap &amp;lt;silent&amp;gt;&amp;lt;expr&amp;gt; &amp;lt;Space&amp;gt;/ incsearch#go(&amp;lt;SID&amp;gt;config_easyfuzzymotion())
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;end of incsearch-easymotion&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
 
-&lt;p&gt;“444444下面是easymotion插件的相关设置
-“”””””””””””””””&quot;”start of easymotion””””””””””””””””””
-“下面这句暂时不确定用意
-let g:EasyMotion_do_mapping = 0 “ Disable default mappings
-“三键到任意地方
-nmap s &lt;Plug&gt;(easymotion-overwin-f)
+
+&quot;444444下面是easymotion插件的相关设置
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;start of easymotion&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot;下面这句暂时不确定用意
+let g:EasyMotion_do_mapping = 0 &quot; Disable default mappings
+&quot;三键到任意地方
+nmap s &amp;lt;Plug&amp;gt;(easymotion-overwin-f)
 &quot;四键到任意地方
-&quot;nmap s &lt;Plug&gt;(easymotion-overwin-f2)
+&quot;nmap s &amp;lt;Plug&amp;gt;(easymotion-overwin-f2)
 &quot;设置大小写不敏感
 let g:EasyMotion_smartcase = 1
 &quot; JK motions: Line motions
-map &lt;Leader&gt;j &lt;Plug&gt;(easymotion-j)
-map &lt;Leader&gt;k &lt;Plug&gt;(easymotion-k)
+map &amp;lt;Leader&amp;gt;j &amp;lt;Plug&amp;gt;(easymotion-j)
+map &amp;lt;Leader&amp;gt;k &amp;lt;Plug&amp;gt;(easymotion-k)
 &quot;move to line 
-map &lt;Leader&gt;l &lt;Plug&gt;(easymotion-bd-jk)
-nmap &lt;Leader&gt;l &lt;Plug&gt;(easymotion-overwin-line)&lt;/Plug&gt;&lt;/Leader&gt;&lt;/Plug&gt;&lt;/Leader&gt;&lt;/Plug&gt;&lt;/Leader&gt;&lt;/Plug&gt;&lt;/Leader&gt;&lt;/Plug&gt;&lt;/Plug&gt;&lt;/p&gt;
+map &amp;lt;Leader&amp;gt;l &amp;lt;Plug&amp;gt;(easymotion-bd-jk)
+nmap &amp;lt;Leader&amp;gt;l &amp;lt;Plug&amp;gt;(easymotion-overwin-line)
 
-&lt;p&gt;“下面设置fuzzsearch,这个有点叼,结合incsearch,incsearch-fuzzy,easymotion,incsearch-easymotion四个插件
-“但是目前并没有让4个插件都起作用
-“目前只有incsearch+easymotion
-“后来这四个插件完美运行了,因为incsearch-fuzzy插件之前没有装好
-“incsearch-fuzzy和incsearch-easymotion这两个插件暂时没有用
-“ You can use other keymappings like &lt;C-l&gt; instead of &lt;CR&gt; if you want to
+&quot;下面设置fuzzsearch,这个有点叼,结合incsearch,incsearch-fuzzy,easymotion,incsearch-easymotion四个插件
+&quot;但是目前并没有让4个插件都起作用
+&quot;目前只有incsearch+easymotion
+&quot;后来这四个插件完美运行了,因为incsearch-fuzzy插件之前没有装好
+&quot;incsearch-fuzzy和incsearch-easymotion这两个插件暂时没有用
+&quot; You can use other keymappings like &amp;lt;C-l&amp;gt; instead of &amp;lt;CR&amp;gt; if you want to
 &quot; use these mappings as default search and somtimes want to move cursor with
-&quot; EasyMotion.&lt;/CR&gt;&lt;/C-l&gt;&lt;/p&gt;
+&quot; EasyMotion.
 
-&lt;p&gt;function! s:incsearch_config(…) abort
+function! s:incsearch_config(...) abort
 		  return incsearch#util#deepextend(deepcopy({
-		    \   ‘modules’: [incsearch#config#easymotion#module({‘overwin’: 1})],
-		    \   ‘keymap’: {
-		    \     “&amp;lt;CR&amp;gt;”: ‘&lt;Over&gt;(easymotion)&#39;
+		    \   &#39;modules&#39;: [incsearch#config#easymotion#module({&#39;overwin&#39;: 1})],
+		    \   &#39;keymap&#39;: {
+		    \     &quot;\&amp;lt;CR&amp;gt;&quot;: &#39;&amp;lt;Over&amp;gt;(easymotion)&#39;
 		    \   },
 		    \   &#39;is_expr&#39;: 0
 		    \ }), get(a:, 1, {}))
-endfunction&lt;/Over&gt;&lt;/p&gt;
+endfunction
 
-&lt;p&gt;noremap &lt;silent&gt;&lt;expr&gt; /  incsearch#go(&lt;SID&gt;incsearch_config())
-noremap &lt;silent&gt;&lt;expr&gt; ?  incsearch#go(&lt;SID&gt;incsearch_config({&#39;command&#39;: &#39;?&#39;}))
-noremap &lt;silent&gt;&lt;expr&gt; g/ incsearch#go(&lt;SID&gt;incsearch_config({&#39;is_stay&#39;: 1}))
-&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;end of easymotion&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&lt;/SID&gt;&lt;/expr&gt;&lt;/silent&gt;&lt;/SID&gt;&lt;/expr&gt;&lt;/silent&gt;&lt;/SID&gt;&lt;/expr&gt;&lt;/silent&gt;&lt;/p&gt;
+noremap &amp;lt;silent&amp;gt;&amp;lt;expr&amp;gt; /  incsearch#go(&amp;lt;SID&amp;gt;incsearch_config())
+noremap &amp;lt;silent&amp;gt;&amp;lt;expr&amp;gt; ?  incsearch#go(&amp;lt;SID&amp;gt;incsearch_config({&#39;command&#39;: &#39;?&#39;}))
+noremap &amp;lt;silent&amp;gt;&amp;lt;expr&amp;gt; g/ incsearch#go(&amp;lt;SID&amp;gt;incsearch_config({&#39;is_stay&#39;: 1}))
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;end of easymotion&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
 
-&lt;p&gt;“代码对齐插件相关设置
-noremap &lt;F3&gt; :Autoformat&lt;CR&gt;&lt;/CR&gt;&lt;/F3&gt;&lt;/p&gt;
+&quot;代码对齐插件相关设置
+noremap &amp;lt;F3&amp;gt; :Autoformat&amp;lt;CR&amp;gt;
 
-&lt;p&gt;”””””””&quot;”start of YCM””””””””””
-“YouCompleteMe相关设置
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;start of YCM&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot;YouCompleteMe相关设置
 set runtimepath+=~/.vim/bundle/YouCompleteMe
-let g:ycm_collect_identifiers_from_tags_files = 1           “ 开启 YCM 基于标签引擎
-let g:ycm_collect_identifiers_from_comments_and_strings = 1 “ 注释与字符串中的内容也用于补全
-let g:syntastic_ignore_files=[”.*.py$”]
-let g:ycm_seed_identifiers_with_syntax = 1                  “ 语法关键字补全
+let g:ycm_collect_identifiers_from_tags_files = 1           &quot; 开启 YCM 基于标签引擎
+let g:ycm_collect_identifiers_from_comments_and_strings = 1 &quot; 注释与字符串中的内容也用于补全
+let g:syntastic_ignore_files=[&quot;.*\.py$&quot;]
+let g:ycm_seed_identifiers_with_syntax = 1                  &quot; 语法关键字补全
 let g:ycm_complete_in_comments = 1
 let g:ycm_confirm_extra_conf = 0
-let g:ycm_key_list_select_completion = [‘&lt;c-n&gt;&#39;, &#39;&lt;Down&gt;&#39;]  &quot; 映射按键, 没有这个会拦截掉tab, 导致其他插件的tab不能用.
-let g:ycm_key_list_previous_completion = [&#39;&lt;c-p&gt;&#39;, &#39;&lt;Up&gt;&#39;]
+let g:ycm_key_list_select_completion = [&#39;&amp;lt;c-n&amp;gt;&#39;, &#39;&amp;lt;Down&amp;gt;&#39;]  &quot; 映射按键, 没有这个会拦截掉tab, 导致其他插件的tab不能用.
+let g:ycm_key_list_previous_completion = [&#39;&amp;lt;c-p&amp;gt;&#39;, &#39;&amp;lt;Up&amp;gt;&#39;]
 let g:ycm_complete_in_comments = 1                          &quot; 在注释输入中也能补全
 let g:ycm_complete_in_strings = 1                           &quot; 在字符串输入中也能补全
 let g:ycm_collect_identifiers_from_comments_and_strings = 1 &quot; 注释和字符串中的文字也会被收入补全
 let g:ycm_global_ycm_extra_conf=&#39;~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py&#39;
 let g:ycm_show_diagnostics_ui = 0                           &quot; 禁用语法检查
-inoremap &lt;expr&gt; &lt;CR&gt; pumvisible() ? &quot;\&lt;C-y&gt;&quot; : &quot;\&lt;CR&gt;&quot; |            &quot; 回车即选中当前项
-nnoremap &lt;c-j&gt; :YcmCompleter GoToDefinitionElseDeclaration&lt;CR&gt;|     &quot; 跳转到定义处
+inoremap &amp;lt;expr&amp;gt; &amp;lt;CR&amp;gt; pumvisible() ? &quot;\&amp;lt;C-y&amp;gt;&quot; : &quot;\&amp;lt;CR&amp;gt;&quot; |            &quot; 回车即选中当前项
+nnoremap &amp;lt;c-j&amp;gt; :YcmCompleter GoToDefinitionElseDeclaration&amp;lt;CR&amp;gt;|     &quot; 跳转到定义处
 &quot;let g:ycm_min_num_of_chars_for_completion=2                 &quot; 从第2个键入字符就开始罗列匹配项
 &quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;end of YCM&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
-&#39;&#39;&#39;&lt;/CR&gt;&lt;/c-j&gt;&lt;/CR&gt;&lt;/C-y&gt;&lt;/CR&gt;&lt;/expr&gt;&lt;/Up&gt;&lt;/c-p&gt;&lt;/Down&gt;&lt;/c-n&gt;&lt;/p&gt;
-
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 </description>
         <pubDate>Sat, 24 Sep 2016 00:00:00 +0800</pubDate>
         <link>/vim/2016/09/24/vimrc/</link>
