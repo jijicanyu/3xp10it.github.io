@@ -9,14 +9,6 @@
     } ,
     
   {
-    "title"    : "my notes",
-    "category" : "",
-    "tags"     : "experience, study",
-    "url"      : "/auxilary/2016/09/25/my-notes/",
-    "date"     : "2016-09-25 00:00:00 +0800"
-    } ,
-    
-  {
     "title"    : "vimrc",
     "category" : "",
     "tags"     : "vimrc",
