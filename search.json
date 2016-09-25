@@ -9,6 +9,14 @@
     } ,
     
   {
+    "title"    : "my notes",
+    "category" : "",
+    "tags"     : "experience, study",
+    "url"      : "/auxilary/2016/09/25/my-notes/",
+    "date"     : "2016-09-25 00:00:00 +0800"
+    } ,
+    
+  {
     "title"    : "vimrc",
     "category" : "",
     "tags"     : "vimrc",
@@ -93,14 +101,6 @@
     "category" : "",
     "tags"     : "linux, editor, effiency",
     "url"      : "/vim/2016/08/07/vim%E5%BF%AB%E6%8D%B7%E9%94%AE/",
-    "date"     : "2016-08-07 00:00:00 +0800"
-    } ,
-    
-  {
-    "title"    : "my notes",
-    "category" : "",
-    "tags"     : "experience, study",
-    "url"      : "/auxilary/2016/08/07/my-notes/",
     "date"     : "2016-08-07 00:00:00 +0800"
     } ,
     
