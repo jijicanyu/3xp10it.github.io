@@ -136,6 +136,7 @@
     zR折叠全部打开
     zo打开一个折叠
     zc创建一个折叠
+
 2&gt;代码自动规范缩进
     ggvG
     =
@@ -143,15 +144,8 @@
 
     代码块缩进&lt;C+v&gt;+(选择块)+&lt;&gt;
         &lt;表示代码块向左缩进,&gt;表示代码块向右缩进
-3&gt;easymotion插件(,为&lt;leader&gt;)默认&lt;leader&gt;&lt;leader&gt;w,添加如下映射:
 
-    noremap ` H
-    "上面这句是因为H键原来应该是跳转到当前屏幕第一行,但是可能被其他插件冲突导致失效,noremap可以重新将数字1左边的键映射成原来H的效果
-    map a ,,f
-    map b ,,F
-    map s `,,f
-    "上面四句实现3个键跳转到任意位置
-    "a为向下搜索,b为向上搜索,s为当前屏幕搜索,输入s/a/b+(想找的字符)+对应hint字符
+3&gt;easymotion插件可3键定位到当前可见屏幕任意字符
 
 4&gt;vim写中文自动换行的处理
     https://wiki.archlinux.org/index.php/Vim_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#.E8.87.AA.E5.8A.A8.E6.8D.A2.E8.A1.8C.E6.98.BE.E7.A4.BA
@@ -167,7 +161,25 @@
     vi /root/.vim/bundle/vim-markdown/ftplugin
     修改对应项
 
+5&gt;插入模式下的快捷键
+	&lt;c-w&gt;:删除前一个word
+	&lt;c-u&gt;:删除当前行光标位置之前的所有字符
+	&lt;c-o&gt;D:删除当前行光标位置之后的所有字符
+	&lt;c-t&gt;:缩进当前行
+	&lt;c-d&gt;:删除当前行缩进
+	
+	"下面是插入模式的3个字符内移动的快捷键,如果安装了vim-hardtime插件则要结合vim-hardtime在vim-hardtime中设置去除Left,Down,Up,Right的禁用
+	inoremap &lt;A-h&gt; &lt;Left&gt;
+	inoremap &lt;A-j&gt; &lt;Down&gt;
+	inoremap &lt;A-k&gt; &lt;Up&gt;
+	inoremap &lt;A-l&gt; &lt;Right&gt;
 
+6&gt;命令模式下的快捷键
+	&lt;c-b&gt;跳转到最前面
+	&lt;c-e&gt;跳转到最后面
+	&lt;c-w&gt;删除前一个word
+	&lt;c-u&gt;删除光标前所有
+	&lt;c-f&gt;打开命令行窗口
 </code></pre>
 </div>
 
