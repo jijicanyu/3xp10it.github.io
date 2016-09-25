@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 25 Sep 2016 13:26:56 +0800</pubDate>
-    <lastBuildDate>Sun, 25 Sep 2016 13:26:56 +0800</lastBuildDate>
+    <pubDate>Sun, 25 Sep 2016 13:30:01 +0800</pubDate>
+    <lastBuildDate>Sun, 25 Sep 2016 13:30:01 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -25,21 +25,21 @@
 	https://itunsecurity.wordpress.com/2015/08/16/vulnhub-com-writeup-darknet/(LinEnum.sh,
 	linuxprivchecker.py,unix-privesc-check)
 	https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/?redirect
-	windows local privileges:
-		http://www.52wa.net/post-198.html
-		https://github.com/GDSSecurity/Windows-Exploit-Suggester
-        http://le4f.net/post/post/windows-x64-local-privilege-escalation
-        https://forum.90sec.org/forum.php?mod=viewthread&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;tid=9067#lastpost
-        https://github.com/PowerShellEmpire/PowerTools/tree/master/PowerUp
-        http://www.freebuf.com/articles/web/76892.html
-        https://github.com/foxglovesec/Potato
-        in meterpreter:
-        meterpreter&amp;gt;background
-        msf&amp;gt;use post/multi/recon/local_exploit_suggester 
-        msf&amp;gt;show options
-        msf&amp;gt;exploit
-        or  
-        meterpreter&amp;gt;run post/multi/recon/local_exploit_suggester
+ windows local privileges:
+	http://www.52wa.net/post-198.html
+	https://github.com/GDSSecurity/Windows-Exploit-Suggester
+	http://le4f.net/post/post/windows-x64-local-privilege-escalation
+	https://forum.90sec.org/forum.php?mod=viewthread&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;tid=9067#lastpost
+	https://github.com/PowerShellEmpire/PowerTools/tree/master/PowerUp
+	http://www.freebuf.com/articles/web/76892.html
+	https://github.com/foxglovesec/Potato
+	in meterpreter:
+	meterpreter&amp;gt;background
+	msf&amp;gt;use post/multi/recon/local_exploit_suggester 
+	msf&amp;gt;show options
+	msf&amp;gt;exploit
+	or  
+	meterpreter&amp;gt;run post/multi/recon/local_exploit_suggester
 6.metasploit与postgresql数据库连接:
 	msf &amp;gt; db_connect msf3: AtZDNVQF3NJEyNqU9u1ciHcqTsbcZzKR@127.0.0.1: 5432 / msf3
 7.http: // tool.chacuo.net / mailanonymous   伪造邮件发送,一小时邮箱
