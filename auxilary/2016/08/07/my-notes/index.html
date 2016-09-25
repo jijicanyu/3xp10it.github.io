@@ -992,8 +992,10 @@ https://www.goenitz.xyz/post/ubuntu-install-fcitx-rime-and-wubi
     ./configure
     make
     sudo make install
-<span class="p">117.</span>linux提权时,编译exploit.c文件时必须在对方系统中编译,或者与对方系统一样的系统中编译,否则本地编译出exploit文件后上传到对方机器运行时会出现can not execute binary file的错误
-<span class="p">118.</span>访问目录时,404不代表文件夹一定不存在,尤其是那些不标准显示的404,有可能是webapp或waf故意这样显示的,但是404显示目录下的文件还是可以正常访问的
+<span class="p">117.</span>linux提权时,编译exploit.c文件时必须在对方系统中编译,或者与对方系统一样的系统中编译,
+	否则本地编译出exploit文件后上传到对方机器运行时会出现can not execute binary file的错误
+<span class="p">118.</span>访问目录时,404不代表文件夹一定不存在,尤其是那些不标准显示的404,有可能是webapp或waf故意这样显示的,
+	但是404显示目录下的文件还是可以正常访问的
 <span class="p">119.</span>c_++头:
         using namespace std;
         #include <span class="nt">&lt;iostream&gt;</span>
@@ -1008,7 +1010,8 @@ https://www.goenitz.xyz/post/ubuntu-install-fcitx-rime-and-wubi
     本地pdf快速转换:chrome浏览器(全选或部分选择后)右键可打印成pdf
 <span class="p">125.</span>printf("%x"):第一个栈里的值
     printf("%3x"):第一个栈里的值,用3个字节长度表示
-    printf("%3<span class="se">\$</span>x"):第三个栈里的值(这一条适用于绝大多数的<span class="err">*</span>nix的系统,win下不支持则用printf("%x,%x,%x")来达到同样的目的)
+    printf("%3<span class="se">\$</span>x"):第三个栈里的值(这一条适用于绝大多数的<span class="err">*</span>nix的系统,
+	win下不支持则用printf("%x,%x,%x")来达到同样的目的)
     宽度格式符(%3)中的%和3是不分开的,如果%3后面加了<span class="se">\$</span>(直接参数访问)则表示为打印第3个栈里的值
 <span class="p">126.</span>visual studio快速编译一个c文件
     运行C:<span class="se">\P</span>rogram Files (x86)<span class="se">\M</span>icrosoft Visual Studio 14.0<span class="se">\C</span>ommon7<span class="se">\T</span>ools<span class="se">\V</span>sDevCmd.bat
@@ -1033,8 +1036,8 @@ https://www.goenitz.xyz/post/ubuntu-install-fcitx-rime-and-wubi
 <span class="p">134.</span>windows下rime修改备选词个数:打开default.yaml,修改对应数字
 <span class="p">135.</span>ranger:linux terminal file manage god software
 <span class="p">136.</span>github pages生成的博客本地有语法高亮而正常http://3xp10it.github.io没有语法高亮的原因:
-    由于github将博客升级成https://3xp10it.github.io,而本地浏览器访问https://3xp10it.github.io时,出于安全性考虑,禁用了js
-    本地生成的博客为http://127.0.0.1:4000,没有https
+    由于github将博客升级成https://3xp10it.github.io,而本地浏览器访问https://3xp10it.github.io时,出于安全性考虑,
+	禁用了js,本地生成的博客为http://127.0.0.1:4000,没有https
     解决办法:https://help.github.com/articles/securing-your-github-pages-site-with-https/
         将博客文件夹中的https变成http
         (后来好像是只要把css文件中的http变成https就可以?)
@@ -1345,5 +1348,7 @@ https://www.goenitz.xyz/post/ubuntu-install-fcitx-rime-and-wubi
 	http://www.jianshu.com/p/1016f79a443f
 <span class="p">219.</span>html织网背景js
 	https://github.com/hustcc/canvas-nest.js
+<span class="p">220.</span>scrapy教程
+	http://scrapy-chs.readthedocs.io/zh_CN/0.24/intro/tutorial.html
 </code></pre>
 </div>
