@@ -233,6 +233,11 @@ hashcat掩码字符所代表的含义及掩码具体的使用方法:
 
 关于普通加盐的爆破:
 	看加盐的位置,再选择相应的类型即可
+
+opencart:
+hashcat64.exe -a 3 -m 13900 mi.hash ?a?a?a?a?a?a?a?a 
+其中mi.hash内容为待破解的hash,格式为sha1_value:salt_value
+
 	
 基于半猜解查询的爆破(6 模式 [Hybrid dict + mask] oclhashcat才有此选项):
 
@@ -403,7 +408,6 @@ john运行以后会在当前目录产生一个john.pot文件,用来缓存数据,
 破解ssh key hash: 
 	
 破解7z密码hash:
-
 </code></pre>
 </div>
 </span>
