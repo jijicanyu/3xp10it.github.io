@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 16 Oct 2016 11:22:49 +0800</pubDate>
-    <lastBuildDate>Sun, 16 Oct 2016 11:22:49 +0800</lastBuildDate>
+    <pubDate>Mon, 17 Oct 2016 15:04:00 +0800</pubDate>
+    <lastBuildDate>Mon, 17 Oct 2016 15:04:00 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -1356,6 +1356,7 @@ windows中rime词库文件位置:%APPDATA%\rime
 	http://tipsonubuntu.com/2016/09/13/vim-8-0-released-install-ubuntu-16-04/
 217.python代码格式化工具,autopep8
 	usage:https://pypi.python.org/pypi/autopep8
+	autopep8 --in-place --aggressive --aggressive file
 	maybe better from google:
 		https://github.com/google/yapf
 		pip install yapf
@@ -1391,6 +1392,10 @@ windows中rime词库文件位置:%APPDATA%\rime
 	fuzzer可观察详细数据后自行尝试构造
 225.在线目录扫描器
 	https://pentest-tools.com/website-vulnerability-scanning/discover-hidden-directories-and-files
+226.colorama输出彩色文字用法
+	from colorama import init,Fore
+	init(autoreset=True)
+	print(Fore.RED+target)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
