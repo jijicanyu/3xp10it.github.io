@@ -3,10 +3,10 @@
   <channel>
     <title>quanyechavshuo</title>
     <description>A blog about programming and network security</description>
-    <link>https://3xp10it.cc//</link>
-    <atom:link href="https://3xp10it.cc//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 21 Oct 2016 11:33:44 +0800</pubDate>
-    <lastBuildDate>Fri, 21 Oct 2016 11:33:44 +0800</lastBuildDate>
+    <link>https://3xp10it.cc/</link>
+    <atom:link href="https://3xp10it.cc/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Fri, 21 Oct 2016 11:36:15 +0800</pubDate>
+    <lastBuildDate>Fri, 21 Oct 2016 11:36:15 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -1562,8 +1562,8 @@ windows中rime词库文件位置:%APPDATA%\rime
 &lt;/div&gt;
 </description>
         <pubDate>Sun, 25 Sep 2016 00:00:00 +0800</pubDate>
-        <link>https://3xp10it.cc//note/2016/09/25/notes/</link>
-        <guid isPermaLink="true">https://3xp10it.cc//note/2016/09/25/notes/</guid>
+        <link>https://3xp10it.cc/note/2016/09/25/notes/</link>
+        <guid isPermaLink="true">https://3xp10it.cc/note/2016/09/25/notes/</guid>
         
         <category>note</category>
         
@@ -1891,8 +1891,8 @@ autocmd CursorHold * call NextColor(1)
 &lt;/div&gt;
 </description>
         <pubDate>Sat, 24 Sep 2016 00:00:00 +0800</pubDate>
-        <link>https://3xp10it.cc//vim/2016/09/24/vimrc/</link>
-        <guid isPermaLink="true">https://3xp10it.cc//vim/2016/09/24/vimrc/</guid>
+        <link>https://3xp10it.cc/vim/2016/09/24/vimrc/</link>
+        <guid isPermaLink="true">https://3xp10it.cc/vim/2016/09/24/vimrc/</guid>
         
         <category>vimrc</category>
         
@@ -1961,8 +1961,8 @@ autocmd CursorHold * call NextColor(1)
 &lt;/div&gt;
 </description>
         <pubDate>Sun, 18 Sep 2016 00:00:00 +0800</pubDate>
-        <link>https://3xp10it.cc//local/exploit/2016/09/18/linux%E6%8F%90%E6%9D%83/</link>
-        <guid isPermaLink="true">https://3xp10it.cc//local/exploit/2016/09/18/linux%E6%8F%90%E6%9D%83/</guid>
+        <link>https://3xp10it.cc/local/exploit/2016/09/18/linux%E6%8F%90%E6%9D%83/</link>
+        <guid isPermaLink="true">https://3xp10it.cc/local/exploit/2016/09/18/linux%E6%8F%90%E6%9D%83/</guid>
         
         <category>web</category>
         
@@ -2337,8 +2337,8 @@ def crawl_uri(uri):
 
 </description>
         <pubDate>Tue, 30 Aug 2016 00:00:00 +0800</pubDate>
-        <link>https://3xp10it.cc//python/2016/08/30/python%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
-        <guid isPermaLink="true">https://3xp10it.cc//python/2016/08/30/python%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B/</guid>
+        <link>https://3xp10it.cc/python/2016/08/30/python%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
+        <guid isPermaLink="true">https://3xp10it.cc/python/2016/08/30/python%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B/</guid>
         
         <category>python</category>
         
@@ -2390,8 +2390,8 @@ f.readlines()是多余的运作,这样浪费系统资源
 
 </description>
         <pubDate>Fri, 26 Aug 2016 00:00:00 +0800</pubDate>
-        <link>https://3xp10it.cc//python/2016/08/26/python%E4%BB%A3%E7%A0%81%E6%95%88%E7%8E%87/</link>
-        <guid isPermaLink="true">https://3xp10it.cc//python/2016/08/26/python%E4%BB%A3%E7%A0%81%E6%95%88%E7%8E%87/</guid>
+        <link>https://3xp10it.cc/python/2016/08/26/python%E4%BB%A3%E7%A0%81%E6%95%88%E7%8E%87/</link>
+        <guid isPermaLink="true">https://3xp10it.cc/python/2016/08/26/python%E4%BB%A3%E7%A0%81%E6%95%88%E7%8E%87/</guid>
         
         <category>coding</category>
         
@@ -2489,8 +2489,8 @@ ie打开http://192.168.3.165:8080/test.html
 &lt;/div&gt;
 </description>
         <pubDate>Tue, 23 Aug 2016 00:00:00 +0800</pubDate>
-        <link>https://3xp10it.cc//%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/08/23/%E6%BC%8F%E6%B4%9E%E6%88%98%E4%BA%89-cve-2012-0003/</link>
-        <guid isPermaLink="true">https://3xp10it.cc//%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/08/23/%E6%BC%8F%E6%B4%9E%E6%88%98%E4%BA%89-cve-2012-0003/</guid>
+        <link>https://3xp10it.cc/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/08/23/%E6%BC%8F%E6%B4%9E%E6%88%98%E4%BA%89-cve-2012-0003/</link>
+        <guid isPermaLink="true">https://3xp10it.cc/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/08/23/%E6%BC%8F%E6%B4%9E%E6%88%98%E4%BA%89-cve-2012-0003/</guid>
         
         <category>漏洞战争</category>
         
@@ -4051,8 +4051,8 @@ if __name__ == &#39;__main__&#39;:
 &lt;/div&gt;
 </description>
         <pubDate>Wed, 17 Aug 2016 00:00:00 +0800</pubDate>
-        <link>https://3xp10it.cc//%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/08/17/%E6%BC%8F%E6%B4%9E%E6%88%98%E4%BA%89-cve-2010-2553/</link>
-        <guid isPermaLink="true">https://3xp10it.cc//%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/08/17/%E6%BC%8F%E6%B4%9E%E6%88%98%E4%BA%89-cve-2010-2553/</guid>
+        <link>https://3xp10it.cc/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/08/17/%E6%BC%8F%E6%B4%9E%E6%88%98%E4%BA%89-cve-2010-2553/</link>
+        <guid isPermaLink="true">https://3xp10it.cc/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/08/17/%E6%BC%8F%E6%B4%9E%E6%88%98%E4%BA%89-cve-2010-2553/</guid>
         
         <category>漏洞战争</category>
         
@@ -4395,8 +4395,8 @@ a中的子函数中包括b中的复制指令,b中的上一帧函数对应a中的
 &lt;/div&gt;
 </description>
         <pubDate>Sun, 14 Aug 2016 00:00:00 +0800</pubDate>
-        <link>https://3xp10it.cc//%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/08/14/%E6%BC%8F%E6%B4%9E%E6%88%98%E4%BA%89-cve-2012-0158/</link>
-        <guid isPermaLink="true">https://3xp10it.cc//%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/08/14/%E6%BC%8F%E6%B4%9E%E6%88%98%E4%BA%89-cve-2012-0158/</guid>
+        <link>https://3xp10it.cc/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/08/14/%E6%BC%8F%E6%B4%9E%E6%88%98%E4%BA%89-cve-2012-0158/</link>
+        <guid isPermaLink="true">https://3xp10it.cc/%E4%BA%8C%E8%BF%9B%E5%88%B6/2016/08/14/%E6%BC%8F%E6%B4%9E%E6%88%98%E4%BA%89-cve-2012-0158/</guid>
         
         <category>漏洞分析</category>
         
@@ -4441,8 +4441,8 @@ id=-29 /*!30000union select 1,2,group_concat(0x7e,0x27,unhex(Hex(cast(name as ch
 &lt;/div&gt;
 </description>
         <pubDate>Fri, 12 Aug 2016 00:00:00 +0800</pubDate>
-        <link>https://3xp10it.cc//web/2016/08/12/waf%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7%E5%BA%93/</link>
-        <guid isPermaLink="true">https://3xp10it.cc//web/2016/08/12/waf%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7%E5%BA%93/</guid>
+        <link>https://3xp10it.cc/web/2016/08/12/waf%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7%E5%BA%93/</link>
+        <guid isPermaLink="true">https://3xp10it.cc/web/2016/08/12/waf%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7%E5%BA%93/</guid>
         
         <category>waf</category>
         
@@ -4515,8 +4515,8 @@ http://secureyes.net/nw/assets/File-Upload-Vulnerability-in-FCKEditor.pdf &amp;l
 &lt;/div&gt;
 </description>
         <pubDate>Fri, 12 Aug 2016 00:00:00 +0800</pubDate>
-        <link>https://3xp10it.cc//web/2016/08/12/fckeditor%E5%90%84%E7%89%88%E6%9C%AC%E7%BB%95%E8%BF%87/</link>
-        <guid isPermaLink="true">https://3xp10it.cc//web/2016/08/12/fckeditor%E5%90%84%E7%89%88%E6%9C%AC%E7%BB%95%E8%BF%87/</guid>
+        <link>https://3xp10it.cc/web/2016/08/12/fckeditor%E5%90%84%E7%89%88%E6%9C%AC%E7%BB%95%E8%BF%87/</link>
+        <guid isPermaLink="true">https://3xp10it.cc/web/2016/08/12/fckeditor%E5%90%84%E7%89%88%E6%9C%AC%E7%BB%95%E8%BF%87/</guid>
         
         <category>fckeditor</category>
         
