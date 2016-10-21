@@ -3,6 +3,18 @@
 
 
     <head>
+
+
+<script type="text/javascript">
+    var host = "3xp10it.cc";
+	    if ((host == window.location.host) && (window.location.protocol != "https:"))
+		        window.location.protocol = "https";
+</script>
+
+<link rel="canonical" href=" { { site.url  }  }{ { page.url  }  }" />
+
+
+
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>notes</title>
@@ -1176,6 +1188,9 @@ windows中rime词库文件位置:%APPDATA%\rime
     解决办法:https://help.github.com/articles/securing-your-github-pages-site-with-https/
         将博客文件夹中的https变成http
         (后来好像是只要把css文件中的http变成https就可以?)
+	github pages在申请3xp10it.cc等域名后自动变回http,因为github检测到3xp10it.github.io已经关联到3xp10it.cc了,于
+	是自动变回http,要想继续变回https,参考如下链接:
+		https://sheharyar.me/blog/free-ssl-for-github-pages-with-custom-domains/
 137.终端字符串生成图像工具
     banner
     figlet
@@ -1586,6 +1601,8 @@ windows中rime词库文件位置:%APPDATA%\rime
 	2&gt;http://dnstrails.com/查看最早的A记录中在0中链接不是cdn的ip,将hosts文件修改成ip domain格式,如果可以正常访
 	问得到对应页面,则认为是真实ip
 	3&gt;查ns和mx记录对应的ip,扫c段,改hosts文件,可正常访问得到对应页面则认为是真实ip
+	  CloudFlare中有这样一句:
+	  	 Some records, like MX, never go through CloudFlare (no cloud).
 	4&gt;子域爆破,扫c段,改hosts文件,可正常访问得到对应页面则认为是真实ip
 	5&gt;上面没有找到,直接查找a记录,找出不是cdn的ip,改hosts文件,可正常访问得到对应页面则认为是真实ip
 
