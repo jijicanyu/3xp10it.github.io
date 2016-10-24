@@ -98,7 +98,77 @@
 
     <div class="page-content">
       <div class="wrap">
-      <script type="text/javascript" src="/js/jquery-2.js"></script>
+      <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+<link href="klion_files/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+<link href="klion_files/style.css" rel="stylesheet" type="text/css" media="all">
+
+<script type="text/javascript" src="klion_files/jquery-2.js"></script>
+
+		<script type="text/javascript" src="klion_files/move-top.js"></script>
+		<script type="text/javascript" src="klion_files/easing.js"></script>
+		<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+				});
+			});
+		</script>
+
+<script src="klion_files/pie-chart.js" type="text/javascript"></script>
+ <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#demo-pie-1').pieChart({
+                barColor: '#10A7AF',
+                trackColor: '#fff',
+                lineCap: 'round',
+                lineWidth: 8,
+                onStep: function (from, to, percent) {
+                    $(this.element).find('.pie-value').text(Math.round(percent) + '%');
+                }
+            });
+
+            $('#demo-pie-2').pieChart({
+                barColor: '#10A7AF',
+                trackColor: '#fff',
+                lineCap: 'butt',
+                lineWidth: 8,
+                onStep: function (from, to, percent) {
+                    $(this.element).find('.pie-value').text(Math.round(percent) + '%');
+                }
+            });
+
+            $('#demo-pie-3').pieChart({
+                barColor: '#10A7AF',
+                trackColor: '#fff',
+                lineCap: 'square',
+                lineWidth: 8,
+                onStep: function (from, to, percent) {
+                    $(this.element).find('.pie-value').text(Math.round(percent) + '%');
+                }
+            });
+			
+			$('#demo-pie-4').pieChart({
+                barColor: '#10A7AF',
+                trackColor: '#fff',
+                lineCap: 'square',
+                lineWidth: 8,
+                onStep: function (from, to, percent) {
+                    $(this.element).find('.pie-value').text(Math.round(percent) + '%');
+                }
+            });
+        });
+    </script>
+
+<script type="text/javascript" src="klion_files/numscroller-1.js"></script>
+
+<style charset="utf-8" type="text/css" class="firebugResetStyles">/* See license.txt for terms of usage */
+
+
+
 
 
 <div class="container-fluid index">
