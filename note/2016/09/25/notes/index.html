@@ -37,6 +37,9 @@
 <meta name="msapplication-config" content="/favicons/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
 
+<!-- try to add style like http://tools88.com -->
+<script type="text/javascript" src="/js/navi.js"></script>
+
 
 
 
@@ -117,7 +120,7 @@
 
       <div class="read-time">
         <small>
-          24 minute read
+          25 minute read
         </small>
       </div>
 
@@ -1179,6 +1182,28 @@ windows中rime词库文件位置:%APPDATA%\rime
 	github pages在申请3xp10it.cc等域名后自动变回http,因为github检测到3xp10it.github.io已经关联到3xp10it.cc了,于
 	是自动变回http,要想继续变回https,参考如下链接:
 		https://sheharyar.me/blog/free-ssl-for-github-pages-with-custom-domains/
+		其中的<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"canonical"</span> <span class="na">href=</span><span class="s">" { { site.url  }  }{ { page.url  }  }"</span> <span class="nt">/&gt;</span>不用加,而且http跳转到https的
+		代码:
+		<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+		    <span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="s2">"yoursite.com"</span><span class="p">;</span>
+		    <span class="k">if</span> <span class="p">((</span><span class="nx">host</span> <span class="o">==</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">host</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">protocol</span> <span class="o">!=</span> <span class="s2">"https:"</span><span class="p">))</span>
+		        <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">protocol</span> <span class="o">=</span> <span class="s2">"https"</span><span class="p">;</span>
+		<span class="nt">&lt;/script&gt;</span>
+		这里上面的代码不能加到_includes/head.html的开头中,要加到index.html的开头中,因为自己的index.html中有2个
+		frame,与一般的index.html不同,且加到index.html中时,index.html完全代码如下:
+		
+		<span class="nt">&lt;html&gt;</span>
+		<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+		    <span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="s2">"3xp10it.cc"</span><span class="p">;</span>
+		    <span class="k">if</span> <span class="p">((</span><span class="nx">host</span> <span class="o">==</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">host</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">protocol</span> <span class="o">!=</span> <span class="s2">"https:"</span><span class="p">))</span>
+		        <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">protocol</span> <span class="o">=</span> <span class="s2">"https"</span><span class="p">;</span>
+		<span class="nt">&lt;/script&gt;</span>
+		   <span class="nt">&lt;frameset</span> <span class="na">rows=</span><span class="s">"100%,*"</span><span class="nt">&gt;</span>
+		    <span class="nt">&lt;frame</span> <span class="na">src=</span><span class="s">"index2.html"</span><span class="nt">&gt;&lt;/frame&gt;</span>
+		    <span class="nt">&lt;frame</span> <span class="na">src=</span><span class="s">"bgmusic.html"</span><span class="nt">&gt;&lt;/frame&gt;</span>
+		   <span class="nt">&lt;/frameset&gt;</span>
+		<span class="nt">&lt;/html&gt;</span>
+
 137.终端字符串生成图像工具
     banner
     figlet
