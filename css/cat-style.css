@@ -232,8 +232,6 @@ h3.tittle:after, h3.tittle:before {
     text-indent: 2em;
 	text-decoration:none;
     padding: 31px 0;
-	font-family: 'klion','Open Sans', sans-serif;
-	text-transform:uppercase;
 }
 
 .accordion-section-title.active, .accordion-section-title:hover,.accordion-section-title.focus {
