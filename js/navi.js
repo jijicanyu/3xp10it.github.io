@@ -1,7 +1,7 @@
 /**
  * Created by outer on 2016/10/24.
  */
-var container = new Array("my-linklist");
+var container = new Array("linklist");
 
 var objects = new Array();
 var links = new Array();

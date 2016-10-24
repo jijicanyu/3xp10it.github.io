@@ -222,18 +222,19 @@ h3.tittle:after, h3.tittle:before {
 .accordion-section-title {
     width: 100%;
     display: inline-block;
-    border-bottom:5px solid #CACACA;
-    background: transparent;
-    transition: all linear 0.15s;
+    border-bottom:2.6px solid #CACACA;
+    background: #212120;
+    transition: all linear 0.3s;
     font-size: 20px;
-    color: #464646;
+    color: #FFFFFF;
     text-indent: 2em;
 	text-decoration:none;
     padding: 10px 0;
 }
 
 .accordion-section-title.active, .accordion-section-title:hover,.accordion-section-title.focus {
-    color: #464646;
+	color: #191919;
+	background: #B3D169;
 	text-decoration:none;
 }
 
@@ -274,14 +275,14 @@ a.accordion-section-title span {
     margin-bottom: 15px;
 }
 .accordion-section ul li {
-	background:#21211E;
+	background:#212120;
     list-style-type: none;
-    line-height: 2em;
+    line-height: 1.5em;
     font-size: 16px;
     color: #FFFFFF;
 }
 .accordion-section ul li a{
-    color: #464646;
+    color: #FFFFFF;
 	text-decoration:none;	
 }
 .accordion-section ul li span {

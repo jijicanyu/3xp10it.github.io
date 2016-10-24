@@ -135,7 +135,7 @@ span {
 }
 #linklist a {
 	color:#fff;
-	background:#191919;	
+	background:transparent;	
 }
 #linklist a:visited {
 	color:#fff;
