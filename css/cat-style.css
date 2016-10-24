@@ -1,4 +1,9 @@
-
+@font-face{
+	
+	font-family:"klion";
+	src:url("../fonts/Courier BOLDITALIC.ttf");
+	
+}
 html, body{
 	margin:0;
 	background:	#fff;
@@ -130,7 +135,14 @@ ul.list-left li {
     color: #fff;
     text-decoration: none;
 }
-
+.header{
+    background: url(../images/kali.png) no-repeat center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    -moz-background-size: cover;
+}
 
 /*-- //resume --*/
 .about {
