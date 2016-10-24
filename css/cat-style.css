@@ -1,20 +1,10 @@
-@font-face{
-	
-	font-family:"klion";
-	src:url("../fonts/Courier BOLDITALIC.ttf");
-	
-}
 html, body{
 	margin:0;
 	background:	#fff;
 	font-family:'klion','Open Sans', sans-serif;
 	
 }
-h4, h5, h6,
-h1, h2, h3 {
-margin: 0;
-font-family:'klion', sans-serif;
-}
+
 p{
 	margin:0;
 }
