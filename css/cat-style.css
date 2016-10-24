@@ -76,8 +76,8 @@ body a:hover{
 }
 .header {
     background: #f7f7f7;
-    padding: 30px 0;
-    border-bottom: 5px solid #E4E4E4;
+    padding: 0px 0;
+    border-bottom: 0px solid #E4E4E4;
 }
 .header-left {
     padding: 0;
@@ -124,7 +124,7 @@ ul.list-left li {
     text-decoration: none;
 }
 .header{
-    background: url(../images/kali.png) no-repeat center;
+    background: transparent;
     background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
@@ -222,14 +222,14 @@ h3.tittle:after, h3.tittle:before {
 .accordion-section-title {
     width: 100%;
     display: inline-block;
-    border-bottom:1px solid #CACACA;
+    border-bottom:5px solid #CACACA;
     background: transparent;
     transition: all linear 0.15s;
     font-size: 20px;
     color: #464646;
     text-indent: 2em;
 	text-decoration:none;
-    padding: 20px 0;
+    padding: 10px 0;
 }
 
 .accordion-section-title.active, .accordion-section-title:hover,.accordion-section-title.focus {
@@ -274,11 +274,11 @@ a.accordion-section-title span {
     margin-bottom: 15px;
 }
 .accordion-section ul li {
-	background:#F07241;
+	background:#21211E;
     list-style-type: none;
     line-height: 2em;
     font-size: 16px;
-    color: #21211E;
+    color: #FFFFFF;
 }
 .accordion-section ul li a{
     color: #464646;
