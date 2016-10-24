@@ -98,77 +98,10 @@
 
     <div class="page-content">
       <div class="wrap">
-      <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-		function hideURLbar(){ window.scrollTo(0,1); } </script>
-
-<link href="/klion_files/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+      <link href="/klion_files/bootstrap.css" rel="stylesheet" type="text/css" media="all">
 <link href="/klion_files/style.css" rel="stylesheet" type="text/css" media="all">
 
 <script type="text/javascript" src="/klion_files/jquery-2.js"></script>
-
-		<script type="text/javascript" src="/klion_files/move-top.js"></script>
-		<script type="text/javascript" src="/klion_files/easing.js"></script>
-		<script type="text/javascript">
-			jQuery(document).ready(function($) {
-				$(".scroll").click(function(event){		
-					event.preventDefault();
-					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-				});
-			});
-		</script>
-
-<script src="/klion_files/pie-chart.js" type="text/javascript"></script>
- <script type="text/javascript">
-
-        $(document).ready(function () {
-            $('#demo-pie-1').pieChart({
-                barColor: '#10A7AF',
-                trackColor: '#fff',
-                lineCap: 'round',
-                lineWidth: 8,
-                onStep: function (from, to, percent) {
-                    $(this.element).find('.pie-value').text(Math.round(percent) + '%');
-                }
-            });
-
-            $('#demo-pie-2').pieChart({
-                barColor: '#10A7AF',
-                trackColor: '#fff',
-                lineCap: 'butt',
-                lineWidth: 8,
-                onStep: function (from, to, percent) {
-                    $(this.element).find('.pie-value').text(Math.round(percent) + '%');
-                }
-            });
-
-            $('#demo-pie-3').pieChart({
-                barColor: '#10A7AF',
-                trackColor: '#fff',
-                lineCap: 'square',
-                lineWidth: 8,
-                onStep: function (from, to, percent) {
-                    $(this.element).find('.pie-value').text(Math.round(percent) + '%');
-                }
-            });
-			
-			$('#demo-pie-4').pieChart({
-                barColor: '#10A7AF',
-                trackColor: '#fff',
-                lineCap: 'square',
-                lineWidth: 8,
-                onStep: function (from, to, percent) {
-                    $(this.element).find('.pie-value').text(Math.round(percent) + '%');
-                }
-            });
-        });
-    </script>
-
-<script type="text/javascript" src="/klion_files/numscroller-1.js"></script>
-
-<style charset="utf-8" type="text/css" class="firebugResetStyles">/* See license.txt for terms of usage */
-
-
-
 
 
 <div class="container-fluid index">
@@ -500,93 +433,41 @@
 	 
 	</div>
 
+
+				<script>
+							jQuery(document).ready(function() {
+								function close_accordion_section() {
+									jQuery('.accordion .accordion-section-title').removeClass('active');
+									jQuery('.accordion .accordion-section-content').slideUp(300).removeClass('open');
+								}
+
+								jQuery('.accordion-section-title').click(function(e) {
+									// Grab current anchor value
+									var currentAttrValue = jQuery(this).attr('href');
+
+									if(jQuery(e.target).is('.active')) {
+										close_accordion_section();
+									}else {
+										close_accordion_section();
+
+										// Add active class to section title
+										jQuery(this).addClass('active');
+										// Open up the hidden content panel
+										jQuery('.accordion ' + currentAttrValue).slideDown(300).addClass('open'); 
+									}
+
+									e.preventDefault();
+								});
+							});
+				</script>
+
+
+
+
   </div>
 
 </div>
 
-<!--
-<div class="accordion">
-							
-							<div class="accordion-section">
-								<h5><a class="accordion-section-title" href="#accordion-1">
-									<span>第一部分 </span> 必要的一些基本功
-								<i class="glyphicon glyphicon-chevron-down"></i><div class="clearfix"></div>
-								</a></h5>
-								<div id="accordion-1" class="accordion-section-content" style="display: none;">
-									<h6>具体列表如下: </h6>
-									<ul>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">1,从最基本的渗透环境搭建配置开始[kali,ubuntu,win2003/7 x86]</a></li>
-										 
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#"></a>2,搭建一套完整的模拟真实生产环境的漏洞演练系统[lamp,asp/aspx,mail,……]</li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">3,必须熟练的web前后端开发[html5常用标记,css3常用属性,标准sql,原生js,php及python入门]</a></li>
-									</ul>
-								</div>
-							</div>
-
-							<div class="accordion-section">
-								<h5><a class="accordion-section-title" href="#accordion-2">
-									<span>第二部分 </span>关于对边界web的一些渗透手段
-								<i class="glyphicon glyphicon-chevron-down"></i><div class="clearfix"></div>
-								</a></h5>
-								<div id="accordion-2" class="accordion-section-content" style="">
-									<h6>具体列表如下:</h6>
-									<ul>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">1,必要的协议基础[认识主流web架构,wireshark封包及http协议分析快速入门……]</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">2,细致实用且极具针对性的信息搜集任务[包含大量的极具针对性的一些进阶信息搜集技巧]</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">3,各主流数据库手注,http头注入,宽字节,insert/update注入及高级手工盲注,预编译修复</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">4,各类包含及任意文件下载类漏洞利用细节及问题分析</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">5,各类执行漏洞利用,系统命令执行,代码注入,变量覆盖等,如何正确的防御和修复此类漏洞</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">6,各web中间件解析问题,各类常规,编辑器上传突破方法细节及上传修复</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">7,关于xss价值的最大化利用,如何更有效的预防xss……</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">8,关于各种页面越权以及目录遍历问题,修复越权和错误配置……</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">9,各类开源程序,java控制台及常规拿shell技巧,webshell箱子查找等……</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">10,waf绕过初探,webhsell免杀及其高级隐藏技巧……</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">11,xml,ldap注入及各类wvs,系统漏扫使用分析对比</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">12,详解 php.ini 核心安全及开发相关选项配置</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">13,关于iis和http.conf 的更多安全配置细节</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">14,更好的利用旁站和C段……</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">15,熟练掌握win&amp;linux的各类常用系统命令及cmd进阶技巧</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">16,win和linux提权的方方面面及一些临时性系统后门植入细节[win linux bsd unix]</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">17,关于win及linux下的各种rookit入门级植入方法</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">18,各web中间件,数据库,系统操作,各安全类日志及渗透工具清除,利用系统自身特性隐藏痕迹</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">19,如何隐蔽打包下载指定的各类数据</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">20,更多内容……</a></li>
-									</ul>
-								</div>
-							</div>
-
-							<div class="accordion-section">
-								<h5><a class="accordion-section-title" href="#accordion-3">
-									<span>第三部分 </span> 针对不同内网环境下的渗透方法 
-								<i class="glyphicon glyphicon-chevron-down"></i><div class="clearfix"></div>
-								</a></h5>
-								<div id="accordion-3" class="accordion-section-content" style="">
-									<h6>具体列表如下: </h6>
-									<ul>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">1,常规内网环境下的渗透流程[高质量内网信息搜集,隐藏自己,制作高质量爆破字典,必要的中间人]</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">2,域内渗透[域内信息搜集,如何快速定位域管和域控,导出域内所有用户及hash……]</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">3,快速破解各类hash[包括系统,数据库,web,第三方软件,加密文件……]</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">4,熟练使用各类免杀,木马生成框架及花式反弹shell的方法[veil,empire,pupy,shellter……]</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">5,在内网中最大化发挥powershell的价值[批量钓鱼挂马,端口扫描,爆破,嗅探……]</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">6,关于路由[如何在路由中植入后门],打印机及传真机的一些常规渗透手法</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">7,xss对于内网渗透的价值</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">8,内网中实现批量挂马优劣分析[dhcp,icmp,伪造升级,arp……]</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">9,混合网络环境下,如何实现win和linux间交叉渗透的一些办法</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">10,利用各种转发,重定向,代理及隧道技术[http https dns icmp udp ssh]来洞穿层层网络</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">11,内网木马流量出不来的一些具体解决思路和具体办法</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">12,如何跨vlan的一些具体参考建议</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">13,隐蔽打包下载目标内网中的指定数据……</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">14,apk逆向初探…………</a></li>
-										<li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><a href="#">15,更多内容…………</a></li>
-									</ul>
-								</div>
-							</div>
-							
-							
-				</div>
-
-
--->
 
       </div>
     </div>
