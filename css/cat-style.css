@@ -1,8 +1,6 @@
 html, body{
 	margin:0;
-	background:	#fff;
-	font-family:'klion','Open Sans', sans-serif;
-	
+	background:	#transparent;	
 }
 
 p{
@@ -218,20 +216,20 @@ h3.tittle:after, h3.tittle:before {
 .accordion {
 	overflow:hidden;
 	background:#f7f7f7;
-    border: 1px solid #CACACA;
+    border: 0px solid #CACACA;
 }
 /*----- Section Titles -----*/
 .accordion-section-title {
     width: 100%;
     display: inline-block;
     border-bottom:1px solid #CACACA;
-    background: #fff;
+    background: transparent;
     transition: all linear 0.15s;
     font-size: 20px;
     color: #464646;
     text-indent: 2em;
 	text-decoration:none;
-    padding: 31px 0;
+    padding: 20px 0;
 }
 
 .accordion-section-title.active, .accordion-section-title:hover,.accordion-section-title.focus {
@@ -246,7 +244,7 @@ border-bottom: none;
     border-top: 1px solid #cacaca;	
 }
 .accordion-section-content {
-    padding: 15px 15px;
+    padding: 0px;
     display: none;
     border: none;
     border-bottom: 1px solid #cacaca;
@@ -276,10 +274,11 @@ a.accordion-section-title span {
     margin-bottom: 15px;
 }
 .accordion-section ul li {
+	background:#F07241;
     list-style-type: none;
     line-height: 2em;
-    font-size: 14px;
-    color: #464646;
+    font-size: 16px;
+    color: #21211E;
 }
 .accordion-section ul li a{
     color: #464646;
