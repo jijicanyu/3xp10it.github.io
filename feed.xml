@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>https://3xp10it.cc/</link>
     <atom:link href="https://3xp10it.cc/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 25 Oct 2016 14:09:00 +0800</pubDate>
-    <lastBuildDate>Tue, 25 Oct 2016 14:09:00 +0800</lastBuildDate>
+    <pubDate>Tue, 25 Oct 2016 14:21:44 +0800</pubDate>
+    <lastBuildDate>Tue, 25 Oct 2016 14:21:44 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -1086,7 +1086,8 @@ windows中rime词库文件位置:%APPDATA%\rime
 		    &lt;span class=&quot;nt&quot;&gt;&amp;lt;frame&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bgmusic.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/frame&amp;gt;&lt;/span&gt;
 		   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/frameset&amp;gt;&lt;/span&gt;
 		&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
-
+	
+	如果发现访问不正常可去https://github.com/3xp10it/3xp10it.github.io中的setting查看错误信息
 137.终端字符串生成图像工具
     banner
     figlet
