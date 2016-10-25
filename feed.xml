@@ -5,9 +5,39 @@
     <description>A blog about programming and network security</description>
     <link>https://3xp10it.cc/</link>
     <atom:link href="https://3xp10it.cc/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 25 Oct 2016 14:37:53 +0800</pubDate>
-    <lastBuildDate>Tue, 25 Oct 2016 14:37:53 +0800</lastBuildDate>
+    <pubDate>Tue, 25 Oct 2016 19:17:22 +0800</pubDate>
+    <lastBuildDate>Tue, 25 Oct 2016 19:17:22 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>社工</title>
+        <description>&lt;h3 id=&quot;x00-&quot;&gt;0x00 信息收集&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;查找注册过哪些网站:
+http://www.zhaohuini.com
+http://reg007.com
+
+在线社工库:
+http://s.70sec.com/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;x01-&quot;&gt;0x01 钓鱼&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http://www.freebuf.com/news/117464.html
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Tue, 25 Oct 2016 00:00:00 +0800</pubDate>
+        <link>https://3xp10it.cc/web/2016/10/25/%E7%A4%BE%E5%B7%A5/</link>
+        <guid isPermaLink="true">https://3xp10it.cc/web/2016/10/25/%E7%A4%BE%E5%B7%A5/</guid>
+        
+        <category>社工</category>
+        
+        
+        <category>web</category>
+        
+      </item>
     
       <item>
         <title>notes</title>
@@ -4470,82 +4500,6 @@ id=-29 /*!30000union select 1,2,group_concat(0x7e,0x27,unhex(Hex(cast(name as ch
         <category>waf</category>
         
         <category>bypass</category>
-        
-        
-        <category>web</category>
-        
-      </item>
-    
-      <item>
-        <title>fckeditor各版本绕过</title>
-        <description>&lt;h3 id=&quot;x00-fckeditor&quot;&gt;0x00 fckeditor上传漏洞总结&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http://sec.chinabyte.com/206/13708206.shtml
-http://www.cnbraid.com/2015/07/09/fckeditor/
-http://www.it610.com/article/1842939.htm
-http://secureyes.net/nw/assets/File-Upload-Vulnerability-in-FCKEditor.pdf &amp;lt;=2.6.4
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;x01-asp&quot;&gt;0x01 asp&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;=2.6.4
-    http://secureyes.net/nw/assets/File-Upload-Vulnerability-in-FCKEditor.pdf
-2.6.6
-    http://www.hack80.com/thread-320-1-1.html
-    http://www.qhwins.com/ShowNews/?11-20109214030542523.html
-2.6.8
-    http://www.freebuf.com/vuls/6408.html
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;x02-php&quot;&gt;0x02 php&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;=2.6.4
-    http://secureyes.net/nw/assets/File-Upload-Vulnerability-in-FCKEditor.pdf
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;x03-fckeditor&quot;&gt;0x03 fckeditor经典尝试后缀&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1&amp;gt;将后缀改成.php.pjpg
-2&amp;gt;将后缀改成.html
-3&amp;gt;将后缀改成.lnk
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;x04-&quot;&gt;0x04 其它上传技巧&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1&amp;gt;上传时,延迟一下再上传,有时能bypass admin,用到firefox tamper插件
-    https://www.youtube.com/watch?v=ndeYnMoFPx8
-    管理员登录绕过
-        https://www.youtube.com/watch?v=UO-vzWFctTA
-        https://www.youtube.com/watch?v=a5fm629s8Ao
-            firefox noredirect插件
-2&amp;gt;双文件上传
-3&amp;gt;上传以图片后缀名为后缀的压缩文件,文件实际是一个webshell.php文件的压缩文件(zip),利用lfi漏洞并将lfi要包含
-  的文件的参数赋值为:
-    zip://archive.zip#webshell.php
-    或
-    zip://archive.zip#webshell.php&amp;amp;param1=system&amp;amp;param2=ls   ===&amp;gt;这里对应webshell.php为:
-        &amp;lt;?php $_GET[&#39;param1&#39;]($_GET[&#39;param2&#39;]);?&amp;gt;
-  这里适用的情况为:
-    a&amp;gt;可上传任意内容文件(通过修改Content-Type等达到目的),但文件会被重命令为以png为后缀文件
-    b&amp;gt;找到了lfi漏洞,但是lfi漏洞不能包函.|./|..|..\|...等情况
-  更多细节:
-    https://www.securusglobal.com/community/2016/08/19/abusing-php-wrappers/
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Fri, 12 Aug 2016 00:00:00 +0800</pubDate>
-        <link>https://3xp10it.cc/web/2016/08/12/fckeditor%E5%90%84%E7%89%88%E6%9C%AC%E7%BB%95%E8%BF%87/</link>
-        <guid isPermaLink="true">https://3xp10it.cc/web/2016/08/12/fckeditor%E5%90%84%E7%89%88%E6%9C%AC%E7%BB%95%E8%BF%87/</guid>
-        
-        <category>fckeditor</category>
-        
-        <category>web</category>
-        
-        <category>upload</category>
         
         
         <category>web</category>
