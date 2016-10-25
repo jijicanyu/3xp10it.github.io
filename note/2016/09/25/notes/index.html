@@ -552,6 +552,8 @@ mkdir /tmp/tmp <span class="err">&amp;&amp;</span> find / -name "*.doc" &gt; /tm
    sqlmap --tor --tor-type=socks5 [--tor-port=9050] --check-tor
    sqlmap --proxy=socks5://127.0.0.1:9050
    sqlmap --proxy=socks5://127.0.0.1:9050 --proxy-cred=admin:pass
+
+   sqlmap中--technique=Q 是inline query的查询方式
 49.tor的笔记:
    1&gt;apt-get install tor安装的tor默认端口是9050,开机自启动tor:vim /etc/rc.local,在exit 0前加上service tor start,和proxychains搭配使用时设置proxychains.conf里面的端口为9050
    2&gt;Tor-Browser洋葱浏览器自带tor,每次启动tor-browser时,它会启动它自带的tor,该tor默认端口是9150(老版本的是9050)

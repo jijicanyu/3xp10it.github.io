@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>https://3xp10it.cc/</link>
     <atom:link href="https://3xp10it.cc/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 25 Oct 2016 14:21:44 +0800</pubDate>
-    <lastBuildDate>Tue, 25 Oct 2016 14:21:44 +0800</lastBuildDate>
+    <pubDate>Tue, 25 Oct 2016 14:34:49 +0800</pubDate>
+    <lastBuildDate>Tue, 25 Oct 2016 14:34:49 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -437,6 +437,8 @@ mkdir /tmp/tmp &lt;span class=&quot;err&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;
    sqlmap --tor --tor-type=socks5 [--tor-port=9050] --check-tor
    sqlmap --proxy=socks5://127.0.0.1:9050
    sqlmap --proxy=socks5://127.0.0.1:9050 --proxy-cred=admin:pass
+
+   sqlmap中--technique=Q 是inline query的查询方式
 49.tor的笔记:
    1&amp;gt;apt-get install tor安装的tor默认端口是9050,开机自启动tor:vim /etc/rc.local,在exit 0前加上service tor start,和proxychains搭配使用时设置proxychains.conf里面的端口为9050
    2&amp;gt;Tor-Browser洋葱浏览器自带tor,每次启动tor-browser时,它会启动它自带的tor,该tor默认端口是9150(老版本的是9050)
