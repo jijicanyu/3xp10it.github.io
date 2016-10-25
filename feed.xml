@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>https://3xp10it.cc/</link>
     <atom:link href="https://3xp10it.cc/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 25 Oct 2016 09:16:05 +0800</pubDate>
-    <lastBuildDate>Tue, 25 Oct 2016 09:16:05 +0800</lastBuildDate>
+    <pubDate>Tue, 25 Oct 2016 09:22:12 +0800</pubDate>
+    <lastBuildDate>Tue, 25 Oct 2016 09:22:12 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -1983,8 +1983,8 @@ autocmd CursorHold * call NextColor(1)
 &lt;/div&gt;
 </description>
         <pubDate>Sun, 18 Sep 2016 00:00:00 +0800</pubDate>
-        <link>https://3xp10it.cc/local/exploit/2016/09/18/linux%E6%8F%90%E6%9D%83/</link>
-        <guid isPermaLink="true">https://3xp10it.cc/local/exploit/2016/09/18/linux%E6%8F%90%E6%9D%83/</guid>
+        <link>https://3xp10it.cc/local_exploit/2016/09/18/linux%E6%8F%90%E6%9D%83/</link>
+        <guid isPermaLink="true">https://3xp10it.cc/local_exploit/2016/09/18/linux%E6%8F%90%E6%9D%83/</guid>
         
         <category>web</category>
         
@@ -1993,9 +1993,7 @@ autocmd CursorHold * call NextColor(1)
         <category>exploit</category>
         
         
-        <category>local</category>
-        
-        <category>exploit</category>
+        <category>local_exploit</category>
         
       </item>
     
