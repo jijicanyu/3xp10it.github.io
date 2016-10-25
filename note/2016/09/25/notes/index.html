@@ -1703,7 +1703,7 @@ https://www.goenitz.xyz/post/ubuntu-install-fcitx-rime-and-wubi
 <span class="p">240.</span>liquid语法
     https://shopify.github.io/liquid/basics/introduction/
     http://www.codes51.com/article/detail_102735.ht
-<span class="p">241.</span>liquid一次循环对文章年月排序:
+<span class="p">241.</span>liquid一次循环对文章年月排序:(其中的<span class="sb">`added`</span>是人为添加的,如果不添加将被执行,即使在一对3个反引号之间)
 	{<span class="sb">`added`% for post in site.posts %`added`} {`added`% capture y %`added`}{`added`{post.date | date:"%Y"}}`added`{`added`% endcapture %`added`</span>} 
         {<span class="sb">`added`% if year != y %`added`</span>} 
         {<span class="sb">`added`% assign year = y %`added`</span>}

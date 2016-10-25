@@ -5,8 +5,8 @@
     <description>A blog about programming and network security</description>
     <link>https://3xp10it.cc/</link>
     <atom:link href="https://3xp10it.cc/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 25 Oct 2016 22:06:17 +0800</pubDate>
-    <lastBuildDate>Tue, 25 Oct 2016 22:06:17 +0800</lastBuildDate>
+    <pubDate>Tue, 25 Oct 2016 22:14:32 +0800</pubDate>
+    <lastBuildDate>Tue, 25 Oct 2016 22:14:32 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -1618,7 +1618,7 @@ https://www.goenitz.xyz/post/ubuntu-install-fcitx-rime-and-wubi
 &lt;span class=&quot;p&quot;&gt;240.&lt;/span&gt;liquid语法
     https://shopify.github.io/liquid/basics/introduction/
     http://www.codes51.com/article/detail_102735.ht
-&lt;span class=&quot;p&quot;&gt;241.&lt;/span&gt;liquid一次循环对文章年月排序:
+&lt;span class=&quot;p&quot;&gt;241.&lt;/span&gt;liquid一次循环对文章年月排序:(其中的&lt;span class=&quot;sb&quot;&gt;`added`&lt;/span&gt;是人为添加的,如果不添加将被执行,即使在一对3个反引号之间)
 	{&lt;span class=&quot;sb&quot;&gt;`added`% for post in site.posts %`added`} {`added`% capture y %`added`}{`added`{post.date | date:&quot;%Y&quot;}}`added`{`added`% endcapture %`added`&lt;/span&gt;} 
         {&lt;span class=&quot;sb&quot;&gt;`added`% if year != y %`added`&lt;/span&gt;} 
         {&lt;span class=&quot;sb&quot;&gt;`added`% assign year = y %`added`&lt;/span&gt;}
